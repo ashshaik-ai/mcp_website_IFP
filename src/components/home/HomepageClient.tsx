@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { I18nProvider, useI18n } from "@/lib/i18n/context";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -88,6 +89,29 @@ const kc_portals = [
   { title: "Seerah",       sub: "10-Stage Prophet's biography", href: "/knowledge-center/seerah", arabic: "السيرة النبوية" },
   { title: "Islamic History", sub: "6 Eras from Rashidun to modern", href: "/knowledge-center/islamic-history", arabic: "التاريخ الإسلامي" },
   { title: "Kids Islam",   sub: "Ages 5–15 · 6 learning stages", href: "/knowledge-center/kids-islam", arabic: "الإسلام للأطفال" },
+];
+
+const leaders = [
+  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు & అధ్యక్షుడు", en: "Founder & Chairman" }, img: "/assets/founder/shaik-akram-2.jpg" },
+  { name: "Yaseen Shaik",      te: "యాసీన్ షేక్",       role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/1.candidate.jpg" },
+  { name: "Abdul Aleem",       te: "అబ్దుల్ అలీమ్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/2.candidate.jpg" },
+  { name: "Akbar Basha Shaik", te: "అక్బర్ బాషా షేక్",  role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/3.candidate.jpg" },
+  { name: "Hazrat Ali Shaik",  te: "హజ్రత్ అలీ షేక్",   role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/4.candidate.jpg" },
+  { name: "Abdul Saleem",      te: "అబ్దుల్ సలీమ్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/5.candidate.jpg" },
+  { name: "Hanifsha Shaik",    te: "హనీఫ్‌షా షేక్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/6.candidate.jpg" },
+  { name: "Hafeez Shaik",      te: "హఫీజ్ షేక్",        role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/7.candidate.jpg" },
+];
+
+const gallery = [
+  { src: "/assets/gallery/convention-hall.webp",       title: { te: "కన్వెన్షన్ హాల్ పునరుద్ధరణ",    en: "Convention Hall Renovation" } },
+  { src: "/assets/gallery/eid-celebration.webp",       title: { te: "ఈద్ వేడుక",                      en: "Eid Celebration" } },
+  { src: "/assets/gallery/funeral-aid.webp",           title: { te: "అంత్యక్రియల సహాయం",             en: "Funeral Aid Program" } },
+  { src: "/assets/gallery/madrasa-classes.webp",       title: { te: "మదరసా తరగతులు",                 en: "Madrasa Classes" } },
+  { src: "/assets/gallery/medical-camp.webp",          title: { te: "వైద్య శిబిరం",                  en: "Medical Camp" } },
+  { src: "/assets/gallery/mosque-renovation.webp",     title: { te: "మసీదు పునరుద్ధరణ",              en: "Mosque Renovation" } },
+  { src: "/assets/gallery/ramadan-iftar.webp",         title: { te: "రంజాన్ ఇఫ్తార్",                en: "Ramadan Iftar" } },
+  { src: "/assets/gallery/scholarship-distribution.webp", title: { te: "స్కాలర్‌షిప్ పంపిణీ",       en: "Scholarship Distribution" } },
+  { src: "/assets/gallery/tailoring-center.webp",      title: { te: "కుట్టు శిక్షణా కేంద్రం",       en: "Tailoring Training Center" } },
 ];
 
 /* ── Status helpers ── */
@@ -219,15 +243,23 @@ function Homepage() {
             <h3 className="text-center font-semibold text-[var(--if-green)] mb-6">
               {lang === "te" ? "వ్యవస్థాపకుడు & నాయకత్వం" : "Founder & Leadership"}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
-              {["Janab Shaik Akram (Founder)", "Yaseen Shaik", "Abdul Aleem", "Akbar Basha Shaik",
-                "Hazrat Ali Shaik", "Abdul Saleem", "Hanifsha Shaik", "Hafeez Shaik"].map((name) => (
-                <BlurFade key={name} delay={0.05}>
-                  <div className="text-center p-4 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors">
-                    <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold text-lg">
-                      {name[0]}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {leaders.map((leader) => (
+                <BlurFade key={leader.name} delay={0.05}>
+                  <div className="text-center p-4 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors group">
+                    <div className="relative w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden border-2 border-[var(--if-gold)]/30 group-hover:border-[var(--if-gold)]/70 transition-colors">
+                      <Image
+                        src={leader.img}
+                        alt={leader.name}
+                        fill
+                        className="object-cover object-top"
+                        sizes="64px"
+                      />
                     </div>
-                    <p className="text-xs font-medium text-[var(--if-text)] leading-snug">{name}</p>
+                    <p className="text-xs font-semibold text-[var(--if-green)] leading-snug">
+                      {lang === "te" ? leader.te : leader.name}
+                    </p>
+                    <p className="text-[10px] text-[var(--if-gold)] mt-0.5">{leader.role[lang]}</p>
                   </div>
                 </BlurFade>
               ))}
@@ -444,14 +476,23 @@ function Homepage() {
           <BlurFade delay={0.2}>
             <div className="relative overflow-hidden rounded-2xl bg-[var(--if-green)] p-8 text-center text-[var(--if-gold-pale)]">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-[var(--if-gold)]/20 border-2 border-[var(--if-gold)]/40 flex items-center justify-center text-4xl">
-                👤
+              <div className="relative w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
+                <Image
+                  src="/assets/founder/shaik-akram-2.jpg"
+                  alt="జనాబ్ షేక్ అక్రమ్"
+                  fill
+                  className="object-cover object-top"
+                  sizes="160px"
+                  priority
+                />
               </div>
-              <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">Janab Shaik Akram</h3>
-              <p className="text-sm text-[var(--if-gold-pale)]/60 mt-1">
-                {lang === "te" ? "వ్యవస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్" : "Founder, Islamic Front"}
+              <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">
+                {lang === "te" ? "జనాబ్ షేక్ అక్రమ్" : "Janab Shaik Akram"}
+              </h3>
+              <p className="text-sm text-[var(--if-gold-pale)]/70 mt-1">
+                {lang === "te" ? "వ్యవస్థాపకుడు · ఇస్లామిక్ ఫ్రంట్" : "Founder · Islamic Front"}
               </p>
-              <p className="text-sm text-[var(--if-gold-pale)]/60">
+              <p className="text-sm text-[var(--if-gold-pale)]/60 mt-0.5">
                 {lang === "te" ? "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్" : "A.P. Waqf Board Director"}
               </p>
             </div>
@@ -484,8 +525,42 @@ function Homepage() {
         </div>
       </section>
 
+      {/* ── GALLERY ── */}
+      <section className="py-20 px-4 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-7xl">
+          <BlurFade delay={0.1}>
+            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-3">
+              {lang === "te" ? "మా కార్యక్రమాలు" : "Our Programs in Action"}
+            </h2>
+            <p className="text-[var(--if-text-muted)] text-center mb-10 text-sm">
+              {lang === "te" ? "సేవ, విద్య మరియు సమాజ నిర్మాణం" : "Service, education and community building"}
+            </p>
+          </BlurFade>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {gallery.map((item, i) => (
+              <BlurFade key={item.src} delay={0.04 * i}>
+                <div className="group relative overflow-hidden rounded-2xl aspect-video border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all shadow-sm hover:shadow-lg hover:shadow-[var(--if-gold)]/10">
+                  <Image
+                    src={item.src}
+                    alt={item.title.en}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 50vw, 33vw"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  <p className="absolute bottom-2 left-3 right-3 text-white text-xs font-semibold leading-snug">
+                    {item.title[lang]}
+                  </p>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── EVENTS ── */}
-      <section id="events" className="py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
+      <section id="events" className="py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
