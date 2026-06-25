@@ -49,15 +49,15 @@ const achievements = [
 
 const manifesto = [
   { title: { te: "అనాథలకు అంజుమన్ షాదీ ఖానా ఉచితంగా", en: "Anjuman Shadi Khana free for orphans" }, status: "completed" },
-  { title: { te: "పేద అమ్మాయిలకు జహాజ్ (వివాహ బహుమతి)", en: "Wedding gift (Jehaz) for poor girls" }, status: "completed" },
+  { title: { te: "పేద అమ్మాయిలకు జహాజ్ (వివాహ బహుమతి)", en: "Wedding gift (Jehaz) for poor girls" }, status: "in_progress" },
   { title: { te: "₹10,000 అంత్యక్రియల సహాయం", en: "₹10,000 funeral assistance" }, status: "completed" },
-  { title: { te: "వార్షికంగా 10 మంది విద్యార్థులకు స్కాలర్‌షిప్", en: "Sponsor 10 students annually" }, status: "completed" },
+  { title: { te: "వార్షికంగా 10 మంది విద్యార్థులకు స్కాలర్‌షిప్", en: "Sponsor 10 students annually" }, status: "upcoming" },
   { title: { te: "టైలరింగ్ కేంద్రం + ఉచిత మెషీన్లు", en: "Tailoring centre + free machines" }, status: "in_progress" },
-  { title: { te: "షాపింగ్ కాంప్లెక్స్", en: "Shopping complex" }, status: "in_progress" },
-  { title: { te: "6 నెలలకు ఒకసారి వైద్య శిబిరం", en: "Medical camp every 6 months" }, status: "in_progress" },
+  { title: { te: "షాపింగ్ కాంప్లెక్స్", en: "Shopping complex" }, status: "upcoming" },
+  { title: { te: "6 నెలలకు ఒకసారి వైద్య శిబిరం", en: "Medical camp every 6 months" }, status: "completed" },
   { title: { te: "స్కాలర్‌షిప్ మొత్తాలు పెంచడం", en: "Increase scholarship amounts" }, status: "in_progress" },
-  { title: { te: "ఉచిత కంప్యూటర్ శిక్షణ కేంద్రం", en: "Free computer training centre" }, status: "upcoming" },
-  { title: { te: "ఇమామ్/ముయజ్జిన్ జీతాలు పెంచడం", en: "Increase Imam/Muezzin salaries" }, status: "upcoming" },
+  { title: { te: "ఉచిత కంప్యూటర్ శిక్షణ కేంద్రం", en: "Free computer training centre" }, status: "in_progress" },
+  { title: { te: "ఇమామ్/ముయజ్జిన్ జీతాలు పెంచడం", en: "Increase Imam/Muezzin salaries" }, status: "completed" },
 ];
 
 const infra = [
@@ -224,7 +224,7 @@ function Homepage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
             {[
-              { n: "7", label: { te: "ఎన్నికైన సభ్యులు", en: "Elected Members" } },
+              { n: "7/9", label: { te: "ఎన్నికైన వార్డ్ సీట్లు", en: "Ward Seats Won" } },
               { n: "15+", label: { te: "సేవా సంవత్సరాలు", en: "Years of Service" } },
               { n: "2023", label: { te: "ఎన్నికలు", en: "Elections" } },
             ].map(({ n, label }) => (
