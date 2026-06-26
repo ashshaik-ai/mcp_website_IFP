@@ -641,7 +641,7 @@ function Homepage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             {[
               { icon: Phone, label: lang === "te" ? "ఫోన్" : "Phone", value: "+91 90329 06677", href: "tel:+919032906677" },
-              { icon: Mail,  label: lang === "te" ? "ఇమెయిల్" : "Email", value: "info@islamicfront.in", href: "mailto:info@islamicfront.in" },
+              { icon: Mail,  label: lang === "te" ? "ఇమెయిల్" : "Email", value: "islamicfrontmangalagiri@gmail.com", href: "mailto:islamicfrontmangalagiri@gmail.com" },
               { icon: MapPin,label: lang === "te" ? "చిరునామా" : "Address", value: "Mangalagiri, Guntur District, A.P. 522503", href: "#" },
             ].map(({ icon: Icon, label, value, href }) => (
               <BlurFade key={label} delay={0.1}>
