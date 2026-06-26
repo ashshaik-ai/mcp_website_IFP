@@ -11,6 +11,11 @@ import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Meteors } from "@/components/ui/meteors";
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
+import { WordRotate } from "@/components/ui/word-rotate";
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { MagicCard } from "@/components/ui/magic-card";
 import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Users, Building2, BookOpen, Heart } from "lucide-react";
 
 /* ── Data ── */
@@ -139,11 +144,15 @@ function Homepage() {
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-24 md:py-32 px-4">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M4OTIyYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]" />
+        <Meteors number={14} minDuration={5} maxDuration={12} className="bg-[var(--if-gold)]/40" />
 
         <div className="relative mx-auto max-w-5xl text-center flex flex-col items-center gap-6">
           <BlurFade delay={0.05}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] text-sm font-medium">
-              🌙 {t("hero_badge")}
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-sm font-medium">
+              🌙{" "}
+              <AnimatedGradientText colorFrom="#e8b84b" colorTo="#ffffff" speed={0.5} className="text-sm font-medium">
+                {t("hero_badge")}
+              </AnimatedGradientText>
             </span>
           </BlurFade>
 
@@ -159,14 +168,37 @@ function Homepage() {
             </p>
           </BlurFade>
 
+          <BlurFade delay={0.18}>
+            <div className="flex items-center justify-center gap-2 text-sm">
+              <span className="text-[var(--if-gold-pale)]/50">{lang === "te" ? "మా లక్ష్యం —" : "Our mission —"}</span>
+              {lang === "te" ? (
+                <WordRotate
+                  words={["కమ్యూనిటీ సంక్షేమం", "నాణ్యమైన విద్య", "పౌర భాగస్వామ్యం", "ముస్లిం ఐక్యత"]}
+                  className="text-[var(--if-gold-light)] font-semibold text-sm m-0 leading-snug"
+                  duration={2400}
+                />
+              ) : (
+                <WordRotate
+                  words={["Community Welfare", "Quality Education", "Civic Participation", "Muslim Unity"]}
+                  className="text-[var(--if-gold-light)] font-semibold text-sm m-0 leading-snug"
+                  duration={2400}
+                />
+              )}
+            </div>
+          </BlurFade>
+
           {/* Stats chips */}
           <BlurFade delay={0.2} className="flex gap-4 flex-wrap justify-center">
             <div className="flex flex-col items-center px-6 py-3 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20 min-w-[140px]">
-              <span className="font-display text-3xl font-bold text-[var(--if-gold-light)]">7/9</span>
+              <span className="font-display text-3xl font-bold text-[var(--if-gold-light)] flex items-baseline gap-0.5">
+                <NumberTicker value={7} className="font-display text-3xl font-bold text-[var(--if-gold-light)]" />/9
+              </span>
               <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1">{t("hero_seats")}</span>
             </div>
             <div className="flex flex-col items-center px-6 py-3 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20 min-w-[140px]">
-              <span className="font-display text-3xl font-bold text-[var(--if-gold-light)]">15+</span>
+              <span className="font-display text-3xl font-bold text-[var(--if-gold-light)] flex items-baseline gap-0.5">
+                <NumberTicker value={15} className="font-display text-3xl font-bold text-[var(--if-gold-light)]" />+
+              </span>
               <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1">{t("hero_years")}</span>
             </div>
           </BlurFade>
@@ -274,25 +306,34 @@ function Homepage() {
       <section id="achievements" className="py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
-              {t("section_achievements")}
+            <h2 className="font-display text-4xl font-bold text-center mb-12">
+              <AnimatedGradientText colorFrom="#0d3b1e" colorTo="#c8922a" speed={0.5}>
+                {t("section_achievements")}
+              </AnimatedGradientText>
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {achievements.map((a, i) => (
               <BlurFade key={i} delay={0.05 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-6 h-full hover:border-[var(--if-gold)]/40 transition-colors group">
-                  <BorderBeam size={100} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <h3 className="font-semibold text-[var(--if-green)] mb-2">{a.title[lang]}</h3>
-                  <p className="text-sm text-[var(--if-text-muted)] mb-4">{a.desc[lang]}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {a.evidence.map((e) => (
-                      <span key={e} className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/20 font-medium">
-                        {e}
-                      </span>
-                    ))}
+                <MagicCard
+                  className="h-full rounded-2xl cursor-default"
+                  gradientFrom="#c8922a"
+                  gradientTo="#e8b84b"
+                  gradientColor="rgba(200,146,42,0.05)"
+                  gradientSize={260}
+                >
+                  <div className="p-6 h-full">
+                    <h3 className="font-semibold text-[var(--if-green)] mb-2">{a.title[lang]}</h3>
+                    <p className="text-sm text-[var(--if-text-muted)] mb-4">{a.desc[lang]}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {a.evidence.map((e) => (
+                        <span key={e} className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/20 font-medium">
+                          {e}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </MagicCard>
               </BlurFade>
             ))}
           </div>
@@ -373,8 +414,10 @@ function Homepage() {
                 <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold mb-2">
                   {t("scheme_title")}
                 </h3>
-                <div className="font-display text-6xl font-bold text-[var(--if-gold)] my-4">
-                  {t("scheme_amount")}
+                <div className="font-display text-6xl font-bold my-4">
+                  <AnimatedGradientText colorFrom="#c8922a" colorTo="#e8b84b" speed={0.4} className="font-display text-6xl font-bold">
+                    {t("scheme_amount")}
+                  </AnimatedGradientText>
                 </div>
                 <p className="text-[var(--if-gold-pale)]/70 text-sm mb-6">{t("scheme_sub")}</p>
                 <p className="text-[var(--if-gold-pale)]/60 text-sm mb-6">{t("scheme_desc")}</p>
@@ -458,7 +501,9 @@ function Homepage() {
         <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-12 items-center">
           <BlurFade delay={0.1}>
             <div>
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--if-gold)]">Est. 26-08-2011</span>
+              <AnimatedShinyText shimmerWidth={120} className="text-xs font-bold tracking-[0.2em] uppercase !text-[var(--if-gold)]">
+                Est. 26-08-2011
+              </AnimatedShinyText>
               <h2 className="font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-4">
                 {t("section_about")}
               </h2>
@@ -678,7 +723,11 @@ function Homepage() {
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-12">
-              <h2 className="font-display text-4xl font-bold text-[var(--if-green)]">{t("section_kc_promo")}</h2>
+              <h2 className="font-display text-4xl font-bold">
+                <AnimatedGradientText colorFrom="#c8922a" colorTo="#0d3b1e" speed={0.5}>
+                  {t("section_kc_promo")}
+                </AnimatedGradientText>
+              </h2>
               <p className="text-[var(--if-text-muted)] mt-2">
                 {lang === "te" ? "ఉచిత, బహుభాషా ఇస్లామిక్ సాధనాలు మరియు వనరులు" : "Free, multilingual Islamic tools and resources"}
               </p>
@@ -687,18 +736,22 @@ function Homepage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
             {kc_portals.map((portal, i) => (
               <BlurFade key={portal.href} delay={0.06 * i}>
-                <a
-                  href={portal.href}
-                  className="relative overflow-hidden group flex flex-col p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all hover:shadow-lg hover:shadow-[var(--if-gold)]/10"
+                <MagicCard
+                  className="rounded-2xl cursor-pointer group"
+                  gradientFrom="#c8922a"
+                  gradientTo="#e8b84b"
+                  gradientColor="rgba(200,146,42,0.04)"
+                  gradientSize={220}
                 >
-                  <BorderBeam size={100} duration={6} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
-                  <span className="font-arabic text-2xl text-[var(--if-gold)]/60 mb-3 self-end">{portal.arabic}</span>
-                  <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title}</h3>
-                  <p className="text-sm text-[var(--if-text-muted)] mt-1">{portal.sub}</p>
-                  <span className="mt-4 text-xs font-semibold text-[var(--if-gold)] flex items-center gap-1">
-                    {lang === "te" ? "తెరవండి" : "Open"} <ChevronRight className="h-3 w-3" />
-                  </span>
-                </a>
+                  <a href={portal.href} className="flex flex-col p-6 h-full">
+                    <span className="font-arabic text-2xl text-[var(--if-gold)]/60 mb-3 self-end">{portal.arabic}</span>
+                    <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title}</h3>
+                    <p className="text-sm text-[var(--if-text-muted)] mt-1">{portal.sub}</p>
+                    <span className="mt-4 text-xs font-semibold text-[var(--if-gold)] flex items-center gap-1">
+                      {lang === "te" ? "తెరవండి" : "Open"} <ChevronRight className="h-3 w-3" />
+                    </span>
+                  </a>
+                </MagicCard>
               </BlurFade>
             ))}
           </div>

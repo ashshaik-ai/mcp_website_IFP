@@ -90,7 +90,9 @@
     100% { transform: translateZ(0) rotate(360deg); }
   }
   @keyframes gradient {
-    to { background-position: var(--bg-size, 300%) 0; }
+  to {
+    background-position:       var(--bg-size, 300%) 0;
+    }
   }
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -101,15 +103,41 @@
     to   { transform: translateY(calc(-100% - var(--gap))); }
   }
   @keyframes meteor {
-    0%   { transform: rotate(var(--angle)) translateX(0); opacity: 1; }
-    70%  { opacity: 1; }
-    100% { transform: rotate(var(--angle)) translateX(-500px); opacity: 0; }
+  0% {
+    transform:       rotate(var(--angle)) translateX(0);
+    opacity:       1;
+    }
+  70% {
+    opacity:       1;
+    }
+  100% {
+    transform:       rotate(var(--angle)) translateX(-500px);
+    opacity:       0;
+    }
   }
   @keyframes blur-fade-in {
     from { opacity: 0; filter: blur(6px); transform: translateY(10px); }
     to   { opacity: 1; filter: blur(0);   transform: translateY(0); }
   }
-}
+  --animate-shiny-text:       shiny-text 8s infinite
+;
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position:       calc(-100% - var(--shiny-width)) 0;
+    }
+  30%, 60% {
+    background-position:       calc(100% + var(--shiny-width)) 0;
+    }
+  }
+  --animate-blink-cursor:       blink-cursor 1.2s step-end infinite;
+  @keyframes blink-cursor {
+  0%, 49% {
+    opacity:       1;
+    }
+  50%, 100% {
+    opacity:       0;
+    }
+  }}
 
 @layer base {
   * {
