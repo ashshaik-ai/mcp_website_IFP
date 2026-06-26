@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import Image from "next/image";
 import { I18nProvider, useI18n } from "@/lib/i18n/context";
 import { Navbar } from "@/components/layout/Navbar";
@@ -97,7 +98,7 @@ const kc_portals = [
 ];
 
 const leaders = [
-  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు & అధ్యక్షుడు", en: "Founder & Chairman" }, img: "/assets/founder/shaik-akram-2.jpg" },
+  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram.jpg" },
   { name: "Yaseen Shaik",      te: "యాసీన్ షేక్",       role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/1.candidate.jpg" },
   { name: "Abdul Aleem",       te: "అబ్దుల్ అలీమ్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/2.candidate.jpg" },
   { name: "Akbar Basha Shaik", te: "అక్బర్ బాషా షేక్",  role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/3.candidate.jpg" },
@@ -273,7 +274,7 @@ function Homepage() {
           {/* Leadership cards */}
           <div>
             <h3 className="text-center font-semibold text-[var(--if-green)] mb-6">
-              {lang === "te" ? "వ్యవస్థాపకుడు & నాయకత్వం" : "Founder & Leadership"}
+              {lang === "te" ? "వ్యవస్థాపకుడు & బృందం" : "Founder & Team"}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
               {leaders.map((leader) => (
@@ -341,62 +342,144 @@ function Homepage() {
       </section>
 
       {/* ── MANIFESTO ── */}
-      <section id="manifesto" className="py-20 px-4 scroll-mt-20">
+      <section id="manifesto" className="py-20 px-4 scroll-mt-20 overflow-hidden">
         <div className="mx-auto max-w-4xl">
-          <BlurFade delay={0.1}>
-            <div className="text-center mb-4">
-              <h2 className="font-display text-4xl font-bold text-[var(--if-green)]">
-                {t("section_manifesto")}
+
+          {/* Header */}
+          <BlurFade delay={0.05}>
+            <div className="text-center mb-8">
+              <span className="text-xs font-bold tracking-[0.22em] uppercase text-[var(--if-gold)]">
+                {lang === "te" ? "కార్యాచరణ ప్రణాళిక 2023–2028" : "Action Plan 2023–2028"}
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl font-bold mt-2">
+                <AnimatedGradientText colorFrom="#0d3b1e" colorTo="#c8922a" speed={0.45}>
+                  {t("section_manifesto")}
+                </AnimatedGradientText>
               </h2>
+              <p className="text-[var(--if-text-muted)] mt-2 text-sm">
+                {lang === "te" ? "మా కమ్యూనిటీ కోసం 10-అంశాల ప్రణాళిక" : "10-point plan for our community"}
+              </p>
             </div>
-            {/* Progress summary */}
-            <div className="flex justify-center gap-6 mb-10 flex-wrap">
-              <div className="flex items-center gap-2 text-sm font-medium text-emerald-700">
-                <CheckCircle2 className="h-5 w-5" />
-                <span>4 {t("completed")}</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-medium text-amber-600">
-                <Clock className="h-5 w-5" />
-                <span>4 {t("in_progress")}</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-500">
-                <Circle className="h-5 w-5" />
-                <span>2 {t("upcoming")}</span>
+          </BlurFade>
+
+          {/* Premium progress card */}
+          <BlurFade delay={0.1}>
+            <div className="relative overflow-hidden mb-8 rounded-2xl bg-[var(--if-green)] p-6 md:p-8">
+              <BorderBeam size={300} duration={14} colorFrom="#c8922a" colorTo="#e8b84b" />
+              <div className="absolute inset-0 opacity-[0.04]"
+                style={{ backgroundImage: "radial-gradient(ellipse at 20% 50%, #e8b84b 0%, transparent 65%), radial-gradient(ellipse at 80% 50%, #c8922a 0%, transparent 65%)" }}
+              />
+              <div className="relative">
+                {/* Stat counters */}
+                <div className="grid grid-cols-3 gap-2 text-center mb-6">
+                  {[
+                    { value: 4, label: t("completed"),  color: "text-emerald-400", ring: "border-emerald-500/30 bg-emerald-900/20" },
+                    { value: 4, label: t("in_progress"), color: "text-amber-400",   ring: "border-amber-500/30 bg-amber-900/20" },
+                    { value: 2, label: t("upcoming"),    color: "text-[var(--if-gold-pale)]/50", ring: "border-white/10 bg-white/5" },
+                  ].map(({ value, label, color, ring }) => (
+                    <div key={label} className={`rounded-xl border ${ring} py-4 px-2`}>
+                      <div className={`font-display text-3xl md:text-4xl font-bold ${color}`}>
+                        <NumberTicker value={value} className={`font-display text-3xl md:text-4xl font-bold ${color}`} />
+                      </div>
+                      <div className="text-[10px] md:text-xs text-[var(--if-gold-pale)]/50 mt-1 leading-tight">{label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Animated progress bar */}
+                <div>
+                  <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/50 mb-2">
+                    <span>{lang === "te" ? "మొత్తం పురోగతి" : "Overall completion"}</span>
+                    <span className="text-[var(--if-gold)] font-semibold">40%</span>
+                  </div>
+                  <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
+                    <motion.div
+                      className="h-full rounded-full"
+                      style={{ background: "linear-gradient(90deg, #10b981 0%, #c8922a 70%, #e8b84b 100%)" }}
+                      initial={{ width: "0%" }}
+                      whileInView={{ width: "40%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-[var(--if-gold-pale)]/30 mt-1.5 text-right">
+                    {lang === "te" ? "4 / 10 పూర్తయింది" : "4 of 10 completed"}
+                  </p>
+                </div>
               </div>
             </div>
           </BlurFade>
 
-          <div className="space-y-2.5">
+          {/* Premium manifesto rows */}
+          <div className="space-y-2">
             {manifesto.map((item, i) => (
-              <BlurFade key={i} delay={0.05 * i}>
-                <div className={`group flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -28 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.065, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className={`group relative overflow-hidden flex items-center gap-3 md:gap-4 p-4 rounded-xl border transition-all duration-300 hover:shadow-md hover:-translate-y-px ${
                   item.status === "completed"
-                    ? "bg-emerald-50/80 border-emerald-200/60 hover:border-emerald-300"
+                    ? "bg-gradient-to-r from-emerald-50 to-white border-emerald-200/70 hover:border-emerald-300 hover:shadow-emerald-100"
                     : item.status === "in_progress"
-                    ? "bg-amber-50/80 border-amber-200/60 hover:border-amber-300"
-                    : "bg-white border-gray-100 hover:border-[var(--if-gold)]/30"
+                    ? "bg-gradient-to-r from-amber-50 to-white border-amber-200/70 hover:border-amber-300 hover:shadow-amber-100"
+                    : "bg-white border-gray-100 hover:border-[var(--if-gold)]/25 hover:shadow-[var(--if-gold)]/5"
                 }`}>
+                  {/* Left accent strip */}
+                  <div className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl ${
+                    item.status === "completed" ? "bg-gradient-to-b from-emerald-400 to-emerald-600"
+                    : item.status === "in_progress" ? "bg-gradient-to-b from-amber-400 to-amber-500"
+                    : "bg-gray-200"
+                  }`} />
+                  {item.status === "in_progress" && (
+                    <motion.div
+                      className="absolute left-0 top-0 bottom-0 w-[3px] bg-amber-300 rounded-l-xl"
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                    />
+                  )}
+
+                  {/* Row number */}
+                  <span className="ml-3 flex-shrink-0 text-[11px] font-bold text-[var(--if-text-muted)]/30 w-4 text-right tabular-nums">{i + 1}</span>
+
                   <div className="flex-shrink-0">
                     <StatusIcon status={item.status} />
                   </div>
-                  <span className="flex-1 text-[var(--if-text)] font-medium leading-snug">{item.title[lang]}</span>
-                  <span className={`flex-shrink-0 text-xs px-2.5 py-0.5 rounded-full border font-semibold ${statusColor(item.status)}`}>
+
+                  <span className="flex-1 text-[var(--if-text)] font-medium leading-snug text-sm md:text-base">
+                    {item.title[lang]}
+                  </span>
+
+                  <span className={`flex-shrink-0 text-[10px] md:text-xs px-2.5 py-1 rounded-full border font-semibold whitespace-nowrap ${statusColor(item.status)}`}>
                     {item.status === "completed" ? t("completed") : item.status === "in_progress" ? t("in_progress") : t("upcoming")}
                   </span>
                 </div>
-              </BlurFade>
+              </motion.div>
             ))}
           </div>
 
-          <BlurFade delay={0.6} className="text-center mt-10">
+          {/* Premium download */}
+          <motion.div
+            className="text-center mt-10"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
+          >
             <a
-              href={lang === "te" ? "/manifesto-te.pdf" : "/manifesto-en.pdf"}
+              href="/Islamic_Front_Manifesto.pdf"
               download
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold hover:bg-[var(--if-green)]/90 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold shadow-lg shadow-[var(--if-green)]/25 hover:shadow-xl hover:shadow-[var(--if-green)]/35 hover:-translate-y-1 transition-all duration-300"
             >
-              📥 {t("download_manifesto")}
+              <svg viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 group-hover:translate-y-0.5 transition-transform duration-300" aria-hidden="true">
+                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+              <span>{t("download_manifesto")}</span>
+              <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
-          </BlurFade>
+          </motion.div>
         </div>
       </section>
 
@@ -515,7 +598,7 @@ function Homepage() {
               <ul className="space-y-4">
                 {[
                   { year: "2011", event: { te: "ఇస్లామిక్ ఫ్రంట్ స్థాపన", en: "Islamic Front established" } },
-                  { year: "Ongoing", event: { te: "జనాబ్ ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్‌గా సేవ", en: "Janab serves as A.P. Waqf Board Director" } },
+                  { year: "Ongoing", event: { te: "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్‌గా సేవలు", en: "Serves as A.P. Waqf Board Director" } },
                   { year: "July 2023", event: { te: "7/9 సీట్లతో చారిత్రాత్మక విజయం", en: "Landslide victory (7/9 seats)" } },
                   { year: "2023–Now", event: { te: "కన్వెన్షన్ అప్‌గ్రేడ్, అంత్యక్రియల సహాయం, అద్దె సంస్కరణలు", en: "Convention upgrades, funeral aid, rent reforms, stitching centre" } },
                 ].map(({ year, event }) => (
@@ -532,7 +615,7 @@ function Homepage() {
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="relative w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
                 <Image
-                  src="/assets/founder/shaik-akram-2.jpg"
+                  src="/assets/founder/shaik-akram.jpg"
                   alt="జనాబ్ షేక్ అక్రమ్"
                   fill
                   className="object-cover object-top"
