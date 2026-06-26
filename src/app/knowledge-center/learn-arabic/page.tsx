@@ -64,6 +64,14 @@ const whyLearn = [
   { ar: "طَلَبُ الْعِلْمِ فَرِيضَةٌ", title: { te: "ఇస్లామిక్ జ్ఞానాన్ని తెరవండి", en: "Unlock Islamic Knowledge" }, desc: { te: "1400 సంవత్సరాల విద్వత్ అరబిక్‌లో ఉంది — దానిలోకి ప్రవేశించండి", en: "1400 years of scholarship is in Arabic — access it directly" } },
 ];
 
+const quizQuestions = [
+  { q: { te: "అరబిక్ వర్ణమాలలో ఎన్ని అక్షరాలు ఉన్నాయి?", en: "How many letters are in the Arabic alphabet?" }, opts: [{ te: "28", en: "28" }, { te: "26", en: "26" }, { te: "39", en: "39" }], ans: 0 },
+  { q: { te: "అరబిక్ ఏ దిశలో రాస్తారు?", en: "In which direction is Arabic written?" }, opts: [{ te: "కుడి నుండి ఎడమకు", en: "Right to left" }, { te: "ఎడమ నుండి కుడికి", en: "Left to right" }, { te: "పై నుండి కిందకు", en: "Top to bottom" }], ans: 0 },
+  { q: { te: "ఫత్‌హా, కస్రా, దమ్మా దేన్ని సూచిస్తాయి?", en: "What do fatha, kasra and damma represent?" }, opts: [{ te: "హ్రస్వ అచ్చులు", en: "Short vowels" }, { te: "అక్షరాలు", en: "Letters" }, { te: "సంఖ్యలు", en: "Numbers" }], ans: 0 },
+  { q: { te: "చాలా అరబిక్ పదాలు ఎన్ని అక్షరాల మూలాల నుండి ఏర్పడతాయి?", en: "Most Arabic words are built from roots of how many letters?" }, opts: [{ te: "మూడు", en: "Three" }, { te: "రెండు", en: "Two" }, { te: "ఐదు", en: "Five" }], ans: 0 },
+  { q: { te: "ఖురాన్ శాస్త్రీయ అరబిక్‌ను ఏమంటారు?", en: "The classical Arabic of the Quran is called?" }, opts: [{ te: "ఫుస్‌హా", en: "Fus-ha" }, { te: "మాండలికం", en: "A dialect" }, { te: "వాడుక భాష", en: "Slang" }], ans: 0 },
+];
+
 type Letter = typeof alphabet[0];
 
 function LearnArabicPage() {
@@ -71,6 +79,12 @@ function LearnArabicPage() {
   const [openLevel, setOpenLevel] = useState<number | null>(1);
   const [wordIdx, setWordIdx] = useState(0);
   const [selected, setSelected] = useState<Letter | null>(null);
+  const [fcIdx, setFcIdx] = useState(0);
+  const [fcFlipped, setFcFlipped] = useState(false);
+  const [quizIdx, setQuizIdx] = useState(0);
+  const [quizAns, setQuizAns] = useState<number | null>(null);
+  const [quizScore, setQuizScore] = useState(0);
+  const [quizDone, setQuizDone] = useState(false);
 
   const speak = useCallback((text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -375,6 +389,139 @@ function LearnArabicPage() {
                 </button>
               </div>
             </div>
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* ── FLASHCARDS ── */}
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-md">
+          <BlurFade delay={0.1}>
+            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
+              {lang === "te" ? "అక్షర ఫ్లాష్ కార్డులు" : "Letter Flashcards"}
+            </h2>
+            <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
+              {lang === "te" ? "అక్షరాన్ని చూసి గుర్తించండి — తిప్పి పేరు చూడండి" : "Recognise the letter — tap to flip and see its name"}
+            </p>
+            <div
+              className="relative overflow-hidden bg-[var(--if-green)] rounded-3xl p-10 text-center cursor-pointer select-none min-h-[180px] flex items-center justify-center"
+              onClick={() => setFcFlipped(f => !f)}
+            >
+              <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
+              {!fcFlipped ? (
+                <span className="font-arabic text-8xl text-[var(--if-gold-light)]" dir="rtl">{alphabet[fcIdx].ar}</span>
+              ) : (
+                <div className="text-[var(--if-gold-pale)]">
+                  <div className="font-arabic text-5xl text-[var(--if-gold-light)] mb-3" dir="rtl">{alphabet[fcIdx].ar}</div>
+                  <div className="text-2xl font-bold mb-1">{alphabet[fcIdx].name}</div>
+                  <div className="text-lg text-[var(--if-gold)] mb-0.5">/{alphabet[fcIdx].en}/</div>
+                  <div className="text-sm text-[var(--if-gold-pale)]/70 mb-3">{alphabet[fcIdx].te}</div>
+                  <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${alphabet[fcIdx].sun ? "bg-amber-400/30 text-amber-200" : "bg-emerald-400/20 text-emerald-200"}`}>
+                    {alphabet[fcIdx].sun ? (lang === "te" ? "☀️ సూర్య అక్షరం" : "☀️ Sun Letter") : (lang === "te" ? "🌙 చంద్ర అక్షరం" : "🌙 Moon Letter")}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="flex items-center justify-between mt-4">
+              <button
+                onClick={() => { setFcIdx(i => (i - 1 + alphabet.length) % alphabet.length); setFcFlipped(false); }}
+                className="p-2.5 rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
+              >
+                <ChevronLeft className="h-4 w-4 text-[var(--if-green)]" />
+              </button>
+              <span className="text-xs text-[var(--if-text-muted)]">
+                {fcIdx + 1} / {alphabet.length} · {lang === "te" ? "తిప్పడానికి తాకండి" : "Tap to flip"}
+              </span>
+              <button
+                onClick={() => { setFcIdx(i => (i + 1) % alphabet.length); setFcFlipped(false); }}
+                className="p-2.5 rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
+              >
+                <ChevronRight className="h-4 w-4 text-[var(--if-green)]" />
+              </button>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* ── QUIZ ── */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-lg">
+          <BlurFade delay={0.1}>
+            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
+              {lang === "te" ? "అరబిక్ క్విజ్" : "Arabic Quiz"}
+            </h2>
+            <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
+              {lang === "te" ? "వర్ణమాల, హరకాత్, పదజాలంపై మీకు తెలిసింది పరీక్షించుకోండి" : "Check what you know across the alphabet, harakat and vocabulary"}
+            </p>
+            {quizDone ? (
+              <div className="text-center p-8 bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/20">
+                <div className="text-5xl mb-4">{quizScore >= 4 ? "🌟" : quizScore >= 3 ? "✅" : "📖"}</div>
+                <p className="font-bold text-[var(--if-green)] text-xl mb-2">
+                  {lang === "te" ? `${quizScore}/${quizQuestions.length} సరైనవి!` : `${quizScore}/${quizQuestions.length} correct!`}
+                </p>
+                <p className="text-sm text-[var(--if-text-muted)] mb-6">
+                  {quizScore >= 4
+                    ? (lang === "te" ? "అద్భుతం! మీకు అరబిక్ బాగా తెలుసు." : "Excellent! You know your Arabic well.")
+                    : (lang === "te" ? "మళ్ళీ ప్రయత్నించండి — అభ్యాసమే విజయం." : "Keep practising — repetition is the key.")}
+                </p>
+                <button
+                  onClick={() => { setQuizIdx(0); setQuizAns(null); setQuizScore(0); setQuizDone(false); }}
+                  className="px-6 py-2.5 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold text-sm hover:bg-[var(--if-green)]/90 transition-colors"
+                >
+                  {lang === "te" ? "మళ్ళీ ప్రయత్నించు" : "Try Again"}
+                </button>
+              </div>
+            ) : (
+              <div className="bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-5">
+                  <span className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider">
+                    {lang === "te" ? `ప్రశ్న ${quizIdx + 1}/${quizQuestions.length}` : `Question ${quizIdx + 1}/${quizQuestions.length}`}
+                  </span>
+                  <div className="flex gap-1.5">
+                    {quizQuestions.map((_, i) => (
+                      <div key={i} className={`w-2 h-2 rounded-full transition-colors ${i < quizIdx ? "bg-[var(--if-green)]" : i === quizIdx ? "bg-[var(--if-gold)]" : "bg-gray-200"}`} />
+                    ))}
+                  </div>
+                </div>
+                <p className="font-semibold text-[var(--if-text)] mb-5 leading-snug text-base">{quizQuestions[quizIdx].q[lang]}</p>
+                <div className="space-y-2">
+                  {quizQuestions[quizIdx].opts.map((opt, i) => {
+                    const answered = quizAns !== null;
+                    const correct = i === quizQuestions[quizIdx].ans;
+                    const chosen = i === quizAns;
+                    return (
+                      <button
+                        key={i}
+                        disabled={answered}
+                        onClick={() => { setQuizAns(i); if (i === quizQuestions[quizIdx].ans) setQuizScore(s => s + 1); }}
+                        className={`w-full text-left px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
+                          answered
+                            ? correct ? "bg-emerald-50 border-emerald-400 text-emerald-700"
+                              : chosen ? "bg-red-50 border-red-300 text-red-600"
+                              : "bg-gray-50 border-gray-100 text-gray-400"
+                            : "border-[var(--if-gold)]/20 hover:border-[var(--if-gold)] hover:bg-[var(--if-cream-light)] text-[var(--if-text)]"
+                        }`}
+                      >
+                        {opt[lang]}
+                      </button>
+                    );
+                  })}
+                </div>
+                {quizAns !== null && (
+                  <button
+                    className="mt-5 w-full py-2.5 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold text-sm hover:bg-[var(--if-green)]/90 transition-colors"
+                    onClick={() => {
+                      if (quizIdx < quizQuestions.length - 1) { setQuizIdx(i => i + 1); setQuizAns(null); }
+                      else setQuizDone(true);
+                    }}
+                  >
+                    {quizIdx < quizQuestions.length - 1
+                      ? (lang === "te" ? "తదుపరి ప్రశ్న →" : "Next Question →")
+                      : (lang === "te" ? "ఫలితాలు చూడు" : "See Results")}
+                  </button>
+                )}
+              </div>
+            )}
           </BlurFade>
         </div>
       </section>
