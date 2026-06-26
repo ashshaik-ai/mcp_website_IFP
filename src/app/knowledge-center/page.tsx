@@ -55,7 +55,7 @@ const portals = [
     desc: { te: "ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10 దశల కాలపట్టిక", en: "Life of Prophet Muhammad ﷺ — 10-stage visual timeline" },
     meta: { te: "10 దశలు · చారిత్రక కాలపట్టిక · ఉచితం", en: "10 Stages · Historical Timeline · Free" },
     icon: Clock,
-    color: "from-purple-900 to-[var(--if-green)]",
+    color: "from-slate-800 to-[var(--if-green)]",
   },
   {
     id: "islamic-history",
@@ -64,7 +64,7 @@ const portals = [
     desc: { te: "రాషిదూన్ నుండి ఆధునిక కాలం వరకు — 6 యుగాలు", en: "Rashidun to modern era — 6 historical epochs" },
     meta: { te: "6 యుగాలు · సామ్రాజ్యాలు · ఉచితం", en: "6 Eras · Empires · Free" },
     icon: Globe,
-    color: "from-rose-900 to-[var(--if-green)]",
+    color: "from-stone-800 to-[var(--if-green)]",
   },
   {
     id: "kids-islam",
@@ -73,7 +73,7 @@ const portals = [
     desc: { te: "వయస్సు 5–15 · విశ్వాసాలు · మర్యాదలు · ప్రవక్త కథలు · ఖురాన్", en: "Ages 5–15 · Beliefs · Manners · Prophet Stories · Quran" },
     meta: { te: "6 విభాగాలు · ఇంటరాక్టివ్ · ఉచితం", en: "6 Sections · Interactive · Free" },
     icon: Baby,
-    color: "from-orange-800 to-amber-900",
+    color: "from-emerald-900 to-teal-900",
   },
   {
     id: "names-of-allah",
@@ -109,7 +109,7 @@ const portals = [
     desc: { te: "10 ప్రత్యేక ఇస్లామిక్ నమాజులు — తహజ్జుద్, ఇస్తిఖారా, జనాజా మరియు మరిన్ని", en: "10 special Islamic prayers — Tahajjud, Istikhara, Janaza and more" },
     meta: { te: "10 నమాజులు · దువాలు · ఉచితం", en: "10 Prayers · Duas · Free" },
     icon: Star,
-    color: "from-violet-900 to-[var(--if-green)]",
+    color: "from-slate-800 to-[var(--if-green)]",
   },
   {
     id: "womens-guidance",
@@ -118,7 +118,7 @@ const portals = [
     desc: { te: "హైద్ · నిఫాస్ · తహారా · గుస్ల్ · రమజాన్ — విశ్వసనీయ ఫిఖ్ మార్గదర్శకం", en: "Hayd · Nifas · Taharah · Ghusl · Ramadan — trusted fiqh guidance" },
     meta: { te: "పూర్తి మార్గదర్శకం · గోప్యం · ఉచితం", en: "Complete Guide · Private · Free" },
     icon: Users,
-    color: "from-pink-900 to-rose-900",
+    color: "from-[#1a3a2a] to-[var(--if-green)]",
   },
 ];
 

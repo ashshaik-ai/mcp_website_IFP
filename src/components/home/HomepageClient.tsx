@@ -325,13 +325,21 @@ function Homepage() {
             </div>
           </BlurFade>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {manifesto.map((item, i) => (
-              <BlurFade key={i} delay={0.04 * i}>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-[var(--if-gold)]/10 hover:border-[var(--if-gold)]/30 transition-colors">
-                  <StatusIcon status={item.status} />
-                  <span className="flex-1 text-[var(--if-text)] font-medium">{item.title[lang]}</span>
-                  <span className={`text-xs px-2.5 py-0.5 rounded-full border font-semibold ${statusColor(item.status)}`}>
+              <BlurFade key={i} delay={0.05 * i}>
+                <div className={`group flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${
+                  item.status === "completed"
+                    ? "bg-emerald-50/80 border-emerald-200/60 hover:border-emerald-300"
+                    : item.status === "in_progress"
+                    ? "bg-amber-50/80 border-amber-200/60 hover:border-amber-300"
+                    : "bg-white border-gray-100 hover:border-[var(--if-gold)]/30"
+                }`}>
+                  <div className="flex-shrink-0">
+                    <StatusIcon status={item.status} />
+                  </div>
+                  <span className="flex-1 text-[var(--if-text)] font-medium leading-snug">{item.title[lang]}</span>
+                  <span className={`flex-shrink-0 text-xs px-2.5 py-0.5 rounded-full border font-semibold ${statusColor(item.status)}`}>
                     {item.status === "completed" ? t("completed") : item.status === "in_progress" ? t("in_progress") : t("upcoming")}
                   </span>
                 </div>
@@ -339,10 +347,11 @@ function Homepage() {
             ))}
           </div>
 
-          <BlurFade delay={0.5} className="text-center mt-8">
+          <BlurFade delay={0.6} className="text-center mt-10">
             <a
-              href="#"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold hover:bg-[var(--if-green)]/90 transition-colors"
+              href={lang === "te" ? "/manifesto-te.pdf" : "/manifesto-en.pdf"}
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold hover:bg-[var(--if-green)]/90 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
             >
               📥 {t("download_manifesto")}
             </a>

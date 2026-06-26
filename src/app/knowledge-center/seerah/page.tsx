@@ -12,11 +12,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const stages = [
   { num: 1, year: "570 CE", title: { te: "జన్మ & బాల్యం", en: "Birth & Early Years" }, arabic: "المولد والطفولة", desc: { te: "మక్కాలో జన్మించిన ప్రవక్త ముహమ్మద్ ﷺ — 'అల్-అమీన్' (విశ్వసనీయుడు) అని పిలువబడేవారు", en: "Prophet Muhammad ﷺ born in Makkah — known as 'Al-Amin' (the trustworthy)" }, color: "bg-amber-700" },
   { num: 2, year: "610 CE", title: { te: "మొదటి వహ్యీ", en: "First Revelation" }, arabic: "بدء الوحي", desc: { te: "గారె హిరాలో జిబ్రాయీల్ అలైహిస్సలామ్ వచ్చి 'ఇఖ్రా' అని మొదటి వచనాలు అవతరించాయి", en: "Jibreel came in cave Hira with first verses — 'Iqra' — Read in the name of your Lord" }, color: "bg-emerald-700" },
-  { num: 3, year: "610–622 CE", title: { te: "మక్కా ప్రచారం", en: "Meccan Preaching" }, arabic: "الدعوة في مكة", desc: { te: "13 సంవత్సరాల తౌహీద్ సందేశం — హింస, నిరాకరణ మరియు సహనం", en: "13 years of Tawhid message — persecution, rejection and patience" }, color: "bg-rose-800" },
+  { num: 3, year: "610–622 CE", title: { te: "మక్కా ప్రచారం", en: "Meccan Preaching" }, arabic: "الدعوة في مكة", desc: { te: "13 సంవత్సరాల తౌహీద్ సందేశం — హింస, నిరాకరణ మరియు సహనం", en: "13 years of Tawhid message — persecution, rejection and patience" }, color: "bg-stone-700" },
   { num: 4, year: "622 CE", title: { te: "మదీనాకు హిజ్రత్", en: "Migration to Madinah" }, arabic: "الهجرة إلى المدينة", desc: { te: "ఇస్లామిక్ క్యాలెండర్ ప్రారంభం — ముస్లిం సమాజ స్థాపన", en: "Start of Islamic calendar — establishment of Muslim community" }, color: "bg-blue-800" },
   { num: 5, year: "622–625 CE", title: { te: "సమాజ నిర్మాణం", en: "Building the Community" }, arabic: "بناء المجتمع", desc: { te: "మస్జిద్-అన్-నబవీ నిర్మాణం, మదీనా ఒడంబడిక, అన్సార్-ముహాజిరీన్ సోదరత్వం", en: "Masjid an-Nabawi built, Charter of Madinah, brotherhood of Ansar & Muhajireen" }, color: "bg-teal-800" },
   { num: 6, year: "624–627 CE", title: { te: "యుద్ధాలు & పరీక్షలు", en: "Battles & Trials" }, arabic: "الغزوات والابتلاءات", desc: { te: "బదర్, ఉహుద్, ఖందఖ్ — ఈమాన్‌ను నిరూపించిన పరీక్షలు", en: "Badr, Uhud, Khandaq — trials that tested and proved faith" }, color: "bg-gray-700" },
-  { num: 7, year: "628–630 CE", title: { te: "విజయాలు & జయాలు", en: "Triumphs & Victories" }, arabic: "الفتوحات والانتصارات", desc: { te: "హుదైబియా సంధి, మక్కా ఫత్హ్ — 'ఇన్నా ఫతహ్నా లకా ఫత్హన్ ముబీనా'", en: "Treaty of Hudaybiyyah, Conquest of Makkah — 'Indeed We have opened for you a clear opening'" }, color: "bg-purple-800" },
+  { num: 7, year: "628–630 CE", title: { te: "విజయాలు & జయాలు", en: "Triumphs & Victories" }, arabic: "الفتوحات والانتصارات", desc: { te: "హుదైబియా సంధి, మక్కా ఫత్హ్ — 'ఇన్నా ఫతహ్నా లకా ఫత్హన్ ముబీనా'", en: "Treaty of Hudaybiyyah, Conquest of Makkah — 'Indeed We have opened for you a clear opening'" }, color: "bg-[#1a2a3a]" },
   { num: 8, year: "632 CE", title: { te: "విదాయ్ హజ్జ్", en: "Farewell Pilgrimage" }, arabic: "حجة الوداع", desc: { te: "అరఫాత్ ఖుత్బా — ఇస్లామిక్ సూత్రాల చివరి ప్రకటన", en: "Sermon of Arafat — final declaration of Islamic principles" }, color: "bg-indigo-800" },
   { num: 9, year: "632 CE", title: { te: "వారసత్వం & బోధనలు", en: "Legacy & Teachings" }, arabic: "الإرث والتعاليم", desc: { te: "ఖురాన్ మరియు సున్నత్ — మానవజాతికి శాశ్వత మార్గదర్శి", en: "Quran and Sunnah — an eternal guide left for humanity" }, color: "bg-amber-800" },
   { num: 10, year: "Today", title: { te: "ఆధునిక జీవితంలో అనువర్తనం", en: "Application in Modern Life" }, arabic: "التطبيق في الحياة المعاصرة", desc: { te: "ప్రవక్త సీరత్ నుండి నేటి సవాళ్ళకు పరిష్కారాలు నేర్చుకోవడం", en: "Drawing lessons from the Prophet's biography for today's challenges" }, color: "bg-green-800" },
@@ -40,7 +40,7 @@ function SeerahPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-purple-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="bg-gradient-to-br from-slate-800 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">

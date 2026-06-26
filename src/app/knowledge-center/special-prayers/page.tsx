@@ -40,7 +40,7 @@ const prayers = [
       { te: "జుమా 2 రక్అత్ చేయండి", en: "Perform 2 raka'at of Jumu'ah" },
     ],
     dua: { ar: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ", en: "O Allah, send blessings upon Muhammad and his family" },
-    color: "bg-amber-800",
+    color: "bg-[#3d2800]",
   },
   {
     id: "eid",
@@ -56,7 +56,7 @@ const prayers = [
       { te: "2 ఖుత్బాలు వినండి. కుటుంబం & పొరుగువారిని కలవండి", en: "Listen to two Khutbahs. Meet family and neighbours" },
     ],
     dua: { ar: "تَقَبَّلَ اللهُ مِنَّا وَمِنْكُمْ", en: "May Allah accept from us and from you" },
-    color: "bg-rose-800",
+    color: "bg-stone-800",
   },
   {
     id: "tarawih",
@@ -86,7 +86,7 @@ const prayers = [
       { te: "హృదయ సాక్ష్యం అనుసరించండి — సంకేతం కోసం వేచి ఉండకండి", en: "Follow what your heart inclines to — don't wait for a dream" },
     ],
     dua: { ar: "اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ", en: "O Allah, I seek Your guidance by Your knowledge" },
-    color: "bg-purple-900",
+    color: "bg-slate-800",
   },
 ];
 

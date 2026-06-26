@@ -13,7 +13,7 @@ const sections = [
   {
     id: "rights",
     title: { te: "ఇస్లాంలో మహిళల హక్కులు", en: "Women's Rights in Islam" }, ar: "حقوق المرأة في الإسلام",
-    color: "bg-rose-800",
+    color: "bg-[#1a3a2a]",
     icon: "⚖️",
     points: [
       { te: "ఆస్తి హక్కు — విక్రయించే, కొనే, వారసత్వ హక్కు", en: "Property rights — to buy, sell, and inherit in their own name" },
@@ -41,7 +41,7 @@ const sections = [
   {
     id: "hijab",
     title: { te: "హిజాబ్ & స్కారఫ్", en: "Hijab & Modesty" }, ar: "الحجاب والحشمة",
-    color: "bg-purple-900",
+    color: "bg-slate-800",
     icon: "🧕",
     points: [
       { te: "హిజాబ్ ఖురాన్ ఆదేశం — సూరహ్ నూర్ 24:31, సూరహ్ అహ్జాబ్ 33:59", en: "Hijab is a Quranic command — Surah An-Nur 24:31, Surah Al-Ahzab 33:59" },
@@ -55,7 +55,7 @@ const sections = [
   {
     id: "role-models",
     title: { te: "ముస్లిం మహిళా ఆదర్శాలు", en: "Muslim Women Role Models" }, ar: "نساء عظيمات في الإسلام",
-    color: "bg-amber-800",
+    color: "bg-[#5c3d00]",
     icon: "⭐",
     points: [
       { te: "ఖదీజహ్ RA — ప్రవక్త ﷺ మొదటి భార్య, విజయవంతమైన వ్యాపారి, ఇస్లాంలో మొదటి మహిళ", en: "Khadijah RA — Prophet's ﷺ first wife, successful businesswoman, first woman in Islam" },
