@@ -244,19 +244,27 @@ export function LessonView({
               {copy.reading[lang]}
             </h2>
             <ul className="grid gap-2">
-              {lesson.reading.map((r) => (
-                <li key={r.url}>
-                  <a
-                    href={r.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold)] hover:text-[var(--if-green)] transition-colors"
-                  >
-                    {r.label}
-                    <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
-                  </a>
-                </li>
-              ))}
+              {lesson.reading.map((r) => {
+                // Only send people off-site in a new tab; internal links stay put.
+                const external = /^https?:/i.test(r.url);
+                const className =
+                  "inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold)] hover:text-[var(--if-green)] transition-colors";
+                return (
+                  <li key={r.url}>
+                    {external ? (
+                      <a href={r.url} target="_blank" rel="noopener noreferrer" className={className}>
+                        {r.label}
+                        <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
+                      </a>
+                    ) : (
+                      <Link href={r.url} className={className}>
+                        {r.label}
+                        <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </section>
         )}

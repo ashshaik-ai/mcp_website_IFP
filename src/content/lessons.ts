@@ -424,7 +424,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Learn Arabic (this site)",
-        "url": "../learn-arabic/index.html"
+        "url": "/knowledge-center/learn-arabic"
       },
       {
         "label": "Quranic Arabic Corpus",
@@ -627,7 +627,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Tajweed Academy (this portal)",
-        "url": "#tajweed"
+        "url": "/knowledge-center/learn-quran"
       },
       {
         "label": "Bayyinah",
@@ -2378,7 +2378,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Salah Simulator (this portal)",
-        "url": "#simulator"
+        "url": "/knowledge-center/learn-salah"
       },
       {
         "label": "SeekersGuidance",
@@ -5240,7 +5240,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Seerah (this site)",
-        "url": "../seerah/index.html"
+        "url": "/knowledge-center/seerah"
       },
       {
         "label": "Yaqeen Institute",
@@ -7825,7 +7825,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Learn Salah (this site)",
-        "url": "../learn-salah/index.html"
+        "url": "/knowledge-center/learn-salah"
       },
       {
         "label": "Quran.com",
@@ -8595,7 +8595,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Alphabet lesson",
-        "url": "alphabet.html"
+        "url": "/knowledge-center/learn-arabic/alphabet"
       },
       {
         "label": "Madinah Arabic",
@@ -8794,7 +8794,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Harakat lesson",
-        "url": "harakat.html"
+        "url": "/knowledge-center/learn-arabic/harakat"
       },
       {
         "label": "Madinah Arabic",
@@ -8989,7 +8989,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Vocabulary lesson",
-        "url": "vocabulary.html"
+        "url": "/knowledge-center/learn-arabic/vocabulary"
       },
       {
         "label": "Quranic Arabic Corpus",
@@ -9184,7 +9184,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Grammar lesson",
-        "url": "grammar.html"
+        "url": "/knowledge-center/learn-arabic/grammar"
       },
       {
         "label": "Madinah Arabic",
@@ -9383,7 +9383,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Quranic Arabic lesson",
-        "url": "quranic-arabic.html"
+        "url": "/knowledge-center/learn-arabic/quranic"
       },
       {
         "label": "Quranic Arabic Corpus",
@@ -9582,7 +9582,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Everyday Arabic lesson",
-        "url": "daily-arabic.html"
+        "url": "/knowledge-center/learn-arabic/daily"
       },
       {
         "label": "Madinah Arabic",
@@ -9777,7 +9777,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open the Alphabet lesson",
-        "url": "alphabet.html"
+        "url": "/knowledge-center/learn-urdu/alphabet"
       },
       {
         "label": "Rekhta",
@@ -9976,7 +9976,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open Reading Basics",
-        "url": "reading-basics.html"
+        "url": "/knowledge-center/learn-urdu/reading"
       },
       {
         "label": "Rekhta",
@@ -10171,7 +10171,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open Writing Skills",
-        "url": "writing-skills.html"
+        "url": "/knowledge-center/learn-urdu/writing"
       },
       {
         "label": "Rekhta",
@@ -10366,7 +10366,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open Everyday Urdu",
-        "url": "daily-urdu.html"
+        "url": "/knowledge-center/learn-urdu/daily"
       },
       {
         "label": "Rekhta",
@@ -10561,7 +10561,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open Islamic Urdu",
-        "url": "islamic-urdu.html"
+        "url": "/knowledge-center/learn-urdu/islamic"
       },
       {
         "label": "Rekhta",
@@ -10760,7 +10760,7 @@ export const lessons: Lesson[] = [
     "reading": [
       {
         "label": "Open Advanced Reading",
-        "url": "advanced-reading.html"
+        "url": "/knowledge-center/learn-urdu/advanced"
       },
       {
         "label": "Rekhta",

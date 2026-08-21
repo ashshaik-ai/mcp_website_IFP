@@ -70,8 +70,40 @@ const normQuiz = (q) => ({
 
 const normFaq = (f) => ({ question: biPair(f, "q"), answer: biPair(f, "a") });
 
-const normLink = (l) =>
-  l && l.label && l.url ? { label: String(l.label), url: String(l.url) } : null;
+/* Reading links carry three legacy shapes that all 404 in the premium build:
+     "#tajweed"                 a section of the legacy portal page
+     "alphabet.html"            a sibling lesson page
+     "../seerah/index.html"     another portal
+   External http(s) links pass through untouched. Anything internal that
+   cannot be resolved throws, so a dead link fails the extract rather than
+   shipping — Next prefetches these, so a bad one is a live 404 on every
+   visit to the lesson. */
+function rewriteLink(url, portal, slugsByPortal) {
+  if (/^https?:/i.test(url) || url.startsWith("mailto:")) return url;
+
+  // A section of the legacy portal page; that anchor exists nowhere here.
+  if (url.startsWith("#")) return `/knowledge-center/${portal}`;
+
+  const otherPortal = url.match(/^\.\.\/([a-z-]+)\/index\.html$/i);
+  if (otherPortal) return `/knowledge-center/${otherPortal[1]}`;
+
+  const sibling = url.match(/^([a-z-]+)\.html$/i);
+  if (sibling) {
+    const stem = sibling[1].toLowerCase();
+    // Legacy filenames are longer than our slugs: quranic-arabic -> quranic.
+    const match = (slugsByPortal[portal] ?? []).find(
+      (s) => stem === s || stem.startsWith(`${s}-`),
+    );
+    if (match) return `/knowledge-center/${portal}/${match}`;
+  }
+
+  throw new Error(`Unresolvable reading link "${url}" in ${portal}`);
+}
+
+const normLink = (l, portal, slugsByPortal) => {
+  if (!l || !l.label || !l.url) return null;
+  return { label: String(l.label), url: rewriteLink(String(l.url), portal, slugsByPortal) };
+};
 
 /* Seerah and Kids number their lessons l1..l8 and k1..k8, which makes for a
    URL nobody can read or share meaningfully. Where a slug is that opaque, one
@@ -90,8 +122,17 @@ function readableSlug(id, titleEn) {
 const lessons = [];
 const summary = [];
 
-for (const { file, portal } of PORTALS) {
-  const data = load(file);
+/* First pass: every slug, so a link to a sibling lesson can be resolved and
+   validated in the second. */
+const loaded = PORTALS.map((p) => ({ ...p, data: load(p.file) }));
+const slugsByPortal = Object.fromEntries(
+  loaded.map(({ portal, data }) => [
+    portal,
+    data.lessons.map((l) => readableSlug(String(l.id), l.title_en ?? "")),
+  ]),
+);
+
+for (const { portal, data } of loaded) {
   let n = 0;
   for (const l of data.lessons) {
     lessons.push({
@@ -109,7 +150,10 @@ for (const { file, portal } of PORTALS) {
       revision: list(l.revision, bi),
       summary: bi(l.summary),
       apply: bi(l.apply),
-      reading: [...list(l.reading, normLink), ...list(l.refs, normLink)].filter(
+      reading: [
+        ...list(l.reading, (x) => normLink(x, portal, slugsByPortal)),
+        ...list(l.refs, (x) => normLink(x, portal, slugsByPortal)),
+      ].filter(
         (v, i, a) => a.findIndex((x) => x.url === v.url) === i,
       ),
     });
