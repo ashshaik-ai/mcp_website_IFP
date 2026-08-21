@@ -64,14 +64,16 @@ function SheetContent({
             data-slot="sheet-close"
             render={
               <Button
+                type="button"
                 variant="ghost"
                 className="absolute top-3 right-3"
                 size="icon-sm"
+                aria-label="Close menu"
+                title="Close menu"
               />
             }
           >
-            <XIcon
-            />
+            <XIcon aria-hidden="true" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}

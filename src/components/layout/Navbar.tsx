@@ -66,6 +66,7 @@ export function Navbar() {
             {t("nav_sg")}
           </Link>
           <button
+            type="button"
             onClick={toggle}
             aria-label="Toggle language"
             className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
@@ -75,10 +76,18 @@ export function Navbar() {
 
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger>
-              <button aria-label="Open menu" className="lg:hidden p-2 rounded-md text-[var(--if-gold-light)] hover:bg-white/10 transition-colors">
-                <Menu className="h-5 w-5" />
-              </button>
+            <SheetTrigger
+              render={
+                <button
+                  type="button"
+                  aria-label="Open menu"
+                  title="Open menu"
+                  className="lg:hidden p-2 rounded-md text-[var(--if-gold-light)] hover:bg-white/10 transition-colors"
+                />
+              }
+            >
+              <Menu className="h-5 w-5" aria-hidden="true" />
+              <span className="sr-only">Open menu</span>
             </SheetTrigger>
             <SheetContent side="right" className="bg-[var(--if-green)] border-[var(--if-gold)]/20 w-72">
               <div className="flex flex-col gap-1 mt-8">
