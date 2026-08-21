@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
+import { VocabularyList } from "@/components/learning/VocabularyList";
+import { urduWords, urduPhrases } from "@/content/vocabulary";
 import { urduLetters } from "@/content/alphabets";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -36,14 +38,7 @@ const levels = [
   { num: 4, title: { te: "ఖురాన్ ఉర్దూ అనువాదం", en: "Quranic Urdu Translation" }, urdu: "قرآنی اردو", desc: { te: "ఖురాన్ అనువాదాన్ని ఉర్దూలో చదవండి", en: "Read the Quran translation in Urdu" }, available: false },
 ];
 
-const words = [
-  { ur: "اللہ", roman: "Allah", te: "అల్లాహ్", en: "Allah (God)" },
-  { ur: "رحمت", roman: "Rahmat", te: "దయ", en: "Mercy" },
-  { ur: "نماز", roman: "Namaaz", te: "నమాజ్", en: "Prayer" },
-  { ur: "روزہ", roman: "Roza", te: "ఉపవాసం", en: "Fast" },
-  { ur: "قرآن", roman: "Quran", te: "ఖురాన్", en: "Quran" },
-  { ur: "مسجد", roman: "Masjid", te: "మసీదు", en: "Mosque" },
-];
+
 
 function LearnUrduPage() {
   const { lang } = useI18n();
@@ -59,7 +54,7 @@ function LearnUrduPage() {
     window.speechSynthesis.speak(utter);
   }, []);
 
-  const w = words[wordIdx];
+  const w = urduWords[wordIdx];
 
   return (
     <PageShell>
@@ -153,19 +148,33 @@ function LearnUrduPage() {
             <h2 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-8">{copy.urdu_word_of_the_day[lang]}</h2>
             <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-8">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
-              <div className="text-5xl text-[var(--if-gold-light)] mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{w.ur}</div>
-              <div className="text-[var(--if-gold)] font-semibold">{w.roman}</div>
-              <div className="text-[var(--if-gold-pale)]/70 text-sm mt-1">{w.en} · {w.te}</div>
-              <button onClick={() => speak(w.ur)} className="flex items-center gap-2 mx-auto mt-4 px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
+              <div className="text-5xl text-[var(--if-gold-light)] mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{w.glyph}</div>
+              <div className="text-[var(--if-gold)] font-semibold">{w.translit}</div>
+              <div className="text-[var(--if-gold-pale)]/70 text-sm mt-1">{w.meaning[lang]}</div>
+              <button onClick={() => speak(w.glyph)} className="flex items-center gap-2 mx-auto mt-4 px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
                 <Volume2 className="h-4 w-4" />{copy.listen[lang]}
               </button>
               <div className="flex justify-center gap-3 mt-5">
-                <button onClick={() => setWordIdx((i) => (i - 1 + words.length) % words.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
-                <span className="self-center text-xs text-[var(--if-gold-pale)]/50">{wordIdx + 1}/{words.length}</span>
-                <button onClick={() => setWordIdx((i) => (i + 1) % words.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
+                <button onClick={() => setWordIdx((i) => (i - 1 + urduWords.length) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
+                <span className="self-center text-xs text-[var(--if-gold-pale)]/50">{wordIdx + 1}/{urduWords.length}</span>
+                <button onClick={() => setWordIdx((i) => (i + 1) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
               </div>
             </div>
           </BlurFade>
+        </div>
+      </section>
+
+      <section id="vocabulary" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "పదజాలం" : "Vocabulary"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te"
+              ? "ప్రతి పదానికి అర్థం, ఉచ్చారణ మరియు అది ఎందుకు ముఖ్యమో వివరణ."
+              : "Every word with its meaning, pronunciation, and why it matters."}
+          </p>
+          <VocabularyList words={urduWords} phrases={urduPhrases} script="urdu" />
         </div>
       </section>
 
