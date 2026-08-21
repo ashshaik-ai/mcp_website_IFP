@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { NarrativeCards } from "@/components/learning/NarrativeCards";
+import { kidsProphets } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -574,6 +576,23 @@ function KidsIslamPage() {
               </div>
             </div>
           </BlurFade>
+        </div>
+      </section>
+
+
+      <section id="prophet-stories" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "ప్రవక్తల కథలు" : "Prophet stories"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "ఏడు కథలు — ప్రతి దాని నుండి ఒక పాఠం మరియు ఈ వారం చేయవలసిన ఒక పని." : "Seven stories, each with a lesson and something to try this week."}
+          </p>
+          <NarrativeCards
+            entries={kidsProphets}
+            fields={{ summary: "sum", lesson: "les", extra: "act" }}
+            lessonLabel={{ te: "పాఠం", en: "Lesson" }}
+          />
         </div>
       </section>
 

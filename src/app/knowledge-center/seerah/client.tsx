@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { NarrativeCards } from "@/components/learning/NarrativeCards";
+import { seerahEvents, seerahCharacter } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -350,6 +352,40 @@ function SeerahPage() {
             </p>
           </div>
         </BlurFade>
+      </section>
+
+
+      <section id="timeline" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "ప్రవక్త ﷺ జీవిత కాలక్రమం" : "Timeline of the Prophet's life ﷺ"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "పుట్టుక నుండి వీడ్కోలు ప్రసంగం వరకు పది దశలు — ప్రతి దశ నుండి ఒక పాఠం." : "Ten stages from birth to the Farewell Sermon, each with the lesson it carries."}
+          </p>
+          <NarrativeCards
+            entries={seerahEvents}
+            fields={{ meta: "yr", summary: "s", lesson: "l" }}
+            numbered
+          />
+        </div>
+      </section>
+
+
+      <section id="character" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "ప్రవక్త ﷺ స్వభావం" : "The Prophet's character ﷺ"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "పది లక్షణాలు — ప్రతిదానికి ఆధారం మరియు నేటి జీవితంలో దాన్ని ఎలా ఆచరించాలో." : "Ten traits, each with its evidence and how to practise it today."}
+          </p>
+          <NarrativeCards
+            entries={seerahCharacter}
+            fields={{ summary: "ex", lesson: "ap" }}
+            lessonLabel={{ te: "ఆచరణ", en: "Put it into practice" }}
+          />
+        </div>
       </section>
 
     </PageShell>

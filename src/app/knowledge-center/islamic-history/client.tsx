@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { NarrativeCards } from "@/components/learning/NarrativeCards";
+import { historyEras, historyPeople, historyEmpires, historyCities } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -400,6 +402,74 @@ function IslamicHistoryPage() {
             {copy.you_are_the_best_nation[lang]}
           </p>
         </BlurFade>
+      </section>
+
+
+      <section id="eras" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "ఇస్లామిక్ చరిత్ర యుగాలు" : "Eras of Islamic history"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "రాషిదూన్ నుండి ఆధునిక కాలం వరకు తొమ్మిది యుగాలు." : "Nine eras from the Rashidun to the modern age."}
+          </p>
+          <NarrativeCards
+            entries={historyEras}
+            fields={{ meta: "pr", summary: "s", lesson: "l" }}
+            numbered
+          />
+        </div>
+      </section>
+
+
+      <section id="people" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "చరిత్రను మలిచిన వ్యక్తులు" : "The people who shaped it"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "ఖలీఫాలు, పండితులు మరియు నాయకులు — వారి జీవితం మరియు వారు వదిలిన వారసత్వం." : "Caliphs, scholars and leaders — their lives and what they left behind."}
+          </p>
+          <NarrativeCards
+            entries={historyPeople}
+            fields={{ meta: "role", summary: "bio", lesson: "leg" }}
+            lessonLabel={{ te: "వారసత్వం", en: "Legacy" }}
+          />
+        </div>
+      </section>
+
+
+      <section id="empires" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "సామ్రాజ్యాలు" : "Empires"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "ఐదు సామ్రాజ్యాలు — ఎలా ఎదిగాయి, ఏమి సాధించాయి, ఏమి మిగిల్చాయి." : "Five empires — how they rose, what they achieved, what remains."}
+          </p>
+          <NarrativeCards
+            entries={historyEmpires}
+            fields={{ meta: "pr", summary: "rise", extra: "ach", lesson: "leg" }}
+            lessonLabel={{ te: "వారసత్వం", en: "Legacy" }}
+          />
+        </div>
+      </section>
+
+
+      <section id="cities" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "నగరాలు" : "Cities"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te" ? "ఇస్లామిక్ నాగరికతను నిర్మించిన ఏడు నగరాలు." : "Seven cities that built Islamic civilisation."}
+          </p>
+          <NarrativeCards
+            entries={historyCities}
+            fields={{ meta: "reg", summary: "imp", lesson: "sig" }}
+            lessonLabel={{ te: "ప్రాముఖ్యత", en: "Why it matters" }}
+          />
+        </div>
       </section>
 
     </PageShell>
