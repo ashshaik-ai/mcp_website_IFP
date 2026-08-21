@@ -12,6 +12,25 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { ChevronRight, Star, Clock, Users, BookOpen, Calculator, Calendar, Baby, Globe } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  islamic_knowledge_center: { te: "ఇస్లామిక్ జ్ఞాన కేంద్రం", en: "Islamic Knowledge Center" },
+  free_multilingual_islamic_learning_study: { te: "ఉచిత, బహుభాషా ఇస్లామిక్ అభ్యాసం — మీ స్వంత వేగంతో నేర్చుకోండి", en: "Free, multilingual Islamic learning — study at your own pace" },
+  portals: { te: "పోర్టల్స్", en: "Portals" },
+  lessons: { te: "పాఠాలు", en: "Lessons" },
+  free_always: { te: "ఉచితం", en: "Free Always" },
+  islamic_tools: { te: "ఇస్లామిక్ సాధనాలు", en: "Islamic Tools" },
+  today_s_prayer_times: { te: "నేటి నమాజు సమయాలు", en: "Today's prayer times" },
+  calculate_your_zakat: { te: "మీ జకాత్ లెక్కించండి", en: "Calculate your Zakat" },
+  learning_portals: { te: "అభ్యాస పోర్టల్స్", en: "Learning Portals" },
+  all: { te: "అన్నీ", en: "All" },
+  learning: { te: "అభ్యాసం", en: "Learning" },
+  open: { te: "తెరవండి", en: "Open" },
+  learn_about_the_party_and: { te: "పార్టీ మరియు సంక్షేమ కార్యక్రమాల గురించి తెలుసుకోండి", en: "Learn about the party and welfare programmes" },
+  back_to_homepage: { te: "← హోమ్‌పేజీకి వెళ్ళండి", en: "← Back to Homepage" },
+} as const;
+
 const portals = [
   {
     id: "learn-arabic",
@@ -146,21 +165,19 @@ function KCPage() {
           </BlurFade>
           <BlurFade delay={0.1}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "ఇస్లామిక్ జ్ఞాన కేంద్రం" : "Islamic Knowledge Center"}
+              {copy.islamic_knowledge_center[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.15}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl text-lg">
-              {lang === "te"
-                ? "ఉచిత, బహుభాషా ఇస్లామిక్ అభ్యాసం — మీ స్వంత వేగంతో నేర్చుకోండి"
-                : "Free, multilingual Islamic learning — study at your own pace"}
+              {copy.free_multilingual_islamic_learning_study[lang]}
             </p>
           </BlurFade>
           <BlurFade delay={0.2} className="flex gap-4 flex-wrap justify-center text-sm">
             {[
-              { n: "12", l: lang === "te" ? "పోర్టల్స్" : "Portals" },
-              { n: "40+", l: lang === "te" ? "పాఠాలు" : "Lessons" },
-              { n: "∞", l: lang === "te" ? "ఉచితం" : "Free Always" },
+              { n: "12", l: copy.portals[lang] },
+              { n: "40+", l: copy.lessons[lang] },
+              { n: "∞", l: copy.free_always[lang] },
             ].map(({ n, l }) => (
               <div key={l} className="flex flex-col items-center px-5 py-3 rounded-xl bg-white/5 border border-[var(--if-gold)]/20">
                 <span className="font-display text-2xl font-bold text-[var(--if-gold-light)]">{n}</span>
@@ -190,7 +207,7 @@ function KCPage() {
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-6">
-              {lang === "te" ? "ఇస్లామిక్ సాధనాలు" : "Islamic Tools"}
+              {copy.islamic_tools[lang]}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
@@ -215,14 +232,14 @@ function KCPage() {
           <div className="grid gap-6 lg:grid-cols-2 mt-10">
             <section id="prayer-times" className="scroll-mt-24">
               <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
-                {lang === "te" ? "నేటి నమాజు సమయాలు" : "Today's prayer times"}
+                {copy.today_s_prayer_times[lang]}
               </h3>
               <PrayerTimesCard />
             </section>
 
             <section id="zakat" className="scroll-mt-24">
               <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
-                {lang === "te" ? "మీ జకాత్ లెక్కించండి" : "Calculate your Zakat"}
+                {copy.calculate_your_zakat[lang]}
               </h3>
               <ZakatCalculator />
             </section>
@@ -236,7 +253,7 @@ function KCPage() {
           <BlurFade delay={0.1}>
             <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">
-                {lang === "te" ? "అభ్యాస పోర్టల్స్" : "Learning Portals"}
+                {copy.learning_portals[lang]}
               </h2>
               <div className="flex gap-2">
                 {(["all", "learning"] as const).map((f) => (
@@ -249,7 +266,7 @@ function KCPage() {
                         : "border-[var(--if-gold)]/30 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]"
                     }`}
                   >
-                    {f === "all" ? (lang === "te" ? "అన్నీ" : "All") : (lang === "te" ? "అభ్యాసం" : "Learning")}
+                    {f === "all" ? (copy.all[lang]) : (copy.learning[lang])}
                   </button>
                 ))}
               </div>
@@ -284,7 +301,7 @@ function KCPage() {
                       <div className="mt-4 flex items-center justify-between">
                         <span className="text-xs text-[var(--if-gold)] font-medium">{portal.meta[lang]}</span>
                         <span className="flex items-center gap-1 text-xs font-semibold text-[var(--if-green)] group-hover:text-[var(--if-gold)] transition-colors">
-                          {lang === "te" ? "తెరవండి" : "Open"} <ChevronRight className="h-3 w-3" />
+                          {copy.open[lang]} <ChevronRight className="h-3 w-3" />
                         </span>
                       </div>
                     </div>
@@ -300,11 +317,11 @@ function KCPage() {
       <section className="py-12 px-4 bg-[var(--if-cream-light)] text-center">
         <BlurFade delay={0.1}>
           <p className="text-[var(--if-text-muted)] mb-4">
-            {lang === "te" ? "పార్టీ మరియు సంక్షేమ కార్యక్రమాల గురించి తెలుసుకోండి" : "Learn about the party and welfare programmes"}
+            {copy.learn_about_the_party_and[lang]}
           </p>
           <Link href="/">
             <ShimmerButton shimmerColor="#e8b84b" background="#0d3b1e" className="text-[var(--if-gold-light)] font-semibold">
-              {lang === "te" ? "← హోమ్‌పేజీకి వెళ్ళండి" : "← Back to Homepage"}
+              {copy.back_to_homepage[lang]}
             </ShimmerButton>
           </Link>
         </BlurFade>

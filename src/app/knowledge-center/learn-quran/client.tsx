@@ -8,6 +8,42 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight, ChevronDown, BookOpen, Mic, Brain, Heart } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  learn_quran: { te: "ఖురాన్ నేర్చుకోండి", en: "Learn Quran" },
+  reading_tajweed_tafseer_hifz_complete: { te: "పఠనం → తజ్వీద్ → తఫ్సీర్ → హిఫ్జ్ — పూర్తి 4-దశల ప్రయాణం", en: "Reading → Tajweed → Tafseer → Hifz — complete 4-stage journey" },
+  stages: { te: "దశలు", en: "Stages" },
+  tajweed_rules: { te: "తజ్వీద్ నియమాలు", en: "Tajweed Rules" },
+  rabbana_duas: { te: "రబ్బనా దువాలు", en: "Rabbana Duas" },
+  free: { te: "ఉచితం", en: "Free" },
+  n_4_stage_learning_journey: { te: "4-దశల అభ్యాస ప్రయాణం", en: "4-Stage Learning Journey" },
+  what_you_ll_learn: { te: "మీరు నేర్చుకునేది", en: "What you'll learn" },
+  stage_goal: { te: "స్థాయి లక్ష్యం", en: "Stage Goal" },
+  flagship_section: { te: "ఫ్లాగ్‌షిప్ విభాగం", en: "Flagship Section" },
+  tajweed_academy: { te: "తజ్వీద్ అకాడమీ", en: "Tajweed Academy" },
+  n_8_essential_tajweed_rules_explanation: { te: "8 ముఖ్య తజ్వీద్ నియమాలు — వివరణ, ఉదాహరణ, సాధారణ తప్పు", en: "8 essential tajweed rules — explanation, example, common mistake" },
+  rule: { te: "నియమం", en: "Rule" },
+  tajweed_rule: { te: "తజ్వీద్ నియమం", en: "Tajweed rule" },
+  explanation: { te: "వివరణ", en: "Explanation" },
+  example: { te: "ఉదాహరణ", en: "Example" },
+  common_mistake: { te: "సాధారణ తప్పు: ", en: "Common mistake: " },
+  back: { te: "వెనుకకు", en: "Back" },
+  next: { te: "తదుపరి", en: "Next" },
+  quran_duas: { te: "ఖురాన్ దువాలు", en: "Quran Duas" },
+  the_rabbana_duas: { te: "'రబ్బనా' దువాలు", en: "The Rabbana Duas" },
+  supplications_from_the_quran_beginning: { te: "ఖురాన్ నుండి 'మా ప్రభూ' తో మొదలయ్యే నేర్చుకోవలసిన దువాలు", en: "Supplications from the Quran beginning with 'Our Lord'" },
+  key_surah_lessons: { te: "ముఖ్య సూరా పాఠాలు", en: "Key Surah Lessons" },
+  lesson: { te: "పాఠం:", en: "Lesson:" },
+  ayah_of_the_day: { te: "రోజువారీ ఆయత్", en: "Ayah of the Day" },
+  daily_quran_challenge: { te: "రోజువారీ ఖురాన్ సవాల్", en: "Daily Quran Challenge" },
+  reflection_prompt: { te: "ఆలోచన ప్రశ్న", en: "Reflection Prompt" },
+  n_7_ayahs_one_changes_with: { te: "7 ఆయత్లు — వారంలో ఒక్కొక్కటి మారుతాయి", en: "7 ayahs — one changes with each day of the week" },
+  will_they_not_reflect_upon: { te: "\"వారు ఖురాన్‌ను ఆలోచించరా?\" — సూరహ్ అన్-నిసా 4:82", en: "\"Will they not reflect upon the Quran?\" — Surah An-Nisa 4:82" },
+  explore_all_portals: { te: "అన్ని పోర్టల్స్ చూడండి", en: "Explore All Portals" },
+} as const;
+
 // ── DATA ──────────────────────────────────────────────────────────────────────
 
 const stages = [
@@ -259,7 +295,7 @@ function LearnQuranPage() {
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
-              {lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              {copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -267,22 +303,20 @@ function LearnQuranPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "ఖురాన్ నేర్చుకోండి" : "Learn Quran"}
+              {copy.learn_quran[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te"
-                ? "పఠనం → తజ్వీద్ → తఫ్సీర్ → హిఫ్జ్ — పూర్తి 4-దశల ప్రయాణం"
-                : "Reading → Tajweed → Tafseer → Hifz — complete 4-stage journey"}
+              {copy.reading_tajweed_tafseer_hifz_complete[lang]}
             </p>
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center text-sm">
             {[
-              { n: "4",   l: lang === "te" ? "దశలు" : "Stages" },
-              { n: "8",   l: lang === "te" ? "తజ్వీద్ నియమాలు" : "Tajweed Rules" },
-              { n: "6",   l: lang === "te" ? "రబ్బనా దువాలు" : "Rabbana Duas" },
-              { n: "∞",   l: lang === "te" ? "ఉచితం" : "Free" },
+              { n: "4",   l: copy.stages[lang] },
+              { n: "8",   l: copy.tajweed_rules[lang] },
+              { n: "6",   l: copy.rabbana_duas[lang] },
+              { n: "∞",   l: copy.free[lang] },
             ].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
@@ -298,7 +332,7 @@ function LearnQuranPage() {
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {lang === "te" ? "4-దశల అభ్యాస ప్రయాణం" : "4-Stage Learning Journey"}
+              {copy.n_4_stage_learning_journey[lang]}
             </h2>
           </BlurFade>
 
@@ -336,7 +370,7 @@ function LearnQuranPage() {
                   <h3 className="font-display text-xl font-bold text-[var(--if-green)] mb-1">{stage.title[lang]}</h3>
                   <p className="text-sm text-[var(--if-text-muted)] mb-5">{stage.desc[lang]}</p>
                   <p className="text-xs font-semibold uppercase tracking-widest text-[var(--if-gold)] mb-3">
-                    {lang === "te" ? "మీరు నేర్చుకునేది" : "What you'll learn"}
+                    {copy.what_you_ll_learn[lang]}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-5">
                     {stage.topics.map((t, i) => (
@@ -350,7 +384,7 @@ function LearnQuranPage() {
                     <span className="text-lg leading-none mt-0.5">🎯</span>
                     <div>
                       <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-1">
-                        {lang === "te" ? "స్థాయి లక్ష్యం" : "Stage Goal"}
+                        {copy.stage_goal[lang]}
                       </p>
                       <p className="text-sm text-emerald-900">{stage.goal[lang]}</p>
                     </div>
@@ -367,16 +401,14 @@ function LearnQuranPage() {
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">
-              {lang === "te" ? "ఫ్లాగ్‌షిప్ విభాగం" : "Flagship Section"}
+              {copy.flagship_section[lang]}
             </p>
             <h2 className="font-display text-3xl font-bold text-white mb-2">
-              {lang === "te" ? "తజ్వీద్ అకాడమీ" : "Tajweed Academy"}
+              {copy.tajweed_academy[lang]}
               <span className="font-arabic text-[var(--if-gold)] ml-3 font-normal">علم التجويد</span>
             </h2>
             <p className="text-[var(--if-gold-pale)]/70 text-sm mb-8">
-              {lang === "te"
-                ? "8 ముఖ్య తజ్వీద్ నియమాలు — వివరణ, ఉదాహరణ, సాధారణ తప్పు"
-                : "8 essential tajweed rules — explanation, example, common mistake"}
+              {copy.n_8_essential_tajweed_rules_explanation[lang]}
             </p>
           </BlurFade>
 
@@ -387,7 +419,7 @@ function LearnQuranPage() {
                 key={i}
                 type="button"
                 onClick={() => setTjIdx(i)}
-                aria-label={`${lang === "te" ? "నియమం" : "Rule"} ${i + 1}`}
+                aria-label={`${copy.rule[lang]} ${i + 1}`}
                 aria-current={i === tjIdx ? "step" : undefined}
                 className="flex-1 min-w-[14px] min-h-6 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               >
@@ -402,7 +434,7 @@ function LearnQuranPage() {
             ))}
           </div>
           <p className="text-xs text-[var(--if-gold-pale)]/60 mb-6">
-            {lang === "te" ? "నియమం" : "Rule"} <span className="font-bold text-[var(--if-gold-light)]">{tjIdx + 1}</span> / {tajweedSteps.length}
+            {copy.rule[lang]} <span className="font-bold text-[var(--if-gold-light)]">{tjIdx + 1}</span> / {tajweedSteps.length}
           </p>
 
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-6 items-start">
@@ -413,7 +445,7 @@ function LearnQuranPage() {
               </div>
               <div className="font-arabic text-base text-[var(--if-gold)]/70" dir="rtl" lang="ar">{step.ar}</div>
               <p className="text-xs uppercase tracking-widest text-[var(--if-gold-pale)]/50">
-                {lang === "te" ? "తజ్వీద్ నియమం" : "Tajweed rule"}
+                {copy.tajweed_rule[lang]}
               </p>
             </div>
 
@@ -425,14 +457,14 @@ function LearnQuranPage() {
 
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-1.5">
-                  {lang === "te" ? "వివరణ" : "Explanation"}
+                  {copy.explanation[lang]}
                 </p>
                 <p className="text-sm text-[var(--if-gold-pale)]/85 leading-relaxed">{step.expl[lang]}</p>
               </div>
 
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">
-                  {lang === "te" ? "ఉదాహరణ" : "Example"}
+                  {copy.example[lang]}
                 </p>
                 <div className="font-arabic text-2xl text-[var(--if-gold-light)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-xl px-4 py-3 text-center leading-relaxed mb-1.5" dir="rtl" lang="ar">
                   {step.example_ar}
@@ -443,7 +475,7 @@ function LearnQuranPage() {
               <div className="flex gap-2.5 items-start bg-red-900/20 border border-red-400/25 rounded-xl p-3">
                 <span className="text-sm mt-0.5">⚠</span>
                 <p className="text-sm text-[var(--if-gold-pale)]/85 leading-snug">
-                  <span className="font-semibold text-red-300">{lang === "te" ? "సాధారణ తప్పు: " : "Common mistake: "}</span>
+                  <span className="font-semibold text-red-300">{copy.common_mistake[lang]}</span>
                   {step.mistake[lang]}
                 </p>
               </div>
@@ -458,14 +490,14 @@ function LearnQuranPage() {
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] text-sm font-semibold disabled:opacity-30 hover:bg-[var(--if-gold)]/12 transition-colors"
             >
               <ChevronLeft className="h-4 w-4" />
-              {lang === "te" ? "వెనుకకు" : "Back"}
+              {copy.back[lang]}
             </button>
             <button
               onClick={() => setTjIdx(i => Math.min(tajweedSteps.length - 1, i + 1))}
               disabled={tjIdx === tajweedSteps.length - 1}
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold disabled:opacity-30 hover:bg-[var(--if-gold-light)] transition-colors"
             >
-              {lang === "te" ? "తదుపరి" : "Next"}
+              {copy.next[lang]}
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
@@ -477,15 +509,13 @@ function LearnQuranPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2 text-center">
-              {lang === "te" ? "ఖురాన్ దువాలు" : "Quran Duas"}
+              {copy.quran_duas[lang]}
             </p>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {lang === "te" ? "'రబ్బనా' దువాలు" : "The Rabbana Duas"}
+              {copy.the_rabbana_duas[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-10">
-              {lang === "te"
-                ? "ఖురాన్ నుండి 'మా ప్రభూ' తో మొదలయ్యే నేర్చుకోవలసిన దువాలు"
-                : "Supplications from the Quran beginning with 'Our Lord'"}
+              {copy.supplications_from_the_quran_beginning[lang]}
             </p>
           </BlurFade>
 
@@ -514,7 +544,7 @@ function LearnQuranPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {lang === "te" ? "ముఖ్య సూరా పాఠాలు" : "Key Surah Lessons"}
+              {copy.key_surah_lessons[lang]}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -532,7 +562,7 @@ function LearnQuranPage() {
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed">{s.virtue[lang]}</p>
                   <div className="flex gap-1.5 items-start bg-emerald-50 border border-emerald-200/60 rounded-lg p-2.5">
                     <span className="text-xs font-bold text-emerald-700 flex-shrink-0">
-                      {lang === "te" ? "పాఠం:" : "Lesson:"}
+                      {copy.lesson[lang]}
                     </span>
                     <span className="text-xs text-emerald-800 leading-relaxed">{s.lesson[lang]}</span>
                   </div>
@@ -549,10 +579,10 @@ function LearnQuranPage() {
         <div className="mx-auto max-w-2xl">
           <BlurFade delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2 text-center">
-              {lang === "te" ? "రోజువారీ ఆయత్" : "Ayah of the Day"}
+              {copy.ayah_of_the_day[lang]}
             </p>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-10">
-              {lang === "te" ? "రోజువారీ ఖురాన్ సవాల్" : "Daily Quran Challenge"}
+              {copy.daily_quran_challenge[lang]}
             </h2>
           </BlurFade>
 
@@ -569,7 +599,7 @@ function LearnQuranPage() {
 
               <div className="border-t border-[var(--if-gold)]/20 pt-6 text-left">
                 <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">
-                  {lang === "te" ? "ఆలోచన ప్రశ్న" : "Reflection Prompt"}
+                  {copy.reflection_prompt[lang]}
                 </p>
                 <p className="text-sm text-[var(--if-gold-pale)]/80 leading-relaxed">{todayAyah.reflect[lang]}</p>
               </div>
@@ -578,9 +608,7 @@ function LearnQuranPage() {
 
           <BlurFade delay={0.2}>
             <p className="text-xs text-[var(--if-gold-pale)]/50 text-center mt-4">
-              {lang === "te"
-                ? "7 ఆయత్లు — వారంలో ఒక్కొక్కటి మారుతాయి"
-                : "7 ayahs — one changes with each day of the week"}
+              {copy.n_7_ayahs_one_changes_with[lang]}
             </p>
           </BlurFade>
         </div>
@@ -595,12 +623,10 @@ function LearnQuranPage() {
               أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ
             </div>
             <p className="text-sm text-[var(--if-gold-pale)]/70 mb-6">
-              {lang === "te"
-                ? "\"వారు ఖురాన్‌ను ఆలోచించరా?\" — సూరహ్ అన్-నిసా 4:82"
-                : "\"Will they not reflect upon the Quran?\" — Surah An-Nisa 4:82"}
+              {copy.will_they_not_reflect_upon[lang]}
             </p>
             <Link href="/knowledge-center" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--if-gold)] text-[var(--if-green)] font-bold hover:bg-[var(--if-gold-light)] transition-colors text-sm">
-              {lang === "te" ? "అన్ని పోర్టల్స్ చూడండి" : "Explore All Portals"} <ChevronRight className="h-4 w-4" />
+              {copy.explore_all_portals[lang]} <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
         </BlurFade>

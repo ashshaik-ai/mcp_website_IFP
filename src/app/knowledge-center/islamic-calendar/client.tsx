@@ -8,6 +8,26 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  islamic_calendar: { te: "ఇస్లామిక్ కాలెండర్", en: "Islamic Calendar" },
+  hijri_calendar_12_islamic_months: { te: "హిజ్రీ కాలెండర్ — 12 ఇస్లామిక్ నెలలు, ముఖ్యమైన తేదీలు మరియు వాటి అర్థాలు", en: "Hijri calendar — 12 Islamic months, key dates and their meanings" },
+  months: { te: "నెలలు", en: "Months" },
+  days_year: { te: "రోజులు/సంవత్సరం", en: "Days/Year" },
+  since_hijra: { te: "హిజ్రా నుండి", en: "Since Hijra" },
+  n_12_hijri_months: { te: "12 హిజ్రీ నెలలు", en: "12 Hijri Months" },
+  click_a_month_for_details: { te: "నెల క్లిక్ చేయండి వివరాల కోసం", en: "Click a month for details" },
+  key_dates: { te: "ముఖ్యమైన తేదీలు", en: "Key Dates" },
+  no_specific_islamic_observances_this: { te: "ఈ నెలలో ప్రత్యేక ఇస్లామిక్ తేదీలు లేవు", en: "No specific Islamic observances this month" },
+  key_islamic_dates: { te: "ముఖ్యమైన ఇస్లామిక్ తేదీలు", en: "Key Islamic Dates" },
+  hijri_date: { te: "హిజ్రీ తేదీ", en: "Hijri Date" },
+  event: { te: "సంఘటన", en: "Event" },
+  telugu: { te: "తెలుగు", en: "Telugu" },
+  the_hijri_year_is_10: { te: "🌙 హిజ్రీ సంవత్సరం సౌర సంవత్సరం కంటే 10-11 రోజులు తక్కువ. కాబట్టి ఇస్లామిక్ పండుగలు ప్రతి సంవత్సరం వేరే గ్రెగోరియన్ తేదీలలో వస్తాయి.", en: "🌙 The Hijri year is ~10-11 days shorter than the solar year. That is why Islamic occasions fall on different Gregorian dates each year." },
+} as const;
+
 const months = [
   { n: 1,  name: "Muharram",    ar: "مُحَرَّم",     te: "ముహర్రం",     days: 29, meaning: { te: "నిషేధించబడింది — పవిత్ర నెల", en: "Forbidden — Sacred month" }, events: ["Islamic New Year — 1 Muharram", "Day of Ashura (10 Muharram) — fasting recommended"] },
   { n: 2,  name: "Safar",       ar: "صَفَر",        te: "సఫర్",         days: 30, meaning: { te: "శూన్యమైన — ప్రాచీన ప్రయాణ నెల", en: "Empty — ancient travel month" }, events: [] },
@@ -47,7 +67,7 @@ function IslamicCalendarPage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -55,17 +75,17 @@ function IslamicCalendarPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "ఇస్లామిక్ కాలెండర్" : "Islamic Calendar"}
+              {copy.islamic_calendar[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te" ? "హిజ్రీ కాలెండర్ — 12 ఇస్లామిక్ నెలలు, ముఖ్యమైన తేదీలు మరియు వాటి అర్థాలు" : "Hijri calendar — 12 Islamic months, key dates and their meanings"}
+              {copy.hijri_calendar_12_islamic_months[lang]}
             </p>
           </BlurFade>
           <BlurFade delay={0.25}>
             <div className="flex items-center gap-6 flex-wrap justify-center">
-              {[{ n: "12", l: lang === "te" ? "నెలలు" : "Months" }, { n: "354/355", l: lang === "te" ? "రోజులు/సంవత్సరం" : "Days/Year" }, { n: "622 CE", l: lang === "te" ? "హిజ్రా నుండి" : "Since Hijra" }].map(({ n, l }) => (
+              {[{ n: "12", l: copy.months[lang] }, { n: "354/355", l: copy.days_year[lang] }, { n: "622 CE", l: copy.since_hijra[lang] }].map(({ n, l }) => (
                 <div key={l} className="text-center">
                   <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
                   <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
@@ -81,10 +101,10 @@ function IslamicCalendarPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
-              {lang === "te" ? "12 హిజ్రీ నెలలు" : "12 Hijri Months"}
+              {copy.n_12_hijri_months[lang]}
             </h2>
             <p className="text-center text-sm text-[var(--if-text-muted)] mb-10">
-              {lang === "te" ? "నెల క్లిక్ చేయండి వివరాల కోసం" : "Click a month for details"}
+              {copy.click_a_month_for_details[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -122,7 +142,7 @@ function IslamicCalendarPage() {
                   <p className="text-sm text-[var(--if-text-muted)] mb-4">{m.meaning[lang]}</p>
                   {m.events.length > 0 ? (
                     <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider">{lang === "te" ? "ముఖ్యమైన తేదీలు" : "Key Dates"}</h4>
+                      <h4 className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider">{copy.key_dates[lang]}</h4>
                       {m.events.map(e => (
                         <div key={e} className="flex items-start gap-2 text-sm">
                           <span className="text-[var(--if-gold)] mt-0.5">✦</span>
@@ -131,7 +151,7 @@ function IslamicCalendarPage() {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-sm text-[var(--if-text-muted)] italic">{lang === "te" ? "ఈ నెలలో ప్రత్యేక ఇస్లామిక్ తేదీలు లేవు" : "No specific Islamic observances this month"}</p>
+                    <p className="text-sm text-[var(--if-text-muted)] italic">{copy.no_specific_islamic_observances_this[lang]}</p>
                   )}
                 </div>
               </BlurFade>
@@ -145,16 +165,16 @@ function IslamicCalendarPage() {
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {lang === "te" ? "ముఖ్యమైన ఇస్లామిక్ తేదీలు" : "Key Islamic Dates"}
+              {copy.key_islamic_dates[lang]}
             </h2>
           </BlurFade>
           <div className="overflow-x-auto rounded-2xl border border-[var(--if-gold)]/15">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-[var(--if-green)] text-[var(--if-gold-light)]">
-                  <th className="text-left p-4 font-semibold">{lang === "te" ? "హిజ్రీ తేదీ" : "Hijri Date"}</th>
-                  <th className="text-left p-4 font-semibold">{lang === "te" ? "సంఘటన" : "Event"}</th>
-                  <th className="text-left p-4 font-semibold hidden sm:table-cell">{lang === "te" ? "తెలుగు" : "Telugu"}</th>
+                  <th className="text-left p-4 font-semibold">{copy.hijri_date[lang]}</th>
+                  <th className="text-left p-4 font-semibold">{copy.event[lang]}</th>
+                  <th className="text-left p-4 font-semibold hidden sm:table-cell">{copy.telugu[lang]}</th>
                   <th className="text-right p-4 font-semibold hidden md:table-cell">عربي</th>
                 </tr>
               </thead>
@@ -176,9 +196,7 @@ function IslamicCalendarPage() {
       <section className="py-14 px-4 bg-[var(--if-green)] text-center">
         <BlurFade delay={0.1}>
           <p className="text-[var(--if-gold-pale)]/70 text-sm">
-            {lang === "te"
-              ? "🌙 హిజ్రీ సంవత్సరం సౌర సంవత్సరం కంటే 10-11 రోజులు తక్కువ. కాబట్టి ఇస్లామిక్ పండుగలు ప్రతి సంవత్సరం వేరే గ్రెగోరియన్ తేదీలలో వస్తాయి."
-              : "🌙 The Hijri year is ~10-11 days shorter than the solar year. That is why Islamic occasions fall on different Gregorian dates each year."}
+            {copy.the_hijri_year_is_10[lang]}
           </p>
         </BlurFade>
       </section>

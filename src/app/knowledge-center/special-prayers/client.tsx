@@ -8,6 +8,18 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  special_prayers: { te: "ప్రత్యేక నమాజులు", en: "Special Prayers" },
+  from_tahajjud_to_istikhara_5: { te: "తహజ్జుద్ నుండి ఈస్తిఖారా వరకు — 5 ముఖ్యమైన నఫిల్ & సాంఘిక నమాజులు", en: "From Tahajjud to Istikhara — 5 key voluntary and congregational prayers" },
+  how_to_perform: { te: "ఎలా చేయాలి", en: "How to Perform" },
+  key_du_a: { te: "ముఖ్యమైన దువా", en: "Key Du'a" },
+  previous: { te: "వెనక", en: "Previous" },
+  next: { te: "తదుపరి", en: "Next" },
+} as const;
+
 const prayers = [
   {
     id: "tahajjud",
@@ -102,7 +114,7 @@ function SpecialPrayersPage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -110,12 +122,12 @@ function SpecialPrayersPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "ప్రత్యేక నమాజులు" : "Special Prayers"}
+              {copy.special_prayers[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te" ? "తహజ్జుద్ నుండి ఈస్తిఖారా వరకు — 5 ముఖ్యమైన నఫిల్ & సాంఘిక నమాజులు" : "From Tahajjud to Istikhara — 5 key voluntary and congregational prayers"}
+              {copy.from_tahajjud_to_istikhara_5[lang]}
             </p>
           </BlurFade>
         </div>
@@ -149,7 +161,7 @@ function SpecialPrayersPage() {
                 </div>
               </div>
               <p className="text-[var(--if-text-muted)] leading-relaxed mb-6">{p.importance[lang]}</p>
-              <h3 className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider mb-3">{lang === "te" ? "ఎలా చేయాలి" : "How to Perform"}</h3>
+              <h3 className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider mb-3">{copy.how_to_perform[lang]}</h3>
               <ol className="space-y-2">
                 {p.steps.map((s, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm">
@@ -163,7 +175,7 @@ function SpecialPrayersPage() {
             {/* Dua */}
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-6 text-center">
               <BorderBeam size={150} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
-              <div className="text-[10px] font-bold text-[var(--if-gold)]/60 uppercase tracking-widest mb-3">{lang === "te" ? "ముఖ్యమైన దువా" : "Key Du'a"}</div>
+              <div className="text-[10px] font-bold text-[var(--if-gold)]/60 uppercase tracking-widest mb-3">{copy.key_du_a[lang]}</div>
               <div className="font-arabic text-xl text-[var(--if-gold-light)] leading-loose mb-2" dir="rtl">{p.dua.ar}</div>
               <div className="text-sm text-[var(--if-gold-pale)]/70">{p.dua.en}</div>
             </div>
@@ -172,10 +184,10 @@ function SpecialPrayersPage() {
           {/* Prev / Next */}
           <div className="flex justify-between mt-6">
             <button disabled={active === 0} onClick={() => setActive(a => a - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "వెనక" : "Previous"}
+              <ChevronLeft className="h-4 w-4" />{copy.previous[lang]}
             </button>
             <button disabled={active === prayers.length - 1} onClick={() => setActive(a => a + 1)} className="flex items-center gap-1 px-4 py-2 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30">
-              {lang === "te" ? "తదుపరి" : "Next"}<ChevronRight className="h-4 w-4" />
+              {copy.next[lang]}<ChevronRight className="h-4 w-4" />
             </button>
           </div>
         </div>

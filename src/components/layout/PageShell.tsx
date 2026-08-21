@@ -4,6 +4,12 @@ import { useI18n } from "@/lib/i18n/context";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  skip_to_content: { te: "ప్రధాన విషయానికి వెళ్లండి", en: "Skip to content" },
+} as const;
+
 /* Every page repeated the same shell and each one re-wrapped I18nProvider,
    which ClientProviders already supplies. None of them had a <main> landmark
    or a skip link, so keyboard and screen-reader users traversed the whole
@@ -17,7 +23,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-3 focus:left-3 focus:inline-flex focus:items-center focus:min-h-11 focus:px-4 focus:rounded-full focus:bg-[var(--if-gold)] focus:text-[var(--if-green)] focus:font-bold focus:no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--if-green)]"
       >
-        {lang === "te" ? "ప్రధాన విషయానికి వెళ్లండి" : "Skip to content"}
+        {copy.skip_to_content[lang]}
       </a>
 
       <Navbar />

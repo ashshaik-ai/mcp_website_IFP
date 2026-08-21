@@ -8,6 +8,35 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  learn_salah: { te: "నమాజ్ నేర్చుకోండి", en: "Learn Salah" },
+  from_wudu_to_salam_complete: { te: "వుజూ నుండి సలాం వరకు — పూర్తి నమాజ్ మార్గదర్శి, అరబిక్ పఠనాలు, తెలుగు అర్థాలతో", en: "From Wudu to Salam — complete prayer guide with Arabic recitations and translations" },
+  the_5_obligatory_prayers: { te: "5 ఫర్జ్ నమాజులు", en: "The 5 Obligatory Prayers" },
+  tap_each_card_to_expand: { te: "ప్రతి కార్డుపై నొక్కి వివరాలు చూడండి", en: "Tap each card to expand details" },
+  fard: { te: "ఫర్జ్", en: "Fard" },
+  rakaat: { te: "రకాతులు", en: "Rakaat" },
+  witr_is_emphasized: { te: "విత్ర్ తప్పనిసరి", en: "Witr is emphasized" },
+  note: { te: "గమనిక", en: "Note" },
+  prayer_times_vary_by_location: { te: "🕌 నమాజు సమయాలు స్థానం మరియు ఋతువు ప్రకారం మారుతాయి. స్థానిక మస్జిద్ అజాన్ అనుసరించండి.", en: "🕌 Prayer times vary by location and season. Follow your local Masjid's adhan for accurate times." },
+  wudu_ablution: { te: "వుజూ — పరిశుద్ధత", en: "Wudu — Ablution" },
+  each_step_with_arabic_dua: { te: "అరబిక్ దువా మరియు అర్థంతో ప్రతి దశ", en: "Each step with Arabic dua and translation" },
+  dua: { te: "దువా", en: "Dua" },
+  back: { te: "వెనక", en: "Back" },
+  next: { te: "తదుపరి", en: "Next" },
+  salah_step_by_step: { te: "నమాజ్ — దశల వారీ మార్గదర్శి", en: "Salah — Step by Step" },
+  salah_simulator: { te: "నమాజ్ సిమ్యులేటర్", en: "Salah Simulator" },
+  from_takbeer_to_salam_what: { te: "తక్బీర్ నుండి సలాం వరకు — ఏం చేయాలి, ఏం చెప్పాలి, దాని అర్థం, తప్పులతో సహా", en: "From Takbeer to Salam — what to do, say, its meaning, and common mistake at each step" },
+  action: { te: "ఏం చేయాలి", en: "Action" },
+  recitation: { te: "ఏం చెప్పాలి", en: "Recitation" },
+  common_mistake: { te: "సాధారణ తప్పు", en: "Common Mistake" },
+  restart: { te: "మళ్ళీ ప్రారంభించు", en: "Restart" },
+  common_mistakes: { te: "సాధారణ తప్పులు", en: "Common Mistakes" },
+  recognise_each_mistake_and_correct: { te: "తప్పును గుర్తించి సరైన విధానంతో సరిదిద్దుకోండి", en: "Recognise each mistake and correct it the right way" },
+} as const;
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const prayers = [
@@ -232,18 +261,18 @@ function LearnSalahPage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-4">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-1">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}><span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">الصَّلَاة</span></BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "నమాజ్ నేర్చుకోండి" : "Learn Salah"}
+              {copy.learn_salah[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te" ? "వుజూ నుండి సలాం వరకు — పూర్తి నమాజ్ మార్గదర్శి, అరబిక్ పఠనాలు, తెలుగు అర్థాలతో" : "From Wudu to Salam — complete prayer guide with Arabic recitations and translations"}
+              {copy.from_wudu_to_salam_complete[lang]}
             </p>
           </BlurFade>
         </div>
@@ -270,10 +299,10 @@ function LearnSalahPage() {
           <div className="mx-auto max-w-4xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-                {lang === "te" ? "5 ఫర్జ్ నమాజులు" : "The 5 Obligatory Prayers"}
+                {copy.the_5_obligatory_prayers[lang]}
               </h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">
-                {lang === "te" ? "ప్రతి కార్డుపై నొక్కి వివరాలు చూడండి" : "Tap each card to expand details"}
+                {copy.tap_each_card_to_expand[lang]}
               </p>
             </BlurFade>
             <div className="flex flex-col gap-3">
@@ -291,19 +320,19 @@ function LearnSalahPage() {
                         <div className="text-xs text-white/70">{p.time[lang]}</div>
                       </div>
                       <div className="text-xs bg-white/15 rounded-full px-3 py-1 shrink-0">
-                        {p.fard} {lang === "te" ? "ఫర్జ్" : "Fard"}
+                        {p.fard} {copy.fard[lang]}
                       </div>
                       <ChevronRight className={`h-4 w-4 text-white/60 shrink-0 transition-transform ${expandedPrayer === i ? "rotate-90" : ""}`} />
                     </button>
                     {expandedPrayer === i && (
                       <div className="px-5 pb-5 border-t border-white/10 pt-4 grid sm:grid-cols-2 gap-3 text-sm">
                         <div className="bg-white/10 rounded-xl p-3">
-                          <div className="text-[var(--if-gold-light)] text-xs font-semibold uppercase tracking-wider mb-1">{lang === "te" ? "రకాతులు" : "Rakaat"}</div>
-                          <div>{p.fard} {lang === "te" ? "ఫర్జ్" : "Fard"} · {p.sunnah}</div>
-                          {p.witr && <div className="mt-1 text-[var(--if-gold-light)]">{lang === "te" ? "విత్ర్ తప్పనిసరి" : "Witr is emphasized"}</div>}
+                          <div className="text-[var(--if-gold-light)] text-xs font-semibold uppercase tracking-wider mb-1">{copy.rakaat[lang]}</div>
+                          <div>{p.fard} {copy.fard[lang]} · {p.sunnah}</div>
+                          {p.witr && <div className="mt-1 text-[var(--if-gold-light)]">{copy.witr_is_emphasized[lang]}</div>}
                         </div>
                         <div className="bg-white/10 rounded-xl p-3">
-                          <div className="text-[var(--if-gold-light)] text-xs font-semibold uppercase tracking-wider mb-1">{lang === "te" ? "గమనిక" : "Note"}</div>
+                          <div className="text-[var(--if-gold-light)] text-xs font-semibold uppercase tracking-wider mb-1">{copy.note[lang]}</div>
                           <div>{p.note[lang]}</div>
                         </div>
                       </div>
@@ -314,9 +343,7 @@ function LearnSalahPage() {
             </div>
             <BlurFade delay={0.5}>
               <div className="mt-6 p-4 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 text-center text-sm text-[var(--if-text-muted)]">
-                {lang === "te"
-                  ? "🕌 నమాజు సమయాలు స్థానం మరియు ఋతువు ప్రకారం మారుతాయి. స్థానిక మస్జిద్ అజాన్ అనుసరించండి."
-                  : "🕌 Prayer times vary by location and season. Follow your local Masjid's adhan for accurate times."}
+                {copy.prayer_times_vary_by_location[lang]}
               </div>
             </BlurFade>
           </div>
@@ -329,10 +356,10 @@ function LearnSalahPage() {
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-                {lang === "te" ? "వుజూ — పరిశుద్ధత" : "Wudu — Ablution"}
+                {copy.wudu_ablution[lang]}
               </h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-6">
-                {lang === "te" ? "అరబిక్ దువా మరియు అర్థంతో ప్రతి దశ" : "Each step with Arabic dua and translation"}
+                {copy.each_step_with_arabic_dua[lang]}
               </p>
             </BlurFade>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 mb-4">
@@ -347,7 +374,7 @@ function LearnSalahPage() {
               <p className="text-[var(--if-text-muted)] leading-relaxed mb-4">{wuduSteps[wuduStep].desc[lang]}</p>
               {wuduSteps[wuduStep].dua.ar && (
                 <div className="mt-3 p-4 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20">
-                  <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-2">{lang === "te" ? "దువా" : "Dua"}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-2">{copy.dua[lang]}</div>
                   <div className="font-arabic text-xl text-[var(--if-gold)] leading-relaxed text-right mb-2" dir="rtl">{wuduSteps[wuduStep].dua.ar}</div>
                   <div className="text-xs text-[var(--if-text-muted)] italic mb-1">{wuduSteps[wuduStep].dua.tr}</div>
                   <div className="text-sm text-[var(--if-text-muted)]">{wuduSteps[wuduStep].dua[lang]}</div>
@@ -360,11 +387,11 @@ function LearnSalahPage() {
               )}
               <div className="flex items-center justify-between mt-6">
                 <button disabled={wuduStep === 0} onClick={() => setWuduStep(s => s - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)] transition-colors">
-                  <ChevronLeft className="h-4 w-4" />{lang === "te" ? "వెనక" : "Back"}
+                  <ChevronLeft className="h-4 w-4" />{copy.back[lang]}
                 </button>
                 <span className="text-xs text-[var(--if-text-muted)]">{wuduStep + 1} / {wuduSteps.length}</span>
                 <button disabled={wuduStep === wuduSteps.length - 1} onClick={() => setWuduStep(s => s + 1)} className="flex items-center gap-1 px-4 py-2 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30 hover:bg-[var(--if-green)]/90 transition-colors">
-                  {lang === "te" ? "తదుపరి" : "Next"}<ChevronRight className="h-4 w-4" />
+                  {copy.next[lang]}<ChevronRight className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -383,7 +410,7 @@ function LearnSalahPage() {
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
-                {lang === "te" ? "నమాజ్ — దశల వారీ మార్గదర్శి" : "Salah — Step by Step"}
+                {copy.salah_step_by_step[lang]}
               </h2>
             </BlurFade>
             <div className="flex flex-col gap-3">
@@ -424,10 +451,10 @@ function LearnSalahPage() {
             <BlurFade delay={0.1}>
               <div className="text-center mb-8">
                 <h2 className="font-display text-3xl font-bold text-[var(--if-gold-light)] mb-2">
-                  {lang === "te" ? "నమాజ్ సిమ్యులేటర్" : "Salah Simulator"}
+                  {copy.salah_simulator[lang]}
                 </h2>
                 <p className="text-[var(--if-gold-pale)]/70 text-sm">
-                  {lang === "te" ? "తక్బీర్ నుండి సలాం వరకు — ఏం చేయాలి, ఏం చెప్పాలి, దాని అర్థం, తప్పులతో సహా" : "From Takbeer to Salam — what to do, say, its meaning, and common mistake at each step"}
+                  {copy.from_takbeer_to_salam_what[lang]}
                 </p>
               </div>
             </BlurFade>
@@ -456,14 +483,14 @@ function LearnSalahPage() {
               <div className="flex gap-3 bg-white/5 border border-[var(--if-gold)]/15 rounded-xl p-4 mb-5">
                 <span className="text-lg shrink-0">🤲</span>
                 <div>
-                  <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-1">{lang === "te" ? "ఏం చేయాలి" : "Action"}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-1">{copy.action[lang]}</div>
                   <p className="text-sm text-[var(--if-gold-pale)]/90">{simSteps[simStep].pos[lang]}</p>
                 </div>
               </div>
 
               {/* What to say */}
               <div className="mb-4">
-                <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-3">{lang === "te" ? "ఏం చెప్పాలి" : "Recitation"}</div>
+                <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-3">{copy.recitation[lang]}</div>
                 <div className="font-arabic text-2xl text-[var(--if-gold-light)] leading-loose text-right mb-2" dir="rtl">{simSteps[simStep].ar}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/80 italic mb-1">{simSteps[simStep].tr}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/60">{simSteps[simStep].mean[lang]}</div>
@@ -473,7 +500,7 @@ function LearnSalahPage() {
               <div className="flex gap-3 bg-red-900/20 border border-red-500/30 rounded-xl p-4">
                 <span className="text-base shrink-0">⚠️</span>
                 <div>
-                  <div className="text-xs font-semibold text-red-300 uppercase tracking-wider mb-1">{lang === "te" ? "సాధారణ తప్పు" : "Common Mistake"}</div>
+                  <div className="text-xs font-semibold text-red-300 uppercase tracking-wider mb-1">{copy.common_mistake[lang]}</div>
                   <p className="text-sm text-[var(--if-gold-pale)]/80">{simSteps[simStep].warn[lang]}</p>
                 </div>
               </div>
@@ -484,21 +511,21 @@ function LearnSalahPage() {
                   onClick={() => setSimStep(s => s - 1)}
                   className="flex items-center gap-1 px-5 py-2.5 rounded-lg border border-[var(--if-gold)]/40 text-sm text-[var(--if-gold-light)] disabled:opacity-30 hover:bg-white/10 transition-colors"
                 >
-                  <ChevronLeft className="h-4 w-4" />{lang === "te" ? "వెనక" : "Back"}
+                  <ChevronLeft className="h-4 w-4" />{copy.back[lang]}
                 </button>
                 {simStep === simSteps.length - 1 ? (
                   <button
                     onClick={() => setSimStep(0)}
                     className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold"
                   >
-                    <CheckCircle2 className="h-4 w-4" />{lang === "te" ? "మళ్ళీ ప్రారంభించు" : "Restart"}
+                    <CheckCircle2 className="h-4 w-4" />{copy.restart[lang]}
                   </button>
                 ) : (
                   <button
                     onClick={() => setSimStep(s => s + 1)}
                     className="flex items-center gap-1 px-5 py-2.5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold hover:bg-[var(--if-gold-light)] transition-colors"
                   >
-                    {lang === "te" ? "తదుపరి" : "Next"}<ChevronRight className="h-4 w-4" />
+                    {copy.next[lang]}<ChevronRight className="h-4 w-4" />
                   </button>
                 )}
               </div>
@@ -513,10 +540,10 @@ function LearnSalahPage() {
           <div className="mx-auto max-w-4xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-                {lang === "te" ? "సాధారణ తప్పులు" : "Common Mistakes"}
+                {copy.common_mistakes[lang]}
               </h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-10">
-                {lang === "te" ? "తప్పును గుర్తించి సరైన విధానంతో సరిదిద్దుకోండి" : "Recognise each mistake and correct it the right way"}
+                {copy.recognise_each_mistake_and_correct[lang]}
               </p>
             </BlurFade>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

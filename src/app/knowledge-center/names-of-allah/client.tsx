@@ -8,6 +8,17 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, Volume2, Search } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  n_99_names_of_allah: { te: "అల్లాహ్ యొక్క 99 పేర్లు", en: "99 Names of Allah" },
+  al_asmaa_ul_husna_allah: { te: "అస్మాఉల్ హుస్నా — అల్లాహ్ యొక్క సుందర నామాలు మరియు వాటి అర్థాలు", en: "Al-Asmaa ul-Husna — Allah's beautiful names and their meanings" },
+  search_a_name: { te: "పేరు వెతకండి...", en: "Search a name..." },
+  no_results_found: { te: "ఫలితాలు కనుగొనబడలేదు", en: "No results found" },
+  listen: { te: "వినండి", en: "Listen" },
+} as const;
+
 const names = [
   { n: 1,  ar: "اللَّهُ",        name: "Allah",        te: "అల్లాహ్",            en: "The One God" },
   { n: 2,  ar: "الرَّحْمَٰنُ",  name: "Ar-Rahman",    te: "అర్-రహ్మాన్",        en: "The Most Gracious" },
@@ -137,7 +148,7 @@ function NamesOfAllahPage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -145,12 +156,12 @@ function NamesOfAllahPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "అల్లాహ్ యొక్క 99 పేర్లు" : "99 Names of Allah"}
+              {copy.n_99_names_of_allah[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te" ? "అస్మాఉల్ హుస్నా — అల్లాహ్ యొక్క సుందర నామాలు మరియు వాటి అర్థాలు" : "Al-Asmaa ul-Husna — Allah's beautiful names and their meanings"}
+              {copy.al_asmaa_ul_husna_allah[lang]}
             </p>
           </BlurFade>
         </div>
@@ -165,7 +176,7 @@ function NamesOfAllahPage() {
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              placeholder={lang === "te" ? "పేరు వెతకండి..." : "Search a name..."}
+              placeholder={copy.search_a_name[lang]}
               className="w-full pl-10 pr-4 py-2.5 rounded-full border border-[var(--if-gold)]/25 bg-white text-sm text-[var(--if-text)] focus:outline-none focus:border-[var(--if-gold)]/60"
             />
           </div>
@@ -188,7 +199,7 @@ function NamesOfAllahPage() {
           </div>
 
           {filtered.length === 0 && (
-            <p className="text-center text-[var(--if-text-muted)] mt-8">{lang === "te" ? "ఫలితాలు కనుగొనబడలేదు" : "No results found"}</p>
+            <p className="text-center text-[var(--if-text-muted)] mt-8">{copy.no_results_found[lang]}</p>
           )}
         </div>
       </section>
@@ -206,7 +217,7 @@ function NamesOfAllahPage() {
                 <div className="text-sm text-[var(--if-gold-pale)]/70 mb-1">{selected.en}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/60 mb-5">{selected.te}</div>
                 <button onClick={() => speak(selected.ar)} className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
-                  <Volume2 className="h-4 w-4" />{lang === "te" ? "వినండి" : "Listen"}
+                  <Volume2 className="h-4 w-4" />{copy.listen[lang]}
                 </button>
               </div>
             </BlurFade>

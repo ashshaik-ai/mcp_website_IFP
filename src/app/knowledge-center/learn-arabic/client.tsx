@@ -8,6 +8,45 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight, ChevronDown, Volume2, X } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  learn_arabic: { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" },
+  from_alphabet_to_quranic_arabic: { te: "అక్షరమాల నుండి ఖురానిక్ అరబిక్ వరకు — నిర్మాణాత్మక అభ్యాస మార్గం", en: "From alphabet to Quranic Arabic — structured learning roadmap" },
+  levels: { te: "స్థాయిలు", en: "Levels" },
+  lessons: { te: "పాఠాలు", en: "Lessons" },
+  letters: { te: "అక్షరాలు", en: "Letters" },
+  free: { te: "ఉచితం", en: "Free" },
+  why_learn_arabic: { te: "అరబిక్ ఎందుకు నేర్చుకోవాలి?", en: "Why Learn Arabic?" },
+  arabic_alphabet_28_huroof: { te: "అరబిక్ అక్షరమాల — 28 హురూఫ్", en: "Arabic Alphabet — 28 Huroof" },
+  click_any_letter_to_hear: { te: "ప్రతి అక్షరాన్ని నొక్కండి వినడానికి · 🔊 ఆడియో ఉచ్చారణ", en: "Click any letter to hear it · 🔊 Audio pronunciation" },
+  sun_letters_14: { te: "సూర్య అక్షరాలు (14)", en: "Sun letters (14)" },
+  moon_letters_14: { te: "చంద్ర అక్షరాలు (14)", en: "Moon letters (14)" },
+  listen: { te: "వినండి", en: "Listen" },
+  sun_letter: { te: "☀️ సూర్య అక్షరం", en: "☀️ Sun Letter" },
+  moon_letter: { te: "🌙 చంద్ర అక్షరం", en: "🌙 Moon Letter" },
+  letter_forms_4_positions: { te: "అక్షర రూపాలు (4 స్థానాలు)", en: "Letter Forms (4 Positions)" },
+  isolated: { te: "ఏకాంత", en: "Isolated" },
+  initial: { te: "ప్రారంభ", en: "Initial" },
+  medial: { te: "మధ్య", en: "Medial" },
+  final: { te: "చివర", en: "Final" },
+  learning_roadmap_6_levels: { te: "అభ్యాస మార్గం — 6 స్థాయిలు", en: "Learning Roadmap — 6 Levels" },
+  coming_soon: { te: "త్వరలో", en: "Coming Soon" },
+  available: { te: "అందుబాటులో", en: "Available" },
+  word_of_the_day: { te: "నేటి పదం", en: "Word of the Day" },
+  letter_flashcards: { te: "అక్షర ఫ్లాష్ కార్డులు", en: "Letter Flashcards" },
+  recognise_the_letter_tap_to: { te: "అక్షరాన్ని చూసి గుర్తించండి — తిప్పి పేరు చూడండి", en: "Recognise the letter — tap to flip and see its name" },
+  tap_to_flip: { te: "తిప్పడానికి తాకండి", en: "Tap to flip" },
+  arabic_quiz: { te: "అరబిక్ క్విజ్", en: "Arabic Quiz" },
+  check_what_you_know_across: { te: "వర్ణమాల, హరకాత్, పదజాలంపై మీకు తెలిసింది పరీక్షించుకోండి", en: "Check what you know across the alphabet, harakat and vocabulary" },
+  excellent_you_know_your_arabic: { te: "అద్భుతం! మీకు అరబిక్ బాగా తెలుసు.", en: "Excellent! You know your Arabic well." },
+  keep_practising_repetition_is_the: { te: "మళ్ళీ ప్రయత్నించండి — అభ్యాసమే విజయం.", en: "Keep practising — repetition is the key." },
+  try_again: { te: "మళ్ళీ ప్రయత్నించు", en: "Try Again" },
+  next_question: { te: "తదుపరి ప్రశ్న →", en: "Next Question →" },
+  see_results: { te: "ఫలితాలు చూడు", en: "See Results" },
+} as const;
+
 /* ─── Data ─── */
 const levels = [
   { num: 1, title: { te: "అరబిక్ అక్షరమాల", en: "The Arabic Alphabet" }, arabic: "الحروف الهجائية", desc: { te: "28 అక్షరాలు, వాటి రూపాలు మరియు ఉచ్చారణ", en: "28 letters, their forms and pronunciation" }, lessons: ["Alphabet Introduction", "Letter Forms (4 shapes)", "Connecting Letters", "Writing Practice"], available: true },
@@ -105,7 +144,7 @@ function LearnArabicPage() {
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
-              {lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              {copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -113,22 +152,20 @@ function LearnArabicPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "అరబిక్ నేర్చుకోండి" : "Learn Arabic"}
+              {copy.learn_arabic[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te"
-                ? "అక్షరమాల నుండి ఖురానిక్ అరబిక్ వరకు — నిర్మాణాత్మక అభ్యాస మార్గం"
-                : "From alphabet to Quranic Arabic — structured learning roadmap"}
+              {copy.from_alphabet_to_quranic_arabic[lang]}
             </p>
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center text-sm">
             {[
-              { n: "6", l: lang === "te" ? "స్థాయిలు" : "Levels" },
-              { n: "20+", l: lang === "te" ? "పాఠాలు" : "Lessons" },
-              { n: "28", l: lang === "te" ? "అక్షరాలు" : "Letters" },
-              { n: "∞", l: lang === "te" ? "ఉచితం" : "Free" },
+              { n: "6", l: copy.levels[lang] },
+              { n: "20+", l: copy.lessons[lang] },
+              { n: "28", l: copy.letters[lang] },
+              { n: "∞", l: copy.free[lang] },
             ].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
@@ -144,7 +181,7 @@ function LearnArabicPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {lang === "te" ? "అరబిక్ ఎందుకు నేర్చుకోవాలి?" : "Why Learn Arabic?"}
+              {copy.why_learn_arabic[lang]}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -167,16 +204,14 @@ function LearnArabicPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {lang === "te" ? "అరబిక్ అక్షరమాల — 28 హురూఫ్" : "Arabic Alphabet — 28 Huroof"}
+              {copy.arabic_alphabet_28_huroof[lang]}
             </h2>
             <p className="text-center text-[var(--if-text-muted)] mb-3 text-sm">
-              {lang === "te"
-                ? "ప్రతి అక్షరాన్ని నొక్కండి వినడానికి · 🔊 ఆడియో ఉచ్చారణ"
-                : "Click any letter to hear it · 🔊 Audio pronunciation"}
+              {copy.click_any_letter_to_hear[lang]}
             </p>
             <div className="flex justify-center gap-4 text-xs mb-8">
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />{lang === "te" ? "సూర్య అక్షరాలు (14)" : "Sun letters (14)"}</span>
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[var(--if-green)] inline-block" />{lang === "te" ? "చంద్ర అక్షరాలు (14)" : "Moon letters (14)"}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />{copy.sun_letters_14[lang]}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[var(--if-green)] inline-block" />{copy.moon_letters_14[lang]}</span>
             </div>
           </BlurFade>
 
@@ -230,7 +265,7 @@ function LearnArabicPage() {
                       className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] text-xs font-semibold hover:bg-[var(--if-gold)]/20 transition-colors border border-[var(--if-gold)]/30"
                     >
                       <Volume2 className="h-3.5 w-3.5" />
-                      {lang === "te" ? "వినండి" : "Listen"}
+                      {copy.listen[lang]}
                     </button>
                   </div>
 
@@ -241,21 +276,21 @@ function LearnArabicPage() {
                       <span className="text-sm text-[var(--if-text-muted)]">/{selected.en}/</span>
                       <span className="text-sm text-[var(--if-text-muted)]">{selected.te}</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full border font-semibold ${selected.sun ? "bg-amber-50 text-amber-700 border-amber-200" : "bg-emerald-50 text-emerald-700 border-emerald-200"}`}>
-                        {selected.sun ? (lang === "te" ? "☀️ సూర్య అక్షరం" : "☀️ Sun Letter") : (lang === "te" ? "🌙 చంద్ర అక్షరం" : "🌙 Moon Letter")}
+                        {selected.sun ? (copy.sun_letter[lang]) : (copy.moon_letter[lang])}
                       </span>
                     </div>
 
                     {/* Forms table */}
                     <div className="mb-4">
                       <p className="text-xs font-bold text-[var(--if-text-muted)] uppercase tracking-wider mb-2">
-                        {lang === "te" ? "అక్షర రూపాలు (4 స్థానాలు)" : "Letter Forms (4 Positions)"}
+                        {copy.letter_forms_4_positions[lang]}
                       </p>
                       <div className="grid grid-cols-4 gap-2">
                         {[
-                          { pos: lang === "te" ? "ఏకాంత" : "Isolated", word: selected.ar },
-                          { pos: lang === "te" ? "ప్రారంభ" : "Initial",  word: selected.ar + "ـ" },
-                          { pos: lang === "te" ? "మధ్య" : "Medial",    word: "ـ" + selected.ar + "ـ" },
-                          { pos: lang === "te" ? "చివర" : "Final",     word: "ـ" + selected.ar },
+                          { pos: copy.isolated[lang], word: selected.ar },
+                          { pos: copy.initial[lang],  word: selected.ar + "ـ" },
+                          { pos: copy.medial[lang],    word: "ـ" + selected.ar + "ـ" },
+                          { pos: copy.final[lang],     word: "ـ" + selected.ar },
                         ].map(({ pos, word }) => (
                           <div key={pos} className="flex flex-col items-center p-2 rounded-lg bg-[var(--if-cream-light)] border border-[var(--if-gold)]/10">
                             <span className="font-arabic text-xl text-[var(--if-green)]" dir="rtl">{word}</span>
@@ -292,7 +327,7 @@ function LearnArabicPage() {
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {lang === "te" ? "అభ్యాస మార్గం — 6 స్థాయిలు" : "Learning Roadmap — 6 Levels"}
+              {copy.learning_roadmap_6_levels[lang]}
             </h2>
           </BlurFade>
           <div className="space-y-3">
@@ -316,7 +351,7 @@ function LearnArabicPage() {
                         <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl">{level.arabic}</span>
                         {!level.available && (
                           <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">
-                            {lang === "te" ? "త్వరలో" : "Coming Soon"}
+                            {copy.coming_soon[lang]}
                           </span>
                         )}
                       </div>
@@ -337,7 +372,7 @@ function LearnArabicPage() {
                             </span>
                             {lesson}
                             {level.available && (
-                              <span className="ml-auto text-xs text-emerald-600 font-semibold">{lang === "te" ? "అందుబాటులో" : "Available"}</span>
+                              <span className="ml-auto text-xs text-emerald-600 font-semibold">{copy.available[lang]}</span>
                             )}
                           </li>
                         ))}
@@ -356,7 +391,7 @@ function LearnArabicPage() {
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-8">
-              {lang === "te" ? "నేటి పదం" : "Word of the Day"}
+              {copy.word_of_the_day[lang]}
             </h2>
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
@@ -369,7 +404,7 @@ function LearnArabicPage() {
                 className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm font-medium hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30 mb-5"
               >
                 <Volume2 className="h-4 w-4" />
-                {lang === "te" ? "వినండి" : "Listen"}
+                {copy.listen[lang]}
               </button>
               <div className="flex justify-center gap-3">
                 <button
@@ -396,10 +431,10 @@ function LearnArabicPage() {
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
-              {lang === "te" ? "అక్షర ఫ్లాష్ కార్డులు" : "Letter Flashcards"}
+              {copy.letter_flashcards[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
-              {lang === "te" ? "అక్షరాన్ని చూసి గుర్తించండి — తిప్పి పేరు చూడండి" : "Recognise the letter — tap to flip and see its name"}
+              {copy.recognise_the_letter_tap_to[lang]}
             </p>
             <div
               className="relative overflow-hidden bg-[var(--if-green)] rounded-3xl p-10 text-center cursor-pointer select-none min-h-[180px] flex items-center justify-center"
@@ -415,7 +450,7 @@ function LearnArabicPage() {
                   <div className="text-lg text-[var(--if-gold)] mb-0.5">/{alphabet[fcIdx].en}/</div>
                   <div className="text-sm text-[var(--if-gold-pale)]/70 mb-3">{alphabet[fcIdx].te}</div>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${alphabet[fcIdx].sun ? "bg-amber-400/30 text-amber-200" : "bg-emerald-400/20 text-emerald-200"}`}>
-                    {alphabet[fcIdx].sun ? (lang === "te" ? "☀️ సూర్య అక్షరం" : "☀️ Sun Letter") : (lang === "te" ? "🌙 చంద్ర అక్షరం" : "🌙 Moon Letter")}
+                    {alphabet[fcIdx].sun ? (copy.sun_letter[lang]) : (copy.moon_letter[lang])}
                   </span>
                 </div>
               )}
@@ -428,7 +463,7 @@ function LearnArabicPage() {
                 <ChevronLeft className="h-4 w-4 text-[var(--if-green)]" />
               </button>
               <span className="text-xs text-[var(--if-text-muted)]">
-                {fcIdx + 1} / {alphabet.length} · {lang === "te" ? "తిప్పడానికి తాకండి" : "Tap to flip"}
+                {fcIdx + 1} / {alphabet.length} · {copy.tap_to_flip[lang]}
               </span>
               <button
                 onClick={() => { setFcIdx(i => (i + 1) % alphabet.length); setFcFlipped(false); }}
@@ -446,10 +481,10 @@ function LearnArabicPage() {
         <div className="mx-auto max-w-lg">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
-              {lang === "te" ? "అరబిక్ క్విజ్" : "Arabic Quiz"}
+              {copy.arabic_quiz[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
-              {lang === "te" ? "వర్ణమాల, హరకాత్, పదజాలంపై మీకు తెలిసింది పరీక్షించుకోండి" : "Check what you know across the alphabet, harakat and vocabulary"}
+              {copy.check_what_you_know_across[lang]}
             </p>
             {quizDone ? (
               <div className="text-center p-8 bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/20">
@@ -459,14 +494,14 @@ function LearnArabicPage() {
                 </p>
                 <p className="text-sm text-[var(--if-text-muted)] mb-6">
                   {quizScore >= 4
-                    ? (lang === "te" ? "అద్భుతం! మీకు అరబిక్ బాగా తెలుసు." : "Excellent! You know your Arabic well.")
-                    : (lang === "te" ? "మళ్ళీ ప్రయత్నించండి — అభ్యాసమే విజయం." : "Keep practising — repetition is the key.")}
+                    ? (copy.excellent_you_know_your_arabic[lang])
+                    : (copy.keep_practising_repetition_is_the[lang])}
                 </p>
                 <button
                   onClick={() => { setQuizIdx(0); setQuizAns(null); setQuizScore(0); setQuizDone(false); }}
                   className="px-6 py-2.5 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold text-sm hover:bg-[var(--if-green)]/90 transition-colors"
                 >
-                  {lang === "te" ? "మళ్ళీ ప్రయత్నించు" : "Try Again"}
+                  {copy.try_again[lang]}
                 </button>
               </div>
             ) : (
@@ -514,8 +549,8 @@ function LearnArabicPage() {
                     }}
                   >
                     {quizIdx < quizQuestions.length - 1
-                      ? (lang === "te" ? "తదుపరి ప్రశ్న →" : "Next Question →")
-                      : (lang === "te" ? "ఫలితాలు చూడు" : "See Results")}
+                      ? (copy.next_question[lang])
+                      : (copy.see_results[lang])}
                   </button>
                 )}
               </div>

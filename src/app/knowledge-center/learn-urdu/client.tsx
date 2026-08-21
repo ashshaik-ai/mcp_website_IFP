@@ -8,6 +8,23 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  learn_urdu: { te: "ఉర్దూ నేర్చుకోండి", en: "Learn Urdu" },
+  language_of_islamic_literature_and: { te: "ఇస్లామిక్ సాహిత్యం మరియు ఖురాన్ అనువాదాల భాష — ఉర్దూ స్క్రిప్ట్ నేర్చుకోండి", en: "Language of Islamic literature and Quranic translations — learn Urdu script" },
+  letters: { te: "అక్షరాలు", en: "Letters" },
+  levels: { te: "స్థాయిలు", en: "Levels" },
+  free: { te: "ఉచితం", en: "Free" },
+  urdu_alphabet: { te: "ఉర్దూ అక్షరమాల", en: "Urdu Alphabet" },
+  click_to_hear: { te: "నొక్కండి వినడానికి 🔊", en: "Click to hear 🔊" },
+  n_4_level_learning_path: { te: "4-స్థాయి అభ్యాస మార్గం", en: "4-Level Learning Path" },
+  coming_soon: { te: "త్వరలో", en: "Coming Soon" },
+  urdu_word_of_the_day: { te: "నేటి ఉర్దూ పదం", en: "Urdu Word of the Day" },
+  listen: { te: "వినండి", en: "Listen" },
+} as const;
+
 const urduAlphabet = [
   { ur: "ا", name: "Alif",  roman: "a" }, { ur: "ب", name: "Be",    roman: "b" },
   { ur: "پ", name: "Pe",    roman: "p" }, { ur: "ت", name: "Te",    roman: "t" },
@@ -70,7 +87,7 @@ function LearnUrduPage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -78,18 +95,16 @@ function LearnUrduPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "ఉర్దూ నేర్చుకోండి" : "Learn Urdu"}
+              {copy.learn_urdu[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te"
-                ? "ఇస్లామిక్ సాహిత్యం మరియు ఖురాన్ అనువాదాల భాష — ఉర్దూ స్క్రిప్ట్ నేర్చుకోండి"
-                : "Language of Islamic literature and Quranic translations — learn Urdu script"}
+              {copy.language_of_islamic_literature_and[lang]}
             </p>
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center">
-            {[{ n: "39", l: lang === "te" ? "అక్షరాలు" : "Letters" }, { n: "4", l: lang === "te" ? "స్థాయిలు" : "Levels" }, { n: "∞", l: lang === "te" ? "ఉచితం" : "Free" }].map(({ n, l }) => (
+            {[{ n: "39", l: copy.letters[lang] }, { n: "4", l: copy.levels[lang] }, { n: "∞", l: copy.free[lang] }].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
                 <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
@@ -104,10 +119,10 @@ function LearnUrduPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {lang === "te" ? "ఉర్దూ అక్షరమాల" : "Urdu Alphabet"}
+              {copy.urdu_alphabet[lang]}
             </h2>
             <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">
-              {lang === "te" ? "నొక్కండి వినడానికి 🔊" : "Click to hear 🔊"}
+              {copy.click_to_hear[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-5 sm:grid-cols-8 gap-2" dir="rtl">
@@ -131,7 +146,7 @@ function LearnUrduPage() {
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
-              {lang === "te" ? "4-స్థాయి అభ్యాస మార్గం" : "4-Level Learning Path"}
+              {copy.n_4_level_learning_path[lang]}
             </h2>
           </BlurFade>
           <div className="space-y-3">
@@ -147,7 +162,7 @@ function LearnUrduPage() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-semibold text-[var(--if-green)]">{lv.title[lang]}</span>
                         <span className="text-sm text-[var(--if-gold)]/70" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{lv.urdu}</span>
-                        {!lv.available && <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">{lang === "te" ? "త్వరలో" : "Coming Soon"}</span>}
+                        {!lv.available && <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">{copy.coming_soon[lang]}</span>}
                       </div>
                       <p className="text-sm text-[var(--if-text-muted)]">{lv.desc[lang]}</p>
                     </div>
@@ -164,14 +179,14 @@ function LearnUrduPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-md text-center">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-8">{lang === "te" ? "నేటి ఉర్దూ పదం" : "Urdu Word of the Day"}</h2>
+            <h2 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-8">{copy.urdu_word_of_the_day[lang]}</h2>
             <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-8">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="text-5xl text-[var(--if-gold-light)] mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{w.ur}</div>
               <div className="text-[var(--if-gold)] font-semibold">{w.roman}</div>
               <div className="text-[var(--if-gold-pale)]/70 text-sm mt-1">{w.en} · {w.te}</div>
               <button onClick={() => speak(w.ur)} className="flex items-center gap-2 mx-auto mt-4 px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
-                <Volume2 className="h-4 w-4" />{lang === "te" ? "వినండి" : "Listen"}
+                <Volume2 className="h-4 w-4" />{copy.listen[lang]}
               </button>
               <div className="flex justify-center gap-3 mt-5">
                 <button onClick={() => setWordIdx((i) => (i - 1 + words.length) % words.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>

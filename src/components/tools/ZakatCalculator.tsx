@@ -11,6 +11,17 @@ import {
   type Rates,
 } from "@/lib/zakat";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  could_not_load_current_gold: { te: "ప్రస్తుత బంగారం, వెండి ధరలు లోడ్ కాలేదు. దయచేసి పేజీని రిఫ్రెష్ చేయండి.", en: "Could not load current gold and silver rates. Please refresh the page." },
+  zakat_calculator: { te: "జకాత్ కాలిక్యులేటర్", en: "Zakat Calculator" },
+  loading_rates: { te: "ధరలు లోడ్ అవుతున్నాయి…", en: "Loading rates…" },
+  net_wealth: { te: "నికర సంపద", en: "Net wealth" },
+  nisab_threshold: { te: "నిసాబ్ పరిమితి", en: "Nisab threshold" },
+  zakat_due_2_5: { te: "చెల్లించవలసిన జకాత్ (2.5%)", en: "Zakat due (2.5%)" },
+} as const;
+
 const FIELDS: { key: keyof Assets; te: string; en: string; unit: "g" | "inr" }[] = [
   { key: "gold", te: "బంగారం", en: "Gold", unit: "g" },
   { key: "silver", te: "వెండి", en: "Silver", unit: "g" },
@@ -43,9 +54,7 @@ export function ZakatCalculator() {
   if (failed) {
     return (
       <div className="rounded-2xl border border-amber-300 bg-amber-50 p-6 text-sm text-amber-900">
-        {lang === "te"
-          ? "ప్రస్తుత బంగారం, వెండి ధరలు లోడ్ కాలేదు. దయచేసి పేజీని రిఫ్రెష్ చేయండి."
-          : "Could not load current gold and silver rates. Please refresh the page."}
+        {copy.could_not_load_current_gold[lang]}
       </div>
     );
   }
@@ -54,16 +63,14 @@ export function ZakatCalculator() {
     <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white overflow-hidden">
       <div className="px-6 py-5 border-b border-[var(--if-gold)]/15">
         <h3 className="font-display text-xl font-bold text-[var(--if-green)]">
-          {lang === "te" ? "జకాత్ కాలిక్యులేటర్" : "Zakat Calculator"}
+          {copy.zakat_calculator[lang]}
         </h3>
         <p className="text-sm text-[var(--if-text-muted)] mt-1 text-pretty">
           {rates
             ? lang === "te"
               ? `బంగారం ₹${rates.goldGramInr}/గ్రా · వెండి ₹${rates.silverGramInr}/గ్రా · ${rates.date}`
               : `Gold ₹${rates.goldGramInr}/g · Silver ₹${rates.silverGramInr}/g · ${rates.date}`
-            : lang === "te"
-              ? "ధరలు లోడ్ అవుతున్నాయి…"
-              : "Loading rates…"}
+            : copy.loading_rates[lang]}
         </p>
       </div>
 
@@ -104,13 +111,13 @@ export function ZakatCalculator() {
           <dl className="rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 divide-y divide-[var(--if-gold)]/10 text-sm">
             <div className="flex justify-between px-4 py-2.5">
               <dt className="text-[var(--if-text-muted)]">
-                {lang === "te" ? "నికర సంపద" : "Net wealth"}
+                {copy.net_wealth[lang]}
               </dt>
               <dd className="font-mono tabular-nums font-semibold">{formatInr(result.netWealth)}</dd>
             </div>
             <div className="flex justify-between px-4 py-2.5">
               <dt className="text-[var(--if-text-muted)]">
-                {lang === "te" ? "నిసాబ్ పరిమితి" : "Nisab threshold"}
+                {copy.nisab_threshold[lang]}
               </dt>
               <dd className="font-mono tabular-nums">{formatInr(result.nisab)}</dd>
             </div>
@@ -126,7 +133,7 @@ export function ZakatCalculator() {
             {result.meetsNisab ? (
               <>
                 <p className="text-[11px] uppercase tracking-widest text-[var(--if-gold)]/85">
-                  {lang === "te" ? "చెల్లించవలసిన జకాత్ (2.5%)" : "Zakat due (2.5%)"}
+                  {copy.zakat_due_2_5[lang]}
                 </p>
                 <p className="font-display text-3xl font-bold text-[var(--if-gold-light)] tabular-nums mt-1">
                   {formatInr(result.zakatDue)}

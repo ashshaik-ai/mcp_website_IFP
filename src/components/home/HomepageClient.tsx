@@ -18,6 +18,37 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { MagicCard } from "@/components/ui/magic-card";
 import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Users, Building2, BookOpen, Heart } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  our_mission: { te: "మా లక్ష్యం —", en: "Our mission —" },
+  founder_team: { te: "వ్యవస్థాపకుడు & బృందం", en: "Founder & Team" },
+  action_plan_2023_2028: { te: "కార్యాచరణ ప్రణాళిక 2023–2028", en: "Action Plan 2023–2028" },
+  n_10_point_plan_for_our: { te: "మా కమ్యూనిటీ కోసం 10-అంశాల ప్రణాళిక", en: "10-point plan for our community" },
+  overall_completion: { te: "మొత్తం పురోగతి", en: "Overall completion" },
+  n_4_of_10_completed: { te: "4 / 10 పూర్తయింది", en: "4 of 10 completed" },
+  applicant_must_be_muslim_resident: { te: "దరఖాస్తుదారు మంగళగిరి ముస్లిం నివాసి అయి ఉండాలి", en: "Applicant must be Muslim resident of Mangalagiri" },
+  family_unable_to_fund_funeral: { te: "కుటుంబం స్వంతంగా అంత్యక్రియలు నిర్వహించలేని స్థితిలో ఉండాలి", en: "Family unable to fund funeral independently" },
+  aid_disbursed_directly_by_anjuman: { te: "సహాయం నేరుగా అంజుమన్ ద్వారా అందించబడుతుంది", en: "Aid disbursed directly by Anjuman" },
+  no_bureaucratic_delay: { te: "ఎటువంటి అధికారిక ఆలస్యం లేదు", en: "No bureaucratic delay" },
+  serving_the_most_vulnerable: { te: "అత్యంత అవసరమైన వారికి సేవ", en: "Serving the Most Vulnerable" },
+  caring_for_the_deceased_is: { te: "మృతుల సంరక్షణ ఫర్జ్ కిఫాయా. మంగళగిరి స్థానికులకు మాత్రమే.", en: "Caring for the deceased is fard kifaya. Exclusively for Mangalagiri locals." },
+  families_assisted: { te: "కుటుంబాలు సహాయం పొందాయి", en: "Families Assisted" },
+  active_since: { te: "నుండి అమలులో ఉంది", en: "Active Since" },
+  founded_by_janab_shaik_akram: { te: "జనాబ్ షేక్ అక్రమ్ స్థాపించిన ఇస్లామిక్ ఫ్రంట్, విశ్వాసం, సంక్షేమం మరియు పౌర భాగస్వామ్యం అనే మూడు స్తంభాలపై నిర్మించబడింది.", en: "Founded by Janab Shaik Akram, Islamic Front is built on three pillars: faith, welfare, and civic participation — working to build a stronger Muslim community in Mangalagiri." },
+  janab_shaik_akram: { te: "జనాబ్ షేక్ అక్రమ్", en: "Janab Shaik Akram" },
+  founder_islamic_front: { te: "వ్యవస్థాపకుడు · ఇస్లామిక్ ఫ్రంట్", en: "Founder · Islamic Front" },
+  a_p_waqf_board_director: { te: "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్", en: "A.P. Waqf Board Director" },
+  our_programs_in_action: { te: "మా కార్యక్రమాలు", en: "Our Programs in Action" },
+  service_education_and_community_building: { te: "సేవ, విద్య మరియు సమాజ నిర్మాణం", en: "Service, education and community building" },
+  phone: { te: "ఫోన్", en: "Phone" },
+  email: { te: "ఇమెయిల్", en: "Email" },
+  address: { te: "చిరునామా", en: "Address" },
+  mon_sat_9am_6pm_sun: { te: "సోమ–శని 9am–6pm · ఆదివారం 10am–2pm · అత్యవసర అంత్యక్రియల సహాయం 24/7", en: "Mon–Sat 9am–6pm · Sun 10am–2pm · Emergency funeral aid 24/7" },
+  free_multilingual_islamic_tools_and: { te: "ఉచిత, బహుభాషా ఇస్లామిక్ సాధనాలు మరియు వనరులు", en: "Free, multilingual Islamic tools and resources" },
+  open: { te: "తెరవండి", en: "Open" },
+} as const;
+
 /* ── Data ── */
 const achievements = [
   {
@@ -169,7 +200,7 @@ function Homepage() {
 
           <BlurFade delay={0.18}>
             <div className="flex items-center justify-center gap-2 text-sm">
-              <span className="text-[var(--if-gold-pale)]/50">{lang === "te" ? "మా లక్ష్యం —" : "Our mission —"}</span>
+              <span className="text-[var(--if-gold-pale)]/50">{copy.our_mission[lang]}</span>
               {lang === "te" ? (
                 <WordRotate
                   words={["కమ్యూనిటీ సంక్షేమం", "నాణ్యమైన విద్య", "పౌర భాగస్వామ్యం", "ముస్లిం ఐక్యత"]}
@@ -272,7 +303,7 @@ function Homepage() {
           {/* Leadership cards */}
           <div>
             <h3 className="text-center font-semibold text-[var(--if-green)] mb-6">
-              {lang === "te" ? "వ్యవస్థాపకుడు & బృందం" : "Founder & Team"}
+              {copy.founder_team[lang]}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
               {leaders.map((leader) => (
@@ -347,7 +378,7 @@ function Homepage() {
           <BlurFade delay={0.05}>
             <div className="text-center mb-8">
               <span className="text-xs font-bold tracking-[0.22em] uppercase text-[var(--if-gold)]">
-                {lang === "te" ? "కార్యాచరణ ప్రణాళిక 2023–2028" : "Action Plan 2023–2028"}
+                {copy.action_plan_2023_2028[lang]}
               </span>
               <h2 className="font-display text-4xl md:text-5xl font-bold mt-2">
                 <AnimatedGradientText colorFrom="#0d3b1e" colorTo="#c8922a" speed={0.45}>
@@ -355,7 +386,7 @@ function Homepage() {
                 </AnimatedGradientText>
               </h2>
               <p className="text-[var(--if-text-muted)] mt-2 text-sm">
-                {lang === "te" ? "మా కమ్యూనిటీ కోసం 10-అంశాల ప్రణాళిక" : "10-point plan for our community"}
+                {copy.n_10_point_plan_for_our[lang]}
               </p>
             </div>
           </BlurFade>
@@ -387,7 +418,7 @@ function Homepage() {
                 {/* Animated progress bar */}
                 <div>
                   <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/50 mb-2">
-                    <span>{lang === "te" ? "మొత్తం పురోగతి" : "Overall completion"}</span>
+                    <span>{copy.overall_completion[lang]}</span>
                     <span className="text-[var(--if-gold)] font-semibold">40%</span>
                   </div>
                   <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
@@ -401,7 +432,7 @@ function Homepage() {
                     />
                   </div>
                   <p className="text-[10px] text-[var(--if-gold-pale)]/30 mt-1.5 text-right">
-                    {lang === "te" ? "4 / 10 పూర్తయింది" : "4 of 10 completed"}
+                    {copy.n_4_of_10_completed[lang]}
                   </p>
                 </div>
               </div>
@@ -504,10 +535,10 @@ function Homepage() {
                 <p className="text-[var(--if-gold-pale)]/60 text-sm mb-6">{t("scheme_desc")}</p>
                 <ul className="space-y-3">
                   {[
-                    lang === "te" ? "దరఖాస్తుదారు మంగళగిరి ముస్లిం నివాసి అయి ఉండాలి" : "Applicant must be Muslim resident of Mangalagiri",
-                    lang === "te" ? "కుటుంబం స్వంతంగా అంత్యక్రియలు నిర్వహించలేని స్థితిలో ఉండాలి" : "Family unable to fund funeral independently",
-                    lang === "te" ? "సహాయం నేరుగా అంజుమన్ ద్వారా అందించబడుతుంది" : "Aid disbursed directly by Anjuman",
-                    lang === "te" ? "ఎటువంటి అధికారిక ఆలస్యం లేదు" : "No bureaucratic delay",
+                    copy.applicant_must_be_muslim_resident[lang],
+                    copy.family_unable_to_fund_funeral[lang],
+                    copy.aid_disbursed_directly_by_anjuman[lang],
+                    copy.no_bureaucratic_delay[lang],
                   ].map((c) => (
                     <li key={c} className="flex items-start gap-3 text-sm text-[var(--if-gold-pale)]/80">
                       <CheckCircle2 className="h-4 w-4 text-[var(--if-gold)] flex-shrink-0 mt-0.5" />
@@ -521,25 +552,23 @@ function Homepage() {
               <div className="space-y-6">
                 <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-6">
                   <h3 className="font-display text-lg text-[var(--if-gold-light)] font-bold mb-3">
-                    {lang === "te" ? "అత్యంత అవసరమైన వారికి సేవ" : "Serving the Most Vulnerable"}
+                    {copy.serving_the_most_vulnerable[lang]}
                   </h3>
                   <p className="text-sm text-[var(--if-gold-pale)]/70 leading-relaxed">
-                    {lang === "te"
-                      ? "మృతుల సంరక్షణ ఫర్జ్ కిఫాయా. మంగళగిరి స్థానికులకు మాత్రమే."
-                      : "Caring for the deceased is fard kifaya. Exclusively for Mangalagiri locals."}
+                    {copy.caring_for_the_deceased_is[lang]}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-xl p-4 text-center">
                     <div className="font-display text-3xl font-bold text-[var(--if-gold)]">250+</div>
                     <div className="text-xs text-[var(--if-gold-pale)]/60 mt-1">
-                      {lang === "te" ? "కుటుంబాలు సహాయం పొందాయి" : "Families Assisted"}
+                      {copy.families_assisted[lang]}
                     </div>
                   </div>
                   <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-xl p-4 text-center">
                     <div className="font-display text-3xl font-bold text-[var(--if-gold)]">2023</div>
                     <div className="text-xs text-[var(--if-gold-pale)]/60 mt-1">
-                      {lang === "te" ? "నుండి అమలులో ఉంది" : "Active Since"}
+                      {copy.active_since[lang]}
                     </div>
                   </div>
                 </div>
@@ -589,9 +618,7 @@ function Homepage() {
                 {t("section_about")}
               </h2>
               <p className="text-[var(--if-text-muted)] mb-6 leading-relaxed">
-                {lang === "te"
-                  ? "జనాబ్ షేక్ అక్రమ్ స్థాపించిన ఇస్లామిక్ ఫ్రంట్, విశ్వాసం, సంక్షేమం మరియు పౌర భాగస్వామ్యం అనే మూడు స్తంభాలపై నిర్మించబడింది."
-                  : "Founded by Janab Shaik Akram, Islamic Front is built on three pillars: faith, welfare, and civic participation — working to build a stronger Muslim community in Mangalagiri."}
+                {copy.founded_by_janab_shaik_akram[lang]}
               </p>
               <ul className="space-y-4">
                 {[
@@ -622,13 +649,13 @@ function Homepage() {
                 />
               </div>
               <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">
-                {lang === "te" ? "జనాబ్ షేక్ అక్రమ్" : "Janab Shaik Akram"}
+                {copy.janab_shaik_akram[lang]}
               </h3>
               <p className="text-sm text-[var(--if-gold-pale)]/70 mt-1">
-                {lang === "te" ? "వ్యవస్థాపకుడు · ఇస్లామిక్ ఫ్రంట్" : "Founder · Islamic Front"}
+                {copy.founder_islamic_front[lang]}
               </p>
               <p className="text-sm text-[var(--if-gold-pale)]/60 mt-0.5">
-                {lang === "te" ? "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్" : "A.P. Waqf Board Director"}
+                {copy.a_p_waqf_board_director[lang]}
               </p>
             </div>
           </BlurFade>
@@ -665,10 +692,10 @@ function Homepage() {
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-3">
-              {lang === "te" ? "మా కార్యక్రమాలు" : "Our Programs in Action"}
+              {copy.our_programs_in_action[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] text-center mb-10 text-sm">
-              {lang === "te" ? "సేవ, విద్య మరియు సమాజ నిర్మాణం" : "Service, education and community building"}
+              {copy.service_education_and_community_building[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -775,11 +802,11 @@ function Homepage() {
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             {[
-              { icon: Phone, label: lang === "te" ? "ఫోన్" : "Phone", value: "+91 90329 06677", href: "tel:+919032906677" },
-              { icon: Mail,  label: lang === "te" ? "ఇమెయిల్" : "Email", value: "islamicfrontmangalagiri@gmail.com", href: "mailto:islamicfrontmangalagiri@gmail.com" },
+              { icon: Phone, label: copy.phone[lang], value: "+91 90329 06677", href: "tel:+919032906677" },
+              { icon: Mail,  label: copy.email[lang], value: "islamicfrontmangalagiri@gmail.com", href: "mailto:islamicfrontmangalagiri@gmail.com" },
               // No href: an address is not a destination. Rendered as plain text
               // rather than an anchor that looks clickable and does nothing.
-              { icon: MapPin,label: lang === "te" ? "చిరునామా" : "Address", value: "Mangalagiri, Guntur District, A.P. 522503" },
+              { icon: MapPin,label: copy.address[lang], value: "Mangalagiri, Guntur District, A.P. 522503" },
             ].map(({ icon: Icon, label, value, href }) => {
               const inner = (
                 <>
@@ -802,7 +829,7 @@ function Homepage() {
           </div>
           <BlurFade delay={0.3}>
             <p className="text-center text-sm text-[var(--if-gold-pale)]/50">
-              {lang === "te" ? "సోమ–శని 9am–6pm · ఆదివారం 10am–2pm · అత్యవసర అంత్యక్రియల సహాయం 24/7" : "Mon–Sat 9am–6pm · Sun 10am–2pm · Emergency funeral aid 24/7"}
+              {copy.mon_sat_9am_6pm_sun[lang]}
             </p>
           </BlurFade>
         </div>
@@ -819,7 +846,7 @@ function Homepage() {
                 </AnimatedGradientText>
               </h2>
               <p className="text-[var(--if-text-muted)] mt-2">
-                {lang === "te" ? "ఉచిత, బహుభాషా ఇస్లామిక్ సాధనాలు మరియు వనరులు" : "Free, multilingual Islamic tools and resources"}
+                {copy.free_multilingual_islamic_tools_and[lang]}
               </p>
             </div>
           </BlurFade>
@@ -838,7 +865,7 @@ function Homepage() {
                     <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title}</h3>
                     <p className="text-sm text-[var(--if-text-muted)] mt-1">{portal.sub}</p>
                     <span className="mt-4 text-xs font-semibold text-[var(--if-gold)] flex items-center gap-1">
-                      {lang === "te" ? "తెరవండి" : "Open"} <ChevronRight className="h-3 w-3" />
+                      {copy.open[lang]} <ChevronRight className="h-3 w-3" />
                     </span>
                   </a>
                 </MagicCard>

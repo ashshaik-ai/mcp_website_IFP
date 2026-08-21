@@ -8,6 +8,17 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  women_s_guidance: { te: "మహిళల మార్గదర్శనం", en: "Women's Guidance" },
+  rights_prayer_hijab_family_the: { te: "హక్కులు, నమాజ్, హిజాబ్, కుటుంబం — ఇస్లాంలో మహిళ స్థానం", en: "Rights, prayer, hijab, family — the honoured status of women in Islam" },
+  previous: { te: "వెనక", en: "Previous" },
+  next: { te: "తదుపరి", en: "Next" },
+  paradise_lies_at_the_feet: { te: "\"జన్నత్ అమ్మల పాదాల కింద ఉంది\" — నసాయీ", en: "\"Paradise lies at the feet of mothers\" — Al-Nasai" },
+} as const;
+
 const sections = [
   {
     id: "rights",
@@ -94,7 +105,7 @@ function WomensGuidancePage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -102,12 +113,12 @@ function WomensGuidancePage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "మహిళల మార్గదర్శనం" : "Women's Guidance"}
+              {copy.women_s_guidance[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te" ? "హక్కులు, నమాజ్, హిజాబ్, కుటుంబం — ఇస్లాంలో మహిళ స్థానం" : "Rights, prayer, hijab, family — the honoured status of women in Islam"}
+              {copy.rights_prayer_hijab_family_the[lang]}
             </p>
           </BlurFade>
         </div>
@@ -148,11 +159,11 @@ function WomensGuidancePage() {
 
           <div className="flex justify-between">
             <button disabled={active === 0} onClick={() => setActive(a => a - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "వెనక" : "Previous"}
+              <ChevronLeft className="h-4 w-4" />{copy.previous[lang]}
             </button>
             <span className="self-center text-xs text-[var(--if-text-muted)]">{active + 1} / {sections.length}</span>
             <button disabled={active === sections.length - 1} onClick={() => setActive(a => a + 1)} className="flex items-center gap-1 px-4 py-2 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30">
-              {lang === "te" ? "తదుపరి" : "Next"}<ChevronRight className="h-4 w-4" />
+              {copy.next[lang]}<ChevronRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -162,7 +173,7 @@ function WomensGuidancePage() {
         <BlurFade delay={0.1}>
           <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl">الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ</div>
           <p className="text-sm text-[var(--if-gold-pale)]/70">
-            {lang === "te" ? "\"జన్నత్ అమ్మల పాదాల కింద ఉంది\" — నసాయీ" : "\"Paradise lies at the feet of mothers\" — Al-Nasai"}
+            {copy.paradise_lies_at_the_feet[lang]}
           </p>
         </BlurFade>
       </section>

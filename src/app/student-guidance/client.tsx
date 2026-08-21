@@ -14,6 +14,28 @@ import {
   type GuidanceCard,
 } from "@/content/student-guidance";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  pros: { te: "అనుకూలతలు", en: "Pros" },
+  cons: { te: "ప్రతికూలతలు", en: "Cons" },
+  misconception: { te: "అపోహ", en: "Misconception" },
+  student_guidance_hub: { te: "విద్యార్థి మార్గదర్శన కేంద్రం", en: "Student Guidance Hub" },
+  student_guidance: { te: "విద్యార్థి మార్గదర్శి", en: "Student Guidance" },
+  your_real_options_after_10th: { te: "10వ తరగతి తర్వాత మీ నిజమైన ఎంపికలు — మార్గాలు, ప్రవేశ పరీక్షలు, ప్రభుత్వ ఉద్యోగాలు మరియు స్కాలర్‌షిప్‌లు.", en: "Your real options after 10th — pathways, entrance exams, government jobs and scholarships." },
+  pathways: { te: "మార్గాలు", en: "Pathways" },
+  sections: { te: "విభాగాలు", en: "Sections" },
+  streams: { te: "స్ట్రీమ్స్", en: "Streams" },
+  search_careers: { te: "కెరీర్ వెతకండి", en: "Search careers" },
+  e_g_doctor_engineer_ias: { te: "ఉదా: డాక్టర్, ఇంజినీర్, IAS…", en: "e.g. Doctor, Engineer, IAS…" },
+  clear_search: { te: "వెతుకులాటను క్లియర్ చేయండి", en: "Clear search" },
+  filter_by_stream: { te: "స్ట్రీమ్ ద్వారా ఫిల్టర్ చేయండి", en: "Filter by stream" },
+  no_matches_try_a_different: { te: "ఫలితాలు లేవు. వేరే పదం ప్రయత్నించండి.", en: "No matches. Try a different term." },
+  apply_for_a_scholarship: { te: "స్కాలర్‌షిప్ కోసం దరఖాస్తు చేయండి", en: "Apply for a Scholarship" },
+  islamic_front_awards_scholarships_to: { te: "ఇస్లామిక్ ఫ్రంట్ ప్రతి సంవత్సరం 10 మంది విద్యార్థులకు స్కాలర్‌షిప్ అందిస్తుంది — మెరిట్ + అవసరం ఆధారంగా", en: "Islamic Front awards scholarships to 10 students annually — merit + need based" },
+  scholarship_details: { te: "స్కాలర్‌షిప్ వివరాలు", en: "Scholarship Details" },
+} as const;
+
 const STREAM_COLORS: Record<string, string> = {
   all: "bg-[var(--if-green)]",
   mpc: "bg-blue-700",
@@ -88,7 +110,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
               {card.pros[lang] && (
                 <p className="text-sm rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-emerald-900 text-pretty">
                   <b className="block text-[11px] uppercase tracking-wide mb-1">
-                    {lang === "te" ? "అనుకూలతలు" : "Pros"}
+                    {copy.pros[lang]}
                   </b>
                   {card.pros[lang]}
                 </p>
@@ -96,7 +118,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
               {card.cons[lang] && (
                 <p className="text-sm rounded-lg bg-amber-50 border border-amber-200 p-3 text-amber-900 text-pretty">
                   <b className="block text-[11px] uppercase tracking-wide mb-1">
-                    {lang === "te" ? "ప్రతికూలతలు" : "Cons"}
+                    {copy.cons[lang]}
                   </b>
                   {card.cons[lang]}
                 </p>
@@ -107,7 +129,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
           {card.myth[lang] && (
             <p className="text-sm rounded-lg bg-[var(--if-green)]/5 border border-[var(--if-green)]/15 p-3 text-[var(--if-text)] text-pretty">
               <b className="block text-[11px] uppercase tracking-wide mb-1 text-[var(--if-green)]">
-                {lang === "te" ? "అపోహ" : "Misconception"}
+                {copy.misconception[lang]}
               </b>
               {card.myth[lang]}
             </p>
@@ -154,26 +176,24 @@ function StudentGuidancePage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.1}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] text-sm font-medium">
-              {lang === "te" ? "విద్యార్థి మార్గదర్శన కేంద్రం" : "Student Guidance Hub"}
+              {copy.student_guidance_hub[lang]}
             </span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "విద్యార్థి మార్గదర్శి" : "Student Guidance"}
+              {copy.student_guidance[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl text-lg text-pretty">
-              {lang === "te"
-                ? "10వ తరగతి తర్వాత మీ నిజమైన ఎంపికలు — మార్గాలు, ప్రవేశ పరీక్షలు, ప్రభుత్వ ఉద్యోగాలు మరియు స్కాలర్‌షిప్‌లు."
-                : "Your real options after 10th — pathways, entrance exams, government jobs and scholarships."}
+              {copy.your_real_options_after_10th[lang]}
             </p>
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center">
             {[
-              { n: String(guidanceCards.length), l: lang === "te" ? "మార్గాలు" : "Pathways" },
-              { n: String(guidanceSections.length), l: lang === "te" ? "విభాగాలు" : "Sections" },
-              { n: String(guidanceStreams.length - 1), l: lang === "te" ? "స్ట్రీమ్స్" : "Streams" },
+              { n: String(guidanceCards.length), l: copy.pathways[lang] },
+              { n: String(guidanceSections.length), l: copy.sections[lang] },
+              { n: String(guidanceStreams.length - 1), l: copy.streams[lang] },
             ].map(({ n, l }) => (
               <div key={l} className="px-5 py-3 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center">
                 <div className="font-display text-2xl font-bold text-[var(--if-gold-light)]">{n}</div>
@@ -198,7 +218,7 @@ function StudentGuidancePage() {
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 mb-10">
             <label className="relative block max-w-md">
-              <span className="sr-only">{lang === "te" ? "కెరీర్ వెతకండి" : "Search careers"}</span>
+              <span className="sr-only">{copy.search_careers[lang]}</span>
               <Search
                 aria-hidden="true"
                 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--if-text-muted)]"
@@ -207,14 +227,14 @@ function StudentGuidancePage() {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder={lang === "te" ? "ఉదా: డాక్టర్, ఇంజినీర్, IAS…" : "e.g. Doctor, Engineer, IAS…"}
+                placeholder={copy.e_g_doctor_engineer_ias[lang]}
                 className="w-full min-h-11 pl-9 pr-9 rounded-full bg-white border border-[var(--if-gold)]/25 text-sm text-[var(--if-text)] placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               />
               {query && (
                 <button
                   type="button"
                   onClick={() => setQuery("")}
-                  aria-label={lang === "te" ? "వెతుకులాటను క్లియర్ చేయండి" : "Clear search"}
+                  aria-label={copy.clear_search[lang]}
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-[var(--if-gold)]/10"
                 >
                   <X aria-hidden="true" className="h-4 w-4 text-[var(--if-text-muted)]" />
@@ -225,7 +245,7 @@ function StudentGuidancePage() {
             <div
               className="flex flex-wrap gap-2"
               role="group"
-              aria-label={lang === "te" ? "స్ట్రీమ్ ద్వారా ఫిల్టర్ చేయండి" : "Filter by stream"}
+              aria-label={copy.filter_by_stream[lang]}
             >
               {guidanceStreams.map((s) => (
                 <button
@@ -248,7 +268,7 @@ function StudentGuidancePage() {
 
           {grouped.length === 0 ? (
             <p className="text-center text-[var(--if-text-muted)] py-16">
-              {lang === "te" ? "ఫలితాలు లేవు. వేరే పదం ప్రయత్నించండి." : "No matches. Try a different term."}
+              {copy.no_matches_try_a_different[lang]}
             </p>
           ) : (
             grouped.map((section) => (
@@ -280,18 +300,16 @@ function StudentGuidancePage() {
         <BlurFade delay={0.1}>
           <div className="mx-auto max-w-xl">
             <h2 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-3 text-pretty">
-              {lang === "te" ? "స్కాలర్‌షిప్ కోసం దరఖాస్తు చేయండి" : "Apply for a Scholarship"}
+              {copy.apply_for_a_scholarship[lang]}
             </h2>
             <p className="text-[var(--if-gold-pale)]/70 text-sm mb-6 text-pretty">
-              {lang === "te"
-                ? "ఇస్లామిక్ ఫ్రంట్ ప్రతి సంవత్సరం 10 మంది విద్యార్థులకు స్కాలర్‌షిప్ అందిస్తుంది — మెరిట్ + అవసరం ఆధారంగా"
-                : "Islamic Front awards scholarships to 10 students annually — merit + need based"}
+              {copy.islamic_front_awards_scholarships_to[lang]}
             </p>
             <a
               href="/#schemes"
               className="inline-flex items-center gap-2 min-h-11 px-6 rounded-full bg-[var(--if-gold)] text-[var(--if-green)] font-bold hover:bg-[var(--if-gold-light)] transition-colors text-sm"
             >
-              {lang === "te" ? "స్కాలర్‌షిప్ వివరాలు" : "Scholarship Details"}
+              {copy.scholarship_details[lang]}
               <ChevronRight aria-hidden="true" className="h-4 w-4" />
             </a>
           </div>

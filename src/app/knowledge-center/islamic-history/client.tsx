@@ -8,6 +8,28 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  islamic_history: { te: "ఇస్లామిక్ చరిత్ర", en: "Islamic History" },
+  from_rashidun_to_today_6: { te: "రాషిదీన్ నుండి నేటి వరకు — 6 యుగాల గొప్ప ఇస్లామిక్ నాగరికత", en: "From Rashidun to today — 6 eras of great Islamic civilisation" },
+  n_6_era_history_timeline: { te: "6-యుగాల చరిత్ర కాలపట్టిక", en: "6-Era History Timeline" },
+  lesson: { te: "పాఠం:", en: "Lesson:" },
+  notable: { te: "ప్రముఖుడు:", en: "Notable:" },
+  historical_personalities: { te: "చారిత్రక వ్యక్తిత్వాలు", en: "Historical Personalities" },
+  great_figures_who_shaped_islamic: { te: "ఇస్లామిక్ చరిత్రను నిర్మించిన మహా వ్యక్తులు", en: "Great figures who shaped Islamic history" },
+  legacy: { te: "వారసత్వం:", en: "Legacy:" },
+  civilization_explorer: { te: "నాగరికత అన్వేషకుడు", en: "Civilization Explorer" },
+  great_cities_of_history: { te: "చరిత్ర మహా నగరాలు", en: "Great Cities of History" },
+  great_cities_that_powered_islamic: { te: "ఇస్లామిక్ నాగరికతను నడిపిన మహా నగరాలు — ప్రతి దాని ప్రాముఖ్యత మరియు విశిష్టత", en: "Great cities that powered Islamic civilisation — their importance and key achievement" },
+  apply_today: { te: "నేటికి అన్వయించండి", en: "Apply Today" },
+  lessons_from_history: { te: "చరిత్ర నుండి పాఠాలు", en: "Lessons from History" },
+  six_timeless_lessons_history_teaches: { te: "చరిత్ర నేర్పే ఆరు కాలాతీత పాఠాలు — చారిత్రక ఉదాహరణ మరియు నేటి ఆచరణ", en: "Six timeless lessons history teaches — a historical example and modern application" },
+  apply: { te: "ఆచరణ:", en: "Apply:" },
+  you_are_the_best_nation: { te: "\"మీరు మానవుల కోసం వెలువడిన ఉత్తమ జాతి\" — సూరహ్ ఆలె ఇమ్రాన్ 3:110", en: "\"You are the best nation produced for mankind\" — Surah Ali Imran 3:110" },
+} as const;
+
 const eras = [
   {
     num: 1, years: "632–661 CE", color: "bg-emerald-800",
@@ -188,7 +210,7 @@ function IslamicHistoryPage() {
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
-              <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+              <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -196,12 +218,12 @@ function IslamicHistoryPage() {
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
-              {lang === "te" ? "ఇస్లామిక్ చరిత్ర" : "Islamic History"}
+              {copy.islamic_history[lang]}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {lang === "te" ? "రాషిదీన్ నుండి నేటి వరకు — 6 యుగాల గొప్ప ఇస్లామిక్ నాగరికత" : "From Rashidun to today — 6 eras of great Islamic civilisation"}
+              {copy.from_rashidun_to_today_6[lang]}
             </p>
           </BlurFade>
         </div>
@@ -212,7 +234,7 @@ function IslamicHistoryPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {lang === "te" ? "6-యుగాల చరిత్ర కాలపట్టిక" : "6-Era History Timeline"}
+              {copy.n_6_era_history_timeline[lang]}
             </h2>
           </BlurFade>
 
@@ -250,11 +272,11 @@ function IslamicHistoryPage() {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3 mt-2">
                     <div className="flex items-start gap-2 text-xs bg-[var(--if-green)]/8 border border-[var(--if-green)]/18 rounded-lg px-3 py-2 flex-1">
-                      <span className="font-bold text-[var(--if-green)] flex-shrink-0">{lang === "te" ? "పాఠం:" : "Lesson:"}</span>
+                      <span className="font-bold text-[var(--if-green)] flex-shrink-0">{copy.lesson[lang]}</span>
                       <span className="text-[var(--if-text-muted)]">{eras[active].lesson[lang]}</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/20 rounded-lg px-3 py-2 flex-1">
-                      <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{lang === "te" ? "ప్రముఖుడు:" : "Notable:"}</span>
+                      <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{copy.notable[lang]}</span>
                       <span className="text-[var(--if-text-muted)]">{eras[active].personality}</span>
                     </div>
                   </div>
@@ -275,10 +297,10 @@ function IslamicHistoryPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {lang === "te" ? "చారిత్రక వ్యక్తిత్వాలు" : "Historical Personalities"}
+              {copy.historical_personalities[lang]}
             </h2>
             <p className="text-center text-[var(--if-text-muted)] text-sm mb-10">
-              {lang === "te" ? "ఇస్లామిక్ చరిత్రను నిర్మించిన మహా వ్యక్తులు" : "Great figures who shaped Islamic history"}
+              {copy.great_figures_who_shaped_islamic[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -297,7 +319,7 @@ function IslamicHistoryPage() {
                   <p className="text-xs text-[var(--if-text-muted)] mb-2">{p.role[lang]}</p>
                   <p className="text-xs text-[var(--if-text)] leading-relaxed mb-3 flex-1">{p.contribution[lang]}</p>
                   <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/18 rounded-lg px-2.5 py-2 mt-auto">
-                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{lang === "te" ? "వారసత్వం:" : "Legacy:"}</span>
+                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{copy.legacy[lang]}</span>
                     <span className="text-[var(--if-text-muted)]">{p.legacy[lang]}</span>
                   </div>
                 </div>
@@ -311,12 +333,12 @@ function IslamicHistoryPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">{lang === "te" ? "నాగరికత అన్వేషకుడు" : "Civilization Explorer"}</p>
+            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">{copy.civilization_explorer[lang]}</p>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {lang === "te" ? "చరిత్ర మహా నగరాలు" : "Great Cities of History"}
+              {copy.great_cities_of_history[lang]}
             </h2>
             <p className="text-center text-[var(--if-text-muted)] text-sm mb-10">
-              {lang === "te" ? "ఇస్లామిక్ నాగరికతను నడిపిన మహా నగరాలు — ప్రతి దాని ప్రాముఖ్యత మరియు విశిష్టత" : "Great cities that powered Islamic civilisation — their importance and key achievement"}
+              {copy.great_cities_that_powered_islamic[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -344,12 +366,12 @@ function IslamicHistoryPage() {
       <section className="py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">{lang === "te" ? "నేటికి అన్వయించండి" : "Apply Today"}</p>
+            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">{copy.apply_today[lang]}</p>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {lang === "te" ? "చరిత్ర నుండి పాఠాలు" : "Lessons from History"}
+              {copy.lessons_from_history[lang]}
             </h2>
             <p className="text-center text-[var(--if-text-muted)] text-sm mb-10">
-              {lang === "te" ? "చరిత్ర నేర్పే ఆరు కాలాతీత పాఠాలు — చారిత్రక ఉదాహరణ మరియు నేటి ఆచరణ" : "Six timeless lessons history teaches — a historical example and modern application"}
+              {copy.six_timeless_lessons_history_teaches[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -360,7 +382,7 @@ function IslamicHistoryPage() {
                   <h3 className="font-display text-base font-bold text-[var(--if-green)] mb-3">{lesson.title[lang]}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed mb-4 flex-1">{lesson.example[lang]}</p>
                   <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/7 border border-[var(--if-gold)]/18 rounded-lg px-2.5 py-2 mt-auto">
-                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{lang === "te" ? "ఆచరణ:" : "Apply:"}</span>
+                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{copy.apply[lang]}</span>
                     <span className="text-[var(--if-text-muted)]">{lesson.apply[lang]}</span>
                   </div>
                 </div>
@@ -375,7 +397,7 @@ function IslamicHistoryPage() {
         <BlurFade delay={0.1}>
           <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl" lang="ar">كُنتُمْ خَيْرَ أُمَّةٍ أُخْرِجَتْ لِلنَّاسِ</div>
           <p className="text-sm text-[var(--if-gold-pale)]/70">
-            {lang === "te" ? "\"మీరు మానవుల కోసం వెలువడిన ఉత్తమ జాతి\" — సూరహ్ ఆలె ఇమ్రాన్ 3:110" : "\"You are the best nation produced for mankind\" — Surah Ali Imran 3:110"}
+            {copy.you_are_the_best_nation[lang]}
           </p>
         </BlurFade>
       </section>

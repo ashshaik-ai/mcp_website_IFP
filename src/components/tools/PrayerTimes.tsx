@@ -12,6 +12,15 @@ import {
   type PrayerKey,
 } from "@/lib/prayer-times";
 
+/* Bilingual copy for this file, hoisted out of the JSX so a translator
+   can read and review it as one unit. */
+const copy = {
+  loading_prayer_times: { te: "నమాజ్ సమయాలు లోడ్ అవుతున్నాయి", en: "Loading prayer times" },
+  next_prayer: { te: "తదుపరి నమాజ్", en: "Next prayer" },
+  in: { te: "మిగిలిన సమయం", en: "in" },
+  calculated_for_mangalagiri_karachi_method: { te: "మంగళగిరి కోసం లెక్కించబడింది (కరాచీ పద్ధతి, హనఫీ అస్ర్). మీ స్థానిక మసీదు సమయమే ప్రామాణికం.", en: "Calculated for Mangalagiri (Karachi method, Hanafi Asr). Your local masjid remains authoritative." },
+} as const;
+
 const LABELS: Record<PrayerKey, { te: string; en: string; ar: string }> = {
   fajr: { te: "ఫజ్ర్", en: "Fajr", ar: "الفجر" },
   sunrise: { te: "సూర్యోదయం", en: "Sunrise", ar: "الشروق" },
@@ -38,7 +47,7 @@ export function PrayerTimesCard() {
       <div
         className="rounded-2xl border border-[var(--if-gold)]/20 bg-white p-6 min-h-[22rem]"
         aria-busy="true"
-        aria-label={lang === "te" ? "నమాజ్ సమయాలు లోడ్ అవుతున్నాయి" : "Loading prayer times"}
+        aria-label={copy.loading_prayer_times[lang]}
       />
     );
   }
@@ -51,7 +60,7 @@ export function PrayerTimesCard() {
     <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white overflow-hidden">
       <div className="bg-[var(--if-green)] px-6 py-5">
         <p className="text-[11px] uppercase tracking-widest text-[var(--if-gold)]/80">
-          {lang === "te" ? "తదుపరి నమాజ్" : "Next prayer"}
+          {copy.next_prayer[lang]}
         </p>
         <div className="flex items-baseline gap-3 mt-1 flex-wrap">
           <span className="font-display text-2xl font-bold text-[var(--if-gold-light)]">
@@ -64,7 +73,7 @@ export function PrayerTimesCard() {
             className="ml-auto text-sm text-[var(--if-gold-pale)]/80 tabular-nums"
             aria-live="polite"
           >
-            {lang === "te" ? "మిగిలిన సమయం" : "in"} {countdown(next.inHours)}
+            {copy.in[lang]} {countdown(next.inHours)}
           </span>
         </div>
       </div>
@@ -99,9 +108,7 @@ export function PrayerTimesCard() {
       </ul>
 
       <p className="px-6 py-4 text-xs text-[var(--if-text-muted)] bg-[var(--if-cream-light)] text-pretty">
-        {lang === "te"
-          ? "మంగళగిరి కోసం లెక్కించబడింది (కరాచీ పద్ధతి, హనఫీ అస్ర్). మీ స్థానిక మసీదు సమయమే ప్రామాణికం."
-          : "Calculated for Mangalagiri (Karachi method, Hanafi Asr). Your local masjid remains authoritative."}
+        {copy.calculated_for_mangalagiri_karachi_method[lang]}
       </p>
     </div>
   );
