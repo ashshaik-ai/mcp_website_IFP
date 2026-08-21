@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display, Noto_Sans_Telugu } from "next/font/google";
 import { ClientProviders } from "@/components/ClientProviders";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -22,11 +23,20 @@ const notoTelugu = Noto_Sans_Telugu({
   display: "swap",
 });
 
+/* metadataBase makes every per-page canonical and og:url resolve absolute.
+   Individual titles and descriptions come from the route catalog via
+   pageMetadata(); this block only carries what is genuinely site-wide. */
 export const metadata: Metadata = {
-  title: "Islamic Front Mangalagiri | ఇస్లామిక్ ఫ్రంట్",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Islamic Front Mangalagiri | ఇస్లామిక్ ఫ్రంట్",
+    template: "%s",
+  },
   description:
     "Islamic Front Mangalagiri — serving the Muslim community of Mangalagiri since 2011. Community welfare, education, and civic participation.",
   keywords: "Islamic Front, Mangalagiri, Muslim community, Anjuman, welfare, Andhra Pradesh",
+  applicationName: SITE_NAME,
+  formatDetection: { telephone: true, address: false, email: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
