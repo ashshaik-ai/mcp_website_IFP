@@ -101,9 +101,7 @@ function LearnUrduPage() {
               {copy.click_to_hear[lang]}
             </p>
           </BlurFade>
-          <div className="grid grid-cols-5 sm:grid-cols-8 gap-2" dir="rtl">
-            <AlphabetGrid letters={urduLetters} script="urdu" />
-          </div>
+          <AlphabetGrid letters={urduLetters} script="urdu" />
         </div>
       </section>
 
