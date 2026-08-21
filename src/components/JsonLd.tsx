@@ -95,3 +95,82 @@ export function JsonLd({ path }: { path: string }) {
 
 /** Every catalogued route, for the build-time coverage check. */
 export const jsonLdRoutes = routes.map((r) => r.path);
+
+/* Lessons get their own graph: LearningResource rather than WebPage, plus the
+   quiz and FAQ content they carry. FAQPage markup is only honest when the
+   questions and answers are genuinely on the page, which they are. */
+export function LessonJsonLd({
+  portal,
+  slug,
+  title,
+  crumbName,
+  description,
+  sectionCount,
+  faqs,
+}: {
+  portal: string;
+  slug: string;
+  title: string;
+  /** Short name for the breadcrumb — the full bilingual title reads as noise there. */
+  crumbName: string;
+  description: string;
+  sectionCount: number;
+  faqs: { question: string; answer: string }[];
+}) {
+  const url = `${SITE_URL}/knowledge-center/${portal}/${slug}`;
+  const portalRoute = routeByPath.get(`/knowledge-center/${portal}`);
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "LearningResource",
+      "@id": `${url}#lesson`,
+      url,
+      name: title,
+      description,
+      inLanguage: ["te", "en"],
+      isAccessibleForFree: true,
+      learningResourceType: "Lesson",
+      educationalLevel: "Beginner",
+      numberOfItems: sectionCount,
+      isPartOf: { "@id": SITE_ID },
+      provider: { "@id": ORG_ID },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: portalRoute?.title.en ?? portal,
+            item: `${SITE_URL}/knowledge-center/${portal}`,
+          },
+          { "@type": "ListItem", position: 3, name: crumbName, item: url },
+        ],
+      },
+    },
+  ];
+
+  if (faqs.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
+    });
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+          /</g,
+          "\\u003c",
+        ),
+      }}
+    />
+  );
+}

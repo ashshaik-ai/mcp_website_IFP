@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { lessons, lessonsByPortal } from "@/content/lessons";
 import { SITE_NAME, SITE_URL, routeByPath } from "@/lib/site";
+import { LessonJsonLd } from "@/components/JsonLd";
 import LessonClient from "./client";
 
 type Params = { portal: string; lesson: string };
@@ -63,14 +64,25 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const brief = (l: (typeof siblings)[number]) => ({ slug: l.slug, title: l.title });
 
   return (
-    <LessonClient
-      lesson={lesson}
-      index={index}
-      total={siblings.length}
-      prev={index > 0 ? brief(siblings[index - 1]) : null}
-      next={index < siblings.length - 1 ? brief(siblings[index + 1]) : null}
-      portalHref={`/knowledge-center/${portal}`}
-      portalTitle={portalRoute?.title ?? { te: portal, en: portal }}
-    />
+    <>
+      <LessonJsonLd
+        portal={portal}
+        slug={slug}
+        title={`${lesson.title.en} — ${lesson.title.te}`}
+        crumbName={lesson.title.en}
+        description={(lesson.intro?.en || lesson.summary?.en || "").slice(0, 300)}
+        sectionCount={lesson.sections.length}
+        faqs={lesson.faqs.map((f) => ({ question: f.question.en, answer: f.answer.en }))}
+      />
+      <LessonClient
+        lesson={lesson}
+        index={index}
+        total={siblings.length}
+        prev={index > 0 ? brief(siblings[index - 1]) : null}
+        next={index < siblings.length - 1 ? brief(siblings[index + 1]) : null}
+        portalHref={`/knowledge-center/${portal}`}
+        portalTitle={portalRoute?.title ?? { te: portal, en: portal }}
+      />
+    </>
   );
 }
