@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
+import { PrayerTimesCard } from "@/components/tools/PrayerTimes";
+import { ZakatCalculator } from "@/components/tools/ZakatCalculator";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -122,8 +124,8 @@ const portals = [
 ];
 
 const tools = [
-  { label: { te: "జకాత్ కాలిక్యులేటర్", en: "Zakat Calculator" }, icon: Calculator, href: "/knowledge-center#zakat" },
-  { label: { te: "నమాజు సమయాలు", en: "Prayer Times" }, icon: Clock, href: "/knowledge-center#prayer-times" },
+  { label: { te: "జకాత్ కాలిక్యులేటర్", en: "Zakat Calculator" }, icon: Calculator, href: "#zakat" },
+  { label: { te: "నమాజు సమయాలు", en: "Prayer Times" }, icon: Clock, href: "#prayer-times" },
 ];
 
 function KCPage() {
@@ -208,6 +210,22 @@ function KCPage() {
                 </Link>
               </BlurFade>
             ))}
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2 mt-10">
+            <section id="prayer-times" className="scroll-mt-24">
+              <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
+                {lang === "te" ? "నేటి నమాజు సమయాలు" : "Today's prayer times"}
+              </h3>
+              <PrayerTimesCard />
+            </section>
+
+            <section id="zakat" className="scroll-mt-24">
+              <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
+                {lang === "te" ? "మీ జకాత్ లెక్కించండి" : "Calculate your Zakat"}
+              </h3>
+              <ZakatCalculator />
+            </section>
           </div>
         </div>
       </section>
