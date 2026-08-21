@@ -438,3 +438,91 @@ export const kidsProphets: PortalEntry[] = [
     act: { te: "ఎవరికైనా చిరునవ్వుతో ఒక మంచి మాట చెప్పండి — అది ఆయన సున్నత్.", en: "Smile and say a kind word to someone — that is his Sunnah." },
   },
 ];
+
+/** womens-guidance · WORSHIP_DATA — 10 entries.
+    Fields: practice, hayd, note */
+export const womensWorship: PortalEntry[] = [
+  {
+    practice: { te: "సలాహ్ (నమాజు)", en: "Salah (Prayer)" },
+    hayd: { te: "అనుమతి లేదు", en: "Not permitted" },
+    note: { te: "ఖదా అవసరం లేదు; గుస్ల్ తర్వాత తిరిగి ప్రారంభించండి", en: "No Qada; resume after Ghusl" },
+  },
+  {
+    practice: { te: "సవ్మ్ (రోజా)", en: "Sawm (Fasting)" },
+    hayd: { te: "అనుమతి లేదు", en: "Not permitted" },
+    note: { te: "ఖదా తప్పనిసరి, ఫిద్యా కాదు", en: "Qada is required; no Fidyah" },
+  },
+  {
+    practice: { te: "దుఆ & జిక్ర్", en: "Dua & Dhikr" },
+    hayd: { te: "అనుమతి", en: "Permitted" },
+    note: { te: "ఎప్పుడైనా, ఆగకుండా చేయవచ్చు", en: "Freely at any time" },
+  },
+  {
+    practice: { te: "ఖురాన్ వినడం", en: "Listening to Quran" },
+    hayd: { te: "అనుమతి", en: "Permitted" },
+    note: { te: "ఖురాన్ వినడం, తఫ్సీర్ చదవడం", en: "Listening and Tafseer study" },
+  },
+  {
+    practice: { te: "ఖురాన్ స్పర్శ", en: "Touching Mushaf" },
+    hayd: { te: "అనుమతి లేదు", en: "Not permitted" },
+    note: { te: "బారియర్‌తో (గ్లవ్స్/కవర్) కొందరు పండితులు అనుమతిస్తారు; మెజారిటీ వద్దంటారు", en: "Majority: not permitted; some allow with barrier" },
+  },
+  {
+    practice: { te: "ఖురాన్ పఠన (కంఠస్థం)", en: "Quran recitation (from memory)" },
+    hayd: { te: "పండితులు భేదిస్తారు", en: "Scholars differ" },
+    note: { te: "హనఫీ: అనుమతి లేదు; మాలికీ/శాఫియీ: అనుమతి", en: "Hanafi: not permitted; Maliki/Shafi'i: permitted" },
+  },
+  {
+    practice: { te: "మసీద్ ప్రవేశం", en: "Entering Mosque" },
+    hayd: { te: "అనుమతి లేదు", en: "Not permitted" },
+    note: { te: "హనఫీ: అనుమతి లేదు; మాలికీ: అనుమతి (కాలం తక్కువ)", en: "Hanafi: not permitted; Maliki: may enter briefly" },
+  },
+  {
+    practice: { te: "తవాఫ్", en: "Tawaf" },
+    hayd: { te: "అనుమతి లేదు", en: "Not permitted" },
+    note: { te: "హజ్/ఉమ్రా తవాఫ్ అనుమతి లేదు — హైద్ ఆగే వరకు నిరీక్షించాలి", en: "Hajj/Umrah Tawaf must wait until Hayd ends" },
+  },
+  {
+    practice: { te: "సదఖా & దాన ధర్మం", en: "Sadaqah & Charity" },
+    hayd: { te: "అనుమతి", en: "Permitted" },
+    note: { te: "ఎప్పుడైనా చేయవచ్చు, ప్రోత్సహించబడింది", en: "Encouraged at all times" },
+  },
+  {
+    practice: { te: "ఇఫ్తార్ తయారుచేయడం", en: "Preparing Iftar" },
+    hayd: { te: "అనుమతి", en: "Permitted" },
+    note: { te: "సేవ = ఇబాదత్", en: "Service to family = an act of worship" },
+  },
+];
+
+/** womens-guidance · FAQS_DATA — 7 entries.
+    Fields: q, a */
+export const womensFaqs: PortalEntry[] = [
+  {
+    q: { te: "హైద్ సమయంలో నమాజు వదలినవి తర్వాత చేయాలా?", en: "Do I need to make up missed Salah from Hayd?" },
+    a: { te: "లేదు. హైద్ సమయంలో నమాజు వదలినవి తర్వాత చేయాల్సిన అవసరం లేదు అని ఇస్లామిక్ పండితుల ఏకగ్రీవ అభిప్రాయం. ఇది అల్లాహ్ యొక్క దయ (రుఖ్సా). అయితే, వదలిన రోజాలు (సవ్మ్) హైద్ ముగిన్న తర్వాత పూరించాలి.", en: "No. It is the unanimous consensus of Islamic scholars that missed Salah during Hayd does not need to be made up (Qada). This is a mercy (Rukhsa) from Allah. However, missed fasts (Sawm) must be made up after the period ends." },
+  },
+  {
+    q: { te: "హైద్ సమయంలో ఫోన్ లేదా టాబ్లెట్‌లో ఖురాన్ చదవగలనా?", en: "Can I read Quran on my phone or tablet during Hayd?" },
+    a: { te: "అనేక మంది ఆధునిక పండితులు హైద్ సమయంలో డిజిటల్ పరికరంలో (ఫోన్, టాబ్లెట్, యాప్) ఖురాన్ చదవడానికి అనుమతిస్తారు ఎందుకంటే డిజిటల్ స్క్రీన్ ముస్హఫ్ (భౌతిక ప్రతి) గా పరిగణించబడదు. ఇది దారుల్ ఉలూమ్ దేవ్‌బంద్ మరియు సౌదీ పండితులతో సహా అనేక మంది పండితుల నిలుపు.", en: "Many contemporary scholars permit reading Quran on a digital device (phone, tablet, app) during Hayd because the digital screen is not considered a Mushaf (physical copy). This is the position of many scholars including Darul Uloom Deoband and Saudi scholars. It is recommended to open the Quran app with the intention of reading for meaning rather than tilawah." },
+  },
+  {
+    q: { te: "నమాజు చదివేటప్పుడు హైద్ మొదలైతే ఏం చేయాలి?", en: "What if Hayd begins while I am praying?" },
+    a: { te: "నమాజు చదివేటప్పుడు హైద్ మొదలైతే, వెంటనే నమాజు ఆపాలి. ఆ పాయింట్ నుండి నమాజు చెల్లదు. ఇందులో ఎలాంటి పాపం లేదు — ఇది సహజ సంఘటన మరియు పవిత్రత తిరిగి పొందే వరకు మీరు ఇబాదత్ నుండి మినహాయించబడతారు.", en: "If Hayd begins while you are in the middle of Salah, immediately stop the prayer. The prayer is invalid from that point and cannot continue. There is no sin in this — it is a natural occurrence and you are exempted from worship until purity is regained." },
+  },
+  {
+    q: { te: "రమదాన్ తర్వాత ఖదా రోజాలు ఎలా లెక్కించాలి?", en: "How should I calculate Qada fasts after Ramadan?" },
+    a: { te: "హైద్ లేదా నిఫాస్ కారణంగా రమదాన్‌లో రోజా చేయలేకపోయిన ప్రతి రోజు లెక్కించండి. తదుపరి రమదాన్ రాకముందు అదే సంఖ్యలో రోజాలు ఖదా రోజాలుగా ఉండాలి. వాటిని వరుసగా లేదా సంవత్సరం అంతటా చెల్లవర్చవచ్చు. తదుపరి రమదాన్ ముందు చేస్తే కఫారా అవసరం లేదు.", en: "Count each day you were unable to fast during Ramadan due to Hayd or Nifas. You must fast that exact number of days as Qada before the next Ramadan arrives. You can fast them consecutively or scattered throughout the year. There is no expiation (Kaffarah) required if done before the next Ramadan." },
+  },
+  {
+    q: { te: "హైద్ సమయంలో మసీద్ ద్వారం వద్ద దుఆ చేయగలనా?", en: "Can I make dua in the mosque entrance area during Hayd?" },
+    a: { te: "హనఫీ మజ్‌హబ్ ప్రకారం, హైద్‌లో ఉన్న మహిళ మసీద్ లోపలికి ప్రవేశించకూడదు. అయినప్పటికీ, ఆమె ప్రవేశద్వారం వద్ద (నమాజు ప్రాంతం వెలుపల) నిలబడి దుఆ చేయవచ్చు లేదా బయట నుండి ఉపన్యాసం వినవచ్చు. నిర్దిష్ట పరిస్థితుల కోసం స్థానిక పండితుడిని సంప్రదించండి.", en: "According to the Hanafi madhab, a woman in Hayd should not enter the mosque area. However, she may stand at the entrance (outside the prayer area) and make dua, or listen to a lecture from outside. Some scholars distinguish between the main prayer hall and outer/lobby areas — consult a local scholar for specific situations." },
+  },
+  {
+    q: { te: "హైద్ సమయంలో భార్యాభర్తలు శారీరక సంబంధాలు కలుపుకోవడం అనుమతించబడిందా?", en: "Is it permissible for a husband and wife to be intimate during Hayd?" },
+    a: { te: "హైద్ సమయంలో సంభోగం నిషేధం. ఇది ఖురాన్‌లో స్పష్టంగా పేర్కొనబడింది (2:222). అయినప్పటికీ, ప్రేమాభిమానం మరియు సహచర్యం యొక్క అన్ని ఇతర రూపాలు అనుమతించబడ్డాయి. వివరమైన నిబంధనల కోసం పండితుడిని సంప్రదించండి.", en: "Sexual intercourse is forbidden during Hayd. This is explicitly mentioned in the Quran (2:222). However, all other forms of affection and companionship are permitted. Scholarly opinion is that intimacy above or below the area of Hayd (navel to knee) is permitted by some scholars while others are more cautious. Consult a scholar for detailed rulings." },
+  },
+  {
+    q: { te: "హైద్ సరిగ్గా ఎప్పుడు ముగుస్తుంది మరియు నేను గుస్ల్ ఎప్పుడు చేయాలి?", en: "When exactly does Hayd end and when should I perform Ghusl?" },
+    a: { te: "రక్తస్రావం పూర్తిగా ఆగినప్పుడు హైద్ ముగుస్తుంది. ఆగిన తర్వాత, వీలైనంత తొందరగా గుస్ల్ చేయండి. గుస్ల్ పూర్తయిన తర్వాత, నమాజు మరియు రోజాతో సహా అన్ని ఇబాదత్లు వెంటనే తిరిగి ప్రారంభమవుతాయి. ఫజ్ర్ కొద్దిముందు ఆగితే, గుస్ల్ త్వరగా చేసి ఫజ్ర్ నమాజు చదవండి.", en: "Hayd ends when bleeding completely stops. After it stops, perform Ghusl (ritual bath) as soon as practically possible. Once Ghusl is complete, all worship including Salah and fasting resumes immediately. If the bleeding stopped just before Fajr, perform Ghusl quickly and pray Fajr — even if the Ghusl extends a few minutes into Fajr time." },
+  },
+];

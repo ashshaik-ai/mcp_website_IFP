@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { ComparisonTable } from "@/components/learning/ComparisonTable";
+import { FaqList } from "@/components/learning/FaqList";
+import { womensWorship, womensFaqs } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -176,6 +179,36 @@ function WomensGuidancePage() {
             {copy.paradise_lies_at_the_feet[lang]}
           </p>
         </BlurFade>
+      </section>
+
+      <section id="worship" className="py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "హైద్ సమయంలో ఆరాధన" : "Worship during Hayd"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te"
+              ? "ఏది అనుమతించబడింది, ఏది కాదు, మరియు తర్వాత ఏది పూరించాలి."
+              : "What is permitted, what is not, and what needs making up afterwards."}
+          </p>
+          <ComparisonTable
+            rows={womensWorship}
+            columns={[
+              { key: "practice", label: { te: "ఆచరణ", en: "Practice" } },
+              { key: "hayd", label: { te: "హైద్ సమయంలో", en: "During Hayd" } },
+              { key: "note", label: { te: "గమనిక", en: "Note" } },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section id="faqs" className="py-16 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-6">
+            {lang === "te" ? "తరచుగా అడిగే ప్రశ్నలు" : "Frequently asked"}
+          </h2>
+          <FaqList items={womensFaqs} />
+        </div>
       </section>
 
     </PageShell>

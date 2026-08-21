@@ -107,6 +107,8 @@ const SETS = [
   { export: "historyEmpires", portal: "islamic-history", array: "EMPIRES" },
   { export: "historyCities", portal: "islamic-history", array: "CITIES" },
   { export: "kidsProphets", portal: "kids-islam", array: "PROPHETS" },
+  { export: "womensWorship", portal: "womens-guidance", array: "WORSHIP_DATA" },
+  { export: "womensFaqs", portal: "womens-guidance", array: "FAQS_DATA" },
 ];
 
 const blocks = [];
