@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
 import { VocabularyList } from "@/components/learning/VocabularyList";
 import { arabicWords, arabicPhrases } from "@/content/vocabulary";
@@ -549,6 +550,8 @@ function LearnArabicPage() {
           </BlurFade>
         </div>
       </section>
+
+      <LessonIndex portal="learn-arabic" />
 
     </PageShell>
   );

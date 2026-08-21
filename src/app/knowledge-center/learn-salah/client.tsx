@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -575,6 +576,8 @@ function LearnSalahPage() {
           </div>
         </section>
       )}
+
+      <LessonIndex portal="learn-salah" />
 
     </PageShell>
   );

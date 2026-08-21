@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
 import { VocabularyList } from "@/components/learning/VocabularyList";
 import { urduWords, urduPhrases } from "@/content/vocabulary";
@@ -175,6 +176,8 @@ function LearnUrduPage() {
           <VocabularyList words={urduWords} phrases={urduPhrases} script="urdu" />
         </div>
       </section>
+
+      <LessonIndex portal="learn-urdu" />
 
     </PageShell>
   );

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { seerahEvents, seerahCharacter } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
@@ -387,6 +388,8 @@ function SeerahPage() {
           />
         </div>
       </section>
+
+      <LessonIndex portal="seerah" />
 
     </PageShell>
   );

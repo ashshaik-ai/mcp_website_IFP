@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { historyEras, historyPeople, historyEmpires, historyCities } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
@@ -471,6 +472,8 @@ function IslamicHistoryPage() {
           />
         </div>
       </section>
+
+      <LessonIndex portal="islamic-history" />
 
     </PageShell>
   );
