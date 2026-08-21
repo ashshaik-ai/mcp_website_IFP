@@ -2,19 +2,13 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { usePathname } from "next/navigation";
 import { Phone, MapPin } from "lucide-react";
-
-const quickLinks = [
-  { key: "nav_victory",     href: "#victory" },
-  { key: "nav_achievements",href: "#achievements" },
-  { key: "nav_manifesto",   href: "#manifesto" },
-  { key: "nav_schemes",     href: "#schemes" },
-  { key: "nav_about",       href: "#about" },
-  { key: "nav_contact",     href: "#contact" },
-] as const;
+import { homeSections, sectionHref } from "@/lib/nav";
 
 export function Footer() {
   const { t } = useI18n();
+  const pathname = usePathname();
   return (
     <footer className="bg-[var(--if-green)] text-[var(--if-gold-pale)]/80 border-t border-[var(--if-gold)]/20">
       <div className="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -40,11 +34,14 @@ export function Footer() {
             Quick Links
           </h4>
           <ul className="space-y-2">
-            {quickLinks.map(({ key, href }) => (
+            {homeSections.map(({ key, fragment }) => (
               <li key={key}>
-                <a href={href} className="text-sm inline-flex items-center min-h-6 hover:text-[var(--if-gold-light)] transition-colors">
+                <Link
+                  href={sectionHref(fragment, pathname)}
+                  className="text-sm inline-flex items-center min-h-6 hover:text-[var(--if-gold-light)] transition-colors"
+                >
                   {t(key)}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

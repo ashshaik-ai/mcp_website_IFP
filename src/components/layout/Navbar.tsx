@@ -7,24 +7,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SpotlightNavbar, type NavItem } from "@/components/ui/spotlight-navbar";
 import { useI18n } from "@/lib/i18n/context";
 import { Menu } from "lucide-react";
-
-const navLinks = [
-  { key: "nav_victory",      href: "#victory" },
-  { key: "nav_achievements", href: "#achievements" },
-  { key: "nav_manifesto",    href: "#manifesto" },
-  { key: "nav_schemes",      href: "#schemes" },
-  { key: "nav_about",        href: "#about" },
-  { key: "nav_contact",      href: "#contact" },
-] as const;
+import { homeSections, sectionHref } from "@/lib/nav";
 
 export function Navbar() {
   const { t, toggle } = useI18n();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const isHome = pathname === "/";
-  const desktopNavItems: NavItem[] = navLinks.map(({ key, href }) => ({
+  const desktopNavItems: NavItem[] = homeSections.map(({ key, fragment }) => ({
     label: t(key),
-    href: isHome ? href : `/${href}`,
+    href: sectionHref(fragment, pathname),
   }));
 
   return (
@@ -91,10 +82,10 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right" className="bg-[var(--if-green)] border-[var(--if-gold)]/20 w-72">
               <div className="flex flex-col gap-1 mt-8">
-                {navLinks.map(({ key, href }) => (
+                {homeSections.map(({ key, fragment }) => (
                   <Link
                     key={key}
-                    href={isHome ? href : `/${href}`}
+                    href={sectionHref(fragment, pathname)}
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] hover:bg-white/5 rounded-lg transition-colors"
                   >

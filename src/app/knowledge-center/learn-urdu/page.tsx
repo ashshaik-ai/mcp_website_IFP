@@ -2,9 +2,8 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
@@ -65,8 +64,7 @@ function LearnUrduPage() {
   const w = words[wordIdx];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       <section className="bg-gradient-to-br from-blue-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -185,11 +183,10 @@ function LearnUrduPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function LearnUrdu() {
-  return <I18nProvider><LearnUrduPage /></I18nProvider>;
+  return <LearnUrduPage />;
 }

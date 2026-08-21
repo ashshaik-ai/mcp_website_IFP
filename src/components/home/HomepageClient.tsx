@@ -2,9 +2,8 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { NumberTicker } from "@/components/ui/number-ticker";
@@ -138,8 +137,7 @@ function Homepage() {
   const { t, lang } = useI18n();
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-24 md:py-32 px-4">
@@ -779,19 +777,28 @@ function Homepage() {
             {[
               { icon: Phone, label: lang === "te" ? "ఫోన్" : "Phone", value: "+91 90329 06677", href: "tel:+919032906677" },
               { icon: Mail,  label: lang === "te" ? "ఇమెయిల్" : "Email", value: "islamicfrontmangalagiri@gmail.com", href: "mailto:islamicfrontmangalagiri@gmail.com" },
-              { icon: MapPin,label: lang === "te" ? "చిరునామా" : "Address", value: "Mangalagiri, Guntur District, A.P. 522503", href: "#" },
-            ].map(({ icon: Icon, label, value, href }) => (
-              <BlurFade key={label} delay={0.1}>
-                <a
-                  href={href}
-                  className="flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20 hover:bg-white/10 transition-colors"
-                >
-                  <Icon className="h-7 w-7 text-[var(--if-gold)] mb-3" />
+              // No href: an address is not a destination. Rendered as plain text
+              // rather than an anchor that looks clickable and does nothing.
+              { icon: MapPin,label: lang === "te" ? "చిరునామా" : "Address", value: "Mangalagiri, Guntur District, A.P. 522503" },
+            ].map(({ icon: Icon, label, value, href }) => {
+              const inner = (
+                <>
+                  <Icon aria-hidden="true" className="h-7 w-7 text-[var(--if-gold)] mb-3" />
                   <span className="text-xs text-[var(--if-gold-pale)]/50 uppercase tracking-widest mb-1">{label}</span>
                   <span className="text-sm text-[var(--if-gold-pale)]/90">{value}</span>
-                </a>
-              </BlurFade>
-            ))}
+                </>
+              );
+              const base = "flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20";
+              return (
+                <BlurFade key={label} delay={0.1}>
+                  {href ? (
+                    <a href={href} className={`${base} hover:bg-white/10 transition-colors`}>{inner}</a>
+                  ) : (
+                    <div className={base}>{inner}</div>
+                  )}
+                </BlurFade>
+              );
+            })}
           </div>
           <BlurFade delay={0.3}>
             <p className="text-center text-sm text-[var(--if-gold-pale)]/50">
@@ -849,16 +856,13 @@ function Homepage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 /* ── Wrapped export ── */
 export function HomepageClient() {
   return (
-    <I18nProvider>
-      <Homepage />
-    </I18nProvider>
+    <Homepage />
   );
 }

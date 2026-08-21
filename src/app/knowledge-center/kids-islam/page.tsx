@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, Star } from "lucide-react";
@@ -121,8 +120,7 @@ function KidsIslamPage() {
   const t = (te: string, en: string) => lang === "te" ? te : en;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       {/* ── HERO ── */}
       <section className="bg-gradient-to-br from-[var(--if-green)] via-teal-800 to-emerald-900 text-white py-20 px-4">
@@ -579,11 +577,10 @@ function KidsIslamPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function KidsIslam() {
-  return <I18nProvider><KidsIslamPage /></I18nProvider>;
+  return <KidsIslamPage />;
 }

@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -182,8 +181,7 @@ function IslamicHistoryPage() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-[var(--if-green)] to-stone-800 text-[var(--if-gold-pale)] py-20 px-4">
@@ -382,11 +380,10 @@ function IslamicHistoryPage() {
         </BlurFade>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function IslamicHistory() {
-  return <I18nProvider><IslamicHistoryPage /></I18nProvider>;
+  return <IslamicHistoryPage />;
 }

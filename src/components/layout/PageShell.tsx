@@ -1,0 +1,32 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n/context";
+import { Navbar } from "./Navbar";
+import { Footer } from "./Footer";
+
+/* Every page repeated the same shell and each one re-wrapped I18nProvider,
+   which ClientProviders already supplies. None of them had a <main> landmark
+   or a skip link, so keyboard and screen-reader users traversed the whole
+   navigation on every page. One shell means one place to get that right. */
+export function PageShell({ children }: { children: React.ReactNode }) {
+  const { lang } = useI18n();
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-3 focus:left-3 focus:inline-flex focus:items-center focus:min-h-11 focus:px-4 focus:rounded-full focus:bg-[var(--if-gold)] focus:text-[var(--if-green)] focus:font-bold focus:no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--if-green)]"
+      >
+        {lang === "te" ? "ప్రధాన విషయానికి వెళ్లండి" : "Skip to content"}
+      </a>
+
+      <Navbar />
+
+      <main id="main" className="flex-1">
+        {children}
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

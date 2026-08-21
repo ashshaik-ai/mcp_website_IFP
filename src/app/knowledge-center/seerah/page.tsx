@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -84,8 +83,7 @@ function SeerahPage() {
   const t = (te: string, en: string) => lang === "te" ? te : en;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-slate-800 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
@@ -354,11 +352,10 @@ function SeerahPage() {
         </BlurFade>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function Seerah() {
-  return <I18nProvider><SeerahPage /></I18nProvider>;
+  return <SeerahPage />;
 }

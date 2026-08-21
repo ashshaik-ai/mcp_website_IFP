@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -97,8 +96,7 @@ function SpecialPrayersPage() {
   const p = prayers[active];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       <section className={`${p.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -183,11 +181,10 @@ function SpecialPrayersPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function SpecialPrayers() {
-  return <I18nProvider><SpecialPrayersPage /></I18nProvider>;
+  return <SpecialPrayersPage />;
 }

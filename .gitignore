@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# scratch audit output
+_audit.json
+_compare.json
+_*.mjs

@@ -2,9 +2,8 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft, ChevronRight, ChevronDown, Volume2, X } from "lucide-react";
@@ -98,8 +97,7 @@ function LearnArabicPage() {
   const w = wordOfDay[wordIdx];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-emerald-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
@@ -526,11 +524,10 @@ function LearnArabicPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function LearnArabic() {
-  return <I18nProvider><LearnArabicPage /></I18nProvider>;
+  return <LearnArabicPage />;
 }

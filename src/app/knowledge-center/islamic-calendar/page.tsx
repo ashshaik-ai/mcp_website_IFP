@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ChevronLeft } from "lucide-react";
@@ -42,8 +41,7 @@ function IslamicCalendarPage() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       <section className="bg-gradient-to-br from-cyan-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -185,11 +183,10 @@ function IslamicCalendarPage() {
         </BlurFade>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function IslamicCalendar() {
-  return <I18nProvider><IslamicCalendarPage /></I18nProvider>;
+  return <IslamicCalendarPage />;
 }

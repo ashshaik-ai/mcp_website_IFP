@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { I18nProvider, useI18n } from "@/lib/i18n/context";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { useI18n } from "@/lib/i18n/context";
+import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -134,8 +133,7 @@ function KCPage() {
   const filtered = filter === "tools" ? [] : portals;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <PageShell>
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
@@ -294,11 +292,10 @@ function KCPage() {
         </BlurFade>
       </section>
 
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 
 export default function KnowledgeCenterPage() {
-  return <I18nProvider><KCPage /></I18nProvider>;
+  return <KCPage />;
 }
