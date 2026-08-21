@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
+import { urduLetters } from "@/content/alphabets";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -25,28 +27,7 @@ const copy = {
   listen: { te: "వినండి", en: "Listen" },
 } as const;
 
-const urduAlphabet = [
-  { ur: "ا", name: "Alif",  roman: "a" }, { ur: "ب", name: "Be",    roman: "b" },
-  { ur: "پ", name: "Pe",    roman: "p" }, { ur: "ت", name: "Te",    roman: "t" },
-  { ur: "ٹ", name: "Tte",   roman: "ṭ" }, { ur: "ث", name: "Se",    roman: "s" },
-  { ur: "ج", name: "Jim",   roman: "j" }, { ur: "چ", name: "Che",   roman: "ch" },
-  { ur: "ح", name: "Badi He",roman: "h" },{ ur: "خ", name: "Khe",   roman: "kh" },
-  { ur: "د", name: "Dal",   roman: "d" }, { ur: "ڈ", name: "Ddal",  roman: "ḍ" },
-  { ur: "ذ", name: "Zal",   roman: "z" }, { ur: "ر", name: "Re",    roman: "r" },
-  { ur: "ڑ", name: "Rre",   roman: "ṛ" }, { ur: "ز", name: "Ze",    roman: "z" },
-  { ur: "ژ", name: "Zhe",   roman: "zh" },{ ur: "س", name: "Sin",   roman: "s" },
-  { ur: "ش", name: "Shin",  roman: "sh" },{ ur: "ص", name: "Suad",  roman: "ṣ" },
-  { ur: "ض", name: "Zuad",  roman: "ẓ" }, { ur: "ط", name: "Toe",   roman: "t" },
-  { ur: "ظ", name: "Zoe",   roman: "z" }, { ur: "ع", name: "Ain",   roman: "ʿ" },
-  { ur: "غ", name: "Ghain", roman: "gh" },{ ur: "ف", name: "Fe",    roman: "f" },
-  { ur: "ق", name: "Qaf",   roman: "q" }, { ur: "ک", name: "Kaf",   roman: "k" },
-  { ur: "گ", name: "Gaf",   roman: "g" }, { ur: "ل", name: "Lam",   roman: "l" },
-  { ur: "م", name: "Mim",   roman: "m" }, { ur: "ن", name: "Nun",   roman: "n" },
-  { ur: "ں", name: "Noon Ghunna", roman: "ñ" },{ ur: "و", name: "Wao", roman: "w/v" },
-  { ur: "ہ", name: "Choti He", roman: "h" },{ ur: "ھ", name: "Do Chashmi He", roman: "h" },
-  { ur: "ء", name: "Hamza", roman: "'" }, { ur: "ی", name: "Ye",    roman: "y/ī" },
-  { ur: "ے", name: "Bari Ye", roman: "e/ai" },
-];
+
 
 const levels = [
   { num: 1, title: { te: "ఉర్దూ అక్షరమాల", en: "Urdu Alphabet" }, urdu: "اردو حروف تہجی", desc: { te: "39 అక్షరాలు — ఉచ్చారణ మరియు వ్రాత", en: "39 letters — pronunciation and writing" }, available: true },
@@ -126,17 +107,7 @@ function LearnUrduPage() {
             </p>
           </BlurFade>
           <div className="grid grid-cols-5 sm:grid-cols-8 gap-2" dir="rtl">
-            {urduAlphabet.map((letter) => (
-              <button
-                key={letter.name}
-                onClick={() => speak(letter.name)}
-                className="flex flex-col items-center p-2.5 rounded-xl bg-white border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 hover:bg-[var(--if-cream-light)] transition-all group"
-              >
-                <span className="text-2xl text-[var(--if-green)] group-hover:text-[var(--if-gold)] transition-colors" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }}>{letter.ur}</span>
-                <span className="text-[9px] text-[var(--if-text-muted)] mt-1" dir="ltr">{letter.name}</span>
-                <span className="text-[9px] text-[var(--if-gold)]/70" dir="ltr">{letter.roman}</span>
-              </button>
-            ))}
+            <AlphabetGrid letters={urduLetters} script="urdu" />
           </div>
         </div>
       </section>

@@ -3,6 +3,9 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
+import { arabicLetters } from "@/content/alphabets";
+import { arabicExtras } from "@/content/arabic-extras";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -216,30 +219,7 @@ function LearnArabicPage() {
           </BlurFade>
 
           {/* RTL alphabet grid */}
-          <div className="grid grid-cols-4 sm:grid-cols-7 gap-3" dir="rtl">
-            {alphabet.map((letter) => (
-              <BlurFade key={letter.name} delay={0.01}>
-                <button
-                  onClick={() => { setSelected(letter); speak(letter.ar); }}
-                  className={`w-full flex flex-col items-center p-3 rounded-xl border transition-all group hover:scale-105 active:scale-95 ${
-                    selected?.name === letter.name
-                      ? "bg-[var(--if-green)] border-[var(--if-gold)]/60 shadow-lg"
-                      : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 hover:shadow-md"
-                  }`}
-                >
-                  <span className={`font-arabic text-3xl transition-colors ${selected?.name === letter.name ? "text-[var(--if-gold-light)]" : "text-[var(--if-green)] group-hover:text-[var(--if-gold)]"}`}>
-                    {letter.ar}
-                  </span>
-                  <span className={`text-[10px] font-semibold mt-1 ${selected?.name === letter.name ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`} dir="ltr">
-                    {letter.name}
-                  </span>
-                  <span className={`text-[9px] ${selected?.name === letter.name ? "text-[var(--if-gold)]/70" : letter.sun ? "text-amber-600" : "text-[var(--if-green)]/60"}`} dir="ltr">
-                    {letter.en}
-                  </span>
-                </button>
-              </BlurFade>
-            ))}
-          </div>
+          <AlphabetGrid letters={arabicLetters} script="arabic" extras={arabicExtras} />
 
           {/* Selected letter detail */}
           {selected && (

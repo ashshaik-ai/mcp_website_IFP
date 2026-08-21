@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display, Noto_Sans_Telugu } from "next/font/google";
+import { DM_Sans, Playfair_Display, Noto_Sans_Telugu, Amiri, Noto_Nastaliq_Urdu } from "next/font/google";
 import { ClientProviders } from "@/components/ClientProviders";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -23,6 +23,22 @@ const notoTelugu = Noto_Sans_Telugu({
   display: "swap",
 });
 
+/* .font-arabic asked for Amiri but nothing loaded it, so Quranic and lesson
+   Arabic fell back to a system serif on a site that teaches the script. */
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
+const nastaliq = Noto_Nastaliq_Urdu({
+  variable: "--font-nastaliq",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
 /* metadataBase makes every per-page canonical and og:url resolve absolute.
    Individual titles and descriptions come from the route catalog via
    pageMetadata(); this block only carries what is genuinely site-wide. */
@@ -43,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="te"
-      className={`${dmSans.variable} ${playfair.variable} ${notoTelugu.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${playfair.variable} ${notoTelugu.variable} ${amiri.variable} ${nastaliq.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ClientProviders>{children}</ClientProviders>
