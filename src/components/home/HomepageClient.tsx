@@ -520,9 +520,9 @@ function Homepage() {
             <BlurFade delay={0.2}>
               <div className="space-y-6">
                 <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-6">
-                  <h4 className="font-display text-lg text-[var(--if-gold-light)] font-bold mb-3">
+                  <h3 className="font-display text-lg text-[var(--if-gold-light)] font-bold mb-3">
                     {lang === "te" ? "అత్యంత అవసరమైన వారికి సేవ" : "Serving the Most Vulnerable"}
-                  </h4>
+                  </h3>
                   <p className="text-sm text-[var(--if-gold-pale)]/70 leading-relaxed">
                     {lang === "te"
                       ? "మృతుల సంరక్షణ ఫర్జ్ కిఫాయా. మంగళగిరి స్థానికులకు మాత్రమే."
@@ -650,7 +650,7 @@ function Homepage() {
                   <div className="w-10 h-10 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold mb-3">
                     {s.name[0]}
                   </div>
-                  <h4 className="font-semibold text-[var(--if-green)]">{s.name}</h4>
+                  <h3 className="font-semibold text-[var(--if-green)]">{s.name}</h3>
                   <span className="text-xs text-[var(--if-gold)] font-medium">{s.year} · {s.category[lang]}</span>
                   <p className="text-sm text-[var(--if-text-muted)] mt-2">{s.desc[lang]}</p>
                 </div>
@@ -710,7 +710,7 @@ function Homepage() {
                     <Calendar className="h-5 w-5 text-[var(--if-gold-light)]" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold text-[var(--if-green)]">{ev.title[lang]}</h4>
+                    <h3 className="font-semibold text-[var(--if-green)]">{ev.title[lang]}</h3>
                     <p className="text-sm text-[var(--if-text-muted)]">
                       {ev.date} · {ev.time} · {ev.venue[lang]}
                     </p>
@@ -740,7 +740,7 @@ function Homepage() {
               <BlurFade key={i} delay={0.07 * i}>
                 <div className="p-5 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors">
                   <div className="flex items-start justify-between gap-2">
-                    <h4 className="font-semibold text-[var(--if-green)]">{role[lang]}</h4>
+                    <h3 className="font-semibold text-[var(--if-green)]">{role[lang]}</h3>
                     {seats > 0 && (
                       <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] font-semibold border border-[var(--if-gold)]/20">
                         {seats} seats

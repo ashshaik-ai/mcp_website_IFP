@@ -57,7 +57,8 @@ export const strings = {
 
   // Footer
   footer_since: { te: "2011 నుండి జనాబ్ షేక్ అక్రమ్ నేతృత్వంలో ముస్లిం సమాజానికి సేవ చేస్తున్నాం", en: "Serving Muslim community since 2011 under Janab Shaik Akram" },
-  footer_copy:  { te: "© 2024 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు రక్షించబడ్డాయి.", en: "© 2024 Islamic Front, Mangalagiri. All rights reserved." },
+  /* {year} is substituted at render so the footer cannot go stale again. */
+  footer_copy:  { te: "© {year} ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు రక్షించబడ్డాయి.", en: "© {year} Islamic Front, Mangalagiri. All rights reserved." },
   footer_addr:  { te: "మంగళగిరి, గుంటూరు జిల్లా, ఆంధ్ర ప్రదేశ్ 522503", en: "Mangalagiri, Guntur District, Andhra Pradesh 522503" },
 } satisfies Record<string, Record<Lang, string>>;
 

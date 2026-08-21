@@ -126,7 +126,7 @@ function KidsIslamPage() {
       <section className="bg-gradient-to-br from-[var(--if-green)] via-teal-800 to-emerald-900 text-white py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center gap-1 text-sm text-white/60 hover:text-white transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-white/60 hover:text-white transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" /> {t("జ్ఞాన కేంద్రం", "Knowledge Center")}
             </Link>
           </BlurFade>

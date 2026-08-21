@@ -187,7 +187,7 @@ function IslamicHistoryPage() {
       <section className="bg-gradient-to-br from-[var(--if-green)] to-stone-800 text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
             </Link>
           </BlurFade>
@@ -289,7 +289,7 @@ function IslamicHistoryPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold flex-shrink-0">{p.name[0]}</div>
                     <div>
-                      <h4 className="font-semibold text-[var(--if-green)] text-sm leading-snug">{p.name}</h4>
+                      <h3 className="font-semibold text-[var(--if-green)] text-sm leading-snug">{p.name}</h3>
                       <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl" lang="ar">{p.ar}</span>
                     </div>
                   </div>

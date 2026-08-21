@@ -89,7 +89,7 @@ function SeerahPage() {
       <section className="bg-gradient-to-br from-slate-800 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {t("జ్ఞాన కేంద్రం", "Knowledge Center")}
             </Link>
@@ -222,7 +222,7 @@ function SeerahPage() {
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/50 hover:-translate-y-1 transition-all group flex flex-col h-full">
                   <BorderBeam size={80} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
                   <div className="font-arabic text-2xl text-[var(--if-gold)]/80 mb-2 text-right" dir="rtl" lang="ar">{tr.ar}</div>
-                  <h4 className="font-semibold text-[var(--if-green)] text-sm mb-3">{lang === "te" ? tr.te : tr.en}</h4>
+                  <h3 className="font-semibold text-[var(--if-green)] text-sm mb-3">{lang === "te" ? tr.te : tr.en}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed flex-1 mb-3">{tr.ex[lang]}</p>
                   <div className="flex gap-2 items-start bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/20 rounded-lg p-2.5 mt-auto">
                     <span className="text-[var(--if-gold)] font-bold text-xs flex-shrink-0">{t("ఆచరణ:", "Apply:")}</span>
@@ -263,7 +263,7 @@ function SeerahPage() {
                   <BorderBeam size={80} duration={9} colorFrom="#0d3b1e" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
                   <div className="inline-flex items-center gap-2 mb-3">
                     <div className="w-8 h-8 rounded-lg bg-[var(--if-green)]/10 flex items-center justify-center text-[var(--if-green)] font-bold text-sm">{i + 1}</div>
-                    <h4 className="font-semibold text-[var(--if-green)]">{ls.label[lang]}</h4>
+                    <h3 className="font-semibold text-[var(--if-green)]">{ls.label[lang]}</h3>
                   </div>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed flex-1 mb-3">{ls.ex[lang]}</p>
                   <div className="flex gap-2 items-start bg-[var(--if-green)]/6 border border-[var(--if-green)]/20 rounded-lg p-2.5 mt-auto">
@@ -295,7 +295,7 @@ function SeerahPage() {
                       {c.name[0]}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-[var(--if-green)] text-sm">{c.name}</h4>
+                      <h3 className="font-semibold text-[var(--if-green)] text-sm">{c.name}</h3>
                       <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl" lang="ar">{c.ar}</span>
                     </div>
                     <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/20">{c.era}</span>

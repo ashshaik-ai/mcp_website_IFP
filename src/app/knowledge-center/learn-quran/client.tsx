@@ -257,7 +257,7 @@ function LearnQuranPage() {
       <section className="bg-gradient-to-br from-amber-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
             </Link>
@@ -385,12 +385,20 @@ function LearnQuranPage() {
             {tajweedSteps.map((_, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => setTjIdx(i)}
-                aria-label={`Rule ${i + 1}`}
-                className={`h-2 flex-1 min-w-[14px] rounded-full transition-colors ${
-                  i === tjIdx ? "bg-[var(--if-gold)]" : i < tjIdx ? "bg-[var(--if-gold)]/50" : "bg-white/15"
-                }`}
-              />
+                aria-label={`${lang === "te" ? "నియమం" : "Rule"} ${i + 1}`}
+                aria-current={i === tjIdx ? "step" : undefined}
+                className="flex-1 min-w-[14px] min-h-6 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+              >
+                {/* 24px hit box (WCAG 2.2 AA), 8px visual bar inside. */}
+                <span
+                  aria-hidden="true"
+                  className={`h-2 w-full rounded-full transition-colors ${
+                    i === tjIdx ? "bg-[var(--if-gold)]" : i < tjIdx ? "bg-[var(--if-gold)]/50" : "bg-white/15"
+                  }`}
+                />
+              </button>
             ))}
           </div>
           <p className="text-xs text-[var(--if-gold-pale)]/60 mb-6">
