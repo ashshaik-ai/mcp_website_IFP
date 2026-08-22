@@ -107,12 +107,12 @@ function WomensGuidancePage() {
       <section className={`${s.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">إرشادات المرأة</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">إرشادات المرأة</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -148,11 +148,11 @@ function WomensGuidancePage() {
                 <span className="text-3xl">{s.icon}</span>
                 <h2 className="font-display text-2xl font-bold text-[var(--if-green)]">{s.title[lang]}</h2>
               </div>
-              <div className="font-arabic text-lg text-[var(--if-gold)]/70 mb-6" dir="rtl">{s.ar}</div>
+              <div className="font-arabic text-lg text-[var(--if-gold-light)] mb-6" dir="rtl">{s.ar}</div>
               <div className="space-y-3">
                 {s.points.map((pt, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="text-[var(--if-gold)] mt-1 flex-shrink-0 text-lg">✦</span>
+                    <span className="text-[var(--if-gold-ink)] mt-1 flex-shrink-0 text-lg">✦</span>
                     <p className="text-[var(--if-text)] leading-relaxed">{pt[lang]}</p>
                   </div>
                 ))}

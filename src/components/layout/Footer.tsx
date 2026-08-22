@@ -17,13 +17,13 @@ export function Footer() {
           <h2 className="font-display text-[var(--if-gold-light)] text-xl font-bold">Islamic Front</h2>
           <p className="text-sm leading-relaxed">{t("footer_since")}</p>
           <div className="flex items-center gap-2 text-sm">
-            <Phone className="h-4 w-4 text-[var(--if-gold)]" />
+            <Phone className="h-4 w-4 text-[var(--if-gold-ink)]" />
             <a href="tel:+919032906677" className="inline-flex items-center min-h-6 hover:text-[var(--if-gold-light)] transition-colors">
               +91 90329 06677
             </a>
           </div>
           <div className="flex items-start gap-2 text-sm">
-            <MapPin className="h-4 w-4 text-[var(--if-gold)] mt-0.5 flex-shrink-0" />
+            <MapPin className="h-4 w-4 text-[var(--if-gold-ink)] mt-0.5 flex-shrink-0" />
             <span>{t("footer_addr")}</span>
           </div>
         </div>
@@ -61,7 +61,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-[var(--if-gold)]/20 py-4 px-4 text-center text-xs text-[var(--if-gold-pale)]/50">
+      <div className="border-t border-[var(--if-gold)]/20 py-4 px-4 text-center text-xs text-[var(--if-gold-pale)]/80">
         {t("footer_copy").replace("{year}", String(new Date().getFullYear()))}
       </div>
     </footer>

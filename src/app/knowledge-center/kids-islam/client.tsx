@@ -156,7 +156,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">
               {t("మొదటి కలిమా", "The First Kalimah")}
             </div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
@@ -185,7 +185,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("ఇస్లాం పునాదులు", "Foundations of Islam")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ఇస్లాం పునాదులు", "Foundations of Islam")}</div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("ఇస్లాం ఐదు మూల స్తంభాలు", "The Five Pillars of Islam")}
             </h2>
@@ -198,7 +198,7 @@ function KidsIslamPage() {
               <BlurFade key={p.en} delay={0.07 * i}>
                 <div className="bg-white rounded-2xl border border-[var(--if-gold)]/20 p-5 text-center hover:-translate-y-1 transition-transform">
                   <div className="text-4xl mb-3">{p.emoji}</div>
-                  <div className="font-arabic text-2xl text-[var(--if-gold)] mb-1" dir="rtl" lang="ar">{p.ar}</div>
+                  <div className="font-arabic text-2xl text-[var(--if-gold-ink)] mb-1" dir="rtl" lang="ar">{p.ar}</div>
                   <div className="font-display font-bold text-[var(--if-green)] text-base mb-2">{lang === "te" ? p.te : p.en}</div>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed">{lang === "te" ? p.desc_te : p.desc_en}</p>
                 </div>
@@ -212,7 +212,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("అస్మా-ఉల్-హుస్నా", "Asma ul-Husna")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("అస్మా-ఉల్-హుస్నా", "Asma ul-Husna")}</div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("అల్లాహ్ అందమైన పేర్లు", "The Beautiful Names of Allah")}
             </h2>
@@ -224,7 +224,7 @@ function KidsIslamPage() {
             {allahNames.map((n, i) => (
               <BlurFade key={n.tr} delay={0.05 * i}>
                 <div className="bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/20 p-5 text-center hover:-translate-y-1 transition-transform">
-                  <div className="font-arabic text-3xl text-[var(--if-gold)] mb-2" dir="rtl" lang="ar">{n.ar}</div>
+                  <div className="font-arabic text-3xl text-[var(--if-gold-ink)] mb-2" dir="rtl" lang="ar">{n.ar}</div>
                   <div className="font-display font-bold text-[var(--if-green)] text-sm mb-1">{n.tr}</div>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed">{lang === "te" ? n.desc_te : n.desc_en}</p>
                 </div>
@@ -238,7 +238,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("మంచి స్వభావం", "Good Character")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("మంచి స్వభావం", "Good Character")}</div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("స్వభావ అకాడమీ", "Character Academy")}
             </h2>
@@ -253,11 +253,11 @@ function KidsIslamPage() {
                   <div className="text-3xl mb-3">{c.emoji}</div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-display font-bold text-[var(--if-green)]">{lang === "te" ? c.te : c.en}</span>
-                    <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl" lang="ar">{c.ar}</span>
+                    <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{c.ar}</span>
                   </div>
                   <p className="text-sm text-[var(--if-text-muted)] leading-relaxed mb-3">{lang === "te" ? c.desc_te : c.desc_en}</p>
                   <div className="flex gap-2 items-start text-xs text-[var(--if-text-muted)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-xl p-3">
-                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{t("ప్రయత్నించు:", "Try this:")}</span>
+                    <span className="font-bold text-[var(--if-gold-ink)] flex-shrink-0">{t("ప్రయత్నించు:", "Try this:")}</span>
                     <span>{lang === "te" ? c.try_te : c.try_en}</span>
                   </div>
                 </div>
@@ -271,7 +271,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("రోజువారీ దువాలు", "Everyday Duas")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("రోజువారీ దువాలు", "Everyday Duas")}</div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("రోజు కోసం చిన్న దువాలు", "Little Duas for the Day")}
             </h2>
@@ -302,7 +302,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("ప్రవక్తల కథలు", "Prophet Stories")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ప్రవక్తల కథలు", "Prophet Stories")}</div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("ఇంటరాక్టివ్ ప్రవక్తల కథలు", "Interactive Prophet Stories")}
             </h2>
@@ -353,14 +353,14 @@ function KidsIslamPage() {
                   <div className="p-5">
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="font-display font-bold text-[var(--if-green)]">{sec.title[lang]}</h3>
-                      <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl" lang="ar">{sec.arabic}</span>
+                      <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{sec.arabic}</span>
                     </div>
                     <p className="text-sm text-[var(--if-text-muted)] leading-relaxed">{sec.desc[lang]}</p>
                     {activeSection === sec.num && (
                       <ul className="mt-4 space-y-2">
                         {sec.topics.map((tp, j) => (
                           <li key={j} className="flex items-center gap-2 text-sm text-[var(--if-text)]">
-                            <Star className="h-3 w-3 text-[var(--if-gold)] flex-shrink-0" fill="currentColor" />
+                            <Star className="h-3 w-3 text-[var(--if-gold-ink)] flex-shrink-0" fill="currentColor" />
                             {typeof tp === "string" ? tp : tp[lang]}
                           </li>
                         ))}
@@ -378,7 +378,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-3">
               {t("నా మొదటి వుదూ", "My First Wudu")}
             </h2>
@@ -407,7 +407,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("నమాజ్ నేర్చుకోవడం", "Learning Prayer")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నమాజ్ నేర్చుకోవడం", "Learning Prayer")}</div>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("నా మొదటి నమాజ్", "My First Salah")}
             </h2>
@@ -423,7 +423,7 @@ function KidsIslamPage() {
                   <div className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: s.color }}>{i + 1}</div>
                   <div className="text-3xl mb-2">{s.emoji}</div>
                   <div className="font-display font-bold text-[var(--if-green)] text-sm mb-1">{lang === "te" ? s.te : s.en}</div>
-                  <div className="font-arabic text-xs text-[var(--if-gold)] mb-2" dir="rtl" lang="ar">{s.ar}</div>
+                  <div className="font-arabic text-xs text-[var(--if-gold-ink)] mb-2" dir="rtl" lang="ar">{s.ar}</div>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed">{lang === "te" ? s.desc_te : s.desc_en}</p>
                 </div>
               </BlurFade>
@@ -436,7 +436,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-3">
               {t("నేటి ఇస్లామిక్ సవాల్", "Today's Islamic Challenge")}
             </h2>
@@ -480,7 +480,7 @@ function KidsIslamPage() {
               <BorderBeam size={250} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               {!done ? (
                 <>
-                  <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/60 mb-4">
+                  <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/80 mb-4">
                     <span>{t("ప్రశ్న", "Question")} {quizIdx + 1}/{quiz.length}</span>
                     <span>{t("స్కోర్:", "Score:")} {score}</span>
                   </div>
@@ -540,7 +540,7 @@ function KidsIslamPage() {
       <section className="py-14 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-10">
               {t("తల్లిదండ్రుల మూల", "Parent Corner")}
             </h2>
@@ -569,7 +569,7 @@ function KidsIslamPage() {
                     { te: "రోజువారీ సవాల్‌ను పిల్లలతో కలిసి చేయండి.", en: "Do the daily challenge together with your child." },
                   ].map((tip, i) => (
                     <li key={i} className="flex gap-2 items-start text-sm text-white/80 leading-relaxed">
-                      <span className="text-[var(--if-gold)] flex-shrink-0">✦</span>
+                      <span className="text-[var(--if-gold-ink)] flex-shrink-0">✦</span>
                       {lang === "te" ? tip.te : tip.en}
                     </li>
                   ))}

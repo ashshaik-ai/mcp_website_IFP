@@ -11,7 +11,7 @@ import { homeSections, sectionHref } from "@/lib/nav";
 import { SiteSearch } from "@/components/search/SiteSearch";
 
 export function Navbar() {
-  const { t, toggle } = useI18n();
+  const { t, toggle, lang } = useI18n();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const desktopNavItems: NavItem[] = homeSections.map(({ key, fragment }) => ({
@@ -27,7 +27,7 @@ export function Navbar() {
           <span className="font-display text-[var(--if-gold-light)] font-bold text-lg tracking-tight">
             Islamic Front
           </span>
-          <span className="text-[10px] text-[var(--if-gold)]/80 tracking-widest uppercase">
+          <span className="text-[10px] text-[var(--if-gold-light)] tracking-widest uppercase">
             Mangalagiri · Est. 2011
           </span>
         </Link>
@@ -59,11 +59,13 @@ export function Navbar() {
           </Link>
           <SiteSearch />
 
+          {/* The accessible name has to start with the visible label, or voice
+              control users saying what they can see ("English") match nothing. */}
           <button
             type="button"
             onClick={toggle}
-            aria-label="Toggle language"
-            className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
+            aria-label={`${t("lang_toggle")} — ${lang === "te" ? "భాష మార్చండి" : "switch language"}`}
+            className="min-h-11 px-4 text-xs font-semibold rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
           >
             {t("lang_toggle")}
           </button>

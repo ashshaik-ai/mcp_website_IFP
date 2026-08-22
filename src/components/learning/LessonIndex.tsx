@@ -50,7 +50,7 @@ export function LessonIndex({ portal }: { portal: string }) {
             const I = Icon as typeof BookOpen;
             return (
               <div key={i} className="flex items-center gap-2">
-                <I aria-hidden="true" className="h-4 w-4 text-[var(--if-gold)]" />
+                <I aria-hidden="true" className="h-4 w-4 text-[var(--if-gold-ink)]" />
                 <dt className="sr-only">{String(label)}</dt>
                 <dd className="tabular-nums">
                   <b className="text-[var(--if-green)]">{String(n)}</b>{" "}
@@ -93,7 +93,7 @@ export function LessonIndex({ portal }: { portal: string }) {
                       {l.intro[lang]}
                     </span>
                   )}
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[var(--if-gold)]">
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[var(--if-gold-ink)]">
                     {copy.start[lang]}
                     <ArrowRight
                       aria-hidden="true"

@@ -92,13 +92,13 @@ function SeerahPage() {
       <section className="bg-gradient-to-br from-slate-800 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {t("జ్ఞాన కేంద్రం", "Knowledge Center")}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl" lang="ar">السِّيرَة النَّبَوِيَّة</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl" lang="ar">السِّيرَة النَّبَوِيَّة</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -115,7 +115,7 @@ function SeerahPage() {
               {[["10", t("ఘట్టాలు", "Stages")], ["8", t("స్వభావాలు", "Traits")], ["6", t("నాయకత్వ పాఠాలు", "Leadership")], [t("ఉచితం", "Free"), t("ఎల్లప్పుడూ", "Always")]].map(([n, l]) => (
                 <div key={l} className="text-center">
                   <div className="font-display text-2xl font-bold text-[var(--if-gold-light)]">{n}</div>
-                  <div className="text-xs text-[var(--if-gold-pale)]/60 uppercase tracking-wider mt-1">{l}</div>
+                  <div className="text-xs text-[var(--if-gold-pale)]/80 uppercase tracking-wider mt-1">{l}</div>
                 </div>
               ))}
             </div>
@@ -167,16 +167,16 @@ function SeerahPage() {
                     <h3 className="font-display text-2xl font-bold text-[var(--if-green)]">
                       {stages[active].title[lang]}
                     </h3>
-                    <span className="font-arabic text-lg text-[var(--if-gold)]/70" dir="rtl" lang="ar">{stages[active].arabic}</span>
+                    <span className="font-arabic text-lg text-[var(--if-gold-light)]" dir="rtl" lang="ar">{stages[active].arabic}</span>
                   </div>
-                  <span className="text-xs font-bold text-[var(--if-gold)] tracking-wider uppercase">{stages[active].year}</span>
+                  <span className="text-xs font-bold text-[var(--if-gold-ink)] tracking-wider uppercase">{stages[active].year}</span>
                   <p className="text-[var(--if-text-muted)] mt-2 leading-relaxed">{stages[active].desc[lang]}</p>
                 </div>
               </div>
               {/* Key events */}
               <div className="grid sm:grid-cols-2 gap-4 mb-5">
                 <div className="bg-[var(--if-cream-light)] rounded-xl p-4">
-                  <div className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider mb-3">{t("ముఖ్య ఘట్టాలు", "Key Events")}</div>
+                  <div className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-wider mb-3">{t("ముఖ్య ఘట్టాలు", "Key Events")}</div>
                   <ul className="space-y-1.5">
                     {stages[active].events[lang].map((ev, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[var(--if-text-muted)]">
@@ -210,7 +210,7 @@ function SeerahPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
-              <div className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-widest mb-2">{t("స్వభావ అకాడమీ", "Character Academy")}</div>
+              <div className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-widest mb-2">{t("స్వభావ అకాడమీ", "Character Academy")}</div>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-3">
                 {t("ప్రవక్త ﷺ స్వభావం", "Character of the Prophet ﷺ")}
               </h2>
@@ -224,11 +224,11 @@ function SeerahPage() {
               <BlurFade key={tr.ar} delay={0.06 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/50 hover:-translate-y-1 transition-all group flex flex-col h-full">
                   <BorderBeam size={80} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
-                  <div className="font-arabic text-2xl text-[var(--if-gold)]/80 mb-2 text-right" dir="rtl" lang="ar">{tr.ar}</div>
+                  <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-2 text-right" dir="rtl" lang="ar">{tr.ar}</div>
                   <h3 className="font-semibold text-[var(--if-green)] text-sm mb-3">{lang === "te" ? tr.te : tr.en}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed flex-1 mb-3">{tr.ex[lang]}</p>
                   <div className="flex gap-2 items-start bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/20 rounded-lg p-2.5 mt-auto">
-                    <span className="text-[var(--if-gold)] font-bold text-xs flex-shrink-0">{t("ఆచరణ:", "Apply:")}</span>
+                    <span className="text-[var(--if-gold-ink)] font-bold text-xs flex-shrink-0">{t("ఆచరణ:", "Apply:")}</span>
                     <span className="text-xs text-[var(--if-text-muted)] leading-relaxed">{tr.ap[lang]}</span>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ function SeerahPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
-              <div className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-widest mb-2">{t("సీరా నుండి", "From the Seerah")}</div>
+              <div className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-widest mb-2">{t("సీరా నుండి", "From the Seerah")}</div>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-3">
                 {t("నాయకత్వ పాఠాలు", "Leadership Lessons")}
               </h2>
@@ -299,9 +299,9 @@ function SeerahPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-[var(--if-green)] text-sm">{c.name}</h3>
-                      <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl" lang="ar">{c.ar}</span>
+                      <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{c.ar}</span>
                     </div>
-                    <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/20">{c.era}</span>
+                    <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20">{c.era}</span>
                   </div>
                   <p className="text-xs text-[var(--if-green)] font-semibold mb-2">{c.role[lang]}</p>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed italic">{c.event[lang]}</p>
@@ -317,7 +317,7 @@ function SeerahPage() {
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
-              <div className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-widest mb-2">{t("ప్రవక్త ﷺ పై", "Upon the Prophet ﷺ")}</div>
+              <div className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-widest mb-2">{t("ప్రవక్త ﷺ పై", "Upon the Prophet ﷺ")}</div>
               <h2 className="font-display text-3xl font-bold text-[var(--if-gold-light)] mb-3">
                 {t("సలవాత్ పంపడం", "Sending Salawat")}
               </h2>
@@ -330,9 +330,9 @@ function SeerahPage() {
             {salawat.map((s, i) => (
               <BlurFade key={s.label.en} delay={0.08 * i}>
                 <div className="bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-5 flex flex-col hover:-translate-y-1 transition-all">
-                  <span className="inline-block text-xs font-bold text-[var(--if-gold)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4 self-start">{s.label[lang]}</span>
+                  <span className="inline-block text-xs font-bold text-[var(--if-gold-ink)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4 self-start">{s.label[lang]}</span>
                   <div className="font-arabic text-xl text-[var(--if-gold-light)] leading-loose mb-3 text-right" dir="rtl" lang="ar">{s.ar}</div>
-                  <div className="text-xs font-semibold text-[var(--if-gold)]/80 italic mb-3 leading-relaxed">{s.tr[lang]}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold-light)] italic mb-3 leading-relaxed">{s.tr[lang]}</div>
                   <p className="text-sm text-[var(--if-gold-pale)]/80 leading-relaxed flex-1">{s.meaning[lang]}</p>
                 </div>
               </BlurFade>

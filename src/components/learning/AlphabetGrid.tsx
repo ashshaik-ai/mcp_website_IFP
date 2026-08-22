@@ -106,7 +106,7 @@ export function AlphabetGrid({
                   aria-hidden="true"
                   className={`absolute top-1.5 right-1.5 h-3.5 w-3.5 transition-opacity ${
                     playing === l.audio
-                      ? "opacity-100 text-[var(--if-gold)]"
+                      ? "opacity-100 text-[var(--if-gold-ink)]"
                       : "opacity-0 group-hover:opacity-60 text-[var(--if-text-muted)]"
                   }`}
                 />

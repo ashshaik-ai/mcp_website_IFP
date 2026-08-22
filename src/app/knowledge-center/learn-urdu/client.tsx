@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
+import { LetterReview } from "@/components/learning/LetterReview";
 import { VocabularyList } from "@/components/learning/VocabularyList";
 import { urduWords, urduPhrases } from "@/content/vocabulary";
 import { urduLetters } from "@/content/alphabets";
@@ -63,12 +64,12 @@ function LearnUrduPage() {
       <section className="bg-gradient-to-br from-blue-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="text-4xl text-[var(--if-gold)]/70" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">سیکھیں اردو</span>
+            <span className="text-4xl text-[var(--if-gold-light)]" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">سیکھیں اردو</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -84,7 +85,7 @@ function LearnUrduPage() {
             {[{ n: "39", l: copy.letters[lang] }, { n: "4", l: copy.levels[lang] }, { n: "∞", l: copy.free[lang] }].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
-                <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
+                <div className="text-xs text-[var(--if-gold-pale)]/80">{l}</div>
               </div>
             ))}
           </BlurFade>
@@ -126,12 +127,12 @@ function LearnUrduPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-semibold text-[var(--if-green)]">{lv.title[lang]}</span>
-                        <span className="text-sm text-[var(--if-gold)]/70" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{lv.urdu}</span>
+                        <span className="text-sm text-[var(--if-gold-light)]" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{lv.urdu}</span>
                         {!lv.available && <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">{copy.coming_soon[lang]}</span>}
                       </div>
                       <p className="text-sm text-[var(--if-text-muted)]">{lv.desc[lang]}</p>
                     </div>
-                    <ChevronRight className={`h-4 w-4 text-[var(--if-gold)]/50 flex-shrink-0 transition-transform ${openLevel === lv.num ? "rotate-90" : ""}`} />
+                    <ChevronRight className={`h-4 w-4 text-[var(--if-gold-light)] flex-shrink-0 transition-transform ${openLevel === lv.num ? "rotate-90" : ""}`} />
                   </button>
                 </div>
               </BlurFade>
@@ -148,15 +149,15 @@ function LearnUrduPage() {
             <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-8">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="text-5xl text-[var(--if-gold-light)] mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{w.glyph}</div>
-              <div className="text-[var(--if-gold)] font-semibold">{w.translit}</div>
+              <div className="text-[var(--if-gold-ink)] font-semibold">{w.translit}</div>
               <div className="text-[var(--if-gold-pale)]/70 text-sm mt-1">{w.meaning[lang]}</div>
               <button onClick={() => speak(w.glyph)} className="flex items-center gap-2 mx-auto mt-4 px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
                 <Volume2 className="h-4 w-4" />{copy.listen[lang]}
               </button>
               <div className="flex justify-center gap-3 mt-5">
-                <button onClick={() => setWordIdx((i) => (i - 1 + urduWords.length) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
-                <span className="self-center text-xs text-[var(--if-gold-pale)]/50">{wordIdx + 1}/{urduWords.length}</span>
-                <button onClick={() => setWordIdx((i) => (i + 1) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "మునుపటి పదం" : "Previous word"} onClick={() => setWordIdx((i) => (i - 1 + urduWords.length) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
+                <span className="self-center text-xs text-[var(--if-gold-pale)]/80">{wordIdx + 1}/{urduWords.length}</span>
+                <button type="button" aria-label={lang === "te" ? "తదుపరి పదం" : "Next word"} onClick={() => setWordIdx((i) => (i + 1) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
               </div>
             </div>
           </BlurFade>
@@ -178,6 +179,8 @@ function LearnUrduPage() {
       </section>
 
       <LessonIndex portal="learn-urdu" />
+
+      <LetterReview script="urdu" letters={urduLetters} words={urduWords} />
 
     </PageShell>
   );

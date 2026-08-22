@@ -10,6 +10,10 @@
   --if-green:       #0d3b1e;
   --if-green-mid:   #1a5c30;
   --if-gold:        #c8922a;
+  /* Gold text on a light ground. #c8922a measures 2.56:1 on cream, failing
+     even the 3:1 large-text bar, so it is only safe on the dark green or as
+     a border/background. Same hue and saturation, darkened to clear 4.5:1. */
+  --if-gold-ink:    #8f691e;
   --if-gold-light:  #e8b84b;
   --if-gold-pale:   #f5e6c0;
   --if-cream:       #faf6ee;
@@ -171,4 +175,34 @@
   font-family: var(--font-nastaliq), 'Noto Nastaliq Urdu', var(--font-amiri), serif;
   direction: rtl;
   line-height: 2.1;
+}
+/* Entrance animation for BlurFade. Lives in CSS so it starts at first paint
+   rather than after hydration — the JS version left ~100 elements per page at
+   opacity 0 in the prerendered HTML, holding LCP near six seconds.
+
+   fill-mode is backwards, not both: the element keeps its final painted state
+   afterwards without the animation having to define it, so nothing is left
+   stuck invisible if the animation is interrupted. */
+@keyframes if-blur-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(var(--bf-blur, 6px));
+    transform: translateY(var(--bf-offset, -6px));
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+.if-blur-fade {
+  animation: if-blur-fade-in var(--bf-duration, 0.4s) ease-out var(--bf-delay, 0.04s) backwards;
+}
+
+/* Motion is decoration here; the content is the point. */
+@media (prefers-reduced-motion: reduce) {
+  .if-blur-fade {
+    animation: none;
+  }
 }

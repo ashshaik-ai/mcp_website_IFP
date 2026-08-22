@@ -58,7 +58,7 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
                 className={`w-full flex items-center gap-2.5 text-left min-h-11 px-3 rounded-lg border text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${state}`}
               >
                 {picked !== null && isAnswer && (
-                  <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-emerald-600" />
+                  <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-emerald-700" />
                 )}
                 {picked !== null && chosen && !isAnswer && (
                   <X aria-hidden="true" className="h-4 w-4 shrink-0 text-red-500" />
@@ -95,7 +95,7 @@ function BiList({ items, title, tone }: { items: Bi[]; title: Bi; tone: "gold" |
       <ul className="grid gap-2">
         {items.map((t, i) => (
           <li key={i} className="flex gap-2.5 text-sm text-[var(--if-text)] text-pretty">
-            <span aria-hidden="true" className="text-[var(--if-gold)] shrink-0">
+            <span aria-hidden="true" className="text-[var(--if-gold-ink)] shrink-0">
               &#8226;
             </span>
             {t[lang]}
@@ -129,13 +129,13 @@ export function LessonView({
     <article className="mx-auto max-w-3xl px-4 py-12">
       <Link
         href={portalHref}
-        className="inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold)] hover:text-[var(--if-green)] transition-colors"
+        className="inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold-ink)] hover:text-[var(--if-green)] transition-colors"
       >
         <ArrowLeft aria-hidden="true" className="h-4 w-4" />
         {copy.back[lang]} · {portalTitle[lang]}
       </Link>
 
-      <p className="mt-4 text-[11px] font-bold uppercase tracking-widest text-[var(--if-gold)]">
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-widest text-[var(--if-gold-ink)]">
         {copy.lesson[lang]} {index + 1} {copy.of[lang]} {total}
       </p>
       <h1 className="mt-1 font-display text-3xl md:text-4xl font-bold text-[var(--if-green)] text-balance">
@@ -161,7 +161,7 @@ export function LessonView({
             )}
             {s.check && (
               <div className="mt-4">
-                <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--if-gold)] mb-2">
+                <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--if-gold-ink)] mb-2">
                   {copy.check[lang]}
                 </p>
                 <Quiz item={s.check} idPrefix={`check-${i}`} />
@@ -249,7 +249,7 @@ export function LessonView({
                 // Only send people off-site in a new tab; internal links stay put.
                 const external = /^https?:/i.test(r.url);
                 const className =
-                  "inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold)] hover:text-[var(--if-green)] transition-colors";
+                  "inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold-ink)] hover:text-[var(--if-green)] transition-colors";
                 return (
                   <li key={r.url}>
                     {external ? (
@@ -282,7 +282,7 @@ export function LessonView({
             href={`${portalHref}/${prev.slug}`}
             className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 transition-colors"
           >
-            <ArrowLeft aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold)]" />
+            <ArrowLeft aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
               <span className="block text-[10px] uppercase tracking-wide text-[var(--if-text-muted)]">
                 {copy.prev[lang]}
@@ -300,7 +300,7 @@ export function LessonView({
             href={`${portalHref}/${next.slug}`}
             className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 transition-colors sm:text-right sm:flex-row-reverse"
           >
-            <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold)]" />
+            <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
               <span className="block text-[10px] uppercase tracking-wide text-[var(--if-text-muted)]">
                 {copy.next[lang]}

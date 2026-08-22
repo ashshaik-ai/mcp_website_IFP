@@ -73,7 +73,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
               {card.title[lang]}
             </h3>
             {card.tag[lang] && (
-              <span className="inline-block mt-1.5 text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/20">
+              <span className="inline-block mt-1.5 text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20">
                 {card.tag[lang]}
               </span>
             )}
@@ -81,7 +81,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
           {hasDetail && (
             <ChevronRight
               aria-hidden="true"
-              className={`h-4 w-4 text-[var(--if-gold)]/50 shrink-0 mt-1 transition-transform ${open ? "rotate-90" : ""}`}
+              className={`h-4 w-4 text-[var(--if-gold-light)] shrink-0 mt-1 transition-transform ${open ? "rotate-90" : ""}`}
             />
           )}
         </div>
@@ -198,7 +198,7 @@ function StudentGuidancePage() {
             ].map(({ n, l }) => (
               <div key={l} className="px-5 py-3 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center">
                 <div className="font-display text-2xl font-bold text-[var(--if-gold-light)]">{n}</div>
-                <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
+                <div className="text-xs text-[var(--if-gold-pale)]/80">{l}</div>
               </div>
             ))}
           </BlurFade>
@@ -209,7 +209,7 @@ function StudentGuidancePage() {
         <Marquee className="[--duration:40s]">
           {guidanceCards.slice(0, 30).map((c) => (
             <span key={c.id} className="mx-5 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap">
-              <span className="text-[var(--if-gold)]" aria-hidden="true">&#10022;</span> {c.title[lang]}
+              <span className="text-[var(--if-gold-ink)]" aria-hidden="true">&#10022;</span> {c.title[lang]}
             </span>
           ))}
         </Marquee>
@@ -261,7 +261,7 @@ function StudentGuidancePage() {
                   }`}
                 >
                   {s.label[lang]}
-                  <span className="ml-1.5 text-xs opacity-70">({s.count})</span>
+                  <span className="ml-1.5 text-xs">({s.count})</span>
                 </button>
               ))}
             </div>

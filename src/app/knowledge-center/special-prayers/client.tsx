@@ -113,12 +113,12 @@ function SpecialPrayersPage() {
       <section className={`${p.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">{p.ar}</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">{p.ar}</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -153,15 +153,15 @@ function SpecialPrayersPage() {
               <div className="flex items-start gap-4 flex-wrap mb-5">
                 <div>
                   <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">{p.name[lang]}</h2>
-                  <div className="font-arabic text-xl text-[var(--if-gold)]/70 mt-1" dir="rtl">{p.ar}</div>
+                  <div className="font-arabic text-xl text-[var(--if-gold-light)] mt-1" dir="rtl">{p.ar}</div>
                 </div>
                 <div className="ml-auto flex flex-col items-end gap-1">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/30">{p.rakaat}</span>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/30">{p.rakaat}</span>
                   <span className="text-xs text-[var(--if-text-muted)]">{p.time[lang]}</span>
                 </div>
               </div>
               <p className="text-[var(--if-text-muted)] leading-relaxed mb-6">{p.importance[lang]}</p>
-              <h3 className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider mb-3">{copy.how_to_perform[lang]}</h3>
+              <h3 className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-wider mb-3">{copy.how_to_perform[lang]}</h3>
               <ol className="space-y-2">
                 {p.steps.map((s, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm">
@@ -175,7 +175,7 @@ function SpecialPrayersPage() {
             {/* Dua */}
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-6 text-center">
               <BorderBeam size={150} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
-              <div className="text-[10px] font-bold text-[var(--if-gold)]/60 uppercase tracking-widest mb-3">{copy.key_du_a[lang]}</div>
+              <div className="text-[10px] font-bold text-[var(--if-gold-light)] uppercase tracking-widest mb-3">{copy.key_du_a[lang]}</div>
               <div className="font-arabic text-xl text-[var(--if-gold-light)] leading-loose mb-2" dir="rtl">{p.dua.ar}</div>
               <div className="text-sm text-[var(--if-gold-pale)]/70">{p.dua.en}</div>
             </div>

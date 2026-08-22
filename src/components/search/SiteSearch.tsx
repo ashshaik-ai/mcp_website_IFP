@@ -205,7 +205,7 @@ export function SiteSearch() {
                             <span className="font-semibold text-[var(--if-green)] text-pretty">
                               {r.title[lang] || r.title.en}
                             </span>
-                            <span className="text-[10px] uppercase tracking-wide font-bold text-[var(--if-gold)]">
+                            <span className="text-[10px] uppercase tracking-wide font-bold text-[var(--if-gold-ink)]">
                               {(KIND_LABEL[r.kind] ?? KIND_LABEL.page)[lang]}
                             </span>
                           </span>

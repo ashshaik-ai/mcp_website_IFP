@@ -161,7 +161,7 @@ function KCPage() {
         <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M4OTIyYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]" />
         <div className="relative mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <span className="inline-block font-arabic text-3xl text-[var(--if-gold)]/70">بِسْمِ اللَّهِ</span>
+            <span className="inline-block font-arabic text-3xl text-[var(--if-gold-light)]">بِسْمِ اللَّهِ</span>
           </BlurFade>
           <BlurFade delay={0.1}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -181,7 +181,7 @@ function KCPage() {
             ].map(({ n, l }) => (
               <div key={l} className="flex flex-col items-center px-5 py-3 rounded-xl bg-white/5 border border-[var(--if-gold)]/20">
                 <span className="font-display text-2xl font-bold text-[var(--if-gold-light)]">{n}</span>
-                <span className="text-xs text-[var(--if-gold-pale)]/60 mt-0.5">{l}</span>
+                <span className="text-xs text-[var(--if-gold-pale)]/80 mt-0.5">{l}</span>
               </div>
             ))}
           </BlurFade>
@@ -193,7 +193,7 @@ function KCPage() {
         <Marquee className="[--duration:35s] [--gap:1rem]">
           {portals.map((p) => (
             <span key={p.id} className="mx-5 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap flex items-center gap-2">
-              <span className="text-[var(--if-gold)]">✦</span>
+              <span className="text-[var(--if-gold-ink)]">✦</span>
               <span className="font-arabic text-base">{p.arabic}</span>
               <span>·</span>
               {p.title[lang]}
@@ -220,10 +220,10 @@ function KCPage() {
                   <div className="w-11 h-11 rounded-xl bg-[var(--if-green)] flex items-center justify-center flex-shrink-0">
                     <Icon className="h-5 w-5 text-[var(--if-gold-light)]" />
                   </div>
-                  <span className="font-semibold text-[var(--if-green)] group-hover:text-[var(--if-gold)] transition-colors">
+                  <span className="font-semibold text-[var(--if-green)] group-hover:text-[var(--if-gold-ink)] transition-colors">
                     {label[lang]}
                   </span>
-                  <ChevronRight className="h-4 w-4 text-[var(--if-gold)]/50 ml-auto group-hover:text-[var(--if-gold)] transition-colors" />
+                  <ChevronRight className="h-4 w-4 text-[var(--if-gold-light)] ml-auto group-hover:text-[var(--if-gold-ink)] transition-colors" />
                 </Link>
               </BlurFade>
             ))}
@@ -287,7 +287,7 @@ function KCPage() {
                     {/* Header band */}
                     <div className={`bg-gradient-to-br ${portal.color} p-5 flex items-start justify-between`}>
                       <Icon className="h-7 w-7 text-[var(--if-gold-light)]" />
-                      <span className="font-arabic text-2xl text-[var(--if-gold)]/60">{portal.arabic}</span>
+                      <span className="font-arabic text-2xl text-[var(--if-gold-light)]">{portal.arabic}</span>
                     </div>
 
                     {/* Body */}
@@ -299,8 +299,8 @@ function KCPage() {
                         {portal.desc[lang]}
                       </p>
                       <div className="mt-4 flex items-center justify-between">
-                        <span className="text-xs text-[var(--if-gold)] font-medium">{portal.meta[lang]}</span>
-                        <span className="flex items-center gap-1 text-xs font-semibold text-[var(--if-green)] group-hover:text-[var(--if-gold)] transition-colors">
+                        <span className="text-xs text-[var(--if-gold-ink)] font-medium">{portal.meta[lang]}</span>
+                        <span className="flex items-center gap-1 text-xs font-semibold text-[var(--if-green)] group-hover:text-[var(--if-gold-ink)] transition-colors">
                           {copy.open[lang]} <ChevronRight className="h-3 w-3" />
                         </span>
                       </div>

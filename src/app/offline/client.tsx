@@ -21,7 +21,7 @@ export default function OfflineClient() {
   return (
     <PageShell>
       <section className="mx-auto max-w-lg px-4 py-24 text-center">
-        <WifiOff aria-hidden="true" className="mx-auto h-10 w-10 text-[var(--if-gold)]" />
+        <WifiOff aria-hidden="true" className="mx-auto h-10 w-10 text-[var(--if-gold-ink)]" />
         <h1 className="mt-5 font-display text-3xl font-bold text-[var(--if-green)] text-balance">
           {copy.heading[lang]}
         </h1>

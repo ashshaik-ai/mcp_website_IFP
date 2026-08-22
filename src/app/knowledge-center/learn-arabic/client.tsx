@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
+import { LetterReview } from "@/components/learning/LetterReview";
 import { VocabularyList } from "@/components/learning/VocabularyList";
 import { arabicWords, arabicPhrases } from "@/content/vocabulary";
 import { arabicLetters } from "@/content/alphabets";
@@ -142,13 +143,13 @@ function LearnArabicPage() {
       <section className="bg-gradient-to-br from-emerald-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">تعلُّم العربية</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">تعلُّم العربية</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -169,7 +170,7 @@ function LearnArabicPage() {
             ].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
-                <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
+                <div className="text-xs text-[var(--if-gold-pale)]/80">{l}</div>
               </div>
             ))}
           </BlurFade>
@@ -189,7 +190,7 @@ function LearnArabicPage() {
               <BlurFade key={i} delay={0.08 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-6 text-center hover:border-[var(--if-gold)]/40 transition-colors group">
                   <BorderBeam size={80} duration={6} colorFrom="#0d3b1e" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
-                  <div className="font-arabic text-2xl text-[var(--if-gold)]/70 mb-4 leading-relaxed" dir="rtl">{item.ar}</div>
+                  <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-4 leading-relaxed" dir="rtl">{item.ar}</div>
                   <h3 className="font-semibold text-[var(--if-green)] mb-2">{item.title[lang]}</h3>
                   <p className="text-sm text-[var(--if-text-muted)]">{item.desc[lang]}</p>
                 </div>
@@ -239,7 +240,7 @@ function LearnArabicPage() {
                     </div>
                     <button
                       onClick={() => speak(selected.ar)}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] text-xs font-semibold hover:bg-[var(--if-gold)]/20 transition-colors border border-[var(--if-gold)]/30"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] text-xs font-semibold hover:bg-[var(--if-gold)]/20 transition-colors border border-[var(--if-gold)]/30"
                     >
                       <Volume2 className="h-3.5 w-3.5" />
                       {copy.listen[lang]}
@@ -283,7 +284,7 @@ function LearnArabicPage() {
                         onClick={() => speak(selected.example.ar)}
                         className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--if-gold)]/10 flex items-center justify-center hover:bg-[var(--if-gold)]/20 transition-colors"
                       >
-                        <Volume2 className="h-3.5 w-3.5 text-[var(--if-gold)]" />
+                        <Volume2 className="h-3.5 w-3.5 text-[var(--if-gold-ink)]" />
                       </button>
                       <div className="font-arabic text-2xl text-[var(--if-green)]" dir="rtl">{selected.example.ar}</div>
                       <div className="text-sm">
@@ -325,7 +326,7 @@ function LearnArabicPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-semibold text-[var(--if-green)]">{level.title[lang]}</span>
-                        <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl">{level.arabic}</span>
+                        <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl">{level.arabic}</span>
                         {!level.available && (
                           <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">
                             {copy.coming_soon[lang]}
@@ -335,8 +336,8 @@ function LearnArabicPage() {
                       <p className="text-sm text-[var(--if-text-muted)] mt-0.5">{level.desc[lang]}</p>
                     </div>
                     {openLevel === level.num
-                      ? <ChevronDown className="h-4 w-4 text-[var(--if-gold)] flex-shrink-0" />
-                      : <ChevronRight className="h-4 w-4 text-[var(--if-gold)]/50 flex-shrink-0" />
+                      ? <ChevronDown className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0" />
+                      : <ChevronRight className="h-4 w-4 text-[var(--if-gold-light)] flex-shrink-0" />
                     }
                   </button>
                   {openLevel === level.num && (
@@ -344,12 +345,12 @@ function LearnArabicPage() {
                       <ul className="mt-4 space-y-2">
                         {level.lessons.map((lesson, i) => (
                           <li key={lesson} className="flex items-center gap-3 text-sm text-[var(--if-text)]">
-                            <span className="w-6 h-6 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] flex items-center justify-center text-xs font-bold flex-shrink-0">
+                            <span className="w-6 h-6 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] flex items-center justify-center text-xs font-bold flex-shrink-0">
                               {i + 1}
                             </span>
                             {lesson}
                             {level.available && (
-                              <span className="ml-auto text-xs text-emerald-600 font-semibold">{copy.available[lang]}</span>
+                              <span className="ml-auto text-xs text-emerald-700 font-semibold">{copy.available[lang]}</span>
                             )}
                           </li>
                         ))}
@@ -373,9 +374,9 @@ function LearnArabicPage() {
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="font-arabic text-6xl text-[var(--if-gold-light)] mb-2 leading-relaxed" dir="rtl">{w.glyph}</div>
-              <div className="text-[var(--if-gold)] font-semibold mb-1">{w.translit}</div>
+              <div className="text-[var(--if-gold-ink)] font-semibold mb-1">{w.translit}</div>
               <div className="text-[var(--if-gold-pale)]/70 text-sm mb-1">{w.meaning[lang]}</div>
-              <div className="text-[var(--if-gold-pale)]/60 text-sm mb-5 text-pretty">{w.note[lang]}</div>
+              <div className="text-[var(--if-gold-pale)]/80 text-sm mb-5 text-pretty">{w.note[lang]}</div>
               <button
                 onClick={() => speak(w.glyph)}
                 className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm font-medium hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30 mb-5"
@@ -385,17 +386,21 @@ function LearnArabicPage() {
               </button>
               <div className="flex justify-center gap-3">
                 <button
+                  type="button"
+                  aria-label={lang === "te" ? "మునుపటి పదం" : "Previous word"}
                   onClick={() => setWordIdx((i) => (i - 1 + arabicWords.length) % arabicWords.length)}
                   className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10 transition-colors"
                 >
-                  <ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" />
+                  <ChevronLeft aria-hidden="true" className="h-4 w-4 text-[var(--if-gold-pale)]" />
                 </button>
-                <span className="self-center text-xs text-[var(--if-gold-pale)]/50">{wordIdx + 1}/{arabicWords.length}</span>
+                <span className="self-center text-xs text-[var(--if-gold-pale)]/80">{wordIdx + 1}/{arabicWords.length}</span>
                 <button
+                  type="button"
+                  aria-label={lang === "te" ? "తదుపరి పదం" : "Next word"}
                   onClick={() => setWordIdx((i) => (i + 1) % arabicWords.length)}
                   className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10 transition-colors"
                 >
-                  <ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" />
+                  <ChevronRight aria-hidden="true" className="h-4 w-4 text-[var(--if-gold-pale)]" />
                 </button>
               </div>
             </div>
@@ -439,7 +444,7 @@ function LearnArabicPage() {
                 <div className="text-[var(--if-gold-pale)]">
                   <div className="font-arabic text-5xl text-[var(--if-gold-light)] mb-3" dir="rtl">{alphabet[fcIdx].ar}</div>
                   <div className="text-2xl font-bold mb-1">{alphabet[fcIdx].name}</div>
-                  <div className="text-lg text-[var(--if-gold)] mb-0.5">/{alphabet[fcIdx].en}/</div>
+                  <div className="text-lg text-[var(--if-gold-ink)] mb-0.5">/{alphabet[fcIdx].en}/</div>
                   <div className="text-sm text-[var(--if-gold-pale)]/70 mb-3">{alphabet[fcIdx].te}</div>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${alphabet[fcIdx].sun ? "bg-amber-400/30 text-amber-200" : "bg-emerald-400/20 text-emerald-200"}`}>
                     {alphabet[fcIdx].sun ? (copy.sun_letter[lang]) : (copy.moon_letter[lang])}
@@ -449,19 +454,23 @@ function LearnArabicPage() {
             </div>
             <div className="flex items-center justify-between mt-4">
               <button
+                type="button"
+                aria-label={lang === "te" ? "మునుపటి కార్డు" : "Previous card"}
                 onClick={() => { setFcIdx(i => (i - 1 + alphabet.length) % alphabet.length); setFcFlipped(false); }}
                 className="p-2.5 rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
               >
-                <ChevronLeft className="h-4 w-4 text-[var(--if-green)]" />
+                <ChevronLeft aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
               </button>
               <span className="text-xs text-[var(--if-text-muted)]">
                 {fcIdx + 1} / {alphabet.length} · {copy.tap_to_flip[lang]}
               </span>
               <button
+                type="button"
+                aria-label={lang === "te" ? "తదుపరి కార్డు" : "Next card"}
                 onClick={() => { setFcIdx(i => (i + 1) % alphabet.length); setFcFlipped(false); }}
                 className="p-2.5 rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
               >
-                <ChevronRight className="h-4 w-4 text-[var(--if-green)]" />
+                <ChevronRight aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
               </button>
             </div>
           </BlurFade>
@@ -499,7 +508,7 @@ function LearnArabicPage() {
             ) : (
               <div className="bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 shadow-sm">
                 <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider">
+                  <span className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider">
                     {lang === "te" ? `ప్రశ్న ${quizIdx + 1}/${quizQuestions.length}` : `Question ${quizIdx + 1}/${quizQuestions.length}`}
                   </span>
                   <div className="flex gap-1.5">
@@ -552,6 +561,8 @@ function LearnArabicPage() {
       </section>
 
       <LessonIndex portal="learn-arabic" />
+
+      <LetterReview script="arabic" letters={arabicLetters} words={arabicWords} />
 
     </PageShell>
   );

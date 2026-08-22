@@ -212,12 +212,12 @@ function IslamicHistoryPage() {
       <section className="bg-gradient-to-br from-[var(--if-green)] to-stone-800 text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl" lang="ar">التاريخ الإسلامي</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl" lang="ar">التاريخ الإسلامي</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -261,14 +261,14 @@ function IslamicHistoryPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 flex-wrap mb-1">
                     <h3 className="font-display text-2xl font-bold text-[var(--if-green)]">{eras[active].title[lang]}</h3>
-                    <span className="font-arabic text-lg text-[var(--if-gold)]/70" dir="rtl" lang="ar">{eras[active].ar}</span>
+                    <span className="font-arabic text-lg text-[var(--if-gold-light)]" dir="rtl" lang="ar">{eras[active].ar}</span>
                   </div>
-                  <span className="text-xs font-bold text-[var(--if-gold)] tracking-wider">{eras[active].years}</span>
+                  <span className="text-xs font-bold text-[var(--if-gold-ink)] tracking-wider">{eras[active].years}</span>
                   <p className="text-[var(--if-text-muted)] mt-3 mb-5 leading-relaxed">{eras[active].desc[lang]}</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
                     {eras[active].highlights.map((h) => (
                       <div key={h} className="flex items-start gap-2 text-sm">
-                        <span className="text-[var(--if-gold)] mt-0.5 flex-shrink-0">✦</span>
+                        <span className="text-[var(--if-gold-ink)] mt-0.5 flex-shrink-0">✦</span>
                         <span className="text-[var(--if-text)]">{h}</span>
                       </div>
                     ))}
@@ -279,16 +279,16 @@ function IslamicHistoryPage() {
                       <span className="text-[var(--if-text-muted)]">{eras[active].lesson[lang]}</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/20 rounded-lg px-3 py-2 flex-1">
-                      <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{copy.notable[lang]}</span>
+                      <span className="font-bold text-[var(--if-gold-ink)] flex-shrink-0">{copy.notable[lang]}</span>
                       <span className="text-[var(--if-text-muted)]">{eras[active].personality}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="flex gap-3 mt-6 justify-end">
-                <button disabled={active === 0} onClick={() => setActive(a => a - 1)} className="p-2 rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronLeft className="h-4 w-4 text-[var(--if-green)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "మునుపటి యుగం" : "Previous era"} disabled={active === 0} onClick={() => setActive(a => a - 1)} className="p-2 rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronLeft className="h-4 w-4 text-[var(--if-green)]" /></button>
                 <span className="self-center text-xs text-[var(--if-text-muted)]">{active + 1} / {eras.length}</span>
-                <button disabled={active === eras.length - 1} onClick={() => setActive(a => a + 1)} className="p-2 rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronRight className="h-4 w-4 text-[var(--if-green)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "తదుపరి యుగం" : "Next era"} disabled={active === eras.length - 1} onClick={() => setActive(a => a + 1)} className="p-2 rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronRight className="h-4 w-4 text-[var(--if-green)]" /></button>
               </div>
             </div>
           </BlurFade>
@@ -315,14 +315,14 @@ function IslamicHistoryPage() {
                     <div className="w-10 h-10 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold flex-shrink-0">{p.name[0]}</div>
                     <div>
                       <h3 className="font-semibold text-[var(--if-green)] text-sm leading-snug">{p.name}</h3>
-                      <span className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl" lang="ar">{p.ar}</span>
+                      <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{p.ar}</span>
                     </div>
                   </div>
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--if-gold)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-full px-2 py-0.5 mb-2">{p.era[lang]}</span>
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--if-gold-ink)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-full px-2 py-0.5 mb-2">{p.era[lang]}</span>
                   <p className="text-xs text-[var(--if-text-muted)] mb-2">{p.role[lang]}</p>
                   <p className="text-xs text-[var(--if-text)] leading-relaxed mb-3 flex-1">{p.contribution[lang]}</p>
                   <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/18 rounded-lg px-2.5 py-2 mt-auto">
-                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{copy.legacy[lang]}</span>
+                    <span className="font-bold text-[var(--if-gold-ink)] flex-shrink-0">{copy.legacy[lang]}</span>
                     <span className="text-[var(--if-text-muted)]">{p.legacy[lang]}</span>
                   </div>
                 </div>
@@ -336,7 +336,7 @@ function IslamicHistoryPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">{copy.civilization_explorer[lang]}</p>
+            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">{copy.civilization_explorer[lang]}</p>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
               {copy.great_cities_of_history[lang]}
             </h2>
@@ -349,8 +349,8 @@ function IslamicHistoryPage() {
               <BlurFade key={city.name.en} delay={0.06 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/40 hover:-translate-y-1 transition-all group h-full flex flex-col">
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <span className="font-arabic text-2xl text-[var(--if-gold)]/80 leading-snug" dir="rtl" lang="ar">{city.ar}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--if-gold)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-full px-2 py-0.5 whitespace-nowrap">{city.era[lang]}</span>
+                    <span className="font-arabic text-2xl text-[var(--if-gold-light)] leading-snug" dir="rtl" lang="ar">{city.ar}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--if-gold-ink)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-full px-2 py-0.5 whitespace-nowrap">{city.era[lang]}</span>
                   </div>
                   <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-2">{city.name[lang]}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed mb-3 flex-1">{city.importance[lang]}</p>
@@ -369,7 +369,7 @@ function IslamicHistoryPage() {
       <section className="py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">{copy.apply_today[lang]}</p>
+            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">{copy.apply_today[lang]}</p>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
               {copy.lessons_from_history[lang]}
             </h2>
@@ -385,7 +385,7 @@ function IslamicHistoryPage() {
                   <h3 className="font-display text-base font-bold text-[var(--if-green)] mb-3">{lesson.title[lang]}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed mb-4 flex-1">{lesson.example[lang]}</p>
                   <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/7 border border-[var(--if-gold)]/18 rounded-lg px-2.5 py-2 mt-auto">
-                    <span className="font-bold text-[var(--if-gold)] flex-shrink-0">{copy.apply[lang]}</span>
+                    <span className="font-bold text-[var(--if-gold-ink)] flex-shrink-0">{copy.apply[lang]}</span>
                     <span className="text-[var(--if-text-muted)]">{lesson.apply[lang]}</span>
                   </div>
                 </div>

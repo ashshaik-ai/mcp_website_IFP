@@ -132,7 +132,7 @@ export function ZakatCalculator() {
           >
             {result.meetsNisab ? (
               <>
-                <p className="text-[11px] uppercase tracking-widest text-[var(--if-gold)]/85">
+                <p className="text-[11px] uppercase tracking-widest text-[var(--if-gold-light)]">
                   {copy.zakat_due_2_5[lang]}
                 </p>
                 <p className="font-display text-3xl font-bold text-[var(--if-gold-light)] tabular-nums mt-1">

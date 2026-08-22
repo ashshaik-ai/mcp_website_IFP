@@ -261,11 +261,11 @@ function LearnSalahPage() {
       <section className="bg-gradient-to-br from-teal-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-4">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-1">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-1">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
-          <BlurFade delay={0.1}><span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">الصَّلَاة</span></BlurFade>
+          <BlurFade delay={0.1}><span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">الصَّلَاة</span></BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
               {copy.learn_salah[lang]}
@@ -370,13 +370,13 @@ function LearnSalahPage() {
                 <div className="flex-1">
                   <h3 className="font-display text-lg font-bold text-[var(--if-green)]">{wuduSteps[wuduStep].title[lang]}</h3>
                 </div>
-                <span className="font-arabic text-xl text-[var(--if-gold)]/70" dir="rtl">{wuduSteps[wuduStep].ar}</span>
+                <span className="font-arabic text-xl text-[var(--if-gold-light)]" dir="rtl">{wuduSteps[wuduStep].ar}</span>
               </div>
               <p className="text-[var(--if-text-muted)] leading-relaxed mb-4">{wuduSteps[wuduStep].desc[lang]}</p>
               {wuduSteps[wuduStep].dua.ar && (
                 <div className="mt-3 p-4 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20">
-                  <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-2">{copy.dua[lang]}</div>
-                  <div className="font-arabic text-xl text-[var(--if-gold)] leading-relaxed text-right mb-2" dir="rtl">{wuduSteps[wuduStep].dua.ar}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider mb-2">{copy.dua[lang]}</div>
+                  <div className="font-arabic text-xl text-[var(--if-gold-ink)] leading-relaxed text-right mb-2" dir="rtl">{wuduSteps[wuduStep].dua.ar}</div>
                   <div className="text-xs text-[var(--if-text-muted)] italic mb-1">{wuduSteps[wuduStep].dua.tr}</div>
                   <div className="text-sm text-[var(--if-text-muted)]">{wuduSteps[wuduStep].dua[lang]}</div>
                 </div>
@@ -433,7 +433,7 @@ function LearnSalahPage() {
                         <span className="font-display font-bold text-[var(--if-green)]">{step.name}</span>
                         <span className="text-xs text-[var(--if-text-muted)]">{step.pos[lang]}</span>
                       </div>
-                      <div className="font-arabic text-lg text-[var(--if-gold)] mb-1 text-right" dir="rtl">{step.ar}</div>
+                      <div className="font-arabic text-lg text-[var(--if-gold-ink)] mb-1 text-right" dir="rtl">{step.ar}</div>
                       <div className="text-xs text-[var(--if-text-muted)] italic mb-1">{step.tr}</div>
                       <div className="text-sm text-[var(--if-text-muted)]">{step[lang]}</div>
                     </div>
@@ -471,7 +471,7 @@ function LearnSalahPage() {
                 />
               ))}
             </div>
-            <p className="text-xs text-[var(--if-gold-pale)]/50 mb-5 text-center">{lang === "te" ? `దశ ${simStep + 1} / ${simSteps.length}` : `Step ${simStep + 1} of ${simSteps.length}`}</p>
+            <p className="text-xs text-[var(--if-gold-pale)]/80 mb-5 text-center">{lang === "te" ? `దశ ${simStep + 1} / ${simSteps.length}` : `Step ${simStep + 1} of ${simSteps.length}`}</p>
 
             <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-6">
               <div className="mb-5">
@@ -484,17 +484,17 @@ function LearnSalahPage() {
               <div className="flex gap-3 bg-white/5 border border-[var(--if-gold)]/15 rounded-xl p-4 mb-5">
                 <span className="text-lg shrink-0">🤲</span>
                 <div>
-                  <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-1">{copy.action[lang]}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider mb-1">{copy.action[lang]}</div>
                   <p className="text-sm text-[var(--if-gold-pale)]/90">{simSteps[simStep].pos[lang]}</p>
                 </div>
               </div>
 
               {/* What to say */}
               <div className="mb-4">
-                <div className="text-xs font-semibold text-[var(--if-gold)] uppercase tracking-wider mb-3">{copy.recitation[lang]}</div>
+                <div className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider mb-3">{copy.recitation[lang]}</div>
                 <div className="font-arabic text-2xl text-[var(--if-gold-light)] leading-loose text-right mb-2" dir="rtl">{simSteps[simStep].ar}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/80 italic mb-1">{simSteps[simStep].tr}</div>
-                <div className="text-sm text-[var(--if-gold-pale)]/60">{simSteps[simStep].mean[lang]}</div>
+                <div className="text-sm text-[var(--if-gold-pale)]/80">{simSteps[simStep].mean[lang]}</div>
               </div>
 
               {/* Common mistake */}

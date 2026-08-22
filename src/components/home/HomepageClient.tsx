@@ -153,7 +153,7 @@ const gallery = [
 
 /* ── Status helpers ── */
 function StatusIcon({ status }: { status: string }) {
-  if (status === "completed") return <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0" />;
+  if (status === "completed") return <CheckCircle2 className="h-5 w-5 text-emerald-700 flex-shrink-0" />;
   if (status === "in_progress") return <Clock className="h-5 w-5 text-amber-500 flex-shrink-0" />;
   return <Circle className="h-5 w-5 text-gray-400 flex-shrink-0" />;
 }
@@ -201,7 +201,7 @@ function Homepage() {
 
           <BlurFade delay={0.18}>
             <div className="flex items-center justify-center gap-2 text-sm">
-              <span className="text-[var(--if-gold-pale)]/50">{copy.our_mission[lang]}</span>
+              <span className="text-[var(--if-gold-pale)]/80">{copy.our_mission[lang]}</span>
               {lang === "te" ? (
                 <WordRotate
                   words={["కమ్యూనిటీ సంక్షేమం", "నాణ్యమైన విద్య", "పౌర భాగస్వామ్యం", "ముస్లిం ఐక్యత"]}
@@ -259,7 +259,7 @@ function Homepage() {
             "Zakat Distribution", "Women Empowerment", "Senior Care", "Civic Engagement",
             "18 Mosques", "5 Madrasas", "250+ Families Helped"].map((item) => (
             <span key={item} className="mx-4 flex items-center gap-2 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap">
-              <span className="text-[var(--if-gold)]">✦</span> {item}
+              <span className="text-[var(--if-gold-ink)]">✦</span> {item}
             </span>
           ))}
         </Marquee>
@@ -270,7 +270,7 @@ function Homepage() {
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-12">
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--if-gold)]">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--if-gold-ink)]">
                 {t("section_victory_tag")}
               </span>
               <h2 className="font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-3">
@@ -279,7 +279,7 @@ function Homepage() {
               <p className="text-[var(--if-text-muted)] max-w-xl mx-auto">
                 {t("section_victory_desc")}
               </p>
-              <p className="text-xs text-[var(--if-text-muted)]/70 mt-2">
+              <p className="text-xs text-[var(--if-text-muted)] mt-2">
                 Anjuman-e-Himayatul Islam, Mangalagiri · 522503, A.P.
               </p>
             </div>
@@ -322,7 +322,7 @@ function Homepage() {
                     <p className="text-xs font-semibold text-[var(--if-green)] leading-snug">
                       {lang === "te" ? leader.te : leader.name}
                     </p>
-                    <p className="text-[10px] text-[var(--if-gold)] mt-0.5">{leader.role[lang]}</p>
+                    <p className="text-[10px] text-[var(--if-gold-ink)] mt-0.5">{leader.role[lang]}</p>
                   </div>
                 </BlurFade>
               ))}
@@ -358,7 +358,7 @@ function Homepage() {
                     <p className="text-sm text-[var(--if-text-muted)] mb-4">{a.desc[lang]}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {a.evidence.map((e) => (
-                        <span key={e} className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] border border-[var(--if-gold)]/20 font-medium">
+                        <span key={e} className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20 font-medium">
                           {e}
                         </span>
                       ))}
@@ -378,7 +378,7 @@ function Homepage() {
           {/* Header */}
           <BlurFade delay={0.05}>
             <div className="text-center mb-8">
-              <span className="text-xs font-bold tracking-[0.22em] uppercase text-[var(--if-gold)]">
+              <span className="text-xs font-bold tracking-[0.22em] uppercase text-[var(--if-gold-ink)]">
                 {copy.action_plan_2023_2028[lang]}
               </span>
               <h2 className="font-display text-4xl md:text-5xl font-bold mt-2">
@@ -405,22 +405,22 @@ function Homepage() {
                   {[
                     { value: 4, label: t("completed"),  color: "text-emerald-400", ring: "border-emerald-500/30 bg-emerald-900/20" },
                     { value: 4, label: t("in_progress"), color: "text-amber-400",   ring: "border-amber-500/30 bg-amber-900/20" },
-                    { value: 2, label: t("upcoming"),    color: "text-[var(--if-gold-pale)]/50", ring: "border-white/10 bg-white/5" },
+                    { value: 2, label: t("upcoming"),    color: "text-[var(--if-gold-pale)]/80", ring: "border-white/10 bg-white/5" },
                   ].map(({ value, label, color, ring }) => (
                     <div key={label} className={`rounded-xl border ${ring} py-4 px-2`}>
                       <div className={`font-display text-3xl md:text-4xl font-bold ${color}`}>
                         <NumberTicker value={value} className={`font-display text-3xl md:text-4xl font-bold ${color}`} />
                       </div>
-                      <div className="text-[10px] md:text-xs text-[var(--if-gold-pale)]/50 mt-1 leading-tight">{label}</div>
+                      <div className="text-[10px] md:text-xs text-[var(--if-gold-pale)]/80 mt-1 leading-tight">{label}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Animated progress bar */}
                 <div>
-                  <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/50 mb-2">
+                  <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/80 mb-2">
                     <span>{copy.overall_completion[lang]}</span>
-                    <span className="text-[var(--if-gold)] font-semibold">40%</span>
+                    <span className="text-[var(--if-gold-ink)] font-semibold">40%</span>
                   </div>
                   <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
                     <motion.div
@@ -533,7 +533,7 @@ function Homepage() {
                   </AnimatedGradientText>
                 </div>
                 <p className="text-[var(--if-gold-pale)]/70 text-sm mb-6">{t("scheme_sub")}</p>
-                <p className="text-[var(--if-gold-pale)]/60 text-sm mb-6">{t("scheme_desc")}</p>
+                <p className="text-[var(--if-gold-pale)]/80 text-sm mb-6">{t("scheme_desc")}</p>
                 <ul className="space-y-3">
                   {[
                     copy.applicant_must_be_muslim_resident[lang],
@@ -542,7 +542,7 @@ function Homepage() {
                     copy.no_bureaucratic_delay[lang],
                   ].map((c) => (
                     <li key={c} className="flex items-start gap-3 text-sm text-[var(--if-gold-pale)]/80">
-                      <CheckCircle2 className="h-4 w-4 text-[var(--if-gold)] flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0 mt-0.5" />
                       {c}
                     </li>
                   ))}
@@ -561,14 +561,14 @@ function Homepage() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-xl p-4 text-center">
-                    <div className="font-display text-3xl font-bold text-[var(--if-gold)]">250+</div>
-                    <div className="text-xs text-[var(--if-gold-pale)]/60 mt-1">
+                    <div className="font-display text-3xl font-bold text-[var(--if-gold-light)]">250+</div>
+                    <div className="text-xs text-[var(--if-gold-pale)]/80 mt-1">
                       {copy.families_assisted[lang]}
                     </div>
                   </div>
                   <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-xl p-4 text-center">
-                    <div className="font-display text-3xl font-bold text-[var(--if-gold)]">2023</div>
-                    <div className="text-xs text-[var(--if-gold-pale)]/60 mt-1">
+                    <div className="font-display text-3xl font-bold text-[var(--if-gold-light)]">2023</div>
+                    <div className="text-xs text-[var(--if-gold-pale)]/80 mt-1">
                       {copy.active_since[lang]}
                     </div>
                   </div>
@@ -592,7 +592,7 @@ function Homepage() {
               <BlurFade key={i} delay={0.08 * i}>
                 <div className="relative overflow-hidden text-center p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors group">
                   <BorderBeam size={60} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
-                  <Icon className="h-7 w-7 mx-auto mb-3 text-[var(--if-gold)]" />
+                  <Icon className="h-7 w-7 mx-auto mb-3 text-[var(--if-gold-ink)]" />
                   <div className="font-display text-3xl font-bold text-[var(--if-green)]">
                     <NumberTicker value={parseInt(count) || 0} />
                     {count.includes("+") ? "+" : ""}
@@ -612,7 +612,7 @@ function Homepage() {
         <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-12 items-center">
           <BlurFade delay={0.1}>
             <div>
-              <AnimatedShinyText shimmerWidth={120} className="text-xs font-bold tracking-[0.2em] uppercase !text-[var(--if-gold)]">
+              <AnimatedShinyText shimmerWidth={120} className="text-xs font-bold tracking-[0.2em] uppercase !text-[var(--if-gold-ink)]">
                 Est. 26-08-2011
               </AnimatedShinyText>
               <h2 className="font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-4">
@@ -629,7 +629,7 @@ function Homepage() {
                   { year: "2023–Now", event: { te: "కన్వెన్షన్ అప్‌గ్రేడ్, అంత్యక్రియల సహాయం, అద్దె సంస్కరణలు", en: "Convention upgrades, funeral aid, rent reforms, stitching centre" } },
                 ].map(({ year, event }) => (
                   <li key={year} className="flex gap-4">
-                    <span className="text-xs font-bold text-[var(--if-gold)] min-w-[72px] pt-0.5">{year}</span>
+                    <span className="text-xs font-bold text-[var(--if-gold-ink)] min-w-[72px] pt-0.5">{year}</span>
                     <span className="text-sm text-[var(--if-text)]">{event[lang]}</span>
                   </li>
                 ))}
@@ -655,7 +655,7 @@ function Homepage() {
               <p className="text-sm text-[var(--if-gold-pale)]/70 mt-1">
                 {copy.founder_islamic_front[lang]}
               </p>
-              <p className="text-sm text-[var(--if-gold-pale)]/60 mt-0.5">
+              <p className="text-sm text-[var(--if-gold-pale)]/80 mt-0.5">
                 {copy.a_p_waqf_board_director[lang]}
               </p>
             </div>
@@ -679,7 +679,7 @@ function Homepage() {
                     {s.name[0]}
                   </div>
                   <h3 className="font-semibold text-[var(--if-green)]">{s.name}</h3>
-                  <span className="text-xs text-[var(--if-gold)] font-medium">{s.year} · {s.category[lang]}</span>
+                  <span className="text-xs text-[var(--if-gold-ink)] font-medium">{s.year} · {s.category[lang]}</span>
                   <p className="text-sm text-[var(--if-text-muted)] mt-2">{s.desc[lang]}</p>
                 </div>
               </BlurFade>
@@ -770,7 +770,7 @@ function Homepage() {
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-[var(--if-green)]">{role[lang]}</h3>
                     {seats > 0 && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold)] font-semibold border border-[var(--if-gold)]/20">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-green)] font-semibold border border-[var(--if-gold)]/20">
                         {seats} seats
                       </span>
                     )}
@@ -811,8 +811,8 @@ function Homepage() {
             ].map(({ icon: Icon, label, value, href }) => {
               const inner = (
                 <>
-                  <Icon aria-hidden="true" className="h-7 w-7 text-[var(--if-gold)] mb-3" />
-                  <span className="text-xs text-[var(--if-gold-pale)]/50 uppercase tracking-widest mb-1">{label}</span>
+                  <Icon aria-hidden="true" className="h-7 w-7 text-[var(--if-gold-ink)] mb-3" />
+                  <span className="text-xs text-[var(--if-gold-pale)]/80 uppercase tracking-widest mb-1">{label}</span>
                   <span className="text-sm text-[var(--if-gold-pale)]/90">{value}</span>
                 </>
               );
@@ -829,7 +829,7 @@ function Homepage() {
             })}
           </div>
           <BlurFade delay={0.3}>
-            <p className="text-center text-sm text-[var(--if-gold-pale)]/50">
+            <p className="text-center text-sm text-[var(--if-gold-pale)]/80">
               {copy.mon_sat_9am_6pm_sun[lang]}
             </p>
           </BlurFade>
@@ -862,10 +862,10 @@ function Homepage() {
                   gradientSize={220}
                 >
                   <a href={portal.href} className="flex flex-col p-6 h-full">
-                    <span className="font-arabic text-2xl text-[var(--if-gold)]/60 mb-3 self-end">{portal.arabic}</span>
+                    <span className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 self-end">{portal.arabic}</span>
                     <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title}</h3>
                     <p className="text-sm text-[var(--if-text-muted)] mt-1">{portal.sub}</p>
-                    <span className="mt-4 text-xs font-semibold text-[var(--if-gold)] flex items-center gap-1">
+                    <span className="mt-4 text-xs font-semibold text-[var(--if-gold-ink)] flex items-center gap-1">
                       {copy.open[lang]} <ChevronRight className="h-3 w-3" />
                     </span>
                   </a>

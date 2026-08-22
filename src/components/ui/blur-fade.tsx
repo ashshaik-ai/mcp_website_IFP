@@ -1,94 +1,56 @@
-"use client"
+import type { CSSProperties } from "react";
 
-import { useRef } from "react"
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  type MotionProps,
-  type UseInViewOptions,
-  type Variants,
-} from "motion/react"
+/* Entrance animation, done in CSS rather than JavaScript.
 
-type MarginType = UseInViewOptions["margin"]
+   This was a motion component: it rendered opacity:0 and animated to 1 once
+   React hydrated. With 193 of them on the site, that meant roughly a hundred
+   elements per page sat invisible in the prerendered HTML until the bundle
+   loaded and ran — the content was present but unpainted, which held LCP near
+   six seconds while CLS stayed at a perfect zero.
 
-interface BlurFadeProps extends MotionProps {
-  children: React.ReactNode
-  className?: string
-  variant?: {
-    hidden: { y: number }
-    visible: { y: number }
-  }
-  duration?: number
-  delay?: number
-  offset?: number
-  direction?: "up" | "down" | "left" | "right"
-  inView?: boolean
-  inViewMargin?: MarginType
-  blur?: string
-}
+   A CSS animation starts at first paint instead, so the browser reveals
+   content on its own schedule and never waits for JavaScript. The effect is
+   unchanged. It is no longer a client component either, which takes the
+   animation off the hydration path entirely.
 
-const getFilter = (v: Variants[string]) =>
-  typeof v === "function" ? undefined : v.filter
+   Only `delay` and `className` were ever passed at any of the 193 call sites,
+   but the rest of the old API is accepted so nothing has to change to adopt
+   this. `inView` was never used — every instance animated on mount — so
+   scroll triggering is deliberately not reimplemented. */
+
+type BlurFadeProps = {
+  children: React.ReactNode;
+  className?: string;
+  /** Seconds before the animation starts. */
+  delay?: number;
+  /** Seconds the animation runs for. */
+  duration?: number;
+  /** Pixels travelled. */
+  offset?: number;
+  blur?: string;
+  /** Accepted for compatibility; every call site animates on mount. */
+  inView?: boolean;
+  direction?: "up" | "down" | "left" | "right";
+};
 
 export function BlurFade({
   children,
   className,
-  variant,
-  duration = 0.4,
   delay = 0,
+  duration = 0.4,
   offset = 6,
-  direction = "down",
-  inView = false,
-  inViewMargin = "-50px",
   blur = "6px",
-  ...props
 }: BlurFadeProps) {
-  const ref = useRef(null)
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin })
-  const isInView = !inView || inViewResult
-  const defaultVariants: Variants = {
-    hidden: {
-      [direction === "left" || direction === "right" ? "x" : "y"]:
-        direction === "right" || direction === "down" ? -offset : offset,
-      opacity: 0,
-      filter: `blur(${blur})`,
-    },
-    visible: {
-      [direction === "left" || direction === "right" ? "x" : "y"]: 0,
-      opacity: 1,
-      filter: `blur(0px)`,
-    },
-  }
-  const combinedVariants = variant ?? defaultVariants
-
-  const hiddenFilter = getFilter(combinedVariants.hidden)
-  const visibleFilter = getFilter(combinedVariants.visible)
-
-  const shouldTransitionFilter =
-    hiddenFilter != null &&
-    visibleFilter != null &&
-    hiddenFilter !== visibleFilter
+  const style = {
+    "--bf-delay": `${(0.04 + delay).toFixed(3)}s`,
+    "--bf-duration": `${duration}s`,
+    "--bf-offset": `${-offset}px`,
+    "--bf-blur": blur,
+  } as CSSProperties;
 
   return (
-    <AnimatePresence>
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        exit="hidden"
-        variants={combinedVariants}
-        transition={{
-          delay: 0.04 + delay,
-          duration,
-          ease: "easeOut",
-          ...(shouldTransitionFilter ? { filter: { duration } } : {}),
-        }}
-        className={className}
-        {...props}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
-  )
+    <div className={className ? `if-blur-fade ${className}` : "if-blur-fade"} style={style}>
+      {children}
+    </div>
+  );
 }

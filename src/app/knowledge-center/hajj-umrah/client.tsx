@@ -64,12 +64,12 @@ function HajjUmrahPage() {
       <section className="bg-gradient-to-br from-stone-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">الحج والعمرة</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">الحج والعمرة</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -109,9 +109,9 @@ function HajjUmrahPage() {
               <div className="flex items-center gap-3 mb-1">
                 <span className="w-8 h-8 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold text-sm flex-shrink-0">{steps[step].n}</span>
                 <h3 className="font-display text-xl font-bold text-[var(--if-green)]">{steps[step].title[lang]}</h3>
-                {"day" in steps[step] && <span className="ml-auto text-[10px] font-bold text-[var(--if-gold)] uppercase tracking-wide">{(steps[step] as typeof hajjSteps[0]).day}</span>}
+                {"day" in steps[step] && <span className="ml-auto text-[10px] font-bold text-[var(--if-gold-ink)] uppercase tracking-wide">{(steps[step] as typeof hajjSteps[0]).day}</span>}
               </div>
-              <div className="font-arabic text-lg text-[var(--if-gold)]/70 mb-3" dir="rtl">{steps[step].ar}</div>
+              <div className="font-arabic text-lg text-[var(--if-gold-light)] mb-3" dir="rtl">{steps[step].ar}</div>
               <p className="text-[var(--if-text-muted)] leading-relaxed">{steps[step].desc[lang]}</p>
               <div className="flex items-center justify-between mt-6">
                 <button disabled={step === 0} onClick={() => setStep(s => s - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
@@ -161,7 +161,7 @@ function HajjUmrahPage() {
                     <span className="text-xl flex-shrink-0">🚫</span>
                     <div>
                       <div className="font-semibold text-[var(--if-green)] text-sm">{r.rule[lang]}</div>
-                      <div className="font-arabic text-sm text-[var(--if-gold)]/70" dir="rtl">{r.ar}</div>
+                      <div className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl">{r.ar}</div>
                     </div>
                   </div>
                 </BlurFade>

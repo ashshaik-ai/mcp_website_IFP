@@ -19,7 +19,15 @@ export function ComparisonTable({
   const { lang } = useI18n();
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[var(--if-gold)]/20 bg-white">
+    /* tabIndex and a region role make the horizontal scroll reachable by
+       keyboard. Without them someone who cannot use a pointer can see the
+       table is cut off and has no way to scroll it. */
+    <div
+      role="region"
+      aria-label={lang === "te" ? "పోలిక పట్టిక" : "Comparison table"}
+      tabIndex={0}
+      className="overflow-x-auto rounded-2xl border border-[var(--if-gold)]/20 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+    >
       <table className="w-full min-w-[34rem] text-sm border-collapse">
         <thead>
           <tr>

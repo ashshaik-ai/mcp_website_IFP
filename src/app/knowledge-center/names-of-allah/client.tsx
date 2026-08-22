@@ -147,12 +147,12 @@ function NamesOfAllahPage() {
       <section className="bg-gradient-to-br from-slate-800 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">أسماء الله الحسنى</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">أسماء الله الحسنى</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -189,10 +189,10 @@ function NamesOfAllahPage() {
                   className={`relative overflow-hidden w-full text-center p-3 rounded-xl border transition-all ${selected?.n === name.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}
                 >
                   {selected?.n === name.n && <BorderBeam size={80} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" />}
-                  <div className={`text-[10px] font-bold mb-1 ${selected?.n === name.n ? "text-[var(--if-gold)]/60" : "text-[var(--if-text-muted)]"}`}>{name.n}</div>
+                  <div className={`text-[10px] font-bold mb-1 ${selected?.n === name.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{name.n}</div>
                   <div className={`font-arabic text-xl leading-relaxed ${selected?.n === name.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-green)]"}`} dir="rtl">{name.ar}</div>
                   <div className={`text-xs font-semibold mt-1 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]" : "text-[var(--if-green)]"}`}>{name.name}</div>
-                  <div className={`text-[10px] mt-0.5 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/60" : "text-[var(--if-text-muted)]"}`}>{name.en}</div>
+                  <div className={`text-[10px] mt-0.5 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{name.en}</div>
                 </button>
               </BlurFade>
             ))}
@@ -211,11 +211,11 @@ function NamesOfAllahPage() {
             <BlurFade delay={0.05}>
               <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
                 <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" />
-                <div className="text-xs font-bold text-[var(--if-gold)]/60 mb-2">#{selected.n}</div>
+                <div className="text-xs font-bold text-[var(--if-gold-light)] mb-2">#{selected.n}</div>
                 <div className="font-arabic text-5xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl">{selected.ar}</div>
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)] mb-1">{selected.name}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/70 mb-1">{selected.en}</div>
-                <div className="text-sm text-[var(--if-gold-pale)]/60 mb-5">{selected.te}</div>
+                <div className="text-sm text-[var(--if-gold-pale)]/80 mb-5">{selected.te}</div>
                 <button onClick={() => speak(selected.ar)} className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
                   <Volume2 className="h-4 w-4" />{copy.listen[lang]}
                 </button>

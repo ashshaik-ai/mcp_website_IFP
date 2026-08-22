@@ -294,13 +294,13 @@ function LearnQuranPage() {
       <section className="bg-gradient-to-br from-amber-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70">تعلُّم القرآن</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]">تعلُّم القرآن</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -321,7 +321,7 @@ function LearnQuranPage() {
             ].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
-                <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
+                <div className="text-xs text-[var(--if-gold-pale)]/80">{l}</div>
               </div>
             ))}
           </BlurFade>
@@ -356,7 +356,7 @@ function LearnQuranPage() {
                       <Icon className="h-5 w-5 text-white" />
                     </div>
                     <span className="font-semibold text-sm text-center leading-snug">{s.title[lang]}</span>
-                    <span className={`font-arabic text-xs ${openStage === s.num ? "text-[var(--if-gold)]/70" : "text-[var(--if-text-muted)]"}`}>{s.arabic}</span>
+                    <span className={`font-arabic text-xs ${openStage === s.num ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{s.arabic}</span>
                   </button>
                 );
               })}
@@ -370,7 +370,7 @@ function LearnQuranPage() {
                 <div className="bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6">
                   <h3 className="font-display text-xl font-bold text-[var(--if-green)] mb-1">{stage.title[lang]}</h3>
                   <p className="text-sm text-[var(--if-text-muted)] mb-5">{stage.desc[lang]}</p>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[var(--if-gold)] mb-3">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[var(--if-gold-ink)] mb-3">
                     {copy.what_you_ll_learn[lang]}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-5">
@@ -401,12 +401,12 @@ function LearnQuranPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
-            <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">
               {copy.flagship_section[lang]}
             </p>
             <h2 className="font-display text-3xl font-bold text-white mb-2">
               {copy.tajweed_academy[lang]}
-              <span className="font-arabic text-[var(--if-gold)] ml-3 font-normal">علم التجويد</span>
+              <span className="font-arabic text-[var(--if-gold-ink)] ml-3 font-normal">علم التجويد</span>
             </h2>
             <p className="text-[var(--if-gold-pale)]/70 text-sm mb-8">
               {copy.n_8_essential_tajweed_rules_explanation[lang]}
@@ -434,7 +434,7 @@ function LearnQuranPage() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-[var(--if-gold-pale)]/60 mb-6">
+          <p className="text-xs text-[var(--if-gold-pale)]/80 mb-6">
             {copy.rule[lang]} <span className="font-bold text-[var(--if-gold-light)]">{tjIdx + 1}</span> / {tajweedSteps.length}
           </p>
 
@@ -444,8 +444,8 @@ function LearnQuranPage() {
               <div className="font-arabic text-5xl text-[var(--if-gold-light)] leading-relaxed" dir="rtl" lang="ar">
                 {step.glyph}
               </div>
-              <div className="font-arabic text-base text-[var(--if-gold)]/70" dir="rtl" lang="ar">{step.ar}</div>
-              <p className="text-xs uppercase tracking-widest text-[var(--if-gold-pale)]/50">
+              <div className="font-arabic text-base text-[var(--if-gold-light)]" dir="rtl" lang="ar">{step.ar}</div>
+              <p className="text-xs uppercase tracking-widest text-[var(--if-gold-pale)]/80">
                 {copy.tajweed_rule[lang]}
               </p>
             </div>
@@ -457,14 +457,14 @@ function LearnQuranPage() {
               </h3>
 
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-1.5">
+                <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-1.5">
                   {copy.explanation[lang]}
                 </p>
                 <p className="text-sm text-[var(--if-gold-pale)]/85 leading-relaxed">{step.expl[lang]}</p>
               </div>
 
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">
+                <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">
                   {copy.example[lang]}
                 </p>
                 <div className="font-arabic text-2xl text-[var(--if-gold-light)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-xl px-4 py-3 text-center leading-relaxed mb-1.5" dir="rtl" lang="ar">
@@ -509,7 +509,7 @@ function LearnQuranPage() {
       <section className="py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2 text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2 text-center">
               {copy.quran_duas[lang]}
             </p>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
@@ -525,7 +525,7 @@ function LearnQuranPage() {
               <BlurFade key={i} delay={0.06 * i}>
                 <div className="relative overflow-hidden bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 rounded-2xl p-5 flex flex-col hover:-translate-y-1 transition-transform group">
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[var(--if-gold)]" />
-                  <span className="self-start text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4">
+                  <span className="self-start text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4">
                     {d.ref[lang]}
                   </span>
                   <p className="font-arabic text-2xl text-[var(--if-green)] leading-relaxed text-right mb-3" dir="rtl" lang="ar">
@@ -556,9 +556,9 @@ function LearnQuranPage() {
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="font-semibold text-[var(--if-green)]">{s.en}</h3>
-                      <p className="text-xs text-emerald-600 font-medium">{s.meaning[lang]}</p>
+                      <p className="text-xs text-emerald-700 font-medium">{s.meaning[lang]}</p>
                     </div>
-                    <span className="font-arabic text-3xl text-[var(--if-gold)]/75" dir="rtl" lang="ar">{s.ar}</span>
+                    <span className="font-arabic text-3xl text-[var(--if-gold-light)]" dir="rtl" lang="ar">{s.ar}</span>
                   </div>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed">{s.virtue[lang]}</p>
                   <div className="flex gap-1.5 items-start bg-emerald-50 border border-emerald-200/60 rounded-lg p-2.5">
@@ -567,7 +567,7 @@ function LearnQuranPage() {
                     </span>
                     <span className="text-xs text-emerald-800 leading-relaxed">{s.lesson[lang]}</span>
                   </div>
-                  <p className="text-xs text-[var(--if-gold)] italic">{s.tip[lang]}</p>
+                  <p className="text-xs text-[var(--if-gold-ink)] italic">{s.tip[lang]}</p>
                 </div>
               </BlurFade>
             ))}
@@ -579,7 +579,7 @@ function LearnQuranPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-2xl">
           <BlurFade delay={0.1}>
-            <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2 text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2 text-center">
               {copy.ayah_of_the_day[lang]}
             </p>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-10">
@@ -596,10 +596,10 @@ function LearnQuranPage() {
               <p className="text-sm italic text-[var(--if-gold-pale)]/80 mb-2 leading-relaxed">
                 {lang === "te" ? todayAyah.te : todayAyah.en}
               </p>
-              <p className="text-xs text-[var(--if-gold)] font-semibold mb-7">{todayAyah.ref}</p>
+              <p className="text-xs text-[var(--if-gold-ink)] font-semibold mb-7">{todayAyah.ref}</p>
 
               <div className="border-t border-[var(--if-gold)]/20 pt-6 text-left">
-                <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold)] mb-2">
+                <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">
                   {copy.reflection_prompt[lang]}
                 </p>
                 <p className="text-sm text-[var(--if-gold-pale)]/80 leading-relaxed">{todayAyah.reflect[lang]}</p>
@@ -608,7 +608,7 @@ function LearnQuranPage() {
           </BlurFade>
 
           <BlurFade delay={0.2}>
-            <p className="text-xs text-[var(--if-gold-pale)]/50 text-center mt-4">
+            <p className="text-xs text-[var(--if-gold-pale)]/80 text-center mt-4">
               {copy.n_7_ayahs_one_changes_with[lang]}
             </p>
           </BlurFade>

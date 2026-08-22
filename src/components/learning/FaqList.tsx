@@ -34,7 +34,7 @@ export function FaqList({
             <summary className="flex items-center gap-2 min-h-11 cursor-pointer font-semibold text-sm text-[var(--if-green)] list-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] rounded">
               <ChevronRight
                 aria-hidden="true"
-                className="h-4 w-4 shrink-0 text-[var(--if-gold)] transition-transform group-open:rotate-90"
+                className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)] transition-transform group-open:rotate-90"
               />
               <span className="text-pretty">{q[lang]}</span>
             </summary>

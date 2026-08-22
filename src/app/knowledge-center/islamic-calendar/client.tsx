@@ -66,12 +66,12 @@ function IslamicCalendarPage() {
       <section className="bg-gradient-to-br from-cyan-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/60 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-6 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="font-arabic text-4xl text-[var(--if-gold)]/70" dir="rtl">التقويم الهجري</span>
+            <span className="font-arabic text-4xl text-[var(--if-gold-light)]" dir="rtl">التقويم الهجري</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -88,7 +88,7 @@ function IslamicCalendarPage() {
               {[{ n: "12", l: copy.months[lang] }, { n: "354/355", l: copy.days_year[lang] }, { n: "622 CE", l: copy.since_hijra[lang] }].map(({ n, l }) => (
                 <div key={l} className="text-center">
                   <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
-                  <div className="text-xs text-[var(--if-gold-pale)]/60">{l}</div>
+                  <div className="text-xs text-[var(--if-gold-pale)]/80">{l}</div>
                 </div>
               ))}
             </div>
@@ -115,10 +115,10 @@ function IslamicCalendarPage() {
                   className={`relative overflow-hidden w-full text-left p-4 rounded-2xl border transition-all ${active === m.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}
                 >
                   {active === m.n && <BorderBeam size={80} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" />}
-                  <div className={`text-[10px] font-bold mb-1 ${active === m.n ? "text-[var(--if-gold)]/60" : "text-[var(--if-text-muted)]"}`}>Month {m.n}</div>
+                  <div className={`text-[10px] font-bold mb-1 ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>Month {m.n}</div>
                   <div className={`font-arabic text-2xl leading-relaxed ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-green)]"}`} dir="rtl">{m.ar}</div>
                   <div className={`font-display font-semibold text-sm mt-1 ${active === m.n ? "text-[var(--if-gold-pale)]" : "text-[var(--if-green)]"}`}>{m.name}</div>
-                  <div className={`text-[10px] ${active === m.n ? "text-[var(--if-gold-pale)]/60" : "text-[var(--if-text-muted)]"}`}>{m.te} · {m.days} days</div>
+                  <div className={`text-[10px] ${active === m.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{m.te} · {m.days} days</div>
                   {m.events.length > 0 && (
                     <div className={`mt-2 w-2 h-2 rounded-full ${active === m.n ? "bg-[var(--if-gold)]" : "bg-[var(--if-gold)]/50"}`} />
                   )}
@@ -142,10 +142,10 @@ function IslamicCalendarPage() {
                   <p className="text-sm text-[var(--if-text-muted)] mb-4">{m.meaning[lang]}</p>
                   {m.events.length > 0 ? (
                     <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-[var(--if-gold)] uppercase tracking-wider">{copy.key_dates[lang]}</h4>
+                      <h4 className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-wider">{copy.key_dates[lang]}</h4>
                       {m.events.map(e => (
                         <div key={e} className="flex items-start gap-2 text-sm">
-                          <span className="text-[var(--if-gold)] mt-0.5">✦</span>
+                          <span className="text-[var(--if-gold-ink)] mt-0.5">✦</span>
                           <span>{e}</span>
                         </div>
                       ))}
@@ -181,7 +181,7 @@ function IslamicCalendarPage() {
               <tbody>
                 {specialDates.map((d, i) => (
                   <tr key={d.name} className={i % 2 === 0 ? "bg-white" : "bg-[var(--if-cream-light)]"}>
-                    <td className="p-4 font-semibold text-[var(--if-gold)] whitespace-nowrap">{d.date}</td>
+                    <td className="p-4 font-semibold text-[var(--if-gold-ink)] whitespace-nowrap">{d.date}</td>
                     <td className="p-4 text-[var(--if-text)]">{d.name}</td>
                     <td className="p-4 text-[var(--if-text-muted)] hidden sm:table-cell">{d.te}</td>
                     <td className="p-4 font-arabic text-right text-[var(--if-green)] hidden md:table-cell" dir="rtl">{d.ar}</td>

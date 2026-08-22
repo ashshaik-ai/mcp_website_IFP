@@ -76,7 +76,7 @@ export function NarrativeCards({
               )}
               <div className="min-w-0 flex-1">
                 {meta && (
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--if-gold)] mb-1">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--if-gold-ink)] mb-1">
                     {meta}
                   </p>
                 )}
@@ -85,7 +85,7 @@ export function NarrativeCards({
                     {title}
                   </h3>
                   {e.arabic && (
-                    <span dir="rtl" lang="ar" className="font-arabic text-lg text-[var(--if-gold)]">
+                    <span dir="rtl" lang="ar" className="font-arabic text-lg text-[var(--if-gold-ink)]">
                       {e.arabic}
                     </span>
                   )}
@@ -103,7 +103,7 @@ export function NarrativeCards({
                       type="button"
                       onClick={() => setOpen(expanded ? null : i)}
                       aria-expanded={expanded}
-                      className="mt-2 inline-flex items-center gap-1 min-h-11 text-sm font-semibold text-[var(--if-gold)] hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] rounded"
+                      className="mt-2 inline-flex items-center gap-1 min-h-11 text-sm font-semibold text-[var(--if-gold-ink)] hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] rounded"
                     >
                       {expanded ? copy.less[lang] : copy.more[lang]}
                       <ChevronRight
