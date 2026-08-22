@@ -19,6 +19,8 @@
 import type { Lesson } from "./lessons.ts";
 import { arabicLessons } from "./lessons/arabic.ts";
 import { urduLessons } from "./lessons/urdu.ts";
+import { historyLessons } from "./lessons/history.ts";
+import { historyLessonsTwo } from "./lessons/history-2.ts";
 
 /* Portals authored as their own module live in ./lessons/ and are spread in
    below. This file was heading past two thousand lines with everything inline,
@@ -26,6 +28,8 @@ import { urduLessons } from "./lessons/urdu.ts";
 export const authoredLessons: Lesson[] = [
   ...arabicLessons,
   ...urduLessons,
+  ...historyLessons,
+  ...historyLessonsTwo,
 
   {
     slug: "why-hajj",
