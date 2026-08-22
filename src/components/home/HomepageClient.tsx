@@ -41,6 +41,7 @@ const marqueeItems = [
 const copy = {
   our_mission: { te: "మా లక్ష్యం —", en: "Our mission —" },
   founder_team: { te: "వ్యవస్థాపకుడు & బృందం", en: "Founder & Team" },
+  seats_label: { te: "సీట్లు", en: "seats" },
   team_hint: { te: "2023 ఎన్నికైన సభ్యులు", en: "Members elected in 2023" },
   action_plan_2023_2028: { te: "కార్యాచరణ ప్రణాళిక 2023–2028", en: "Action Plan 2023–2028" },
   n_10_point_plan_for_our: { te: "మా కమ్యూనిటీ కోసం 10-అంశాల ప్రణాళిక", en: "10-point plan for our community" },
@@ -285,6 +286,7 @@ function Homepage() {
                 and the spark bled through as a blotch across the lower right.
                 Solid gold also gives the hero a primary the eye lands on first. */}
             <ShimmerButton
+              href="#achievements"
               shimmerColor="#fff6df"
               background="var(--if-gold-light)"
               className="border-transparent text-[var(--if-green)] font-semibold shadow-[0_8px_24px_-8px_rgba(200,146,42,0.7)] hover:shadow-[0_10px_30px_-8px_rgba(200,146,42,0.9)]"
@@ -784,7 +786,9 @@ function Homepage() {
                 <div className="group relative overflow-hidden rounded-2xl aspect-video border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all shadow-sm hover:shadow-lg hover:shadow-[var(--if-gold)]/10">
                   <Image
                     src={item.src}
-                    alt={item.title.en}
+                    /* The caption below states the same thing, so a repeated
+                       alt would be read twice -- and it was English-only. */
+                    alt=""
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 50vw, 33vw"
@@ -862,7 +866,7 @@ function Homepage() {
                     <h3 className="font-semibold text-[var(--if-green)]">{role[lang]}</h3>
                     {seats > 0 && (
                       <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-green)] font-semibold border border-[var(--if-gold)]/20">
-                        {seats} seats
+                        {seats} {copy.seats_label[lang]}
                       </span>
                     )}
                   </div>
@@ -871,8 +875,9 @@ function Homepage() {
               </BlurFade>
             ))}
           </div>
-          <BlurFade delay={0.4} className="text-center">
+          <BlurFade delay={0.4} className="flex justify-center">
             <ShimmerButton
+              href="#contact"
               shimmerColor="#c8922a"
               background="#0d3b1e"
               className="text-[var(--if-gold-light)] font-semibold"

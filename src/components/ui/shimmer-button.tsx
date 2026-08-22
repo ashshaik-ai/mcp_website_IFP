@@ -3,6 +3,11 @@ import React, { type ComponentPropsWithoutRef, type CSSProperties } from "react"
 import { cn } from "@/lib/utils"
 
 export interface ShimmerButtonProps extends ComponentPropsWithoutRef<"button"> {
+  /* Renders an <a> instead of a <button>. Three of these shipped with neither
+     a handler nor a destination -- including the homepage's primary hero call
+     to action -- because a <button> looks finished without one. Navigation is
+     a link, and a link cannot be silently inert. */
+  href?: string
   shimmerColor?: string
   shimmerSize?: string
   borderRadius?: string
@@ -25,12 +30,17 @@ export const ShimmerButton = React.forwardRef<
       background = "rgba(0, 0, 0, 1)",
       className,
       children,
+      href,
       ...props
     },
     ref
   ) => {
+    /* An anchor and a button take different prop types, so this widens once
+       here rather than at every call site. */
+    const Tag = (href ? "a" : "button") as React.ElementType
     return (
-      <button
+      <Tag
+        {...(href ? { href } : { type: "button" })}
         style={
           {
             "--spread": "90deg",
@@ -88,7 +98,7 @@ export const ShimmerButton = React.forwardRef<
             "absolute inset-(--cut) -z-20 [border-radius:var(--radius)] [background:var(--bg)]"
           )}
         />
-      </button>
+      </Tag>
     )
   }
 )

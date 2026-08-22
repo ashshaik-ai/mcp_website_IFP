@@ -22,6 +22,7 @@ const copy = {
   language_of_islamic_literature_and: { te: "ఇస్లామిక్ సాహిత్యం మరియు ఖురాన్ అనువాదాల భాష — ఉర్దూ స్క్రిప్ట్ నేర్చుకోండి", en: "Language of Islamic literature and Quranic translations — learn Urdu script" },
   letters: { te: "అక్షరాలు", en: "Letters" },
   levels: { te: "స్థాయిలు", en: "Levels" },
+  lessons: { te: "పాఠాలు", en: "Lessons" },
   free: { te: "ఉచితం", en: "Free" },
   urdu_alphabet: { te: "ఉర్దూ అక్షరమాల", en: "Urdu Alphabet" },
   click_to_hear: { te: "నొక్కండి వినడానికి 🔊", en: "Click to hear 🔊" },
@@ -72,7 +73,7 @@ function LearnUrduPage() {
             </p>
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center">
-            {[{ n: "39", l: copy.letters[lang] }, { n: "4", l: copy.levels[lang] }, { n: "∞", l: copy.free[lang] }].map(({ n, l }) => (
+            {[{ n: "39", l: copy.letters[lang] }, { n: "6", l: copy.lessons[lang] }, { n: "∞", l: copy.free[lang] }].map(({ n, l }) => (
               <div key={l} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center min-w-[70px]">
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)]">{n}</div>
                 <div className="text-xs text-[var(--if-gold-pale)]/80">{l}</div>

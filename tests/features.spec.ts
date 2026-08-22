@@ -115,7 +115,8 @@ test.describe("lesson progress", () => {
 test.describe("lessons", () => {
   test("quiz marks a correct answer", async ({ page }) => {
     await page.goto("/knowledge-center/learn-quran/whatis");
-    const options = page.locator("#main button[aria-pressed]");
+    // Radio semantics, not toggle buttons — these are one choice.
+    const options = page.locator('#main [role="radiogroup"] button[role="radio"]');
     await expect(options.first()).toBeVisible();
     // Try each option until the right one is found; the answer index varies.
     const count = await options.count();

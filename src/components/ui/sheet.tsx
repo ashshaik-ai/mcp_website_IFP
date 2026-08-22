@@ -41,10 +41,14 @@ function SheetContent({
   children,
   side = "right",
   showCloseButton = true,
+  /* The label was hardcoded English on a Telugu-default site. Callers pass the
+     translated string; "Close" is only the fallback. */
+  closeLabel = "Close",
   ...props
 }: SheetPrimitive.Popup.Props & {
   side?: "top" | "right" | "bottom" | "left"
   showCloseButton?: boolean
+  closeLabel?: string
 }) {
   return (
     <SheetPortal>
@@ -63,18 +67,20 @@ function SheetContent({
           <SheetPrimitive.Close
             data-slot="sheet-close"
             render={
+              /* variant="ghost" sets no colour, so this inherited
+                 --popover-foreground: a near-black X on the dark green panel
+                 at 1.47:1, only visible on hover, which never fires on touch.
+                 size="icon-sm" also made it a 28px target. */
               <Button
                 type="button"
                 variant="ghost"
-                className="absolute top-3 right-3"
-                size="icon-sm"
-                aria-label="Close menu"
-                title="Close menu"
+                className="absolute top-3 right-3 size-11 text-[var(--if-gold-light)] hover:bg-white/10 hover:text-[var(--if-gold-light)]"
+                aria-label={closeLabel}
+                title={closeLabel}
               />
             }
           >
-            <XIcon aria-hidden="true" />
-            <span className="sr-only">Close</span>
+            <XIcon aria-hidden="true" className="size-5" />
           </SheetPrimitive.Close>
         )}
       </SheetPrimitive.Popup>

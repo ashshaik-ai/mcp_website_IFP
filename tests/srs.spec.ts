@@ -72,4 +72,24 @@ test.describe("spaced repetition scheduling", () => {
     const s = deckStats(ids, deck, NOW);
     expect(s).toEqual({ total: 4, started: 3, mastered: 1, dueNow: 1 });
   });
+
+  /* The lock this caught: "hard" on a brand-new card held streak 0, whose
+     interval is zero days, so the card was due again the instant it was
+     graded and — being the lowest streak — sorted back to the front of the
+     queue. Pressing Hard forever showed the same card and no unseen card was
+     ever introduced. */
+  test("hard on a new card does not make it due immediately", async () => {
+    const held = schedule(undefined, "hard", NOW);
+    expect(held.due, "a hard card came straight back").toBeGreaterThan(NOW);
+  });
+
+  test("hard moves the queue on to the next card", async () => {
+    const ids = ["a", "b"];
+    const now = NOW;
+    expect(dueCards(ids, {}, now)[0]).toBe("a");
+    // Grade the head card hard, a couple of seconds later.
+    const deck: Deck = { a: schedule(undefined, "hard", now) };
+    const next = dueCards(ids, deck, now + 2000);
+    expect(next[0], "card a came straight back to the head of the queue").toBe("b");
+  });
 });

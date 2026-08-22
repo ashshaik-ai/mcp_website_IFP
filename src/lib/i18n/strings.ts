@@ -10,6 +10,8 @@ export const strings = {
   nav_about:      { te: "గురించి", en: "About" },
   nav_contact:    { te: "సంప్రదించండి", en: "Contact" },
   nav_kc:         { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  nav_menu:       { te: "మెనూ తెరవండి", en: "Open menu" },
+  nav_close:      { te: "మెనూ మూసివేయండి", en: "Close menu" },
   nav_sg:         { te: "విద్యార్థి మార్గదర్శి", en: "Student Guidance" },
   lang_toggle:    { te: "English", en: "తెలుగు" },
 

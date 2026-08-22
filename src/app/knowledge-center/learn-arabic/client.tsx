@@ -150,8 +150,7 @@ function LearnArabicPage() {
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center text-sm">
             {[
-              { n: "6", l: copy.levels[lang] },
-              { n: "20+", l: copy.lessons[lang] },
+              { n: "6", l: copy.lessons[lang] },
               { n: "28", l: copy.letters[lang] },
               { n: "∞", l: copy.free[lang] },
             ].map(({ n, l }) => (

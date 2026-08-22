@@ -361,7 +361,13 @@
    placeholder height so the scrollbar stays honest and nothing shifts. */
 .if-defer {
   content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
+  /* Height only. "auto 600px" is the one-value form, which applies to BOTH
+     axes, so every skipped section also claimed 600px of width. On a lesson
+     page, where these are grid items rather than plain blocks, that width won
+     and the document measured 664px against a 390px viewport -- every lesson
+     page panned sideways until you scrolled far enough to render the section.
+     Two values are width then height; width opts out. */
+  contain-intrinsic-size: none auto 600px;
 }
 
 /* ── Horizontal rail ──────────────────────────────────────────────────────
@@ -499,9 +505,19 @@
 /* Continuous marquees are motion the reader never asked for and cannot stop,
    so they hold still when the system asks for reduced motion. Nothing is lost:
    the team rail still scrolls by hand. */
+/* Everything that loops forever stops when the system asks for calm. The
+   guard used to name only the marquees and the if-* classes, which left the
+   meteors, the shimmer sweep, the gradient text and the shiny-text wash
+   running — 21 infinite animations still going on the homepage under
+   prefers-reduced-motion. WCAG 2.2.2 / 2.3.3. */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
-  .animate-marquee-vertical {
+  .animate-marquee-vertical,
+  .animate-meteor,
+  .animate-shimmer-slide,
+  .animate-spin-around,
+  .animate-gradient,
+  .animate-shiny-text {
     animation: none;
   }
 }

@@ -150,7 +150,10 @@ function StudentGuidancePage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return guidanceCards.filter((c) => {
-      if (stream !== "all" && c.stream !== stream) return false;
+      /* stream is a space-separated list for anything open to more than one
+         stream, so an exact compare hid all four of those cards from every
+         filter — CUET-UG is open to all four streams and appeared under none. */
+      if (stream !== "all" && !c.stream.split(" ").includes(stream)) return false;
       if (!q) return true;
       return (
         c.search.includes(q) ||

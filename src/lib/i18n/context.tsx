@@ -32,6 +32,15 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  /* Keep <html lang> in step with the content. It was hardcoded "te" in the
+     layout and nothing ever changed it, so an English page was announced by a
+     Telugu speech synthesiser — the attribute was well-formed, which is all
+     axe and Lighthouse check, so both still scored 100. WCAG 3.1.1/3.1.2. */
+  useEffect(() => {
+    if (existing) return;
+    document.documentElement.lang = lang;
+  }, [existing, lang]);
+
   const t = useCallback((key: StringKey) => strings[key][lang], [lang]);
 
   // When already inside a root provider, pass through — children use parent context

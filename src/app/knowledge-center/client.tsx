@@ -46,7 +46,7 @@ const portals = [
     title: { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" },
     arabic: "تعلُّم العربية",
     desc: { te: "అక్షరాల నుండి ఖురానిక్ అరబిక్ వరకు — నిర్మాణాత్మక అభ్యాస మార్గం", en: "From alphabet to Quranic Arabic — structured learning roadmap" },
-    meta: { te: "6 స్థాయిలు · 20+ పాఠాలు · ఉచితం", en: "6 Levels · 20+ Lessons · Free Always" },
+    meta: { te: "6 పాఠాలు · 28 అక్షరాలు · ఉచితం", en: "6 Lessons · 28 Letters · Free Always" },
     icon: BookOpen,
     color: "from-emerald-900 to-[var(--if-green)]",
   },
@@ -55,7 +55,7 @@ const portals = [
     title: { te: "ఉర్దూ నేర్చుకోండి", en: "Learn Urdu" },
     arabic: "تعلُّم الأردو",
     desc: { te: "స్క్రిప్ట్ నుండి ఇస్లామిక్ ఉర్దూ వరకు — 6 స్థాయిలు", en: "From script to Islamic Urdu — 6 structured levels" },
-    meta: { te: "6 స్థాయిలు · నస్తాలిఖ్ లిపి · ఉచితం", en: "6 Levels · Nastaliq Script · Free Always" },
+    meta: { te: "6 పాఠాలు · 39 అక్షరాలు · ఉచితం", en: "6 Lessons · 39 Letters · Free Always" },
     icon: Globe,
     color: "from-blue-900 to-[var(--if-green)]",
   },
@@ -135,8 +135,8 @@ const portals = [
     id: "special-prayers",
     title: { te: "ప్రత్యేక నమాజులు", en: "Special Prayers" },
     arabic: "الصلوات الخاصة",
-    desc: { te: "10 ప్రత్యేక ఇస్లామిక్ నమాజులు — తహజ్జుద్, ఇస్తిఖారా, జనాజా మరియు మరిన్ని", en: "10 special Islamic prayers — Tahajjud, Istikhara, Janaza and more" },
-    meta: { te: "10 నమాజులు · దువాలు · ఉచితం", en: "10 Prayers · Duas · Free" },
+    desc: { te: "ప్రత్యేక ఇస్లామిక్ నమాజులు — తహజ్జుద్, జుముఆ, ఈద్, తరావీహ్, ఇస్తిఖారా", en: "Special Islamic prayers — Tahajjud, Jumu'ah, Eid, Tarawih, Istikhara" },
+    meta: { te: "5 నమాజులు · దువాలు · ఉచితం", en: "5 Prayers · Duas · Free" },
     icon: Star,
     color: "from-slate-800 to-[var(--if-green)]",
   },
@@ -160,7 +160,10 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
   const { lang, t } = useI18n();
   const [filter, setFilter] = useState<"all" | "learning" | "tools">("all");
 
-  const filtered = filter === "tools" ? [] : portals;
+  /* Only "all" and "learning" render as buttons, and every portal is a
+     learning portal, so this always returned the full list. The control was
+     two buttons that did the same thing. */
+  const filtered = portals;
 
   return (
     <PageShell>

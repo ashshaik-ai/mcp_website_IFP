@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, X } from "lucide-react";
+import { quizOrder } from "@/lib/quiz-order";
 import { useI18n } from "@/lib/i18n/context";
 import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
@@ -32,15 +33,26 @@ const copy = {
 function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
   const { lang } = useI18n();
   const [picked, setPicked] = useState<number | null>(null);
-  const right = picked === item.answer;
+  /* Options are shown in a seeded order, because every question on the site
+     was authored with answer: 0. See src/lib/quiz-order.ts. */
+  const { order, answer } = useMemo(
+    () => quizOrder(item.question.en, item.options.length, item.answer),
+    [item],
+  );
+  const right = picked === answer;
 
   return (
     <div className="rounded-xl border border-[var(--if-gold)]/20 bg-white p-4">
-      <p className="font-semibold text-[var(--if-text)] text-pretty">{item.question[lang]}</p>
-      <ul className="mt-3 grid gap-2">
-        {item.options.map((o, i) => {
+      <p id={`${idPrefix}-q`} className="font-semibold text-[var(--if-text)] text-pretty">
+        {item.question[lang]}
+      </p>
+      {/* A radiogroup, not a row of toggle buttons: these are one choice, and
+          aria-pressed announced them as four independent switches. */}
+      <div role="radiogroup" aria-labelledby={`${idPrefix}-q`} className="mt-3 grid gap-2">
+        {order.map((original, i) => {
+          const o = item.options[original];
           const chosen = picked === i;
-          const isAnswer = i === item.answer;
+          const isAnswer = i === answer;
           const state =
             picked === null
               ? "border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 bg-white"
@@ -50,11 +62,12 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
                   ? "border-red-300 bg-red-50"
                   : "border-[var(--if-gold)]/15 bg-white opacity-60";
           return (
-            <li key={`${idPrefix}-${i}`}>
+            <div key={`${idPrefix}-${original}`}>
               <button
                 type="button"
+                role="radio"
                 onClick={() => setPicked(i)}
-                aria-pressed={chosen}
+                aria-checked={chosen}
                 className={`w-full flex items-center gap-2.5 text-left min-h-11 px-3 rounded-lg border text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${state}`}
               >
                 {picked !== null && isAnswer && (
@@ -65,18 +78,19 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
                 )}
                 <span className="text-pretty">{o[lang]}</span>
               </button>
-            </li>
+            </div>
           );
         })}
-      </ul>
-      {picked !== null && (
-        <p
-          aria-live="polite"
-          className={`mt-2.5 text-sm font-semibold ${right ? "text-emerald-700" : "text-red-600"}`}
-        >
-          {right ? copy.correct[lang] : copy.tryAgain[lang]}
-        </p>
-      )}
+      </div>
+      {/* The live region is always mounted. Creating the element and its text
+          in the same tick generally does not announce -- the region has to be
+          there first for the insertion to be noticed. */}
+      <p
+        aria-live="polite"
+        className={`mt-2.5 text-sm font-semibold ${picked === null ? "sr-only" : right ? "text-emerald-700" : "text-red-600"}`}
+      >
+        {picked === null ? "" : right ? copy.correct[lang] : copy.tryAgain[lang]}
+      </p>
     </div>
   );
 }

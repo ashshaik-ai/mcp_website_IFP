@@ -12,6 +12,14 @@
    along; "hard" holds position; "again" resets to the start. */
 const INTERVALS = [0, 1, 3, 7, 16, 35, 90];
 
+/* "hard" holds the streak, but holding position 0 meant INTERVALS[0] — zero
+   days — so a new card graded hard came back due immediately and, being the
+   lowest streak in the queue, sorted straight back to the front. The deck
+   locked on that one card and no unseen card was ever reached. Holding
+   position is right; coming back in ten minutes rather than instantly is what
+   makes it a review instead of a loop. */
+const HARD_GAP = 10 * 60_000;
+
 export type Grade = "again" | "hard" | "good";
 
 export type CardState = {
@@ -38,8 +46,9 @@ export function schedule(prev: CardState | undefined, grade: Grade, now = Date.n
   /* "again" is due immediately so the card comes back in the same session —
      that is the point of getting it wrong. */
   const days = grade === "again" ? 0 : INTERVALS[next];
+  const gap = grade === "hard" && days === 0 ? HARD_GAP : days * DAY;
 
-  return { streak: next, due: now + days * DAY, seen: now };
+  return { streak: next, due: now + gap, seen: now };
 }
 
 /** Cards due now, hardest first, with unseen cards introduced after reviews. */
