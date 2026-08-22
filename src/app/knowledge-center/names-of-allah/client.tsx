@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { ChevronLeft, Volume2, Search } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -230,6 +231,9 @@ function NamesOfAllahPage() {
           </div>
         </section>
       )}
+
+      {/* The grid teaches the names; these teach what to do with them. */}
+      <LessonIndex portal="names-of-allah" />
 
     </PageShell>
   );

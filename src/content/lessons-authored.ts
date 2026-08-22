@@ -928,4 +928,419 @@ export const authoredLessons: Lesson[] = [
       { label: "The five days of Hajj", url: "/knowledge-center/hajj-umrah/days-of-hajj" },
     ],
   },
+
+  {
+    slug: "what-they-are",
+    portal: "names-of-allah",
+    title: {
+      te: "స్థాయి 1 — అస్మా ఉల్-హుస్నా అంటే ఏమిటి",
+      en: "Level 1 — What the Beautiful Names are",
+    },
+    intro: {
+      te: "అల్-అస్మా ఉల్-హుస్నా అంటే 'అత్యంత సుందరమైన పేర్లు'. ఇవి అల్లాహ్ తనను తాను వర్ణించుకున్న పేర్లు. ఈ పాఠం అవి ఎక్కడి నుండి వచ్చాయో, వాటిని ఎందుకు మనం సొంతంగా సృష్టించలేమో వివరిస్తుంది.",
+      en: "Al-Asma ul-Husna means 'the most beautiful names': the names by which Allah has described Himself. This lesson covers where they come from and why we cannot invent new ones.",
+    },
+    sections: [
+      {
+        heading: { te: "ఖురాన్ ఏమి చెబుతుంది", en: "What the Quran says" },
+        body: {
+          te: "'అల్లాహ్‌కు అత్యంత సుందరమైన పేర్లు ఉన్నాయి; వాటితో ఆయనను వేడుకోండి' (అల్-ఆరాఫ్ 7:180). మరొక చోట: 'ఆయనను అల్లాహ్ అని పిలవండి లేదా అర్-రహ్మాన్ అని పిలవండి — ఏ పేరుతో పిలిచినా ఆయనకు అత్యంత సుందరమైన పేర్లే' (అల్-ఇస్రా 17:110).",
+          en: "'To Allah belong the most beautiful names, so call upon Him by them' (Al-A'raf 7:180). And elsewhere: 'Call upon Allah, or call upon the Most Merciful. Whichever you call, to Him belong the most beautiful names' (Al-Isra 17:110).",
+        },
+        check: {
+          question: { te: "ఖురాన్ 7:180 మనల్ని ఏమి చేయమని చెబుతుంది?", en: "What does Quran 7:180 instruct us to do?" },
+          options: [
+            { te: "ఆ పేర్లతో అల్లాహ్‌ను వేడుకోవాలి", en: "Call upon Allah by those names" },
+            { te: "ఆ పేర్లను రాయాలి", en: "Write the names down" },
+            { te: "ఆ పేర్లను దాచాలి", en: "Keep the names hidden" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "పేర్లు తౌఖీఫీ — మనం సృష్టించలేము", en: "The names are tawqifi: we do not invent them" },
+        body: {
+          te: "అహ్లుస్-సున్నహ్ పండితుల ఏకాభిప్రాయం ప్రకారం అల్లాహ్ పేర్లు తౌఖీఫీ — అంటే ఖురాన్‌లో లేదా ప్రామాణిక సున్నత్‌లో స్థిరపడినవి మాత్రమే ఉపయోగించాలి. 'ఈ లక్షణం అల్లాహ్‌కు సరిపోతుంది' అని మనం అనుకుని కొత్త పేరు తయారు చేయలేము. దీనికి కారణం: అల్లాహ్ గురించి ఆయన చెప్పనిది చెప్పడం ఆయనపై కల్పన అవుతుంది.",
+          en: "Sunni scholars agree that Allah's names are tawqifi: only those established in the Quran or authentic Sunnah may be used. We cannot coin a new one because a quality seems fitting. To say of Allah what He has not said of Himself is to speak about Him without knowledge.",
+        },
+        check: {
+          question: { te: "'తౌఖీఫీ' అంటే ఏమిటి?", en: "What does 'tawqifi' mean here?" },
+          options: [
+            { te: "ఖురాన్, సున్నత్‌లో స్థిరపడినవి మాత్రమే", en: "Only what is established in Quran and Sunnah" },
+            { te: "పండితులు ఎంచుకున్నవి", en: "Whatever scholars select" },
+            { te: "ఎవరైనా చేర్చవచ్చు", en: "Anyone may add to them" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "పేరు, గుణం మధ్య తేడా", en: "Names and attributes are not the same" },
+        body: {
+          te: "పేరు (ఇస్మ్) అల్లాహ్‌ను సూచిస్తుంది — అర్-రహ్మాన్, అల్-అలీమ్. గుణం (సిఫత్) ఆయన లక్షణాన్ని సూచిస్తుంది — రహ్మత్ (కారుణ్యం), ఇల్మ్ (జ్ఞానం). ప్రతి పేరులో ఒక గుణం ఉంది, కానీ ప్రతి గుణం పేరు కాదు. ఉదాహరణకు అల్లాహ్ 'మాట్లాడతాడు' అని ఖురాన్ చెబుతుంది, కానీ 'అల్-ముతకల్లిమ్' అనే పేరుతో ఆయనను పిలవం.",
+          en: "A name (ism) refers to Allah Himself: Ar-Rahman, Al-Alim. An attribute (sifah) refers to a quality: rahmah (mercy), ilm (knowledge). Every name contains an attribute, but not every attribute yields a name. The Quran says Allah speaks, yet we do not address Him as Al-Mutakallim.",
+        },
+      },
+      {
+        heading: { te: "'హుస్నా' — కేవలం అందం కాదు", en: "'Husna' means more than beautiful" },
+        body: {
+          te: "అరబిక్‌లో 'హుస్నా' అంటే అత్యున్నత స్థాయి అందం, సంపూర్ణత. ఈ పేర్లు కేవలం విన్నప్పుడు ఇంపుగా ఉండేవి కావు — అవి ఏ లోపమూ లేని సంపూర్ణ అర్థాలను కలిగి ఉంటాయి. మనుషులకూ కొన్ని పోలిన పదాలు వాడతాం (జ్ఞాని, దయగలవాడు), కానీ మనిషి జ్ఞానం పరిమితం; అల్లాహ్ జ్ఞానం అపరిమితం. పేరు ఒకటే అనిపించినా అర్థం స్థాయిలో పోలిక లేదు.",
+          en: "In Arabic 'husna' carries the sense of the utmost, of completeness. These names are not merely pleasant to hear; each carries a meaning without any deficiency in it. We use similar words for people, calling someone knowing or merciful, but a person's knowledge is bounded and Allah's is not. The word may look shared; the meaning is not comparable.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "పేర్లు ఖురాన్, సున్నత్ నుండే వస్తాయి — మనం కొత్తవి సృష్టించలేము.", en: "The names come from Quran and Sunnah; we do not coin new ones." },
+      { te: "పేరు అల్లాహ్‌ను సూచిస్తుంది; గుణం ఆయన లక్షణాన్ని సూచిస్తుంది.", en: "A name refers to Allah; an attribute refers to a quality of His." },
+      { te: "ఖురాన్ 7:180 — 'వాటితో ఆయనను వేడుకోండి'.", en: "Quran 7:180 — 'call upon Him by them'." },
+    ],
+    didYouKnow: [
+      { te: "'అర్-రహ్మాన్' అనే పేరును ఖురాన్‌లో అల్లాహ్‌కు మాత్రమే ఉపయోగించారు — మరెవరికీ కాదు.", en: "The name Ar-Rahman is used in the Quran for Allah alone and for no one else." },
+      { te: "బిస్మిల్లాహ్‌లో మూడు పేర్లు ఉన్నాయి: అల్లాహ్, అర్-రహ్మాన్, అర్-రహీమ్.", en: "The bismillah contains three names: Allah, Ar-Rahman and Ar-Raheem." },
+    ],
+    reflect: [
+      { te: "మీరు రోజుకు ఎన్నిసార్లు 'బిస్మిల్లాహిర్ రహ్మానిర్ రహీమ్' అంటారు? ఆ మూడు పేర్ల అర్థం గురించి చివరిసారి ఎప్పుడు ఆలోచించారు?", en: "How many times a day do you say the bismillah? When did you last stop to think about what those three names mean?" },
+    ],
+    mistakes: [
+      { te: "అల్లాహ్ గుణాలను మనుషుల గుణాలతో పోల్చడం — 'ఆయన కూడా మనలాగే' అనుకోవడం.", en: "Comparing Allah's attributes to human ones, as though His are simply larger versions of ours." },
+      { te: "ఖురాన్, సున్నత్‌లో లేని పేర్లను కల్పించడం.", en: "Inventing names that appear in neither the Quran nor the Sunnah." },
+    ],
+    faqs: [
+      {
+        question: { te: "'అల్లాహ్' కూడా ఒక పేరేనా?", en: "Is 'Allah' itself one of the names?" },
+        answer: {
+          te: "అవును — మరియు అది అత్యంత సమగ్రమైన పేరు. మిగిలిన పేర్లన్నీ దాని లక్షణాలుగా వస్తాయి. అరబిక్‌లో 'అల్లాహ్' అనే పదానికి బహువచనం లేదు, స్త్రీలింగం లేదు — ఇది ఏకైక దైవానికి మాత్రమే వర్తించే పేరు.",
+          en: "Yes, and it is the most comprehensive of them; the others come as descriptions of it. In Arabic the word 'Allah' has no plural and no feminine form, because it belongs to the one God alone.",
+        },
+      },
+      {
+        question: { te: "ఇతర భాషల్లో అల్లాహ్‌ను పిలవవచ్చా?", en: "May I call upon Allah in another language?" },
+        answer: {
+          te: "అవును. దుఆలో మీ మాతృభాషలో వేడుకోవడం పూర్తిగా అనుమతించబడింది — తెలుగులో అయినా. అల్లాహ్ అన్ని భాషలూ వింటాడు. అయితే ఆయన పేర్లను అరబిక్‌లో నేర్చుకోవడం వాటి ఖచ్చితమైన అర్థాన్ని అర్థం చేసుకోవడానికి సహాయపడుతుంది.",
+          en: "Yes. Supplicating in your mother tongue, Telugu included, is entirely permitted, and Allah hears every language. Learning the names in Arabic simply helps you grasp their precise meaning.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "అల్లాహ్ పేర్లు ఎక్కడి నుండి వస్తాయి?", en: "Where do Allah's names come from?" },
+        options: [
+          { te: "ఖురాన్ మరియు ప్రామాణిక సున్నత్", en: "The Quran and authentic Sunnah" },
+          { te: "పండితుల ఏకాభిప్రాయం", en: "The consensus of scholars" },
+          { te: "ప్రాచీన సంప్రదాయం", en: "Ancient tradition" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "పేరు (ఇస్మ్) మరియు గుణం (సిఫత్) మధ్య తేడా ఏమిటి?", en: "What is the difference between a name (ism) and an attribute (sifah)?" },
+        options: [
+          { te: "పేరు అల్లాహ్‌ను సూచిస్తుంది; గుణం ఆయన లక్షణాన్ని", en: "A name refers to Allah; an attribute refers to a quality of His" },
+          { te: "ఏ తేడా లేదు", en: "There is no difference" },
+          { te: "గుణాలు ఖురాన్‌లో లేవు", en: "Attributes are not in the Quran" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "బిస్మిల్లాహ్‌లో ఎన్ని పేర్లు ఉన్నాయి?", en: "How many names appear in the bismillah?" },
+        options: [
+          { te: "మూడు", en: "Three" },
+          { te: "ఒకటి", en: "One" },
+          { te: "ఏడు", en: "Seven" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "ఖురాన్ 7:180, 17:110 — పేర్లతో వేడుకోండి.", en: "Quran 7:180 and 17:110 — call upon Him by the names." },
+      { te: "తౌఖీఫీ: ఖురాన్, సున్నత్‌లో ఉన్నవి మాత్రమే.", en: "Tawqifi: only what is in Quran and Sunnah." },
+      { te: "పేరు ≠ గుణం. ప్రతి పేరులో గుణం ఉంది; ప్రతి గుణం పేరు కాదు.", en: "Name is not attribute. Every name holds an attribute; not every attribute yields a name." },
+    ],
+    summary: {
+      te: "అస్మా ఉల్-హుస్నా అల్లాహ్ తనను తాను వర్ణించుకున్న సంపూర్ణ పేర్లు. అవి ఖురాన్, సున్నత్ నుండే వస్తాయి; మనం కొత్తవి సృష్టించలేము. ఖురాన్ వాటితో ఆయనను వేడుకోమని ఆదేశిస్తుంది.",
+      en: "The Beautiful Names are the complete names by which Allah described Himself. They come only from the Quran and Sunnah, and the Quran instructs us to call upon Him by them.",
+    },
+    apply: {
+      te: "ఆచరణ: ఈ వారం మీ దుఆలో ఒక పేరును ఎంచుకుని, అడిగే విషయానికి సరిపోయే పేరుతో మొదలుపెట్టండి.",
+      en: "Apply it: this week, begin one supplication with a name that fits what you are asking for.",
+    },
+    reading: [
+      { label: "99 Names portal", url: "/knowledge-center/names-of-allah" },
+    ],
+  },
+
+  {
+    slug: "ninety-nine",
+    portal: "names-of-allah",
+    title: {
+      te: "స్థాయి 2 — తొంభై తొమ్మిది అనే సంఖ్య",
+      en: "Level 2 — The number ninety-nine",
+    },
+    intro: {
+      te: "'అల్లాహ్‌కు తొంభై తొమ్మిది పేర్లు ఉన్నాయి' అనే హదీసు అందరికీ తెలుసు. కానీ దాని అర్థం అల్లాహ్‌కు అన్నే పేర్లు ఉన్నాయనా? 'ఇహ్సా' అంటే కేవలం లెక్కపెట్టడమా? ఈ పాఠం ఆ రెండు ప్రశ్నలకు సమాధానం.",
+      en: "The hadith that Allah has ninety-nine names is widely known. But does it mean He has only that many? And does 'ihsa' mean simply counting? This lesson answers both.",
+    },
+    sections: [
+      {
+        heading: { te: "హదీసు", en: "The hadith" },
+        body: {
+          te: "అబూ హురైరా (ర/అ) ఉల్లేఖించారు: ప్రవక్త ﷺ అన్నారు — 'అల్లాహ్‌కు తొంభై తొమ్మిది పేర్లు ఉన్నాయి, వందకు ఒకటి తక్కువ. వాటిని ఇహ్సా చేసినవారు స్వర్గంలో ప్రవేశిస్తారు' (బుఖారీ, ముస్లిం).",
+          en: "Abu Hurayrah (RA) reported that the Prophet ﷺ said: 'Allah has ninety-nine names, one hundred less one. Whoever performs ihsa of them will enter Paradise' (Bukhari and Muslim).",
+        },
+        check: {
+          question: { te: "ఈ హదీసు ఏ గ్రంథాల్లో ఉంది?", en: "Which collections record this hadith?" },
+          options: [
+            { te: "బుఖారీ మరియు ముస్లిం", en: "Bukhari and Muslim" },
+            { te: "కేవలం ఇబ్న్ మాజా", en: "Ibn Majah only" },
+            { te: "ఏ గ్రంథంలోనూ లేదు", en: "It is not in any collection" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "తొంభై తొమ్మిదే ఉన్నాయా?", en: "Are there only ninety-nine?" },
+        body: {
+          te: "లేదు. హదీసు అర్థం: ఈ తొంభై తొమ్మిది పేర్లకు ఒక ప్రత్యేకత ఉంది — వాటిని ఇహ్సా చేసినవారికి స్వర్గం. ఇది అల్లాహ్ పేర్ల మొత్తం సంఖ్యను పరిమితం చేయడం కాదు. మరో దుఆలో ప్రవక్త ﷺ అన్నారు: '...నీవు నీ కోసం ఉంచుకున్న, నీ సృష్టిలో ఎవరికీ తెలియజేయని ప్రతి పేరుతో నిన్ను అడుగుతున్నాను' (అహ్మద్). అంటే మనకు తెలియని పేర్లు కూడా ఉన్నాయి.",
+          en: "No. The hadith means that these ninety-nine carry a particular distinction: whoever performs ihsa of them enters Paradise. It is not a cap on how many names Allah has. In another supplication the Prophet ﷺ said: 'I ask You by every name that You have kept with Yourself, which You have taught to none of Your creation' (Ahmad). So there are names we do not know.",
+        },
+        check: {
+          question: { te: "అల్లాహ్‌కు తొంభై తొమ్మిది పేర్లు మాత్రమేనా?", en: "Does Allah have only ninety-nine names?" },
+          options: [
+            { te: "కాదు — మనకు తెలియని పేర్లు కూడా ఉన్నాయి", en: "No, there are names we have not been taught" },
+            { te: "అవును, సరిగ్గా తొంభై తొమ్మిది", en: "Yes, exactly ninety-nine" },
+            { te: "అవును, కానీ ఒకటి రహస్యం", en: "Yes, but one is hidden" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "జాబితా విషయంలో నిజాయితీ", en: "An honest word about the list" },
+        body: {
+          te: "బుఖారీ, ముస్లిం హదీసులో 'తొంభై తొమ్మిది' అని ఉంది కానీ పేర్ల జాబితా లేదు. మనం సాధారణంగా చూసే జాబితా తిర్మిజీ, ఇబ్న్ మాజా ఉల్లేఖనాల్లో వస్తుంది. చాలామంది హదీసు పండితులు — ఇబ్న్ తైమియా, ఇబ్న్ హజర్ సహా — ఆ నిర్దిష్ట జాబితా ఉల్లేఖకుడి కృషి కావచ్చని, ప్రవక్త ﷺ మాటలుగా ఖచ్చితంగా స్థిరపడలేదని అన్నారు. అందుకే వేర్వేరు జాబితాల్లో కొన్ని పేర్లు మారుతుంటాయి. ఇది సందేహం కాదు — పేర్లన్నీ ఖురాన్, సున్నత్ నుండే వచ్చాయి; కేవలం ఏ తొంభై తొమ్మిది అనే విభజన మాత్రమే చర్చనీయాంశం.",
+          en: "The hadith in Bukhari and Muslim gives the number but not the list. The list most people see comes through narrations in Tirmidhi and Ibn Majah, and many hadith scholars, Ibn Taymiyyah and Ibn Hajar among them, held that this particular enumeration is likely the work of a narrator rather than established prophetic speech. That is why different printed lists vary in a few names. This casts no doubt on the names themselves, all of which come from the Quran and Sunnah; only on which exact ninety-nine were meant.",
+        },
+      },
+      {
+        heading: { te: "'ఇహ్సా' అంటే ఏమిటి", en: "What 'ihsa' actually means" },
+        body: {
+          te: "పండితులు దీన్ని మూడు స్థాయిలుగా వివరించారు. ఒకటి: పేర్లను కంఠస్థం చేయడం. రెండు: వాటి అర్థాలను అర్థం చేసుకోవడం. మూడు: వాటి ప్రకారం జీవించడం — అల్లాహ్ అల్-గఫూర్ అని తెలిస్తే ఆయన క్షమాపణను ఆశించడం, ఆయన అర్-రఖీబ్ (గమనించేవాడు) అని తెలిస్తే ఒంటరిగా ఉన్నప్పుడు కూడా జాగ్రత్తగా ఉండటం. కేవలం తొంభై తొమ్మిది సార్లు లెక్కపెట్టడం ఇహ్సా కాదు.",
+          en: "Scholars explain it in three levels. First, memorising the names. Second, understanding what they mean. Third, living by them: if you know Allah is Al-Ghafur you hope in His forgiveness, and if you know He is Ar-Raqib, the Watchful, you are careful even when alone. Reciting the list ninety-nine times is not ihsa.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "హదీసు తొంభై తొమ్మిదికి ప్రత్యేకత ఇస్తుంది; అల్లాహ్ పేర్లను పరిమితం చేయదు.", en: "The hadith distinguishes ninety-nine; it does not limit Allah's names to that number." },
+      { te: "నిర్దిష్ట జాబితా తిర్మిజీ ఉల్లేఖన నుండి; పండితులు దానిపై భేదిస్తారు.", en: "The specific list comes via Tirmidhi, and scholars differ on its status." },
+      { te: "ఇహ్సా = కంఠస్థం + అర్థం + ఆచరణ.", en: "Ihsa = memorising + understanding + acting on them." },
+    ],
+    didYouKnow: [
+      { te: "ప్రవక్త ﷺ దుఆలో 'నీవు నీ కోసం ఉంచుకున్న పేర్లు' అని ప్రస్తావించారు — అంటే సృష్టికి తెలియని పేర్లు ఉన్నాయి.", en: "The Prophet ﷺ referred in supplication to names Allah kept with Himself, taught to none of creation." },
+    ],
+    reflect: [
+      { te: "మీకు తెలిసిన పేర్లలో ఏ ఒక్కదాని ప్రకారం మీ ప్రవర్తన ఈ వారం మారగలదు?", en: "Of the names you already know, which one could change how you behave this week?" },
+    ],
+    mistakes: [
+      { te: "పేర్లను అర్థం తెలియకుండా వల్లె వేయడం, అదే ఇహ్సా అనుకోవడం.", en: "Reciting the list without meaning and assuming that is ihsa." },
+      { te: "జాబితాలో తేడాలు చూసి గందరగోళపడటం — పేర్లన్నీ ఖురాన్, సున్నత్ నుండే వచ్చాయి.", en: "Being unsettled by variations between printed lists, when every name in them comes from Quran and Sunnah." },
+    ],
+    faqs: [
+      {
+        question: { te: "పేర్లను కంఠస్థం చేస్తే స్వర్గం ఖాయమా?", en: "Does memorising the names guarantee Paradise?" },
+        answer: {
+          te: "హదీసు 'ఇహ్సా' చేసినవారి గురించి చెబుతుంది, కేవలం కంఠస్థం చేసినవారి గురించి కాదు. పండితులు ఇహ్సాలో అర్థం, ఆచరణ కూడా ఉన్నాయని అంటారు. కంఠస్థం మంచి ఆరంభం, కానీ అదొక్కటే కాదు.",
+          en: "The hadith speaks of ihsa, not of memorising alone, and scholars include understanding and acting upon them in it. Memorising is a good beginning, but it is not the whole of it.",
+        },
+      },
+      {
+        question: { te: "పేర్లను పాటలా వల్లె వేయడం సరైనదేనా?", en: "Is chanting the names in a rhythm correct?" },
+        answer: {
+          te: "పేర్లతో దుఆ చేయడం, జికర్ చేయడం సున్నత్. అయితే ప్రవక్త ﷺ నుండి స్థిరపడని నిర్దిష్ట సంఖ్యలు, పద్ధతులు, ప్రత్యేక ఫలితాలను కల్పించడం సరికాదు. అర్థంతో, హృదయంతో చేయడం ముఖ్యం.",
+          en: "Supplicating and making dhikr with the names is sunnah. Inventing fixed counts, methods or promised outcomes not established from the Prophet ﷺ is not. What matters is doing it with meaning and presence of heart.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "బుఖారీ, ముస్లిం హదీసులో ఏమి లేదు?", en: "What is NOT in the Bukhari and Muslim hadith?" },
+        options: [
+          { te: "పేర్ల జాబితా", en: "The list of names" },
+          { te: "తొంభై తొమ్మిది అనే సంఖ్య", en: "The number ninety-nine" },
+          { te: "స్వర్గ వాగ్దానం", en: "The promise of Paradise" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "'ఇహ్సా' లో ఏమి ఉంటుంది?", en: "What does 'ihsa' include?" },
+        options: [
+          { te: "కంఠస్థం, అర్థం, ఆచరణ", en: "Memorising, understanding and acting" },
+          { te: "కేవలం లెక్కపెట్టడం", en: "Counting alone" },
+          { te: "కేవలం రాయడం", en: "Writing them out" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "అల్లాహ్‌కు మనకు తెలియని పేర్లు ఉన్నాయా?", en: "Are there names of Allah we have not been taught?" },
+        options: [
+          { te: "అవును — ప్రవక్త ﷺ దుఆ దీన్ని సూచిస్తుంది", en: "Yes, the Prophet's supplication indicates so" },
+          { te: "లేదు, అన్నీ తెలుసు", en: "No, we know them all" },
+          { te: "ఖురాన్ దీని గురించి మౌనం", en: "The Quran is silent on this" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "హదీసు: బుఖారీ, ముస్లిం — సంఖ్య ఉంది, జాబితా లేదు.", en: "The hadith in Bukhari and Muslim gives the number, not the list." },
+      { te: "జాబితా: తిర్మిజీ ఉల్లేఖన; ఉల్లేఖకుడి కృషి కావచ్చు.", en: "The list comes via Tirmidhi and may be a narrator's work." },
+      { te: "ఇహ్సా = కంఠస్థం + అర్థం + ఆచరణ.", en: "Ihsa = memorise + understand + act." },
+    ],
+    summary: {
+      te: "తొంభై తొమ్మిది అనే సంఖ్య ఆ పేర్ల ప్రత్యేకతను తెలుపుతుంది, అల్లాహ్ పేర్లను పరిమితం చేయదు. ప్రసిద్ధ జాబితా ఉల్లేఖకుడి కృషి కావచ్చని పండితులు అంటారు. ఇహ్సా అంటే లెక్కపెట్టడం కాదు — తెలుసుకుని, అర్థం చేసుకుని, ఆ ప్రకారం జీవించడం.",
+      en: "The number ninety-nine marks a distinction, not a limit. Scholars hold the famous list may be a narrator's compilation. And ihsa is not counting: it is knowing the names, understanding them, and living by them.",
+    },
+    apply: {
+      te: "ఆచరణ: మూడు పేర్లను ఎంచుకుని, ప్రతి దాని అర్థాన్ని ఒక వాక్యంలో మీ మాటల్లో రాయండి.",
+      en: "Apply it: pick three names and write one sentence each on what they mean, in your own words.",
+    },
+    reading: [
+      { label: "99 Names portal", url: "/knowledge-center/names-of-allah" },
+      { label: "What the Beautiful Names are", url: "/knowledge-center/names-of-allah/what-they-are" },
+    ],
+  },
+
+  {
+    slug: "mercy-and-majesty",
+    portal: "names-of-allah",
+    title: {
+      te: "స్థాయి 3 — కారుణ్యం మరియు గాంభీర్యం",
+      en: "Level 3 — Mercy and majesty",
+    },
+    intro: {
+      te: "పండితులు పేర్లను రెండు వర్గాలుగా చూస్తారు: జమాల్ (సౌందర్యం, కారుణ్యం) మరియు జలాల్ (గాంభీర్యం, శక్తి). ఈ రెండింటినీ కలిపి తెలుసుకోవడం ముఖ్యం — ఒక్కదాన్నే చూస్తే విశ్వాసం వక్రమవుతుంది.",
+      en: "Scholars group the names into two: jamal, the names of beauty and mercy, and jalal, the names of majesty and power. Holding both together matters, because looking at only one bends a person's faith out of shape.",
+    },
+    sections: [
+      {
+        heading: { te: "జమాల్ — కారుణ్య పేర్లు", en: "Jamal: the names of mercy" },
+        body: {
+          te: "అర్-రహ్మాన్ (అపార కరుణామయుడు), అర్-రహీమ్ (కృపాశీలుడు), అల్-గఫూర్ (క్షమించేవాడు), అల్-వదూద్ (ప్రేమించేవాడు), అల్-లతీఫ్ (సూక్ష్మంగా దయ చూపేవాడు), అత్-తవ్వాబ్ (పశ్చాత్తాపాన్ని స్వీకరించేవాడు). ఈ పేర్లు ఆశను కలిగిస్తాయి.",
+          en: "Ar-Rahman (the Most Compassionate), Ar-Raheem (the Especially Merciful), Al-Ghafur (the Forgiving), Al-Wadud (the Loving), Al-Latif (the Subtly Kind), At-Tawwab (the Accepter of repentance). These names give rise to hope.",
+        },
+        check: {
+          question: { te: "'అత్-తవ్వాబ్' అంటే ఏమిటి?", en: "What does 'At-Tawwab' mean?" },
+          options: [
+            { te: "పశ్చాత్తాపాన్ని స్వీకరించేవాడు", en: "The One who accepts repentance" },
+            { te: "శిక్షించేవాడు", en: "The One who punishes" },
+            { te: "సృష్టించేవాడు", en: "The Creator" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "జలాల్ — గాంభీర్య పేర్లు", en: "Jalal: the names of majesty" },
+        body: {
+          te: "అల్-అజీజ్ (సర్వశక్తిమంతుడు), అల్-జబ్బార్ (బలవంతుడు), అల్-ఖహ్హార్ (అణచివేసేవాడు), అల్-ముంతఖిమ్ (ప్రతీకారం తీర్చేవాడు), అల్-హకమ్ (తీర్పు చెప్పేవాడు), అల్-అదల్ (న్యాయవంతుడు). ఈ పేర్లు భయాన్ని, గౌరవాన్ని కలిగిస్తాయి.",
+          en: "Al-Aziz (the Almighty), Al-Jabbar (the Compeller), Al-Qahhar (the Subduer), Al-Muntaqim (the Avenger), Al-Hakam (the Judge), Al-Adl (the Just). These names give rise to awe and to restraint.",
+        },
+      },
+      {
+        heading: { te: "రెండూ కలిసి ఉండాలి", en: "Both must be held together" },
+        body: {
+          te: "కారుణ్య పేర్లను మాత్రమే చూసేవారు నిర్లక్ష్యంగా మారతారు — 'అల్లాహ్ క్షమిస్తాడు కదా' అని పాపాన్ని తేలికగా తీసుకుంటారు. గాంభీర్య పేర్లను మాత్రమే చూసేవారు నిరాశలో పడతారు — 'నా పాపాలకు క్షమాపణ లేదు' అనుకుంటారు. ఖురాన్ ఈ రెండింటినీ కలిపే ఇస్తుంది: 'నా దాసులకు తెలియజేయి — నేనే క్షమించేవాడను, కరుణామయుడను; మరియు నా శిక్ష బాధాకరమైన శిక్ష' (అల్-హిజ్ర్ 15:49-50).",
+          en: "A person who sees only the names of mercy grows careless, treating sin lightly because Allah forgives. A person who sees only the names of majesty falls into despair, believing forgiveness is closed to them. The Quran places the two side by side: 'Inform My servants that I am the Forgiving, the Merciful, and that My punishment is the painful punishment' (Al-Hijr 15:49-50).",
+        },
+        check: {
+          question: { te: "కారుణ్య పేర్లను మాత్రమే చూస్తే ఏమవుతుంది?", en: "What happens if a person sees only the names of mercy?" },
+          options: [
+            { te: "నిర్లక్ష్యం — పాపాన్ని తేలికగా తీసుకోవడం", en: "Carelessness, taking sin lightly" },
+            { te: "నిరాశ", en: "Despair" },
+            { te: "ఏమీ కాదు", en: "Nothing at all" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "ఆశ, భయం మధ్య సమతుల్యత", en: "The balance of hope and fear" },
+        body: {
+          te: "పండితులు దీన్ని రెండు రెక్కలతో పోల్చారు — పక్షి ఎగరాలంటే రెండూ కావాలి. ఆరోగ్యంగా ఉన్నప్పుడు ఆశ, భయం సమానంగా ఉండాలని; మరణ సమయంలో మాత్రం ఆశ ఎక్కువగా ఉండాలని చాలామంది పండితులు అన్నారు — ప్రవక్త ﷺ చెప్పారు: 'మీలో ఎవరూ అల్లాహ్ గురించి మంచి భావన లేకుండా మరణించకూడదు' (ముస్లిం).",
+          en: "Scholars liken these to two wings: a bird needs both to fly. Many held that in health hope and fear should be balanced, while at the approach of death hope should predominate, since the Prophet ﷺ said: 'Let none of you die except thinking well of Allah' (Muslim).",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "జమాల్ = కారుణ్యం, ఆశ. జలాల్ = గాంభీర్యం, భయం.", en: "Jamal is mercy and hope; jalal is majesty and awe." },
+      { te: "ఒక్క వర్గాన్నే చూస్తే నిర్లక్ష్యం లేదా నిరాశ వస్తుంది.", en: "Seeing only one group produces either carelessness or despair." },
+      { te: "ఖురాన్ 15:49-50 రెండింటినీ వరుసగా ఉంచుతుంది.", en: "Quran 15:49-50 places both side by side." },
+    ],
+    didYouKnow: [
+      { te: "ఖురాన్‌లో కారుణ్యం గురించిన ప్రస్తావనలు శిక్ష గురించిన ప్రస్తావనల కంటే గణనీయంగా ఎక్కువ.", en: "Mentions of mercy in the Quran considerably outnumber mentions of punishment." },
+      { te: "ఒక హదీసులో అల్లాహ్ అన్నాడు: 'నా కారుణ్యం నా ఆగ్రహాన్ని అధిగమిస్తుంది' (బుఖారీ).", en: "In a hadith qudsi Allah says: 'My mercy prevails over My wrath' (Bukhari)." },
+    ],
+    reflect: [
+      { te: "మీ స్వభావం ఏ వైపు మొగ్గుతుంది — అతి ఆశ, లేదా అతి భయం? మరో రెక్కను ఎలా బలపరచగలరు?", en: "Which way does your temperament lean, too much hope or too much fear? How could you strengthen the other wing?" },
+    ],
+    mistakes: [
+      { te: "'అల్లాహ్ క్షమిస్తాడు' అనే మాటను పాపం కొనసాగించడానికి సాకుగా వాడటం.", en: "Using 'Allah forgives' as a licence to continue in sin." },
+      { te: "'నా పాపాలు చాలా ఎక్కువ, క్షమాపణ లేదు' అని నిరాశ చెందడం — ఇది ఖురాన్ 39:53కు విరుద్ధం.", en: "Despairing that one's sins are beyond forgiveness, which contradicts Quran 39:53." },
+    ],
+    faqs: [
+      {
+        question: { te: "అల్-ముంతఖిమ్ వంటి పేర్లు అల్లాహ్ కఠినుడని అర్థమా?", en: "Do names like Al-Muntaqim mean Allah is harsh?" },
+        answer: {
+          te: "కాదు. ఈ పేరు అణచివేయబడినవారికి న్యాయం చేయడాన్ని సూచిస్తుంది. అణచివేసేవాడు శిక్షించబడకపోతే అది న్యాయం కాదు. కారుణ్యం, న్యాయం ఒకదానికొకటి విరుద్ధం కాదు — బాధితుడికి న్యాయం చేయడమే కారుణ్యం.",
+          en: "No. It refers to justice for those who were wronged. A world where the oppressor is never held to account is not a merciful one; giving the victim justice is itself an act of mercy.",
+        },
+      },
+      {
+        question: { te: "పిల్లలకు ఏ పేర్లను ముందుగా నేర్పాలి?", en: "Which names should be taught to children first?" },
+        answer: {
+          te: "కారుణ్య పేర్లతో మొదలుపెట్టడం మేలని చాలామంది పండితులు, ఉపాధ్యాయులు అంటారు — అర్-రహ్మాన్, అర్-రహీమ్, అల్-వదూద్. అల్లాహ్‌ను ముందుగా ప్రేమించడం నేర్చుకున్న పిల్లవాడు తర్వాత గాంభీర్యాన్ని సరైన రీతిలో అర్థం చేసుకుంటాడు.",
+          en: "Most scholars and teachers advise beginning with the names of mercy: Ar-Rahman, Ar-Raheem, Al-Wadud. A child who first learns to love Allah will later understand His majesty in the right way.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "'జమాల్' పేర్లు దేన్ని కలిగిస్తాయి?", en: "The names of jamal give rise to what?" },
+        options: [
+          { te: "ఆశ", en: "Hope" },
+          { te: "నిరాశ", en: "Despair" },
+          { te: "ఉదాసీనత", en: "Indifference" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "కింది వాటిలో జలాల్ పేరు ఏది?", en: "Which of these is a name of jalal?" },
+        options: [
+          { te: "అల్-ఖహ్హార్", en: "Al-Qahhar" },
+          { te: "అల్-వదూద్", en: "Al-Wadud" },
+          { te: "అల్-లతీఫ్", en: "Al-Latif" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "హదీసు ఖుద్సీ ప్రకారం అల్లాహ్ కారుణ్యం దేన్ని అధిగమిస్తుంది?", en: "According to the hadith qudsi, Allah's mercy prevails over what?" },
+        options: [
+          { te: "ఆయన ఆగ్రహాన్ని", en: "His wrath" },
+          { te: "ఆయన జ్ఞానాన్ని", en: "His knowledge" },
+          { te: "ఆయన సృష్టిని", en: "His creation" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "జమాల్: అర్-రహ్మాన్, అల్-గఫూర్, అల్-వదూద్, అత్-తవ్వాబ్.", en: "Jamal: Ar-Rahman, Al-Ghafur, Al-Wadud, At-Tawwab." },
+      { te: "జలాల్: అల్-అజీజ్, అల్-ఖహ్హార్, అల్-హకమ్, అల్-అదల్.", en: "Jalal: Al-Aziz, Al-Qahhar, Al-Hakam, Al-Adl." },
+      { te: "రెండు రెక్కలు: ఆశ, భయం.", en: "Two wings: hope and fear." },
+    ],
+    summary: {
+      te: "పేర్లు కారుణ్యం (జమాల్), గాంభీర్యం (జలాల్) అనే రెండు వర్గాలుగా వస్తాయి. రెండింటినీ కలిపి తెలుసుకోవడమే సరైన విశ్వాసం — ఒక్కటే నిర్లక్ష్యానికి లేదా నిరాశకు దారితీస్తుంది.",
+      en: "The names fall into mercy (jamal) and majesty (jalal). Sound faith holds both; taking only one leads either to carelessness or to despair.",
+    },
+    apply: {
+      te: "ఆచరణ: ఒక జమాల్ పేరు, ఒక జలాల్ పేరు ఎంచుకుని, ఈ వారం ప్రతి దానితో ఒక దుఆ చేయండి.",
+      en: "Apply it: choose one name of mercy and one of majesty, and make a supplication with each this week.",
+    },
+    reading: [
+      { label: "99 Names portal", url: "/knowledge-center/names-of-allah" },
+      { label: "The number ninety-nine", url: "/knowledge-center/names-of-allah/ninety-nine" },
+    ],
+  },
 ];
