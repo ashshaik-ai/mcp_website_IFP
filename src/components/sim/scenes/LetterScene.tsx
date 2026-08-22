@@ -19,17 +19,18 @@ export function LetterScene({ step, index }: SceneProps) {
   const forms = parts.slice(0, 4);
 
   return (
-    <svg viewBox="0 0 360 320" className="absolute inset-0 h-full w-full" aria-hidden="true">
+    <svg viewBox="0 0 576 324" className="absolute inset-0 h-full w-full" aria-hidden="true">
+      <g transform="translate(108, 2)">
       <defs>
         <clipPath id={`wipe-${index}`}>
-          <rect className="if-wipe" x="40" y="20" width="280" height="200" />
+          <rect className="if-wipe" x="-100" y="10" width="560" height="212" />
         </clipPath>
       </defs>
       {/* Baseline */}
-      <line x1="70" y1="178" x2="290" y2="178" stroke="rgba(232,184,75,0.25)" strokeWidth="1.5" strokeDasharray="3 5" />
+      <line x1="-70" y1="182" x2="430" y2="182" stroke="rgba(232,184,75,0.25)" strokeWidth="1.5" strokeDasharray="3 5" />
 
       <g key={index} clipPath={`url(#wipe-${index})`}>
-        <text x="180" y="160" textAnchor="middle" fontSize={urdu ? 118 : 136} fill="var(--if-gold-light)" className={urdu ? "font-urdu" : "font-arabic"} lang={urdu ? "ur" : "ar"} direction="rtl">
+        <text x="180" y="164" textAnchor="middle" fontSize={urdu ? 130 : 150} fill="var(--if-gold-light)" className={urdu ? "font-urdu" : "font-arabic"} lang={urdu ? "ur" : "ar"} direction="rtl">
           {letter}
         </text>
       </g>
@@ -43,12 +44,13 @@ export function LetterScene({ step, index }: SceneProps) {
         <g>
           {forms.map((f, i) => (
             <g key={i} style={{ opacity: 0.85 }}>
-              <rect x={40 + i * 72} y="226" width="60" height="60" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(232,184,75,0.25)" />
-              <text x={70 + i * 72} y="268" textAnchor="middle" fontSize="30" fill="var(--if-gold-pale)" className={urdu ? "font-urdu" : "font-arabic"} lang={urdu ? "ur" : "ar"} direction="rtl">{f}</text>
+              <rect x={-2 + i * 94} y="228" width="80" height="68" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(232,184,75,0.25)" />
+              <text x={38 + i * 94} y="278" textAnchor="middle" fontSize="36" fill="var(--if-gold-pale)" className={urdu ? "font-urdu" : "font-arabic"} lang={urdu ? "ur" : "ar"} direction="rtl">{f}</text>
             </g>
           ))}
         </g>
       )}
+    </g>
     </svg>
   );
 }

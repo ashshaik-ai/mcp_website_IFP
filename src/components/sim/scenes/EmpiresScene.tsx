@@ -4,93 +4,180 @@ import type { SceneProps } from "../Simulator";
 
 /* Fourteen centuries on one map.
 
-   The world from Córdoba to Delhi, drawn the way the Seerah map is drawn:
-   a few cities as named points, and for each era the reach of Muslim rule
-   as a soft extent that grows, shifts and fades from the one before it. The
-   capital of the age is the lit point. The colonial era breaks the extent
-   into pieces; the modern one scatters it into many small lights. */
+   The world from Cordoba to Delhi. A few cities as named points, and for each
+   era the reach of Muslim rule as a soft extent that grows, shifts and fades
+   from the one before it. The capital of the age is the lit point. The
+   colonial era breaks the extent into pieces; the modern one scatters it into
+   many small lights.
 
-type City = { id: string; x: number; y: number; te: string; en: string };
+   Each city carries the side its name hangs on and how far above the dot it
+   sits, because the extents pass straight over them -- Cordoba's name used to
+   be swallowed by its own blob. */
+
+type City = { id: string; x: number; y: number; te: string; en: string; side: "l" | "r"; dy?: number };
 
 const CITIES: City[] = [
-  { id: "cordoba", x: 54, y: 112, te: "కొర్డోబా", en: "Córdoba" },
-  { id: "istanbul", x: 154, y: 88, te: "ఇస్తాంబుల్", en: "Istanbul" },
-  { id: "cairo", x: 166, y: 146, te: "కైరో", en: "Cairo" },
-  { id: "damascus", x: 196, y: 118, te: "డమాస్కస్", en: "Damascus" },
-  { id: "madinah", x: 206, y: 176, te: "మదీనా", en: "Madinah" },
-  { id: "baghdad", x: 234, y: 126, te: "బగ్దాద్", en: "Baghdad" },
-  { id: "delhi", x: 312, y: 150, te: "ఢిల్లీ", en: "Delhi" },
+  { id: "cordoba", x: -34, y: 96, te: "కొర్డోబా", en: "Córdoba", side: "r", dy: -12 },
+  { id: "istanbul", x: 104, y: 72, te: "ఇస్తాంబుల్", en: "Istanbul", side: "l", dy: -12 },
+  { id: "cairo", x: 126, y: 158, te: "కైరో", en: "Cairo", side: "l", dy: 14 },
+  { id: "damascus", x: 176, y: 112, te: "డమాస్కస్", en: "Damascus", side: "r", dy: -12 },
+  { id: "madinah", x: 200, y: 196, te: "మదీనా", en: "Madinah", side: "l", dy: 16 },
+  { id: "baghdad", x: 244, y: 124, te: "బగ్దాద్", en: "Baghdad", side: "r", dy: 16 },
+  { id: "delhi", x: 392, y: 150, te: "ఢిల్లీ", en: "Delhi", side: "r", dy: -12 },
 ];
 
 /* Extents as ellipses: centre, radii, and which city is the capital. */
 type Era = { capital: string; blobs: [number, number, number, number][]; scatter?: boolean; broken?: boolean };
 
 const ERAS: Record<string, Era> = {
-  rashidun: { capital: "madinah", blobs: [[210, 150, 60, 44]] },
-  umayyad:  { capital: "damascus", blobs: [[180, 136, 150, 52]] },
-  abbasid:  { capital: "baghdad", blobs: [[230, 136, 100, 50], [64, 116, 30, 18]] },
-  andalus:  { capital: "cordoba", blobs: [[64, 116, 36, 22], [230, 136, 90, 46]] },
-  ottoman:  { capital: "istanbul", blobs: [[170, 120, 70, 52], [210, 176, 40, 30]] },
-  mughal:   { capital: "delhi", blobs: [[300, 150, 46, 40], [170, 120, 70, 52]] },
-  colonial: { capital: "istanbul", blobs: [[170, 120, 70, 52], [300, 150, 46, 40], [64, 116, 30, 18]], broken: true },
+  rashidun: { capital: "madinah", blobs: [[204, 172, 74, 54]] },
+  umayyad:  { capital: "damascus", blobs: [[124, 140, 220, 62]] },
+  abbasid:  { capital: "baghdad", blobs: [[248, 142, 132, 58], [-32, 98, 42, 26]] },
+  andalus:  { capital: "cordoba", blobs: [[-32, 98, 50, 30], [248, 142, 120, 54]] },
+  ottoman:  { capital: "istanbul", blobs: [[126, 118, 104, 60], [206, 196, 48, 34]] },
+  mughal:   { capital: "delhi", blobs: [[382, 152, 68, 50], [126, 118, 104, 60]] },
+  colonial: { capital: "istanbul", blobs: [[126, 118, 104, 60], [382, 152, 68, 50], [-32, 98, 42, 26]], broken: true },
   modern:   { capital: "madinah", blobs: [], scatter: true },
 };
 
-const SCATTER = [[40, 120], [70, 100], [110, 150], [140, 110], [170, 130], [200, 160], [230, 110], [260, 140], [290, 120], [320, 160], [300, 190], [250, 200], [180, 200], [120, 190], [90, 170], [340, 130], [215, 90], [150, 175]];
+const SCATTER = [
+  [-90, 120], [-40, 96], [10, 150], [60, 108], [110, 132], [156, 176], [200, 108], [250, 142],
+  [292, 118], [336, 162], [372, 194], [408, 138], [440, 176], [76, 200], [22, 186], [-58, 168],
+  [180, 60], [300, 74], [420, 96], [140, 232], [250, 236], [352, 244],
+];
 
 export function EmpiresScene({ step, lang }: SceneProps) {
   const era = ERAS[step.id] ?? ERAS.rashidun;
   const T = "transform 1.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease";
 
   return (
-    <svg viewBox="0 0 360 320" className="absolute inset-0 h-full w-full" aria-hidden="true">
-      <defs>
-        <radialGradient id="ext" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#e8b84b" stopOpacity="0.45" />
-          <stop offset="0.7" stopColor="#e8b84b" stopOpacity="0.22" />
-          <stop offset="1" stopColor="#e8b84b" stopOpacity="0" />
-        </radialGradient>
-      </defs>
+    <svg viewBox="0 0 576 324" className="absolute inset-0 h-full w-full" aria-hidden="true">
+      <g transform="translate(108, 2)">
+        <defs>
+          <radialGradient id="ext" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stopColor="#e8b84b" stopOpacity="0.42" />
+            <stop offset="0.7" stopColor="#e8b84b" stopOpacity="0.2" />
+            <stop offset="1" stopColor="#e8b84b" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="landmass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#e8b84b" stopOpacity="0.09" />
+            <stop offset="1" stopColor="#e8b84b" stopOpacity="0.03" />
+          </linearGradient>
+        </defs>
 
-      {/* Graticule and coastlines, suggested */}
-      {[60, 120, 180, 240].map((y) => <line key={y} x1="0" y1={y} x2="360" y2={y} stroke="rgba(232,184,75,0.07)" />)}
-      {[60, 120, 180, 240, 300].map((x) => <line key={x} x1={x} y1="0" x2={x} y2="320" stroke="rgba(232,184,75,0.07)" />)}
-      <path d="M0 80 Q60 60 110 96 Q150 120 140 160 Q130 200 170 210 Q220 220 250 190 Q290 170 340 200" fill="none" stroke="rgba(232,184,75,0.22)" strokeWidth="1.5" />
-      <path d="M20 180 Q60 170 90 200 Q120 240 160 250 Q220 262 270 230 Q300 220 360 240" fill="none" stroke="rgba(232,184,75,0.18)" strokeWidth="1.5" />
+        {/* Graticule, across the whole frame rather than the old centre box. */}
+        {[40, 100, 160, 220, 280].map((y) => (
+          <line key={y} x1="-120" y1={y} x2="480" y2={y} stroke="rgba(232,184,75,0.06)" />
+        ))}
+        {[-60, 0, 60, 120, 180, 240, 300, 360, 420].map((x) => (
+          <line key={x} x1={x} y1="-10" x2={x} y2="334" stroke="rgba(232,184,75,0.06)" />
+        ))}
 
-      {/* Three extent slots, so eras with fewer blobs fade the extras out. */}
-      {[0, 1, 2].map((i) => {
-        const b = era.blobs[i];
-        const [cx, cy, rx, ry] = b ?? [180, 150, 20, 20];
-        return (
-          <g key={i} style={{ transform: `translate(${cx}px, ${cy}px) scale(${b ? rx / 50 : 0}, ${b ? ry / 50 : 0})`, transition: T, opacity: b ? 1 : 0 }}>
-            <ellipse rx="50" ry="50" fill="url(#ext)" />
-            <ellipse rx="50" ry="50" fill="none" stroke="var(--if-gold-light)" strokeWidth={era.broken ? 1 : 1.5} strokeDasharray={era.broken ? "4 5" : undefined} opacity="0.7" />
-          </g>
-        );
-      })}
+        {/* Land, suggested rather than surveyed: Europe above, Africa below,
+            Asia to the east, with the Mediterranean cut between them. */}
+        <path
+          d="M-120 -10 L480 -10 L480 334 L-120 334 Z"
+          fill="url(#landmass)"
+        />
+        {/* The Mediterranean, the Red Sea and the Gulf: three shapes of water
+            are enough to tell a reader where they are. Loose coastal squiggles
+            were not -- they read as noise laid over the map. */}
+        <path
+          d="M-120 94 Q-46 78 34 90 Q108 102 170 94 Q158 120 96 128 Q14 136 -60 126 Q-98 120 -120 122 Z"
+          fill="rgba(22,64,90,0.3)"
+          stroke="rgba(232,184,75,0.16)"
+          strokeWidth="1.2"
+        />
+        <path
+          d="M188 150 Q204 186 188 222 Q181 240 168 248 Q177 212 174 180 Q173 160 188 150 Z"
+          fill="rgba(22,64,90,0.26)"
+          stroke="rgba(232,184,75,0.12)"
+          strokeWidth="1.2"
+        />
+        <path
+          d="M258 160 Q288 178 300 196 Q278 192 256 179 Q246 172 258 160 Z"
+          fill="rgba(22,64,90,0.26)"
+          stroke="rgba(232,184,75,0.12)"
+          strokeWidth="1.2"
+        />
+        {/* The southern shore, and the coast running east. */}
+        <path d="M-120 218 Q-30 236 60 228 Q130 222 168 250" fill="none" stroke="rgba(232,184,75,0.16)" strokeWidth="1.5" />
+        <path d="M300 196 Q348 214 372 246 Q404 282 470 276" fill="none" stroke="rgba(232,184,75,0.16)" strokeWidth="1.5" />
 
-      {/* The modern world: many small lights */}
-      {SCATTER.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r="3" fill="var(--if-gold-light)" className={era.scatter ? "if-twinkle" : undefined} style={{ opacity: era.scatter ? 0.9 : 0, transition: "opacity 0.8s", animationDelay: `${i * 0.15}s` }} />
-      ))}
+        {/* Three extent slots, so eras with fewer blobs fade the extras out. */}
+        {[0, 1, 2].map((i) => {
+          const b = era.blobs[i];
+          const [cx, cy, rx, ry] = b ?? [180, 150, 20, 20];
+          return (
+            <g
+              key={i}
+              style={{
+                transform: `translate(${cx}px, ${cy}px) scale(${b ? rx / 50 : 0}, ${b ? ry / 50 : 0})`,
+                transition: T,
+                opacity: b ? 1 : 0,
+              }}
+            >
+              <ellipse rx="50" ry="50" fill="url(#ext)" />
+              <ellipse
+                rx="50"
+                ry="50"
+                fill="none"
+                stroke="var(--if-gold-light)"
+                strokeWidth={era.broken ? 1 : 1.5}
+                strokeDasharray={era.broken ? "4 5" : undefined}
+                opacity="0.7"
+              />
+            </g>
+          );
+        })}
 
-      {CITIES.map((c) => {
-        const lit = c.id === era.capital;
-        return (
-          <g key={c.id} style={{ transition: "opacity 0.5s", opacity: lit ? 1 : 0.6 }}>
-            {lit && <circle cx={c.x} cy={c.y} r="14" fill="var(--if-gold-light)" opacity="0.25" className="if-breathe" />}
-            <circle cx={c.x} cy={c.y} r={lit ? 5 : 3} fill={lit ? "var(--if-gold-light)" : "rgba(232,184,75,0.75)"} style={{ transition: "r 0.4s" }} />
-            <text x={c.x + 8} y={c.y - 6} fontSize={lit ? 12 : 9} fontWeight={lit ? 700 : 500} fill={lit ? "var(--if-gold-light)" : "rgba(245,230,192,0.7)"}>
-              {lang === "te" ? c.te : c.en}
-            </text>
-          </g>
-        );
-      })}
+        {/* The modern world: many small lights. */}
+        {SCATTER.map(([x, y], i) => (
+          <circle
+            key={i}
+            cx={x}
+            cy={y}
+            r="3"
+            fill="var(--if-gold-light)"
+            className={era.scatter ? "if-twinkle" : undefined}
+            style={{ opacity: era.scatter ? 0.9 : 0, transition: "opacity 0.8s", animationDelay: `${i * 0.15}s` }}
+          />
+        ))}
 
-      <text x="346" y="300" textAnchor="end" fontSize="13" fontWeight="700" fill="rgba(245,230,192,0.85)">
-        {step.caption ? step.caption[lang] : ""}
-      </text>
+        {CITIES.map((c) => {
+          const lit = c.id === era.capital;
+          const dx = c.side === "r" ? 9 : -9;
+          return (
+            <g key={c.id} style={{ transition: "opacity 0.5s", opacity: lit ? 1 : 0.6 }}>
+              {lit && <circle cx={c.x} cy={c.y} r="15" fill="var(--if-gold-light)" opacity="0.22" className="if-breathe" />}
+              <circle
+                cx={c.x}
+                cy={c.y}
+                r={lit ? 5 : 3}
+                fill={lit ? "var(--if-gold-light)" : "rgba(232,184,75,0.75)"}
+                style={{ transition: "r 0.4s" }}
+              />
+              <text
+                x={c.x + dx}
+                y={c.y + (c.dy ?? -8)}
+                textAnchor={c.side === "r" ? "start" : "end"}
+                fontSize={lit ? 13 : 10}
+                fontWeight={lit ? 700 : 500}
+                fill={lit ? "var(--if-gold-light)" : "rgba(245,230,192,0.7)"}
+                stroke="#0a2c16"
+                strokeWidth="3"
+                paintOrder="stroke"
+              >
+                {lang === "te" ? c.te : c.en}
+              </text>
+            </g>
+          );
+        })}
+
+        <text x="462" y="304" textAnchor="end" fontSize="14" fontWeight="700" fill="rgba(245,230,192,0.85)" className="font-display">
+          {step.caption ? step.caption[lang] : ""}
+        </text>
+      </g>
     </svg>
   );
 }

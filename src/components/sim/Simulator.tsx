@@ -52,6 +52,26 @@ const copy = {
 
 const DEFAULT_DUR = 3200;
 
+/* Four hairline corners. Cheaper than a full border and it reads as a frame
+   the scene is held in rather than a box drawn around it. */
+function CornerTicks() {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-3 sm:inset-4 z-10 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] sm:h-[calc(100%-2rem)] sm:w-[calc(100%-2rem)]"
+    >
+      <g fill="none" stroke="var(--if-gold)" strokeOpacity="0.3" strokeWidth="0.5" vectorEffect="non-scaling-stroke">
+        <path d="M0 6 V0 H6" />
+        <path d="M94 0 H100 V6" />
+        <path d="M100 94 V100 H94" />
+        <path d="M6 100 H0 V94" />
+      </g>
+    </svg>
+  );
+}
+
 export function Simulator({
   steps,
   scene: Scene,
@@ -125,17 +145,35 @@ export function Simulator({
         aria-label={step.label[lang]}
         tabIndex={0}
         onKeyDown={onKey}
-        className="if-sim-stage relative overflow-hidden rounded-2xl bg-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+        className="if-sim-stage relative overflow-hidden rounded-3xl ring-1 ring-[var(--if-gold)]/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
       >
-        <div className="if-emblem" aria-hidden="true" style={{ opacity: 0.05 }} />
-        <div className="relative aspect-[16/10] sm:aspect-[16/9]">
-          <Scene step={step} index={index} playing={playing} lang={lang} />
+        {/* The picture. Everything decorative is scoped to this box so none of
+            it runs under the caption strip. Re-mounted per step, so a scene
+            that changes little between two steps still arrives rather than
+            swapping under you. */}
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <div className="if-sim-weave" aria-hidden="true" />
+          <div key={`bloom-${index}`} className="if-sim-bloom" aria-hidden="true" />
+          <div className="if-sim-dial w-[52%] aspect-square" aria-hidden="true" />
+          <div className="if-sim-dial w-[78%] aspect-square" aria-hidden="true" />
+          <CornerTicks />
+          <div key={index} className="if-sim-cut absolute inset-0">
+            <Scene step={step} index={index} playing={playing} lang={lang} />
+          </div>
         </div>
 
         {/* Caption strip: the least text that still tells you what you are
-            looking at. */}
-        <div className="relative flex items-end justify-between gap-4 px-4 sm:px-6 pb-4 pt-2">
-          <div className="min-w-0">
+            looking at. The step's number is set as a plate on the left, so the
+            strip has a fixed anchor and the title always starts in the same
+            place however long the previous one was. */}
+        <div key={`cap-${index}`} className="if-sim-cap-in relative flex flex-wrap items-end gap-x-3 gap-y-1 sm:gap-x-4 border-t border-[var(--if-gold)]/15 bg-[#061c0d]/55 px-4 sm:px-6 pb-4 pt-3">
+          <span
+            aria-hidden="true"
+            className="if-sim-num shrink-0 self-center select-none font-display text-xl sm:text-2xl font-bold leading-none text-[var(--if-gold)]/40"
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="min-w-0 flex-1 basis-40">
             <p className="font-display text-lg sm:text-xl font-bold text-[var(--if-gold-light)] leading-tight text-balance">
               {step.label[lang]}
               {step.count ? (
@@ -149,14 +187,14 @@ export function Simulator({
             )}
           </div>
           {(step.arabic || step.translit) && (
-            <div className="shrink-0 text-right max-w-[55%]">
+            <div className="min-w-0 basis-full text-right sm:basis-auto sm:max-w-[50%]">
               {step.arabic && (
                 <p lang="ar" dir="rtl" className="font-arabic text-xl sm:text-2xl text-[var(--if-gold-light)] leading-relaxed">
                   {step.arabic}
                 </p>
               )}
               {step.translit && (
-                <p className="text-xs text-[var(--if-gold-pale)]/75 italic">{step.translit}</p>
+                <p className="text-[11px] sm:text-xs text-[var(--if-gold-pale)]/75 italic text-pretty">{step.translit}</p>
               )}
             </div>
           )}

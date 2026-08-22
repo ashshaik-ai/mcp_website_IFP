@@ -22,10 +22,11 @@ const CHAIN = [
 
 export function IsnadScene({ index, lang }: SceneProps) {
   const reached = Math.min(index, CHAIN.length - 1);
-  const y = (i: number) => 36 + i * 36;
+  const y = (i: number) => 26 + i * 38;
 
   return (
-    <svg viewBox="0 0 360 320" className="absolute inset-0 h-full w-full" aria-hidden="true">
+    <svg viewBox="0 0 576 324" className="absolute inset-0 h-full w-full" aria-hidden="true">
+      <g transform="translate(108, 2)">
       {CHAIN.map((n, i) => {
         const on = i <= reached;
         const now = i === reached;
@@ -33,23 +34,24 @@ export function IsnadScene({ index, lang }: SceneProps) {
           <g key={i}>
             {i > 0 && (
               <line
-                x1="96" y1={y(i - 1) + 10} x2="96" y2={y(i) - 10}
+                x1="-64" y1={y(i - 1) + 11} x2="-64" y2={y(i) - 11}
                 stroke="var(--if-gold-light)" strokeWidth="2.5" strokeLinecap="round"
                 pathLength={1}
                 className={on ? "if-draw" : undefined}
                 style={{ opacity: on ? 1 : 0.18, strokeDasharray: on ? undefined : "2 4" }}
               />
             )}
-            <circle cx="96" cy={y(i)} r={now ? 10 : 7} fill={on ? "var(--if-gold-light)" : "rgba(232,184,75,0.2)"} stroke={on ? "var(--if-green)" : "rgba(232,184,75,0.5)"} strokeWidth="2" style={{ transition: "r 0.3s, fill 0.4s" }} className={now ? "if-breathe" : undefined} />
-            <text x="118" y={y(i) + 4} fontSize={now ? 14 : 12} fontWeight={now ? 700 : 500} fill={on ? "var(--if-gold-light)" : "rgba(245,230,192,0.45)"} style={{ transition: "fill 0.4s, font-size 0.3s" }}>
+            <circle cx="-64" cy={y(i)} r={now ? 10 : 7} fill={on ? "var(--if-gold-light)" : "rgba(232,184,75,0.2)"} stroke={on ? "var(--if-green)" : "rgba(232,184,75,0.5)"} strokeWidth="2" style={{ transition: "r 0.3s, fill 0.4s" }} className={now ? "if-breathe" : undefined} />
+            <text x="-42" y={y(i) + 4} fontSize={now ? 15 : 12} fontWeight={now ? 700 : 500} fill={on ? "var(--if-gold-light)" : "rgba(245,230,192,0.45)"} style={{ transition: "fill 0.4s, font-size 0.3s" }}>
               {lang === "te" ? n.te : n.en}
             </text>
-            <text x="344" y={y(i) + 4} textAnchor="end" fontSize="13" fill={on ? "rgba(245,230,192,0.85)" : "rgba(245,230,192,0.3)"} className="font-arabic" lang="ar" direction="rtl" style={{ transition: "fill 0.4s" }}>
+            <text x="428" y={y(i) + 4} textAnchor="end" fontSize="13" fill={on ? "rgba(245,230,192,0.85)" : "rgba(245,230,192,0.3)"} className="font-arabic" lang="ar" direction="rtl" style={{ transition: "fill 0.4s" }}>
               {n.ar}
             </text>
           </g>
         );
       })}
+    </g>
     </svg>
   );
 }

@@ -7,7 +7,11 @@ import type { SceneProps } from "../Simulator";
    A moon whose lit portion moves with the step: new, crescent, half, full,
    and back. The phase is drawn as a disc with a second disc of the sky's
    colour sliding across it, which is how the real thing works, more or
-   less. Below it the twelve Hijri months form a ring, the current one lit. */
+   less. Around it the twelve Hijri months sit on a dial, the current one lit.
+
+   The ring used to sit below the moon on a radius that crossed it, so half
+   the month names were written over the moon's face. It is now a dial the
+   moon sits at the centre of, wide enough that nothing overlaps. */
 
 const MONTHS = ["محرم", "صفر", "ربيع ١", "ربيع ٢", "جمادى ١", "جمادى ٢", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"];
 
@@ -23,40 +27,68 @@ export function MoonScene({ step }: SceneProps) {
      the phase grows; by full it has cleared the disc. Waning slides the
      other way so the lit side swaps. */
   /* Waxing moons are lit on the sun's side, the right, after sunset. */
-  const shift = (waning ? 1 : -1) * p * 84;
+  const shift = (waning ? 1 : -1) * p * 104;
 
   return (
-    <svg viewBox="0 0 360 320" className="absolute inset-0 h-full w-full" aria-hidden="true">
+    <svg viewBox="0 0 576 324" className="absolute inset-0 h-full w-full" aria-hidden="true">
+      <g transform="translate(108, 2)">
       <defs>
-        <clipPath id="moonclip"><circle cx="180" cy="120" r="42" /></clipPath>
+        <clipPath id="moonclip"><circle cx="180" cy="150" r="52" /></clipPath>
         <radialGradient id="moonglow" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0.6" stopColor="#fff6df" stopOpacity="0.25" />
+          <stop offset="0.68" stopColor="#fff6df" stopOpacity="0.16" />
           <stop offset="1" stopColor="#fff6df" stopOpacity="0" />
         </radialGradient>
       </defs>
-      {[[40, 30], [90, 70], [300, 40], [330, 90], [250, 24], [60, 150], [310, 160]].map(([x, y], i) => (
+      {[[-80, 30], [-20, 70], [400, 40], [440, 96], [300, 18], [-40, 250], [420, 250], [120, 14], [250, 300]].map(([x, y], i) => (
         <circle key={i} cx={x} cy={y} r="1.5" fill="#fff6df" className="if-twinkle" style={{ animationDelay: `${i * 0.3}s` }} />
       ))}
-      <circle cx="180" cy="120" r="70" fill="url(#moonglow)" style={{ opacity: p, transition: "opacity 0.8s" }} />
-      <circle cx="180" cy="120" r="42" fill="#fff6df" />
-      <g clipPath="url(#moonclip)">
-        <circle cx={180 + shift} cy="120" r="42" fill="#0c3018" style={{ transition: "cx 1s cubic-bezier(0.22,1,0.36,1)" }} />
+      <circle cx="180" cy="150" r="74" fill="url(#moonglow)" style={{ opacity: p, transition: "opacity 0.8s" }} />
+      <circle cx="180" cy="150" r="52" fill="#f6ecd4" />
+      {/* Maria. A full moon drawn as a plain disc reads as a lamp. */}
+      <g clipPath="url(#moonclip)" opacity="0.5">
+        <circle cx="164" cy="132" r="15" fill="#d9c9a6" />
+        <circle cx="196" cy="122" r="8" fill="#d9c9a6" />
+        <circle cx="200" cy="166" r="17" fill="#d9c9a6" />
+        <circle cx="158" cy="174" r="9" fill="#d9c9a6" />
+        <circle cx="176" cy="150" r="5" fill="#cfbe98" />
+        <circle cx="212" cy="142" r="4" fill="#cfbe98" />
       </g>
-      <circle cx="180" cy="120" r="42" fill="none" stroke="rgba(245,230,192,0.35)" strokeWidth="1.5" />
+      <g clipPath="url(#moonclip)">
+        <circle cx={180 + shift} cy="150" r="52" fill="#0c3018" style={{ transition: "cx 1s cubic-bezier(0.22,1,0.36,1)" }} />
+      </g>
+      <circle cx="180" cy="150" r="52" fill="none" stroke="rgba(245,230,192,0.35)" strokeWidth="1.5" />
+      {/* The dial the months sit on. */}
+      <ellipse cx="180" cy="150" rx="228" ry="116" fill="none" stroke="rgba(232,184,75,0.14)" strokeWidth="1" />
 
       {/* Month ring */}
       {MONTHS.map((m, i) => {
         const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
-        const x = 180 + Math.cos(a) * 118;
-        const y = 210 + Math.sin(a) * 42;
+        const x = 180 + Math.cos(a) * 228;
+        const y = 150 + Math.sin(a) * 116;
         const on = i === month;
+        /* Names hang outside the dial, on the side the point faces. */
+        const lx = 180 + Math.cos(a) * 250;
+        const ly = 150 + Math.sin(a) * 134;
+        const anchor = Math.abs(Math.cos(a)) < 0.25 ? "middle" : Math.cos(a) > 0 ? "start" : "end";
         return (
-          <g key={m} style={{ transition: "opacity 0.4s", opacity: month < 0 ? 0.55 : on ? 1 : 0.35 }}>
-            <circle cx={x} cy={y} r={on ? 4 : 2.4} fill={on ? "var(--if-gold-light)" : "rgba(232,184,75,0.7)"} style={{ transition: "r 0.3s" }} />
-            <text x={x} y={y + (y > 210 ? 16 : -9)} textAnchor="middle" fontSize={on ? 12 : 9} fill={on ? "var(--if-gold-light)" : "rgba(245,230,192,0.75)"} className="font-arabic" lang="ar" direction="rtl">{m}</text>
+          <g key={m} style={{ transition: "opacity 0.4s", opacity: month < 0 ? 0.55 : on ? 1 : 0.32 }}>
+            <circle cx={x} cy={y} r={on ? 5 : 2.6} fill={on ? "var(--if-gold-light)" : "rgba(232,184,75,0.7)"} style={{ transition: "r 0.3s" }} />
+            <text
+              x={lx}
+              y={ly + 4}
+              textAnchor={anchor}
+              fontSize={on ? 14 : 11}
+              fill={on ? "var(--if-gold-light)" : "rgba(245,230,192,0.7)"}
+              className="font-arabic"
+              lang="ar"
+              direction="rtl"
+            >
+              {m}
+            </text>
           </g>
         );
       })}
+    </g>
     </svg>
   );
 }

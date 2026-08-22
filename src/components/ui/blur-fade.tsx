@@ -2,6 +2,9 @@ import type { CSSProperties } from "react";
 
 /* Entrance animation, done in CSS rather than JavaScript.
 
+   It rises and fades; it no longer blurs. The focus-pull was read as the text
+   being out of focus while you scrolled toward it, which is what it is.
+
    This was a motion component: it rendered opacity:0 and animated to 1 once
    React hydrated. With 193 of them on the site, that meant roughly a hundred
    elements per page sat invisible in the prerendered HTML until the bundle
@@ -27,6 +30,7 @@ type BlurFadeProps = {
   duration?: number;
   /** Pixels travelled. */
   offset?: number;
+  /** Accepted for compatibility; the entrance no longer blurs. */
   blur?: string;
   /** Accepted for compatibility; every call site animates on mount. */
   inView?: boolean;
@@ -39,7 +43,6 @@ export function BlurFade({
   delay = 0,
   duration = 0.4,
   offset = 6,
-  blur = "6px",
   direction = "up",
 }: BlurFadeProps) {
   /* direction was accepted and ignored; everything rose. Sideways entrances
@@ -53,7 +56,6 @@ export function BlurFade({
     "--bf-x": `${dx}px`,
     "--bf-offset": `${dy}px`,
     "--bf-scale": direction === "scale" ? "0.94" : "1",
-    "--bf-blur": blur,
   } as CSSProperties;
 
   return (
