@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, Check, HelpCircle, ListChecks } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
-import { lessonsByPortal } from "@/content/all-lessons";
+/* The generated summaries, not the full lessons module. See
+   scripts/build-lesson-index.mjs for why. */
+import { summariesByPortal } from "@/content/lesson-index";
 import { useProgress } from "@/lib/progress";
 
 const copy = {
@@ -24,12 +26,12 @@ const copy = {
 export function LessonIndex({ portal }: { portal: string }) {
   const { lang } = useI18n();
   const { ready, isDone, countFor } = useProgress();
-  const items = lessonsByPortal(portal);
+  const items = summariesByPortal(portal);
   if (!items.length) return null;
 
-  const totalSections = items.reduce((a, l) => a + l.sections.length, 0);
-  const totalQuiz = items.reduce((a, l) => a + l.quiz.length, 0);
-  const totalFaqs = items.reduce((a, l) => a + l.faqs.length, 0);
+  const totalSections = items.reduce((a, l) => a + l.sections, 0);
+  const totalQuiz = items.reduce((a, l) => a + l.quiz, 0);
+  const totalFaqs = items.reduce((a, l) => a + l.faqs, 0);
 
   return (
     <section id="lessons" className="py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
