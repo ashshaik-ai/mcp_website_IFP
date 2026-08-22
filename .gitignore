@@ -53,3 +53,4 @@ playwright-report/
 
 # Lighthouse output
 lighthouse-report.json
+.shots/
