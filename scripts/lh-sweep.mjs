@@ -41,8 +41,13 @@ const DEFAULT_ROUTES = [
   "/offline",
 ];
 
+/* MSYS shells on Windows rewrite anything that looks like a POSIX path, so a
+   bare "/" in ROUTES arrives as "C:/Program Files/Git/" and the homepage gets
+   silently skipped. Strip that prefix back off. */
 const routes = process.env.ROUTES
-  ? process.env.ROUTES.split(",").map((r) => (r.startsWith("/") ? r : "/" + r))
+  ? process.env.ROUTES.split(",")
+      .map((r) => r.replace(/^.*?Program Files\/Git\/?/, "/").trim())
+      .map((r) => (r.startsWith("/") ? r : "/" + r))
   : DEFAULT_ROUTES;
 
 const withPerf = process.env.PERF === "1";
