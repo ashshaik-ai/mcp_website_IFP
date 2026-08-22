@@ -46,7 +46,18 @@ for (const file of await findHtml(APP)) {
   let craw = 0, cgz = 0;
   for (const c of css) { const s = await sizeOf(c); craw += s.raw; cgz += s.gz; }
   const route = "/" + path.relative(APP, file).replace(/\\/g, "/").replace(/\.html$/, "").replace(/^index$/, "");
-  pages.push({ route, chunks: new Set(chunks), raw, gz, craw, cgz, html: html.length });
+  /* Gzip the document rather than reporting its raw length. The column is
+     compared against gzipped JS and CSS, so a raw figure here made the HTML
+     look about seven times heavier than it is. */
+  pages.push({
+    route,
+    chunks: new Set(chunks),
+    raw,
+    gz,
+    craw,
+    cgz,
+    html: gzipSync(Buffer.from(html)).length,
+  });
 }
 
 // Chunks present on every page are the framework + layout baseline.
@@ -58,10 +69,10 @@ console.log(`shared baseline: ${shared.length} chunks  ${(sraw / 1024).toFixed(0
 console.log("  JS gzip   +page   CSS gz   HTML gz   route");
 console.log("-".repeat(70));
 
-for (const p of pages.sort((a, b) => b.gz - a.gz).slice(0, 20)) {
+for (const p of pages.sort((a, b) => b.gz + b.cgz + b.html - (a.gz + a.cgz + a.html)).slice(0, 20)) {
   const own = p.gz - sgz;
   console.log(
     `${(p.gz / 1024).toFixed(0).padStart(7)} KB ${(own / 1024).toFixed(0).padStart(6)} KB ` +
-    `${(p.cgz / 1024).toFixed(0).padStart(7)} KB ${(gzipSync(Buffer.from("x".repeat(0))).length, (p.html / 1024).toFixed(0)).padStart(8)} KB   ${p.route}`,
+    `${(p.cgz / 1024).toFixed(0).padStart(7)} KB ${(p.html / 1024).toFixed(0).padStart(8)} KB   ${p.route}`,
   );
 }
