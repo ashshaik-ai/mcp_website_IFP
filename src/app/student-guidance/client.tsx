@@ -37,13 +37,6 @@ const copy = {
   scholarship_details: { te: "స్కాలర్‌షిప్ వివరాలు", en: "Scholarship Details" },
 } as const;
 
-const STREAM_COLORS: Record<string, string> = {
-  all: "bg-[var(--if-green)]",
-  mpc: "bg-blue-700",
-  bipc: "bg-red-700",
-  commerce: "bg-amber-700",
-  arts: "bg-purple-700",
-};
 
 function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean; onToggle: () => void }) {
   const { lang } = useI18n();
@@ -73,7 +66,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
               {card.title[lang]}
             </h3>
             {card.tag[lang] && (
-              <span className="inline-block mt-1.5 text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20">
+              <span className="inline-block mt-1.5 text-xs font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20">
                 {card.tag[lang]}
               </span>
             )}
@@ -87,17 +80,17 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
         </div>
 
         {card.summary[lang] && (
-          <p className="text-sm text-[var(--if-text-muted)] mt-3 text-pretty">{card.summary[lang]}</p>
+          <p className="text-sm leading-relaxed text-[var(--if-text-muted)] mt-3 text-pretty">{card.summary[lang]}</p>
         )}
       </button>
 
       {open && hasDetail && (
-        <div id={bodyId} className="px-5 pb-5 -mt-1 space-y-3">
+        <div id={bodyId} className="if-blur-fade px-5 pb-5 -mt-1 space-y-3" style={{ "--bf-duration": "0.3s", "--bf-offset": "-6px" } as React.CSSProperties}>
           {card.fields.length > 0 && (
             <dl className="border-t border-[var(--if-gold)]/10 pt-3 space-y-2">
               {card.fields.map((f, i) => (
                 <div key={i} className="flex gap-3 text-sm">
-                  <dt className="w-28 shrink-0 text-[11px] font-bold uppercase tracking-wide text-[var(--if-green)] pt-0.5">
+                  <dt className="w-28 shrink-0 text-xs font-bold uppercase tracking-wide text-[var(--if-green)] pt-0.5">
                     {f.k[lang]}
                   </dt>
                   <dd className="text-[var(--if-text)] text-pretty">{f.v[lang]}</dd>
@@ -110,7 +103,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
             <div className="grid sm:grid-cols-2 gap-2">
               {card.pros[lang] && (
                 <p className="text-sm rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-emerald-900 text-pretty">
-                  <b className="block text-[11px] uppercase tracking-wide mb-1">
+                  <b className="block text-xs uppercase tracking-wide mb-1">
                     {copy.pros[lang]}
                   </b>
                   {card.pros[lang]}
@@ -118,7 +111,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
               )}
               {card.cons[lang] && (
                 <p className="text-sm rounded-lg bg-amber-50 border border-amber-200 p-3 text-amber-900 text-pretty">
-                  <b className="block text-[11px] uppercase tracking-wide mb-1">
+                  <b className="block text-xs uppercase tracking-wide mb-1">
                     {copy.cons[lang]}
                   </b>
                   {card.cons[lang]}
@@ -129,7 +122,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
 
           {card.myth[lang] && (
             <p className="text-sm rounded-lg bg-[var(--if-green)]/5 border border-[var(--if-green)]/15 p-3 text-[var(--if-text)] text-pretty">
-              <b className="block text-[11px] uppercase tracking-wide mb-1 text-[var(--if-green)]">
+              <b className="block text-xs uppercase tracking-wide mb-1 text-[var(--if-green)]">
                 {copy.misconception[lang]}
               </b>
               {card.myth[lang]}
@@ -236,14 +229,14 @@ function StudentGuidancePage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={copy.e_g_doctor_engineer_ias[lang]}
-                className="w-full min-h-11 pl-9 pr-9 rounded-full bg-white border border-[var(--if-gold)]/25 text-sm text-[var(--if-text)] placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="w-full min-h-11 pl-9 pr-11 rounded-full bg-white border border-[var(--if-gold)]/25 text-sm text-[var(--if-text)] [&::-webkit-search-cancel-button]:appearance-none placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               />
               {query && (
                 <button
                   type="button"
                   onClick={() => setQuery("")}
                   aria-label={copy.clear_search[lang]}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-[var(--if-gold)]/10"
+                  className="absolute right-0.5 top-1/2 -translate-y-1/2 size-11 inline-flex items-center justify-center rounded-full hover:bg-[var(--if-gold)]/10"
                 >
                   <X aria-hidden="true" className="h-4 w-4 text-[var(--if-text-muted)]" />
                 </button>
@@ -263,7 +256,7 @@ function StudentGuidancePage() {
                   aria-pressed={stream === s.id}
                   className={`min-h-11 px-4 rounded-full text-sm font-semibold border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
                     stream === s.id
-                      ? `${STREAM_COLORS[s.id] ?? "bg-[var(--if-green)]"} text-white border-transparent`
+                      ? "bg-[var(--if-green)] text-[var(--if-gold-light)] border-transparent"
                       : "bg-white border-[var(--if-gold)]/25 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]/50"
                   }`}
                 >
@@ -287,7 +280,7 @@ function StudentGuidancePage() {
                     ({section.cards.length})
                   </span>
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 [&>*:last-child:nth-child(3n+1)]:lg:col-span-3 [&>*:last-child:nth-child(3n+1)]:lg:max-w-md [&>*:last-child:nth-child(3n+1)]:lg:justify-self-center">
                   {section.cards.map((card, i) => (
                     <BlurFade key={card.id} delay={Math.min(0.04 * i, 0.4)}>
                       <CardTile

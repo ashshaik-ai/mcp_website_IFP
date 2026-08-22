@@ -16,12 +16,12 @@ import { ChevronLeft, Star } from "lucide-react";
 // ── DATA ────────────────────────────────────────────────────────────────────
 
 const sections = [
-  { num: 1, emoji: "🌟", title: { te: "ఇస్లాం విశ్వాసాలు", en: "Islamic Beliefs" }, arabic: "أركان الإيمان", age: "5+", color: "bg-yellow-500", desc: { te: "అల్లాహ్, ఫరిష్తలు, కిత్తాబులు, రసూళ్ళు, ఆఖిరత్ — ఈమాన్‌లో ఆరు స్తంభాలు", en: "Allah, Angels, Books, Messengers, Hereafter — six pillars of Iman" }, topics: [{ te: "అల్లాహ్ ఎవరు?", en: "Who is Allah?" }, { te: "మన చుట్టూ ఉన్న ఫరిష్తలు", en: "Angels around us" }, { te: "మన పవిత్ర గ్రంథాలు", en: "Our Holy Books" }, { te: "ప్రవక్తలు & రసూళ్ళు", en: "Prophets & Messengers" }, { te: "తీర్పు దినం", en: "The Day of Judgement" }, { te: "ఖదర్ — విధి", en: "Qadar — Destiny" }] },
+  { num: 1, emoji: "🌟", title: { te: "ఇస్లాం విశ్వాసాలు", en: "Islamic Beliefs" }, arabic: "أركان الإيمان", age: "5+", color: "bg-[var(--if-green)]", desc: { te: "అల్లాహ్, ఫరిష్తలు, కిత్తాబులు, రసూళ్ళు, ఆఖిరత్ — ఈమాన్‌లో ఆరు స్తంభాలు", en: "Allah, Angels, Books, Messengers, Hereafter — six pillars of Iman" }, topics: [{ te: "అల్లాహ్ ఎవరు?", en: "Who is Allah?" }, { te: "మన చుట్టూ ఉన్న ఫరిష్తలు", en: "Angels around us" }, { te: "మన పవిత్ర గ్రంథాలు", en: "Our Holy Books" }, { te: "ప్రవక్తలు & రసూళ్ళు", en: "Prophets & Messengers" }, { te: "తీర్పు దినం", en: "The Day of Judgement" }, { te: "ఖదర్ — విధి", en: "Qadar — Destiny" }] },
   { num: 2, emoji: "🤝", title: { te: "మర్యాదలు & అలవాట్లు", en: "Manners & Habits" }, arabic: "الأخلاق والآداب", age: "6+", color: "bg-green-500", desc: { te: "ఇస్లామిక్ మర్యాదలు — భోజనం, నిద్ర, తల్లిదండ్రుల పట్ల, స్నేహితుల పట్ల", en: "Islamic etiquette — eating, sleeping, with parents, with friends" }, topics: [{ te: "బిస్మిల్లాహ్ చెప్పడం", en: "Saying Bismillah" }, { te: "తల్లిదండ్రులతో అదబ్", en: "Adab with parents" }, { te: "ఇతరులపట్ల దయగా ఉండటం", en: "Being kind to others" }, { te: "నిజాయితీ & నమ్మకం", en: "Honesty & Trust" }, { te: "ఇస్లామిక్ శుభాకాంక్షలు", en: "Islamic greetings" }, { te: "ఇస్లాంలో పవిత్రత", en: "Cleanliness in Islam" }] },
-  { num: 3, emoji: "🤲", title: { te: "దైనందిన దువాలు", en: "Daily Duas" }, arabic: "الأدعية اليومية", age: "5+", color: "bg-blue-500", desc: { te: "నిద్రపోయే ముందు, లేచినప్పుడు, తినే ముందు — ప్రతి సంఘటనకు దువా", en: "Before sleeping, waking up, eating — a dua for every moment" }, topics: [{ te: "నిద్రకు ముందు దువా", en: "Dua before sleeping" }, { te: "నిద్ర లేవడానికి దువా", en: "Dua on waking" }, { te: "తినే ముందు దువా", en: "Dua before eating" }, { te: "ఇంటి నుండి వెళ్లే దువా", en: "Dua leaving home" }, { te: "మస్జిద్ లోకి ప్రవేశించే దువా", en: "Dua entering masjid" }, { te: "తల్లిదండ్రుల కోసం దువా", en: "Dua for parents" }] },
-  { num: 4, emoji: "📖", title: { te: "ప్రవక్త కథలు", en: "Prophet Stories" }, arabic: "قصص الأنبياء", age: "7+", color: "bg-purple-500", desc: { te: "ప్రవక్తల జీవిత కథలు — సహనం, విశ్వాసం మరియు ధైర్యం నేర్చుకోండి", en: "Stories of the Prophets — learn patience, faith and courage" }, topics: [{ te: "ఇబ్రాహీమ్ (అ.స) & అగ్ని", en: "Ibrahim AS & fire" }, { te: "యూసుఫ్ (అ.స) బావిలో", en: "Yusuf AS in the well" }, { te: "మూసా (అ.స) & ఫిర్ఔన్", en: "Musa AS & Pharaoh" }, { te: "ఈసా (అ.స) అద్భుతాలు", en: "Isa AS miracles" }, { te: "ముహమ్మద్ ﷺ బాల్యం", en: "Prophet Muhammad ﷺ childhood" }, { te: "నూహ్ (అ.స) & నావ", en: "Prophet Nuh AS & the ark" }] },
-  { num: 5, emoji: "🕌", title: { te: "నమాజ్ & ఖురాన్", en: "Salah & Quran" }, arabic: "الصلاة والقرآن", age: "7+", color: "bg-teal-500", desc: { te: "నమాజ్ ఎలా చేయాలి · చిన్న సూరాలు · ఖురాన్ అక్షరాలు నేర్చుకోవడం", en: "How to pray Salah · Short Surahs · Learning Quran letters" }, topics: [{ te: "వుదూ చేయడం ఎలా", en: "How to make Wudu" }, { te: "నమాజ్ దశలు", en: "Steps of Salah" }, { te: "సూరహ్ అల్-ఫాతిహా", en: "Surah Al-Fatiha" }, { te: "సూరహ్ అల్-ఇఖ్లాస్", en: "Surah Al-Ikhlas" }, { te: "సూరహ్ అల్-ఫలఖ్ & అన్-నాస్", en: "Surah Al-Falaq & An-Nas" }, { te: "అరబిక్ అక్షరాలు", en: "Arabic letters" }] },
-  { num: 6, emoji: "🏆", title: { te: "ఇస్లామిక్ నాయకత్వం", en: "Islamic Leadership" }, arabic: "القيادة الإسلامية", age: "10+", color: "bg-orange-500", desc: { te: "ముస్లిం యువతగా నాయకత్వం, ధైర్యం మరియు సమాజ సేవ", en: "As young Muslims — leadership, courage and community service" }, topics: [{ te: "యువ సహాబా కథలు", en: "Young Sahabah stories" }, { te: "బాధ్యతగా ఉండటం", en: "Being responsible" }, { te: "సమాజానికి సహాయపడటం", en: "Helping the community" }, { te: "నిజం చెప్పడం", en: "Speaking the truth" }, { te: "న్యాయం కోసం నిలబడడం", en: "Standing up for justice" }, { te: "మార్పు తీసుకురావడం", en: "Making a difference" }] },
+  { num: 3, emoji: "🤲", title: { te: "దైనందిన దువాలు", en: "Daily Duas" }, arabic: "الأدعية اليومية", age: "5+", color: "bg-[var(--if-green)]", desc: { te: "నిద్రపోయే ముందు, లేచినప్పుడు, తినే ముందు — ప్రతి సంఘటనకు దువా", en: "Before sleeping, waking up, eating — a dua for every moment" }, topics: [{ te: "నిద్రకు ముందు దువా", en: "Dua before sleeping" }, { te: "నిద్ర లేవడానికి దువా", en: "Dua on waking" }, { te: "తినే ముందు దువా", en: "Dua before eating" }, { te: "ఇంటి నుండి వెళ్లే దువా", en: "Dua leaving home" }, { te: "మస్జిద్ లోకి ప్రవేశించే దువా", en: "Dua entering masjid" }, { te: "తల్లిదండ్రుల కోసం దువా", en: "Dua for parents" }] },
+  { num: 4, emoji: "📖", title: { te: "ప్రవక్త కథలు", en: "Prophet Stories" }, arabic: "قصص الأنبياء", age: "7+", color: "bg-[var(--if-green)]", desc: { te: "ప్రవక్తల జీవిత కథలు — సహనం, విశ్వాసం మరియు ధైర్యం నేర్చుకోండి", en: "Stories of the Prophets — learn patience, faith and courage" }, topics: [{ te: "ఇబ్రాహీమ్ (అ.స) & అగ్ని", en: "Ibrahim AS & fire" }, { te: "యూసుఫ్ (అ.స) బావిలో", en: "Yusuf AS in the well" }, { te: "మూసా (అ.స) & ఫిర్ఔన్", en: "Musa AS & Pharaoh" }, { te: "ఈసా (అ.స) అద్భుతాలు", en: "Isa AS miracles" }, { te: "ముహమ్మద్ ﷺ బాల్యం", en: "Prophet Muhammad ﷺ childhood" }, { te: "నూహ్ (అ.స) & నావ", en: "Prophet Nuh AS & the ark" }] },
+  { num: 5, emoji: "🕌", title: { te: "నమాజ్ & ఖురాన్", en: "Salah & Quran" }, arabic: "الصلاة والقرآن", age: "7+", color: "bg-[var(--if-green)]", desc: { te: "నమాజ్ ఎలా చేయాలి · చిన్న సూరాలు · ఖురాన్ అక్షరాలు నేర్చుకోవడం", en: "How to pray Salah · Short Surahs · Learning Quran letters" }, topics: [{ te: "వుదూ చేయడం ఎలా", en: "How to make Wudu" }, { te: "నమాజ్ దశలు", en: "Steps of Salah" }, { te: "సూరహ్ అల్-ఫాతిహా", en: "Surah Al-Fatiha" }, { te: "సూరహ్ అల్-ఇఖ్లాస్", en: "Surah Al-Ikhlas" }, { te: "సూరహ్ అల్-ఫలఖ్ & అన్-నాస్", en: "Surah Al-Falaq & An-Nas" }, { te: "అరబిక్ అక్షరాలు", en: "Arabic letters" }] },
+  { num: 6, emoji: "🏆", title: { te: "ఇస్లామిక్ నాయకత్వం", en: "Islamic Leadership" }, arabic: "القيادة الإسلامية", age: "10+", color: "bg-[var(--if-green)]", desc: { te: "ముస్లిం యువతగా నాయకత్వం, ధైర్యం మరియు సమాజ సేవ", en: "As young Muslims — leadership, courage and community service" }, topics: [{ te: "యువ సహాబా కథలు", en: "Young Sahabah stories" }, { te: "బాధ్యతగా ఉండటం", en: "Being responsible" }, { te: "సమాజానికి సహాయపడటం", en: "Helping the community" }, { te: "నిజం చెప్పడం", en: "Speaking the truth" }, { te: "న్యాయం కోసం నిలబడడం", en: "Standing up for justice" }, { te: "మార్పు తీసుకురావడం", en: "Making a difference" }] },
 ];
 
 const pillars = [
@@ -135,34 +135,34 @@ function KidsIslamPage() {
     <PageShell>
 
       {/* ── HERO ── */}
-      <section className="bg-gradient-to-br from-[var(--if-green)] via-teal-800 to-emerald-900 text-white py-20 px-4">
+      <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-white/60 hover:text-white transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/70 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" /> {t("జ్ఞాన కేంద్రం", "Knowledge Center")}
             </Link>
           </BlurFade>
-          <BlurFade delay={0.1}><div className="text-5xl mb-1">🌙⭐📖</div></BlurFade>
+          <BlurFade delay={0.1}><span lang="ar" dir="rtl" className="inline-block font-arabic text-4xl text-[var(--if-gold-light)]">الإسلام للأطفال</span></BlurFade>
           <BlurFade delay={0.15}>
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-yellow-300">
+            <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
               {t("పిల్లల ఇస్లాం", "Kids Islam")}
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
-            <p className="text-white/80 max-w-md text-lg">
+            <p className="text-[var(--if-gold-pale)]/80 max-w-md text-lg">
               {t("వయస్సు 5–15 · ఆటాడుతూ నేర్చుకోండి · ఇస్లాం అన్వేషణ ప్రారంభించండి!", "Ages 5–15 · Learn through play · Start your Islam adventure!")}
             </p>
           </BlurFade>
           <BlurFade delay={0.25} className="flex gap-3 flex-wrap justify-center">
-            {[t("🌟 6 స్థాయిలు", "🌟 6 Levels"), t("📚 36+ విషయాలు", "📚 36+ Topics"), t("🎯 క్విజ్‌లు", "🎯 Quizzes"), t("✅ ఉచితం", "✅ Free")].map(item => (
-              <span key={item} className="px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-semibold">{item}</span>
+            {[t("6 స్థాయిలు", "6 Levels"), t("8 పాఠాలు", "8 Lessons"), t("క్విజ్‌లు", "Quizzes"), t("ఉచితం", "Free")].map(item => (
+              <span key={item} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-sm font-semibold text-[var(--if-gold-light)]">{item}</span>
             ))}
           </BlurFade>
         </div>
       </section>
 
       {/* ── KALIMAH / SHAHADA ── */}
-      <section className="if-defer py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">
@@ -191,7 +191,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── FIVE PILLARS ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ఇస్లాం పునాదులు", "Foundations of Islam")}</div>
@@ -218,7 +218,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── BEAUTIFUL NAMES OF ALLAH ── */}
-      <section className="if-defer py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("అస్మా-ఉల్-హుస్నా", "Asma ul-Husna")}</div>
@@ -244,7 +244,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── CHARACTER ACADEMY ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("మంచి స్వభావం", "Good Character")}</div>
@@ -277,7 +277,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── DAILY DUAS ── */}
-      <section className="if-defer py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("రోజువారీ దువాలు", "Everyday Duas")}</div>
@@ -308,7 +308,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── PROPHET STORIES ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ప్రవక్తల కథలు", "Prophet Stories")}</div>
@@ -340,7 +340,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── LEARNING SECTIONS ── */}
-      <section className="if-defer py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -384,7 +384,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── MY FIRST WUDU ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
+      <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
@@ -413,7 +413,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── MY FIRST SALAH ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నమాజ్ నేర్చుకోవడం", "Learning Prayer")}</div>
@@ -442,7 +442,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── DAILY CHALLENGE ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
+      <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
@@ -479,7 +479,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── QUIZ ── */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
@@ -565,7 +565,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── PARENT CORNER ── */}
-      <section className="if-defer py-14 px-4 bg-[var(--if-green)]">
+      <section className="py-14 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
@@ -612,7 +612,7 @@ function KidsIslamPage() {
       </section>
 
 
-      <section id="prophet-stories" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="prophet-stories" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్తల కథలు" : "Prophet stories"}

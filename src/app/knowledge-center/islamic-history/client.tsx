@@ -37,7 +37,7 @@ const copy = {
    the Telugu era panel. */
 const eras = [
   {
-    num: 1, years: { te: "క్రీ.శ. 632–661", en: "632–661 CE" }, color: "bg-emerald-800",
+    num: 1, years: { te: "క్రీ.శ. 632–661", en: "632–661 CE" }, color: "bg-[var(--if-green)]",
     title: { te: "ఖులఫా-ఇ-రాషిదీన్", en: "Rightly Guided Caliphs" }, ar: "الخلفاء الراشدون",
     desc: { te: "అబూ బక్ర్, ఉమర్, ఉస్మాన్, అలీ రా. ఇస్లాం యొక్క స్వర్ణయుగం — ఆదర్శ పాలన", en: "Abu Bakr, Umar, Uthman, Ali RA — the golden age of ideal Islamic governance" },
     highlights: [
@@ -50,7 +50,7 @@ const eras = [
     personality: "Umar ibn al-Khattab RA",
   },
   {
-    num: 2, years: { te: "క్రీ.శ. 661–750", en: "661–750 CE" }, color: "bg-blue-800",
+    num: 2, years: { te: "క్రీ.శ. 661–750", en: "661–750 CE" }, color: "bg-[var(--if-green)]",
     title: { te: "ఉమయ్యా సామ్రాజ్యం", en: "Umayyad Dynasty" }, ar: "الأمويون",
     desc: { te: "ఇస్లాం స్పెయిన్ నుండి సింధ్ వరకు విస్తరించింది — దమాస్కస్ రాజధానిగా", en: "Islam spread from Spain to Sindh — capital at Damascus" },
     highlights: [
@@ -63,7 +63,7 @@ const eras = [
     personality: "Umar ibn Abdul-Aziz",
   },
   {
-    num: 3, years: { te: "క్రీ.శ. 750–1258", en: "750–1258 CE" }, color: "bg-amber-800",
+    num: 3, years: { te: "క్రీ.శ. 750–1258", en: "750–1258 CE" }, color: "bg-[var(--if-green)]",
     title: { te: "అబ్బాసీ స్వర్ణయుగం", en: "Abbasid Golden Age" }, ar: "العصر الذهبي",
     desc: { te: "బాగ్దాద్ ప్రపంచ జ్ఞాన కేంద్రం — విజ్ఞాన, గణిత, వైద్య పురోగతి", en: "Baghdad was the world's knowledge centre — science, math, medicine flourished" },
     highlights: [
@@ -76,7 +76,7 @@ const eras = [
     personality: "Al-Khwarizmi",
   },
   {
-    num: 4, years: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, color: "bg-red-900",
+    num: 4, years: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, color: "bg-[var(--if-green)]",
     title: { te: "ఒట్టోమన్ సామ్రాజ్యం", en: "Ottoman Empire" }, ar: "الدولة العثمانية",
     desc: { te: "600 సంవత్సరాల ఇస్లామిక్ పాలన — కాన్స్టాంటినోపుల్ ఫతహ్, సుల్తాన్ సులేమాన్", en: "600 years of Islamic rule — Fall of Constantinople, Suleiman the Magnificent" },
     highlights: [
@@ -244,7 +244,7 @@ function IslamicHistoryPage() {
       <section className="bg-gradient-to-br from-[var(--if-green)] to-stone-800 text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
@@ -287,7 +287,7 @@ function IslamicHistoryPage() {
 
           <BlurFade delay={0.05} key={active}>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-8">
-              <BorderBeam size={200} duration={10} colorFrom="#0d3b1e" colorTo="#c8922a" />
+              <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-start gap-6 flex-wrap">
                 <div className={`w-14 h-14 rounded-2xl ${eras[active].color} flex items-center justify-center text-white font-bold text-xl flex-shrink-0`}>{eras[active].num}</div>
                 <div className="flex-1 min-w-0">
@@ -318,9 +318,9 @@ function IslamicHistoryPage() {
                 </div>
               </div>
               <div className="flex gap-3 mt-6 justify-end">
-                <button type="button" aria-label={lang === "te" ? "మునుపటి యుగం" : "Previous era"} disabled={active === 0} onClick={() => setActive(a => a - 1)} className="p-2 rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronLeft className="h-4 w-4 text-[var(--if-green)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "మునుపటి యుగం" : "Previous era"} disabled={active === 0} onClick={() => setActive(a => a - 1)} className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronLeft className="h-4 w-4 text-[var(--if-green)]" /></button>
                 <span className="self-center text-xs text-[var(--if-text-muted)]">{active + 1} / {eras.length}</span>
-                <button type="button" aria-label={lang === "te" ? "తదుపరి యుగం" : "Next era"} disabled={active === eras.length - 1} onClick={() => setActive(a => a + 1)} className="p-2 rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronRight className="h-4 w-4 text-[var(--if-green)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "తదుపరి యుగం" : "Next era"} disabled={active === eras.length - 1} onClick={() => setActive(a => a + 1)} className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronRight className="h-4 w-4 text-[var(--if-green)]" /></button>
               </div>
             </div>
           </BlurFade>
@@ -413,7 +413,7 @@ function IslamicHistoryPage() {
             {lessons.map((lesson, i) => (
               <BlurFade key={lesson.title.en} delay={0.07 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/40 transition-all group h-full flex flex-col">
-                  <BorderBeam size={80} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
+                  <BorderBeam size={80} duration={8} colorFrom="#c8922a" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
                   <h3 className="font-display text-base font-bold text-[var(--if-green)] mb-3">{lesson.title[lang]}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed mb-4 flex-1">{lesson.example[lang]}</p>
                   <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/7 border border-[var(--if-gold)]/18 rounded-lg px-2.5 py-2 mt-auto">

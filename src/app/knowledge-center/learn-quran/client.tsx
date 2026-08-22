@@ -7,7 +7,7 @@ import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronLeft, ChevronRight, ChevronDown, BookOpen, Mic, Brain, Heart } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, BookOpen, Mic, Brain, Heart, Target, TriangleAlert } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -53,7 +53,7 @@ const stages = [
     title: { te: "ప్రాథమిక పఠనం", en: "Basic Reading" },
     arabic: "القراءة الأساسية",
     desc: { te: "ఖురానిక్ లిపి మరియు హరఫ్ల పరిచయం", en: "Quranic script and haroof introduction" },
-    color: "bg-emerald-700",
+    color: "bg-[var(--if-green)]",
     goal: { te: "లక్ష్యం: అరబిక్ అక్షరాలు చదివి సాధారణ వచనాలు పఠించగలగడం", en: "Goal: Read Arabic letters and recite simple Quranic text" },
     topics: [
       { te: "అరబిక్ అక్షరమాల పునశ్చరణ", en: "Arabic alphabet review" },
@@ -68,7 +68,7 @@ const stages = [
     title: { te: "తజ్వీద్", en: "Tajweed" },
     arabic: "علم التجويد",
     desc: { te: "ఖురాన్‌ను సరైన ఉచ్చారణతో చదవడం", en: "Reciting the Quran with correct pronunciation" },
-    color: "bg-amber-700",
+    color: "bg-[var(--if-green)]",
     goal: { te: "లక్ష్యం: మూల తజ్వీద్ నియమాలతో చదవడం", en: "Goal: Read with basic tajweed rules" },
     topics: [
       { te: "మఖారిజ్ అల్-హురూఫ్ — అక్షర స్థానాలు", en: "Makharij al-Huroof — articulation points" },
@@ -83,7 +83,7 @@ const stages = [
     title: { te: "తఫ్సీర్", en: "Tafseer" },
     arabic: "التفسير",
     desc: { te: "ఖురాన్ వచనాలు అర్థం చేసుకోవడం", en: "Understanding the meanings of Quranic verses" },
-    color: "bg-blue-800",
+    color: "bg-[var(--if-green)]",
     goal: { te: "లక్ష్యం: ముఖ్య సూరాల అర్థాలు అర్థం చేసుకోవడం", en: "Goal: Understand meanings of key Surahs" },
     topics: [
       { te: "సూరహ్ ఫాతిహా వివరణ", en: "Tafseer of Surah Al-Fatiha" },
@@ -97,7 +97,7 @@ const stages = [
     title: { te: "హిఫ్జ్", en: "Hifz" },
     arabic: "الحفظ",
     desc: { te: "ఖురాన్ హృదయంలో భద్రపరచడం", en: "Memorising the Quran by heart" },
-    color: "bg-purple-800",
+    color: "bg-[var(--if-green)]",
     goal: { te: "లక్ష్యం: జుజ్ అమ్మ పూర్తిగా కంఠస్థం చేయడం", en: "Goal: Complete memorisation of Juz Amma" },
     topics: [
       { te: "హిఫ్జ్ టెక్నిక్స్ & రూటీన్", en: "Hifz techniques & daily routine" },
@@ -291,10 +291,10 @@ function LearnQuranPage() {
     <PageShell>
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-amber-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {copy.knowledge_center[lang]}
             </Link>
@@ -382,7 +382,7 @@ function LearnQuranPage() {
                     ))}
                   </div>
                   <div className="flex items-start gap-3 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200/60">
-                    <span className="text-lg leading-none mt-0.5">🎯</span>
+                    <Target aria-hidden="true" className="h-5 w-5 mt-0.5 shrink-0 text-[var(--if-gold-ink)]" />
                     <div>
                       <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-1">
                         {copy.stage_goal[lang]}
@@ -474,7 +474,7 @@ function LearnQuranPage() {
               </div>
 
               <div className="flex gap-2.5 items-start bg-red-900/20 border border-red-400/25 rounded-xl p-3">
-                <span className="text-sm mt-0.5">⚠</span>
+                <TriangleAlert aria-hidden="true" className="h-4 w-4 mt-0.5 shrink-0 text-red-300" />
                 <p className="text-sm text-[var(--if-gold-pale)]/85 leading-snug">
                   <span className="font-semibold text-red-300">{copy.common_mistake[lang]}</span>
                   {step.mistake[lang]}
@@ -524,7 +524,6 @@ function LearnQuranPage() {
             {rabbanaDuas.map((d, i) => (
               <BlurFade key={i} delay={0.06 * i}>
                 <div className="relative overflow-hidden bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 rounded-2xl p-5 flex flex-col hover:-translate-y-1 transition-transform group">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[var(--if-gold)]" />
                   <span className="self-start text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4">
                     {d.ref[lang]}
                   </span>

@@ -63,10 +63,10 @@ function HajjUmrahPage() {
   return (
     <PageShell>
 
-      <section className="bg-gradient-to-br from-stone-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
@@ -88,9 +88,9 @@ function HajjUmrahPage() {
 
       {/* Tabs */}
       <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
-        <div className="mx-auto max-w-3xl flex gap-2">
+        <div className="mx-auto max-w-3xl flex gap-2 overflow-x-auto min-w-0">
           {(["hajj", "umrah", "ihram"] as const).map((t) => (
-            <button key={t} onClick={() => { setTab(t); setStep(0); }} className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${tab === t ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
+            <button key={t} onClick={() => { setTab(t); setStep(0); }} className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${tab === t ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {t === "hajj" ? (copy.hajj_steps[lang]) : t === "umrah" ? (copy.umrah_steps[lang]) : (copy.ihram_rules[lang])}
             </button>
           ))}
@@ -107,7 +107,7 @@ function HajjUmrahPage() {
               </h2>
             </BlurFade>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 mb-4">
-              <BorderBeam size={200} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" />
+              <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-center gap-3 mb-1">
                 <span className="w-8 h-8 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold text-sm flex-shrink-0">{steps[step].n}</span>
                 <h3 className="font-display text-xl font-bold text-[var(--if-green)]">{steps[step].title[lang]}</h3>

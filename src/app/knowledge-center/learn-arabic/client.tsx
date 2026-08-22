@@ -138,7 +138,7 @@ function LearnArabicPage() {
       <section className="bg-gradient-to-br from-emerald-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {copy.knowledge_center[lang]}
             </Link>
@@ -183,7 +183,7 @@ function LearnArabicPage() {
             {whyLearn.map((item, i) => (
               <BlurFade key={i} delay={0.08 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-6 text-center hover:border-[var(--if-gold)]/40 transition-colors group">
-                  <BorderBeam size={80} duration={6} colorFrom="#0d3b1e" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
+                  <BorderBeam size={80} duration={6} colorFrom="#c8922a" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
                   <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-4 leading-relaxed" dir="rtl">{item.ar}</div>
                   <h3 className="font-semibold text-[var(--if-green)] mb-2">{item.title[lang]}</h3>
                   <p className="text-sm text-[var(--if-text-muted)]">{item.desc[lang]}</p>
@@ -217,7 +217,7 @@ function LearnArabicPage() {
           {selected && (
             <BlurFade delay={0.05}>
               <div className="relative overflow-hidden mt-8 bg-white rounded-2xl border border-[var(--if-gold)]/30 p-6 shadow-lg">
-                <BorderBeam size={200} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" />
+                <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
                 <button
                   onClick={() => setSelected(null)}
                   className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-[var(--if-cream-light)] transition-colors"
@@ -320,7 +320,7 @@ function LearnArabicPage() {
                   type="button"
                   aria-label={lang === "te" ? "మునుపటి పదం" : "Previous word"}
                   onClick={() => setWordIdx((i) => (i - 1 + arabicWords.length) % arabicWords.length)}
-                  className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10 transition-colors"
+                  className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10 transition-colors"
                 >
                   <ChevronLeft aria-hidden="true" className="h-4 w-4 text-[var(--if-gold-pale)]" />
                 </button>
@@ -329,7 +329,7 @@ function LearnArabicPage() {
                   type="button"
                   aria-label={lang === "te" ? "తదుపరి పదం" : "Next word"}
                   onClick={() => setWordIdx((i) => (i + 1) % arabicWords.length)}
-                  className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10 transition-colors"
+                  className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10 transition-colors"
                 >
                   <ChevronRight aria-hidden="true" className="h-4 w-4 text-[var(--if-gold-pale)]" />
                 </button>

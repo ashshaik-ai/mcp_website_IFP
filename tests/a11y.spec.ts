@@ -39,9 +39,20 @@ for (const route of SAMPLE) {
     expect(known.has(route), `${route} is not a real route`).toBe(true);
 
     await page.goto(route, { waitUntil: "networkidle" });
-    // Entrance animations run on a delay; scanning mid-fade reports contrast
-    // failures against a half-transparent element.
-    await page.waitForTimeout(900);
+    /* Below-fold entrances are held until scrolled into view, and a held
+       element sits at its first keyframe — opacity 0 — which axe reads as
+       text with no contrast. Sweep the page so everything has revealed, then
+       let the last entrance finish before scanning. A reader who never
+       scrolls never sees that content either; this evaluates what is seen. */
+    await page.evaluate(async () => {
+      const step = window.innerHeight * 0.8;
+      for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+        window.scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, 60));
+      }
+      window.scrollTo(0, 0);
+    });
+    await page.waitForTimeout(1200);
 
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])

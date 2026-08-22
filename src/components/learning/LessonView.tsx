@@ -90,7 +90,7 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
           there first for the insertion to be noticed. */}
       <p
         aria-live="polite"
-        className={`mt-2.5 text-sm font-semibold ${picked === null ? "sr-only" : right ? "text-emerald-700" : "text-red-600"}`}
+        className={`mt-2.5 min-h-5 text-sm font-semibold transition-opacity duration-200 ${picked === null ? "opacity-0" : right ? "opacity-100 text-emerald-700" : "opacity-100 text-red-600"}`}
       >
         {picked === null ? "" : right ? copy.correct[lang] : copy.tryAgain[lang]}
       </p>
@@ -152,15 +152,15 @@ export function LessonView({
         {copy.back[lang]} · {portalTitle[lang]}
       </Link>
 
-      <p className="mt-4 text-[11px] font-bold uppercase tracking-widest text-[var(--if-gold-ink)]">
+      <p className="if-rise mt-4 text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)]" style={{ animationDelay: "0.05s" }}>
         {lang === "te" ? `${total}లో ${copy.lesson.te} ${index + 1}` : `${copy.lesson.en} ${index + 1} of ${total}`}
       </p>
-      <h1 className="mt-1 font-display text-3xl md:text-4xl font-bold text-[var(--if-green)] text-balance">
+      <h1 className="if-rise mt-1 font-display text-3xl md:text-4xl font-bold text-[var(--if-green)] text-balance" style={{ animationDelay: "0.1s" }}>
         {lesson.title[lang]}
       </h1>
 
       {lesson.intro && (
-        <p className="mt-4 text-lg text-[var(--if-text)] leading-relaxed text-pretty">
+        <p className="if-rise mt-4 text-lg text-[var(--if-text)] leading-relaxed text-pretty" style={{ animationDelay: "0.15s" }}>
           {lesson.intro[lang]}
         </p>
       )}
@@ -178,7 +178,7 @@ export function LessonView({
             )}
             {s.check && (
               <div className="mt-4">
-                <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--if-gold-ink)] mb-2">
+                <p className="text-xs font-bold uppercase tracking-wide text-[var(--if-gold-ink)] mb-2">
                   {copy.check[lang]}
                 </p>
                 <Quiz item={s.check} idPrefix={`check-${i}`} />
@@ -205,7 +205,7 @@ export function LessonView({
                   key={i}
                   className="group rounded-xl border border-[var(--if-gold)]/20 bg-white px-4"
                 >
-                  <summary className="flex items-center gap-2 min-h-11 cursor-pointer font-semibold text-sm text-[var(--if-green)] list-none">
+                  <summary className="flex items-center gap-2 min-h-11 cursor-pointer font-semibold text-sm text-[var(--if-green)] hover:text-[var(--if-gold-ink)] transition-colors list-none">
                     <ArrowRight
                       aria-hidden="true"
                       className="h-4 w-4 shrink-0 transition-transform group-open:rotate-90"
@@ -237,7 +237,7 @@ export function LessonView({
         <BiList items={lesson.revision} title={copy.revision} tone="gold" />
 
         {lesson.summary && (
-          <section className="if-defer rounded-2xl bg-[var(--if-green)] p-6">
+          <section className="rounded-2xl bg-[var(--if-green)] p-6">
             <h2 className="font-display text-lg font-bold text-[var(--if-gold-light)] mb-2">
               {copy.summary[lang]}
             </h2>
@@ -248,7 +248,7 @@ export function LessonView({
         )}
 
         {lesson.apply && (
-          <section className="if-defer rounded-2xl border border-[var(--if-gold)]/30 bg-[var(--if-gold)]/8 p-5">
+          <section className="rounded-2xl border border-[var(--if-gold)]/30 bg-[var(--if-gold)]/8 p-5">
             <h2 className="font-display text-lg font-bold text-[var(--if-green)] mb-2">
               {copy.apply[lang]}
             </h2>
@@ -304,7 +304,7 @@ export function LessonView({
           >
             <ArrowLeft aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
-              <span className="block text-[10px] uppercase tracking-wide text-[var(--if-text-muted)]">
+              <span className="block text-xs uppercase tracking-wide text-[var(--if-text-muted)]">
                 {copy.prev[lang]}
               </span>
               <span className="block text-sm font-semibold text-[var(--if-green)] truncate">
@@ -313,7 +313,7 @@ export function LessonView({
             </span>
           </Link>
         ) : (
-          <span />
+          <span className="hidden sm:block" />
         )}
         {next && (
           <Link
@@ -322,7 +322,7 @@ export function LessonView({
           >
             <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
-              <span className="block text-[10px] uppercase tracking-wide text-[var(--if-text-muted)]">
+              <span className="block text-xs uppercase tracking-wide text-[var(--if-text-muted)]">
                 {copy.next[lang]}
               </span>
               <span className="block text-sm font-semibold text-[var(--if-green)] truncate">

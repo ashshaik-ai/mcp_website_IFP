@@ -37,7 +37,7 @@ const prayers = [
       { te: "విత్ర్‌తో ముగించండి", en: "End with Witr prayer" },
     ],
     dua: { ar: "اللّهُمَّ لَكَ الحَمدُ أنتَ قَيِّمُ السَّمواتِ والأرض", te: "ఓ అల్లాహ్, సకల స్తుతి నీకే. ఆకాశాలకు, భూమికి ఆధారం నీవే", en: "O Allah, for You is all praise. You are the Sustainer of the heavens and the earth" },
-    color: "bg-indigo-900",
+    color: "bg-[var(--if-green)]",
   },
   {
     id: "juma",
@@ -115,7 +115,7 @@ function SpecialPrayersPage() {
       <section className={`${p.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
@@ -139,7 +139,7 @@ function SpecialPrayersPage() {
       <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
         <div className="mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1">
           {prayers.map((pr, i) => (
-            <button key={pr.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
+            <button key={pr.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {pr.name[lang]}
             </button>
           ))}
@@ -151,7 +151,7 @@ function SpecialPrayersPage() {
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05} key={p.id}>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-8 mb-6">
-              <BorderBeam size={200} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" />
+              <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-start gap-4 flex-wrap mb-5">
                 <div>
                   <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">{p.name[lang]}</h2>

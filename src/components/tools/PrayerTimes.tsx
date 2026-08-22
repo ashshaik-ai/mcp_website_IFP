@@ -62,7 +62,7 @@ export function PrayerTimesCard() {
   return (
     <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white overflow-hidden">
       <div className="bg-[var(--if-green)] px-6 py-5">
-        <p className="text-[11px] uppercase tracking-widest text-[var(--if-gold-light)]">
+        <p className="text-xs uppercase tracking-widest text-[var(--if-gold-light)]">
           {copy.next_prayer[lang]}
         </p>
         <div className="flex items-baseline gap-3 mt-1 flex-wrap">

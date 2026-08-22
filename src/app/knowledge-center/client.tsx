@@ -39,7 +39,7 @@ const portals = [
     desc: { te: "ప్రవక్త ﷺ మాటలు — మూలంతో, స్థాయితో; ఆరు గ్రంథాలు; ఉల్లేఖనలు ఎలా పరిశీలించబడ్డాయి", en: "The words of the Prophet ﷺ with source and grade, the six collections, and how narrations were checked" },
     meta: { te: "12 హదీసులు · 6 గ్రంథాలు · 4 పాఠాలు", en: "12 hadith · 6 collections · 4 lessons" },
     icon: ScrollText,
-    color: "from-[#1f3b2c] to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "learn-arabic",
@@ -48,7 +48,7 @@ const portals = [
     desc: { te: "అక్షరాల నుండి ఖురానిక్ అరబిక్ వరకు — నిర్మాణాత్మక అభ్యాస మార్గం", en: "From alphabet to Quranic Arabic — structured learning roadmap" },
     meta: { te: "6 పాఠాలు · 28 అక్షరాలు · ఉచితం", en: "6 Lessons · 28 Letters · Free Always" },
     icon: BookOpen,
-    color: "from-emerald-900 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "learn-urdu",
@@ -57,7 +57,7 @@ const portals = [
     desc: { te: "స్క్రిప్ట్ నుండి ఇస్లామిక్ ఉర్దూ వరకు — 6 స్థాయిలు", en: "From script to Islamic Urdu — 6 structured levels" },
     meta: { te: "6 పాఠాలు · 39 అక్షరాలు · ఉచితం", en: "6 Lessons · 39 Letters · Free Always" },
     icon: Globe,
-    color: "from-blue-900 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "learn-quran",
@@ -66,7 +66,7 @@ const portals = [
     desc: { te: "చదవడం · తజ్వీద్ · తఫ్సీర్ · హిఫ్జ్ — 4 దశల ప్రయాణం", en: "Reading · Tajweed · Tafseer · Hifz — 4-stage journey" },
     meta: { te: "4 మాడ్యూళ్ళు · సూరా పాఠాలు · ఉచితం", en: "4 Modules · Surah Lessons · Free" },
     icon: BookOpen,
-    color: "from-amber-900 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "learn-salah",
@@ -75,16 +75,16 @@ const portals = [
     desc: { te: "వుజూ నుండి రక్అత్ వరకు · దువాలు · 6 మాడ్యూళ్ళు", en: "Wudu to Rakat · Duas · 6 complete modules" },
     meta: { te: "6 మాడ్యూళ్ళు · ఇంటరాక్టివ్ · ఉచితం", en: "6 Modules · Interactive · Free" },
     icon: Star,
-    color: "from-teal-900 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "seerah",
     title: { te: "సీరత్", en: "Seerah" },
     arabic: "السيرة النبوية",
-    desc: { te: "ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10 దశల కాలపట్టిక", en: "Life of Prophet Muhammad ﷺ — 10-stage visual timeline" },
+    desc: { te: "ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10 దశల కాలపట్టిక", en: "Life of Prophet Muhammad ﷺ\u200E — 10-stage visual timeline" },
     meta: { te: "10 దశలు · చారిత్రక కాలపట్టిక · ఉచితం", en: "10 Stages · Historical Timeline · Free" },
     icon: Clock,
-    color: "from-slate-800 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "islamic-history",
@@ -93,7 +93,7 @@ const portals = [
     desc: { te: "రాషిదూన్ నుండి ఆధునిక కాలం వరకు — 6 యుగాలు", en: "Rashidun to modern era — 6 historical epochs" },
     meta: { te: "6 యుగాలు · సామ్రాజ్యాలు · ఉచితం", en: "6 Eras · Empires · Free" },
     icon: Globe,
-    color: "from-stone-800 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "kids-islam",
@@ -102,7 +102,7 @@ const portals = [
     desc: { te: "వయస్సు 5–15 · విశ్వాసాలు · మర్యాదలు · ప్రవక్త కథలు · ఖురాన్", en: "Ages 5–15 · Beliefs · Manners · Prophet Stories · Quran" },
     meta: { te: "6 విభాగాలు · ఇంటరాక్టివ్ · ఉచితం", en: "6 Sections · Interactive · Free" },
     icon: Baby,
-    color: "from-emerald-900 to-teal-900",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "names-of-allah",
@@ -111,7 +111,7 @@ const portals = [
     desc: { te: "99 దివ్య నామాలు — అర్థాలు, ప్రతిఫలాలు, ప్రతిదిన ధ్యానం", en: "99 beautiful names — meanings, virtues, daily reflection" },
     meta: { te: "99 నామాలు · అర్థాలు · ఉచితం", en: "99 Names · Meanings · Free" },
     icon: Star,
-    color: "from-indigo-900 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "islamic-calendar",
@@ -120,7 +120,7 @@ const portals = [
     desc: { te: "హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి · ముస్లిం పండుగలు · ముఖ్యమైన తేదీలు", en: "Hijri ↔ Gregorian conversion · Islamic festivals · Key dates" },
     meta: { te: "మార్పిడి సాధనం · పండుగలు · ఉచితం", en: "Conversion Tool · Festivals · Free" },
     icon: Calendar,
-    color: "from-cyan-900 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "hajj-umrah",
@@ -129,7 +129,7 @@ const portals = [
     desc: { te: "దశలవారీగా మార్గదర్శకం · ప్రతి అమల్ · దువాలు · తవాఫ్", en: "Step-by-step guide · Every ritual · Duas · Tawaf" },
     meta: { te: "పూర్తి మార్గదర్శకం · ఉచితం", en: "Complete Guide · Free" },
     icon: Users,
-    color: "from-yellow-900 to-amber-900",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "special-prayers",
@@ -138,7 +138,7 @@ const portals = [
     desc: { te: "ప్రత్యేక ఇస్లామిక్ నమాజులు — తహజ్జుద్, జుముఆ, ఈద్, తరావీహ్, ఇస్తిఖారా", en: "Special Islamic prayers — Tahajjud, Jumu'ah, Eid, Tarawih, Istikhara" },
     meta: { te: "5 నమాజులు · దువాలు · ఉచితం", en: "5 Prayers · Duas · Free" },
     icon: Star,
-    color: "from-slate-800 to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     id: "womens-guidance",
@@ -147,7 +147,7 @@ const portals = [
     desc: { te: "హైద్ · నిఫాస్ · తహారా · గుస్ల్ · రమజాన్ — విశ్వసనీయ ఫిఖ్ మార్గదర్శకం", en: "Hayd · Nifas · Taharah · Ghusl · Ramadan — trusted fiqh guidance" },
     meta: { te: "పూర్తి మార్గదర్శకం · గోప్యం · ఉచితం", en: "Complete Guide · Private · Free" },
     icon: Users,
-    color: "from-[#1a3a2a] to-[var(--if-green)]",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
 ];
 
@@ -158,11 +158,7 @@ const tools = [
 
 function KCPage({ lessonCount }: { lessonCount: number }) {
   const { lang, t } = useI18n();
-  const [filter, setFilter] = useState<"all" | "learning" | "tools">("all");
 
-  /* Only "all" and "learning" render as buttons, and every portal is a
-     learning portal, so this always returned the full list. The control was
-     two buttons that did the same thing. */
   const filtered = portals;
 
   return (
@@ -170,7 +166,9 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
-        <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M4OTIyYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]" />
+        {/* The seal, as on the homepage hero, in place of a tiled texture
+            that could have belonged to any site. */}
+        <div className="if-emblem if-emblem-hero" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <span lang="ar" dir="rtl" className="inline-block font-arabic text-3xl text-[var(--if-gold-light)]">بِسْمِ اللَّهِ</span>
@@ -225,7 +223,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
       <section id="tools" className="if-defer py-12 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-6">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-6">
               {copy.islamic_tools[lang]}
             </h2>
           </BlurFade>
@@ -274,21 +272,6 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">
                 {copy.learning_portals[lang]}
               </h2>
-              <div className="flex gap-2">
-                {(["all", "learning"] as const).map((f) => (
-                  <button
-                    key={f}
-                    onClick={() => setFilter(f)}
-                    className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors border ${
-                      filter === f
-                        ? "bg-[var(--if-green)] text-[var(--if-gold-light)] border-[var(--if-green)]"
-                        : "border-[var(--if-gold)]/30 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]"
-                    }`}
-                  >
-                    {f === "all" ? (copy.all[lang]) : (copy.learning[lang])}
-                  </button>
-                ))}
-              </div>
             </div>
           </BlurFade>
 
@@ -299,7 +282,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
                 <BlurFade key={portal.id} delay={0.05 * i}>
                   <Link
                     href={`/knowledge-center/${portal.id}`}
-                    className="relative overflow-hidden group flex flex-col rounded-2xl border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all hover:shadow-xl hover:shadow-[var(--if-gold)]/10 bg-white"
+                    className="relative overflow-hidden group flex flex-col h-full rounded-2xl border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all hover:shadow-xl hover:shadow-[var(--if-gold)]/10 bg-white"
                   >
                     <BorderBeam size={120} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
 

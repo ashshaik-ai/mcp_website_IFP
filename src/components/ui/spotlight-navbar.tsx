@@ -105,15 +105,38 @@ export function SpotlightNavbar({
     useEffect(() => {
         if (!navRef.current) return;
         const nav = navRef.current;
-        const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
+        let cancel: (() => void) | undefined;
 
-        if (activeItem) {
+        const place = (animate: boolean) => {
+            const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
+            if (!activeItem) return;
             const navRect = nav.getBoundingClientRect();
             const itemRect = activeItem.getBoundingClientRect();
             const targetX = itemRect.left - navRect.left + itemRect.width / 2;
+            cancel?.();
+            if (animate) {
+                cancel = tweenProperty(nav, "--ambience-x", ambienceX, targetX, 450);
+            } else {
+                ambienceX.current = targetX;
+                nav.style.setProperty("--ambience-x", `${targetX}px`);
+            }
+        };
 
-            return tweenProperty(nav, "--ambience-x", ambienceX, targetX, 450);
-        }
+        place(true);
+
+        /* The labels are Telugu in a web font that swaps in after first paint
+           and is wider than the fallback, so a position measured before the
+           swap landed a little left of the label. Re-measure once the fonts
+           are in, and whenever the bar is resized. */
+        const refit = () => place(false);
+        document.fonts?.ready.then(refit);
+        const ro = new ResizeObserver(refit);
+        ro.observe(nav);
+
+        return () => {
+            cancel?.();
+            ro.disconnect();
+        };
     }, [activeIndex]);
 
     const handleItemClick = (item: NavItem, index: number) => {
@@ -148,7 +171,7 @@ export function SpotlightNavbar({
                                 }}
                                 className={cn(
                                     // min-h-11 keeps these above the 44px target floor.
-                                    "px-4 min-h-11 inline-flex items-center text-sm font-medium transition-colors duration-200 rounded-full",
+                                    "px-4 min-h-11 inline-flex items-center text-sm font-medium whitespace-nowrap transition-colors duration-200 rounded-full",
                                     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]",
                                     /* Shipped as text-black with a dark: variant, which assumed a light
                                        page. This sits on the dark green header, so every link rendered
@@ -186,8 +209,12 @@ export function SpotlightNavbar({
 
                 {/* 2. The Active State Ambience (Stays on Active) */}
                 <div
-                    className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-[2]"
+                    className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-[2] transition-opacity duration-300"
                     style={{
+                        /* -1 means no section is current (the hero, or another
+                           page). The glow used to sit at x=0 then, under
+                           nothing. */
+                        opacity: activeIndex < 0 ? 0 : 1,
                         background: `
                   radial-gradient(
                     60px circle at var(--ambience-x) 0%, 

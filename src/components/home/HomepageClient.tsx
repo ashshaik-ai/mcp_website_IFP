@@ -17,7 +17,7 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { MagicCard } from "@/components/ui/magic-card";
-import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Users, Building2, BookOpen, Heart } from "lucide-react";
+import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Users, Building2, BookOpen, Heart, Moon } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -59,8 +59,6 @@ const copy = {
   janab_shaik_akram: { te: "జనాబ్ షేక్ అక్రమ్", en: "Janab Shaik Akram" },
   founder_islamic_front: { te: "వ్యవస్థాపకుడు · ఇస్లామిక్ ఫ్రంట్", en: "Founder · Islamic Front" },
   a_p_waqf_board_director: { te: "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్", en: "A.P. Waqf Board Director" },
-  our_programs_in_action: { te: "మా కార్యక్రమాలు", en: "Our Programs in Action" },
-  service_education_and_community_building: { te: "సేవ, విద్య మరియు సమాజ నిర్మాణం", en: "Service, education and community building" },
   phone: { te: "ఫోన్", en: "Phone" },
   email: { te: "ఇమెయిల్", en: "Email" },
   address: { te: "చిరునామా", en: "Address" },
@@ -173,7 +171,7 @@ const kc_portals = [
 ];
 
 const leaders = [
-  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram-portrait2.jpg" },
+  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram-cutout.webp" },
   { name: "Yaseen Shaik",      te: "యాసీన్ షేక్",       role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/1.candidate.jpg" },
   { name: "Abdul Aleem",       te: "అబ్దుల్ అలీమ్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/2.candidate.jpg" },
   { name: "Akbar Basha Shaik", te: "అక్బర్ బాషా షేక్",  role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/3.candidate.jpg" },
@@ -187,17 +185,6 @@ const leaders = [
    2023 members and ride the marquee together. */
 const [founder, ...members] = leaders;
 
-const gallery = [
-  { src: "/assets/gallery/convention-hall.webp",       title: { te: "కన్వెన్షన్ హాల్ పునరుద్ధరణ",    en: "Convention Hall Renovation" } },
-  { src: "/assets/gallery/eid-celebration.webp",       title: { te: "ఈద్ వేడుక",                      en: "Eid Celebration" } },
-  { src: "/assets/gallery/funeral-aid.webp",           title: { te: "అంత్యక్రియల సహాయం",             en: "Funeral Aid Program" } },
-  { src: "/assets/gallery/madrasa-classes.webp",       title: { te: "మదరసా తరగతులు",                 en: "Madrasa Classes" } },
-  { src: "/assets/gallery/medical-camp.webp",          title: { te: "వైద్య శిబిరం",                  en: "Medical Camp" } },
-  { src: "/assets/gallery/mosque-renovation.webp",     title: { te: "మసీదు పునరుద్ధరణ",              en: "Mosque Renovation" } },
-  { src: "/assets/gallery/ramadan-iftar.webp",         title: { te: "రంజాన్ ఇఫ్తార్",                en: "Ramadan Iftar" } },
-  { src: "/assets/gallery/scholarship-distribution.webp", title: { te: "స్కాలర్‌షిప్ పంపిణీ",       en: "Scholarship Distribution" } },
-  { src: "/assets/gallery/tailoring-center.webp",      title: { te: "కుట్టు శిక్షణా కేంద్రం",       en: "Tailoring Training Center" } },
-];
 
 /* ── Status helpers ── */
 function StatusIcon({ status }: { status: string }) {
@@ -223,18 +210,16 @@ function Homepage() {
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-24 md:py-32 px-4">
         {/* The organisation's seal, watermarked. This was a tiled circle
             pattern -- decoration that could have belonged to any site. */}
-        <div className="if-emblem" aria-hidden="true" />
-        <Meteors number={14} minDuration={5} maxDuration={12} className="text-[var(--if-gold)]/45" />
+        <div className="if-emblem if-emblem-hero" aria-hidden="true" />
+        <Meteors number={9} minDuration={5} maxDuration={12} className="text-[var(--if-gold)]/45" />
 
         <div className="relative mx-auto max-w-5xl text-center flex flex-col items-center gap-6">
           {/* Above the fold these rise into place without fading. The h1 is the
               LCP element, and any opacity-0 start delays the paint Lighthouse
               measures by the full length of the animation. */}
           <span className="if-rise inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-sm font-medium">
-            🌙{" "}
-            <AnimatedGradientText colorFrom="#e8b84b" colorTo="#ffffff" speed={0.5} className="text-sm font-medium">
-              {t("hero_badge")}
-            </AnimatedGradientText>
+            <Moon aria-hidden="true" className="h-3.5 w-3.5 text-[var(--if-gold-light)]" />
+            <span className="text-sm font-medium text-[var(--if-gold-light)]">{t("hero_badge")}</span>
           </span>
 
           <h1 className="if-rise font-display text-5xl md:text-7xl font-bold text-[var(--if-gold-light)] leading-tight">
@@ -251,13 +236,13 @@ function Homepage() {
               {lang === "te" ? (
                 <WordRotate
                   words={["కమ్యూనిటీ సంక్షేమం", "నాణ్యమైన విద్య", "పౌర భాగస్వామ్యం", "ముస్లిం ఐక్యత"]}
-                  className="text-[var(--if-gold-light)] font-semibold text-sm m-0 leading-snug"
+                  className="text-[var(--if-gold-light)] font-semibold text-sm m-0 leading-relaxed"
                   duration={2400}
                 />
               ) : (
                 <WordRotate
                   words={["Community Welfare", "Quality Education", "Civic Participation", "Muslim Unity"]}
-                  className="text-[var(--if-gold-light)] font-semibold text-sm m-0 leading-snug"
+                  className="text-[var(--if-gold-light)] font-semibold text-sm m-0 leading-relaxed"
                   duration={2400}
                 />
               )}
@@ -327,19 +312,19 @@ function Homepage() {
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--if-gold-ink)]">
                 {t("section_victory_tag")}
               </span>
-              <h2 className="font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-3">
+              <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-3">
                 {t("section_victory_title")}
               </h2>
               <p className="text-[var(--if-text-muted)] max-w-xl mx-auto">
                 {t("section_victory_desc")}
               </p>
               <p className="text-xs text-[var(--if-text-muted)] mt-2">
-                Anjuman-e-Himayatul Islam, Mangalagiri · 522503, A.P.
+                {lang === "te" ? "అంజుమన్-ఎ-హిమాయతుల్ ఇస్లాం, మంగళగిరి · 522503, ఆం.ప్ర." : "Anjuman-e-Himayatul Islam, Mangalagiri · 522503, A.P."}
               </p>
             </div>
           </BlurFade>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto mb-12">
             {[
               { n: "7/9", label: { te: "ఎన్నికైన వార్డ్ సీట్లు", en: "Ward Seats Won" } },
               { n: "15+", label: { te: "సేవా సంవత్సరాలు", en: "Years of Service" } },
@@ -368,17 +353,23 @@ function Homepage() {
                 they pass. Splitting them also lets his portrait be larger,
                 which states the hierarchy without a label doing it. */}
             <figure className="group m-0 flex flex-col items-center mb-10">
-              <span className="if-portrait if-founder relative block mx-auto mb-3 rounded-full overflow-hidden">
-                <Image
-                  src={founder.img}
-                  alt={founder.name}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 640px) 200px, 176px"
-                />
+              {/* The cutout on the site's own green, rather than the studio's
+                  lime backdrop inside a gold ring. */}
+              <span className="if-portrait if-founder relative block mx-auto mb-3 rounded-full overflow-hidden bg-gradient-to-b from-[var(--if-green-mid)] to-[var(--if-green)]">
+                {/* The cutout starts at the crown, so object-top put his head
+                    on the ring. An inner box leaves 8% of headroom. */}
+                <span className="absolute inset-x-0 bottom-0 top-[8%]">
+                  <Image
+                    src="/assets/founder/shaik-akram-cutout.webp"
+                    alt={founder.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(min-width: 640px) 200px, 176px"
+                  />
+                </span>
               </span>
               <figcaption className="text-center">
-                <p className="font-display text-lg font-bold text-[var(--if-green)] leading-snug">
+                <p className="font-display text-lg font-bold text-[var(--if-green)] leading-relaxed">
                   {lang === "te" ? founder.te : founder.name}
                 </p>
                 <p className="text-sm text-[var(--if-gold-ink)] mt-0.5">{founder.role[lang]}</p>
@@ -403,7 +394,7 @@ function Homepage() {
                       />
                     </span>
                     <figcaption>
-                      <p className="text-sm font-semibold text-[var(--if-green)] leading-snug text-pretty">
+                      <p className="text-sm font-semibold text-[var(--if-green)] leading-relaxed text-pretty">
                         {lang === "te" ? m.te : m.name}
                       </p>
                       <p className="text-xs text-[var(--if-gold-ink)] mt-1">{m.role[lang]}</p>
@@ -427,10 +418,8 @@ function Homepage() {
       <section id="achievements" className="if-defer py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-center mb-12">
-              <AnimatedGradientText colorFrom="#0d3b1e" colorTo="#c8922a" speed={0.5}>
-                {t("section_achievements")}
-              </AnimatedGradientText>
+            <h2 className="if-heading font-display text-4xl font-bold text-center mb-12">
+              <span className="text-[var(--if-green)]">{t("section_achievements")}</span>
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -481,10 +470,8 @@ function Homepage() {
               <span className="text-xs font-bold tracking-[0.22em] uppercase text-[var(--if-gold-ink)]">
                 {copy.action_plan_2023_2028[lang]}
               </span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold mt-2">
-                <AnimatedGradientText colorFrom="#0d3b1e" colorTo="#c8922a" speed={0.45}>
-                  {t("section_manifesto")}
-                </AnimatedGradientText>
+              <h2 className="if-heading font-display text-4xl font-bold mt-2">
+                <span className="text-[var(--if-green)]">{t("section_manifesto")}</span>
               </h2>
               <p className="text-[var(--if-text-muted)] mt-2 text-sm">
                 {copy.n_10_point_plan_for_our[lang]}
@@ -511,7 +498,7 @@ function Homepage() {
                       <div className={`font-display text-3xl md:text-4xl font-bold ${color}`}>
                         <NumberTicker value={value} className={`font-display text-3xl md:text-4xl font-bold ${color}`} />
                       </div>
-                      <div className="text-[10px] md:text-xs text-[var(--if-gold-pale)]/80 mt-1 leading-tight">{label}</div>
+                      <div className="text-xs text-[var(--if-gold-pale)]/80 mt-1 leading-tight">{label}</div>
                     </div>
                   ))}
                 </div>
@@ -528,7 +515,7 @@ function Homepage() {
                       style={{ background: "linear-gradient(90deg, #10b981 0%, #c8922a 70%, #e8b84b 100%)" }}
                     />
                   </div>
-                  <p className="text-[10px] text-[var(--if-gold-pale)]/30 mt-1.5 text-right">
+                  <p className="text-xs text-[var(--if-gold-pale)]/80 mt-1.5 text-right">
                     {copy.n_4_of_10_completed[lang]}
                   </p>
                 </div>
@@ -551,17 +538,17 @@ function Homepage() {
                     ? "bg-[var(--if-cream-light)] border-[var(--if-gold)]/35 shadow-[0_1px_2px_rgb(13_59_30/0.05)]"
                     : "bg-[var(--if-cream-light)]/60 border-[var(--if-green)]/10"
                 }`}>
-                  <span className="flex-shrink-0 font-display text-base font-bold text-[var(--if-gold-ink)]/45 w-5 text-right tabular-nums">
+                  <span className="flex-shrink-0 font-display text-base font-bold text-[var(--if-gold-ink)] w-5 text-right tabular-nums">
                     {i + 1}
                   </span>
 
                   <StatusIcon status={item.status} />
 
-                  <span className="flex-1 text-[var(--if-text)] font-medium leading-snug text-sm md:text-base text-pretty">
+                  <span className="flex-1 text-[var(--if-text)] font-medium leading-relaxed text-sm md:text-base text-pretty">
                     {item.title[lang]}
                   </span>
 
-                  <span className={`flex-shrink-0 text-[10px] md:text-xs px-2.5 py-1 rounded-full border font-semibold whitespace-nowrap ${statusColor(item.status)}`}>
+                  <span className={`flex-shrink-0 text-xs px-2.5 py-1 rounded-full border font-semibold whitespace-nowrap ${statusColor(item.status)}`}>
                     {item.status === "completed" ? t("completed") : item.status === "in_progress" ? t("in_progress") : t("upcoming")}
                   </span>
                 </BlurFade>
@@ -590,7 +577,7 @@ function Homepage() {
       <section id="schemes" className="if-defer py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
+            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
               {t("section_schemes")}
             </h2>
           </BlurFade>
@@ -598,7 +585,7 @@ function Homepage() {
               the section height as empty ground beneath it. Both columns stretch
               now, and the statement card takes up the slack. */}
           <div className="grid md:grid-cols-2 gap-8">
-            <BlurFade delay={0.15}>
+            <BlurFade delay={0.15} direction="left">
               <div className="if-panel rounded-2xl p-8 h-full">
                 <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold mb-2">
                   {t("scheme_title")}
@@ -625,7 +612,7 @@ function Homepage() {
                 </ul>
               </div>
             </BlurFade>
-            <BlurFade delay={0.2}>
+            <BlurFade delay={0.2} direction="right">
               <div className="flex flex-col gap-6 h-full">
                 <div className="if-panel rounded-2xl p-8 flex-1 flex flex-col justify-center">
                   <h3 className="font-display text-2xl text-[var(--if-gold-light)] font-bold mb-4 text-balance">
@@ -659,11 +646,11 @@ function Homepage() {
       <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_infra")}
             </h2>
           </BlurFade>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
             {infra.map(({ icon: Icon, count, label }, i) => (
               <BlurFade key={i} delay={0.08 * i}>
                 <div className="relative overflow-hidden text-center p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors group">
@@ -686,12 +673,12 @@ function Homepage() {
       {/* ── ABOUT / FOUNDER ── */}
       <section id="about" className="if-defer py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
         <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-12 items-center">
-          <BlurFade delay={0.1}>
+          <BlurFade delay={0.1} direction="left">
             <div>
               <AnimatedShinyText shimmerWidth={120} className="text-xs font-bold tracking-[0.2em] uppercase !text-[var(--if-gold-ink)]">
-                Est. 26-08-2011
+                {lang === "te" ? "స్థాపన 26-08-2011" : "Est. 26-08-2011"}
               </AnimatedShinyText>
-              <h2 className="font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-4">
+              <h2 className="if-heading if-heading-left font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-4">
                 {t("section_about")}
               </h2>
               <p className="text-[var(--if-text-muted)] mb-6 leading-relaxed">
@@ -714,24 +701,26 @@ function Homepage() {
               </ul>
             </div>
           </BlurFade>
-          <BlurFade delay={0.2}>
+          <BlurFade delay={0.2} direction="right">
             <div className="relative overflow-hidden rounded-2xl bg-[var(--if-green)] p-8 text-center text-[var(--if-gold-pale)]">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               {/* The same seal, sized to the card. The founder's photograph was
                   taken in front of it, and the crop that makes him a portrait
                   cuts it out; this puts it back behind him. */}
-              <div className="relative w-40 h-40 mx-auto mb-5">
+              {/* The founder's studio portrait, cut out, standing in front of
+                  the seal — the emblem he was photographed against at the
+                  podium. The shirt dissolves into the card so it reads as a
+                  figure rising from the mark rather than a sticker on it. */}
+              <div className="relative w-60 h-60 mx-auto mb-2">
                 <div className="if-emblem if-emblem-card" aria-hidden="true" />
-                <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
                 <Image
-                  src="/assets/founder/shaik-akram-portrait2.jpg"
+                  src="/assets/founder/shaik-akram-cutout.webp"
                   alt="జనాబ్ షేక్ అక్రమ్"
                   fill
-                  className="object-cover object-top"
-                  sizes="160px"
+                  className="if-cutout object-contain object-bottom"
+                  sizes="240px"
                   loading="lazy"
                 />
-                </div>
               </div>
               <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">
                 {copy.janab_shaik_akram[lang]}
@@ -751,14 +740,14 @@ function Homepage() {
       <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_stories")}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {stories.map((s, i) => (
               <BlurFade key={i} delay={0.08 * i}>
-                <div className="bg-white rounded-2xl border border-[var(--if-gold)]/15 p-6 hover:border-[var(--if-gold)]/40 transition-colors h-full">
+                <div className="bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/15 p-6 hover:border-[var(--if-gold)]/40 transition-colors h-full">
                   <div className="w-10 h-10 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold mb-3">
                     {s.name[0]}
                   </div>
@@ -772,47 +761,16 @@ function Homepage() {
         </div>
       </section>
 
-      {/* ── GALLERY ── */}
-      <section className="if-defer py-20 px-4 bg-[var(--if-cream-light)]">
-        <div className="mx-auto max-w-7xl">
-          <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-3">
-              {copy.our_programs_in_action[lang]}
-            </h2>
-            <p className="text-[var(--if-text-muted)] text-center mb-10 text-sm">
-              {copy.service_education_and_community_building[lang]}
-            </p>
-          </BlurFade>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {gallery.map((item, i) => (
-              <BlurFade key={item.src} delay={0.04 * i}>
-                <div className="group relative overflow-hidden rounded-2xl aspect-video border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all shadow-sm hover:shadow-lg hover:shadow-[var(--if-gold)]/10">
-                  <Image
-                    src={item.src}
-                    /* The caption below states the same thing, so a repeated
-                       alt would be read twice -- and it was English-only. */
-                    alt=""
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <p className="absolute bottom-2 left-3 right-3 text-white text-xs font-semibold leading-snug">
-                    {item.title[lang]}
-                  </p>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* The gallery is gone. Its nine images were generated, not taken:
+          a Western ballroom, an Ottoman mosque under scaffolding, a scholarship
+          handshake under a "St. Augustine School" banner. Fabricated evidence of
+          work done is the one thing a political organisation must never publish.
+          Reinstate the section when there are real photographs. */}
       {/* ── EVENTS ── */}
       <section id="events" className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_events")}
             </h2>
           </BlurFade>
@@ -822,7 +780,7 @@ function Homepage() {
                 {/* Title, venue and date were one run-on line down the left, which
                     left the right half of every row empty. The date is the thing
                     a reader scans for, so it gets its own column. */}
-                <div className="if-row flex items-center gap-4 p-5 bg-white rounded-2xl border border-[var(--if-gold)]/15">
+                <div className="if-row flex items-center gap-4 p-5 bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/15">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--if-green)] flex items-center justify-center">
                     <Calendar className="h-5 w-5 text-[var(--if-gold-light)]" aria-hidden="true" />
                   </div>
@@ -830,7 +788,7 @@ function Homepage() {
                     <h3 className="font-semibold text-[var(--if-green)] text-pretty flex items-center gap-2 flex-wrap">
                       {ev.title[lang]}
                       {ev.repeats && (
-                        <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--if-gold)]/12 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/25">
+                        <span className="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--if-gold)]/12 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/25">
                           {ev.repeats[lang]}
                         </span>
                       )}
@@ -852,7 +810,7 @@ function Homepage() {
       <section id="volunteer" className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_volunteer")}
             </h2>
           </BlurFade>
@@ -896,7 +854,7 @@ function Homepage() {
       <section id="contact" className="if-defer py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
+            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
               {t("section_contact")}
             </h2>
           </BlurFade>
@@ -936,14 +894,13 @@ function Homepage() {
       </section>
 
       {/* ── KNOWLEDGE CENTER PROMO ── */}
-      <section className="if-defer py-20 px-4 scroll-mt-20">
+      {/* Not deferred: it sits directly above the footer. */}
+      <section className="py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-12">
-              <h2 className="font-display text-4xl font-bold">
-                <AnimatedGradientText colorFrom="#c8922a" colorTo="#0d3b1e" speed={0.5}>
-                  {t("section_kc_promo")}
-                </AnimatedGradientText>
+              <h2 className="if-heading font-display text-4xl font-bold">
+                <span className="text-[var(--if-green)]">{t("section_kc_promo")}</span>
               </h2>
               <p className="text-[var(--if-text-muted)] mt-2">
                 {copy.free_multilingual_islamic_tools_and[lang]}

@@ -3,6 +3,7 @@
 import { useI18n } from "@/lib/i18n/context";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { RevealObserver } from "@/components/RevealObserver";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -26,6 +27,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         {copy.skip_to_content[lang]}
       </a>
 
+      <RevealObserver />
       <Navbar />
 
       <main id="main" className="flex-1">

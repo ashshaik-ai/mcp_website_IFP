@@ -73,7 +73,7 @@ function HadithPage() {
           <BlurFade delay={0.05}>
             <Link
               href="/knowledge-center"
-              className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2"
+              className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2"
             >
               <ChevronLeft aria-hidden="true" className="h-4 w-4" />
               {copy.knowledge_center[lang]}
@@ -109,7 +109,7 @@ function HadithPage() {
               role="tab"
               aria-selected={theme === t}
               onClick={() => setTheme(t)}
-              className={`flex-shrink-0 min-h-9 px-4 rounded-full text-sm font-semibold transition-colors whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
+              className={`flex-shrink-0 min-h-11 px-4 rounded-full text-sm font-semibold transition-colors whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
                 theme === t
                   ? "bg-[var(--if-green)] text-[var(--if-gold-light)]"
                   : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"
@@ -124,7 +124,7 @@ function HadithPage() {
       <section id="essential" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
               {copy.essential[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] mb-8 text-pretty max-w-2xl">
@@ -138,7 +138,7 @@ function HadithPage() {
                 <BlurFade delay={Math.min(0.04 * i, 0.3)}>
                   <article className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 sm:p-8">
                     {i === 0 && (
-                      <BorderBeam size={200} duration={10} colorFrom="#0d3b1e" colorTo="#c8922a" />
+                      <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#c8922a" />
                     )}
                     <p
                       dir="rtl"
@@ -182,7 +182,7 @@ function HadithPage() {
       <section id="grades" className="if-defer py-16 px-4 bg-[var(--if-cream-light)] scroll-mt-24">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
               {copy.grades_heading[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] mb-7 text-pretty max-w-2xl">
@@ -213,7 +213,7 @@ function HadithPage() {
       <section id="books" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
               {copy.six_books[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] mb-8 text-pretty max-w-2xl">

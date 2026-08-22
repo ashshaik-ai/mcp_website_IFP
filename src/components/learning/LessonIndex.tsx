@@ -72,7 +72,7 @@ export function LessonIndex({ portal }: { portal: string }) {
 
         <ol className="grid gap-3 sm:grid-cols-2">
           {items.map((l, i) => (
-            <li key={l.slug}>
+            <li key={l.slug} className="if-blur-fade" style={{ "--bf-delay": `${Math.min(0.05 * i, 0.4)}s` } as React.CSSProperties}>
               <Link
                 href={`/knowledge-center/${portal}/${l.slug}`}
                 className="group flex items-start gap-4 h-full rounded-2xl border border-[var(--if-gold)]/20 bg-white p-4 hover:border-[var(--if-gold)]/60 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"

@@ -30,7 +30,7 @@ type BlurFadeProps = {
   blur?: string;
   /** Accepted for compatibility; every call site animates on mount. */
   inView?: boolean;
-  direction?: "up" | "down" | "left" | "right";
+  direction?: "up" | "down" | "left" | "right" | "scale";
 };
 
 export function BlurFade({
@@ -40,11 +40,19 @@ export function BlurFade({
   duration = 0.4,
   offset = 6,
   blur = "6px",
+  direction = "up",
 }: BlurFadeProps) {
+  /* direction was accepted and ignored; everything rose. Sideways entrances
+     let a two-column section close in from both edges, and "scale" lets
+     imagery settle rather than slide. */
+  const dx = direction === "left" ? -4 * offset : direction === "right" ? 4 * offset : 0;
+  const dy = direction === "down" ? offset : direction === "up" ? -offset : 0;
   const style = {
     "--bf-delay": `${(0.04 + delay).toFixed(3)}s`,
     "--bf-duration": `${duration}s`,
-    "--bf-offset": `${-offset}px`,
+    "--bf-x": `${dx}px`,
+    "--bf-offset": `${dy}px`,
+    "--bf-scale": direction === "scale" ? "0.94" : "1",
     "--bf-blur": blur,
   } as CSSProperties;
 

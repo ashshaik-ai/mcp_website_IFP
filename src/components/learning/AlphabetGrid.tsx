@@ -118,7 +118,7 @@ export function AlphabetGrid({
               >
                 {l.glyph}
               </span>
-              <span className="text-[11px] text-[var(--if-text-muted)] text-center leading-tight px-1">
+              <span className="text-xs text-[var(--if-text-muted)] text-center leading-snug px-1">
                 {l.name[lang]}
               </span>
             </button>

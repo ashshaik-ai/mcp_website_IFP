@@ -46,28 +46,28 @@ const prayers = [
     time: { te: "సూర్యోదయానికి ముందు", en: "Before sunrise" },
     fard: 2, sunnah: "2 Sunnah (before)", witr: false,
     note: { te: "రోజులో మొదటి నమాజ్ — ఆత్మను మేల్కొలపడానికి", en: "First prayer of the day — to awaken the soul" },
-    color: "from-indigo-900 to-indigo-800",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     name: { te: "జుహ్ర్", en: "Zuhr" }, ar: "الظهر",
     time: { te: "మధ్యాహ్నం తర్వాత", en: "After midday" },
     fard: 4, sunnah: "4 Sunnah (before) + 2 (after)", witr: false,
     note: { te: "మధ్యాహ్న విరామంలో అల్లాహ్‌ను స్మరించడం", en: "Remembering Allah in the midday pause" },
-    color: "from-amber-800 to-amber-700",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     name: { te: "అసర్", en: "Asr" }, ar: "العصر",
     time: { te: "మధ్యాహ్నం తర్వాత", en: "Mid-afternoon" },
     fard: 4, sunnah: "4 Sunnah (before)", witr: false,
     note: { te: "ప్రవక్త ﷺ దీన్ని ప్రత్యేకంగా నొక్కి చెప్పారు", en: "The Prophet ﷺ emphasised this prayer especially" },
-    color: "from-orange-800 to-orange-700",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     name: { te: "మఘ్రిబ్", en: "Maghrib" }, ar: "المغرب",
     time: { te: "సూర్యాస్తమయం తర్వాత", en: "After sunset" },
     fard: 3, sunnah: "2 Sunnah (after)", witr: false,
     note: { te: "సూర్యాస్తమయ కృతజ్ఞత నమాజ్", en: "Prayer of gratitude at sunset" },
-    color: "from-rose-900 to-rose-800",
+    color: "from-[var(--if-green-mid)] to-[var(--if-green)]",
   },
   {
     name: { te: "ఇషా", en: "Isha" }, ar: "العشاء",
@@ -261,7 +261,7 @@ function LearnSalahPage() {
       <section className="bg-gradient-to-br from-teal-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-4">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-1">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-1">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
@@ -286,7 +286,7 @@ function LearnSalahPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === tab.id ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}
+              className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${activeTab === tab.id ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}
             >
               {lang === "te" ? tab.te : tab.en}
             </button>
@@ -364,7 +364,7 @@ function LearnSalahPage() {
               </p>
             </BlurFade>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 mb-4">
-              <BorderBeam size={200} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" />
+              <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-9 h-9 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold">{wuduSteps[wuduStep].n}</span>
                 <div className="flex-1">

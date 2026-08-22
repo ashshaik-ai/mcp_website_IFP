@@ -52,10 +52,10 @@ function LearnUrduPage() {
   return (
     <PageShell>
 
-      <section className="bg-gradient-to-br from-blue-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />{copy.knowledge_center[lang]}
             </Link>
           </BlurFade>
@@ -113,9 +113,9 @@ function LearnUrduPage() {
                 <Volume2 className="h-4 w-4" />{copy.listen[lang]}
               </button>
               <div className="flex justify-center gap-3 mt-5">
-                <button type="button" aria-label={lang === "te" ? "మునుపటి పదం" : "Previous word"} onClick={() => setWordIdx((i) => (i - 1 + urduWords.length) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "మునుపటి పదం" : "Previous word"} onClick={() => setWordIdx((i) => (i - 1 + urduWords.length) % urduWords.length)} className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronLeft className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
                 <span className="self-center text-xs text-[var(--if-gold-pale)]/80">{wordIdx + 1}/{urduWords.length}</span>
-                <button type="button" aria-label={lang === "te" ? "తదుపరి పదం" : "Next word"} onClick={() => setWordIdx((i) => (i + 1) % urduWords.length)} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
+                <button type="button" aria-label={lang === "te" ? "తదుపరి పదం" : "Next word"} onClick={() => setWordIdx((i) => (i + 1) % urduWords.length)} className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 hover:bg-white/10"><ChevronRight className="h-4 w-4 text-[var(--if-gold-pale)]" /></button>
               </div>
             </div>
           </BlurFade>

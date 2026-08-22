@@ -159,7 +159,7 @@
        by nothing, and Telugu rendered in whatever the visitor happened to
        have installed. Latin still resolves to DM Sans / Playfair first; only
        glyphs those faces lack fall through to Telugu. */
-    font-family: var(--font-dm-sans), var(--font-noto-telugu), 'Noto Sans Telugu', sans-serif;
+    font-family: var(--font-dm-sans), var(--font-noto-telugu), 'Noto Sans Telugu', var(--font-amiri), sans-serif;
   }
   h1, h2, h3 {
     font-family: var(--font-playfair), var(--font-noto-telugu), 'Playfair Display', 'Noto Sans Telugu', serif;
@@ -195,7 +195,7 @@
   from {
     opacity: 0;
     filter: blur(var(--bf-blur, 6px));
-    transform: translateY(var(--bf-offset, -6px));
+    transform: translate(var(--bf-x, 0), var(--bf-offset, -6px)) scale(var(--bf-scale, 1));
   }
   to {
     opacity: 1;
@@ -205,7 +205,40 @@
 }
 
 .if-blur-fade {
-  animation: if-blur-fade-in var(--bf-duration, 0.4s) ease-out var(--bf-delay, 0.04s) backwards;
+  animation: if-blur-fade-in var(--bf-duration, 0.4s) cubic-bezier(0.22, 1, 0.36, 1) var(--bf-delay, 0.04s) backwards;
+}
+
+/* Below the fold, hold the entrance until the element is actually in view.
+   Scoped to .if-defer sections so the hero still paints its entrance at first
+   paint, and to html.js so that without scripting nothing is ever held back.
+   RevealObserver adds .if-in. Held entrances run a touch longer than the
+   hero's, so they read as settling rather than snapping. */
+html.js .if-defer .if-blur-fade:not(.if-in) {
+  animation-play-state: paused;
+}
+
+/* Held entrances move and sharpen but never fade. Opacity was the problem:
+   the moment a batch is released (a fast scroll, or an audit resizing the
+   viewport to screenshot the whole page) every element sits mid-fade with its
+   text at four-fifths contrast, and that is what got measured. A rise and a
+   focus-pull read as an entrance just as well, and the colours are true at
+   every instant. */
+@keyframes if-reveal-solid {
+  from {
+    filter: blur(var(--bf-blur, 6px));
+    transform: translate(var(--bf-x, 0), var(--bf-offset, -6px)) scale(var(--bf-scale, 1));
+  }
+  to {
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+html.js .if-defer .if-blur-fade {
+  animation-name: if-reveal-solid;
+  /* The property, not the custom property: BlurFade writes --bf-duration
+     inline, and an inline value beats any stylesheet declaration of it. */
+  animation-duration: 0.65s;
 }
 
 /* Motion is decoration here; the content is the point. */
@@ -360,13 +393,13 @@
    competes with painting the hero. contain-intrinsic-size gives each section a
    placeholder height so the scrollbar stays honest and nothing shifts. */
 .if-defer {
+  /* Skip layout of sections far below the fold. Measured on the homepage:
+     first paint 1.2s with this, 2.4s without; Lighthouse 83 against 71. The
+     placeholder is shorter than most sections, and in any state where the
+     whole page is laid out at once an audit can find the footer overlapping
+     the last section's cards — so the section directly above the footer is
+     never deferred (see HomepageClient and LessonIndex). */
   content-visibility: auto;
-  /* Height only. "auto 600px" is the one-value form, which applies to BOTH
-     axes, so every skipped section also claimed 600px of width. On a lesson
-     page, where these are grid items rather than plain blocks, that width won
-     and the document measured 664px against a 390px viewport -- every lesson
-     page panned sideways until you scrolled far enough to render the section.
-     Two values are width then height; width opts out. */
   contain-intrinsic-size: none auto 600px;
 }
 
@@ -498,7 +531,9 @@
 /* Sized against the portrait it wraps, not the card, so the sunburst reads as
    a halo around him rather than drifting off between photo and caption. */
 .if-emblem-card {
-  width: 205%;
+  /* 125% of a 240px box overhangs by 30px, inside the card's 32px padding;
+     at 150% the top rays were sliced flat by the card's overflow. */
+  width: 125%;
   opacity: 0.09;
 }
 
@@ -538,4 +573,124 @@
 .if-fade-x {
   -webkit-mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
   mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+}
+
+/* ── Section heading rule ─────────────────────────────────────────────────
+   A short gold rule draws out beneath each section title as it comes into
+   view. Transform only. */
+.if-heading {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.if-heading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 4.5rem;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--if-gold), var(--if-gold-light));
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+.if-heading.if-in::after,
+html:not(.js) .if-heading::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* The hero seal turns, once every three minutes — slow enough to be felt
+   rather than watched. The keyframes carry the centring translate, which the
+   base rule sets on the same property. */
+@keyframes if-seal-turn {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.if-emblem-hero {
+  animation: if-seal-turn 180s linear infinite;
+}
+
+/* The founder's cutout on the about card: the shirt dissolves into the card
+   so the figure reads as rising from the seal. */
+.if-cutout {
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  filter: drop-shadow(0 18px 24px rgb(0 0 0 / 0.45));
+}
+
+/* Brand mark in the navbar, and the full logo in the footer. Both are masks
+   over a gold fill, so the colour is the token's and the asset is a
+   silhouette. */
+.if-mark {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  background: var(--if-gold-light);
+  -webkit-mask: url("/assets/emblem.svg") center / contain no-repeat;
+  mask: url("/assets/emblem.svg") center / contain no-repeat;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .if-mark {
+  transform: rotate(15deg);
+}
+
+.if-logo-full {
+  display: block;
+  width: 11rem;
+  aspect-ratio: 1;
+  background: var(--if-gold-light);
+  -webkit-mask: url("/assets/logo-mask.webp") center / contain no-repeat;
+  mask: url("/assets/logo-mask.webp") center / contain no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-emblem-hero { animation: none; }
+  .if-heading::after { transition: none; transform: translateX(-50%) scaleX(1); }
+  .if-mark { transition: none; }
+  .group:hover .if-mark { transform: none; }
+  html.js .if-defer .if-blur-fade:not(.if-in) { animation-play-state: running; }
+}
+
+/* Left-aligned headings anchor the rule at the text's left edge. */
+.if-heading-left::after {
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.if-heading-left.if-in::after,
+html:not(.js) .if-heading-left::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-heading-left::after { transform: scaleX(1); }
+}
+
+/* The manifesto bar grew while the card was still three screens down, so no
+   one ever saw it move. Held until the card's own entrance fires. */
+html.js .if-defer .if-bar-grow {
+  animation-play-state: paused;
+}
+
+html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .if-defer .if-bar-grow { animation: none; }
+}
+
+/* Already on screen when the page settled: shown, not entered. */
+.if-instant,
+.if-instant .if-bar-grow {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
 }

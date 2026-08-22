@@ -216,7 +216,7 @@ export function SiteSearch() {
                 aria-controls="search-results"
                 aria-activedescendant={results[active] ? `search-opt-${active}` : undefined}
                 /* 16px minimum, or iOS Safari zooms the page on focus. */
-                className="flex-1 min-h-14 bg-transparent text-base text-[var(--if-text)] placeholder:text-[var(--if-text-muted)]/70 outline-none"
+                className="flex-1 min-h-14 bg-transparent text-base text-[var(--if-text)] placeholder:text-[var(--if-text-muted)] outline-none [&::-webkit-search-cancel-button]:appearance-none"
               />
               <button
                 type="button"

@@ -13,15 +13,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ── TIMELINE STAGES ── */
 const stages = [
-  { num: 1, year: { te: "క్రీ.శ. 570", en: "570 CE" }, title: { te: "జన్మ & బాల్యం", en: "Birth & Early Years" }, arabic: "المولد والطفولة", desc: { te: "మక్కాలో జన్మించిన ప్రవక్త ముహమ్మద్ ﷺ — 'అల్-అమీన్' (విశ్వసనీయుడు) అని పిలువబడేవారు", en: "Prophet Muhammad ﷺ born in Makkah — known as 'Al-Ameen' (the trustworthy)" }, events: { te: ["బనూ హాషిం వంశంలో జననం", "తండ్రి అబ్దుల్లాహ్ జననానికి ముందే మరణించారు", "ఆరేళ్ళకు తల్లి ఆమినా మరణం", "తాత అబ్దుల్-ముత్తలిబ్, మామ అబూ తాలిబ్ సంరక్షణ"], en: ["Born into the noble Banu Hashim", "Father Abdullah died before his birth", "Mother Aminah died when he was six", "Raised by grandfather then uncle Abu Talib"] }, lesson: { te: "గొప్ప లక్ష్యాలు కష్టమైన ఆరంభాల నుండి మొదలవవచ్చు", en: "Great missions can begin from humble, difficult beginnings" }, color: "bg-amber-700" },
-  { num: 2, year: { te: "క్రీ.శ. 610", en: "610 CE" }, title: { te: "మొదటి వహ్యీ", en: "First Revelation" }, arabic: "بدء الوحي", desc: { te: "గారె హిరాలో జిబ్రాయీల్ అలైహిస్సలామ్ వచ్చి 'ఇఖ్రా' అని మొదటి వచనాలు అవతరించాయి", en: "Jibreel came in cave Hira with first verses — 'Iqra' — Read in the name of your Lord" }, events: { te: ["ఆయన నలభైవ ఏట హిరా గుహలో ధ్యానం", "జిబ్రయీల్ మొదటి వహీ తీసుకువచ్చారు — 'ఇఖ్రా'", "ఖదీజా (ర/అ) మొట్టమొదట విశ్వసించారు", "మూడేళ్ళు రహస్యంగా దావత్"], en: ["Meditating in Cave Hira in his fortieth year", "Jibreel brought the first revelation — 'Iqra'", "Khadijah (RA) was first to believe", "Three years of secret dawah"] }, lesson: { te: "జ్ఞానం, పఠనమే మార్గదర్శనానికి మొట్టమొదటి అడుగు", en: "Knowledge and reading are the very first step of guidance" }, color: "bg-emerald-700" },
-  { num: 3, year: { te: "క్రీ.శ. 610–622", en: "610–622 CE" }, title: { te: "మక్కా ప్రచారం", en: "Meccan Preaching" }, arabic: "الدعوة في مكة", desc: { te: "13 సంవత్సరాల తౌహీద్ సందేశం — హింస, నిరాకరణ మరియు సహనం", en: "13 years of Tawhid message — persecution, rejection and patience" }, events: { te: ["బహిరంగ దావత్ ప్రారంభం", "బిలాల్ (ర/అ)పై హింస — 'అహద్! అహద్!'", "అబిసీనియాకు తొలి వలస", "దుఃఖ సంవత్సరం — ఖదీజా, అబూ తాలిబ్ మరణం"], en: ["Public dawah begins", "Bilal (RA) tortured for faith — 'Ahad! Ahad!'", "First migration to Abyssinia", "Year of Sorrow — Khadijah and Abu Talib pass away"] }, lesson: { te: "సత్యం బలంతో కాదు, ఓర్పుతో స్థాపించబడుతుంది", en: "Truth is established through patience, not force" }, color: "bg-stone-700" },
-  { num: 4, year: { te: "క్రీ.శ. 622", en: "622 CE" }, title: { te: "మదీనాకు హిజ్రత్", en: "Migration to Madinah" }, arabic: "الهجرة إلى المدينة", desc: { te: "ఇస్లామిక్ క్యాలెండర్ ప్రారంభం — ముస్లిం సమాజ స్థాపన", en: "Start of Islamic calendar — establishment of Muslim community" }, events: { te: ["అబూ బక్ర్ (ర/అ)తో సౌర్ గుహలో ఆశ్రయం", "ఇస్లామిక్ హిజ్రీ క్యాలెండర్ ఆరంభం", "మస్జిద్-అన్-నబవీ నిర్మాణం", "మదీనా ఒడంబడిక — అందరికీ హక్కులు"], en: ["Shelter in Cave Thawr with Abu Bakr (RA)", "Islamic Hijri calendar begins", "Masjid an-Nabawi built", "Constitution of Madinah — rights for all"] }, lesson: { te: "త్యాగం, అల్లాహ్‌పై నమ్మకం కొత్త ఆరంభానికి ద్వారం తెరుస్తాయి", en: "Sacrifice and trust in Allah open the door to a new beginning" }, color: "bg-blue-800" },
-  { num: 5, year: { te: "క్రీ.శ. 622–625", en: "622–625 CE" }, title: { te: "సమాజ నిర్మాణం", en: "Building the Community" }, arabic: "بناء المجتمع", desc: { te: "మస్జిద్-అన్-నబవీ నిర్మాణం, మదీనా ఒడంబడిక, అన్సార్-ముహాజిరీన్ సోదరత్వం", en: "Masjid an-Nabawi built, Charter of Madinah, brotherhood of Ansar & Muhajireen" }, events: { te: ["ముహాజిర్-అన్సార్ సోదరభావం", "మస్జిద్ సమాజ కేంద్రంగా", "న్యాయమైన ఒడంబడిక", "తొలి ముస్లిం రాజ్యం స్థాపన"], en: ["Muhajir-Ansar brotherhood forged", "Mosque as community centre", "Just constitutional framework", "First Muslim state established"] }, lesson: { te: "బలమైన సమాజాలు సోదరభావం, న్యాయం, ఉమ్మడి నియమాలపై నిర్మించబడతాయి", en: "Strong communities are built on brotherhood, justice, and shared rules" }, color: "bg-teal-800" },
+  { num: 1, year: { te: "క్రీ.శ. 570", en: "570 CE" }, title: { te: "జన్మ & బాల్యం", en: "Birth & Early Years" }, arabic: "المولد والطفولة", desc: { te: "మక్కాలో జన్మించిన ప్రవక్త ముహమ్మద్ ﷺ\u200E — 'అల్-అమీన్' (విశ్వసనీయుడు) అని పిలువబడేవారు", en: "Prophet Muhammad ﷺ born in Makkah — known as 'Al-Ameen' (the trustworthy)" }, events: { te: ["బనూ హాషిం వంశంలో జననం", "తండ్రి అబ్దుల్లాహ్ జననానికి ముందే మరణించారు", "ఆరేళ్ళకు తల్లి ఆమినా మరణం", "తాత అబ్దుల్-ముత్తలిబ్, మామ అబూ తాలిబ్ సంరక్షణ"], en: ["Born into the noble Banu Hashim", "Father Abdullah died before his birth", "Mother Aminah died when he was six", "Raised by grandfather then uncle Abu Talib"] }, lesson: { te: "గొప్ప లక్ష్యాలు కష్టమైన ఆరంభాల నుండి మొదలవవచ్చు", en: "Great missions can begin from humble, difficult beginnings" }, color: "bg-[var(--if-green)]" },
+  { num: 2, year: { te: "క్రీ.శ. 610", en: "610 CE" }, title: { te: "మొదటి వహ్యీ", en: "First Revelation" }, arabic: "بدء الوحي", desc: { te: "గారె హిరాలో జిబ్రాయీల్ అలైహిస్సలామ్ వచ్చి 'ఇఖ్రా' అని మొదటి వచనాలు అవతరించాయి", en: "Jibreel came in cave Hira with first verses — 'Iqra' — Read in the name of your Lord" }, events: { te: ["ఆయన నలభైవ ఏట హిరా గుహలో ధ్యానం", "జిబ్రయీల్ మొదటి వహీ తీసుకువచ్చారు — 'ఇఖ్రా'", "ఖదీజా (ర/అ) మొట్టమొదట విశ్వసించారు", "మూడేళ్ళు రహస్యంగా దావత్"], en: ["Meditating in Cave Hira in his fortieth year", "Jibreel brought the first revelation — 'Iqra'", "Khadijah (RA) was first to believe", "Three years of secret dawah"] }, lesson: { te: "జ్ఞానం, పఠనమే మార్గదర్శనానికి మొట్టమొదటి అడుగు", en: "Knowledge and reading are the very first step of guidance" }, color: "bg-[var(--if-green)]" },
+  { num: 3, year: { te: "క్రీ.శ. 610–622", en: "610–622 CE" }, title: { te: "మక్కా ప్రచారం", en: "Meccan Preaching" }, arabic: "الدعوة في مكة", desc: { te: "13 సంవత్సరాల తౌహీద్ సందేశం — హింస, నిరాకరణ మరియు సహనం", en: "13 years of Tawhid message — persecution, rejection and patience" }, events: { te: ["బహిరంగ దావత్ ప్రారంభం", "బిలాల్ (ర/అ)పై హింస — 'అహద్! అహద్!'", "అబిసీనియాకు తొలి వలస", "దుఃఖ సంవత్సరం — ఖదీజా, అబూ తాలిబ్ మరణం"], en: ["Public dawah begins", "Bilal (RA) tortured for faith — 'Ahad! Ahad!'", "First migration to Abyssinia", "Year of Sorrow — Khadijah and Abu Talib pass away"] }, lesson: { te: "సత్యం బలంతో కాదు, ఓర్పుతో స్థాపించబడుతుంది", en: "Truth is established through patience, not force" }, color: "bg-[var(--if-green)]" },
+  { num: 4, year: { te: "క్రీ.శ. 622", en: "622 CE" }, title: { te: "మదీనాకు హిజ్రత్", en: "Migration to Madinah" }, arabic: "الهجرة إلى المدينة", desc: { te: "ఇస్లామిక్ క్యాలెండర్ ప్రారంభం — ముస్లిం సమాజ స్థాపన", en: "Start of Islamic calendar — establishment of Muslim community" }, events: { te: ["అబూ బక్ర్ (ర/అ)తో సౌర్ గుహలో ఆశ్రయం", "ఇస్లామిక్ హిజ్రీ క్యాలెండర్ ఆరంభం", "మస్జిద్-అన్-నబవీ నిర్మాణం", "మదీనా ఒడంబడిక — అందరికీ హక్కులు"], en: ["Shelter in Cave Thawr with Abu Bakr (RA)", "Islamic Hijri calendar begins", "Masjid an-Nabawi built", "Constitution of Madinah — rights for all"] }, lesson: { te: "త్యాగం, అల్లాహ్‌పై నమ్మకం కొత్త ఆరంభానికి ద్వారం తెరుస్తాయి", en: "Sacrifice and trust in Allah open the door to a new beginning" }, color: "bg-[var(--if-green)]" },
+  { num: 5, year: { te: "క్రీ.శ. 622–625", en: "622–625 CE" }, title: { te: "సమాజ నిర్మాణం", en: "Building the Community" }, arabic: "بناء المجتمع", desc: { te: "మస్జిద్-అన్-నబవీ నిర్మాణం, మదీనా ఒడంబడిక, అన్సార్-ముహాజిరీన్ సోదరత్వం", en: "Masjid an-Nabawi built, Charter of Madinah, brotherhood of Ansar & Muhajireen" }, events: { te: ["ముహాజిర్-అన్సార్ సోదరభావం", "మస్జిద్ సమాజ కేంద్రంగా", "న్యాయమైన ఒడంబడిక", "తొలి ముస్లిం రాజ్యం స్థాపన"], en: ["Muhajir-Ansar brotherhood forged", "Mosque as community centre", "Just constitutional framework", "First Muslim state established"] }, lesson: { te: "బలమైన సమాజాలు సోదరభావం, న్యాయం, ఉమ్మడి నియమాలపై నిర్మించబడతాయి", en: "Strong communities are built on brotherhood, justice, and shared rules" }, color: "bg-[var(--if-green)]" },
   { num: 6, year: { te: "క్రీ.శ. 624–627", en: "624–627 CE" }, title: { te: "యుద్ధాలు & పరీక్షలు", en: "Battles & Trials" }, arabic: "الغزوات والابتلاءات", desc: { te: "బదర్, ఉహుద్, ఖందఖ్ — ఈమాన్‌ను నిరూపించిన పరీక్షలు", en: "Badr, Uhud, Khandaq — trials that tested and proved faith" }, events: { te: ["బద్ర్ (624) — ఈమాన్‌తో విజయం", "ఉహుద్ (625) — క్రమశిక్షణలో పాఠం", "ఖందఖ్ (627) — సల్మాన్ ఫారిసీ కందక వ్యూహం", "విశ్వాసం అగ్నిపరీక్షలో బంగారమైంది"], en: ["Badr (624) — victory through faith", "Uhud (625) — lesson in discipline", "Khandaq (627) — Salman's trench strategy", "Faith proved in the furnace of trial"] }, lesson: { te: "అల్లాహ్ నిష్కపటులకు సహాయం చేస్తాడు; క్రమశిక్షణ, ప్రణాళిక నష్టం నుండి కాపాడతాయి", en: "Allah aids the sincere; discipline and planning protect us from loss" }, color: "bg-gray-700" },
   { num: 7, year: { te: "క్రీ.శ. 628–630", en: "628–630 CE" }, title: { te: "విజయాలు & జయాలు", en: "Triumphs & Victories" }, arabic: "الفتوحات والانتصارات", desc: { te: "హుదైబియా సంధి, మక్కా ఫత్హ్ — 'ఇన్నా ఫతహ్నా లకా ఫత్హన్ ముబీనా'", en: "Treaty of Hudaybiyyah, Conquest of Makkah — 'Indeed We have opened for you a clear opening'" }, events: { te: ["హుదైబియా ఒడంబడిక — ఖురాన్ 'స్పష్టమైన విజయం' అన్నది", "10,000 మందితో మక్కాలో శాంతియుత ప్రవేశం", "ప్రవక్త ﷺ శత్రువులందరినీ క్షమించారు", "కాబా విగ్రహాల శుద్ధి"], en: ["Hudaybiyyah treaty — Quran called it a 'clear victory'", "Peaceful entry into Makkah with 10,000", "Prophet ﷺ forgave all enemies", "Purification of the Kaaba from idols"] }, lesson: { te: "అధికారం చేతిలో ఉన్నప్పుడు క్షమించడమే నిజమైన బలం", en: "True strength is to forgive when you hold the power" }, color: "bg-[#1a2a3a]" },
-  { num: 8, year: { te: "క్రీ.శ. 632", en: "632 CE" }, title: { te: "విదాయ్ హజ్జ్", en: "Farewell Pilgrimage" }, arabic: "حجة الوداع", desc: { te: "అరఫాత్ ఖుత్బా — ఇస్లామిక్ సూత్రాల చివరి ప్రకటన", en: "Sermon of Arafat — final declaration of Islamic principles" }, events: { te: ["లక్ష మందికి పైగా సాహబాలకు ఖుత్బా", "మానవ సమానత్వం ప్రకటించబడింది", "స్త్రీల హక్కులు ధృవీకరించబడ్డాయి", "ధర్మ పరిపూర్ణత ప్రకటించబడింది"], en: ["Khutbah to over 100,000 companions", "Equality of all people declared", "Rights of women affirmed", "Completion of religion declared"] }, lesson: { te: "మానవులందరూ సమానం; హక్కులను గౌరవించండి, సందేశం మీ ద్వారా సజీవంగా ఉంటుంది", en: "All people are equal; honour rights, and the message lives on through you" }, color: "bg-indigo-800" },
-  { num: 9, year: { te: "క్రీ.శ. 632", en: "632 CE" }, title: { te: "వారసత్వం & బోధనలు", en: "Legacy & Teachings" }, arabic: "الإرث والتعاليم", desc: { te: "ఖురాన్ మరియు సున్నత్ — మానవజాతికి శాశ్వత మార్గదర్శి", en: "Quran and Sunnah — an eternal guide left for humanity" }, events: { te: ["ఖురాన్ — 23 సంవత్సరాల సంపూర్ణ వహీ", "సున్నత్ — ఆదర్శ జీవన విధానం", "ఉత్తమ స్వభావానికి సజీవ ఆదర్శం", "సాహబాల ద్వారా జ్ఞానం వ్యాపించింది"], en: ["Quran — 23 years of complete revelation", "Sunnah — a perfect way of life", "Living example of the best character", "Knowledge spread through companions"] }, lesson: { te: "ఆయన బంగారం కాదు, మార్గదర్శనాన్ని వదిలారు — ఇది ప్రతి విశ్వాసి మోసే అమానత్", en: "He left not gold, but guidance — a trust now carried by every believer" }, color: "bg-amber-800" },
+  { num: 8, year: { te: "క్రీ.శ. 632", en: "632 CE" }, title: { te: "విదాయ్ హజ్జ్", en: "Farewell Pilgrimage" }, arabic: "حجة الوداع", desc: { te: "అరఫాత్ ఖుత్బా — ఇస్లామిక్ సూత్రాల చివరి ప్రకటన", en: "Sermon of Arafat — final declaration of Islamic principles" }, events: { te: ["లక్ష మందికి పైగా సాహబాలకు ఖుత్బా", "మానవ సమానత్వం ప్రకటించబడింది", "స్త్రీల హక్కులు ధృవీకరించబడ్డాయి", "ధర్మ పరిపూర్ణత ప్రకటించబడింది"], en: ["Khutbah to over 100,000 companions", "Equality of all people declared", "Rights of women affirmed", "Completion of religion declared"] }, lesson: { te: "మానవులందరూ సమానం; హక్కులను గౌరవించండి, సందేశం మీ ద్వారా సజీవంగా ఉంటుంది", en: "All people are equal; honour rights, and the message lives on through you" }, color: "bg-[var(--if-green)]" },
+  { num: 9, year: { te: "క్రీ.శ. 632", en: "632 CE" }, title: { te: "వారసత్వం & బోధనలు", en: "Legacy & Teachings" }, arabic: "الإرث والتعاليم", desc: { te: "ఖురాన్ మరియు సున్నత్ — మానవజాతికి శాశ్వత మార్గదర్శి", en: "Quran and Sunnah — an eternal guide left for humanity" }, events: { te: ["ఖురాన్ — 23 సంవత్సరాల సంపూర్ణ వహీ", "సున్నత్ — ఆదర్శ జీవన విధానం", "ఉత్తమ స్వభావానికి సజీవ ఆదర్శం", "సాహబాల ద్వారా జ్ఞానం వ్యాపించింది"], en: ["Quran — 23 years of complete revelation", "Sunnah — a perfect way of life", "Living example of the best character", "Knowledge spread through companions"] }, lesson: { te: "ఆయన బంగారం కాదు, మార్గదర్శనాన్ని వదిలారు — ఇది ప్రతి విశ్వాసి మోసే అమానత్", en: "He left not gold, but guidance — a trust now carried by every believer" }, color: "bg-[var(--if-green)]" },
   { num: 10, year: { te: "నేడు", en: "Today" }, title: { te: "ఆధునిక జీవితంలో అనువర్తనం", en: "Application in Modern Life" }, arabic: "التطبيق في الحياة المعاصرة", desc: { te: "ప్రవక్త సీరత్ నుండి నేటి సవాళ్ళకు పరిష్కారాలు నేర్చుకోవడం", en: "Drawing lessons from the Prophet's biography for today's challenges" }, events: { te: ["సీరా పఠనంతో విశ్వాసం బలపడటం", "ఆయన స్వభావాన్ని కుటుంబంలో ఆచరించడం", "నాయకత్వ పాఠాలను పని స్థలంలో అనువర్తించడం", "తరచూ సలవాత్ పంపడం"], en: ["Strengthening faith through Seerah reading", "Practising his character in family life", "Applying leadership lessons at work", "Sending salawat frequently"] }, lesson: { te: "సున్నత్‌ను జీవించండి, నేర్చుకున్నది అందించండి — అదే వారసత్వం", en: "Live the Sunnah and pass on what you learn — that is the legacy" }, color: "bg-green-800" },
 ];
 
@@ -95,10 +95,10 @@ function SeerahPage() {
     <PageShell>
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-800 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <Link href="/knowledge-center" className="inline-flex items-center min-h-9 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
+            <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
               <ChevronLeft className="h-4 w-4" />
               {t("జ్ఞాన కేంద్రం", "Knowledge Center")}
             </Link>
@@ -113,7 +113,7 @@ function SeerahPage() {
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {t("ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10-దశల దృశ్య కాలపట్టిక, స్వభావ అకాడమీ, నాయకత్వ పాఠాలు", "Life of Prophet Muhammad ﷺ — 10-stage visual timeline, Character Academy, and Leadership Lessons")}
+              {t("ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10-దశల దృశ్య కాలపట్టిక, స్వభావ అకాడమీ, నాయకత్వ పాఠాలు", "Life of Prophet Muhammad ﷺ\u200E — 10-stage visual timeline, Character Academy, and Leadership Lessons")}
             </p>
           </BlurFade>
           <BlurFade delay={0.25}>
@@ -130,7 +130,7 @@ function SeerahPage() {
       </section>
 
       {/* Interactive Timeline */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -145,7 +145,7 @@ function SeerahPage() {
                 <button
                   key={s.num}
                   onClick={() => setActive(i)}
-                  className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[90px] ${
+                  className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[86px] ${
                     active === i
                       ? "bg-[var(--if-green)] border-[var(--if-gold)]/40 text-[var(--if-gold-pale)]"
                       : "bg-white border-[var(--if-gold)]/15 text-[var(--if-text)] hover:border-[var(--if-gold)]/40"
@@ -163,7 +163,7 @@ function SeerahPage() {
           {/* Active stage card */}
           <BlurFade delay={0.05} key={active}>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-8">
-              <BorderBeam size={200} duration={10} colorFrom="#0d3b1e" colorTo="#c8922a" />
+              <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-start gap-6 flex-wrap mb-6">
                 <div className={`w-14 h-14 rounded-2xl ${stages[active].color} flex items-center justify-center text-white font-display text-xl font-bold flex-shrink-0`}>
                   {stages[active].num}
@@ -212,7 +212,7 @@ function SeerahPage() {
       </section>
 
       {/* Character of the Prophet ﷺ */}
-      <section className="if-defer py-16 px-4">
+      <section className="py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
@@ -252,7 +252,7 @@ function SeerahPage() {
       </section>
 
       {/* Leadership Lessons */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
@@ -269,7 +269,7 @@ function SeerahPage() {
             {leadership.map((ls, i) => (
               <BlurFade key={ls.label.en} delay={0.07 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/50 hover:-translate-y-1 transition-all group flex flex-col h-full">
-                  <BorderBeam size={80} duration={9} colorFrom="#0d3b1e" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
+                  <BorderBeam size={80} duration={9} colorFrom="#c8922a" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
                   <div className="inline-flex items-center gap-2 mb-3">
                     <div className="w-8 h-8 rounded-lg bg-[var(--if-green)]/10 flex items-center justify-center text-[var(--if-green)] font-bold text-sm">{i + 1}</div>
                     <h3 className="font-semibold text-[var(--if-green)]">{ls.label[lang]}</h3>
@@ -287,7 +287,7 @@ function SeerahPage() {
       </section>
 
       {/* Companions */}
-      <section className="if-defer py-16 px-4">
+      <section className="py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -319,7 +319,7 @@ function SeerahPage() {
       </section>
 
       {/* Salawat */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
+      <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
@@ -348,7 +348,7 @@ function SeerahPage() {
       </section>
 
       {/* Closing Ayah */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)] text-center">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)] text-center">
         <BlurFade delay={0.1}>
           <div className="mx-auto max-w-xl">
             <div className="font-arabic text-3xl text-[var(--if-green)] mb-4 leading-relaxed" dir="rtl" lang="ar">
@@ -362,7 +362,7 @@ function SeerahPage() {
       </section>
 
 
-      <section id="timeline" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="timeline" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ జీవిత కాలక్రమం" : "Timeline of the Prophet's life ﷺ"}
@@ -379,7 +379,7 @@ function SeerahPage() {
       </section>
 
 
-      <section id="character" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="character" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ స్వభావం" : "The Prophet's character ﷺ"}

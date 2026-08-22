@@ -14,11 +14,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Brand */}
         <div className="space-y-3">
+          {/* The organisation's own logo, wordmark and all, in gold. */}
+          <span className="if-logo-full" role="img" aria-label="Islamic Front" />
           <h2 className="font-display text-[var(--if-gold-light)] text-xl font-bold">Islamic Front</h2>
           <p className="text-sm leading-relaxed">{t("footer_since")}</p>
           <div className="flex items-center gap-2 text-sm">
             <Phone className="h-4 w-4 text-[var(--if-gold-light)]" />
-            <a href="tel:+919032906677" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">
+            <a href="tel:+919032906677" className="inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors">
               +91 90329 06677
             </a>
           </div>
@@ -38,7 +40,7 @@ export function Footer() {
               <li key={key}>
                 <Link
                   href={sectionHref(fragment, pathname)}
-                  className="text-sm inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors"
+                  className="text-sm inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors"
                 >
                   {t(key)}
                 </Link>
@@ -53,11 +55,11 @@ export function Footer() {
             {t("footer_portals")}
           </h3>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/knowledge-center" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">{t("nav_kc")}</Link></li>
-            <li><Link href="/student-guidance" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">{t("nav_sg")}</Link></li>
-            <li><Link href="/knowledge-center/learn-arabic" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">{t("portal_arabic")}</Link></li>
-            <li><Link href="/knowledge-center/learn-quran" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">{t("portal_quran")}</Link></li>
-            <li><Link href="/knowledge-center/learn-salah" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">{t("portal_salah")}</Link></li>
+            <li><Link href="/knowledge-center" className="inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors">{t("nav_kc")}</Link></li>
+            <li><Link href="/student-guidance" className="inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors">{t("nav_sg")}</Link></li>
+            <li><Link href="/knowledge-center/learn-arabic" className="inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors">{t("portal_arabic")}</Link></li>
+            <li><Link href="/knowledge-center/learn-quran" className="inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors">{t("portal_quran")}</Link></li>
+            <li><Link href="/knowledge-center/learn-salah" className="inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors">{t("portal_salah")}</Link></li>
           </ul>
         </div>
       </div>
