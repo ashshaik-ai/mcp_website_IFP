@@ -21,6 +21,10 @@ import { arabicLessons } from "./lessons/arabic.ts";
 import { urduLessons } from "./lessons/urdu.ts";
 import { historyLessons } from "./lessons/history.ts";
 import { historyLessonsTwo } from "./lessons/history-2.ts";
+import { quranLessons } from "./lessons/quran.ts";
+import { quranLessonsTwo } from "./lessons/quran-2.ts";
+import { salahLessons } from "./lessons/salah.ts";
+import { salahLessonsTwo } from "./lessons/salah-2.ts";
 
 /* Portals authored as their own module live in ./lessons/ and are spread in
    below. This file was heading past two thousand lines with everything inline,
@@ -30,6 +34,10 @@ export const authoredLessons: Lesson[] = [
   ...urduLessons,
   ...historyLessons,
   ...historyLessonsTwo,
+  ...quranLessons,
+  ...quranLessonsTwo,
+  ...salahLessons,
+  ...salahLessonsTwo,
 
   {
     slug: "why-hajj",
