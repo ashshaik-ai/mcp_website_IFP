@@ -5,11 +5,25 @@
 
 export const SITE_NAME = "Islamic Front Mangalagiri";
 
-/* Override with NEXT_PUBLIC_SITE_URL at build time when the domain is decided.
-   Canonicals and og:url are absolute, so this has to be a real origin. */
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://islamicfrontmangalagiri.com"
-).replace(/\/$/, "");
+/* The origin canonicals, og:url and the sitemap are built from.
+
+   This defaulted to islamicfrontmangalagiri.com, which was wrong in a way that
+   actively hurt: that domain currently serves a different, much older static
+   site, so every page here was telling crawlers the real version of itself
+   lived somewhere else. A canonical pointing at other content is worse than
+   no canonical at all.
+
+   It now resolves to wherever the site is actually deployed. Vercel exposes
+   the production domain at build time, so canonicals stay self-consistent
+   without configuration. Set NEXT_PUBLIC_SITE_URL to override — that is the
+   one line to change when the custom domain is pointed at this site. */
+const deployedOrigin =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
+export const SITE_URL = deployedOrigin.replace(/\/$/, "");
 
 export type Bi = { te: string; en: string };
 
