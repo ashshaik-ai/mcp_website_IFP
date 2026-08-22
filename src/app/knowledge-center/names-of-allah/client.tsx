@@ -3,6 +3,10 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { NamesScene } from "@/components/sim/scenes/NamesScene";
+import { namesSteps } from "@/content/simulations";
+
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -233,6 +237,14 @@ function NamesOfAllahPage() {
       )}
 
       {/* The grid teaches the names; these teach what to do with them. */}
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={namesSteps} scene={NamesScene} autoplay />
+        </div>
+      </section>
+
       <LessonIndex portal="names-of-allah" />
 
     </PageShell>

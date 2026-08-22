@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { WuduScene } from "@/components/sim/scenes/WuduScene";
+import { ghuslSteps } from "@/content/simulations";
+
 import { ComparisonTable } from "@/components/learning/ComparisonTable";
 import { FaqList } from "@/components/learning/FaqList";
 import { womensWorship, womensFaqs } from "@/content/portals";
@@ -213,6 +217,14 @@ function WomensGuidancePage() {
       </section>
 
       {/* The tabs cover worship; these cover the contract and the iddah. */}
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={ghuslSteps} scene={WuduScene} autoplay />
+        </div>
+      </section>
+
       <LessonIndex portal="womens-guidance" />
 
     </PageShell>

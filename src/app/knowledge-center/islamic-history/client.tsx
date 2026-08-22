@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { EmpiresScene } from "@/components/sim/scenes/EmpiresScene";
+import { historySteps } from "@/content/simulations";
+
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { historyEras, historyPeople, historyEmpires, historyCities } from "@/content/portals";
@@ -504,6 +508,14 @@ function IslamicHistoryPage() {
           />
         </div>
       </section>
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={historySteps} scene={EmpiresScene} autoplay />
+        </div>
+      </section>
+
 
       <LessonIndex portal="islamic-history" />
 

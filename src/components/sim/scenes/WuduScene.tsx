@@ -14,12 +14,17 @@ const REGION: Record<string, string[]> = {
   niyyah: [], bismillah: ["handR", "handL"], hands: ["handR", "handL"], mouth: ["mouth"], nose: ["nose"],
   face: ["face"], armR: ["armR"], armL: ["armL"], head: ["crown"], ears: ["earR", "earL"],
   footR: ["footR"], footL: ["footL"], dua: [],
+  /* Ghusl: the same figure, whole regions at a time. */
+  "g-niyyah": [], "g-hands": ["handR", "handL"], "g-wudu": ["handR", "handL", "mouth", "nose", "face", "armR", "armL"],
+  "g-head": ["crown", "earR", "earL"], "g-right": ["bodyR", "armR", "footR"], "g-left": ["bodyL", "armL", "footL"],
+  "g-all": ["crown", "face", "earR", "earL", "armR", "armL", "handR", "handL", "bodyR", "bodyL", "footR", "footL"],
 };
 
 /* Where the water aims, per step: x/y in the viewBox. */
 const AIM: Record<string, [number, number]> = {
   bismillah: [188, 232], hands: [188, 232], mouth: [180, 98], nose: [180, 84], face: [180, 86],
   armR: [118, 196], armL: [242, 196], head: [180, 40], ears: [180, 76], footR: [150, 296], footL: [210, 296],
+  "g-hands": [188, 232], "g-wudu": [180, 90], "g-head": [180, 40], "g-right": [140, 200], "g-left": [220, 200], "g-all": [180, 40],
 };
 
 export function WuduScene({ step, playing }: SceneProps) {
@@ -43,6 +48,10 @@ export function WuduScene({ step, playing }: SceneProps) {
 
       {/* Basin */}
       <path d="M60 306 Q180 330 300 306 L288 316 Q180 336 72 316 Z" fill="rgba(232,184,75,0.18)" />
+
+      {/* Body halves, for ghusl */}
+      <path id="bodyR" d="M122 212 Q124 176 150 166 L180 166 L180 320 L120 320 Z" style={on("bodyR")} strokeWidth="0" />
+      <path id="bodyL" d="M238 212 Q236 176 210 166 L180 166 L180 320 L240 320 Z" style={on("bodyL")} strokeWidth="0" />
 
       {/* Body outline */}
       <path d="M120 320 L122 212 Q124 176 150 166 L210 166 Q236 176 238 212 L240 320" fill="rgba(232,184,75,0.06)" stroke="rgba(232,184,75,0.35)" strokeWidth="3" strokeLinejoin="round" />

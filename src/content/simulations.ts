@@ -133,3 +133,39 @@ export const urduLetterSteps: SimStep[] = [
   ur("ہ", "హే", "He", "ہ ہـ ـہـ ـہ"),
   ur("ے", "బడీ యే", "Bari ye", "ے ے ـے ـے"),
 ];
+
+export const ghuslSteps: SimStep[] = [
+  { id: "g-niyyah", label: { te: "నియ్యత్", en: "Niyyah" }, caption: { te: "పెద్ద అపవిత్రత నుండి శుద్ధి కావాలనే ఉద్దేశం", en: "Intend to purify from major impurity" }, dur: 2400 },
+  { id: "g-hands", label: { te: "చేతులు", en: "Hands" }, count: 3, dur: 2600 },
+  { id: "g-wudu", label: { te: "వుజూ", en: "Wudu" }, caption: { te: "నమాజ్ వుజూ లాగే", en: "As for prayer" }, dur: 3200 },
+  { id: "g-head", label: { te: "తలపై నీరు", en: "Water over the head" }, count: 3, caption: { te: "జుట్టు మూలాల వరకు", en: "To the roots of the hair" }, dur: 3000 },
+  { id: "g-right", label: { te: "కుడి వైపు", en: "Right side" }, caption: { te: "భుజం నుండి పాదం వరకు", en: "Shoulder to foot" }, dur: 3000 },
+  { id: "g-left", label: { te: "ఎడమ వైపు", en: "Left side" }, caption: { te: "భుజం నుండి పాదం వరకు", en: "Shoulder to foot" }, dur: 3000 },
+  { id: "g-all", label: { te: "పూర్తి శరీరం", en: "The whole body" }, caption: { te: "ఏ భాగం పొడిగా మిగలకూడదు", en: "No part left dry" }, dur: 3400 },
+];
+
+export const historySteps: SimStep[] = [
+  { id: "rashidun", label: { te: "ఖులఫా-ఇ-రాషిదీన్", en: "The Rightly Guided Caliphs" }, arabic: "الخلفاء الراشدون", caption: { te: "క్రీ.శ. 632–661", en: "632–661 CE" }, dur: 3400 },
+  { id: "umayyad", label: { te: "ఉమయ్యద్ ఖిలాఫత్ — డమాస్కస్", en: "The Umayyads — Damascus" }, arabic: "الأمويون", caption: { te: "క్రీ.శ. 661–750", en: "661–750 CE" }, dur: 3400 },
+  { id: "abbasid", label: { te: "అబ్బాసీ స్వర్ణయుగం — బగ్దాద్", en: "The Abbasid golden age — Baghdad" }, arabic: "العباسيون", caption: { te: "క్రీ.శ. 750–1258", en: "750–1258 CE" }, dur: 3400 },
+  { id: "andalus", label: { te: "అల్-అందలుస్ — కొర్డోబా", en: "Al-Andalus — Córdoba" }, arabic: "الأندلس", caption: { te: "క్రీ.శ. 711–1492", en: "711–1492 CE" }, dur: 3200 },
+  { id: "ottoman", label: { te: "ఉస్మానియా సామ్రాజ్యం — ఇస్తాంబుల్", en: "The Ottomans — Istanbul" }, arabic: "العثمانيون", caption: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, dur: 3400 },
+  { id: "mughal", label: { te: "మొఘల్ సామ్రాజ్యం — ఢిల్లీ", en: "The Mughals — Delhi" }, arabic: "المغول", caption: { te: "క్రీ.శ. 1526–1857", en: "1526–1857 CE" }, dur: 3200 },
+  { id: "colonial", label: { te: "వలస పాలన", en: "The colonial era" }, caption: { te: "18–20 శతాబ్దాలు", en: "18th–20th centuries" }, dur: 3000 },
+  { id: "modern", label: { te: "ఆధునిక ముస్లిం ప్రపంచం", en: "The modern Muslim world" }, caption: { te: "57 దేశాలు · 200 కోట్ల మంది", en: "57 nations · 2 billion people" }, dur: 3600 },
+];
+
+export const namesSteps: SimStep[] = [
+  { id: "n1", label: { te: "అల్లాహ్", en: "Allah" }, arabic: "اللّٰه", translit: "Allāh", caption: { te: "ఒకే నిజమైన దేవుడు", en: "The one true God" }, dur: 3200 },
+  { id: "n2", label: { te: "అర్-రహ్మాన్", en: "Ar-Rahman" }, arabic: "الرَّحْمَٰن", translit: "Ar-Raḥmān", caption: { te: "అత్యంత కరుణామయుడు", en: "The Most Merciful" }, dur: 3000 },
+  { id: "n3", label: { te: "అర్-రహీమ్", en: "Ar-Raheem" }, arabic: "الرَّحِيم", translit: "Ar-Raḥīm", caption: { te: "అత్యంత దయగలవాడు", en: "The Especially Merciful" }, dur: 3000 },
+  { id: "n4", label: { te: "అల్-మలిక్", en: "Al-Malik" }, arabic: "الْمَلِك", translit: "Al-Malik", caption: { te: "రాజు", en: "The King" }, dur: 3000 },
+  { id: "n5", label: { te: "అల్-ఖుద్దూస్", en: "Al-Quddus" }, arabic: "الْقُدُّوس", translit: "Al-Quddūs", caption: { te: "పరమ పవిత్రుడు", en: "The Most Holy" }, dur: 3000 },
+  { id: "n6", label: { te: "అస్-సలాం", en: "As-Salam" }, arabic: "السَّلَام", translit: "As-Salām", caption: { te: "శాంతి మూలం", en: "The Source of Peace" }, dur: 3000 },
+  { id: "n7", label: { te: "అల్-ముఅమిన్", en: "Al-Mu'min" }, arabic: "الْمُؤْمِن", translit: "Al-Muʾmin", caption: { te: "భద్రత ఇచ్చేవాడు", en: "The Giver of Security" }, dur: 3000 },
+  { id: "n8", label: { te: "అల్-అజీజ్", en: "Al-Aziz" }, arabic: "الْعَزِيز", translit: "Al-ʿAzīz", caption: { te: "సర్వశక్తిమంతుడు", en: "The Almighty" }, dur: 3000 },
+  { id: "n9", label: { te: "అల్-ఖాలిఖ్", en: "Al-Khaliq" }, arabic: "الْخَالِق", translit: "Al-Khāliq", caption: { te: "సృష్టికర్త", en: "The Creator" }, dur: 3000 },
+  { id: "n10", label: { te: "అల్-గఫ్ఫార్", en: "Al-Ghaffar" }, arabic: "الْغَفَّار", translit: "Al-Ghaffār", caption: { te: "మళ్ళీ మళ్ళీ క్షమించేవాడు", en: "The Ever-Forgiving" }, dur: 3000 },
+  { id: "n11", label: { te: "అర్-రజ్జాఖ్", en: "Ar-Razzaq" }, arabic: "الرَّزَّاق", translit: "Ar-Razzāq", caption: { te: "ఉపాధి ఇచ్చేవాడు", en: "The Provider" }, dur: 3000 },
+  { id: "n12", label: { te: "అల్-అలీమ్", en: "Al-Aleem" }, arabic: "الْعَلِيم", translit: "Al-ʿAlīm", caption: { te: "సర్వజ్ఞుడు", en: "The All-Knowing" }, dur: 3000 },
+];
