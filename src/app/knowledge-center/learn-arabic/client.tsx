@@ -4,6 +4,10 @@ import { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { quizOrder } from "@/lib/quiz-order";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { LetterScene } from "@/components/sim/scenes/LetterScene";
+import { arabicLetterSteps } from "@/content/simulations";
+
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
 import { LetterReview } from "@/components/learning/LetterReview";
@@ -299,7 +303,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-8">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
               {copy.word_of_the_day[lang]}
             </h2>
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
@@ -342,7 +346,7 @@ function LearnArabicPage() {
       {/* ── VOCABULARY ── */}
       <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "పదజాలం" : "Vocabulary"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -358,7 +362,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-1">
               {copy.letter_flashcards[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
@@ -412,7 +416,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-lg">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
+            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-1">
               {copy.arabic_quiz[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
@@ -491,6 +495,14 @@ function LearnArabicPage() {
           </BlurFade>
         </div>
       </section>
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4 ">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={arabicLetterSteps} scene={LetterScene} autoplay />
+        </div>
+      </section>
+
 
       <LessonIndex portal="learn-arabic" />
 

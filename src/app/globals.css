@@ -694,3 +694,104 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
   animation-delay: 0s !important;
   transition-duration: 0s !important;
 }
+
+/* ── Simulators ───────────────────────────────────────────────────────────
+   Shared motion for the scene components in src/components/sim. Transform
+   and opacity only; every loop stops under prefers-reduced-motion. */
+.if-sim-stage .if-emblem {
+  width: 90%;
+}
+
+@keyframes if-sim-progress {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+.if-sim-progress {
+  animation: if-sim-progress linear forwards;
+}
+
+.if-sim-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--if-gold) 40%, transparent);
+  color: var(--if-green);
+  background: var(--if-cream-light);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.if-sim-btn:hover { border-color: var(--if-gold); background: color-mix(in srgb, var(--if-gold) 12%, var(--if-cream-light)); }
+.if-sim-btn:active { transform: scale(0.96); }
+.if-sim-btn:focus-visible { outline: 2px solid var(--if-gold); outline-offset: 2px; }
+.if-sim-btn-primary { background: var(--if-green); color: var(--if-gold-light); border-color: var(--if-green); }
+.if-sim-btn-primary:hover { background: var(--if-green-mid); border-color: var(--if-green-mid); }
+
+/* Water */
+@keyframes if-drop {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(var(--dx, 0), 64px) scale(0.6); opacity: 0; }
+}
+.if-drop { animation: if-drop 1.2s cubic-bezier(0.3, 0, 0.8, 0.4) infinite; }
+
+@keyframes if-ripple {
+  from { transform: scale(0.4); opacity: 0.9; }
+  to   { transform: scale(2.6); opacity: 0; }
+}
+.if-ripple { transform-origin: 180px 312px; transform-box: view-box; animation: if-ripple 1.6s ease-out infinite; }
+
+/* Glow that breathes; stars that twinkle */
+@keyframes if-breathe { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.18); opacity: 1; } }
+.if-breathe { transform-box: fill-box; transform-origin: center; animation: if-breathe 2.6s ease-in-out infinite; }
+
+@keyframes if-twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+.if-twinkle { animation: if-twinkle 2.2s ease-in-out infinite; }
+
+/* Tawaf: anticlockwise orbit. Sa'i: back and forth. Rami: a thrown arc. */
+@keyframes if-orbit { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+.if-orbit { animation: if-orbit 6s linear infinite; }
+
+@keyframes if-shuttle { 0% { transform: translateX(0); } 50% { transform: translateX(240px); } 100% { transform: translateX(0); } }
+.if-shuttle { animation: if-shuttle 4.2s ease-in-out infinite; }
+
+@keyframes if-throw {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translate(72px, -70px); }
+  90%  { transform: translate(140px, -20px); opacity: 1; }
+  100% { transform: translate(142px, -16px); opacity: 0; }
+}
+.if-throw { animation: if-throw 3.2s cubic-bezier(0.3, 0, 0.6, 1) infinite; }
+
+@keyframes if-pop { from { transform: scale(0); opacity: 0; } 60% { transform: scale(1.3); opacity: 1; } to { transform: scale(1); opacity: 1; } }
+.if-pop { transform-box: fill-box; transform-origin: center; animation: if-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Isnad chain and tajweed: a line that draws, a word that lights */
+@keyframes if-draw { to { stroke-dashoffset: 0; } }
+.if-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: if-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+@keyframes if-moon-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .if-drop, .if-ripple, .if-breathe, .if-twinkle, .if-orbit, .if-shuttle, .if-throw, .if-draw, .if-sim-progress { animation: none; }
+  .if-draw { stroke-dashoffset: 0; }
+  .if-pop { animation: none; transform: none; opacity: 1; }
+  .if-sim-stage * { transition-duration: 0s !important; }
+}
+
+/* Letter writing: the ink wipes in from the right; the nib runs ahead. */
+@keyframes if-wipe { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.if-wipe { transform-box: fill-box; transform-origin: right center; animation: if-wipe 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+@keyframes if-nib {
+  0%   { transform: translate(300px, 150px) rotate(-20deg); opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translate(60px, 150px) rotate(-20deg); opacity: 0; }
+}
+.if-nib { animation: if-nib 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .if-wipe { animation: none; transform: none; }
+  .if-nib { animation: none; opacity: 0; }
+}

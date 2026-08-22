@@ -440,7 +440,7 @@ function IslamicHistoryPage() {
 
       <section id="eras" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ఇస్లామిక్ చరిత్ర యుగాలు" : "Eras of Islamic history"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -457,7 +457,7 @@ function IslamicHistoryPage() {
 
       <section id="people" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "చరిత్రను మలిచిన వ్యక్తులు" : "The people who shaped it"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -474,7 +474,7 @@ function IslamicHistoryPage() {
 
       <section id="empires" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "సామ్రాజ్యాలు" : "Empires"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -491,7 +491,7 @@ function IslamicHistoryPage() {
 
       <section id="cities" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "నగరాలు" : "Cities"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">

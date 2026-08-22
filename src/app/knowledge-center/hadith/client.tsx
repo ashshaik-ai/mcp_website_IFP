@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { IsnadScene } from "@/components/sim/scenes/IsnadScene";
+import { isnadSteps } from "@/content/simulations";
+
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -147,7 +151,7 @@ function HadithPage() {
                     >
                       {h.arabic}
                     </p>
-                    <p className="text-sm italic text-[var(--if-text-muted)] mb-4">{h.translit}</p>
+                    <p className="text-sm italic text-[var(--if-text-muted)] mb-4">{lang === "te" ? h.translit_te : h.translit}</p>
                     <p className="text-lg text-[var(--if-text)] leading-relaxed text-pretty mb-5">
                       {h.text[lang]}
                     </p>
@@ -258,6 +262,14 @@ function HadithPage() {
           </ol>
         </div>
       </section>
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4 ">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={isnadSteps} scene={IsnadScene} autoplay />
+        </div>
+      </section>
+
 
       <LessonIndex portal="hadith" />
     </PageShell>

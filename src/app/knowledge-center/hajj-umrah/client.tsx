@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { HajjScene } from "@/components/sim/scenes/HajjScene";
+import { hajjSteps as hajjSim, umrahSteps as umrahSim } from "@/content/simulations";
+
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -100,6 +104,9 @@ function HajjUmrahPage() {
       {/* Step guide */}
       {(tab === "hajj" || tab === "umrah") && (
         <section className="if-defer py-16 px-4">
+          <div className="mx-auto max-w-3xl mb-12">
+            <Simulator key={tab} steps={tab === "hajj" ? hajjSim : umrahSim} scene={HajjScene} autoplay />
+          </div>
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">

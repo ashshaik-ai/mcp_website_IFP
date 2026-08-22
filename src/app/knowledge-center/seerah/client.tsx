@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { JourneyMap } from "@/components/sim/scenes/JourneyMap";
+import { seerahSteps } from "@/content/simulations";
+
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { seerahEvents, seerahCharacter } from "@/content/portals";
@@ -137,6 +141,10 @@ function SeerahPage() {
               {t("జీవిత కాలపట్టిక", "Life Timeline")}
             </h2>
           </BlurFade>
+
+          <div className="mb-10">
+            <Simulator steps={seerahSteps} scene={JourneyMap} autoplay />
+          </div>
 
           {/* Stage selector */}
           <div className="overflow-x-auto pb-4 mb-6">
@@ -364,7 +372,7 @@ function SeerahPage() {
 
       <section id="timeline" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ జీవిత కాలక్రమం" : "Timeline of the Prophet's life ﷺ"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -381,7 +389,7 @@ function SeerahPage() {
 
       <section id="character" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ స్వభావం" : "The Prophet's character ﷺ"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">

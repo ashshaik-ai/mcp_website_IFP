@@ -3,6 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { SalahFigure } from "@/components/sim/scenes/SalahFigure";
+import { WuduScene } from "@/components/sim/scenes/WuduScene";
+import { salahSteps as simSalah, wuduSteps as simWudu } from "@/content/simulations";
+
 import { useProgress } from "@/lib/progress";
 import { summariesByPortal } from "@/content/lesson-index";
 import { LessonIndex } from "@/components/learning/LessonIndex";
@@ -614,7 +619,7 @@ function KidsIslamPage() {
 
       <section id="prophet-stories" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్తల కథలు" : "Prophet stories"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -627,6 +632,14 @@ function KidsIslamPage() {
           />
         </div>
       </section>
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4 ">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <div className="grid gap-10"><Simulator steps={simWudu} scene={WuduScene} autoplay /><Simulator steps={simSalah} scene={SalahFigure} /></div>
+        </div>
+      </section>
+
 
       <LessonIndex portal="kids-islam" />
 

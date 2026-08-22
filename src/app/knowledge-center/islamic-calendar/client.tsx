@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { MoonScene } from "@/components/sim/scenes/MoonScene";
+import { moonSteps } from "@/content/simulations";
+
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -212,6 +216,14 @@ function IslamicCalendarPage() {
       </section>
 
       {/* The chart above is reference; these explain how the system works. */}
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4 ">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={moonSteps} scene={MoonScene} autoplay />
+        </div>
+      </section>
+
       <LessonIndex portal="islamic-calendar" />
 
     </PageShell>

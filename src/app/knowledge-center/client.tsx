@@ -275,7 +275,9 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
             </div>
           </BlurFade>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Thirteen cards in three columns leaves one alone on the last row;
+              it spans the row instead, at a reading width. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 [&>*:last-child:nth-child(3n+1)]:lg:col-span-3 [&>*:last-child:nth-child(3n+1)]:lg:max-w-md [&>*:last-child:nth-child(3n+1)]:lg:justify-self-center [&>*:last-child:nth-child(3n+1)]:lg:w-full">
             {filtered.map((portal, i) => {
               const Icon = portal.icon;
               return (

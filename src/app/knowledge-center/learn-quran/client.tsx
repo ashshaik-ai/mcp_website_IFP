@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { TajweedScene } from "@/components/sim/scenes/TajweedScene";
+import { tajweedSteps as simTajweed } from "@/content/simulations";
+
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -329,7 +333,7 @@ function LearnQuranPage() {
       </section>
 
       {/* Journey stages */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -398,7 +402,7 @@ function LearnQuranPage() {
       </section>
 
       {/* Tajweed Academy */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
+      <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-light)] mb-2">
@@ -506,7 +510,7 @@ function LearnQuranPage() {
       </section>
 
       {/* Rabbana Duas */}
-      <section className="if-defer py-16 px-4">
+      <section className="py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2 text-center">
@@ -540,7 +544,7 @@ function LearnQuranPage() {
       </section>
 
       {/* Key Surahs */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -575,7 +579,7 @@ function LearnQuranPage() {
       </section>
 
       {/* Daily Ayah Challenge */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
+      <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-2xl">
           <BlurFade delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-light)] mb-2 text-center">
@@ -615,7 +619,7 @@ function LearnQuranPage() {
       </section>
 
       {/* Reflection CTA */}
-      <section className="if-defer py-16 px-4">
+      <section className="py-16 px-4">
         <BlurFade delay={0.1}>
           <div className="relative overflow-hidden mx-auto max-w-2xl text-center text-[var(--if-gold-pale)] px-6 py-10 rounded-2xl border border-[var(--if-gold)]/20 bg-[var(--if-green)]">
             <BorderBeam size={300} duration={12} colorFrom="#c8922a" colorTo="#e8b84b" />
@@ -631,6 +635,14 @@ function LearnQuranPage() {
           </div>
         </BlurFade>
       </section>
+      {/* ── Simulator ── */}
+      <section className="py-16 px-4 ">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <Simulator steps={simTajweed} scene={TajweedScene} autoplay />
+        </div>
+      </section>
+
 
       <LessonIndex portal="learn-quran" />
 

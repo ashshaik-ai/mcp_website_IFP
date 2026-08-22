@@ -106,6 +106,10 @@ export type Hadith = {
   arabic: string;
   /** A plain transliteration, so a reader who cannot read Arabic can still say it. */
   translit: string;
+  /* The same transliteration in Telugu script. Latin letters under Telugu
+     text read as a foreign insertion; a Telugu reader sounds the Arabic out
+     in their own script. */
+  translit_te: string;
   text: Bi;
   /** Where it is found, named plainly. */
   source: Bi;
@@ -121,6 +125,7 @@ export const essentialHadith: Hadith[] = [
     id: "intentions",
     arabic: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
     translit: "Innamal a'malu bin-niyyat, wa innama likullim-ri'in ma nawa",
+    translit_te: "ఇన్నమల్ అఅమాలు బిన్నియ్యాత్, వ ఇన్నమా లికుల్లిమ్రిఇన్ మా నవా",
     text: {
       te: "కర్మలు ఉద్దేశాలపైనే ఆధారపడి ఉంటాయి, మరియు ప్రతి వ్యక్తికి అతను ఉద్దేశించినదే లభిస్తుంది.",
       en: "Actions are but by intentions, and each person will have only what they intended.",
@@ -137,6 +142,7 @@ export const essentialHadith: Hadith[] = [
     id: "five-pillars",
     arabic: "بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ",
     translit: "Buniyal Islamu ala khams",
+    translit_te: "బునియల్ ఇస్లాము అలా ఖమ్స్",
     text: {
       te: "ఇస్లాం ఐదింటిపై నిర్మించబడింది: అల్లాహ్ తప్ప ఆరాధ్యుడు లేడని, ముహమ్మద్ ﷺ అల్లాహ్ ప్రవక్త అని సాక్ష్యమివ్వడం, నమాజ్ స్థాపించడం, జకాత్ ఇవ్వడం, హజ్ చేయడం, రమదాన్ ఉపవాసం.",
       en: "Islam is built on five: to testify that there is no god but Allah and that Muhammad ﷺ is the Messenger of Allah, to establish the prayer, to give zakat, to perform Hajj, and to fast Ramadan.",
@@ -153,6 +159,7 @@ export const essentialHadith: Hadith[] = [
     id: "love-for-brother",
     arabic: "لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
     translit: "La yu'minu ahadukum hatta yuhibba li-akheehi ma yuhibbu li-nafsih",
+    translit_te: "లా యుఅమిను అహదుకుమ్ హత్తా యుహిబ్బ లి-అఖీహి మా యుహిబ్బు లి-నఫ్సిహ్",
     text: {
       te: "మీలో ఎవరూ తనకు ఇష్టపడేదాన్ని తన సోదరుడికి ఇష్టపడేవరకు విశ్వాసి కాడు.",
       en: "None of you truly believes until he loves for his brother what he loves for himself.",
@@ -169,6 +176,7 @@ export const essentialHadith: Hadith[] = [
     id: "speak-good",
     arabic: "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
     translit: "Man kana yu'minu billahi wal-yawmil aakhiri falyaqul khayran aw liyasmut",
+    translit_te: "మన్ కాన యుఅమిను బిల్లాహి వల్-యౌమిల్ ఆఖిరి ఫల్యఖుల్ ఖైరన్ ఔ లియస్ముత్",
     text: {
       te: "ఎవరైతే అల్లాహ్‌ను, అంతిమ దినాన్ని విశ్వసిస్తారో వారు మంచి మాట్లాడాలి లేదా మౌనంగా ఉండాలి.",
       en: "Whoever believes in Allah and the Last Day should speak good or remain silent.",
@@ -185,6 +193,7 @@ export const essentialHadith: Hadith[] = [
     id: "anger",
     arabic: "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ",
     translit: "Laysash-shadeedu bis-sura'ah, innamash-shadeedul-ladhee yamliku nafsahu indal ghadab",
+    translit_te: "లైసష్-షదీదు బిస్-సురఅహ్, ఇన్నమష్-షదీదుల్-లదీ యమ్లికు నఫ్సహు ఇందల్ గదబ్",
     text: {
       te: "బలవంతుడు అంటే కుస్తీలో గెలిచేవాడు కాదు; బలవంతుడు అంటే కోపంలో తనను తాను నిగ్రహించుకునేవాడు.",
       en: "The strong one is not the one who wrestles others down; the strong one is he who controls himself when angry.",
@@ -201,6 +210,7 @@ export const essentialHadith: Hadith[] = [
     id: "best-to-family",
     arabic: "خَيْرُكُمْ خَيْرُكُمْ لأَهْلِهِ",
     translit: "Khayrukum khayrukum li-ahlih",
+    translit_te: "ఖైరుకుమ్ ఖైరుకుమ్ లి-అహ్లిహ్",
     text: {
       te: "మీలో ఉత్తములు ఎవరంటే, తమ కుటుంబానికి ఉత్తమంగా ఉండేవారే.",
       en: "The best of you is the one who is best to his family.",
@@ -217,6 +227,7 @@ export const essentialHadith: Hadith[] = [
     id: "naseeha",
     arabic: "الدِّينُ النَّصِيحَةُ",
     translit: "Ad-deenun-naseehah",
+    translit_te: "అద్-దీనున్-నసీహహ్",
     text: {
       te: "ధర్మం అంటే నిష్కపటత్వం. 'ఎవరి పట్ల?' అని అడిగితే ఆయన అన్నారు: 'అల్లాహ్ పట్ల, ఆయన గ్రంథం పట్ల, ఆయన ప్రవక్త పట్ల, ముస్లిం నాయకుల పట్ల, మరియు సామాన్య ముస్లింల పట్ల'.",
       en: "The religion is sincerity. When asked to whom, he said: to Allah, to His Book, to His Messenger, to the leaders of the Muslims, and to the Muslims generally.",
@@ -233,6 +244,7 @@ export const essentialHadith: Hadith[] = [
     id: "mercy",
     arabic: "الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَنُ",
     translit: "Ar-rahimoona yarhamuhumur-Rahman",
+    translit_te: "అర్-రాహిమూన యర్హముహుముర్-రహ్మాన్",
     text: {
       te: "దయ చూపేవారిపై అపార కరుణామయుడు దయ చూపుతాడు. భూమిపై ఉన్నవారి పట్ల దయ చూపండి, ఆకాశంలో ఉన్నవాడు మీపై దయ చూపుతాడు.",
       en: "The merciful are shown mercy by the Most Merciful. Be merciful to those on earth, and the One above the heavens will be merciful to you.",
@@ -249,6 +261,7 @@ export const essentialHadith: Hadith[] = [
     id: "thank-people",
     arabic: "مَنْ لاَ يَشْكُرُ النَّاسَ لاَ يَشْكُرُ اللَّهَ",
     translit: "Man la yashkurun-nasa la yashkurullah",
+    translit_te: "మన్ లా యష్కురున్-నాస లా యష్కురుల్లాహ్",
     text: {
       te: "ఎవరైతే ప్రజలకు కృతజ్ఞత చెప్పరో, వారు అల్లాహ్‌కు కృతజ్ఞత చెప్పరు.",
       en: "Whoever does not thank people has not thanked Allah.",
@@ -265,6 +278,7 @@ export const essentialHadith: Hadith[] = [
     id: "leaving-what-does-not-concern",
     arabic: "مِنْ حُسْنِ إِسْلاَمِ الْمَرْءِ تَرْكُهُ مَا لاَ يَعْنِيهِ",
     translit: "Min husni islamil-mar'i tarkuhu ma la ya'neeh",
+    translit_te: "మిన్ హుస్ని ఇస్లామిల్-మర్ఇ తర్కుహు మా లా యఅనీహ్",
     text: {
       te: "ఒక వ్యక్తి ఇస్లాం చక్కగా ఉండటంలో భాగం, తనకు సంబంధం లేనిదాన్ని వదిలిపెట్టడం.",
       en: "Part of a person's good practice of Islam is leaving alone what does not concern him.",
@@ -281,6 +295,7 @@ export const essentialHadith: Hadith[] = [
     id: "seeking-knowledge",
     arabic: "طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ",
     translit: "Talabul ilmi fareedatun ala kulli muslim",
+    translit_te: "తలబుల్ ఇల్మి ఫరీదతున్ అలా కుల్లి ముస్లిమ్",
     text: {
       te: "జ్ఞానాన్వేషణ ప్రతి ముస్లింపైనా విధి.",
       en: "Seeking knowledge is an obligation upon every Muslim.",
@@ -297,6 +312,7 @@ export const essentialHadith: Hadith[] = [
     id: "beauty",
     arabic: "إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ",
     translit: "Innallaha jameelun yuhibbul jamal",
+    translit_te: "ఇన్నల్లాహ జమీలున్ యుహిబ్బుల్ జమాల్",
     text: {
       te: "నిశ్చయంగా అల్లాహ్ సుందరుడు, ఆయన సౌందర్యాన్ని ప్రేమిస్తాడు.",
       en: "Allah is beautiful and He loves beauty.",

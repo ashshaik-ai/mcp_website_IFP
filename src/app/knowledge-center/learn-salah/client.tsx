@@ -3,6 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { Simulator } from "@/components/sim/Simulator";
+import { SalahFigure } from "@/components/sim/scenes/SalahFigure";
+import { WuduScene } from "@/components/sim/scenes/WuduScene";
+import { salahSteps, wuduSteps as simWudu } from "@/content/simulations";
+
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -354,6 +359,9 @@ function LearnSalahPage() {
       {/* ── Tab: Wudu Guide ─────────────────────────────────────────────────── */}
       {activeTab === "wudu" && (
         <section className="if-defer py-16 px-4">
+          <div className="mx-auto max-w-3xl mb-12">
+            <Simulator steps={simWudu} scene={WuduScene} autoplay />
+          </div>
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
@@ -447,95 +455,17 @@ function LearnSalahPage() {
 
       {/* ── Tab: Simulator ──────────────────────────────────────────────────── */}
       {activeTab === "simulator" && (
-        <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
-          <div className="mx-auto max-w-2xl">
-            <BlurFade delay={0.1}>
-              <div className="text-center mb-8">
-                <h2 className="font-display text-3xl font-bold text-[var(--if-gold-light)] mb-2">
-                  {copy.salah_simulator[lang]}
-                </h2>
-                <p className="text-[var(--if-gold-pale)]/70 text-sm">
-                  {copy.from_takbeer_to_salam_what[lang]}
-                </p>
-              </div>
+        <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+          <div className="mx-auto max-w-3xl">
+            <BlurFade delay={0.05}>
+              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">{copy.salah_simulator[lang]}</h2>
+              <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">{lang === "te" ? "తక్బీర్ నుండి సలాం వరకు — చూసి నేర్చుకోండి" : "From Takbeer to Salam — watch, then follow"}</p>
             </BlurFade>
-
-            {/* Progress dots */}
-            <div className="flex gap-1.5 mb-4">
-              {simSteps.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSimStep(i)}
-                  className={`flex-1 h-1.5 rounded-full transition-all ${i === simStep ? "bg-[var(--if-gold)]" : i < simStep ? "bg-[var(--if-gold)]/50" : "bg-white/15"}`}
-                  aria-label={`Step ${i + 1}`}
-                />
-              ))}
-            </div>
-            <p className="text-xs text-[var(--if-gold-pale)]/80 mb-5 text-center">{lang === "te" ? `దశ ${simStep + 1} / ${simSteps.length}` : `Step ${simStep + 1} of ${simSteps.length}`}</p>
-
-            <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-6">
-              <div className="mb-5">
-                <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">{simSteps[simStep].pos[lang]}</div>
-                <h3 className="font-display text-2xl font-bold text-white">{simSteps[simStep].name}</h3>
-                <div className="font-arabic text-sm text-[var(--if-gold-light)]/60 mt-0.5" dir="rtl">{simSteps[simStep].nameAr}</div>
-              </div>
-
-              {/* What to do */}
-              <div className="flex gap-3 bg-white/5 border border-[var(--if-gold)]/15 rounded-xl p-4 mb-5">
-                <span className="text-lg shrink-0">🤲</span>
-                <div>
-                  <div className="text-xs font-semibold text-[var(--if-gold-light)] uppercase tracking-wider mb-1">{copy.action[lang]}</div>
-                  <p className="text-sm text-[var(--if-gold-pale)]/90">{simSteps[simStep].pos[lang]}</p>
-                </div>
-              </div>
-
-              {/* What to say */}
-              <div className="mb-4">
-                <div className="text-xs font-semibold text-[var(--if-gold-light)] uppercase tracking-wider mb-3">{copy.recitation[lang]}</div>
-                <div className="font-arabic text-2xl text-[var(--if-gold-light)] leading-loose text-right mb-2" dir="rtl">{simSteps[simStep].ar}</div>
-                <div className="text-sm text-[var(--if-gold-pale)]/80 italic mb-1">{simSteps[simStep].tr}</div>
-                <div className="text-sm text-[var(--if-gold-pale)]/80">{simSteps[simStep].mean[lang]}</div>
-              </div>
-
-              {/* Common mistake */}
-              <div className="flex gap-3 bg-red-900/20 border border-red-500/30 rounded-xl p-4">
-                <span className="text-base shrink-0">⚠️</span>
-                <div>
-                  <div className="text-xs font-semibold text-red-300 uppercase tracking-wider mb-1">{copy.common_mistake[lang]}</div>
-                  <p className="text-sm text-[var(--if-gold-pale)]/80">{simSteps[simStep].warn[lang]}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between mt-6 gap-3">
-                <button
-                  disabled={simStep === 0}
-                  onClick={() => setSimStep(s => s - 1)}
-                  className="flex items-center gap-1 px-5 py-2.5 rounded-lg border border-[var(--if-gold)]/40 text-sm text-[var(--if-gold-light)] disabled:opacity-30 hover:bg-white/10 transition-colors"
-                >
-                  <ChevronLeft className="h-4 w-4" />{copy.back[lang]}
-                </button>
-                {simStep === simSteps.length - 1 ? (
-                  <button
-                    onClick={() => setSimStep(0)}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold"
-                  >
-                    <CheckCircle2 className="h-4 w-4" />{copy.restart[lang]}
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setSimStep(s => s + 1)}
-                    className="flex items-center gap-1 px-5 py-2.5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold hover:bg-[var(--if-gold-light)] transition-colors"
-                  >
-                    {copy.next[lang]}<ChevronRight className="h-4 w-4" />
-                  </button>
-                )}
-              </div>
-            </div>
+            <Simulator steps={salahSteps} scene={SalahFigure} autoplay />
           </div>
         </section>
       )}
 
-      {/* ── Tab: Mistakes ───────────────────────────────────────────────────── */}
       {activeTab === "mistakes" && (
         <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
           <div className="mx-auto max-w-4xl">
