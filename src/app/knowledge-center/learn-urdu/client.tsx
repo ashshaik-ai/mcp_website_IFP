@@ -25,26 +25,16 @@ const copy = {
   free: { te: "ఉచితం", en: "Free" },
   urdu_alphabet: { te: "ఉర్దూ అక్షరమాల", en: "Urdu Alphabet" },
   click_to_hear: { te: "నొక్కండి వినడానికి 🔊", en: "Click to hear 🔊" },
-  n_4_level_learning_path: { te: "4-స్థాయి అభ్యాస మార్గం", en: "4-Level Learning Path" },
-  coming_soon: { te: "త్వరలో", en: "Coming Soon" },
   urdu_word_of_the_day: { te: "నేటి ఉర్దూ పదం", en: "Urdu Word of the Day" },
   listen: { te: "వినండి", en: "Listen" },
 } as const;
 
 
 
-const levels = [
-  { num: 1, title: { te: "ఉర్దూ అక్షరమాల", en: "Urdu Alphabet" }, urdu: "اردو حروف تہجی", desc: { te: "39 అక్షరాలు — ఉచ్చారణ మరియు వ్రాత", en: "39 letters — pronunciation and writing" }, available: true },
-  { num: 2, title: { te: "ఉర్దూ పదాలు", en: "Urdu Words" }, urdu: "اردو الفاظ", desc: { te: "ప్రాథమిక ఇస్లామిక్ మరియు నిత్య జీవిత పదాలు", en: "Basic Islamic and everyday words" }, available: true },
-  { num: 3, title: { te: "ఉర్దూ వాక్యాలు", en: "Urdu Sentences" }, urdu: "اردو جملے", desc: { te: "సాధారణ సంభాషణ మరియు ఇస్లామిక్ ప్రార్థనలు", en: "Common conversation and Islamic supplications" }, available: false },
-  { num: 4, title: { te: "ఖురాన్ ఉర్దూ అనువాదం", en: "Quranic Urdu Translation" }, urdu: "قرآنی اردو", desc: { te: "ఖురాన్ అనువాదాన్ని ఉర్దూలో చదవండి", en: "Read the Quran translation in Urdu" }, available: false },
-];
-
 
 
 function LearnUrduPage() {
   const { lang } = useI18n();
-  const [openLevel, setOpenLevel] = useState<number | null>(1);
   const [wordIdx, setWordIdx] = useState(0);
 
   const speak = useCallback((text: string) => {
@@ -107,39 +97,6 @@ function LearnUrduPage() {
         </div>
       </section>
 
-      {/* Levels */}
-      <section className="py-16 px-4">
-        <div className="mx-auto max-w-3xl">
-          <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
-              {copy.n_4_level_learning_path[lang]}
-            </h2>
-          </BlurFade>
-          <div className="space-y-3">
-            {levels.map((lv) => (
-              <BlurFade key={lv.num} delay={0.07 * lv.num}>
-                <div className="bg-white rounded-2xl border border-[var(--if-gold)]/15 overflow-hidden">
-                  <button
-                    onClick={() => setOpenLevel(openLevel === lv.num ? null : lv.num)}
-                    className="w-full flex items-center gap-4 p-5 text-left hover:bg-[var(--if-cream-light)] transition-colors"
-                  >
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${lv.available ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "bg-[var(--if-gold)]/20 text-[var(--if-text-muted)]"}`}>{lv.num}</div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-semibold text-[var(--if-green)]">{lv.title[lang]}</span>
-                        <span className="text-sm text-[var(--if-gold-light)]" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{lv.urdu}</span>
-                        {!lv.available && <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">{copy.coming_soon[lang]}</span>}
-                      </div>
-                      <p className="text-sm text-[var(--if-text-muted)]">{lv.desc[lang]}</p>
-                    </div>
-                    <ChevronRight className={`h-4 w-4 text-[var(--if-gold-light)] flex-shrink-0 transition-transform ${openLevel === lv.num ? "rotate-90" : ""}`} />
-                  </button>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Word of the day */}
       <section className="py-16 px-4 bg-[var(--if-green)]">

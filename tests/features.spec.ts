@@ -68,7 +68,10 @@ test.describe("site search", () => {
     for (const [query, expected] of [
       ["zakat", /Zakat|జకాత్/],
       ["hijrah", /Hijrah|హిజ్రా/],
-      ["mercy", /Mercy|కరుణ/],
+      /* The Telugu alternative has to cover both కరుణ and కారుణ్యం: the top hit
+         for this query is now the Mercy and majesty lesson, whose Telugu title
+         uses the longer stem. */
+      ["mercy", /Mercy|కరుణ|కారుణ్య/],
     ] as const) {
       await input.fill(query);
       await expect(page.locator("#search-results li").first()).toContainText(expected);

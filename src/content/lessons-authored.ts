@@ -17,8 +17,16 @@
      - No claim of a specific reward or ruling without naming its source.
 */
 import type { Lesson } from "./lessons.ts";
+import { arabicLessons } from "./lessons/arabic.ts";
+import { urduLessons } from "./lessons/urdu.ts";
 
+/* Portals authored as their own module live in ./lessons/ and are spread in
+   below. This file was heading past two thousand lines with everything inline,
+   which made finding one lesson a chore. */
 export const authoredLessons: Lesson[] = [
+  ...arabicLessons,
+  ...urduLessons,
+
   {
     slug: "why-hajj",
     portal: "hajj-umrah",

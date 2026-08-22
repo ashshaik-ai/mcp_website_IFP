@@ -13,15 +13,36 @@ import { authoredLessons } from "./lessons-authored.ts";
 
 export type { Bi, Lesson, LessonSection, QuizItem } from "./lessons.ts";
 
-export const lessons: Lesson[] = [...generated, ...authoredLessons];
+/* Authored lessons win over generated ones on the same portal/slug.
 
-/* A duplicate slug within a portal would give two lessons the same URL, and
-   generateStaticParams would emit it twice. Cheap to check, and it fails the
-   build rather than shipping a broken route. */
+   The lessons extracted from the legacy site are short -- a median of 77 words
+   for learn-arabic against 280 or more for one written here -- so rewriting one
+   means replacing it, not adding a second route beside it. Writing the
+   replacement into lessons.ts is not an option, since extract-lessons.mjs
+   regenerates that file wholesale.
+
+   Order is preserved: a replacement keeps the generated lesson's position in
+   the portal, so the sequence a reader sees does not shuffle when one is
+   rewritten. */
+const authoredBySlug = new Map(authoredLessons.map((l) => [`${l.portal}/${l.slug}`, l]));
+const replaced = new Set<string>();
+
+export const lessons: Lesson[] = [
+  ...generated.map((l) => {
+    const key = `${l.portal}/${l.slug}`;
+    const override = authoredBySlug.get(key);
+    if (!override) return l;
+    replaced.add(key);
+    return override;
+  }),
+  ...authoredLessons.filter((l) => !replaced.has(`${l.portal}/${l.slug}`)),
+];
+
+/* Two authored lessons sharing a route would silently drop one. */
 const seen = new Set<string>();
-for (const l of lessons) {
+for (const l of authoredLessons) {
   const key = `${l.portal}/${l.slug}`;
-  if (seen.has(key)) throw new Error(`Duplicate lesson route: ${key}`);
+  if (seen.has(key)) throw new Error(`Duplicate authored lesson route: ${key}`);
   seen.add(key);
 }
 

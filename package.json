@@ -10,7 +10,7 @@
     "prebuild": "node --experimental-strip-types scripts/build-search-index.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "verify": "tsc --noEmit && eslint && next build && playwright test",
+    "verify": "tsc --noEmit && eslint && npm run build && playwright test",
     "audit": "node scripts/audit-live.mjs",
     "content:refresh": "node scripts/extract-lessons.mjs && node scripts/extract-alphabets.mjs && node scripts/extract-vocab.mjs && node scripts/extract-portals.mjs"
   },

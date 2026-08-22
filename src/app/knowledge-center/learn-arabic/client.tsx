@@ -13,7 +13,7 @@ import { arabicExtras } from "@/content/arabic-extras";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronLeft, ChevronRight, ChevronDown, Volume2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Volume2, X } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -38,9 +38,6 @@ const copy = {
   initial: { te: "ప్రారంభ", en: "Initial" },
   medial: { te: "మధ్య", en: "Medial" },
   final: { te: "చివర", en: "Final" },
-  learning_roadmap_6_levels: { te: "అభ్యాస మార్గం — 6 స్థాయిలు", en: "Learning Roadmap — 6 Levels" },
-  coming_soon: { te: "త్వరలో", en: "Coming Soon" },
-  available: { te: "అందుబాటులో", en: "Available" },
   word_of_the_day: { te: "నేటి పదం", en: "Word of the Day" },
   letter_flashcards: { te: "అక్షర ఫ్లాష్ కార్డులు", en: "Letter Flashcards" },
   recognise_the_letter_tap_to: { te: "అక్షరాన్ని చూసి గుర్తించండి — తిప్పి పేరు చూడండి", en: "Recognise the letter — tap to flip and see its name" },
@@ -55,15 +52,6 @@ const copy = {
 } as const;
 
 /* ─── Data ─── */
-const levels = [
-  { num: 1, title: { te: "అరబిక్ అక్షరమాల", en: "The Arabic Alphabet" }, arabic: "الحروف الهجائية", desc: { te: "28 అక్షరాలు, వాటి రూపాలు మరియు ఉచ్చారణ", en: "28 letters, their forms and pronunciation" }, lessons: ["Alphabet Introduction", "Letter Forms (4 shapes)", "Connecting Letters", "Writing Practice"], available: true },
-  { num: 2, title: { te: "హరకాత్ మరియు స్వరాలు", en: "Harakat and Vowels" }, arabic: "التشكيل والقراءة", desc: { te: "Fatha, Kasra, Damma మరియు పొడిగింపులు", en: "Fatha, Kasra, Damma and extensions" }, lessons: ["Short Vowels (Fatha/Kasra/Damma)", "Long Vowels (Madd)", "Tanween", "Reading Practice"], available: true },
-  { num: 3, title: { te: "పదజాలం నిర్మాణం", en: "Building Vocabulary" }, arabic: "المفردات الأساسية", desc: { te: "ప్రాథమిక అరబిక్ పదాలు మరియు వాటి అర్థాలు", en: "Essential Arabic words and their meanings" }, lessons: ["Family Words", "Daily Objects", "Nature Words", "Islamic Vocabulary"], available: true },
-  { num: 4, title: { te: "రోజువారీ అరబిక్", en: "Everyday Arabic" }, arabic: "العربية اليومية", desc: { te: "సాధారణ వాక్యాలు మరియు సంభాషణలు", en: "Common phrases and conversations" }, lessons: ["Greetings", "At the Mosque", "Basic Sentences", "Dialogues"], available: false },
-  { num: 5, title: { te: "ఖురానిక్ అరబిక్", en: "Quranic Arabic" }, arabic: "عربية القرآن", desc: { te: "ఖురాన్‌లో తరచుగా వచ్చే పదాలు మరియు నమూనాలు", en: "Frequently occurring Quranic words and patterns" }, lessons: ["Top 100 Quranic Words", "Quranic Phrases", "Surah Vocabulary", "Root Words"], available: false },
-  { num: 6, title: { te: "వ్యాకరణ ప్రాథమికాలు", en: "Grammar Basics" }, arabic: "قواعد النحو", desc: { te: "అరబిక్ వ్యాకరణం పరిచయం — నదమ్ మరియు సర్ఫ్", en: "Introduction to Arabic grammar — Nahw and Sarf" }, lessons: ["Nouns & Verbs", "Sentence Structure", "Gender in Arabic", "Plurals"], available: false },
-];
-
 const alphabet = [
   { ar: "ا", name: "Alif",  en: "ā / '",  te: "అలిఫ్",           sun: false, example: { ar: "أَسَد",   te: "సింహం",     en: "Lion" } },
   { ar: "ب", name: "Ba",    en: "b",       te: "బా",              sun: false, example: { ar: "بَيْت",   te: "ఇల్లు",     en: "House" } },
@@ -115,7 +103,6 @@ type Letter = typeof alphabet[0];
 
 function LearnArabicPage() {
   const { lang } = useI18n();
-  const [openLevel, setOpenLevel] = useState<number | null>(1);
   const [wordIdx, setWordIdx] = useState(0);
   const [selected, setSelected] = useState<Letter | null>(null);
   const [fcIdx, setFcIdx] = useState(0);
@@ -300,69 +287,6 @@ function LearnArabicPage() {
         </div>
       </section>
 
-      {/* Levels accordion */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
-        <div className="mx-auto max-w-3xl">
-          <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
-              {copy.learning_roadmap_6_levels[lang]}
-            </h2>
-          </BlurFade>
-          <div className="space-y-3">
-            {levels.map((level) => (
-              <BlurFade key={level.num} delay={0.05 * level.num}>
-                <div className="bg-white rounded-2xl border border-[var(--if-gold)]/15 overflow-hidden">
-                  <button
-                    onClick={() => setOpenLevel(openLevel === level.num ? null : level.num)}
-                    className="w-full flex items-center gap-4 p-5 text-left hover:bg-[var(--if-cream-light)] transition-colors"
-                  >
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${
-                      level.available
-                        ? "bg-[var(--if-green)] text-[var(--if-gold-light)]"
-                        : "bg-[var(--if-gold)]/20 text-[var(--if-text-muted)]"
-                    }`}>
-                      {level.num}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-semibold text-[var(--if-green)]">{level.title[lang]}</span>
-                        <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl">{level.arabic}</span>
-                        {!level.available && (
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 font-semibold">
-                            {copy.coming_soon[lang]}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-[var(--if-text-muted)] mt-0.5">{level.desc[lang]}</p>
-                    </div>
-                    {openLevel === level.num
-                      ? <ChevronDown className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0" />
-                      : <ChevronRight className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0" />
-                    }
-                  </button>
-                  {openLevel === level.num && (
-                    <div className="px-5 pb-5 border-t border-[var(--if-gold)]/10">
-                      <ul className="mt-4 space-y-2">
-                        {level.lessons.map((lesson, i) => (
-                          <li key={lesson} className="flex items-center gap-3 text-sm text-[var(--if-text)]">
-                            <span className="w-6 h-6 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] flex items-center justify-center text-xs font-bold flex-shrink-0">
-                              {i + 1}
-                            </span>
-                            {lesson}
-                            {level.available && (
-                              <span className="ml-auto text-xs text-emerald-700 font-semibold">{copy.available[lang]}</span>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Word of the Day */}
       <section className="py-16 px-4">
