@@ -1758,4 +1758,422 @@ export const authoredLessons: Lesson[] = [
       { label: "Moon sighting and Eid dates", url: "/knowledge-center/islamic-calendar/moon-sighting" },
     ],
   },
+
+  {
+    slug: "night-prayer",
+    portal: "special-prayers",
+    title: {
+      te: "స్థాయి 1 — రాత్రి నమాజ్: తహజ్జుద్, విత్ర్, ఖునూత్",
+      en: "Level 1 — The night prayer: Tahajjud, Witr and Qunoot",
+    },
+    intro: {
+      te: "రాత్రి నమాజ్ (ఖియామ్ అల్-లైల్) ఫర్జ్ నమాజుల తర్వాత అత్యుత్తమ నమాజని ప్రవక్త ﷺ చెప్పారు. ఈ పాఠం తహజ్జుద్, విత్ర్, దుఆ-ఎ-ఖునూత్ — మూడింటినీ కలిపి వివరిస్తుంది.",
+      en: "The Prophet ﷺ said the night prayer is the best prayer after the obligatory ones. This lesson covers Tahajjud, Witr and the du'a al-Qunoot together, since in practice they belong to one another.",
+    },
+    sections: [
+      {
+        heading: { te: "ఎందుకు రాత్రి", en: "Why the night" },
+        body: {
+          te: "ప్రవక్త ﷺ అన్నారు: 'రమదాన్ తర్వాత అత్యుత్తమ ఉపవాసం అల్లాహ్ మాసం ముహర్రం; ఫర్జ్ నమాజుల తర్వాత అత్యుత్తమ నమాజ్ రాత్రి నమాజ్' (ముస్లిం). మరో హదీసులో: రాత్రి చివరి మూడో భాగంలో అల్లాహ్ దిగివచ్చి అంటాడు — 'నన్ను వేడుకునేవాడు ఎవడు, నేను ఇస్తాను? నన్ను క్షమాపణ కోరేవాడు ఎవడు, నేను క్షమిస్తాను?' (బుఖారీ, ముస్లిం).",
+          en: "The Prophet ﷺ said: 'The best fasting after Ramadan is in Allah's month of Muharram, and the best prayer after the obligatory prayers is the night prayer' (Muslim). In another hadith, in the last third of the night Allah descends and says: 'Who is calling upon Me, that I may answer him? Who is asking My forgiveness, that I may forgive him?' (Bukhari and Muslim).",
+        },
+        check: {
+          question: { te: "ఫర్జ్ నమాజుల తర్వాత అత్యుత్తమ నమాజ్ ఏది?", en: "Which is the best prayer after the obligatory ones?" },
+          options: [
+            { te: "రాత్రి నమాజ్", en: "The night prayer" },
+            { te: "ఈద్ నమాజ్", en: "The Eid prayer" },
+            { te: "ఇష్రాఖ్", en: "The Ishraq prayer" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "తహజ్జుద్ ఎలా చేయాలి", en: "How Tahajjud is prayed" },
+        body: {
+          te: "తహజ్జుద్ అంటే నిద్ర తర్వాత లేచి చేసే రాత్రి నమాజ్. రెండేసి రక్అత్‌లుగా చదువుతారు — ఎన్ని జతలైనా. ప్రవక్త ﷺ సాధారణంగా ఎనిమిది రక్అత్‌లు చదివి, ఆపై విత్ర్‌తో ముగించేవారు. నిర్ణీత సూరాలు లేవు; మీకు తెలిసినది చదవండి. రాత్రి చివరి మూడో భాగం ఉత్తమ సమయం, కానీ ఇషా తర్వాత ఫజ్ర్ ముందు ఎప్పుడైనా చెల్లుతుంది.",
+          en: "Tahajjud is the night prayer offered after sleeping. It is prayed in pairs of two, as many pairs as you wish. The Prophet ﷺ commonly prayed eight and then closed with Witr. There are no fixed surahs; recite what you know. The last third of the night is best, though any time between Isha and Fajr is valid.",
+        },
+        check: {
+          question: { te: "తహజ్జుద్ ఎన్నేసి రక్అత్‌లుగా చదువుతారు?", en: "Tahajjud is prayed in units of how many?" },
+          options: [
+            { te: "రెండేసి", en: "Two at a time" },
+            { te: "నాలుగేసి", en: "Four at a time" },
+            { te: "ఒక్కొక్కటి", en: "One at a time" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "విత్ర్ — బేసి సంఖ్యతో ముగింపు", en: "Witr: closing on an odd number" },
+        body: {
+          te: "విత్ర్ అంటే 'బేసి'. రాత్రి నమాజును బేసి సంఖ్యతో ముగించడం — 1, 3, 5, 7 లేదా 9 రక్అత్‌లు. ప్రవక్త ﷺ అన్నారు: 'మీ రాత్రి నమాజులో చివరిదిగా విత్ర్ చేయండి' (బుఖారీ). ఇక్కడ మజ్‌హబ్ భేదం: హనఫీ మజ్‌హబ్‌లో విత్ర్ వాజిబ్ (దాదాపు విధి), మూడు రక్అత్‌లు కలిపి. మిగిలిన మూడు మజ్‌హబ్‌ల్లో ఇది సున్నత్ ముఅక్కదా — గట్టిగా సిఫార్సు చేయబడినది కానీ విధి కాదు.",
+          en: "Witr means odd. It closes the night prayer on an odd number: one, three, five, seven or nine units. The Prophet ﷺ said: 'Make the last of your night prayer Witr' (Bukhari). The schools differ here: in the Hanafi school Witr is wajib, close to obligatory, and prayed as three joined units. In the other three schools it is sunnah mu'akkadah, strongly recommended but not obligatory.",
+        },
+      },
+      {
+        heading: { te: "దుఆ-ఎ-ఖునూత్", en: "The du'a al-Qunoot" },
+        body: {
+          te: "హసన్ (ర/అ)కు ప్రవక్త ﷺ నేర్పిన దుఆ: 'అల్లాహుమ్మ ఇహ్దినీ ఫీమన్ హదైత, వ ఆఫినీ ఫీమన్ ఆఫైత, వ తవల్లనీ ఫీమన్ తవల్లైత, వ బారిక్ లీ ఫీమా అఅతైత' — 'ఓ అల్లాహ్, నీవు మార్గదర్శనం చేసినవారిలో నాకూ మార్గదర్శనం చేయి; నీవు స్వస్థత ఇచ్చినవారిలో నాకూ స్వస్థత ఇవ్వు; నీవు సంరక్షించినవారిలో నన్నూ సంరక్షించు; నీవు ఇచ్చినదానిలో నాకు బరకత్ ఇవ్వు' (అబూ దావూద్, తిర్మిజీ). ఖునూత్ స్థానంపై కూడా భేదం: హనఫీ మజ్‌హబ్‌లో మూడో రక్అత్‌లో రుకూకు ముందు; మిగిలినవాటిలో రుకూ తర్వాత.",
+          en: "The supplication the Prophet ﷺ taught Hasan (RA): 'Allahumma ihdini fiman hadayt, wa afini fiman afayt, wa tawallani fiman tawallayt, wa barik li fima a'tayt' — 'O Allah, guide me among those You have guided, grant me wellbeing among those You have granted wellbeing, take me into Your care among those You have taken into Your care, and bless me in what You have given' (Abu Dawud, Tirmidhi). The schools also differ on its place: Hanafis say it before the bowing in the third unit, the others after the bowing.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "రాత్రి నమాజ్ ఫర్జ్ తర్వాత అత్యుత్తమ నమాజ్ (ముస్లిం).", en: "The night prayer is the best after the obligatory prayers (Muslim)." },
+      { te: "తహజ్జుద్ రెండేసి రక్అత్‌లు; విత్ర్ బేసి సంఖ్యతో ముగింపు.", en: "Tahajjud is prayed in twos; Witr closes on an odd number." },
+      { te: "విత్ర్ హోదా, ఖునూత్ స్థానం — మజ్‌హబ్‌ల మధ్య భేదం.", en: "The status of Witr and the placing of Qunoot differ between the schools." },
+    ],
+    didYouKnow: [
+      { te: "ప్రవక్త ﷺ రాత్రి నమాజులో పాదాలు వాచేంతవరకు నిలబడేవారు. 'మీ పాపాలు క్షమించబడ్డాయి కదా?' అని అడిగితే — 'నేను కృతజ్ఞుడైన దాసుడిని కాకూడదా?' అన్నారు (బుఖారీ).", en: "The Prophet ﷺ stood in night prayer until his feet swelled. Asked why, when his sins were forgiven, he said: 'Should I not be a grateful servant?' (Bukhari)." },
+    ],
+    reflect: [
+      { te: "రెండు రక్అత్‌లు — ఐదు నిమిషాలు. ఈ వారం ఒక్క రాత్రి పది నిమిషాలు ముందుగా లేవగలరా?", en: "Two units take five minutes. Could you rise ten minutes earlier on one night this week?" },
+    ],
+    mistakes: [
+      { te: "ఎక్కువ రక్అత్‌లు లక్ష్యంగా పెట్టుకుని, కొన్ని రోజుల్లో పూర్తిగా మానేయడం. ప్రవక్త ﷺ అన్నారు: 'అల్లాహ్‌కు అత్యంత ప్రియమైన ఆచరణ తక్కువైనా నిరంతరం చేసేది' (బుఖారీ).", en: "Aiming at a large number and then stopping altogether. The Prophet ﷺ said the deeds most beloved to Allah are the constant ones, however small (Bukhari)." },
+      { te: "విత్ర్ చదవకుండా నిద్రపోవడం — ఇషా తర్వాత వెంటనే చదివి పడుకోవచ్చు.", en: "Sleeping without praying Witr, when it may simply be prayed after Isha before bed." },
+    ],
+    faqs: [
+      {
+        question: { te: "తహజ్జుద్ కోసం లేవలేకపోతే?", en: "What if I cannot wake for Tahajjud?" },
+        answer: {
+          te: "ఇషా తర్వాత పడుకునే ముందు విత్ర్ చదవండి. ప్రవక్త ﷺ అన్నారు: 'రాత్రి చివరిలో లేవగలనని నమ్మకం ఉన్నవాడు అప్పుడు విత్ర్ చేయాలి; నమ్మకం లేనివాడు రాత్రి మొదట్లోనే చేయాలి' (ముస్లిం). లేవాలనే నిజాయితీ ఉద్దేశంతో పడుకుని లేవలేకపోతే, ఆ ప్రతిఫలం రాయబడుతుందని ఒక ఉల్లేఖనలో ఉంది.",
+            en: "Pray Witr after Isha before sleeping. The Prophet ﷺ said: 'Whoever expects to wake at the end of the night should pray Witr then; whoever does not should pray it at the beginning' (Muslim). And a narration states that one who sleeps with a sincere intention to rise, but is overcome by sleep, is written the reward.",
+        },
+      },
+      {
+        question: { te: "విత్ర్ చదవడం మరచిపోతే?", en: "What if I forget to pray Witr?" },
+        answer: {
+          te: "గుర్తు వచ్చినప్పుడు చదవాలి — ఉదయం అయినా. ప్రవక్త ﷺ ఏదైనా కారణంగా రాత్రి నమాజ్ తప్పితే పగలు దాన్ని పూర్తి చేసేవారు (ముస్లిం).",
+          en: "Pray it when you remember, even in the morning. When something prevented the Prophet ﷺ from his night prayer, he would make it up during the day (Muslim).",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "'విత్ర్' అంటే ఏమిటి?", en: "What does 'Witr' mean?" },
+        options: [
+          { te: "బేసి", en: "Odd" },
+          { te: "సరి", en: "Even" },
+          { te: "రాత్రి", en: "Night" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "హనఫీ మజ్‌హబ్‌లో ఖునూత్ ఎక్కడ చదువుతారు?", en: "In the Hanafi school, where is Qunoot recited?" },
+        options: [
+          { te: "మూడో రక్అత్‌లో రుకూకు ముందు", en: "Before the bowing in the third unit" },
+          { te: "రుకూ తర్వాత", en: "After the bowing" },
+          { te: "సజ్దా తర్వాత", en: "After the prostration" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "లేవలేనని అనుమానం ఉంటే విత్ర్ ఎప్పుడు చదవాలి?", en: "If you doubt you will wake, when should Witr be prayed?" },
+        options: [
+          { te: "పడుకునే ముందు, ఇషా తర్వాత", en: "Before sleeping, after Isha" },
+          { te: "ఫజ్ర్ తర్వాత", en: "After Fajr" },
+          { te: "అస్ర్ తర్వాత", en: "After Asr" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "రాత్రి నమాజ్ = ఫర్జ్ తర్వాత అత్యుత్తమం.", en: "Night prayer is the best after the obligatory." },
+      { te: "తహజ్జుద్ 2+2; విత్ర్ బేసితో ముగింపు.", en: "Tahajjud in twos; Witr closes odd." },
+      { te: "ఖునూత్: 'అల్లాహుమ్మ ఇహ్దినీ ఫీమన్ హదైత...'", en: "Qunoot: 'Allahumma ihdini fiman hadayt...'" },
+    ],
+    summary: {
+      te: "రాత్రి నమాజ్ ఫర్జ్ తర్వాత అత్యుత్తమమైనది. తహజ్జుద్ రెండేసి రక్అత్‌లు, విత్ర్ బేసి సంఖ్యతో ముగింపు, ఖునూత్ దానిలో చదివే దుఆ. విత్ర్ హోదా, ఖునూత్ స్థానంపై మజ్‌హబ్‌ల మధ్య భేదం ఉంది — రెండూ చెల్లుతాయి.",
+      en: "The night prayer is the best after the obligatory ones. Tahajjud is prayed in twos, Witr closes on an odd number, and Qunoot is the supplication within it. The schools differ on Witr's status and Qunoot's placing, and both practices are valid.",
+    },
+    apply: {
+      te: "ఆచరణ: దుఆ-ఎ-ఖునూత్ మొదటి పంక్తిని ఈ వారం కంఠస్థం చేయండి.",
+      en: "Apply it: memorise the first line of the du'a al-Qunoot this week.",
+    },
+    reading: [
+      { label: "Special Prayers portal", url: "/knowledge-center/special-prayers" },
+      { label: "Learn Salah portal", url: "/knowledge-center/learn-salah" },
+    ],
+  },
+
+  {
+    slug: "tarawih",
+    portal: "special-prayers",
+    title: {
+      te: "స్థాయి 2 — తరావీహ్: ఎనిమిదా, ఇరవైనా",
+      en: "Level 2 — Tarawih: eight or twenty",
+    },
+    intro: {
+      te: "ప్రతి రమదాన్‌లో ఈ ప్రశ్న సమాజాలను విభజిస్తుంది. ఈ పాఠం రెండు వైపుల ఆధారాలను నిజాయితీగా చూపుతుంది, మరియు పండితులు ఎందుకు రెండింటినీ చెల్లుబాటుగా భావిస్తారో వివరిస్తుంది.",
+      en: "This question divides communities every Ramadan. This lesson sets out the evidence on both sides honestly, and explains why scholars hold both to be valid.",
+    },
+    sections: [
+      {
+        heading: { te: "తరావీహ్ అంటే ఏమిటి", en: "What Tarawih is" },
+        body: {
+          te: "రమదాన్ రాత్రుల్లో ఇషా తర్వాత చేసే నఫిల్ నమాజ్. పేరు 'తర్వీహా' నుండి వచ్చింది — అంటే విశ్రాంతి; ప్రతి నాలుగు రక్అత్‌ల తర్వాత కొద్దిసేపు విశ్రాంతి తీసుకునేవారు కాబట్టి. ఇది సున్నత్ ముఅక్కదా — గట్టిగా సిఫార్సు చేయబడినది, కానీ ఫర్జ్ కాదు. దీన్ని వదిలేసినవారు పాపం చేసినట్లు కాదు; చేసేవారికి గొప్ప ప్రతిఫలం.",
+          en: "A voluntary prayer offered after Isha on the nights of Ramadan. The name comes from tarwiha, a rest, because people would pause briefly after every four units. It is sunnah mu'akkadah: strongly recommended, but not obligatory. Whoever leaves it has not sinned, and whoever prays it has great reward.",
+        },
+        check: {
+          question: { te: "తరావీహ్ హోదా ఏమిటి?", en: "What is the status of Tarawih?" },
+          options: [
+            { te: "సున్నత్ ముఅక్కదా — ఫర్జ్ కాదు", en: "Sunnah mu'akkadah, not obligatory" },
+            { te: "ఫర్జ్", en: "Obligatory" },
+            { te: "నిషిద్ధం", en: "Forbidden" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "ఎనిమిది వైపు ఆధారం", en: "The case for eight" },
+        body: {
+          te: "ఆయిషా (ర/అ)ను ప్రవక్త ﷺ రమదాన్‌లో ఎలా నమాజ్ చేసేవారని అడిగినప్పుడు ఆమె అన్నారు: 'ఆయన రమదాన్‌లోనైనా, ఇతర సమయాల్లోనైనా పదకొండు రక్అత్‌లకు మించి చేసేవారు కాదు' (బుఖారీ). పదకొండు అంటే ఎనిమిది తరావీహ్ + మూడు విత్ర్. ఇది ప్రవక్త ﷺ స్వంత ఆచరణ కాబట్టి బలమైన ఆధారం.",
+          en: "Asked how the Prophet ﷺ prayed in Ramadan, Aisha (RA) said: 'He did not exceed eleven units, in Ramadan or outside it' (Bukhari). Eleven means eight of Tarawih plus three of Witr. Since this is the Prophet's own practice, it is strong evidence.",
+        },
+      },
+      {
+        heading: { te: "ఇరవై వైపు ఆధారం", en: "The case for twenty" },
+        body: {
+          te: "ఉమర్ (ర/అ) తన ఖిలాఫత్‌లో ప్రజలను ఒకే ఇమామ్ వెనుక సమీకరించారు, మరియు సహచరుల కాలంలో ఇరవై రక్అత్‌ల ఆచరణ స్థిరపడింది. ఈ ఆచరణ సహచరుల ఏకాభిప్రాయంతో (ఇజ్మా) కొనసాగింది, మక్కా, మదీనా హరమ్‌లలో నేటికీ ఇరవైయే. మరో ముఖ్య విషయం: నఫిల్ నమాజుకు గరిష్ఠ పరిమితి లేదని పండితులు అంగీకరిస్తారు — ప్రవక్త ﷺ 'పదకొండుకు మించకూడదు' అని నిషేధించలేదు, ఆయన అలా చేసేవారని ఆయిషా (ర/అ) వర్ణించారు.",
+          en: "Umar (RA) gathered the people behind one imam during his caliphate, and the practice of twenty units became settled in the time of the companions. It continued with their agreement and remains the practice in the Haramayn of Makkah and Madinah today. A further point scholars make: there is no fixed maximum for voluntary prayer. The Prophet ﷺ did not forbid exceeding eleven; Aisha (RA) was describing what he did.",
+        },
+        check: {
+          question: { te: "నఫిల్ నమాజుకు గరిష్ఠ పరిమితి ఉందా?", en: "Is there a fixed maximum for voluntary prayer?" },
+          options: [
+            { te: "లేదు — పండితులు దీనిపై అంగీకరిస్తారు", en: "No, scholars agree there is not" },
+            { te: "అవును, పదకొండు", en: "Yes, eleven" },
+            { te: "అవును, ఇరవై", en: "Yes, twenty" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "నిజమైన ప్రశ్న", en: "The real question" },
+        body: {
+          te: "పండితులు — ఇబ్న్ తైమియా సహా — రెండు ఆచరణలూ చెల్లుతాయని స్పష్టంగా చెప్పారు. ఇబ్న్ తైమియా అన్నారు: పొడవుగా చదివి తక్కువ రక్అత్‌లు చేసినా, తక్కువ చదివి ఎక్కువ రక్అత్‌లు చేసినా — రెండూ మంచివే. అసలు ప్రశ్న సంఖ్య కాదు: మీరు నమాజులో ఏమి చదువుతున్నారో అర్థమవుతోందా? మీ హృదయం అక్కడ ఉందా? నలభై రక్అత్‌లు హడావిడిగా చేయడం కంటే ఎనిమిది రక్అత్‌లు నిదానంగా, ఖుషూతో చేయడం మేలు.",
+          en: "Scholars including Ibn Taymiyyah stated plainly that both practices are valid. He held that praying fewer units with longer recitation, or more units with shorter recitation, are both good. The real question is not the number: do you understand what is being recited, and is your heart present? Eight units prayed slowly with khushu are worth more than forty rushed.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "తరావీహ్ సున్నత్ ముఅక్కదా — ఫర్జ్ కాదు.", en: "Tarawih is sunnah mu'akkadah, not obligatory." },
+      { te: "ఎనిమిది: ఆయిషా (ర/అ) హదీసు. ఇరవై: సహచరుల ఆచరణ.", en: "Eight rests on Aisha's (RA) hadith; twenty on the practice of the companions." },
+      { te: "రెండూ చెల్లుతాయి; సంఖ్య కంటే ఖుషూ ముఖ్యం.", en: "Both are valid, and presence of heart matters more than the count." },
+    ],
+    didYouKnow: [
+      { te: "'తరావీహ్' పేరు 'విశ్రాంతి' నుండి వచ్చింది — ప్రతి నాలుగు రక్అత్‌ల తర్వాత విరామం తీసుకునేవారు.", en: "The name Tarawih comes from the word for rest, from pausing after every four units." },
+      { te: "ఉమర్ (ర/అ) ప్రజలను ఒకే ఇమామ్ వెనుక సమీకరించడం చూసి అన్నారు: 'ఇది ఎంత మంచి బిదఅహ్' — అంటే గతంలో లేని మంచి ఏర్పాటు అని.", en: "Seeing the people united behind one imam, Umar (RA) said: 'What an excellent innovation this is', meaning a good arrangement not previously organised." },
+    ],
+    reflect: [
+      { te: "మీరు తరావీహ్‌లో ఏమి చదువుతున్నారో ఎంతవరకు అర్థమవుతోంది? ఈ రమదాన్‌లో ఒక సూరా అర్థాన్ని ముందుగా చదవగలరా?", en: "How much of what is recited in Tarawih do you understand? Could you read the meaning of one surah in advance this Ramadan?" },
+    ],
+    mistakes: [
+      { te: "సంఖ్యపై వాదించడం, మస్జిద్‌లో విభజన సృష్టించడం — రెండూ పండితుల పరిధిలో ఉన్నవే.", en: "Arguing over the number and dividing a mosque, when both figures sit within scholarly opinion." },
+      { te: "వేగంగా చదివి రక్అత్‌ల సంఖ్యను పూర్తి చేయడం — ఇది తరావీహ్ ఉద్దేశాన్ని కోల్పోతుంది.", en: "Racing through to complete a count, which loses the purpose of the prayer." },
+      { te: "తరావీహ్ తప్పితే పాపమని అనుకోవడం — అది ఫర్జ్ కాదు.", en: "Believing that missing Tarawih is a sin, when it is not obligatory." },
+    ],
+    faqs: [
+      {
+        question: { te: "ఇంట్లో తరావీహ్ చేయవచ్చా?", en: "May Tarawih be prayed at home?" },
+        answer: {
+          te: "అవును, చెల్లుతుంది. అయితే జమాఅత్‌తో మస్జిద్‌లో చేయడం ఉత్తమమని మెజారిటీ పండితులు అంటారు — ఉమర్ (ర/అ) సమీకరించిన ఆచరణ ఆధారంగా. మహిళలకు ఇల్లు లేదా మస్జిద్ రెండూ సరైనవే.",
+          en: "Yes, and it is valid. The majority hold that praying it in congregation at the mosque is better, on the basis of what Umar (RA) established. For women, either the home or the mosque is fine.",
+        },
+      },
+      {
+        question: { te: "ఇమామ్ ఇరవై చేస్తుంటే నేను ఎనిమిది తర్వాత వెళ్ళిపోవచ్చా?", en: "If the imam prays twenty, may I leave after eight?" },
+        answer: {
+          te: "చెల్లుతుంది — తరావీహ్ నఫిల్ కాబట్టి. అయితే ప్రవక్త ﷺ అన్నారు: 'ఎవరైనా ఇమామ్‌తో ముగిసేవరకు నిలబడితే, అతనికి రాత్రంతా నిలబడిన ప్రతిఫలం రాయబడుతుంది' (తిర్మిజీ). వీలైతే ఇమామ్‌తో పూర్తి చేయడం మేలు.",
+          en: "It is valid, since Tarawih is voluntary. But the Prophet ﷺ said: 'Whoever stands with the imam until he finishes is written as having prayed the whole night' (Tirmidhi), so finishing with the imam is better where you can.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "ఎనిమిది వైపు ఆధారం ఎవరి ఉల్లేఖన?", en: "The case for eight rests on whose narration?" },
+        options: [
+          { te: "ఆయిషా (ర/అ)", en: "Aisha (RA)" },
+          { te: "ఉమర్ (ర/అ)", en: "Umar (RA)" },
+          { te: "అబూ హురైరా (ర/అ)", en: "Abu Hurayrah (RA)" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "హరమ్‌లలో (మక్కా, మదీనా) ఎన్ని రక్అత్‌లు?", en: "How many units are prayed in the Haramayn?" },
+        options: [
+          { te: "ఇరవై", en: "Twenty" },
+          { te: "ఎనిమిది", en: "Eight" },
+          { te: "నలభై", en: "Forty" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ఇబ్న్ తైమియా ఏమన్నారు?", en: "What did Ibn Taymiyyah hold?" },
+        options: [
+          { te: "రెండు ఆచరణలూ చెల్లుతాయి", en: "Both practices are valid" },
+          { te: "ఎనిమిదే సరైనది", en: "Only eight is correct" },
+          { te: "ఇరవైయే సరైనది", en: "Only twenty is correct" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "సున్నత్ ముఅక్కదా; ఫర్జ్ కాదు.", en: "Sunnah mu'akkadah, not obligatory." },
+      { te: "8 = ఆయిషా (ర/అ) హదీసు, బుఖారీ. 20 = సహచరుల ఆచరణ.", en: "8 from Aisha's (RA) hadith in Bukhari; 20 from the companions' practice." },
+      { te: "నఫిల్‌కు గరిష్ఠ పరిమితి లేదు.", en: "There is no fixed maximum for voluntary prayer." },
+    ],
+    summary: {
+      te: "తరావీహ్ రమదాన్ రాత్రుల సున్నత్ ముఅక్కదా. ఎనిమిది ప్రవక్త ﷺ ఆచరణపై, ఇరవై సహచరుల ఆచరణపై ఆధారపడతాయి; నఫిల్‌కు గరిష్ఠ పరిమితి లేదు కాబట్టి రెండూ చెల్లుతాయి. సంఖ్యపై వాదన కంటే ఖుషూ ముఖ్యం.",
+      en: "Tarawih is a strongly recommended voluntary prayer of Ramadan nights. Eight rests on the Prophet's practice and twenty on the companions', and since voluntary prayer has no fixed maximum, both are valid. Presence of heart matters more than the argument over the count.",
+    },
+    apply: {
+      te: "ఆచరణ: ఈ రమదాన్‌లో ఇమామ్ చదివే సూరాలలో ఒకదాని అనువాదాన్ని ముందుగా చదవండి.",
+      en: "Apply it: this Ramadan, read the translation of one surah before the imam recites it.",
+    },
+    reading: [
+      { label: "Special Prayers portal", url: "/knowledge-center/special-prayers" },
+      { label: "The night prayer", url: "/knowledge-center/special-prayers/night-prayer" },
+    ],
+  },
+
+  {
+    slug: "janazah",
+    portal: "special-prayers",
+    title: {
+      te: "స్థాయి 3 — జనాజా నమాజ్",
+      en: "Level 3 — The funeral prayer",
+    },
+    intro: {
+      te: "జనాజా నమాజ్ ఫర్జ్ కిఫాయా — సమాజంలో కొందరు చేస్తే అందరిపై నుండి బాధ్యత తీరుతుంది; ఎవరూ చేయకపోతే అందరూ బాధ్యులు. ఇది చాలా చిన్నది, కానీ చాలామందికి రాదు. ఈ పాఠం దాన్ని పూర్తిగా నేర్పుతుంది.",
+      en: "The funeral prayer is fard kifayah: if some in the community perform it the obligation lifts from all, and if none do, all are answerable. It is very short, yet many people do not know it. This lesson teaches it in full.",
+    },
+    sections: [
+      {
+        heading: { te: "ఇది వేరే నమాజ్", en: "It is unlike other prayers" },
+        body: {
+          te: "జనాజా నమాజులో రుకూ లేదు, సజ్దా లేదు, అజాన్ లేదు, ఇఖామత్ లేదు. మొత్తం నిలబడే చేస్తారు. నాలుగు తక్బీర్‌లు — ప్రతి దాని తర్వాత ఒక నిర్దిష్ట విషయం చదువుతారు. మృతదేహాన్ని ముందు ఉంచి, ఇమామ్ వెనుక వరుసలుగా నిలబడతారు. మూడు వరుసలు ఉండటం మంచిదని ఒక హదీసులో ఉంది.",
+          en: "The funeral prayer has no bowing, no prostration, no adhan and no iqamah. It is performed entirely standing. There are four takbirs, each followed by a specific recitation. The body is placed in front and people stand in rows behind the imam; a hadith mentions three rows as good.",
+        },
+        check: {
+          question: { te: "జనాజా నమాజులో ఏమి ఉండదు?", en: "What does the funeral prayer not contain?" },
+          options: [
+            { te: "రుకూ మరియు సజ్దా", en: "Bowing and prostration" },
+            { te: "తక్బీర్", en: "The takbir" },
+            { te: "సలామ్", en: "The salam" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "నాలుగు తక్బీర్‌లు", en: "The four takbirs" },
+        body: {
+          te: "మొదటి తక్బీర్ తర్వాత: సూరా అల్-ఫాతిహా (మెజారిటీ మజ్‌హబ్‌లు). హనఫీ మజ్‌హబ్‌లో ఇక్కడ సనా ('సుబ్‌హానకల్లాహుమ్మ...') చదువుతారు, ఫాతిహా కాదు. రెండో తక్బీర్ తర్వాత: ప్రవక్త ﷺ పై దురూద్ (నమాజులో చదివేదే). మూడో తక్బీర్ తర్వాత: మృతుని కోసం దుఆ. నాలుగో తక్బీర్ తర్వాత: కొద్దిసేపు ఆగి సలామ్.",
+          en: "After the first takbir: Surah al-Fatihah, in the majority of schools. In the Hanafi school the thana ('Subhanaka Allahumma...') is said here rather than the Fatihah. After the second: the durood upon the Prophet ﷺ, the same as in prayer. After the third: the supplication for the deceased. After the fourth: a brief pause, then the salam.",
+        },
+        check: {
+          question: { te: "రెండో తక్బీర్ తర్వాత ఏమి చదువుతారు?", en: "What is recited after the second takbir?" },
+          options: [
+            { te: "ప్రవక్త ﷺ పై దురూద్", en: "The durood upon the Prophet ﷺ" },
+            { te: "సూరా అల్-ఇఖ్లాస్", en: "Surah al-Ikhlas" },
+            { te: "ఏమీ లేదు", en: "Nothing" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "మృతుని కోసం దుఆ", en: "The supplication for the deceased" },
+        body: {
+          te: "ప్రవక్త ﷺ నుండి ఉల్లేఖించబడిన దుఆ: 'అల్లాహుమ్మగ్ఫిర్ లహు వర్‌హమ్‌హు, వ ఆఫిహి వఅఫు అన్‌హు' — 'ఓ అల్లాహ్, అతన్ని క్షమించు, అతనిపై దయ చూపు, అతనికి క్షేమం ప్రసాదించు, అతన్ని మన్నించు' (ముస్లిం). మృతురాలు స్త్రీ అయితే 'లహు' స్థానంలో 'లహా'. పిల్లవాడైతే క్షమాపణ కోసం కాక, తల్లిదండ్రుల కోసం, సమాజం కోసం దుఆ చేస్తారు — పిల్లలకు పాపాలు లేవు.",
+          en: "A supplication narrated from the Prophet ﷺ: 'Allahumma-ghfir lahu warhamhu, wa afihi wa'fu anhu' — 'O Allah, forgive him, have mercy on him, grant him wellbeing and pardon him' (Muslim). For a woman, 'lahu' becomes 'laha'. For a child the supplication is made for the parents and the community rather than for forgiveness, since a child carries no sin.",
+        },
+      },
+      {
+        heading: { te: "ఎందుకు ఇది నేర్చుకోవాలి", en: "Why you should learn this" },
+        body: {
+          te: "మరణం ముందస్తు నోటీసు ఇవ్వదు. మీ కుటుంబంలో, పొరుగున ఎవరైనా మరణించినప్పుడు నమాజ్ ఎలా చేయాలో తెలియకపోతే మీరు వెనక నిలబడి ఉండిపోతారు. ఇది ఐదు నిమిషాల్లో నేర్చుకోగల ఆచారం, జీవితమంతా ఉపయోగపడుతుంది. ప్రవక్త ﷺ చెప్పారు: జనాజా నమాజ్ చేసినవారికి ఒక ఖీరాత్ ప్రతిఫలం; ఖననం వరకు ఉన్నవారికి రెండు ఖీరాత్‌లు — ప్రతి ఖీరాత్ ఉహుద్ పర్వతమంత (బుఖారీ, ముస్లిం).",
+          en: "Death gives no notice. When someone in your family or street dies, not knowing the prayer leaves you standing at the back. It takes five minutes to learn and serves for a lifetime. The Prophet ﷺ said whoever prays over the deceased has one qirat of reward, and whoever stays until the burial has two, each qirat being like Mount Uhud (Bukhari and Muslim).",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "ఫర్జ్ కిఫాయా: కొందరు చేస్తే అందరిపై నుండి బాధ్యత తీరుతుంది.", en: "Fard kifayah: if some perform it, the obligation lifts from all." },
+      { te: "నాలుగు తక్బీర్‌లు, రుకూ-సజ్దా లేవు, మొత్తం నిలబడే.", en: "Four takbirs, no bowing or prostration, performed standing throughout." },
+      { te: "మొదటి తక్బీర్ తర్వాత: ఫాతిహా (మెజారిటీ) లేదా సనా (హనఫీ).", en: "After the first takbir: Fatihah in the majority view, thana in the Hanafi." },
+    ],
+    didYouKnow: [
+      { te: "ఖననం వరకు ఉన్నవారికి రెండు ఖీరాత్‌ల ప్రతిఫలం — ప్రతి ఖీరాత్ ఉహుద్ పర్వతమంత పెద్దది.", en: "Staying until burial earns two qirat of reward, each likened to Mount Uhud." },
+      { te: "జనాజా నమాజుకు వుజూ అవసరం — ఇది నమాజ్ కాబట్టి.", en: "Wudu is required for the funeral prayer, since it is a prayer." },
+    ],
+    reflect: [
+      { te: "మీ పొరుగున ఈ రాత్రి ఎవరైనా మరణిస్తే, మీరు జనాజా నమాజ్ చేయగలరా?", en: "If someone in your street died tonight, could you pray the funeral prayer?" },
+    ],
+    mistakes: [
+      { te: "వుజూ లేకుండా జనాజా నమాజులో పాల్గొనడం.", en: "Joining the funeral prayer without wudu." },
+      { te: "పిల్లల జనాజాలో క్షమాపణ కోసం దుఆ చేయడం — పిల్లలకు పాపాలు లేవు.", en: "Asking forgiveness for a child at their funeral, when a child carries no sin." },
+      { te: "నమాజ్ రాదని వెనక నిలబడిపోవడం — ఇమామ్‌ను అనుసరిస్తూ నేర్చుకోవచ్చు.", en: "Hanging back because you do not know it, when you can follow the imam and learn." },
+    ],
+    faqs: [
+      {
+        question: { te: "మహిళలు జనాజా నమాజ్ చేయవచ్చా?", en: "May women pray the funeral prayer?" },
+        answer: {
+          te: "అవును, జనాజా నమాజ్ చేయడం మహిళలకు అనుమతించబడింది. ఖననానికి శ్మశానానికి వెళ్ళడంపై మజ్‌హబ్‌ల మధ్య భేదం ఉంది — కొందరు అనుమతిస్తారు, కొందరు ఇష్టపడరు. స్థానిక ఆలిమ్‌ను అడగండి.",
+          en: "Yes, women may pray the funeral prayer. The schools differ on women attending the burial itself, some permitting it and some discouraging it; ask a local scholar.",
+        },
+      },
+      {
+        question: { te: "మృతదేహం లేకుండా నమాజ్ చేయవచ్చా?", en: "Can the prayer be offered without the body present?" },
+        answer: {
+          te: "దీన్ని 'సలాత్ అల్-గాయిబ్' అంటారు. ప్రవక్త ﷺ నజాషీ (అబిసీనియా రాజు) కోసం ఇలా చేశారు. మజ్‌హబ్‌ల మధ్య భేదం ఉంది: షాఫయీ, హంబలీ అనుమతిస్తారు; హనఫీ, మాలికీ దీన్ని ప్రత్యేక పరిస్థితులకే పరిమితం చేస్తారు.",
+          en: "This is salat al-gha'ib, and the Prophet ﷺ prayed it for the Negus of Abyssinia. The schools differ: Shafi'is and Hanbalis permit it, while Hanafis and Malikis restrict it to particular circumstances.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "జనాజా నమాజులో ఎన్ని తక్బీర్‌లు?", en: "How many takbirs are in the funeral prayer?" },
+        options: [
+          { te: "నాలుగు", en: "Four" },
+          { te: "రెండు", en: "Two" },
+          { te: "ఏడు", en: "Seven" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "'ఫర్జ్ కిఫాయా' అంటే ఏమిటి?", en: "What does 'fard kifayah' mean?" },
+        options: [
+          { te: "కొందరు చేస్తే అందరిపై నుండి బాధ్యత తీరుతుంది", en: "If some perform it, the obligation lifts from all" },
+          { te: "ప్రతి ఒక్కరూ చేయాలి", en: "Every single person must perform it" },
+          { te: "ఎవరూ చేయనవసరం లేదు", en: "No one needs to perform it" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ఖననం వరకు ఉన్నవారికి ఎంత ప్రతిఫలం?", en: "What is the reward for staying until the burial?" },
+        options: [
+          { te: "రెండు ఖీరాత్‌లు", en: "Two qirat" },
+          { te: "ఒక ఖీరాత్", en: "One qirat" },
+          { te: "ప్రతిఫలం లేదు", en: "No reward" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "ఫర్జ్ కిఫాయా; రుకూ-సజ్దా లేవు; నాలుగు తక్బీర్‌లు.", en: "Fard kifayah; no bowing or prostration; four takbirs." },
+      { te: "1: ఫాతిహా/సనా — 2: దురూద్ — 3: మృతుని దుఆ — 4: సలామ్.", en: "1: Fatihah or thana. 2: durood. 3: du'a for the deceased. 4: salam." },
+      { te: "'అల్లాహుమ్మగ్ఫిర్ లహు వర్‌హమ్‌హు...' (ముస్లిం).", en: "'Allahumma-ghfir lahu warhamhu...' (Muslim)." },
+    ],
+    summary: {
+      te: "జనాజా నమాజ్ ఫర్జ్ కిఫాయా, నిలబడే చేసే నాలుగు తక్బీర్‌ల నమాజ్ — రుకూ, సజ్దా లేవు. ప్రతి తక్బీర్ తర్వాత ఒక నిర్దిష్ట విషయం: ఫాతిహా లేదా సనా, దురూద్, మృతుని కోసం దుఆ, సలామ్. ఇది ఐదు నిమిషాల్లో నేర్చుకోవచ్చు.",
+      en: "The funeral prayer is fard kifayah: four takbirs offered standing, with no bowing or prostration. Each takbir is followed by one thing: the Fatihah or thana, the durood, the supplication for the deceased, and the salam. It can be learned in five minutes.",
+    },
+    apply: {
+      te: "ఆచరణ: 'అల్లాహుమ్మగ్ఫిర్ లహు వర్‌హమ్‌హు, వ ఆఫిహి వఅఫు అన్‌హు' — ఈ దుఆను ఈ రోజే కంఠస్థం చేయండి.",
+      en: "Apply it: memorise 'Allahumma-ghfir lahu warhamhu, wa afihi wa'fu anhu' today.",
+    },
+    reading: [
+      { label: "Special Prayers portal", url: "/knowledge-center/special-prayers" },
+      { label: "Learn Salah portal", url: "/knowledge-center/learn-salah" },
+    ],
+  },
 ];

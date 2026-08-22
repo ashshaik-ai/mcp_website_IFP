@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -193,6 +194,9 @@ function SpecialPrayersPage() {
           </div>
         </div>
       </section>
+
+      {/* The selector above is a summary; these go into the detail. */}
+      <LessonIndex portal="special-prayers" />
 
     </PageShell>
   );
