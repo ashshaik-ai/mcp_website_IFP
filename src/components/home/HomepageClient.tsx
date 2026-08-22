@@ -40,6 +40,7 @@ const marqueeItems = [
 const copy = {
   our_mission: { te: "మా లక్ష్యం —", en: "Our mission —" },
   founder_team: { te: "వ్యవస్థాపకుడు & బృందం", en: "Founder & Team" },
+  team_hint: { te: "అందరినీ చూడటానికి పక్కకు జరపండి", en: "Swipe sideways to meet the whole team" },
   action_plan_2023_2028: { te: "కార్యాచరణ ప్రణాళిక 2023–2028", en: "Action Plan 2023–2028" },
   n_10_point_plan_for_our: { te: "మా కమ్యూనిటీ కోసం 10-అంశాల ప్రణాళిక", en: "10-point plan for our community" },
   overall_completion: { te: "మొత్తం పురోగతి", en: "Overall completion" },
@@ -71,32 +72,59 @@ const achievements = [
   {
     title: { te: "కన్వెన్షన్ హాల్ పరివర్తన", en: "Convention Hall Transformation" },
     desc:  { te: "AC ఏర్పాటు, పూర్తి పునర్నిర్మాణం", en: "AC installation, complete remodeling" },
-    evidence: ["Full AC", "Complete Remodeling", "2 Halls", "1,000+ Families"],
+    evidence: [
+      { te: "పూర్తి AC", en: "Full AC" },
+      { te: "పూర్తి పునర్నిర్మాణం", en: "Complete Remodeling" },
+      { te: "2 హాళ్లు", en: "2 Halls" },
+      { te: "1,000+ కుటుంబాలు", en: "1,000+ Families" },
+    ],
   },
   {
     title: { te: "అంజుమన్ ఆదాయం మెరుగుదల", en: "Improved Anjuman Revenue" },
     desc:  { te: "అద్దె వసూలు వ్యవస్థ", en: "Disciplined rent collection system" },
-    evidence: ["Disciplined System", "Since 2023", "120+ Shops", "Significant Improvement"],
+    evidence: [
+      { te: "క్రమబద్ధ వ్యవస్థ", en: "Disciplined System" },
+      { te: "2023 నుండి", en: "Since 2023" },
+      { te: "120+ షాపులు", en: "120+ Shops" },
+      { te: "గణనీయమైన మెరుగుదల", en: "Significant Improvement" },
+    ],
   },
   {
     title: { te: "షాప్ ఆడిట్ & సబ్లీజ్ పరిష్కారం", en: "Shop Audit & Sublease Resolution" },
     desc:  { te: "₹27 లక్షల అదనపు ఆదాయం", en: "₹27 lakh additional revenue" },
-    evidence: ["120+ Audited", "Sublease Eliminated", "₹27L Additional"],
+    evidence: [
+      { te: "120+ ఆడిట్ చేశాం", en: "120+ Audited" },
+      { te: "సబ్‌లీజ్ తొలగింపు", en: "Sublease Eliminated" },
+      { te: "₹27 లక్షలు అదనపు", en: "₹27L Additional" },
+    ],
   },
   {
     title: { te: "అంత్యక్రియల ఆర్థిక సహాయ పథకం", en: "Funeral Financial Aid Scheme" },
     desc:  { te: "కుటుంబానికి ₹10,000", en: "₹10,000 per family" },
-    evidence: ["Active Scheme", "250+ Families", "₹10,000", "Since 2023"],
+    evidence: [
+      { te: "అమలులో ఉన్న పథకం", en: "Active Scheme" },
+      { te: "250+ కుటుంబాలు", en: "250+ Families" },
+      { te: "₹10,000", en: "₹10,000" },
+      { te: "2023 నుండి", en: "Since 2023" },
+    ],
   },
   {
     title: { te: "18 మసీదుల నిర్వహణ", en: "Managing 18 Mosques" },
     desc:  { te: "నిర్వహణ మరియు సంరక్షణ", en: "Maintenance and upkeep" },
-    evidence: ["18 Mosques", "5 Madrasas", "3,000+ Voters"],
+    evidence: [
+      { te: "18 మసీదులు", en: "18 Mosques" },
+      { te: "5 మదర్సాలు", en: "5 Madrasas" },
+      { te: "3,000+ ఓటర్లు", en: "3,000+ Voters" },
+    ],
   },
   {
     title: { te: "మహిళా కుట్టు శిక్షణా కేంద్రం", en: "Women's Stitching Training Centre" },
     desc:  { te: "ఉపాధి అవకాశాలు", en: "Employment opportunities" },
-    evidence: ["Centre Established", "Training Ongoing", "Women's Independence"],
+    evidence: [
+      { te: "కేంద్రం ఏర్పాటు", en: "Centre Established" },
+      { te: "శిక్షణ కొనసాగుతోంది", en: "Training Ongoing" },
+      { te: "మహిళల స్వావలంబన", en: "Women's Independence" },
+    ],
   },
 ];
 
@@ -128,24 +156,31 @@ const stories = [
   { name: "Arif Hussain", year: "2023", category: { te: "విద్యార్థి", en: "Student" }, desc: { te: "స్కాలర్‌షిప్ → ఇంజినీరింగ్ గ్రాడ్యుయేట్", en: "Scholarship → Engineering Graduate" } },
 ];
 
+/* date and time were bare strings, so half of each event line stayed English
+   on the Telugu default while the other half was already translated. */
 const events = [
-  { title: { te: "వైద్య శిబిరం", en: "Medical Camp" }, date: "Jan 2025", time: "9am–1pm", venue: { te: "అంజుమన్ హాల్", en: "Anjuman Hall" } },
-  { title: { te: "మదరసా అడ్మిషన్లు 2026–27", en: "Madrasa Admissions 2026–27" }, date: "July 1", time: "Apply by", venue: { te: "ఆన్‌లైన్ / అంజుమన్", en: "Online / Anjuman" } },
-  { title: { te: "కుట్టు శిక్షణ కొత్త బ్యాచ్", en: "Stitching Training New Batch" }, date: "Ongoing", time: "18+ మహిళలకు", venue: { te: "శిక్షణ కేంద్రం", en: "Training Centre" } },
-  { title: { te: "స్కాలర్‌షిప్ దరఖాస్తులు 2026–27", en: "Scholarship Applications 2026–27" }, date: "Open Now", time: "10 సీట్లు", venue: { te: "అంజుమన్ కార్యాలయం", en: "Anjuman Office" } },
+  { title: { te: "వైద్య శిబిరం", en: "Medical Camp" }, date: { te: "జనవరి 2025", en: "Jan 2025" }, time: { te: "ఉ. 9–మ. 1", en: "9am–1pm" }, venue: { te: "అంజుమన్ హాల్", en: "Anjuman Hall" } },
+  { title: { te: "మదరసా అడ్మిషన్లు 2026–27", en: "Madrasa Admissions 2026–27" }, date: { te: "జూలై 1", en: "July 1" }, time: { te: "దరఖాస్తు గడువు", en: "Apply by" }, venue: { te: "ఆన్‌లైన్ / అంజుమన్", en: "Online / Anjuman" } },
+  { title: { te: "కుట్టు శిక్షణ కొత్త బ్యాచ్", en: "Stitching Training New Batch" }, date: { te: "కొనసాగుతోంది", en: "Ongoing" }, time: { te: "18+ మహిళలకు", en: "For women 18+" }, venue: { te: "శిక్షణ కేంద్రం", en: "Training Centre" } },
+  { title: { te: "స్కాలర్‌షిప్ దరఖాస్తులు 2026–27", en: "Scholarship Applications 2026–27" }, date: { te: "ఇప్పుడు తెరిచి ఉంది", en: "Open Now" }, time: { te: "10 సీట్లు", en: "10 seats" }, venue: { te: "అంజుమన్ కార్యాలయం", en: "Anjuman Office" } },
 ];
 
+/* These were English-only, so the whole promo grid stayed untranslated on the
+   Telugu default. Hadith is listed here too -- the Knowledge Center carries
+   seven portals and the homepage was still advertising six. */
 const kc_portals = [
-  { title: "Learn Arabic", sub: "6 Levels · 20+ Lessons", href: "/knowledge-center/learn-arabic", arabic: "تعلُّم العربية" },
-  { title: "Learn Quran",  sub: "4 Modules · Tajweed + Tafseer", href: "/knowledge-center/learn-quran", arabic: "تعلُّم القرآن" },
-  { title: "Learn Salah",  sub: "6 Modules · Wudu to Duas", href: "/knowledge-center/learn-salah", arabic: "تعلُّم الصلاة" },
-  { title: "Seerah",       sub: "10-Stage Prophet's biography", href: "/knowledge-center/seerah", arabic: "السيرة النبوية" },
-  { title: "Islamic History", sub: "6 Eras from Rashidun to modern", href: "/knowledge-center/islamic-history", arabic: "التاريخ الإسلامي" },
-  { title: "Kids Islam",   sub: "Ages 5–15 · 6 learning stages", href: "/knowledge-center/kids-islam", arabic: "الإسلام للأطفال" },
+  { title: { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" }, sub: { te: "6 స్థాయిలు · 20+ పాఠాలు", en: "6 Levels · 20+ Lessons" }, href: "/knowledge-center/learn-arabic", arabic: "تعلُّم العربية" },
+  { title: { te: "ఉర్దూ నేర్చుకోండి", en: "Learn Urdu" }, sub: { te: "6 స్థాయిలు · లిపి నుండి పఠనం వరకు", en: "6 Levels · Script to reading" }, href: "/knowledge-center/learn-urdu", arabic: "اردو سیکھیں" },
+  { title: { te: "ఖురాన్ నేర్చుకోండి", en: "Learn Quran" }, sub: { te: "4 మాడ్యూల్స్ · తజ్వీద్ + తఫ్సీర్", en: "4 Modules · Tajweed + Tafseer" }, href: "/knowledge-center/learn-quran", arabic: "تعلُّم القرآن" },
+  { title: { te: "నమాజ్ నేర్చుకోండి", en: "Learn Salah" }, sub: { te: "6 మాడ్యూల్స్ · వుజూ నుండి దుఆల వరకు", en: "6 Modules · Wudu to Duas" }, href: "/knowledge-center/learn-salah", arabic: "تعلُّم الصلاة" },
+  { title: { te: "హదీస్", en: "Hadith" }, sub: { te: "6 గ్రంథాలు · 12 ముఖ్య హదీసులు", en: "6 books · 12 essential hadith" }, href: "/knowledge-center/hadith", arabic: "الحديث الشريف" },
+  { title: { te: "సీరత్", en: "Seerah" }, sub: { te: "10 దశల్లో ప్రవక్త జీవిత చరిత్ర", en: "10-Stage Prophet's biography" }, href: "/knowledge-center/seerah", arabic: "السيرة النبوية" },
+  { title: { te: "ఇస్లామిక్ చరిత్ర", en: "Islamic History" }, sub: { te: "6 యుగాలు · రాషిదూన్ నుండి ఆధునికం", en: "6 Eras · Rashidun to modern" }, href: "/knowledge-center/islamic-history", arabic: "التاريخ الإسلامي" },
+  { title: { te: "పిల్లల ఇస్లాం", en: "Kids Islam" }, sub: { te: "5–15 ఏళ్లు · 6 అభ్యాస దశలు", en: "Ages 5–15 · 6 learning stages" }, href: "/knowledge-center/kids-islam", arabic: "الإسلام للأطفال" },
 ];
 
 const leaders = [
-  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram.jpg" },
+  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram-portrait.jpg" },
   { name: "Yaseen Shaik",      te: "యాసీన్ షేక్",       role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/1.candidate.jpg" },
   { name: "Abdul Aleem",       te: "అబ్దుల్ అలీమ్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/2.candidate.jpg" },
   { name: "Akbar Basha Shaik", te: "అక్బర్ బాషా షేక్",  role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/3.candidate.jpg" },
@@ -191,7 +226,7 @@ function Homepage() {
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-24 md:py-32 px-4">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M4OTIyYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]" />
-        <Meteors number={14} minDuration={5} maxDuration={12} className="bg-[var(--if-gold)]/40" />
+        <Meteors number={14} minDuration={5} maxDuration={12} className="text-[var(--if-gold)]/45" />
 
         <div className="relative mx-auto max-w-5xl text-center flex flex-col items-center gap-6">
           {/* Above the fold these rise into place without fading. The h1 is the
@@ -233,13 +268,13 @@ function Homepage() {
 
           {/* Stats chips */}
           <BlurFade delay={0.2} className="flex gap-4 flex-wrap justify-center">
-            <div className="flex flex-col items-center px-6 py-3 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20 min-w-[140px]">
+            <div className="if-panel flex flex-col items-center px-6 py-3 rounded-2xl min-w-[140px]">
               <span className="font-display text-3xl font-bold text-[var(--if-gold-light)] flex items-baseline gap-0.5">
                 <NumberTicker value={7} className="font-display text-3xl font-bold text-[var(--if-gold-light)]" />/9
               </span>
               <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1">{t("hero_seats")}</span>
             </div>
-            <div className="flex flex-col items-center px-6 py-3 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20 min-w-[140px]">
+            <div className="if-panel flex flex-col items-center px-6 py-3 rounded-2xl min-w-[140px]">
               <span className="font-display text-3xl font-bold text-[var(--if-gold-light)] flex items-baseline gap-0.5">
                 <NumberTicker value={15} className="font-display text-3xl font-bold text-[var(--if-gold-light)]" />+
               </span>
@@ -248,10 +283,14 @@ function Homepage() {
           </BlurFade>
 
           <BlurFade delay={0.25} className="flex gap-3 flex-wrap justify-center">
+            {/* ShimmerButton composites its spark gradient behind the backdrop,
+                so the background has to be opaque. This passed a 15%-alpha gold
+                and the spark bled through as a blotch across the lower right.
+                Solid gold also gives the hero a primary the eye lands on first. */}
             <ShimmerButton
-              shimmerColor="#e8b84b"
-              background="rgba(200,146,42,0.15)"
-              className="border border-[var(--if-gold)]/50 text-[var(--if-gold-light)] font-semibold"
+              shimmerColor="#fff6df"
+              background="var(--if-gold-light)"
+              className="border-transparent text-[var(--if-green)] font-semibold shadow-[0_8px_24px_-8px_rgba(200,146,42,0.7)] hover:shadow-[0_10px_30px_-8px_rgba(200,146,42,0.9)]"
             >
               {t("hero_cta")}
             </ShimmerButton>
@@ -267,7 +306,9 @@ function Homepage() {
 
       {/* ── MARQUEE ── */}
       <div className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-3 overflow-hidden">
-        <Marquee pauseOnHover className="[--duration:30s] [--gap:1rem]">
+        {/* No pauseOnHover: the strip stopped dead whenever the pointer crossed
+            it, which on a laptop is most of the time it is on screen. */}
+        <Marquee className="[--duration:30s] [--gap:1rem]">
           {marqueeItems.map((item) => (
             <span key={item.en} className="mx-4 flex items-center gap-2 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap">
               <span className="text-[var(--if-gold-ink)]" aria-hidden="true">✦</span> {item[lang]}
@@ -312,31 +353,51 @@ function Homepage() {
             ))}
           </div>
 
-          {/* Leadership cards */}
+          {/* Leadership rail */}
           <div>
-            <h3 className="text-center font-semibold text-[var(--if-green)] mb-6">
+            <h3 className="text-center font-semibold text-[var(--if-green)] mb-2">
               {copy.founder_team[lang]}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
-              {leaders.map((leader) => (
-                <BlurFade key={leader.name} delay={0.05}>
-                  <div className="text-center p-4 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors group">
-                    <div className="relative w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden border-2 border-[var(--if-gold)]/30 group-hover:border-[var(--if-gold)]/70 transition-colors">
-                      <Image
-                        src={leader.img}
-                        alt={leader.name}
-                        fill
-                        className="object-cover object-top"
-                        sizes="64px"
-                      />
-                    </div>
-                    <p className="text-xs font-semibold text-[var(--if-green)] leading-snug">
-                      {lang === "te" ? leader.te : leader.name}
-                    </p>
-                    <p className="text-[10px] text-[var(--if-gold-ink)] mt-0.5">{leader.role[lang]}</p>
-                  </div>
-                </BlurFade>
-              ))}
+            <p className="text-center text-sm text-[var(--if-text-muted)] mb-7">
+              {copy.team_hint[lang]}
+            </p>
+
+            {/* A scrollable region needs a name and needs to be reachable by
+                keyboard, or it is a trap for anyone not using a mouse. */}
+            <div
+              role="region"
+              aria-label={copy.founder_team[lang]}
+              tabIndex={0}
+              className="if-rail -mx-4 px-4 pb-3 overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--if-gold)] rounded-2xl"
+            >
+              {/* No mx-auto. On a row wider than its scroll container, auto margins
+              centre the overflow and the browser cannot scroll past the leading
+              edge, so the founder was permanently half-clipped. */}
+          <ul className="flex gap-5 sm:gap-7 w-max">
+                {leaders.map((leader, i) => (
+                  <li key={leader.name} className="if-rail-item shrink-0 w-32 sm:w-36 text-center">
+                    <BlurFade delay={Math.min(0.05 * i, 0.3)}>
+                      <figure className="group m-0">
+                        <span className="if-portrait relative block w-32 h-32 sm:w-36 sm:h-36 mx-auto mb-3 rounded-full overflow-hidden">
+                          <Image
+                            src={leader.img}
+                            alt={leader.name}
+                            fill
+                            className="object-cover object-top"
+                            sizes="(min-width: 640px) 144px, 128px"
+                          />
+                        </span>
+                        <figcaption>
+                          <p className="text-sm font-semibold text-[var(--if-green)] leading-snug text-pretty">
+                            {lang === "te" ? leader.te : leader.name}
+                          </p>
+                          <p className="text-xs text-[var(--if-gold-ink)] mt-1">{leader.role[lang]}</p>
+                        </figcaption>
+                      </figure>
+                    </BlurFade>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -368,9 +429,19 @@ function Homepage() {
                     <h3 className="font-semibold text-[var(--if-green)] mb-2">{a.title[lang]}</h3>
                     <p className="text-sm text-[var(--if-text-muted)] mb-4">{a.desc[lang]}</p>
                     <div className="flex flex-wrap gap-1.5">
+                      {/* Chips that carry a figure are the evidence; the rest are
+                          descriptors. Filling the quantified ones lets the number
+                          land first instead of six identical rows of pills. */}
                       {a.evidence.map((e) => (
-                        <span key={e} className="text-xs px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20 font-medium">
-                          {e}
+                        <span
+                          key={e.en}
+                          className={`text-xs px-2 py-0.5 rounded-full border font-medium ${
+                            /^[₹\d]/.test(e.en)
+                              ? "bg-[var(--if-gold)]/22 text-[var(--if-gold-ink)] border-[var(--if-gold)]/40 tabular-nums"
+                              : "bg-[var(--if-gold)]/8 text-[var(--if-gold-ink)]/85 border-[var(--if-gold)]/18"
+                          }`}
+                        >
+                          {e[lang]}
                         </span>
                       ))}
                     </div>
@@ -447,45 +518,38 @@ function Homepage() {
             </div>
           </BlurFade>
 
-          {/* Premium manifesto rows */}
-          <div className="space-y-2">
+          {/* The rows carried status four times over: a left accent strip, a
+              pastel gradient fill, the icon and the pill. The strip is a dated
+              side-tab tell and the fills turned ten rows into a pastel ladder.
+              Status now lives in the icon and the pill; the surface only varies
+              enough to push what is still in progress forward. */}
+          <ol className="space-y-2">
+            {/* BlurFade renders a div, so it has to sit inside the li -- an
+                ol may only contain li directly. */}
             {manifesto.map((item, i) => (
-              <BlurFade key={i} delay={i * 0.065}>
-                <div className={`group relative overflow-hidden flex items-center gap-3 md:gap-4 p-4 rounded-xl border transition-all duration-300 hover:shadow-md hover:-translate-y-px ${
-                  item.status === "completed"
-                    ? "bg-gradient-to-r from-emerald-50 to-white border-emerald-200/70 hover:border-emerald-300 hover:shadow-emerald-100"
-                    : item.status === "in_progress"
-                    ? "bg-gradient-to-r from-amber-50 to-white border-amber-200/70 hover:border-amber-300 hover:shadow-amber-100"
-                    : "bg-white border-gray-100 hover:border-[var(--if-gold)]/25 hover:shadow-[var(--if-gold)]/5"
+              <li key={i}>
+                <BlurFade delay={i * 0.065} className={`if-row group relative flex items-center gap-3 md:gap-4 py-4 pl-4 pr-4 rounded-xl border ${
+                  item.status === "in_progress"
+                    ? "bg-[var(--if-cream-light)] border-[var(--if-gold)]/35 shadow-[0_1px_2px_rgb(13_59_30/0.05)]"
+                    : "bg-[var(--if-cream-light)]/60 border-[var(--if-green)]/10"
                 }`}>
-                  {/* Left accent strip */}
-                  <div className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl ${
-                    item.status === "completed" ? "bg-gradient-to-b from-emerald-400 to-emerald-600"
-                    : item.status === "in_progress" ? "bg-gradient-to-b from-amber-400 to-amber-500"
-                    : "bg-gray-200"
-                  }`} />
-                  {item.status === "in_progress" && (
-                    <div className="if-pulse-strip absolute left-0 top-0 bottom-0 w-[3px] bg-amber-300 rounded-l-xl" />
-                  )}
+                  <span className="flex-shrink-0 font-display text-base font-bold text-[var(--if-gold-ink)]/45 w-5 text-right tabular-nums">
+                    {i + 1}
+                  </span>
 
-                  {/* Row number */}
-                  <span className="ml-3 flex-shrink-0 text-[11px] font-bold text-[var(--if-text-muted)]/30 w-4 text-right tabular-nums">{i + 1}</span>
+                  <StatusIcon status={item.status} />
 
-                  <div className="flex-shrink-0">
-                    <StatusIcon status={item.status} />
-                  </div>
-
-                  <span className="flex-1 text-[var(--if-text)] font-medium leading-snug text-sm md:text-base">
+                  <span className="flex-1 text-[var(--if-text)] font-medium leading-snug text-sm md:text-base text-pretty">
                     {item.title[lang]}
                   </span>
 
                   <span className={`flex-shrink-0 text-[10px] md:text-xs px-2.5 py-1 rounded-full border font-semibold whitespace-nowrap ${statusColor(item.status)}`}>
                     {item.status === "completed" ? t("completed") : item.status === "in_progress" ? t("in_progress") : t("upcoming")}
                   </span>
-                </div>
-              </BlurFade>
+                </BlurFade>
+              </li>
             ))}
-          </div>
+          </ol>
 
           {/* Premium download */}
           <BlurFade delay={0.35} className="text-center mt-10">
@@ -512,9 +576,12 @@ function Homepage() {
               {t("section_schemes")}
             </h2>
           </BlurFade>
-          <div className="grid md:grid-cols-2 gap-8 items-start">
+          {/* items-start left the short right column floating with a quarter of
+              the section height as empty ground beneath it. Both columns stretch
+              now, and the statement card takes up the slack. */}
+          <div className="grid md:grid-cols-2 gap-8">
             <BlurFade delay={0.15}>
-              <div className="bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-8">
+              <div className="if-panel rounded-2xl p-8 h-full">
                 <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold mb-2">
                   {t("scheme_title")}
                 </h3>
@@ -541,23 +608,23 @@ function Homepage() {
               </div>
             </BlurFade>
             <BlurFade delay={0.2}>
-              <div className="space-y-6">
-                <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-6">
-                  <h3 className="font-display text-lg text-[var(--if-gold-light)] font-bold mb-3">
+              <div className="flex flex-col gap-6 h-full">
+                <div className="if-panel rounded-2xl p-8 flex-1 flex flex-col justify-center">
+                  <h3 className="font-display text-2xl text-[var(--if-gold-light)] font-bold mb-4 text-balance">
                     {copy.serving_the_most_vulnerable[lang]}
                   </h3>
-                  <p className="text-sm text-[var(--if-gold-pale)]/70 leading-relaxed">
+                  <p className="text-base text-[var(--if-gold-pale)]/75 leading-relaxed text-pretty">
                     {copy.caring_for_the_deceased_is[lang]}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-xl p-4 text-center">
+                  <div className="if-panel rounded-xl p-5 text-center">
                     <div className="font-display text-3xl font-bold text-[var(--if-gold-light)]">250+</div>
                     <div className="text-xs text-[var(--if-gold-pale)]/80 mt-1">
                       {copy.families_assisted[lang]}
                     </div>
                   </div>
-                  <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-xl p-4 text-center">
+                  <div className="if-panel rounded-xl p-5 text-center">
                     <div className="font-display text-3xl font-bold text-[var(--if-gold-light)]">2023</div>
                     <div className="text-xs text-[var(--if-gold-pale)]/80 mt-1">
                       {copy.active_since[lang]}
@@ -613,14 +680,16 @@ function Homepage() {
                 {copy.founded_by_janab_shaik_akram[lang]}
               </p>
               <ul className="space-y-4">
+                {/* year was a bare string, so three of the four rows read English
+                    down the left rail of an otherwise Telugu timeline. */}
                 {[
-                  { year: "2011", event: { te: "ఇస్లామిక్ ఫ్రంట్ స్థాపన", en: "Islamic Front established" } },
-                  { year: "Ongoing", event: { te: "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్‌గా సేవలు", en: "Serves as A.P. Waqf Board Director" } },
-                  { year: "July 2023", event: { te: "7/9 సీట్లతో చారిత్రాత్మక విజయం", en: "Landslide victory (7/9 seats)" } },
-                  { year: "2023–Now", event: { te: "కన్వెన్షన్ అప్‌గ్రేడ్, అంత్యక్రియల సహాయం, అద్దె సంస్కరణలు", en: "Convention upgrades, funeral aid, rent reforms, stitching centre" } },
+                  { year: { te: "2011", en: "2011" }, event: { te: "ఇస్లామిక్ ఫ్రంట్ స్థాపన", en: "Islamic Front established" } },
+                  { year: { te: "కొనసాగుతోంది", en: "Ongoing" }, event: { te: "ఆ.ప్ర. వక్ఫ్ బోర్డు డైరెక్టర్‌గా సేవలు", en: "Serves as A.P. Waqf Board Director" } },
+                  { year: { te: "జూలై 2023", en: "July 2023" }, event: { te: "7/9 సీట్లతో చారిత్రాత్మక విజయం", en: "Landslide victory (7/9 seats)" } },
+                  { year: { te: "2023 – ఇప్పటివరకు", en: "2023–Now" }, event: { te: "కన్వెన్షన్ అప్‌గ్రేడ్, అంత్యక్రియల సహాయం, అద్దె సంస్కరణలు", en: "Convention upgrades, funeral aid, rent reforms, stitching centre" } },
                 ].map(({ year, event }) => (
-                  <li key={year} className="flex gap-4">
-                    <span className="text-xs font-bold text-[var(--if-gold-ink)] min-w-[72px] pt-0.5">{year}</span>
+                  <li key={year.en} className="flex gap-4">
+                    <span className="text-xs font-bold text-[var(--if-gold-ink)] min-w-[104px] pt-0.5">{year[lang]}</span>
                     <span className="text-sm text-[var(--if-text)]">{event[lang]}</span>
                   </li>
                 ))}
@@ -632,12 +701,12 @@ function Homepage() {
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="relative w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
                 <Image
-                  src="/assets/founder/shaik-akram.jpg"
+                  src="/assets/founder/shaik-akram-portrait.jpg"
                   alt="జనాబ్ షేక్ అక్రమ్"
                   fill
                   className="object-cover object-top"
                   sizes="160px"
-                  priority
+                  loading="lazy"
                 />
               </div>
               <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">
@@ -724,15 +793,20 @@ function Homepage() {
           <div className="space-y-4">
             {events.map((ev, i) => (
               <BlurFade key={i} delay={0.07 * i}>
-                <div className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors">
+                {/* Title, venue and date were one run-on line down the left, which
+                    left the right half of every row empty. The date is the thing
+                    a reader scans for, so it gets its own column. */}
+                <div className="if-row flex items-center gap-4 p-5 bg-white rounded-2xl border border-[var(--if-gold)]/15">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--if-green)] flex items-center justify-center">
-                    <Calendar className="h-5 w-5 text-[var(--if-gold-light)]" />
+                    <Calendar className="h-5 w-5 text-[var(--if-gold-light)]" aria-hidden="true" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-[var(--if-green)]">{ev.title[lang]}</h3>
-                    <p className="text-sm text-[var(--if-text-muted)]">
-                      {ev.date} · {ev.time} · {ev.venue[lang]}
-                    </p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-[var(--if-green)] text-pretty">{ev.title[lang]}</h3>
+                    <p className="text-sm text-[var(--if-text-muted)]">{ev.venue[lang]}</p>
+                  </div>
+                  <div className="flex-shrink-0 text-right">
+                    <div className="font-semibold text-sm text-[var(--if-gold-ink)]">{ev.date[lang]}</div>
+                    <div className="text-xs text-[var(--if-text-muted)] mt-0.5">{ev.time[lang]}</div>
                   </div>
                 </div>
               </BlurFade>
@@ -798,7 +872,7 @@ function Homepage() {
               { icon: Mail,  label: copy.email[lang], value: "islamicfrontmangalagiri@gmail.com", href: "mailto:islamicfrontmangalagiri@gmail.com" },
               // No href: an address is not a destination. Rendered as plain text
               // rather than an anchor that looks clickable and does nothing.
-              { icon: MapPin,label: copy.address[lang], value: "Mangalagiri, Guntur District, A.P. 522503" },
+              { icon: MapPin,label: copy.address[lang], value: lang === "te" ? "మంగళగిరి, గుంటూరు జిల్లా, ఆం.ప్ర. 522503" : "Mangalagiri, Guntur District, A.P. 522503" },
             ].map(({ icon: Icon, label, value, href }) => {
               const inner = (
                 <>
@@ -807,11 +881,11 @@ function Homepage() {
                   <span className="text-sm text-[var(--if-gold-pale)]/90">{value}</span>
                 </>
               );
-              const base = "flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 border border-[var(--if-gold)]/20";
+              const base = "if-panel flex flex-col items-center text-center p-6 rounded-2xl h-full";
               return (
                 <BlurFade key={label} delay={0.1}>
                   {href ? (
-                    <a href={href} className={`${base} hover:bg-white/10 transition-colors`}>{inner}</a>
+                    <a href={href} className={base}>{inner}</a>
                   ) : (
                     <div className={base}>{inner}</div>
                   )}
@@ -842,11 +916,11 @@ function Homepage() {
               </p>
             </div>
           </BlurFade>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {kc_portals.map((portal, i) => (
               <BlurFade key={portal.href} delay={0.06 * i}>
                 <MagicCard
-                  className="rounded-2xl cursor-pointer group"
+                  className="h-full rounded-2xl cursor-pointer group"
                   gradientFrom="#c8922a"
                   gradientTo="#e8b84b"
                   gradientColor="rgba(200,146,42,0.04)"
@@ -854,8 +928,8 @@ function Homepage() {
                 >
                   <a href={portal.href} className="flex flex-col p-6 h-full">
                     <span className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 self-end">{portal.arabic}</span>
-                    <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title}</h3>
-                    <p className="text-sm text-[var(--if-text-muted)] mt-1">{portal.sub}</p>
+                    <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title[lang]}</h3>
+                    <p className="text-sm text-[var(--if-text-muted)] mt-1 text-pretty">{portal.sub[lang]}</p>
                     <span className="mt-4 text-xs font-semibold text-[var(--if-gold-ink)] flex items-center gap-1">
                       {copy.open[lang]} <ChevronRight className="h-3 w-3" />
                     </span>

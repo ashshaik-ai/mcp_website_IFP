@@ -126,6 +126,10 @@ if (real.length) {
   console.log("\nno unexpected weighted audit failures on any route.");
 }
 
-await chrome.kill();
+/* chrome-launcher removes its own temp profile on kill, and on Windows that
+   directory is still locked for a moment after the process exits. The report
+   is already printed by this point, so a cleanup failure is not a sweep
+   failure -- swallow it rather than exiting non-zero on a clean run. */
+try { await chrome.kill(); } catch {}
 server.stop();
 process.exit(0);

@@ -196,14 +196,12 @@ export function SpotlightNavbar({
       */}
             <style jsx>{`
         nav {
-          /* Light Mode Colors: Dark Gray/Black lights */
-          --spotlight-color: rgba(0,0,0,0.08);
-          --ambience-color: rgba(0,0,0,0.8);
-        }
-        :global(.dark) nav {
-          /* Dark Mode Colors: White lights */
-          --spotlight-color: rgba(255,255,255,0.15);
-          --ambience-color: rgba(255,255,255,1);
+          /* These shipped as black, with a .dark override for a class this site
+             never sets. The navbar sits on the dark green header, so the
+             spotlight was invisible and the active-item glow rendered as a
+             black smear under the label. Both are gold now. */
+          --spotlight-color: rgba(232, 184, 75, 0.16);
+          --ambience-color: rgba(232, 184, 75, 1);
         }
       `}</style>
         </div>

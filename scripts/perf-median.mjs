@@ -59,6 +59,8 @@ for (const k of ["fcp", "lcp", "tbt", "si"]) {
 console.log(`  CLS    ${median("cls")}`);
 console.log(`  all scores: ${runs.map((r) => r.score).join(" ")}`);
 
-await chrome.kill();
+/* See lh-sweep.mjs: chrome-launcher's temp-profile cleanup races Windows file
+   locks. The numbers are already printed, so this must not fail the run. */
+try { await chrome.kill(); } catch {}
 server.stop();
 process.exit(0);
