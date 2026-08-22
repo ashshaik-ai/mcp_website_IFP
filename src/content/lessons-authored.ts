@@ -1343,4 +1343,419 @@ export const authoredLessons: Lesson[] = [
       { label: "The number ninety-nine", url: "/knowledge-center/names-of-allah/ninety-nine" },
     ],
   },
+
+  {
+    slug: "how-it-works",
+    portal: "islamic-calendar",
+    title: {
+      te: "స్థాయి 1 — హిజ్రీ క్యాలెండర్ ఎలా పనిచేస్తుంది",
+      en: "Level 1 — How the Hijri calendar works",
+    },
+    intro: {
+      te: "హిజ్రీ సంవత్సరం చంద్రుడిపై ఆధారపడి ఉంటుంది — సూర్యుడిపై కాదు. అందుకే రమజాన్ ప్రతి సంవత్సరం కొంచెం ముందుకు కదులుతుంది. ఈ పాఠం ఆ వ్యవస్థను, అది ఎక్కడి నుండి మొదలైందో వివరిస్తుంది.",
+      en: "The Hijri year follows the moon, not the sun, which is why Ramadan moves earlier each year. This lesson explains that system and where it began.",
+    },
+    sections: [
+      {
+        heading: { te: "పన్నెండు చంద్ర మాసాలు", en: "Twelve lunar months" },
+        body: {
+          te: "ఖురాన్ చెబుతుంది: 'ఆకాశాలు, భూమిని సృష్టించిన రోజునే అల్లాహ్ వద్ద మాసాల సంఖ్య పన్నెండు' (అత్-తౌబా 9:36). ప్రతి మాసం కొత్త చంద్రవంకతో మొదలై 29 లేదా 30 రోజులు ఉంటుంది — చంద్రుని చక్రం సుమారు 29.53 రోజులు కాబట్టి. మొత్తం సంవత్సరం 354 లేదా 355 రోజులు.",
+          en: "The Quran states: 'The number of months with Allah is twelve, in the register of Allah, from the day He created the heavens and the earth' (At-Tawbah 9:36). Each month begins with a new crescent and runs 29 or 30 days, since the lunar cycle is about 29.53 days. The year comes to 354 or 355 days.",
+        },
+        check: {
+          question: { te: "హిజ్రీ సంవత్సరంలో ఎన్ని రోజులు?", en: "How many days are in a Hijri year?" },
+          options: [
+            { te: "354 లేదా 355", en: "354 or 355" },
+            { te: "365 లేదా 366", en: "365 or 366" },
+            { te: "360 ఖచ్చితంగా", en: "Exactly 360" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "పదకొండు రోజుల తేడా", en: "The eleven-day difference" },
+        body: {
+          te: "సౌర సంవత్సరం కంటే హిజ్రీ సంవత్సరం సుమారు పదకొండు రోజులు తక్కువ. అందుకే ప్రతి సంవత్సరం రమజాన్, ఈద్, హజ్ గ్రెగోరియన్ క్యాలెండర్‌లో పదకొండు రోజులు ముందుకు కదులుతాయి. సుమారు 33 సంవత్సరాలకు ఒకసారి పూర్తి చక్రం తిరిగి వస్తుంది — అంటే ఒక ముస్లిం జీవితకాలంలో రమజాన్ అన్ని ఋతువుల్లోనూ వస్తుంది: వేసవి పొడవాటి ఉపవాసాలు, శీతాకాలపు చిన్న ఉపవాసాలు.",
+          en: "The Hijri year is about eleven days shorter than the solar year, so Ramadan, Eid and Hajj move eleven days earlier in the Gregorian calendar each year. The full cycle comes round in roughly thirty-three years, meaning a Muslim experiences Ramadan in every season across a lifetime: the long fasts of summer and the short ones of winter.",
+        },
+        check: {
+          question: { te: "రమజాన్ ప్రతి సంవత్సరం ఎందుకు కదులుతుంది?", en: "Why does Ramadan shift each year?" },
+          options: [
+            { te: "హిజ్రీ సంవత్సరం సౌర సంవత్సరం కంటే 11 రోజులు తక్కువ", en: "The Hijri year is 11 days shorter than the solar year" },
+            { te: "ప్రతి దేశం వేరే తేదీ ఎంచుకుంటుంది", en: "Each country picks a different date" },
+            { te: "ఇది యాదృచ్ఛికం", en: "It is random" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "హిజ్రత్ నుండి లెక్కింపు", en: "Counting from the Hijrah" },
+        body: {
+          te: "క్యాలెండర్ ప్రవక్త ﷺ జననం నుండి కాదు, ఆయన మరణం నుండి కాదు — మక్కా నుండి మదీనాకు వలస (హిజ్రత్) నుండి మొదలవుతుంది; అది 622 CEకి సరిపోతుంది. ఉమర్ (ర/అ) తన ఖిలాఫత్‌లో సహచరులతో సంప్రదించి దీన్ని స్థిరపరిచారు. ఎంపిక అర్థవంతమైనది: ముస్లిం సమాజం ఒక సంఘంగా ఏర్పడిన క్షణం నుండి లెక్క మొదలవుతుంది, ఒక వ్యక్తి పుట్టుక నుండి కాదు.",
+          en: "The calendar counts not from the Prophet's birth nor his death, but from the migration from Makkah to Madinah, which corresponds to 622 CE. Umar (RA) established it during his caliphate after consulting the companions. The choice is telling: the count begins from the moment the Muslims became a community, not from any individual's birth.",
+        },
+      },
+      {
+        heading: { te: "మాసాల పేర్లు అర్థవంతమైనవి", en: "The month names carry meanings" },
+        body: {
+          te: "పేర్లు ఇస్లాంకు ముందటి అరబ్ జీవితాన్ని ప్రతిబింబిస్తాయి. రమదాన్ అంటే మండే వేడి. రబీ అంటే వసంతం. జుమాద అంటే ఎండిపోయినది. ముహర్రం అంటే నిషేధించబడినది — యుద్ధం నిషిద్ధమైన మాసం. చంద్ర క్యాలెండర్ కదులుతుంది కాబట్టి ఇప్పుడు ఈ పేర్లు ఋతువులతో సరిపోవు — రమదాన్ శీతాకాలంలో కూడా రావచ్చు.",
+          en: "The names reflect pre-Islamic Arabian life. Ramadan means scorching heat, Rabi means spring, Jumada means dry, and Muharram means forbidden, the month in which fighting was prohibited. Because the lunar calendar drifts, the names no longer line up with the seasons; Ramadan can fall in winter.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "12 చంద్ర మాసాలు, 354-355 రోజులు (ఖురాన్ 9:36).", en: "Twelve lunar months, 354 to 355 days (Quran 9:36)." },
+      { te: "సౌర సంవత్సరం కంటే 11 రోజులు తక్కువ — అందుకే పండుగలు కదులుతాయి.", en: "Eleven days shorter than the solar year, which is why the observances move." },
+      { te: "లెక్క హిజ్రత్ (622 CE) నుండి; ఉమర్ (ర/అ) స్థిరపరిచారు.", en: "The count begins at the Hijrah (622 CE) and was established by Umar (RA)." },
+    ],
+    didYouKnow: [
+      { te: "సుమారు 33 సౌర సంవత్సరాలకు 34 హిజ్రీ సంవత్సరాలు గడుస్తాయి.", en: "Roughly thirty-four Hijri years pass in every thirty-three solar years." },
+      { te: "ఉమర్ (ర/అ) ప్రవక్త ﷺ జననాన్ని కాకుండా హిజ్రత్‌ను ఆరంభంగా ఎంచుకున్నారు.", en: "Umar (RA) chose the Hijrah, rather than the Prophet's birth, as the starting point." },
+    ],
+    reflect: [
+      { te: "క్యాలెండర్ ఒక వ్యక్తి పుట్టుక నుండి కాక, ఒక సమాజం ఏర్పడిన క్షణం నుండి మొదలవుతుంది. అది దేన్ని సూచిస్తుంది?", en: "The calendar starts not from a person's birth but from the founding of a community. What does that suggest?" },
+    ],
+    mistakes: [
+      { te: "హిజ్రీ తేదీలను గ్రెగోరియన్ తేదీలతో స్థిరంగా సరిపోలుస్తారని అనుకోవడం.", en: "Assuming Hijri dates map to fixed Gregorian dates." },
+      { te: "క్యాలెండర్ ప్రవక్త ﷺ జననం నుండి మొదలవుతుందని అనుకోవడం.", en: "Believing the calendar counts from the Prophet's birth." },
+    ],
+    faqs: [
+      {
+        question: { te: "ఇస్లామిక్ రోజు ఎప్పుడు మొదలవుతుంది?", en: "When does an Islamic day begin?" },
+        answer: {
+          te: "సూర్యాస్తమయంతో — అర్ధరాత్రితో కాదు. అందుకే గురువారం సూర్యాస్తమయం తర్వాత వచ్చే రాత్రి 'శుక్రవారం రాత్రి'. ఇదే కారణంగా షబ్-ఎ-బారాత్, లైలతుల్-ఖద్ర్ వంటివి ఆ తేదీకి ముందటి రాత్రి వస్తాయి.",
+          en: "At sunset, not at midnight. That is why the night following Thursday sunset is 'Friday night', and why nights such as Laylat al-Qadr fall on the evening before the dated day.",
+        },
+      },
+      {
+        question: { te: "అన్ని ముస్లిం దేశాలూ ఒకే హిజ్రీ తేదీని పాటిస్తాయా?", en: "Do all Muslim countries observe the same Hijri date?" },
+        answer: {
+          te: "కాదు — ఒకటి రెండు రోజుల తేడా సాధారణం. కారణం చంద్రవంక దర్శనం స్థానికంగా మారుతుంది, కొన్ని దేశాలు గణనను ఉపయోగిస్తాయి. దీన్ని తర్వాతి పాఠంలో వివరంగా చూద్దాం.",
+          en: "No; a difference of a day or two is common, because crescent sighting is local and some countries use calculation. The next lesson takes this up in detail.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "హిజ్రీ క్యాలెండర్ ఏ సంఘటన నుండి లెక్కిస్తుంది?", en: "From which event does the Hijri calendar count?" },
+        options: [
+          { te: "మదీనాకు హిజ్రత్", en: "The migration to Madinah" },
+          { te: "ప్రవక్త ﷺ జననం", en: "The Prophet's birth" },
+          { te: "మక్కా విజయం", en: "The conquest of Makkah" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ఇస్లామిక్ రోజు ఎప్పుడు మొదలవుతుంది?", en: "When does the Islamic day begin?" },
+        options: [
+          { te: "సూర్యాస్తమయంతో", en: "At sunset" },
+          { te: "అర్ధరాత్రితో", en: "At midnight" },
+          { te: "సూర్యోదయంతో", en: "At sunrise" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "'ముహర్రం' అనే పేరుకు అర్థం ఏమిటి?", en: "What does the name 'Muharram' mean?" },
+        options: [
+          { te: "నిషేధించబడినది", en: "Forbidden" },
+          { te: "వసంతం", en: "Spring" },
+          { te: "మండే వేడి", en: "Scorching heat" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "ఖురాన్ 9:36 — పన్నెండు మాసాలు.", en: "Quran 9:36 — twelve months." },
+      { te: "354-355 రోజులు; సౌర సంవత్సరం కంటే 11 తక్కువ.", en: "354 to 355 days, eleven fewer than the solar year." },
+      { te: "రోజు సూర్యాస్తమయంతో మొదలవుతుంది.", en: "The day begins at sunset." },
+    ],
+    summary: {
+      te: "హిజ్రీ క్యాలెండర్ పన్నెండు చంద్ర మాసాల వ్యవస్థ, సంవత్సరానికి 354-355 రోజులు. ఇది హిజ్రత్ (622 CE) నుండి లెక్కిస్తుంది, ఉమర్ (ర/అ) స్థిరపరిచారు. రోజు సూర్యాస్తమయంతో మొదలవుతుంది.",
+      en: "The Hijri calendar is a system of twelve lunar months totalling 354 to 355 days, counted from the Hijrah of 622 CE and established by Umar (RA). Its day begins at sunset.",
+    },
+    apply: {
+      te: "ఆచరణ: ఈ రోజు హిజ్రీ తేదీని చూసి, మీ పుట్టిన తేదీకి సరిపోయే హిజ్రీ తేదీని కనుగొనండి.",
+      en: "Apply it: look up today's Hijri date, then find the Hijri date matching your own birthday.",
+    },
+    reading: [
+      { label: "Islamic Calendar portal", url: "/knowledge-center/islamic-calendar" },
+    ],
+  },
+
+  {
+    slug: "moon-sighting",
+    portal: "islamic-calendar",
+    title: {
+      te: "స్థాయి 2 — చంద్రవంక దర్శనం, ఈద్ తేదీలు వేరవడం",
+      en: "Level 2 — Moon sighting, and why Eid dates differ",
+    },
+    intro: {
+      te: "ప్రతి సంవత్సరం ఒకే ఊళ్ళో రెండు ఈద్‌లు జరగడం చూస్తాం. ఇది గందరగోళం కలిగిస్తుంది, కొన్నిసార్లు గొడవలకూ దారితీస్తుంది. ఈ పాఠం దాని వెనుక ఉన్న నిజమైన ఫిఖ్హ్ భేదాన్ని వివరిస్తుంది — ఎవరో తప్పు చేస్తున్నారని కాదు.",
+      en: "Most years we see two Eids in the same town. It causes confusion and sometimes argument. This lesson explains the genuine difference of fiqh behind it, rather than treating one side as simply mistaken.",
+    },
+    sections: [
+      {
+        heading: { te: "ప్రాథమిక ఆదేశం", en: "The base instruction" },
+        body: {
+          te: "ప్రవక్త ﷺ అన్నారు: 'దాన్ని (చంద్రవంకను) చూసి ఉపవాసం ప్రారంభించండి, దాన్ని చూసి ముగించండి. మేఘావృతమైతే మాసాన్ని ముప్ఫై రోజులుగా పూర్తి చేయండి' (బుఖారీ, ముస్లిం). ఈ హదీసు రెండు విషయాలు చెబుతుంది: ఆధారం దర్శనం, మరియు దర్శనం సాధ్యం కానప్పుడు ముప్ఫైకి పూర్తి చేయాలి.",
+          en: "The Prophet ﷺ said: 'Fast when you see it and stop fasting when you see it. If it is obscured from you, complete the month as thirty days' (Bukhari and Muslim). The hadith establishes two things: sighting is the basis, and where sighting is impossible the month is completed to thirty.",
+        },
+        check: {
+          question: { te: "ఆకాశం మేఘావృతమైతే ఏమి చేయాలి?", en: "What is done if the sky is obscured?" },
+          options: [
+            { te: "మాసాన్ని ముప్ఫై రోజులుగా పూర్తి చేయాలి", en: "Complete the month as thirty days" },
+            { te: "ఉపవాసం వదిలేయాలి", en: "Abandon the fast" },
+            { te: "ఇరవై ఎనిమిదికి ముగించాలి", en: "End it at twenty-eight" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "మొదటి భేదం: స్థానికమా, ప్రపంచవ్యాప్తమా", en: "The first difference: local or global sighting" },
+        body: {
+          te: "కొందరు పండితులు అంటారు: ప్రపంచంలో ఎక్కడైనా చంద్రవంక కనిపిస్తే అందరికీ మాసం మొదలవుతుంది (ఇత్తిహాద్ అల్-మతాలిఅ). మరికొందరు అంటారు: ప్రతి ప్రాంతం తన సొంత దర్శనాన్ని అనుసరించాలి (ఇఖ్తిలాఫ్ అల్-మతాలిఅ), ఎందుకంటే చంద్రవంక భూమిపై అన్ని చోట్లా ఒకే రాత్రి కనిపించదు. రెండు వైపులా బలమైన ఆధారాలు ఉన్నాయి — ఇది ఒకరు సరైనవారు, ఒకరు తప్పు అనే విషయం కాదు.",
+          en: "Some scholars hold that a sighting anywhere in the world begins the month for everyone (ittihad al-matali). Others hold that each region follows its own sighting (ikhtilaf al-matali), since the crescent is not visible everywhere on the same night. Both positions have strong evidence; this is not a case of one side being simply right.",
+        },
+        check: {
+          question: { te: "'ఇఖ్తిలాఫ్ అల్-మతాలిఅ' అభిప్రాయం ఏమిటి?", en: "What does 'ikhtilaf al-matali' hold?" },
+          options: [
+            { te: "ప్రతి ప్రాంతం తన సొంత దర్శనాన్ని అనుసరించాలి", en: "Each region follows its own sighting" },
+            { te: "ఎక్కడ కనిపించినా అందరికీ వర్తిస్తుంది", en: "A sighting anywhere applies to everyone" },
+            { te: "గణన మాత్రమే వాడాలి", en: "Only calculation may be used" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "రెండో భేదం: కంటి దర్శనమా, గణనా", en: "The second difference: eye or calculation" },
+        body: {
+          te: "మెజారిటీ పండితులు కంటితో దర్శనాన్ని (రుఅయా) ఆధారంగా ఉంచుతారు — హదీసు పదం 'చూడటం' కాబట్టి. కొందరు ఆధునిక పండితులు, కొన్ని దేశాలు ఖగోళ గణనను ఉపయోగిస్తాయి, ఎందుకంటే గణన ఇప్పుడు చాలా ఖచ్చితమైనది. మధ్యే మార్గం కూడా ఉంది: గణన ప్రకారం చంద్రవంక కనిపించడం అసాధ్యమైన రాత్రి వచ్చిన 'దర్శన' నివేదికను తిరస్కరించడం.",
+          en: "The majority make physical sighting (ru'yah) the basis, since the wording of the hadith is seeing. Some contemporary scholars and states use astronomical calculation, as calculation is now highly accurate. A middle position also exists: reject a reported sighting on a night when calculation shows the crescent could not possibly have been visible.",
+        },
+      },
+      {
+        heading: { te: "మీరు ఏమి చేయాలి", en: "What you should do" },
+        body: {
+          te: "మీ స్థానిక మస్జిద్‌ను, మీ ప్రాంతపు గుర్తింపు పొందిన ఆలిమ్‌లను అనుసరించండి. ప్రవక్త ﷺ అన్నారు: 'ఉపవాసం మీరందరూ ఉపవసించే రోజు, ఈద్ మీరందరూ ఈద్ చేసే రోజు' (తిర్మిజీ) — సమాజంతో కలిసి ఉండటానికి ఇందులో బలమైన సూచన ఉంది. తేదీపై భేదం ఉన్నప్పుడు వాదన కంటే ఐక్యత మేలు; రెండు అభిప్రాయాలూ పండితుల పరిధిలో ఉన్నవే.",
+          en: "Follow your local mosque and the recognised scholars of your area. The Prophet ﷺ said: 'The fast is the day you all fast, and the Eid is the day you all celebrate' (Tirmidhi), which points strongly towards staying with your community. Where the date is disputed, unity is worth more than the argument, since both positions sit within the range of scholarly opinion.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "ఆధారం దర్శనం; మేఘావృతమైతే ముప్ఫైకి పూర్తి చేయాలి.", en: "Sighting is the basis; if obscured, complete thirty days." },
+      { te: "భేదం స్థానిక/ప్రపంచ దర్శనం, కంటి/గణన — రెండూ పండితుల పరిధిలోనే.", en: "The differences are local versus global sighting, and eye versus calculation; both lie within scholarly opinion." },
+      { te: "స్థానిక సమాజంతో కలిసి ఉండటం సిఫార్సు.", en: "Staying with your local community is the recommended course." },
+    ],
+    didYouKnow: [
+      { te: "కొత్త చంద్రవంక సూర్యాస్తమయం తర్వాత కొన్ని నిమిషాలు మాత్రమే కనిపిస్తుంది — అందుకే దర్శనం అంత కష్టం.", en: "A new crescent is visible for only a few minutes after sunset, which is why sighting it is so difficult." },
+    ],
+    reflect: [
+      { te: "మీ ఊళ్ళో రెండు ఈద్‌లు జరిగినప్పుడు మీ ప్రతిస్పందన ఏమిటి — వాదనా, లేదా అవగాహనా?", en: "When your town has two Eids, what is your response: argument, or understanding?" },
+    ],
+    mistakes: [
+      { te: "వేరే తేదీ పాటించేవారిని 'తప్పుడు ముస్లింలు' అనడం — ఇది గుర్తింపు పొందిన ఫిఖ్హ్ భేదం.", en: "Calling those who follow a different date wrong Muslims, when this is a recognised difference of fiqh." },
+      { te: "కుటుంబంలో ఈద్ తేదీపై గొడవపడటం — ఈద్ ఐక్యత రోజు.", en: "Quarrelling within a family over the date, when Eid is a day of unity." },
+    ],
+    faqs: [
+      {
+        question: { te: "సౌదీ ప్రకటనను అనుసరించవచ్చా?", en: "May I follow the announcement from Saudi Arabia?" },
+        answer: {
+          te: "ప్రపంచ దర్శనాన్ని (ఇత్తిహాద్ అల్-మతాలిఅ) అనుసరించే పండితుల ప్రకారం అవును. స్థానిక దర్శనాన్ని అనుసరించేవారి ప్రకారం మీ ప్రాంతపు దర్శనమే ప్రమాణం. మీ స్థానిక ఆలిమ్‌ల మార్గదర్శనాన్ని అనుసరించడం ఉత్తమం.",
+          en: "According to scholars who hold the global-sighting position, yes. According to those who hold the local-sighting position, your own region's sighting is the reference. Following the guidance of your local scholars is best.",
+        },
+      },
+      {
+        question: { te: "ఈద్ తేదీ మారితే ఉపవాసం సంఖ్య తప్పవుతుందా?", en: "If the Eid date changes, does my count of fasts go wrong?" },
+        answer: {
+          te: "కాదు. రమజాన్ 29 లేదా 30 రోజులు ఉంటుంది — రెండూ సరైనవే. మీరు అనుసరించిన దర్శనం ప్రకారం మాసం ముగిస్తే మీ ఉపవాసాలు పూర్తయినట్లే.",
+          en: "No. Ramadan is 29 or 30 days and both are correct. If you ended the month on the sighting you were following, your fasts are complete.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "హదీసు ప్రకారం మేఘావృతమైతే?", en: "According to the hadith, if the sky is obscured?" },
+        options: [
+          { te: "మాసాన్ని ముప్ఫైకి పూర్తి చేయాలి", en: "Complete the month as thirty" },
+          { te: "గణనను తప్పనిసరిగా వాడాలి", en: "Calculation must be used" },
+          { te: "ఇరవై తొమ్మిదికి ముగించాలి", en: "End at twenty-nine" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "మెజారిటీ పండితులు దేన్ని ఆధారంగా ఉంచుతారు?", en: "What do the majority of scholars make the basis?" },
+        options: [
+          { te: "కంటితో చంద్రవంక దర్శనం", en: "Physical sighting of the crescent" },
+          { te: "ఖగోళ గణన", en: "Astronomical calculation" },
+          { te: "ప్రభుత్వ ప్రకటన", en: "A government announcement" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "తేదీ భేదం ఉన్నప్పుడు సిఫార్సు ఏమిటి?", en: "When dates differ, what is recommended?" },
+        options: [
+          { te: "స్థానిక సమాజంతో కలిసి ఉండటం", en: "Staying with your local community" },
+          { te: "సొంతంగా నిర్ణయించుకోవడం", en: "Deciding on your own" },
+          { te: "ఈద్ వదిలేయడం", en: "Skipping Eid" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "'చూసి ఉపవసించండి, చూసి ముగించండి' — బుఖారీ, ముస్లిం.", en: "'Fast when you see it, stop when you see it' — Bukhari and Muslim." },
+      { te: "ఇత్తిహాద్ vs ఇఖ్తిలాఫ్ అల్-మతాలిఅ.", en: "Ittihad versus ikhtilaf al-matali." },
+      { te: "'ఈద్ మీరందరూ ఈద్ చేసే రోజు' — తిర్మిజీ.", en: "'The Eid is the day you all celebrate' — Tirmidhi." },
+    ],
+    summary: {
+      te: "మాసం చంద్రవంక దర్శనంతో మొదలవుతుంది; కనిపించకపోతే ముప్ఫైకి పూర్తి. తేదీలు వేరవడానికి కారణం స్థానిక/ప్రపంచ దర్శనం, కంటి/గణన అనే రెండు గుర్తింపు పొందిన ఫిఖ్హ్ భేదాలు — ఎవరో తప్పు చేయడం కాదు.",
+      en: "The month begins on sighting the crescent, and is completed to thirty if it is not seen. Dates differ because of two recognised differences of fiqh, local versus global sighting and eye versus calculation, not because one side is in error.",
+    },
+    apply: {
+      te: "ఆచరణ: మీ స్థానిక మస్జిద్ ఏ పద్ధతిని అనుసరిస్తుందో ఈ రమజాన్‌కు ముందే అడిగి తెలుసుకోండి.",
+      en: "Apply it: ask your local mosque which method it follows, before Ramadan rather than during it.",
+    },
+    reading: [
+      { label: "Islamic Calendar portal", url: "/knowledge-center/islamic-calendar" },
+      { label: "How the Hijri calendar works", url: "/knowledge-center/islamic-calendar/how-it-works" },
+    ],
+  },
+
+  {
+    slug: "sacred-months",
+    portal: "islamic-calendar",
+    title: {
+      te: "స్థాయి 3 — నాలుగు పవిత్ర మాసాలు",
+      en: "Level 3 — The four sacred months",
+    },
+    intro: {
+      te: "పన్నెండు మాసాల్లో నాలుగు పవిత్రమైనవని ఖురాన్ చెబుతుంది. అవి ఏవి, వాటిలో ఏమి ప్రత్యేకం, ఆచరణలో అది ఏమి కోరుతుంది — ఈ పాఠంలో.",
+      en: "The Quran singles out four of the twelve months as sacred. Which they are, what makes them so, and what that asks of us in practice.",
+    },
+    sections: [
+      {
+        heading: { te: "ఖురాన్ వచనం", en: "The verse" },
+        body: {
+          te: "'ఆకాశాలు, భూమిని సృష్టించిన రోజునే అల్లాహ్ వద్ద మాసాల సంఖ్య పన్నెండు; వాటిలో నాలుగు పవిత్రమైనవి. అదే సరైన ధర్మం; కాబట్టి వాటిలో మీపై మీరు అన్యాయం చేసుకోకండి' (అత్-తౌబా 9:36).",
+          en: "'The number of months with Allah is twelve, in the register of Allah from the day He created the heavens and the earth, of which four are sacred. That is the correct religion, so do not wrong yourselves during them' (At-Tawbah 9:36).",
+        },
+        check: {
+          question: { te: "ఖురాన్ 9:36 ప్రకారం ఎన్ని మాసాలు పవిత్రమైనవి?", en: "According to Quran 9:36, how many months are sacred?" },
+          options: [
+            { te: "నాలుగు", en: "Four" },
+            { te: "రెండు", en: "Two" },
+            { te: "ఆరు", en: "Six" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "ఏ నాలుగు", en: "Which four" },
+        body: {
+          te: "ప్రవక్త ﷺ వీడ్కోలు హజ్‌లో వాటిని పేర్కొన్నారు: మూడు వరుసగా — జుల్-ఖాదా, జుల్-హిజ్జా, ముహర్రం — మరియు ఒకటి విడిగా, రజబ్ (బుఖారీ). వరుసగా ఉన్న మూడు హజ్ కాలాన్ని చుట్టుముడతాయి: ప్రయాణానికి ముందు, హజ్ మాసం, తిరుగు ప్రయాణం. దీనివల్ల యాత్రికులు యుద్ధ భయం లేకుండా ప్రయాణించగలిగేవారు.",
+          en: "The Prophet ﷺ named them on the farewell Hajj: three consecutive, Dhu al-Qa'dah, Dhu al-Hijjah and Muharram, and one alone, Rajab (Bukhari). The three in sequence bracket the Hajj season, covering the journey out, the month of Hajj itself, and the journey home, so pilgrims could travel without fear of fighting.",
+        },
+        check: {
+          question: { te: "విడిగా ఉన్న పవిత్ర మాసం ఏది?", en: "Which sacred month stands alone?" },
+          options: [
+            { te: "రజబ్", en: "Rajab" },
+            { te: "రమదాన్", en: "Ramadan" },
+            { te: "షాబాన్", en: "Sha'ban" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "రమదాన్ ఎందుకు ఈ జాబితాలో లేదు", en: "Why Ramadan is not on this list" },
+        body: {
+          te: "ఇది చాలామందిని ఆశ్చర్యపరుస్తుంది. రమదాన్ నిస్సందేహంగా అత్యంత గొప్ప మాసం — ఖురాన్ అవతరించిన మాసం, ఉపవాసం విధి అయిన మాసం. కానీ 'పవిత్ర మాసాలు' (అష్‌హుర్ హురుమ్) అనేది ఒక నిర్దిష్ట పదబంధం: వాటిలో యుద్ధం నిషిద్ధమనే ప్రాచీన నియమానికి సంబంధించినది. రమదాన్ గొప్పతనం వేరే రకం — ఈ రెండు వర్గాలను కలపకూడదు.",
+          en: "This surprises many people. Ramadan is without question the greatest month: the month of revelation and of obligatory fasting. But 'the sacred months' (ashhur hurum) is a specific term tied to the ancient prohibition of fighting within them. Ramadan's greatness is of a different kind, and the two categories should not be conflated.",
+        },
+      },
+      {
+        heading: { te: "ఆచరణలో అర్థం", en: "What it means in practice" },
+        body: {
+          te: "'మీపై మీరు అన్యాయం చేసుకోకండి' — పండితులు దీన్ని ఇలా వివరిస్తారు: పాపం ఎప్పుడూ పాపమే, కానీ ఈ మాసాల్లో దాని బరువు ఎక్కువ; అలాగే మంచి పనుల ప్రతిఫలమూ ఎక్కువ. ఆచరణలో: ఈ మాసాల్లో అదనపు ఉపవాసం (ముఖ్యంగా ముహర్రం), దానం, తౌబా, కుటుంబ సంబంధాలను చక్కదిద్దుకోవడం. ఇక్కడ కొత్త విధులు లేవు — ఉన్న వాటిపై ఎక్కువ శ్రద్ధ.",
+          en: "'Do not wrong yourselves during them.' Scholars explain that sin is always sin, but carries more weight in these months, just as good deeds carry more reward. In practice: extra voluntary fasting, especially in Muharram, giving in charity, repentance, and repairing family ties. No new obligations are added; existing ones are given more care.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "నాలుగు: జుల్-ఖాదా, జుల్-హిజ్జా, ముహర్రం, రజబ్.", en: "The four: Dhu al-Qa'dah, Dhu al-Hijjah, Muharram and Rajab." },
+      { te: "రమదాన్ ఈ జాబితాలో లేదు — దాని గొప్పతనం వేరే వర్గం.", en: "Ramadan is not on this list; its greatness is a different category." },
+      { te: "కొత్త విధులు లేవు; ఉన్న వాటిపై ఎక్కువ శ్రద్ధ.", en: "No new obligations, just more care with the existing ones." },
+    ],
+    didYouKnow: [
+      { te: "మూడు పవిత్ర మాసాలు వరుసగా ఉండటం హజ్ ప్రయాణాన్ని సురక్షితం చేసేది — వెళ్ళడం, ఉండటం, తిరిగి రావడం.", en: "The three consecutive sacred months made the Hajj journey safe: going, staying and returning." },
+      { te: "ముహర్రంలో ఉపవాసం రమదాన్ తర్వాత అత్యుత్తమమని ప్రవక్త ﷺ చెప్పారు (ముస్లిం).", en: "The Prophet ﷺ said the best fasting after Ramadan is in Muharram (Muslim)." },
+    ],
+    reflect: [
+      { te: "ఈ నాలుగు మాసాల్లో మీరు ఏ ఒక్క అలవాటును మెరుగుపరచాలనుకుంటారు?", en: "Which single habit would you want to improve during these four months?" },
+    ],
+    mistakes: [
+      { te: "రమదాన్ కూడా 'పవిత్ర మాసాల'లో ఒకటని అనుకోవడం.", en: "Counting Ramadan among 'the sacred months'." },
+      { te: "రజబ్‌లో ప్రామాణికంగా స్థిరపడని ప్రత్యేక ఉపవాసాలు, నమాజులు కల్పించడం — చాలా పండితులు ఈ నిర్దిష్ట ఆచారాలను బలహీన ఉల్లేఖనలుగా భావిస్తారు.", en: "Inventing specific fasts or prayers for Rajab; many scholars grade the narrations for those particular practices as weak." },
+    ],
+    faqs: [
+      {
+        question: { te: "పవిత్ర మాసాల్లో యుద్ధం ఇప్పటికీ నిషిద్ధమా?", en: "Is fighting still forbidden in the sacred months?" },
+        answer: {
+          te: "ఈ నిషేధం రద్దయిందా లేదా అనే విషయంలో పండితుల మధ్య భేదం ఉంది. అయితే ఆత్మరక్షణ ఎప్పుడూ అనుమతించబడిందని అందరూ అంగీకరిస్తారు. ఈ మాసాల నైతిక సందేశం — ఘర్షణను తగ్గించడం, శాంతిని కోరడం — స్థిరంగా ఉంది.",
+          en: "Scholars differ on whether that specific prohibition was abrogated, though all agree self-defence was always permitted. The moral thrust of these months, reducing conflict and seeking peace, is not in dispute.",
+        },
+      },
+      {
+        question: { te: "ఆషూరా ఉపవాసం ఎప్పుడు, ఎలా?", en: "When and how is the fast of Ashura kept?" },
+        answer: {
+          te: "ముహర్రం 10న. ప్రవక్త ﷺ 9వ తేదీ కూడా కలిపి ఉపవసించాలని ఉద్దేశించారు, తద్వారా ఇతరుల ఆచారం నుండి భేదం ఉంటుంది (ముస్లిం). కాబట్టి 9-10 లేదా 10-11 ఉపవసించడం సున్నత్. ఇది ఒక సంవత్సర పాపాలకు పరిహారమని ప్రవక్త ﷺ చెప్పారు.",
+          en: "On 10 Muharram. The Prophet ﷺ intended also to fast the 9th so as to differ from others' practice (Muslim), so fasting the 9th and 10th, or the 10th and 11th, is the sunnah. He said it expiates the sins of the previous year.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "వరుసగా ఉన్న మూడు పవిత్ర మాసాలు ఏవి?", en: "Which three sacred months run consecutively?" },
+        options: [
+          { te: "జుల్-ఖాదా, జుల్-హిజ్జా, ముహర్రం", en: "Dhu al-Qa'dah, Dhu al-Hijjah, Muharram" },
+          { te: "రజబ్, షాబాన్, రమదాన్", en: "Rajab, Sha'ban, Ramadan" },
+          { te: "ముహర్రం, సఫర్, రబీ అల్-అవ్వల్", en: "Muharram, Safar, Rabi al-Awwal" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "రమదాన్ తర్వాత అత్యుత్తమ ఉపవాసం ఏ మాసంలో?", en: "The best fasting after Ramadan is in which month?" },
+        options: [
+          { te: "ముహర్రం", en: "Muharram" },
+          { te: "సఫర్", en: "Safar" },
+          { te: "షవ్వాల్", en: "Shawwal" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ఆషూరా ఏ తేదీన?", en: "On which date does Ashura fall?" },
+        options: [
+          { te: "ముహర్రం 10", en: "10 Muharram" },
+          { te: "ముహర్రం 1", en: "1 Muharram" },
+          { te: "రజబ్ 27", en: "27 Rajab" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "ఖురాన్ 9:36 — నాలుగు పవిత్ర మాసాలు.", en: "Quran 9:36 — four sacred months." },
+      { te: "జుల్-ఖాదా, జుల్-హిజ్జా, ముహర్రం (వరుసగా) + రజబ్.", en: "Dhu al-Qa'dah, Dhu al-Hijjah, Muharram (consecutive) plus Rajab." },
+      { te: "ఆషూరా: ముహర్రం 10, 9తో కలిపి ఉపవసించడం సున్నత్.", en: "Ashura: 10 Muharram, with the 9th, is the sunnah." },
+    ],
+    summary: {
+      te: "ఖురాన్ నాలుగు మాసాలను పవిత్రమైనవిగా పేర్కొంటుంది: జుల్-ఖాదా, జుల్-హిజ్జా, ముహర్రం, రజబ్. వాటిలో పాపం బరువెక్కువ, మంచి ప్రతిఫలం ఎక్కువ. రమదాన్ ఈ జాబితాలో లేదు — దాని గొప్పతనం వేరే రకం.",
+      en: "The Quran names four months as sacred: Dhu al-Qa'dah, Dhu al-Hijjah, Muharram and Rajab. Sin weighs heavier in them and good deeds count for more. Ramadan is not among them; its greatness is of another kind.",
+    },
+    apply: {
+      te: "ఆచరణ: వచ్చే ముహర్రంలో ఆషూరా ఉపవాసం కోసం ఇప్పుడే మీ క్యాలెండర్‌లో గుర్తు పెట్టుకోండి.",
+      en: "Apply it: mark the fast of Ashura in your calendar now, for the coming Muharram.",
+    },
+    reading: [
+      { label: "Islamic Calendar portal", url: "/knowledge-center/islamic-calendar" },
+      { label: "Moon sighting and Eid dates", url: "/knowledge-center/islamic-calendar/moon-sighting" },
+    ],
+  },
 ];

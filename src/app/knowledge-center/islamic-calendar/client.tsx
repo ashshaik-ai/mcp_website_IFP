@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { ChevronLeft } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -201,6 +202,9 @@ function IslamicCalendarPage() {
           </p>
         </BlurFade>
       </section>
+
+      {/* The chart above is reference; these explain how the system works. */}
+      <LessonIndex portal="islamic-calendar" />
 
     </PageShell>
   );
