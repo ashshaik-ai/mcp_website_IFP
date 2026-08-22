@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -205,4 +204,136 @@
   .if-blur-fade {
     animation: none;
   }
+}
+
+/* Skip link. The usual sr-only clip collapses it to 1x1, which target-size
+   auditors flag as an undersized control. Keeping its real 44px box and
+   parking it above the viewport satisfies both them and screen readers. */
+.if-skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 9999px;
+  background: var(--if-gold);
+  color: var(--if-green);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-300%);
+  transition: transform 0.18s ease;
+}
+
+.if-skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--if-green);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-skip-link { transition: none; }
+}
+
+/* ---- Animation primitives ----------------------------------------------
+   These replace what motion/react used to drive from JavaScript. Each one
+   animates only transform, opacity or offset-distance, so they stay off the
+   main thread and cost nothing at parse time. */
+
+@keyframes if-border-beam {
+  from { offset-distance: var(--beam-start, 0%); }
+  to { offset-distance: calc(var(--beam-start, 0%) + 100%); }
+}
+
+.if-border-beam {
+  offset-distance: var(--beam-start, 0%);
+  animation-name: if-border-beam;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes if-word-rotate {
+  from { opacity: 0; transform: translateY(-1.6em); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.if-word-rotate {
+  animation: if-word-rotate 0.25s ease-out backwards;
+}
+
+/* Pointer-tracked border highlight. The padding-box layer paints the card
+   face; the border-box layer is what the highlight actually shows through. */
+.if-magic-card {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--color-background) 0 0) padding-box,
+    radial-gradient(
+      var(--mc-size) circle at var(--mc-x, -200px) var(--mc-y, -200px),
+      var(--mc-from),
+      var(--mc-to),
+      var(--color-border) 100%
+    ) border-box;
+}
+
+.if-magic-card-wash {
+  position: absolute;
+  inset: 1px;
+  z-index: 30;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    var(--mc-size) circle at var(--mc-x, -200px) var(--mc-y, -200px),
+    var(--mc-wash),
+    transparent 100%
+  );
+}
+
+.if-magic-card:hover .if-magic-card-wash { opacity: 1; }
+
+/* Scale rather than width, so the fill reveal never triggers layout. */
+@keyframes if-bar-grow {
+  from { transform: scaleX(0); }
+}
+
+.if-bar-grow {
+  transform-origin: left center;
+  animation: if-bar-grow 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s backwards;
+}
+
+@keyframes if-pulse-strip {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.if-pulse-strip {
+  animation: if-pulse-strip 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-border-beam,
+  .if-word-rotate,
+  .if-bar-grow,
+  .if-pulse-strip {
+    animation: none;
+  }
+  .if-magic-card-wash { transition: none; }
+}
+
+/* Entrance for above-the-fold content. Transform only: the element is painted
+   at full opacity from the first frame, so it can register as LCP immediately
+   while still animating into place. */
+@keyframes if-rise {
+  from { transform: translateY(10px); }
+}
+
+.if-rise {
+  animation: if-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-rise { animation: none; }
 }

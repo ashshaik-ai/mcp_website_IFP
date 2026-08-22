@@ -60,6 +60,13 @@ export const strings = {
   /* {year} is substituted at render so the footer cannot go stale again. */
   footer_copy:  { te: "© {year} ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు రక్షించబడ్డాయి.", en: "© {year} Islamic Front, Mangalagiri. All rights reserved." },
   footer_addr:  { te: "మంగళగిరి, గుంటూరు జిల్లా, ఆంధ్ర ప్రదేశ్ 522503", en: "Mangalagiri, Guntur District, Andhra Pradesh 522503" },
+  /* The footer column headings and portal links were hardcoded English on a
+     site that defaults to Telugu. */
+  footer_quick_links: { te: "త్వరిత లింక్‌లు", en: "Quick Links" },
+  footer_portals:     { te: "పోర్టల్‌లు", en: "Portals" },
+  portal_arabic:      { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" },
+  portal_quran:       { te: "ఖురాన్ నేర్చుకోండి", en: "Learn Quran" },
+  portal_salah:       { te: "నమాజ్ నేర్చుకోండి", en: "Learn Salah" },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof strings;

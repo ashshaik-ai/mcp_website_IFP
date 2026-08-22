@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
@@ -21,6 +20,23 @@ import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calenda
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
+/* This strip shipped as a hardcoded English array on a site whose default
+   language is Telugu, so Telugu readers saw eleven English phrases scroll
+   past under the hero. */
+const marqueeItems = [
+  { te: "కమ్యూనిటీ సంక్షేమం", en: "Community Welfare" },
+  { te: "విద్యా సహాయం", en: "Education Support" },
+  { te: "వైద్య సహాయం", en: "Medical Aid" },
+  { te: "యువత కార్యక్రమాలు", en: "Youth Programs" },
+  { te: "జకాత్ పంపిణీ", en: "Zakat Distribution" },
+  { te: "మహిళా సాధికారత", en: "Women Empowerment" },
+  { te: "వృద్ధుల సంరక్షణ", en: "Senior Care" },
+  { te: "పౌర భాగస్వామ్యం", en: "Civic Engagement" },
+  { te: "18 మసీదులు", en: "18 Mosques" },
+  { te: "5 మదరసాలు", en: "5 Madrasas" },
+  { te: "250+ కుటుంబాలకు సహాయం", en: "250+ Families Helped" },
+] as const;
+
 const copy = {
   our_mission: { te: "మా లక్ష్యం —", en: "Our mission —" },
   founder_team: { te: "వ్యవస్థాపకుడు & బృందం", en: "Founder & Team" },
@@ -178,26 +194,23 @@ function Homepage() {
         <Meteors number={14} minDuration={5} maxDuration={12} className="bg-[var(--if-gold)]/40" />
 
         <div className="relative mx-auto max-w-5xl text-center flex flex-col items-center gap-6">
-          <BlurFade delay={0.05}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-sm font-medium">
-              🌙{" "}
-              <AnimatedGradientText colorFrom="#e8b84b" colorTo="#ffffff" speed={0.5} className="text-sm font-medium">
-                {t("hero_badge")}
-              </AnimatedGradientText>
-            </span>
-          </BlurFade>
+          {/* Above the fold these rise into place without fading. The h1 is the
+              LCP element, and any opacity-0 start delays the paint Lighthouse
+              measures by the full length of the animation. */}
+          <span className="if-rise inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-sm font-medium">
+            🌙{" "}
+            <AnimatedGradientText colorFrom="#e8b84b" colorTo="#ffffff" speed={0.5} className="text-sm font-medium">
+              {t("hero_badge")}
+            </AnimatedGradientText>
+          </span>
 
-          <BlurFade delay={0.1}>
-            <h1 className="font-display text-5xl md:text-7xl font-bold text-[var(--if-gold-light)] leading-tight">
-              {t("hero_title")}
-            </h1>
-          </BlurFade>
+          <h1 className="if-rise font-display text-5xl md:text-7xl font-bold text-[var(--if-gold-light)] leading-tight">
+            {t("hero_title")}
+          </h1>
 
-          <BlurFade delay={0.15}>
-            <p className="text-[var(--if-gold-pale)]/80 max-w-xl text-lg md:text-xl leading-relaxed">
-              {t("hero_sub")}
-            </p>
-          </BlurFade>
+          <p className="if-rise text-[var(--if-gold-pale)]/80 max-w-xl text-lg md:text-xl leading-relaxed">
+            {t("hero_sub")}
+          </p>
 
           <BlurFade delay={0.18}>
             <div className="flex items-center justify-center gap-2 text-sm">
@@ -255,11 +268,9 @@ function Homepage() {
       {/* ── MARQUEE ── */}
       <div className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-3 overflow-hidden">
         <Marquee pauseOnHover className="[--duration:30s] [--gap:1rem]">
-          {["Community Welfare", "Education Support", "Medical Aid", "Youth Programs",
-            "Zakat Distribution", "Women Empowerment", "Senior Care", "Civic Engagement",
-            "18 Mosques", "5 Madrasas", "250+ Families Helped"].map((item) => (
-            <span key={item} className="mx-4 flex items-center gap-2 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap">
-              <span className="text-[var(--if-gold-ink)]">✦</span> {item}
+          {marqueeItems.map((item) => (
+            <span key={item.en} className="mx-4 flex items-center gap-2 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap">
+              <span className="text-[var(--if-gold-ink)]" aria-hidden="true">✦</span> {item[lang]}
             </span>
           ))}
         </Marquee>
@@ -423,13 +434,9 @@ function Homepage() {
                     <span className="text-[var(--if-gold-ink)] font-semibold">40%</span>
                   </div>
                   <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
-                    <motion.div
-                      className="h-full rounded-full"
+                    <div
+                      className="if-bar-grow h-full w-[40%] rounded-full"
                       style={{ background: "linear-gradient(90deg, #10b981 0%, #c8922a 70%, #e8b84b 100%)" }}
-                      initial={{ width: "0%" }}
-                      whileInView={{ width: "40%" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
                     />
                   </div>
                   <p className="text-[10px] text-[var(--if-gold-pale)]/30 mt-1.5 text-right">
@@ -443,13 +450,7 @@ function Homepage() {
           {/* Premium manifesto rows */}
           <div className="space-y-2">
             {manifesto.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -28 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.065, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <BlurFade key={i} delay={i * 0.065}>
                 <div className={`group relative overflow-hidden flex items-center gap-3 md:gap-4 p-4 rounded-xl border transition-all duration-300 hover:shadow-md hover:-translate-y-px ${
                   item.status === "completed"
                     ? "bg-gradient-to-r from-emerald-50 to-white border-emerald-200/70 hover:border-emerald-300 hover:shadow-emerald-100"
@@ -464,11 +465,7 @@ function Homepage() {
                     : "bg-gray-200"
                   }`} />
                   {item.status === "in_progress" && (
-                    <motion.div
-                      className="absolute left-0 top-0 bottom-0 w-[3px] bg-amber-300 rounded-l-xl"
-                      animate={{ opacity: [0.3, 1, 0.3] }}
-                      transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                    />
+                    <div className="if-pulse-strip absolute left-0 top-0 bottom-0 w-[3px] bg-amber-300 rounded-l-xl" />
                   )}
 
                   {/* Row number */}
@@ -486,18 +483,12 @@ function Homepage() {
                     {item.status === "completed" ? t("completed") : item.status === "in_progress" ? t("in_progress") : t("upcoming")}
                   </span>
                 </div>
-              </motion.div>
+              </BlurFade>
             ))}
           </div>
 
           {/* Premium download */}
-          <motion.div
-            className="text-center mt-10"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
-          >
+          <BlurFade delay={0.35} className="text-center mt-10">
             <a
               href="/Islamic_Front_Manifesto.pdf"
               download
@@ -509,7 +500,7 @@ function Homepage() {
               <span>{t("download_manifesto")}</span>
               <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
-          </motion.div>
+          </BlurFade>
         </div>
       </section>
 

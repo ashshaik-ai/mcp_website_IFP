@@ -1,7 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+/* gsap was pulled in solely to tween two CSS custom properties with an ease
+   — roughly 70 KB and a chunk of parse time for a decorative hover spotlight.
+   This does the same job with requestAnimationFrame. */
+function tweenProperty(
+    el: HTMLElement,
+    prop: string,
+    from: { current: number },
+    to: number,
+    duration = 450,
+) {
+    const start = performance.now();
+    const origin = from.current;
+    const delta = to - origin;
+    // power3.out — the ease gsap was using.
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    let frame = 0;
+    const step = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        from.current = origin + delta * ease(t);
+        el.style.setProperty(prop, `${from.current}px`);
+        if (t < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+}
 import { cn } from "@/lib/utils";
 
 export interface NavItem {
@@ -58,14 +83,7 @@ export function SpotlightNavbar({
                 const itemRect = activeItem.getBoundingClientRect();
                 const targetX = itemRect.left - navRect.left + itemRect.width / 2;
 
-                gsap.to(spotlightX, {
-                    current: targetX,
-                    duration: 0.5,
-                    ease: "power3.out",
-                    onUpdate: () => {
-                        nav.style.setProperty("--spotlight-x", `${spotlightX.current}px`);
-                    },
-                });
+                tweenProperty(nav, "--spotlight-x", spotlightX, targetX, 500);
             }
         };
 
@@ -89,14 +107,7 @@ export function SpotlightNavbar({
             const itemRect = activeItem.getBoundingClientRect();
             const targetX = itemRect.left - navRect.left + itemRect.width / 2;
 
-            gsap.to(ambienceX, {
-                current: targetX,
-                duration: 0.45,
-                ease: "power3.out",
-                onUpdate: () => {
-                    nav.style.setProperty("--ambience-x", `${ambienceX.current}px`);
-                },
-            });
+            return tweenProperty(nav, "--ambience-x", ambienceX, targetX, 450);
         }
     }, [activeIndex]);
 

@@ -44,8 +44,11 @@ export function PrayerTimesCard() {
 
   if (!now) {
     return (
+      /* aria-label is prohibited on a generic div; role="status" gives it a role
+         that accepts a name, and announces the times when they land. */
       <div
         className="rounded-2xl border border-[var(--if-gold)]/20 bg-white p-6 min-h-[22rem]"
+        role="status"
         aria-busy="true"
         aria-label={copy.loading_prayer_times[lang]}
       />

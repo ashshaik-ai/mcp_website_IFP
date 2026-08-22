@@ -21,7 +21,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     <div className="flex flex-col min-h-screen">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-3 focus:left-3 focus:inline-flex focus:items-center focus:min-h-11 focus:px-4 focus:rounded-full focus:bg-[var(--if-gold)] focus:text-[var(--if-green)] focus:font-bold focus:no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--if-green)]"
+        className="if-skip-link"
       >
         {copy.skip_to_content[lang]}
       </a>

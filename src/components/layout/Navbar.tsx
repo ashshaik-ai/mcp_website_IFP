@@ -23,7 +23,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[var(--if-gold)]/20 bg-[var(--if-green)] text-[var(--if-gold-pale)]">
       <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between gap-4">
         {/* Brand */}
-        <Link href="/" className="flex flex-col leading-tight">
+        <Link href="/" className="flex flex-col justify-center min-h-11 leading-tight">
           <span className="font-display text-[var(--if-gold-light)] font-bold text-lg tracking-tight">
             Islamic Front
           </span>

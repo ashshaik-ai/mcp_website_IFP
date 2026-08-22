@@ -185,7 +185,7 @@ export function AlphabetGrid({
             return (
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <span
-                  className={`inline-flex items-center min-h-6 px-2.5 rounded-full text-[11px] font-bold uppercase tracking-wide border ${
+                  className={`inline-flex items-center min-h-9 px-2.5 rounded-full text-[11px] font-bold uppercase tracking-wide border ${
                     x.sunLetter
                       ? "bg-amber-50 text-amber-800 border-amber-200"
                       : "bg-slate-50 text-slate-700 border-slate-200"
