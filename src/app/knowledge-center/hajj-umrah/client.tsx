@@ -27,13 +27,14 @@ const copy = {
   here_i_am_o_allah: { te: "\"నేను హాజరు, ఓ అల్లాహ్, నేను హాజరు!\" — తల్బియహ్", en: "\"Here I am, O Allah, here I am!\" — The Talbiyah" },
 } as const;
 
+/* The day chips shipped as plain English strings on a Telugu-default site. */
 const hajjSteps = [
-  { n: 1, day: "8 Dhu al-Hijjah", title: { te: "ఇహ్రామ్ & మిన", en: "Ihram & Mina" }, ar: "الإحرام - منى", desc: { te: "ఇహ్రామ్ (2 తెల్లని వస్త్రాలు) ధరించండి. తల్బియా చదవండి. మినాకు ప్రయాణించండి.", en: "Wear Ihram (2 white sheets), recite Talbiyah, travel to Mina and spend the day" } },
-  { n: 2, day: "9 Dhu al-Hijjah", title: { te: "అరఫా — కేంద్రస్థలం", en: "Arafah — The Core" }, ar: "الوقوف بعرفة", desc: { te: "అరఫాత్ మైదానంలో తెల్లవారు నుండి సూర్యాస్తమయం వరకు నిలబడండి. దువా, జికర్. ఇది హజ్ యొక్క గుండె.", en: "Stand at the plain of Arafat from noon to sunset. Du'a, dhikr, repentance. This is the heart of Hajj." } },
-  { n: 3, day: "9 Night", title: { te: "ముజ్దలిఫా — రాత్రి", en: "Muzdalifah — Night" }, ar: "المبيت بمزدلفة", desc: { te: "ముజ్దలిఫాకు ప్రయాణించండి. మఘ్రిబ్ + ఇషా కలిపి చదవండి. తెల్లవారే వరకు నిద్రించండి. రాళ్ళు సేకరించండి.", en: "Travel to Muzdalifah, combine Maghrib + Isha prayers, sleep, collect 70 pebbles for stoning" } },
-  { n: 4, day: "10 Dhu al-Hijjah", title: { te: "రమీ, అజ్హియా, హలఖ్", en: "Rami, Sacrifice, Shave" }, ar: "رمي الجمرات - الأضحية - الحلق", desc: { te: "జమారత్ అల్-అఖబాను 7 రాళ్ళతో కొట్టండి. జంతు అర్పణ. తల శిరస్థానం/కత్తరించండి. ఇహ్రామ్ విప్పండి.", en: "Stone the largest Jamarat 7 times. Sacrifice an animal. Shave/cut hair. Remove Ihram." } },
-  { n: 5, day: "10-12", title: { te: "తవాఫ్ అల్-ఇఫాదా & మినా", en: "Tawaf al-Ifadah & Mina" }, ar: "طواف الإفاضة - أيام التشريق", desc: { te: "కాబాను 7 సార్లు ప్రదక్షిణం చేయండి. సఫా-మర్వా స్వయి. మినాలో 3 రోజులు. జమారాత్ రమీ చేయండి.", en: "Circumambulate the Kaaba 7 times (Tawaf), Sa'i between Safa and Marwa, stone all 3 Jamaraat daily" } },
-  { n: 6, day: "Final", title: { te: "తవాఫ్ అల్-విదా", en: "Farewell Tawaf" }, ar: "طواف الوداع", desc: { te: "వెళ్ళే ముందు కాబాను 7 సార్లు వీడ్కోలు ప్రదక్షిణం చేయండి. హజ్ పూర్తయింది!", en: "Perform the farewell circumambulation of the Kaaba 7 times before leaving. Hajj complete!" } },
+  { n: 1, day: { te: "జుల్‌హిజ్జా 8", en: "8 Dhu al-Hijjah" }, title: { te: "ఇహ్రామ్ & మిన", en: "Ihram & Mina" }, ar: "الإحرام - منى", desc: { te: "ఇహ్రామ్ (2 తెల్లని వస్త్రాలు) ధరించండి. తల్బియా చదవండి. మినాకు ప్రయాణించండి.", en: "Wear Ihram (2 white sheets), recite Talbiyah, travel to Mina and spend the day" } },
+  { n: 2, day: { te: "జుల్‌హిజ్జా 9", en: "9 Dhu al-Hijjah" }, title: { te: "అరఫా — కేంద్రస్థలం", en: "Arafah — The Core" }, ar: "الوقوف بعرفة", desc: { te: "అరఫాత్ మైదానంలో తెల్లవారు నుండి సూర్యాస్తమయం వరకు నిలబడండి. దువా, జికర్. ఇది హజ్ యొక్క గుండె.", en: "Stand at the plain of Arafat from noon to sunset. Du'a, dhikr, repentance. This is the heart of Hajj." } },
+  { n: 3, day: { te: "9వ రాత్రి", en: "9 Night" }, title: { te: "ముజ్దలిఫా — రాత్రి", en: "Muzdalifah — Night" }, ar: "المبيت بمزدلفة", desc: { te: "ముజ్దలిఫాకు ప్రయాణించండి. మఘ్రిబ్ + ఇషా కలిపి చదవండి. తెల్లవారే వరకు నిద్రించండి. రాళ్ళు సేకరించండి.", en: "Travel to Muzdalifah, combine Maghrib + Isha prayers, sleep, collect 70 pebbles for stoning" } },
+  { n: 4, day: { te: "జుల్‌హిజ్జా 10", en: "10 Dhu al-Hijjah" }, title: { te: "రమీ, అజ్హియా, హలఖ్", en: "Rami, Sacrifice, Shave" }, ar: "رمي الجمرات - الأضحية - الحلق", desc: { te: "జమారత్ అల్-అఖబాను 7 రాళ్ళతో కొట్టండి. జంతు అర్పణ. తల శిరస్థానం/కత్తరించండి. ఇహ్రామ్ విప్పండి.", en: "Stone the largest Jamarat 7 times. Sacrifice an animal. Shave/cut hair. Remove Ihram." } },
+  { n: 5, day: { te: "జుల్‌హిజ్జా 10-12", en: "10-12 Dhu al-Hijjah" }, title: { te: "తవాఫ్ అల్-ఇఫాదా & మినా", en: "Tawaf al-Ifadah & Mina" }, ar: "طواف الإفاضة - أيام التشريق", desc: { te: "కాబాను 7 సార్లు ప్రదక్షిణం చేయండి. సఫా-మర్వా స్వయి. మినాలో 3 రోజులు. జమారాత్ రమీ చేయండి.", en: "Circumambulate the Kaaba 7 times (Tawaf), Sa'i between Safa and Marwa, stone all 3 Jamaraat daily" } },
+  { n: 6, day: { te: "చివరి రోజు", en: "Final day" }, title: { te: "తవాఫ్ అల్-విదా", en: "Farewell Tawaf" }, ar: "طواف الوداع", desc: { te: "వెళ్ళే ముందు కాబాను 7 సార్లు వీడ్కోలు ప్రదక్షిణం చేయండి. హజ్ పూర్తయింది!", en: "Perform the farewell circumambulation of the Kaaba 7 times before leaving. Hajj complete!" } },
 ];
 
 const umrahSteps = [
@@ -109,7 +110,7 @@ function HajjUmrahPage() {
               <div className="flex items-center gap-3 mb-1">
                 <span className="w-8 h-8 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold text-sm flex-shrink-0">{steps[step].n}</span>
                 <h3 className="font-display text-xl font-bold text-[var(--if-green)]">{steps[step].title[lang]}</h3>
-                {"day" in steps[step] && <span className="ml-auto text-[10px] font-bold text-[var(--if-gold-ink)] uppercase tracking-wide">{(steps[step] as typeof hajjSteps[0]).day}</span>}
+                {"day" in steps[step] && <span className="ml-auto text-[10px] font-bold text-[var(--if-gold-ink)] uppercase tracking-wide">{(steps[step] as typeof hajjSteps[0]).day[lang]}</span>}
               </div>
               <div className="font-arabic text-lg text-[var(--if-gold-light)] mb-3" dir="rtl">{steps[step].ar}</div>
               <p className="text-[var(--if-text-muted)] leading-relaxed">{steps[step].desc[lang]}</p>

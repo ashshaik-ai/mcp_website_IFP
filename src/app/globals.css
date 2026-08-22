@@ -9,10 +9,13 @@
   --if-green:       #0d3b1e;
   --if-green-mid:   #1a5c30;
   --if-gold:        #c8922a;
-  /* Gold text on a light ground. #c8922a measures 2.56:1 on cream, failing
-     even the 3:1 large-text bar, so it is only safe on the dark green or as
+  /* Gold text on a LIGHT ground only. #c8922a measures 2.56:1 on cream,
+     failing even the 3:1 large-text bar, so it is only safe on the dark green
+     or as
+     NOTE: on a dark ground use --if-gold-light. This token measures 2.53:1 on
+     the brand green, and was being used there in twenty-two places.
      a border/background. Same hue and saturation, darkened to clear 4.5:1. */
-  --if-gold-ink:    #8f691e;
+  --if-gold-ink:    #87621c;
   --if-gold-light:  #e8b84b;
   --if-gold-pale:   #f5e6c0;
   --if-cream:       #faf6ee;

@@ -149,7 +149,7 @@ function LearnUrduPage() {
             <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-8">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="text-5xl text-[var(--if-gold-light)] mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{w.glyph}</div>
-              <div className="text-[var(--if-gold-ink)] font-semibold">{w.translit}</div>
+              <div className="text-[var(--if-gold-light)] font-semibold">{w.translit}</div>
               <div className="text-[var(--if-gold-pale)]/70 text-sm mt-1">{w.meaning[lang]}</div>
               <button onClick={() => speak(w.glyph)} className="flex items-center gap-2 mx-auto mt-4 px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
                 <Volume2 className="h-4 w-4" />{copy.listen[lang]}

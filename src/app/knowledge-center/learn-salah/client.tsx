@@ -375,8 +375,8 @@ function LearnSalahPage() {
               <p className="text-[var(--if-text-muted)] leading-relaxed mb-4">{wuduSteps[wuduStep].desc[lang]}</p>
               {wuduSteps[wuduStep].dua.ar && (
                 <div className="mt-3 p-4 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20">
-                  <div className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider mb-2">{copy.dua[lang]}</div>
-                  <div className="font-arabic text-xl text-[var(--if-gold-ink)] leading-relaxed text-right mb-2" dir="rtl">{wuduSteps[wuduStep].dua.ar}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold-light)] uppercase tracking-wider mb-2">{copy.dua[lang]}</div>
+                  <div className="font-arabic text-xl text-[var(--if-gold-light)] leading-relaxed text-right mb-2" dir="rtl">{wuduSteps[wuduStep].dua.ar}</div>
                   <div className="text-xs text-[var(--if-text-muted)] italic mb-1">{wuduSteps[wuduStep].dua.tr}</div>
                   <div className="text-sm text-[var(--if-text-muted)]">{wuduSteps[wuduStep].dua[lang]}</div>
                 </div>
@@ -484,14 +484,14 @@ function LearnSalahPage() {
               <div className="flex gap-3 bg-white/5 border border-[var(--if-gold)]/15 rounded-xl p-4 mb-5">
                 <span className="text-lg shrink-0">🤲</span>
                 <div>
-                  <div className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider mb-1">{copy.action[lang]}</div>
+                  <div className="text-xs font-semibold text-[var(--if-gold-light)] uppercase tracking-wider mb-1">{copy.action[lang]}</div>
                   <p className="text-sm text-[var(--if-gold-pale)]/90">{simSteps[simStep].pos[lang]}</p>
                 </div>
               </div>
 
               {/* What to say */}
               <div className="mb-4">
-                <div className="text-xs font-semibold text-[var(--if-gold-ink)] uppercase tracking-wider mb-3">{copy.recitation[lang]}</div>
+                <div className="text-xs font-semibold text-[var(--if-gold-light)] uppercase tracking-wider mb-3">{copy.recitation[lang]}</div>
                 <div className="font-arabic text-2xl text-[var(--if-gold-light)] leading-loose text-right mb-2" dir="rtl">{simSteps[simStep].ar}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/80 italic mb-1">{simSteps[simStep].tr}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/80">{simSteps[simStep].mean[lang]}</div>

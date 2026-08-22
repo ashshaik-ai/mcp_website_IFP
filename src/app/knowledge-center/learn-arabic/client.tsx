@@ -240,7 +240,7 @@ function LearnArabicPage() {
                     </div>
                     <button
                       onClick={() => speak(selected.ar)}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] text-xs font-semibold hover:bg-[var(--if-gold)]/20 transition-colors border border-[var(--if-gold)]/30"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-light)] text-xs font-semibold hover:bg-[var(--if-gold)]/20 transition-colors border border-[var(--if-gold)]/30"
                     >
                       <Volume2 className="h-3.5 w-3.5" />
                       {copy.listen[lang]}
@@ -337,7 +337,7 @@ function LearnArabicPage() {
                     </div>
                     {openLevel === level.num
                       ? <ChevronDown className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0" />
-                      : <ChevronRight className="h-4 w-4 text-[var(--if-gold-light)] flex-shrink-0" />
+                      : <ChevronRight className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0" />
                     }
                   </button>
                   {openLevel === level.num && (
@@ -444,7 +444,7 @@ function LearnArabicPage() {
                 <div className="text-[var(--if-gold-pale)]">
                   <div className="font-arabic text-5xl text-[var(--if-gold-light)] mb-3" dir="rtl">{alphabet[fcIdx].ar}</div>
                   <div className="text-2xl font-bold mb-1">{alphabet[fcIdx].name}</div>
-                  <div className="text-lg text-[var(--if-gold-ink)] mb-0.5">/{alphabet[fcIdx].en}/</div>
+                  <div className="text-lg text-[var(--if-gold-light)] mb-0.5">/{alphabet[fcIdx].en}/</div>
                   <div className="text-sm text-[var(--if-gold-pale)]/70 mb-3">{alphabet[fcIdx].te}</div>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${alphabet[fcIdx].sun ? "bg-amber-400/30 text-amber-200" : "bg-emerald-400/20 text-emerald-200"}`}>
                     {alphabet[fcIdx].sun ? (copy.sun_letter[lang]) : (copy.moon_letter[lang])}

@@ -192,12 +192,12 @@ function SeerahPage() {
                 </div>
               </div>
               <div className="flex gap-3 justify-end">
-                <button onClick={() => setActive(a => Math.max(0, a - 1))} disabled={active === 0} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-[var(--if-cream-light)] transition-colors disabled:opacity-30">
-                  <ChevronLeft className="h-4 w-4 text-[var(--if-green)]" />
+                <button onClick={() => setActive(a => Math.max(0, a - 1))} disabled={active === 0} aria-label={t("మునుపటి దశ", "Previous stage")} className="inline-flex items-center justify-center min-h-11 min-w-11 rounded-full border border-[var(--if-gold)]/30 hover:bg-[var(--if-cream-light)] transition-colors disabled:opacity-30">
+                  <ChevronLeft aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
                 </button>
                 <span className="self-center text-xs text-[var(--if-text-muted)]">{active + 1} / {stages.length}</span>
-                <button onClick={() => setActive(a => Math.min(stages.length - 1, a + 1))} disabled={active === stages.length - 1} className="p-2 rounded-full border border-[var(--if-gold)]/30 hover:bg-[var(--if-cream-light)] transition-colors disabled:opacity-30">
-                  <ChevronRight className="h-4 w-4 text-[var(--if-green)]" />
+                <button onClick={() => setActive(a => Math.min(stages.length - 1, a + 1))} disabled={active === stages.length - 1} aria-label={t("తదుపరి దశ", "Next stage")} className="inline-flex items-center justify-center min-h-11 min-w-11 rounded-full border border-[var(--if-gold)]/30 hover:bg-[var(--if-cream-light)] transition-colors disabled:opacity-30">
+                  <ChevronRight aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
                 </button>
               </div>
             </div>
@@ -317,7 +317,7 @@ function SeerahPage() {
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
-              <div className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-widest mb-2">{t("ప్రవక్త ﷺ పై", "Upon the Prophet ﷺ")}</div>
+              <div className="text-xs font-bold text-[var(--if-gold-light)] uppercase tracking-widest mb-2">{t("ప్రవక్త ﷺ పై", "Upon the Prophet ﷺ")}</div>
               <h2 className="font-display text-3xl font-bold text-[var(--if-gold-light)] mb-3">
                 {t("సలవాత్ పంపడం", "Sending Salawat")}
               </h2>
@@ -330,7 +330,7 @@ function SeerahPage() {
             {salawat.map((s, i) => (
               <BlurFade key={s.label.en} delay={0.08 * i}>
                 <div className="bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-5 flex flex-col hover:-translate-y-1 transition-all">
-                  <span className="inline-block text-xs font-bold text-[var(--if-gold-ink)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4 self-start">{s.label[lang]}</span>
+                  <span className="inline-block text-xs font-bold text-[var(--if-gold-light)] bg-[var(--if-gold)]/10 border border-[var(--if-gold)]/20 rounded-full px-3 py-1 mb-4 self-start">{s.label[lang]}</span>
                   <div className="font-arabic text-xl text-[var(--if-gold-light)] leading-loose mb-3 text-right" dir="rtl" lang="ar">{s.ar}</div>
                   <div className="text-xs font-semibold text-[var(--if-gold-light)] italic mb-3 leading-relaxed">{s.tr[lang]}</div>
                   <p className="text-sm text-[var(--if-gold-pale)]/80 leading-relaxed flex-1">{s.meaning[lang]}</p>

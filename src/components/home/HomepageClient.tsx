@@ -431,7 +431,7 @@ function Homepage() {
                 <div>
                   <div className="flex justify-between text-xs text-[var(--if-gold-pale)]/80 mb-2">
                     <span>{copy.overall_completion[lang]}</span>
-                    <span className="text-[var(--if-gold-ink)] font-semibold">40%</span>
+                    <span className="text-[var(--if-gold-light)] font-semibold">40%</span>
                   </div>
                   <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
                     <div
@@ -533,7 +533,7 @@ function Homepage() {
                     copy.no_bureaucratic_delay[lang],
                   ].map((c) => (
                     <li key={c} className="flex items-start gap-3 text-sm text-[var(--if-gold-pale)]/80">
-                      <CheckCircle2 className="h-4 w-4 text-[var(--if-gold-ink)] flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--if-gold-light)] flex-shrink-0 mt-0.5" />
                       {c}
                     </li>
                   ))}
@@ -802,7 +802,7 @@ function Homepage() {
             ].map(({ icon: Icon, label, value, href }) => {
               const inner = (
                 <>
-                  <Icon aria-hidden="true" className="h-7 w-7 text-[var(--if-gold-ink)] mb-3" />
+                  <Icon aria-hidden="true" className="h-7 w-7 text-[var(--if-gold-light)] mb-3" />
                   <span className="text-xs text-[var(--if-gold-pale)]/80 uppercase tracking-widest mb-1">{label}</span>
                   <span className="text-sm text-[var(--if-gold-pale)]/90">{value}</span>
                 </>

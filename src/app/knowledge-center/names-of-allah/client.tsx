@@ -192,7 +192,10 @@ function NamesOfAllahPage() {
                   <div className={`text-[10px] font-bold mb-1 ${selected?.n === name.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{name.n}</div>
                   <div className={`font-arabic text-xl leading-relaxed ${selected?.n === name.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-green)]"}`} dir="rtl">{name.ar}</div>
                   <div className={`text-xs font-semibold mt-1 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]" : "text-[var(--if-green)]"}`}>{name.name}</div>
-                  <div className={`text-[10px] mt-0.5 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{name.en}</div>
+                  {/* Every name carries a Telugu meaning, but the grid rendered
+                      the English one unconditionally, so a Telugu reader got
+                      ninety-nine English cards. */}
+                  <div className={`text-[10px] mt-0.5 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? name.te : name.en}</div>
                 </button>
               </BlurFade>
             ))}
@@ -214,8 +217,11 @@ function NamesOfAllahPage() {
                 <div className="text-xs font-bold text-[var(--if-gold-light)] mb-2">#{selected.n}</div>
                 <div className="font-arabic text-5xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl">{selected.ar}</div>
                 <div className="font-display text-xl font-bold text-[var(--if-gold-light)] mb-1">{selected.name}</div>
-                <div className="text-sm text-[var(--if-gold-pale)]/70 mb-1">{selected.en}</div>
-                <div className="text-sm text-[var(--if-gold-pale)]/80 mb-5">{selected.te}</div>
+                {/* Reading language first, the other underneath: a learner
+                    benefits from seeing both, but not from being led with the
+                    one they did not ask for. */}
+                <div className="text-sm text-[var(--if-gold-pale)]/80 mb-1">{lang === "te" ? selected.te : selected.en}</div>
+                <div className="text-sm text-[var(--if-gold-pale)]/70 mb-5">{lang === "te" ? selected.en : selected.te}</div>
                 <button onClick={() => speak(selected.ar)} className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
                   <Volume2 className="h-4 w-4" />{copy.listen[lang]}
                 </button>

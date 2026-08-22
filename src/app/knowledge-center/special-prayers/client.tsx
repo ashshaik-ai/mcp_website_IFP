@@ -20,12 +20,13 @@ const copy = {
   next: { te: "తదుపరి", en: "Next" },
 } as const;
 
+/* rakaat and the du'a translations shipped English-only. */
 const prayers = [
   {
     id: "tahajjud",
     name: { te: "తహజ్జుద్", en: "Tahajjud" }, ar: "تهجد",
     time: { te: "అర్ధరాత్రి తర్వాత — ఫజ్ర్ ముందు", en: "After midnight — before Fajr" },
-    rakaat: "2–8+ Raka'ah (voluntary)",
+    rakaat: { te: "2–8+ రక్అత్ (నఫిల్)", en: "2–8+ Raka'ah (voluntary)" },
     importance: { te: "అల్లాహ్ ప్రతి రాత్రి దిగివచ్చే ముఖ్యమైన ప్రార్థన — దువాలు అంగీకరించే అవకాశం", en: "Allah descends to the lowest heaven every night — best time for du'a to be accepted" },
     steps: [
       { te: "రాత్రి మేల్కొని అబ్లూషన్ చేయండి", en: "Wake up at night and perform ablution" },
@@ -34,14 +35,14 @@ const prayers = [
       { te: "దువా-ఇ-ఖునూత్ చదవండి", en: "Recite Du'a al-Qunoot in witr" },
       { te: "విత్ర్‌తో ముగించండి", en: "End with Witr prayer" },
     ],
-    dua: { ar: "اللّهُمَّ لَكَ الحَمدُ أنتَ قَيِّمُ السَّمواتِ والأرض", en: "O Allah, for You is all praise. You are the Sustainer of heavens and earth" },
+    dua: { ar: "اللّهُمَّ لَكَ الحَمدُ أنتَ قَيِّمُ السَّمواتِ والأرض", te: "ఓ అల్లాహ్, సకల స్తుతి నీకే. ఆకాశాలకు, భూమికి ఆధారం నీవే", en: "O Allah, for You is all praise. You are the Sustainer of the heavens and the earth" },
     color: "bg-indigo-900",
   },
   {
     id: "juma",
     name: { te: "జుమా", en: "Jumu'ah (Friday)" }, ar: "الجمعة",
     time: { te: "శుక్రవారం జుహ్ర్ సమయం", en: "Friday at Zuhr time" },
-    rakaat: "2 Fard (replaces Zuhr) + Sunnah",
+    rakaat: { te: "2 ఫర్జ్ (జుహ్ర్ స్థానంలో) + సున్నత్", en: "2 Fard (replaces Zuhr) + Sunnah" },
     importance: { te: "ముస్లింల అత్యంత ముఖ్యమైన వారం సమావేశం. వెళ్ళడం ఫర్జ్ (పురుషులకు).", en: "Most important weekly gathering for Muslims. Attending is Fard (obligatory for men)." },
     steps: [
       { te: "శుక్రవారం ఉదయం స్నానం, పరిశుభ్రత", en: "Bathe on Friday morning, apply perfume" },
@@ -50,14 +51,14 @@ const prayers = [
       { te: "ఖతీబ్ ఖుత్బాను వినండి", en: "Listen attentively to the Khutbah" },
       { te: "జుమా 2 రక్అత్ చేయండి", en: "Perform 2 raka'at of Jumu'ah" },
     ],
-    dua: { ar: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ", en: "O Allah, send blessings upon Muhammad and his family" },
+    dua: { ar: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ", te: "ఓ అల్లాహ్, ముహమ్మద్‌పై మరియు వారి కుటుంబంపై దయ చూపు", en: "O Allah, send blessings upon Muhammad and upon the family of Muhammad" },
     color: "bg-[#3d2800]",
   },
   {
     id: "eid",
     name: { te: "ఈద్ నమాజ్", en: "Eid Prayer" }, ar: "صلاة العيد",
     time: { te: "ఈద్ అల్-ఫిత్ర్ & ఈద్ అల్-అద్హా ఉదయం", en: "Eid al-Fitr & Eid al-Adha morning" },
-    rakaat: "2 Raka'ah (with 7+5 extra Takbeerats)",
+    rakaat: { te: "2 రక్అత్ (అదనపు 7+5 తక్బీర్‌లతో)", en: "2 Raka'ah (with 7+5 extra Takbeerat)" },
     importance: { te: "ఇస్లామిక్ సమాజం యొక్క అతిపెద్ద ఉత్సవ నమాజ్ — ఐక్యత & కృతజ్ఞత", en: "Greatest communal prayer in Islam — unity and gratitude" },
     steps: [
       { te: "ఫిత్ర్ కోసం: ఆహారం తిన్నాక వెళ్ళండి. అద్హా కోసం: ఖాళీ కడుపుతో వెళ్ళండి", en: "Eid al-Fitr: eat before; Eid al-Adha: go before eating" },
@@ -66,14 +67,14 @@ const prayers = [
       { te: "మొదటి రక్అత్‌లో 7 తక్బీర్‌లు, రెండవలో 5 తక్బీర్‌లు", en: "7 extra Takbeers in 1st Raka'ah, 5 in 2nd" },
       { te: "2 ఖుత్బాలు వినండి. కుటుంబం & పొరుగువారిని కలవండి", en: "Listen to two Khutbahs. Meet family and neighbours" },
     ],
-    dua: { ar: "تَقَبَّلَ اللهُ مِنَّا وَمِنْكُمْ", en: "May Allah accept from us and from you" },
+    dua: { ar: "تَقَبَّلَ اللهُ مِنَّا وَمِنْكُمْ", te: "అల్లాహ్ మా నుండి, మీ నుండి స్వీకరించు గాక", en: "May Allah accept from us and from you" },
     color: "bg-stone-800",
   },
   {
     id: "tarawih",
     name: { te: "తరావీహ్", en: "Tarawih" }, ar: "التراويح",
     time: { te: "రమజాన్ ఇషా తర్వాత ప్రతి రాత్రి", en: "Every night of Ramadan after Isha" },
-    rakaat: "8 or 20 Raka'ah + Witr",
+    rakaat: { te: "8 లేదా 20 రక్అత్ + విత్ర్", en: "8 or 20 Raka'ah + Witr" },
     importance: { te: "రమజాన్ నెల మొత్తం ప్రత్యేక ఇషా తర్వాత నమాజ్. సందేశం: ఖురాన్ పూర్తిగా పఠనం.", en: "Special night prayer throughout Ramadan. Tradition: complete Quran recitation" },
     steps: [
       { te: "ఇషా నమాజ్ తర్వాత మసీద్‌లో ఉండండి", en: "Stay at the Masjid after Isha" },
@@ -81,14 +82,14 @@ const prayers = [
       { te: "ప్రతి 4 రక్అత్‌ల తర్వాత తక్బీర్ & విశ్రాంతి", en: "Rest and dhikr after every 4 raka'at" },
       { te: "విత్ర్ + దువా ఖునూత్‌తో ముగించండి", en: "End with Witr and Du'a Qunoot" },
     ],
-    dua: { ar: "سُبْحَانَ الْمَلِكِ الْقُدُّوس", en: "Glory be to the King, the Holy" },
+    dua: { ar: "سُبْحَانَ الْمَلِكِ الْقُدُّوس", te: "పరిశుద్ధుడైన రాజుకు స్తుతి", en: "Glory be to the King, the Most Holy" },
     color: "bg-teal-800",
   },
   {
     id: "istikhara",
     name: { te: "ఇస్తిఖారా", en: "Istikhara" }, ar: "صلاة الاستخارة",
     time: { te: "ఏ సమయంలోనైనా (నిషేధ సమయాలు తప్ప)", en: "Any time (except forbidden times)" },
-    rakaat: "2 Raka'ah",
+    rakaat: { te: "2 రక్అత్", en: "2 Raka'ah" },
     importance: { te: "ముఖ్యమైన నిర్ణయాల కోసం అల్లాహ్ మార్గదర్శనం కోరడం — వివాహం, వ్యాపారం, ప్రయాణం", en: "Seeking Allah's guidance for important decisions — marriage, business, travel" },
     steps: [
       { te: "2 రక్అత్ నఫిల్ నమాజ్ చేయండి", en: "Perform 2 voluntary raka'at" },
@@ -96,7 +97,7 @@ const prayers = [
       { te: "అల్లాహ్‌పై విశ్వాసం ఉంచి నిద్రించండి", en: "Sleep with trust in Allah's decision" },
       { te: "హృదయ సాక్ష్యం అనుసరించండి — సంకేతం కోసం వేచి ఉండకండి", en: "Follow what your heart inclines to — don't wait for a dream" },
     ],
-    dua: { ar: "اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ", en: "O Allah, I seek Your guidance by Your knowledge" },
+    dua: { ar: "اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ", te: "ఓ అల్లాహ్, నీ జ్ఞానంతో నీ నుండి మేలును కోరుతున్నాను", en: "O Allah, I seek Your guidance through Your knowledge" },
     color: "bg-slate-800",
   },
 ];
@@ -156,12 +157,12 @@ function SpecialPrayersPage() {
                   <div className="font-arabic text-xl text-[var(--if-gold-light)] mt-1" dir="rtl">{p.ar}</div>
                 </div>
                 <div className="ml-auto flex flex-col items-end gap-1">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/30">{p.rakaat}</span>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/30">{p.rakaat[lang]}</span>
                   <span className="text-xs text-[var(--if-text-muted)]">{p.time[lang]}</span>
                 </div>
               </div>
               <p className="text-[var(--if-text-muted)] leading-relaxed mb-6">{p.importance[lang]}</p>
-              <h3 className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-wider mb-3">{copy.how_to_perform[lang]}</h3>
+              <h3 className="text-xs font-bold text-[var(--if-gold-light)] uppercase tracking-wider mb-3">{copy.how_to_perform[lang]}</h3>
               <ol className="space-y-2">
                 {p.steps.map((s, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm">
@@ -177,7 +178,7 @@ function SpecialPrayersPage() {
               <BorderBeam size={150} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="text-[10px] font-bold text-[var(--if-gold-light)] uppercase tracking-widest mb-3">{copy.key_du_a[lang]}</div>
               <div className="font-arabic text-xl text-[var(--if-gold-light)] leading-loose mb-2" dir="rtl">{p.dua.ar}</div>
-              <div className="text-sm text-[var(--if-gold-pale)]/70">{p.dua.en}</div>
+              <div className="text-sm text-[var(--if-gold-pale)]/70">{p.dua[lang]}</div>
             </div>
           </BlurFade>
 

@@ -17,13 +17,13 @@ export function Footer() {
           <h2 className="font-display text-[var(--if-gold-light)] text-xl font-bold">Islamic Front</h2>
           <p className="text-sm leading-relaxed">{t("footer_since")}</p>
           <div className="flex items-center gap-2 text-sm">
-            <Phone className="h-4 w-4 text-[var(--if-gold-ink)]" />
+            <Phone className="h-4 w-4 text-[var(--if-gold-light)]" />
             <a href="tel:+919032906677" className="inline-flex items-center min-h-9 hover:text-[var(--if-gold-light)] transition-colors">
               +91 90329 06677
             </a>
           </div>
           <div className="flex items-start gap-2 text-sm">
-            <MapPin className="h-4 w-4 text-[var(--if-gold-ink)] mt-0.5 flex-shrink-0" />
+            <MapPin className="h-4 w-4 text-[var(--if-gold-light)] mt-0.5 flex-shrink-0" />
             <span>{t("footer_addr")}</span>
           </div>
         </div>

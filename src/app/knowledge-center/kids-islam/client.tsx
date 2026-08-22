@@ -378,7 +378,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-3">
               {t("నా మొదటి వుదూ", "My First Wudu")}
             </h2>
@@ -436,7 +436,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-3">
               {t("నేటి ఇస్లామిక్ సవాల్", "Today's Islamic Challenge")}
             </h2>
@@ -461,7 +461,7 @@ function KidsIslamPage() {
               {["🌱", "⭐", "🏆", "👑"].map((badge, i) => (
                 <div key={i} className="flex flex-col items-center gap-1">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl bg-white/5 border border-white/15 opacity-40">{badge}</div>
-                  <span className="text-xs text-white/50">{["1", "3", "7", "30"][i]}d</span>
+                  <span className="text-xs text-white/75">{["1", "3", "7", "30"][i]}d</span>
                 </div>
               ))}
             </div>
@@ -540,7 +540,7 @@ function KidsIslamPage() {
       <section className="py-14 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
-            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
+            <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
             <h2 className="font-display text-3xl font-bold text-white text-center mb-10">
               {t("తల్లిదండ్రుల మూల", "Parent Corner")}
             </h2>
@@ -553,7 +553,7 @@ function KidsIslamPage() {
                   {[{ num: "0/6", label: t("పాఠాలు", "Lessons") }, { num: "0", label: t("XP పాయింట్లు", "XP Points") }, { num: "0", label: t("మిషన్‌లు", "Missions") }].map((stat, i) => (
                     <div key={i} className="flex-1 min-w-[80px] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/22 rounded-xl p-3 text-center">
                       <div className="font-display text-2xl font-bold text-[var(--if-gold-light)] leading-none">{stat.num}</div>
-                      <div className="text-xs text-white/55 uppercase tracking-wide mt-1.5">{stat.label}</div>
+                      <div className="text-xs text-white/75 uppercase tracking-wide mt-1.5">{stat.label}</div>
                     </div>
                   ))}
                 </div>
