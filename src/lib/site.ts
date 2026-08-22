@@ -145,6 +145,15 @@ export const routes: RouteMeta[] = [
     priority: 0.7,
   },
   {
+    path: "/knowledge-center/hadith",
+    title: { te: "హదీసు", en: "Hadith" },
+    description: {
+      te: "ప్రవక్త ﷺ మాటలు — ముఖ్యమైన హదీసులు మూలంతో, స్థాయితో; ఆరు గ్రంథాలు; ఉల్లేఖనలు ఎలా పరిశీలించబడ్డాయి.",
+      en: "The words of the Prophet ﷺ: essential hadith with source and grade, the six collections, and how narrations were checked.",
+    },
+    priority: 0.7,
+  },
+  {
     path: "/knowledge-center/hajj-umrah",
     title: { te: "హజ్ మరియు ఉమ్రహ్", en: "Hajj and Umrah" },
     description: {

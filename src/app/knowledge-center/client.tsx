@@ -10,7 +10,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { ChevronRight, Star, Clock, Users, BookOpen, Calculator, Calendar, Baby, Globe } from "lucide-react";
+import { ChevronRight, Star, Clock, Users, BookOpen, Calculator, Calendar, Baby, Globe, ScrollText } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -32,6 +32,15 @@ const copy = {
 } as const;
 
 const portals = [
+  {
+    id: "hadith",
+    title: { te: "హదీసు", en: "Hadith" },
+    arabic: "الحديث الشريف",
+    desc: { te: "ప్రవక్త ﷺ మాటలు — మూలంతో, స్థాయితో; ఆరు గ్రంథాలు; ఉల్లేఖనలు ఎలా పరిశీలించబడ్డాయి", en: "The words of the Prophet ﷺ with source and grade, the six collections, and how narrations were checked" },
+    meta: { te: "12 హదీసులు · 6 గ్రంథాలు · 4 పాఠాలు", en: "12 hadith · 6 collections · 4 lessons" },
+    icon: ScrollText,
+    color: "from-[#1f3b2c] to-[var(--if-green)]",
+  },
   {
     id: "learn-arabic",
     title: { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" },
@@ -147,7 +156,7 @@ const tools = [
   { label: { te: "నమాజు సమయాలు", en: "Prayer Times" }, icon: Clock, href: "#prayer-times" },
 ];
 
-function KCPage() {
+function KCPage({ lessonCount }: { lessonCount: number }) {
   const { lang, t } = useI18n();
   const [filter, setFilter] = useState<"all" | "learning" | "tools">("all");
 
@@ -175,8 +184,11 @@ function KCPage() {
           </BlurFade>
           <BlurFade delay={0.2} className="flex gap-4 flex-wrap justify-center text-sm">
             {[
-              { n: "12", l: copy.portals[lang] },
-              { n: "40+", l: copy.lessons[lang] },
+              /* Derived, not typed in. These read 12 and 40+ while the site had
+                 13 portals and 71 lessons, because a hardcoded count is wrong
+                 the moment anything is added. */
+              { n: String(portals.length), l: copy.portals[lang] },
+              { n: String(lessonCount), l: copy.lessons[lang] },
               { n: "∞", l: copy.free_always[lang] },
             ].map(({ n, l }) => (
               <div key={l} className="flex flex-col items-center px-5 py-3 rounded-xl bg-white/5 border border-[var(--if-gold)]/20">
@@ -331,6 +343,6 @@ function KCPage() {
   );
 }
 
-export default function KnowledgeCenterPage() {
-  return <KCPage />;
+export default function KnowledgeCenterPage({ lessonCount }: { lessonCount: number }) {
+  return <KCPage lessonCount={lessonCount} />;
 }
