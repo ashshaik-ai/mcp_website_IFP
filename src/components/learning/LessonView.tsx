@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Bi, Lesson, QuizItem } from "@/content/lessons";
+import { LessonComplete } from "./LessonComplete";
 
 const copy = {
   back: { te: "పోర్టల్‌కు తిరిగి", en: "Back to portal" },
@@ -269,6 +270,8 @@ export function LessonView({
           </section>
         )}
       </div>
+
+      <LessonComplete portal={lesson.portal} slug={lesson.slug} />
 
       <nav
         aria-label={copy.lesson[lang]}

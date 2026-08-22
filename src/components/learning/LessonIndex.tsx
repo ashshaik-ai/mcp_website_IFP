@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, HelpCircle, ListChecks } from "lucide-react";
+import { ArrowRight, BookOpen, Check, HelpCircle, ListChecks } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { lessonsByPortal } from "@/content/lessons";
+import { useProgress } from "@/lib/progress";
 
 const copy = {
   heading: { te: "పూర్తి పాఠాలు", en: "Full lessons" },
@@ -16,10 +17,13 @@ const copy = {
   questions: { te: "ప్రశ్నలు", en: "questions" },
   faqs: { te: "ప్రశ్నోత్తరాలు", en: "FAQs" },
   start: { te: "పాఠం చదవండి", en: "Read lesson" },
+  progress: { te: "పూర్తయినవి", en: "completed" },
+  doneLabel: { te: "పూర్తయింది", en: "Completed" },
 } as const;
 
 export function LessonIndex({ portal }: { portal: string }) {
   const { lang } = useI18n();
+  const { ready, isDone, countFor } = useProgress();
   const items = lessonsByPortal(portal);
   if (!items.length) return null;
 
@@ -57,6 +61,12 @@ export function LessonIndex({ portal }: { portal: string }) {
           })}
         </dl>
 
+        {ready && countFor(portal) > 0 && (
+          <p className="mb-5 text-sm font-semibold text-[var(--if-green)] tabular-nums">
+            {countFor(portal)} / {items.length} {copy.progress[lang]}
+          </p>
+        )}
+
         <ol className="grid gap-3 sm:grid-cols-2">
           {items.map((l, i) => (
             <li key={l.slug}>
@@ -66,9 +76,13 @@ export function LessonIndex({ portal }: { portal: string }) {
               >
                 <span
                   aria-hidden="true"
-                  className="shrink-0 grid place-items-center w-9 h-9 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-mono text-sm font-bold"
+                  className={`shrink-0 grid place-items-center w-9 h-9 rounded-full font-mono text-sm font-bold ${
+                    ready && isDone(portal, l.slug)
+                      ? "bg-[var(--if-gold)] text-[var(--if-green)]"
+                      : "bg-[var(--if-green)] text-[var(--if-gold-light)]"
+                  }`}
                 >
-                  {i + 1}
+                  {ready && isDone(portal, l.slug) ? <Check className="h-4 w-4" /> : i + 1}
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-display font-bold text-[var(--if-green)] leading-tight text-pretty">
