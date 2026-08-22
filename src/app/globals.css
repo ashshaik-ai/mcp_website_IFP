@@ -456,3 +456,36 @@
   .if-panel { transition: none; }
   .if-panel:hover { transform: none; }
 }
+
+/* ── Hero emblem ──────────────────────────────────────────────────────────
+   The organisation's own seal, standing in for the tiled circles that used to
+   sit here. Drawn as a mask over a gold fill rather than as an <img>, so the
+   colour comes from the token and the asset is a 15 KB alpha silhouette
+   instead of a 170 KB PNG. The text sits over the emblem's solid middle; the
+   busy sunburst edge falls outside the measure, away from anything readable. */
+.if-emblem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(20rem, 58vw, 42rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: var(--if-gold-light);
+  opacity: 0.07;
+  pointer-events: none;
+  -webkit-mask-image: url("/assets/emblem-mask.webp");
+  mask-image: url("/assets/emblem-mask.webp");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Card-scale variant: sits behind the founder portrait rather than a whole
+   section, so it takes its size from the card and eases off a little. */
+.if-emblem-card {
+  width: clamp(14rem, 78%, 22rem);
+  opacity: 0.06;
+}

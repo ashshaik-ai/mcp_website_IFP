@@ -8,6 +8,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { events } from "@/content/events";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -156,15 +157,6 @@ const stories = [
   { name: "Arif Hussain", year: "2023", category: { te: "విద్యార్థి", en: "Student" }, desc: { te: "స్కాలర్‌షిప్ → ఇంజినీరింగ్ గ్రాడ్యుయేట్", en: "Scholarship → Engineering Graduate" } },
 ];
 
-/* date and time were bare strings, so half of each event line stayed English
-   on the Telugu default while the other half was already translated. */
-const events = [
-  { title: { te: "వైద్య శిబిరం", en: "Medical Camp" }, date: { te: "జనవరి 2025", en: "Jan 2025" }, time: { te: "ఉ. 9–మ. 1", en: "9am–1pm" }, venue: { te: "అంజుమన్ హాల్", en: "Anjuman Hall" } },
-  { title: { te: "మదరసా అడ్మిషన్లు 2026–27", en: "Madrasa Admissions 2026–27" }, date: { te: "జూలై 1", en: "July 1" }, time: { te: "దరఖాస్తు గడువు", en: "Apply by" }, venue: { te: "ఆన్‌లైన్ / అంజుమన్", en: "Online / Anjuman" } },
-  { title: { te: "కుట్టు శిక్షణ కొత్త బ్యాచ్", en: "Stitching Training New Batch" }, date: { te: "కొనసాగుతోంది", en: "Ongoing" }, time: { te: "18+ మహిళలకు", en: "For women 18+" }, venue: { te: "శిక్షణ కేంద్రం", en: "Training Centre" } },
-  { title: { te: "స్కాలర్‌షిప్ దరఖాస్తులు 2026–27", en: "Scholarship Applications 2026–27" }, date: { te: "ఇప్పుడు తెరిచి ఉంది", en: "Open Now" }, time: { te: "10 సీట్లు", en: "10 seats" }, venue: { te: "అంజుమన్ కార్యాలయం", en: "Anjuman Office" } },
-];
-
 /* These were English-only, so the whole promo grid stayed untranslated on the
    Telugu default. Hadith is listed here too -- the Knowledge Center carries
    seven portals and the homepage was still advertising six. */
@@ -224,8 +216,9 @@ function Homepage() {
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-24 md:py-32 px-4">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M4OTIyYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]" />
+        {/* The organisation's seal, watermarked. This was a tiled circle
+            pattern -- decoration that could have belonged to any site. */}
+        <div className="if-emblem" aria-hidden="true" />
         <Meteors number={14} minDuration={5} maxDuration={12} className="text-[var(--if-gold)]/45" />
 
         <div className="relative mx-auto max-w-5xl text-center flex flex-col items-center gap-6">
@@ -699,6 +692,10 @@ function Homepage() {
           <BlurFade delay={0.2}>
             <div className="relative overflow-hidden rounded-2xl bg-[var(--if-green)] p-8 text-center text-[var(--if-gold-pale)]">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
+              {/* The same seal, sized to the card. The founder's photograph was
+                  taken in front of it, and the crop that makes him a portrait
+                  cuts it out; this puts it back behind him. */}
+              <div className="if-emblem if-emblem-card" aria-hidden="true" />
               <div className="relative w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
                 <Image
                   src="/assets/founder/shaik-akram-portrait.jpg"
@@ -801,7 +798,14 @@ function Homepage() {
                     <Calendar className="h-5 w-5 text-[var(--if-gold-light)]" aria-hidden="true" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-[var(--if-green)] text-pretty">{ev.title[lang]}</h3>
+                    <h3 className="font-semibold text-[var(--if-green)] text-pretty flex items-center gap-2 flex-wrap">
+                      {ev.title[lang]}
+                      {ev.repeats && (
+                        <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--if-gold)]/12 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/25">
+                          {ev.repeats[lang]}
+                        </span>
+                      )}
+                    </h3>
                     <p className="text-sm text-[var(--if-text-muted)]">{ev.venue[lang]}</p>
                   </div>
                   <div className="flex-shrink-0 text-right">
