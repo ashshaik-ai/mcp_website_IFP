@@ -8,6 +8,7 @@ import { SpotlightNavbar, type NavItem } from "@/components/ui/spotlight-navbar"
 import { useI18n } from "@/lib/i18n/context";
 import { Menu } from "lucide-react";
 import { homeSections, sectionHref } from "@/lib/nav";
+import { SiteSearch } from "@/components/search/SiteSearch";
 
 export function Navbar() {
   const { t, toggle } = useI18n();
@@ -56,6 +57,8 @@ export function Navbar() {
           >
             {t("nav_sg")}
           </Link>
+          <SiteSearch />
+
           <button
             type="button"
             onClick={toggle}
