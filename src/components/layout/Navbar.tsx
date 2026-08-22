@@ -8,12 +8,21 @@ import { SpotlightNavbar, type NavItem } from "@/components/ui/spotlight-navbar"
 import { useI18n } from "@/lib/i18n/context";
 import { Menu } from "lucide-react";
 import { homeSections, sectionHref } from "@/lib/nav";
+import { useScrollSpy } from "@/lib/use-scroll-spy";
 import { SiteSearch } from "@/components/search/SiteSearch";
+
+/* Stable identity: the hook keys an effect on this array, so rebuilding it
+   every render would re-create the observer on every render. */
+const SECTION_IDS = homeSections.map((s) => s.fragment.slice(1));
 
 export function Navbar() {
   const { t, toggle, lang } = useI18n();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  /* Only the homepage has these sections in the document; anywhere else the
+     links point back at "/" and nothing should be marked current. */
+  const spied = useScrollSpy(SECTION_IDS);
+  const activeIndex = pathname === "/" ? spied : -1;
   const desktopNavItems: NavItem[] = homeSections.map(({ key, fragment }) => ({
     label: t(key),
     href: sectionHref(fragment, pathname),
@@ -37,6 +46,7 @@ export function Navbar() {
           <SpotlightNavbar
             className="pt-0"
             items={desktopNavItems}
+            activeIndex={activeIndex}
             onItemClick={(item) => {
               window.location.assign(item.href);
             }}

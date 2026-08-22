@@ -39,6 +39,9 @@ export interface SpotlightNavbarProps {
     className?: string;
     onItemClick?: (item: NavItem, index: number) => void;
     defaultActiveIndex?: number;
+    /** Controlled active item. When set, scroll position drives the underline
+     *  rather than the last click. -1 means no item is current. */
+    activeIndex?: number;
 }
 
 export function SpotlightNavbar({
@@ -52,9 +55,11 @@ export function SpotlightNavbar({
     className,
     onItemClick,
     defaultActiveIndex = 0,
+    activeIndex: controlledActiveIndex,
 }: SpotlightNavbarProps) {
     const navRef = useRef<HTMLDivElement>(null);
-    const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+    const [clickedIndex, setClickedIndex] = useState(defaultActiveIndex);
+    const activeIndex = controlledActiveIndex ?? clickedIndex;
     const [hoverX, setHoverX] = useState<number | null>(null);
 
     // Refs for the "light" positions so we can animate them imperatively
@@ -112,7 +117,7 @@ export function SpotlightNavbar({
     }, [activeIndex]);
 
     const handleItemClick = (item: NavItem, index: number) => {
-        setActiveIndex(index);
+        setClickedIndex(index);
         onItemClick?.(item, index);
     };
 
@@ -132,6 +137,7 @@ export function SpotlightNavbar({
                             <a
                                 href={item.href}
                                 data-index={idx}
+                                aria-current={activeIndex === idx ? "true" : undefined}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     handleItemClick(item, idx);

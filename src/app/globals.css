@@ -460,9 +460,13 @@
 /* ── Hero emblem ──────────────────────────────────────────────────────────
    The organisation's own seal, standing in for the tiled circles that used to
    sit here. Drawn as a mask over a gold fill rather than as an <img>, so the
-   colour comes from the token and the asset is a 15 KB alpha silhouette
-   instead of a 170 KB PNG. The text sits over the emblem's solid middle; the
-   busy sunburst edge falls outside the measure, away from anything readable. */
+   colour comes from the token.
+
+   The asset is a traced vector. A raster mask had to choose between looking
+   soft at hero size and costing real weight to stay sharp -- 32 KB read as
+   low quality once enlarged, and a 768px version was 44 KB. The emblem is
+   flat two-tone artwork, so it traces cleanly: 11.9 KB of path data, about
+   5 KB over the wire, and crisp at any size on any display. */
 .if-emblem {
   position: absolute;
   top: 50%;
@@ -473,8 +477,8 @@
   background: var(--if-gold-light);
   opacity: 0.07;
   pointer-events: none;
-  -webkit-mask-image: url("/assets/emblem-mask.webp");
-  mask-image: url("/assets/emblem-mask.webp");
+  -webkit-mask-image: url("/assets/emblem.svg");
+  mask-image: url("/assets/emblem.svg");
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -485,7 +489,37 @@
 
 /* Card-scale variant: sits behind the founder portrait rather than a whole
    section, so it takes its size from the card and eases off a little. */
+/* Sized against the portrait it wraps, not the card, so the sunburst reads as
+   a halo around him rather than drifting off between photo and caption. */
 .if-emblem-card {
-  width: clamp(14rem, 78%, 22rem);
-  opacity: 0.06;
+  width: 205%;
+  opacity: 0.09;
+}
+
+/* Continuous marquees are motion the reader never asked for and cannot stop,
+   so they hold still when the system asks for reduced motion. Nothing is lost:
+   the team rail still scrolls by hand. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-vertical {
+    animation: none;
+  }
+}
+
+/* The founder is not one of the members, so he does not ride the marquee.
+   A larger portrait says that without needing a caption to explain it. */
+.if-founder {
+  width: 11rem;
+  height: 11rem;
+}
+
+@media (min-width: 640px) {
+  .if-founder { width: 12.5rem; height: 12.5rem; }
+}
+
+/* Edge fade for continuously scrolling rows, so faces dissolve at the margins
+   rather than being sliced off against a hard edge. */
+.if-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
 }

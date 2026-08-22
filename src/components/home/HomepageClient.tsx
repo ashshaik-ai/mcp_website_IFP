@@ -41,7 +41,7 @@ const marqueeItems = [
 const copy = {
   our_mission: { te: "మా లక్ష్యం —", en: "Our mission —" },
   founder_team: { te: "వ్యవస్థాపకుడు & బృందం", en: "Founder & Team" },
-  team_hint: { te: "అందరినీ చూడటానికి పక్కకు జరపండి", en: "Swipe sideways to meet the whole team" },
+  team_hint: { te: "2023 ఎన్నికైన సభ్యులు", en: "Members elected in 2023" },
   action_plan_2023_2028: { te: "కార్యాచరణ ప్రణాళిక 2023–2028", en: "Action Plan 2023–2028" },
   n_10_point_plan_for_our: { te: "మా కమ్యూనిటీ కోసం 10-అంశాల ప్రణాళిక", en: "10-point plan for our community" },
   overall_completion: { te: "మొత్తం పురోగతి", en: "Overall completion" },
@@ -172,7 +172,7 @@ const kc_portals = [
 ];
 
 const leaders = [
-  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram-portrait.jpg" },
+  { name: "Janab Shaik Akram", te: "జనాబ్ షేక్ అక్రమ్", role: { te: "వ్యవస్థాపకుడు", en: "Founder" }, img: "/assets/founder/shaik-akram-portrait2.jpg" },
   { name: "Yaseen Shaik",      te: "యాసీన్ షేక్",       role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/1.candidate.jpg" },
   { name: "Abdul Aleem",       te: "అబ్దుల్ అలీమ్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/2.candidate.jpg" },
   { name: "Akbar Basha Shaik", te: "అక్బర్ బాషా షేక్",  role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/3.candidate.jpg" },
@@ -181,6 +181,10 @@ const leaders = [
   { name: "Hanifsha Shaik",    te: "హనీఫ్‌షా షేక్",     role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/6.candidate.jpg" },
   { name: "Hafeez Shaik",      te: "హఫీజ్ షేక్",        role: { te: "సభ్యుడు — 2023", en: "Member — 2023" }, img: "/assets/candidates/7.candidate.jpg" },
 ];
+
+/* The founder heads the list and is presented on his own; the rest are the
+   2023 members and ride the marquee together. */
+const [founder, ...members] = leaders;
 
 const gallery = [
   { src: "/assets/gallery/convention-hall.webp",       title: { te: "కన్వెన్షన్ హాల్ పునరుద్ధరణ",    en: "Convention Hall Renovation" } },
@@ -355,43 +359,59 @@ function Homepage() {
               {copy.team_hint[lang]}
             </p>
 
-            {/* A scrollable region needs a name and needs to be reachable by
-                keyboard, or it is a trap for anyone not using a mouse. */}
-            <div
-              role="region"
-              aria-label={copy.founder_team[lang]}
-              tabIndex={0}
-              className="if-rail -mx-4 px-4 pb-3 overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--if-gold)] rounded-2xl"
-            >
-              {/* No mx-auto. On a row wider than its scroll container, auto margins
-              centre the overflow and the browser cannot scroll past the leading
-              edge, so the founder was permanently half-clipped. */}
-          <ul className="flex gap-5 sm:gap-7 w-max">
-                {leaders.map((leader, i) => (
-                  <li key={leader.name} className="if-rail-item shrink-0 w-32 sm:w-36 text-center">
-                    <BlurFade delay={Math.min(0.05 * i, 0.3)}>
-                      <figure className="group m-0">
-                        <span className="if-portrait relative block w-32 h-32 sm:w-36 sm:h-36 mx-auto mb-3 rounded-full overflow-hidden">
-                          <Image
-                            src={leader.img}
-                            alt={leader.name}
-                            fill
-                            className="object-cover object-top"
-                            sizes="(min-width: 640px) 144px, 128px"
-                          />
-                        </span>
-                        <figcaption>
-                          <p className="text-sm font-semibold text-[var(--if-green)] leading-snug text-pretty">
-                            {lang === "te" ? leader.te : leader.name}
-                          </p>
-                          <p className="text-xs text-[var(--if-gold-ink)] mt-1">{leader.role[lang]}</p>
-                        </figcaption>
-                      </figure>
-                    </BlurFade>
-                  </li>
+            {/* The founder is not one of the members, so he sits still while
+                they pass. Splitting them also lets his portrait be larger,
+                which states the hierarchy without a label doing it. */}
+            <figure className="group m-0 flex flex-col items-center mb-10">
+              <span className="if-portrait if-founder relative block mx-auto mb-3 rounded-full overflow-hidden">
+                <Image
+                  src={founder.img}
+                  alt={founder.name}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 640px) 200px, 176px"
+                />
+              </span>
+              <figcaption className="text-center">
+                <p className="font-display text-lg font-bold text-[var(--if-green)] leading-snug">
+                  {lang === "te" ? founder.te : founder.name}
+                </p>
+                <p className="text-sm text-[var(--if-gold-ink)] mt-0.5">{founder.role[lang]}</p>
+              </figcaption>
+            </figure>
+
+            {/* The members scroll on their own. Marquee renders its children
+                several times over to loop seamlessly, so the whole strip is
+                hidden from assistive tech and the real list follows below it,
+                once, for anyone who is not looking at it. */}
+            <div aria-hidden="true" className="if-fade-x -mx-4">
+              <Marquee className="[--duration:45s] [--gap:1.75rem] py-1" repeat={3}>
+                {members.map((m) => (
+                  <figure key={m.name} className="group m-0 w-32 sm:w-36 text-center shrink-0">
+                    <span className="if-portrait relative block w-32 h-32 sm:w-36 sm:h-36 mx-auto mb-3 rounded-full overflow-hidden">
+                      <Image
+                        src={m.img}
+                        alt=""
+                        fill
+                        className="object-cover object-top"
+                        sizes="(min-width: 640px) 144px, 128px"
+                      />
+                    </span>
+                    <figcaption>
+                      <p className="text-sm font-semibold text-[var(--if-green)] leading-snug text-pretty">
+                        {lang === "te" ? m.te : m.name}
+                      </p>
+                      <p className="text-xs text-[var(--if-gold-ink)] mt-1">{m.role[lang]}</p>
+                    </figcaption>
+                  </figure>
                 ))}
-              </ul>
+              </Marquee>
             </div>
+            <ul className="sr-only">
+              {members.map((m) => (
+                <li key={m.name}>{`${lang === "te" ? m.te : m.name} — ${m.role[lang]}`}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -695,16 +715,18 @@ function Homepage() {
               {/* The same seal, sized to the card. The founder's photograph was
                   taken in front of it, and the crop that makes him a portrait
                   cuts it out; this puts it back behind him. */}
-              <div className="if-emblem if-emblem-card" aria-hidden="true" />
-              <div className="relative w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
+              <div className="relative w-40 h-40 mx-auto mb-5">
+                <div className="if-emblem if-emblem-card" aria-hidden="true" />
+                <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-[var(--if-gold)]/50 shadow-2xl shadow-black/40">
                 <Image
-                  src="/assets/founder/shaik-akram-portrait.jpg"
+                  src="/assets/founder/shaik-akram-portrait2.jpg"
                   alt="జనాబ్ షేక్ అక్రమ్"
                   fill
                   className="object-cover object-top"
                   sizes="160px"
                   loading="lazy"
                 />
+                </div>
               </div>
               <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">
                 {copy.janab_shaik_akram[lang]}
