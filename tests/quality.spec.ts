@@ -1,6 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import { routes as catalogRoutes } from "../src/lib/site";
-import { lessons } from "../src/content/lessons";
+import { lessons } from "../src/content/all-lessons";
 
 /* The site-wide guarantees, checked on every route in the sitemap.
 

@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { LessonIndex } from "@/components/learning/LessonIndex";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -178,6 +179,9 @@ function HajjUmrahPage() {
           </div>
         </section>
       )}
+
+      {/* Without this the six lessons are reachable only from the sitemap. */}
+      <LessonIndex portal="hajj-umrah" />
 
       <section className="py-14 px-4 bg-[var(--if-green)] text-center">
         <BlurFade delay={0.1}>

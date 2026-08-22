@@ -15,7 +15,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "public/search-index.json");
 
 const { routes } = await import("../src/lib/site.ts");
-const { lessons } = await import("../src/content/lessons.ts");
+const { lessons } = await import("../src/content/all-lessons.ts");
 const { arabicWords, urduWords, arabicPhrases, urduPhrases } = await import(
   "../src/content/vocabulary.ts"
 );

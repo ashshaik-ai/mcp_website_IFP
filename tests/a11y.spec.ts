@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { routes as catalogRoutes } from "../src/lib/site";
-import { lessons } from "../src/content/lessons";
+import { lessons } from "../src/content/all-lessons";
 
 /* Automated WCAG checks with axe.
 

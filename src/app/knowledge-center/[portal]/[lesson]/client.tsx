@@ -2,7 +2,7 @@
 
 import { PageShell } from "@/components/layout/PageShell";
 import { LessonView } from "@/components/learning/LessonView";
-import type { Bi, Lesson } from "@/content/lessons";
+import type { Bi, Lesson } from "@/content/all-lessons";
 
 export default function LessonClient(props: {
   lesson: Lesson;

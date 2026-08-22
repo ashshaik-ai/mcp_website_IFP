@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
-import type { Bi, Lesson, QuizItem } from "@/content/lessons";
+import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
 
 const copy = {

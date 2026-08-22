@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, routes } from "@/lib/site";
-import { lessons } from "@/content/lessons";
+import { lessons } from "@/content/all-lessons";
 
 export const dynamic = "force-static";
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { lessons, lessonsByPortal } from "@/content/lessons";
+import { lessons, lessonsByPortal } from "@/content/all-lessons";
 import { SITE_NAME, SITE_URL, routeByPath } from "@/lib/site";
 import { LessonJsonLd } from "@/components/JsonLd";
 import LessonClient from "./client";
