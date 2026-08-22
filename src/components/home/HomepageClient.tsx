@@ -277,7 +277,7 @@ function Homepage() {
       </div>
 
       {/* ── VICTORY ── */}
-      <section id="victory" className="py-20 px-4 scroll-mt-20">
+      <section id="victory" className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-12">
@@ -345,7 +345,7 @@ function Homepage() {
       <Separator className="bg-[var(--if-gold)]/15" />
 
       {/* ── ACHIEVEMENTS ── */}
-      <section id="achievements" className="py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
+      <section id="achievements" className="if-defer py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-center mb-12">
@@ -383,7 +383,7 @@ function Homepage() {
       </section>
 
       {/* ── MANIFESTO ── */}
-      <section id="manifesto" className="py-20 px-4 scroll-mt-20 overflow-hidden">
+      <section id="manifesto" className="if-defer py-20 px-4 scroll-mt-20 overflow-hidden">
         <div className="mx-auto max-w-4xl">
 
           {/* Header */}
@@ -505,7 +505,7 @@ function Homepage() {
       </section>
 
       {/* ── SCHEMES ── */}
-      <section id="schemes" className="py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
+      <section id="schemes" className="if-defer py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
@@ -571,7 +571,7 @@ function Homepage() {
       </section>
 
       {/* ── INFRASTRUCTURE ── */}
-      <section className="py-20 px-4 scroll-mt-20">
+      <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
@@ -599,7 +599,7 @@ function Homepage() {
       <Separator className="bg-[var(--if-gold)]/15" />
 
       {/* ── ABOUT / FOUNDER ── */}
-      <section id="about" className="py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
+      <section id="about" className="if-defer py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
         <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-12 items-center">
           <BlurFade delay={0.1}>
             <div>
@@ -655,7 +655,7 @@ function Homepage() {
       </section>
 
       {/* ── STORIES ── */}
-      <section className="py-20 px-4 scroll-mt-20">
+      <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
@@ -680,7 +680,7 @@ function Homepage() {
       </section>
 
       {/* ── GALLERY ── */}
-      <section className="py-20 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-20 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-3">
@@ -714,7 +714,7 @@ function Homepage() {
       </section>
 
       {/* ── EVENTS ── */}
-      <section id="events" className="py-20 px-4 scroll-mt-20">
+      <section id="events" className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
@@ -742,7 +742,7 @@ function Homepage() {
       </section>
 
       {/* ── VOLUNTEER ── */}
-      <section id="volunteer" className="py-20 px-4 scroll-mt-20">
+      <section id="volunteer" className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
@@ -785,7 +785,7 @@ function Homepage() {
       </section>
 
       {/* ── CONTACT ── */}
-      <section id="contact" className="py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
+      <section id="contact" className="if-defer py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
@@ -828,7 +828,7 @@ function Homepage() {
       </section>
 
       {/* ── KNOWLEDGE CENTER PROMO ── */}
-      <section className="py-20 px-4 scroll-mt-20">
+      <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-12">

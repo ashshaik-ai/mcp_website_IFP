@@ -99,7 +99,7 @@ function IslamicCalendarPage() {
       </section>
 
       {/* 12 months grid */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
@@ -163,7 +163,7 @@ function IslamicCalendarPage() {
       </section>
 
       {/* Important dates */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -195,7 +195,7 @@ function IslamicCalendarPage() {
         </div>
       </section>
 
-      <section className="py-14 px-4 bg-[var(--if-green)] text-center">
+      <section className="if-defer py-14 px-4 bg-[var(--if-green)] text-center">
         <BlurFade delay={0.1}>
           <p className="text-[var(--if-gold-pale)]/70 text-sm">
             {copy.the_hijri_year_is_10[lang]}

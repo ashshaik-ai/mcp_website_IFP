@@ -340,3 +340,12 @@
 @media (prefers-reduced-motion: reduce) {
   .if-rise { animation: none; }
 }
+
+/* Sections below the fold are skipped by the renderer until they are close to
+   the viewport. The homepage ships a large DOM, and laying all of it out
+   competes with painting the hero. contain-intrinsic-size gives each section a
+   placeholder height so the scrollbar stays honest and nothing shifts. */
+.if-defer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

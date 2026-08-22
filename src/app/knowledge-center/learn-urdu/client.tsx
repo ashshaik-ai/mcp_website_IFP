@@ -83,7 +83,7 @@ function LearnUrduPage() {
       </section>
 
       {/* Alphabet grid */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
@@ -99,7 +99,7 @@ function LearnUrduPage() {
 
 
       {/* Word of the day */}
-      <section className="py-16 px-4 bg-[var(--if-green)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-md text-center">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-8">{copy.urdu_word_of_the_day[lang]}</h2>
@@ -121,7 +121,7 @@ function LearnUrduPage() {
         </div>
       </section>
 
-      <section id="vocabulary" className="py-16 px-4 scroll-mt-24">
+      <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "పదజాలం" : "Vocabulary"}

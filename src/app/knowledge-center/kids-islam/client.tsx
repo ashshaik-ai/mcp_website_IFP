@@ -153,7 +153,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── KALIMAH / SHAHADA ── */}
-      <section className="py-16 px-4 bg-white">
+      <section className="if-defer py-16 px-4 bg-white">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">
@@ -182,7 +182,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── FIVE PILLARS ── */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ఇస్లాం పునాదులు", "Foundations of Islam")}</div>
@@ -209,7 +209,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── BEAUTIFUL NAMES OF ALLAH ── */}
-      <section className="py-16 px-4 bg-white">
+      <section className="if-defer py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("అస్మా-ఉల్-హుస్నా", "Asma ul-Husna")}</div>
@@ -235,7 +235,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── CHARACTER ACADEMY ── */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("మంచి స్వభావం", "Good Character")}</div>
@@ -268,7 +268,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── DAILY DUAS ── */}
-      <section className="py-16 px-4 bg-white">
+      <section className="if-defer py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("రోజువారీ దువాలు", "Everyday Duas")}</div>
@@ -299,7 +299,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── PROPHET STORIES ── */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ప్రవక్తల కథలు", "Prophet Stories")}</div>
@@ -331,7 +331,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── LEARNING SECTIONS ── */}
-      <section className="py-16 px-4 bg-white">
+      <section className="if-defer py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -375,7 +375,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── MY FIRST WUDU ── */}
-      <section className="py-16 px-4 bg-[var(--if-green)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
@@ -404,7 +404,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── MY FIRST SALAH ── */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నమాజ్ నేర్చుకోవడం", "Learning Prayer")}</div>
@@ -433,7 +433,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── DAILY CHALLENGE ── */}
-      <section className="py-16 px-4 bg-[var(--if-green)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
@@ -470,7 +470,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── QUIZ ── */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
@@ -537,7 +537,7 @@ function KidsIslamPage() {
       </section>
 
       {/* ── PARENT CORNER ── */}
-      <section className="py-14 px-4 bg-[var(--if-green)]">
+      <section className="if-defer py-14 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
@@ -581,7 +581,7 @@ function KidsIslamPage() {
       </section>
 
 
-      <section id="prophet-stories" className="py-16 px-4 scroll-mt-24">
+      <section id="prophet-stories" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్తల కథలు" : "Prophet stories"}

@@ -215,7 +215,7 @@ function StudentGuidancePage() {
         </Marquee>
       </div>
 
-      <section className="py-10 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-10 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 mb-10">
             <label className="relative block max-w-md">
@@ -297,7 +297,7 @@ function StudentGuidancePage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-[var(--if-green)] text-center">
+      <section className="if-defer py-16 px-4 bg-[var(--if-green)] text-center">
         <BlurFade delay={0.1}>
           <div className="mx-auto max-w-xl">
             <h2 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-3 text-pretty">

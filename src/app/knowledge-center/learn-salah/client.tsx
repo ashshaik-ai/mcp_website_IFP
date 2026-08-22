@@ -296,7 +296,7 @@ function LearnSalahPage() {
 
       {/* ── Tab: Prayer Times ───────────────────────────────────────────────── */}
       {activeTab === "times" && (
-        <section className="py-16 px-4">
+        <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-4xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
@@ -353,7 +353,7 @@ function LearnSalahPage() {
 
       {/* ── Tab: Wudu Guide ─────────────────────────────────────────────────── */}
       {activeTab === "wudu" && (
-        <section className="py-16 px-4">
+        <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
@@ -407,7 +407,7 @@ function LearnSalahPage() {
 
       {/* ── Tab: Salah Steps ────────────────────────────────────────────────── */}
       {activeTab === "salah" && (
-        <section className="py-16 px-4">
+        <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
@@ -447,7 +447,7 @@ function LearnSalahPage() {
 
       {/* ── Tab: Simulator ──────────────────────────────────────────────────── */}
       {activeTab === "simulator" && (
-        <section className="py-16 px-4 bg-[var(--if-green)]">
+        <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <div className="text-center mb-8">
@@ -537,7 +537,7 @@ function LearnSalahPage() {
 
       {/* ── Tab: Mistakes ───────────────────────────────────────────────────── */}
       {activeTab === "mistakes" && (
-        <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+        <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
           <div className="mx-auto max-w-4xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">

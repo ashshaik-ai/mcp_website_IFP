@@ -203,7 +203,7 @@ function KCPage() {
       </div>
 
       {/* Quick tools */}
-      <section id="tools" className="py-12 px-4 bg-[var(--if-cream-light)]">
+      <section id="tools" className="if-defer py-12 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-6">
@@ -230,14 +230,14 @@ function KCPage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2 mt-10">
-            <section id="prayer-times" className="scroll-mt-24">
+            <section id="prayer-times" className="if-defer scroll-mt-24">
               <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
                 {copy.today_s_prayer_times[lang]}
               </h3>
               <PrayerTimesCard />
             </section>
 
-            <section id="zakat" className="scroll-mt-24">
+            <section id="zakat" className="if-defer scroll-mt-24">
               <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
                 {copy.calculate_your_zakat[lang]}
               </h3>
@@ -248,7 +248,7 @@ function KCPage() {
       </section>
 
       {/* Portals grid */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
@@ -314,7 +314,7 @@ function KCPage() {
       </section>
 
       {/* Back to home CTA */}
-      <section className="py-12 px-4 bg-[var(--if-cream-light)] text-center">
+      <section className="if-defer py-12 px-4 bg-[var(--if-cream-light)] text-center">
         <BlurFade delay={0.1}>
           <p className="text-[var(--if-text-muted)] mb-4">
             {copy.learn_about_the_party_and[lang]}

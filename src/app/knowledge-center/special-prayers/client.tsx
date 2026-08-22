@@ -147,7 +147,7 @@ function SpecialPrayersPage() {
       </div>
 
       {/* Detail */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05} key={p.id}>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-8 mb-6">

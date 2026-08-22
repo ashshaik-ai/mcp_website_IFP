@@ -124,7 +124,7 @@ function SeerahPage() {
       </section>
 
       {/* Interactive Timeline */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -206,7 +206,7 @@ function SeerahPage() {
       </section>
 
       {/* Character of the Prophet ﷺ */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
@@ -246,7 +246,7 @@ function SeerahPage() {
       </section>
 
       {/* Leadership Lessons */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
@@ -281,7 +281,7 @@ function SeerahPage() {
       </section>
 
       {/* Companions */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -313,7 +313,7 @@ function SeerahPage() {
       </section>
 
       {/* Salawat */}
-      <section className="py-16 px-4 bg-[var(--if-green)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-10">
@@ -342,7 +342,7 @@ function SeerahPage() {
       </section>
 
       {/* Closing Ayah */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)] text-center">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)] text-center">
         <BlurFade delay={0.1}>
           <div className="mx-auto max-w-xl">
             <div className="font-arabic text-3xl text-[var(--if-green)] mb-4 leading-relaxed" dir="rtl" lang="ar">
@@ -356,7 +356,7 @@ function SeerahPage() {
       </section>
 
 
-      <section id="timeline" className="py-16 px-4 scroll-mt-24">
+      <section id="timeline" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ జీవిత కాలక్రమం" : "Timeline of the Prophet's life ﷺ"}
@@ -373,7 +373,7 @@ function SeerahPage() {
       </section>
 
 
-      <section id="character" className="py-16 px-4 scroll-mt-24">
+      <section id="character" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ స్వభావం" : "The Prophet's character ﷺ"}

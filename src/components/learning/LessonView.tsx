@@ -220,7 +220,7 @@ export function LessonView({
         <BiList items={lesson.revision} title={copy.revision} tone="gold" />
 
         {lesson.summary && (
-          <section className="rounded-2xl bg-[var(--if-green)] p-6">
+          <section className="if-defer rounded-2xl bg-[var(--if-green)] p-6">
             <h2 className="font-display text-lg font-bold text-[var(--if-gold-light)] mb-2">
               {copy.summary[lang]}
             </h2>
@@ -231,7 +231,7 @@ export function LessonView({
         )}
 
         {lesson.apply && (
-          <section className="rounded-2xl border border-[var(--if-gold)]/30 bg-[var(--if-gold)]/8 p-5">
+          <section className="if-defer rounded-2xl border border-[var(--if-gold)]/30 bg-[var(--if-gold)]/8 p-5">
             <h2 className="font-display text-lg font-bold text-[var(--if-green)] mb-2">
               {copy.apply[lang]}
             </h2>

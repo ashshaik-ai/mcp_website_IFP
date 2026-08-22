@@ -140,7 +140,7 @@ function WomensGuidancePage() {
       </div>
 
       {/* Content */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05} key={s.id}>
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-8 mb-6">
@@ -173,7 +173,7 @@ function WomensGuidancePage() {
         </div>
       </section>
 
-      <section className="py-14 px-4 bg-[var(--if-green)] text-center">
+      <section className="if-defer py-14 px-4 bg-[var(--if-green)] text-center">
         <BlurFade delay={0.1}>
           <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl">الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ</div>
           <p className="text-sm text-[var(--if-gold-pale)]/70">
@@ -182,7 +182,7 @@ function WomensGuidancePage() {
         </BlurFade>
       </section>
 
-      <section id="worship" className="py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
+      <section id="worship" className="if-defer py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "హైద్ సమయంలో ఆరాధన" : "Worship during Hayd"}
@@ -203,7 +203,7 @@ function WomensGuidancePage() {
         </div>
       </section>
 
-      <section id="faqs" className="py-16 px-4 scroll-mt-24">
+      <section id="faqs" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-6">
             {lang === "te" ? "తరచుగా అడిగే ప్రశ్నలు" : "Frequently asked"}

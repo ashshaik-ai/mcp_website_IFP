@@ -165,7 +165,7 @@ function LearnArabicPage() {
       </section>
 
       {/* Why learn */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
@@ -188,7 +188,7 @@ function LearnArabicPage() {
       </section>
 
       {/* Alphabet — interactive grid */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
@@ -289,7 +289,7 @@ function LearnArabicPage() {
 
 
       {/* Word of the Day */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-8">
@@ -333,7 +333,7 @@ function LearnArabicPage() {
       </section>
 
       {/* ── VOCABULARY ── */}
-      <section id="vocabulary" className="py-16 px-4 scroll-mt-24">
+      <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "పదజాలం" : "Vocabulary"}
@@ -348,7 +348,7 @@ function LearnArabicPage() {
       </section>
 
       {/* ── FLASHCARDS ── */}
-      <section className="py-16 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">
@@ -402,7 +402,7 @@ function LearnArabicPage() {
       </section>
 
       {/* ── QUIZ ── */}
-      <section className="py-16 px-4">
+      <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-lg">
           <BlurFade delay={0.1}>
             <h2 className="font-display text-2xl font-bold text-[var(--if-green)] text-center mb-1">

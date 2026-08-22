@@ -99,7 +99,7 @@ function HajjUmrahPage() {
 
       {/* Step guide */}
       {(tab === "hajj" || tab === "umrah") && (
-        <section className="py-16 px-4">
+        <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
@@ -149,7 +149,7 @@ function HajjUmrahPage() {
 
       {/* Ihram rules */}
       {tab === "ihram" && (
-        <section className="py-16 px-4">
+        <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-3xl">
             <BlurFade delay={0.1}>
               <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
@@ -183,7 +183,7 @@ function HajjUmrahPage() {
       {/* Without this the six lessons are reachable only from the sitemap. */}
       <LessonIndex portal="hajj-umrah" />
 
-      <section className="py-14 px-4 bg-[var(--if-green)] text-center">
+      <section className="if-defer py-14 px-4 bg-[var(--if-green)] text-center">
         <BlurFade delay={0.1}>
           <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</div>
           <p className="text-sm text-[var(--if-gold-pale)]/70">{copy.here_i_am_o_allah[lang]}</p>

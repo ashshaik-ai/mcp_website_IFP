@@ -169,7 +169,7 @@ function NamesOfAllahPage() {
       </section>
 
       {/* Search */}
-      <section className="py-10 px-4 bg-[var(--if-cream-light)]">
+      <section className="if-defer py-10 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <div className="relative max-w-sm mx-auto mb-8">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--if-text-muted)]" />
@@ -210,7 +210,7 @@ function NamesOfAllahPage() {
 
       {/* Detail panel */}
       {selected && (
-        <section className="py-10 px-4">
+        <section className="if-defer py-10 px-4">
           <div className="mx-auto max-w-md">
             <BlurFade delay={0.05}>
               <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
