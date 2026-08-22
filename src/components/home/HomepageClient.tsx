@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -241,12 +242,12 @@ function Homepage() {
             >
               {t("hero_cta")}
             </ShimmerButton>
-            <a
+            <Link
               href="/knowledge-center"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--if-gold-pale)]/30 text-[var(--if-gold-pale)]/80 hover:bg-white/5 transition-colors text-sm font-medium"
             >
               {t("nav_kc")} <ChevronRight className="h-4 w-4" />
-            </a>
+            </Link>
           </BlurFade>
         </div>
       </section>
@@ -873,12 +874,12 @@ function Homepage() {
             ))}
           </div>
           <BlurFade delay={0.5} className="text-center">
-            <a
+            <Link
               href="/knowledge-center"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold hover:bg-[var(--if-green)]/90 transition-colors"
             >
               {t("open_kc")} <ChevronRight className="h-4 w-4" />
-            </a>
+            </Link>
           </BlurFade>
         </div>
       </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -305,13 +306,13 @@ function StudentGuidancePage() {
             <p className="text-[var(--if-gold-pale)]/70 text-sm mb-6 text-pretty">
               {copy.islamic_front_awards_scholarships_to[lang]}
             </p>
-            <a
+            <Link
               href="/#schemes"
               className="inline-flex items-center gap-2 min-h-11 px-6 rounded-full bg-[var(--if-gold)] text-[var(--if-green)] font-bold hover:bg-[var(--if-gold-light)] transition-colors text-sm"
             >
               {copy.scholarship_details[lang]}
               <ChevronRight aria-hidden="true" className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </BlurFade>
       </section>

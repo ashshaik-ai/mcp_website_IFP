@@ -89,8 +89,6 @@ export function SiteSearch() {
       .map((r) => r.e);
   }, [query, index, lang]);
 
-  useEffect(() => setActive(0), [query]);
-
   const go = useCallback(
     (url: string) => {
       setOpen(false);
@@ -156,7 +154,10 @@ export function SiteSearch() {
                 ref={inputRef}
                 type="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setActive(0);
+                }}
                 onKeyDown={onInputKey}
                 placeholder={copy.placeholder[lang]}
                 aria-label={copy.open[lang]}
