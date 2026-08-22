@@ -173,7 +173,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
         <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M4OTIyYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]" />
         <div className="relative mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
-            <span className="inline-block font-arabic text-3xl text-[var(--if-gold-light)]">بِسْمِ اللَّهِ</span>
+            <span lang="ar" dir="rtl" className="inline-block font-arabic text-3xl text-[var(--if-gold-light)]">بِسْمِ اللَّهِ</span>
           </BlurFade>
           <BlurFade delay={0.1}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">
@@ -213,7 +213,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
           {portals.map((p) => (
             <span key={p.id} className="mx-5 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap flex items-center gap-2">
               <span className="text-[var(--if-gold-ink)]">✦</span>
-              <span className="font-arabic text-base">{p.arabic}</span>
+              <span lang="ar" dir="rtl" className="font-arabic text-base">{p.arabic}</span>
               <span>·</span>
               {p.title[lang]}
             </span>
@@ -306,7 +306,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
                     {/* Header band */}
                     <div className={`bg-gradient-to-br ${portal.color} p-5 flex items-start justify-between`}>
                       <Icon className="h-7 w-7 text-[var(--if-gold-light)]" />
-                      <span className="font-arabic text-2xl text-[var(--if-gold-light)]">{portal.arabic}</span>
+                      <span lang="ar" dir="rtl" className="font-arabic text-2xl text-[var(--if-gold-light)]">{portal.arabic}</span>
                     </div>
 
                     {/* Body */}

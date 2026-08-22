@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, X } from "lucide-react";
 import { quizOrder } from "@/lib/quiz-order";
+import { readingLabelTe } from "@/content/reading-labels";
 import { useI18n } from "@/lib/i18n/context";
 import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
@@ -11,7 +12,7 @@ import { LessonComplete } from "./LessonComplete";
 const copy = {
   back: { te: "పోర్టల్‌కు తిరిగి", en: "Back to portal" },
   lesson: { te: "పాఠం", en: "Lesson" },
-  of: { te: "లో", en: "of" },
+
   takeaways: { te: "ముఖ్యాంశాలు", en: "Key takeaways" },
   didYouKnow: { te: "మీకు తెలుసా?", en: "Did you know?" },
   mistakes: { te: "సాధారణ తప్పులు", en: "Common mistakes" },
@@ -27,7 +28,7 @@ const copy = {
   tryAgain: { te: "మళ్లీ ప్రయత్నించండి", en: "Not quite — try again" },
   prev: { te: "మునుపటి", en: "Previous" },
   next: { te: "తదుపరి", en: "Next" },
-  score: { te: "మీ స్కోరు", en: "Your score" },
+
 } as const;
 
 function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
@@ -53,14 +54,16 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
           const o = item.options[original];
           const chosen = picked === i;
           const isAnswer = i === answer;
-          const state =
-            picked === null
-              ? "border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 bg-white"
-              : isAnswer
-                ? "border-emerald-400 bg-emerald-50"
-                : chosen
-                  ? "border-red-300 bg-red-50"
-                  : "border-[var(--if-gold)]/15 bg-white opacity-60";
+          /* Only reveal the answer once it has been found. Marking it green on
+             a wrong pick and then saying "try again" left nothing to try. */
+          const settled = picked !== null && right;
+          const state = settled
+            ? isAnswer
+              ? "border-emerald-400 bg-emerald-50"
+              : "border-[var(--if-gold)]/15 bg-white opacity-60"
+            : chosen
+              ? "border-red-300 bg-red-50"
+              : "border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 bg-white";
           return (
             <div key={`${idPrefix}-${original}`}>
               <button
@@ -70,10 +73,10 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
                 aria-checked={chosen}
                 className={`w-full flex items-center gap-2.5 text-left min-h-11 px-3 rounded-lg border text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${state}`}
               >
-                {picked !== null && isAnswer && (
+                {settled && isAnswer && (
                   <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-emerald-700" />
                 )}
-                {picked !== null && chosen && !isAnswer && (
+                {!settled && chosen && (
                   <X aria-hidden="true" className="h-4 w-4 shrink-0 text-red-500" />
                 )}
                 <span className="text-pretty">{o[lang]}</span>
@@ -150,7 +153,7 @@ export function LessonView({
       </Link>
 
       <p className="mt-4 text-[11px] font-bold uppercase tracking-widest text-[var(--if-gold-ink)]">
-        {copy.lesson[lang]} {index + 1} {copy.of[lang]} {total}
+        {lang === "te" ? `${total}లో ${copy.lesson.te} ${index + 1}` : `${copy.lesson.en} ${index + 1} of ${total}`}
       </p>
       <h1 className="mt-1 font-display text-3xl md:text-4xl font-bold text-[var(--if-green)] text-balance">
         {lesson.title[lang]}
@@ -264,16 +267,19 @@ export function LessonView({
                 const external = /^https?:/i.test(r.url);
                 const className =
                   "inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold-ink)] hover:text-[var(--if-green)] transition-colors";
+                /* reading labels are bare strings in the lesson data, so every
+                   one of them rendered in English under a Telugu heading. */
+                const label = lang === "te" ? (readingLabelTe[r.label] ?? r.label) : r.label;
                 return (
                   <li key={r.url}>
                     {external ? (
                       <a href={r.url} target="_blank" rel="noopener noreferrer" className={className}>
-                        {r.label}
+                        {label}
                         <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
                       </a>
                     ) : (
                       <Link href={r.url} className={className}>
-                        {r.label}
+                        {label}
                         <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
                       </Link>
                     )}

@@ -139,6 +139,10 @@ export function SpotlightNavbar({
                                 data-index={idx}
                                 aria-current={activeIndex === idx ? "true" : undefined}
                                 onClick={(e) => {
+                                    /* Let the browser have modified clicks —
+                                       preventDefault on every click swallowed
+                                       ctrl/cmd-click and "open in new tab". */
+                                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
                                     e.preventDefault();
                                     handleItemClick(item, idx);
                                 }}

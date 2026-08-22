@@ -961,7 +961,7 @@ function Homepage() {
                   gradientSize={220}
                 >
                   <a href={portal.href} className="flex flex-col p-6 h-full">
-                    <span className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 self-end">{portal.arabic}</span>
+                    <span lang="ar" dir="rtl" className="font-arabic text-2xl text-[var(--if-gold-light)] mb-3 self-end">{portal.arabic}</span>
                     <h3 className="font-semibold text-[var(--if-green)] text-lg">{portal.title[lang]}</h3>
                     <p className="text-sm text-[var(--if-text-muted)] mt-1 text-pretty">{portal.sub[lang]}</p>
                     <span className="mt-4 text-xs font-semibold text-[var(--if-gold-ink)] flex items-center gap-1">

@@ -60,6 +60,7 @@ export function SiteSearch() {
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   // Fetched on first open, not on page load — it is 166 KB.
   useEffect(() => {
@@ -98,6 +99,49 @@ export function SiteSearch() {
     [router],
   );
 
+  /* The dialog declared aria-modal="true" but did none of what that promises:
+     Tab walked straight out into the page behind it on the first press, the
+     background stayed scrollable, and closing dropped focus on <body> so the
+     next Tab restarted from the top of the document. */
+  /* Point at the trigger directly rather than reading document.activeElement
+     when the dialog opens: the autofocus effect runs first, so activeElement
+     is already the search input by then and closing restored focus to a node
+     that no longer exists — which lands on <body>. */
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    /* The scroll container is the root element, not body, so locking body
+       alone still let the page move behind the dialog. */
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const activeEl = document.activeElement;
+      if (e.shiftKey && (activeEl === first || !dialogRef.current.contains(activeEl))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && activeEl === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", trap);
+    return () => {
+      document.removeEventListener("keydown", trap);
+      document.documentElement.style.overflow = prev;
+      triggerRef.current?.focus();
+    };
+  }, [open]);
+
   // Ctrl/Cmd+K opens from anywhere, Escape closes.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -131,6 +175,7 @@ export function SiteSearch() {
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
         aria-label={copy.open[lang]}
@@ -141,6 +186,7 @@ export function SiteSearch() {
 
       {open && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={copy.open[lang]}
@@ -161,7 +207,14 @@ export function SiteSearch() {
                 onKeyDown={onInputKey}
                 placeholder={copy.placeholder[lang]}
                 aria-label={copy.open[lang]}
+                /* Arrowing the highlight changed a background colour and
+                   nothing else, so a screen reader was never told which result
+                   Enter would open. */
+                role="combobox"
+                aria-expanded={results.length > 0}
+                aria-autocomplete="list"
                 aria-controls="search-results"
+                aria-activedescendant={results[active] ? `search-opt-${active}` : undefined}
                 /* 16px minimum, or iOS Safari zooms the page on focus. */
                 className="flex-1 min-h-14 bg-transparent text-base text-[var(--if-text)] placeholder:text-[var(--if-text-muted)]/70 outline-none"
               />
@@ -189,14 +242,17 @@ export function SiteSearch() {
                   <p className="px-4 pt-3 text-xs text-[var(--if-text-muted)]" aria-live="polite">
                     {results.length} {copy.results[lang]}
                   </p>
-                  <ul id="search-results" ref={listRef} className="p-2">
+                  {/* listbox/option, to match the combobox on the input. */}
+                  <ul id="search-results" role="listbox" aria-label={copy.open[lang]} ref={listRef} className="p-2">
                     {results.map((r, i) => (
-                      <li key={`${r.url}-${r.title.en}-${i}`}>
+                      <li role="none" key={`${r.url}-${r.title.en}-${i}`}>
                         <button
                           type="button"
                           onMouseEnter={() => setActive(i)}
                           onClick={() => go(r.url)}
-                          aria-current={i === active}
+                          id={`search-opt-${i}`}
+                          role="option"
+                          aria-selected={i === active}
                           className={`w-full text-left rounded-xl px-3 py-2.5 min-h-11 transition-colors ${
                             i === active ? "bg-[var(--if-gold)]/15" : "hover:bg-[var(--if-gold)]/8"
                           }`}

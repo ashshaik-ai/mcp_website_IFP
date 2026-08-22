@@ -515,6 +515,25 @@ function KidsIslamPage() {
                       </button>
                     ))}
                   </div>
+                  {/* The result was a border colour and nothing else: no icon,
+                      no words, no live region. WCAG 1.4.1 — colour cannot be
+                      the only carrier — and 4.1.3. */}
+                  <p
+                    aria-live="polite"
+                    className={`mt-4 text-sm font-bold ${
+                      selected === null
+                        ? "sr-only"
+                        : selected === quiz[quizIdx].correct
+                          ? "text-emerald-300"
+                          : "text-red-300"
+                    }`}
+                  >
+                    {selected === null
+                      ? ""
+                      : selected === quiz[quizIdx].correct
+                        ? t("✓ సరైనది!", "✓ Correct!")
+                        : t("✗ సరైన సమాధానం: ", "✗ The answer is: ") + quiz[quizIdx].options[quiz[quizIdx].correct][lang]}
+                  </p>
                   {selected !== null && (
                     <button onClick={nextQ} className="mt-5 w-full py-3 rounded-xl bg-[var(--if-gold)] text-[var(--if-green)] font-bold hover:bg-[var(--if-gold-light)] transition-colors text-sm">
                       {quizIdx < quiz.length - 1 ? t("తదుపరి ప్రశ్న →", "Next Question →") : t("ఫలితం చూడండి →", "See Result →")}
