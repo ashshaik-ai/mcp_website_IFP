@@ -16,7 +16,7 @@
      - Arabic is given with a transliteration and a translation, never alone.
      - No claim of a specific reward or ruling without naming its source.
 */
-import type { Lesson } from "./lessons";
+import type { Lesson } from "./lessons.ts";
 
 export const authoredLessons: Lesson[] = [
   {
