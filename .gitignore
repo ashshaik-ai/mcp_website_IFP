@@ -46,3 +46,7 @@ next-env.d.ts
 _audit.json
 _compare.json
 _*.mjs
+
+# Playwright
+test-results/
+playwright-report/
