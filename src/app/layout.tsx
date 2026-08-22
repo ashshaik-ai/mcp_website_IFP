@@ -24,19 +24,30 @@ const notoTelugu = Noto_Sans_Telugu({
 });
 
 /* .font-arabic asked for Amiri but nothing loaded it, so Quranic and lesson
-   Arabic fell back to a system serif on a site that teaches the script. */
+   Arabic fell back to a system serif on a site that teaches the script.
+
+   Deliberately not preloaded: these are large faces and most pages show no
+   Arabic at all. Preloading them put roughly 350 KB on the critical path of
+   every page and pushed LCP past eight seconds. They load lazily and swap in,
+   which is the right trade for script that appears part way down a page
+   rather than in the hero.
+
+   Weight 400 only — bold Nastaliq is not idiomatic, and bold Amiri was going
+   unused while costing as much as the regular. */
 const amiri = Amiri({
   variable: "--font-amiri",
   subsets: ["arabic"],
-  weight: ["400", "700"],
+  weight: ["400"],
   display: "swap",
+  preload: false,
 });
 
 const nastaliq = Noto_Nastaliq_Urdu({
   variable: "--font-nastaliq",
   subsets: ["arabic"],
-  weight: ["400", "700"],
+  weight: ["400"],
   display: "swap",
+  preload: false,
 });
 
 /* metadataBase makes every per-page canonical and og:url resolve absolute.

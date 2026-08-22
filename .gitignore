@@ -50,3 +50,6 @@ _*.mjs
 # Playwright
 test-results/
 playwright-report/
+
+# Lighthouse output
+lighthouse-report.json
