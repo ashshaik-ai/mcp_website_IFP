@@ -67,7 +67,9 @@ test.describe("site search", () => {
 
     for (const [query, expected] of [
       ["zakat", /Zakat|జకాత్/],
-      ["hijrah", /Hijrah|హిజ్రా/],
+      /* Telugu transliterates this as both హిజ్రా and హిజ్రత్, so match the stem
+         they share rather than one spelling. */
+      ["hijrah", /Hijrah|హిజ్ర/],
       /* The Telugu alternative has to cover both కరుణ and కారుణ్యం: the top hit
          for this query is now the Mercy and majesty lesson, whose Telugu title
          uses the longer stem. */
