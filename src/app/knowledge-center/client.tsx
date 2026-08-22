@@ -203,8 +203,12 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
         </div>
       </section>
 
+      {/* aria-hidden: Marquee repeats its children to loop seamlessly, so a
+          screen reader met every item four times over. The strip is a
+          decorative ticker and everything in it is listed properly further
+          down the page, so hiding it loses nothing. */}
       {/* Marquee */}
-      <div className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-2.5 overflow-hidden">
+      <div aria-hidden="true" className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-2.5 overflow-hidden">
         <Marquee className="[--duration:35s] [--gap:1rem]">
           {portals.map((p) => (
             <span key={p.id} className="mx-5 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap flex items-center gap-2">
@@ -334,11 +338,12 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
           <p className="text-[var(--if-text-muted)] mb-4">
             {copy.learn_about_the_party_and[lang]}
           </p>
-          <Link href="/">
-            <ShimmerButton shimmerColor="#e8b84b" background="#0d3b1e" className="text-[var(--if-gold-light)] font-semibold">
-              {copy.back_to_homepage[lang]}
-            </ShimmerButton>
-          </Link>
+          {/* Was a <Link> wrapping the button: an inline element cannot centre
+              a flex block child, so it hugged the left of a centred section.
+              ShimmerButton takes the href itself now. */}
+          <ShimmerButton href="/" shimmerColor="#e8b84b" background="#0d3b1e" className="mx-auto text-[var(--if-gold-light)] font-semibold">
+            {copy.back_to_homepage[lang]}
+          </ShimmerButton>
         </BlurFade>
       </section>
 

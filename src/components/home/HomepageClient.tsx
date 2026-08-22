@@ -304,7 +304,10 @@ function Homepage() {
       </section>
 
       {/* ── MARQUEE ── */}
-      <div className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-3 overflow-hidden">
+      {/* aria-hidden: Marquee repeats its children to loop, so every item was
+          announced four times. A decorative ticker; the sections it names are
+          all reachable from the navigation. */}
+      <div aria-hidden="true" className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-3 overflow-hidden">
         {/* No pauseOnHover: the strip stopped dead whenever the pointer crossed
             it, which on a laptop is most of the time it is on screen. */}
         <Marquee className="[--duration:30s] [--gap:1rem]">

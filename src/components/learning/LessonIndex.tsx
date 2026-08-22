@@ -27,6 +27,7 @@ export function LessonIndex({ portal }: { portal: string }) {
   const { lang } = useI18n();
   const { ready, isDone, countFor } = useProgress();
   const items = summariesByPortal(portal);
+  const slugs = items.map((l) => l.slug);
   if (!items.length) return null;
 
   const totalSections = items.reduce((a, l) => a + l.sections, 0);
@@ -63,9 +64,9 @@ export function LessonIndex({ portal }: { portal: string }) {
           })}
         </dl>
 
-        {ready && countFor(portal) > 0 && (
+        {ready && countFor(portal, slugs) > 0 && (
           <p className="mb-5 text-sm font-semibold text-[var(--if-green)] tabular-nums">
-            {countFor(portal)} / {items.length} {copy.progress[lang]}
+            {countFor(portal, slugs)} / {items.length} {copy.progress[lang]}
           </p>
         )}
 

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
+import { quizOrder } from "@/lib/quiz-order";
 import { useI18n } from "@/lib/i18n/context";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
@@ -91,6 +92,9 @@ const whyLearn = [
   { ar: "طَلَبُ الْعِلْمِ فَرِيضَةٌ", title: { te: "ఇస్లామిక్ జ్ఞానాన్ని తెరవండి", en: "Unlock Islamic Knowledge" }, desc: { te: "1400 సంవత్సరాల విద్వత్ అరబిక్‌లో ఉంది — దానిలోకి ప్రవేశించండి", en: "1400 years of scholarship is in Arabic — access it directly" } },
 ];
 
+/* Every question here was authored with ans: 0 and the options render in
+   array order, so the first option was always right — 5/5 without reading the
+   portal. Same defect the lesson quizzes had; same fix. */
 const quizQuestions = [
   { q: { te: "అరబిక్ వర్ణమాలలో ఎన్ని అక్షరాలు ఉన్నాయి?", en: "How many letters are in the Arabic alphabet?" }, opts: [{ te: "28", en: "28" }, { te: "26", en: "26" }, { te: "39", en: "39" }], ans: 0 },
   { q: { te: "అరబిక్ ఏ దిశలో రాస్తారు?", en: "In which direction is Arabic written?" }, opts: [{ te: "కుడి నుండి ఎడమకు", en: "Right to left" }, { te: "ఎడమ నుండి కుడికి", en: "Left to right" }, { te: "పై నుండి కిందకు", en: "Top to bottom" }], ans: 0 },
@@ -108,6 +112,10 @@ function LearnArabicPage() {
   const [fcIdx, setFcIdx] = useState(0);
   const [fcFlipped, setFcFlipped] = useState(false);
   const [quizIdx, setQuizIdx] = useState(0);
+  const quizOrders = useMemo(
+    () => quizQuestions.map((q) => quizOrder(q.q.en, q.opts.length, q.ans)),
+    [],
+  );
   const [quizAns, setQuizAns] = useState<number | null>(null);
   const [quizScore, setQuizScore] = useState(0);
   const [quizDone, setQuizDone] = useState(false);
@@ -442,15 +450,16 @@ function LearnArabicPage() {
                 </div>
                 <p className="font-semibold text-[var(--if-text)] mb-5 leading-snug text-base">{quizQuestions[quizIdx].q[lang]}</p>
                 <div className="space-y-2">
-                  {quizQuestions[quizIdx].opts.map((opt, i) => {
+                  {quizOrders[quizIdx].order.map((originalIdx, i) => {
+                    const opt = quizQuestions[quizIdx].opts[originalIdx];
                     const answered = quizAns !== null;
-                    const correct = i === quizQuestions[quizIdx].ans;
+                    const correct = i === quizOrders[quizIdx].answer;
                     const chosen = i === quizAns;
                     return (
                       <button
                         key={i}
                         disabled={answered}
-                        onClick={() => { setQuizAns(i); if (i === quizQuestions[quizIdx].ans) setQuizScore(s => s + 1); }}
+                        onClick={() => { setQuizAns(i); if (i === quizOrders[quizIdx].answer) setQuizScore(s => s + 1); }}
                         className={`w-full text-left px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
                           answered
                             ? correct ? "bg-emerald-50 border-emerald-400 text-emerald-700"

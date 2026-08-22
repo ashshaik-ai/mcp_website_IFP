@@ -92,7 +92,9 @@ export function ZakatCalculator() {
                   inputMode="decimal"
                   min={0}
                   step="any"
-                  value={assets[f.key] || ""}
+                  /* `|| ""` treated a typed 0 as empty and React reset the
+                     field, so "0" vanished and "0.5" became ".5". */
+                  value={assets[f.key] ?? ""}
                   onChange={(e) =>
                     setAssets((a) => ({ ...a, [f.key]: Math.max(0, Number(e.target.value) || 0) }))
                   }

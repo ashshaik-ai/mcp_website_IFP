@@ -38,7 +38,7 @@ type Entry = {
    searching "quran" buries the Quran portal under every lesson that says it. */
 function score(e: Entry, q: string, lang: "te" | "en"): number {
   const title = (e.title[lang] || e.title.en || "").toLowerCase();
-  const other = (lang === "te" ? e.title.en : e.title.te).toLowerCase();
+  const other = ((lang === "te" ? e.title.en : e.title.te) || "").toLowerCase();
   const body = `${e.body.te} ${e.body.en}`.toLowerCase();
   const extra = (e.extra || "").toLowerCase();
 

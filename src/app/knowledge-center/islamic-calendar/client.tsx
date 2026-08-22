@@ -26,6 +26,9 @@ const copy = {
   hijri_date: { te: "హిజ్రీ తేదీ", en: "Hijri Date" },
   event: { te: "సంఘటన", en: "Event" },
   telugu: { te: "తెలుగు", en: "Telugu" },
+  english: { te: "ఇంగ్లీష్", en: "English" },
+  month_n: { te: "నెల", en: "Month" },
+  days: { te: "రోజులు", en: "days" },
   the_hijri_year_is_10: { te: "🌙 హిజ్రీ సంవత్సరం సౌర సంవత్సరం కంటే 10-11 రోజులు తక్కువ. కాబట్టి ఇస్లామిక్ పండుగలు ప్రతి సంవత్సరం వేరే గ్రెగోరియన్ తేదీలలో వస్తాయి.", en: "🌙 The Hijri year is ~10-11 days shorter than the solar year. That is why Islamic occasions fall on different Gregorian dates each year." },
 } as const;
 
@@ -117,10 +120,10 @@ function IslamicCalendarPage() {
                   className={`relative overflow-hidden w-full text-left p-4 rounded-2xl border transition-all ${active === m.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}
                 >
                   {active === m.n && <BorderBeam size={80} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" />}
-                  <div className={`text-[10px] font-bold mb-1 ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>Month {m.n}</div>
+                  <div className={`text-[10px] font-bold mb-1 ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{copy.month_n[lang]} {m.n}</div>
                   <div className={`font-arabic text-2xl leading-relaxed ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-green)]"}`} dir="rtl">{m.ar}</div>
-                  <div className={`font-display font-semibold text-sm mt-1 ${active === m.n ? "text-[var(--if-gold-pale)]" : "text-[var(--if-green)]"}`}>{m.name}</div>
-                  <div className={`text-[10px] ${active === m.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{m.te} · {m.days} days</div>
+                  <div className={`font-display font-semibold text-sm mt-1 ${active === m.n ? "text-[var(--if-gold-pale)]" : "text-[var(--if-green)]"}`}>{lang === "te" ? m.te : m.name}</div>
+                  <div className={`text-[10px] ${active === m.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? m.name : m.te} · {m.days} {copy.days[lang]}</div>
                   {m.events.length > 0 && (
                     <div className={`mt-2 w-2 h-2 rounded-full ${active === m.n ? "bg-[var(--if-gold)]" : "bg-[var(--if-gold)]/50"}`} />
                   )}
@@ -137,8 +140,8 @@ function IslamicCalendarPage() {
                   <div className="flex items-center gap-4 mb-4 flex-wrap">
                     <div className="font-arabic text-3xl text-[var(--if-green)]" dir="rtl">{m.ar}</div>
                     <div>
-                      <h3 className="font-display text-xl font-bold text-[var(--if-green)]">{m.name}</h3>
-                      <span className="text-sm text-[var(--if-text-muted)]">{m.te} · {m.days} days</span>
+                      <h3 className="font-display text-xl font-bold text-[var(--if-green)]">{lang === "te" ? m.te : m.name}</h3>
+                      <span className="text-sm text-[var(--if-text-muted)]">{lang === "te" ? m.name : m.te} · {m.days} {copy.days[lang]}</span>
                     </div>
                   </div>
                   <p className="text-sm text-[var(--if-text-muted)] mb-4">{m.meaning[lang]}</p>
@@ -176,17 +179,22 @@ function IslamicCalendarPage() {
                 <tr className="bg-[var(--if-green)] text-[var(--if-gold-light)]">
                   <th className="text-left p-4 font-semibold">{copy.hijri_date[lang]}</th>
                   <th className="text-left p-4 font-semibold">{copy.event[lang]}</th>
-                  <th className="text-left p-4 font-semibold hidden sm:table-cell">{copy.telugu[lang]}</th>
-                  <th className="text-right p-4 font-semibold hidden md:table-cell">عربي</th>
+                  {/* The secondary column is whichever language is not currently
+                      selected. It used to be Telugu unconditionally, hidden
+                      below sm, while the primary column was always English. */}
+                  <th className="text-left p-4 font-semibold hidden sm:table-cell">
+                    {lang === "te" ? copy.english[lang] : copy.telugu[lang]}
+                  </th>
+                  <th className="text-right p-4 font-semibold hidden md:table-cell font-arabic" lang="ar" dir="rtl">عربي</th>
                 </tr>
               </thead>
               <tbody>
                 {specialDates.map((d, i) => (
                   <tr key={d.name} className={i % 2 === 0 ? "bg-white" : "bg-[var(--if-cream-light)]"}>
                     <td className="p-4 font-semibold text-[var(--if-gold-ink)] whitespace-nowrap">{d.date}</td>
-                    <td className="p-4 text-[var(--if-text)]">{d.name}</td>
-                    <td className="p-4 text-[var(--if-text-muted)] hidden sm:table-cell">{d.te}</td>
-                    <td className="p-4 font-arabic text-right text-[var(--if-green)] hidden md:table-cell" dir="rtl">{d.ar}</td>
+                    <td className="p-4 text-[var(--if-text)]">{lang === "te" ? d.te : d.name}</td>
+                    <td className="p-4 text-[var(--if-text-muted)] hidden sm:table-cell">{lang === "te" ? d.name : d.te}</td>
+                    <td className="p-4 font-arabic text-right text-[var(--if-green)] hidden md:table-cell" lang="ar" dir="rtl">{d.ar}</td>
                   </tr>
                 ))}
               </tbody>

@@ -17,7 +17,7 @@ type ProgressApi = {
   ready: boolean;
   isDone: (portal: string, slug: string) => boolean;
   toggle: (portal: string, slug: string) => void;
-  countFor: (portal: string) => number;
+  countFor: (portal: string, slugs?: string[]) => number;
   total: number;
 };
 
@@ -73,8 +73,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         else next[k] = Date.now();
         persist(next);
       },
-      countFor: (portal) =>
-        Object.keys(state).filter((k) => k.startsWith(`${portal}/`)).length,
+      /* Counting stored keys by prefix means a lesson that was renamed or
+         removed still counts, and the portal index divides by the *current*
+         lesson list — "21 / 8 completed". Callers that know their slugs pass
+         them and get an intersection instead. */
+      countFor: (portal, slugs) =>
+        Object.keys(state).filter((k) => {
+          if (!k.startsWith(`${portal}/`)) return false;
+          return slugs ? slugs.includes(k.slice(portal.length + 1)) : true;
+        }).length,
       total: Object.keys(state).length,
     }),
     [state, ready, persist],

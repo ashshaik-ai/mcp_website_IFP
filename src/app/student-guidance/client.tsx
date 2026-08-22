@@ -208,7 +208,11 @@ function StudentGuidancePage() {
         </div>
       </section>
 
-      <div className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-2.5 overflow-hidden">
+      {/* aria-hidden: Marquee repeats its children to loop seamlessly, so a
+          screen reader met every item four times over. The strip is a
+          decorative ticker and everything in it is listed properly further
+          down the page, so hiding it loses nothing. */}
+      <div aria-hidden="true" className="border-y border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] py-2.5 overflow-hidden">
         <Marquee className="[--duration:40s]">
           {guidanceCards.slice(0, 30).map((c) => (
             <span key={c.id} className="mx-5 text-sm text-[var(--if-text-muted)] font-medium whitespace-nowrap">

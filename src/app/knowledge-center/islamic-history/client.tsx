@@ -33,52 +33,84 @@ const copy = {
   you_are_the_best_nation: { te: "\"మీరు మానవుల కోసం వెలువడిన ఉత్తమ జాతి\" — సూరహ్ ఆలె ఇమ్రాన్ 3:110", en: "\"You are the best nation produced for mankind\" — Surah Ali Imran 3:110" },
 } as const;
 
+/* highlights were plain strings, so all 24 of them rendered in English inside
+   the Telugu era panel. */
 const eras = [
   {
-    num: 1, years: "632–661 CE", color: "bg-emerald-800",
+    num: 1, years: { te: "క్రీ.శ. 632–661", en: "632–661 CE" }, color: "bg-emerald-800",
     title: { te: "ఖులఫా-ఇ-రాషిదీన్", en: "Rightly Guided Caliphs" }, ar: "الخلفاء الراشدون",
     desc: { te: "అబూ బక్ర్, ఉమర్, ఉస్మాన్, అలీ రా. ఇస్లాం యొక్క స్వర్ణయుగం — ఆదర్శ పాలన", en: "Abu Bakr, Umar, Uthman, Ali RA — the golden age of ideal Islamic governance" },
-    highlights: ["Quran compiled into one book", "Arabia unified under Islam", "Just and consultative governance", "Expansion into Persia & Levant"],
+    highlights: [
+      { te: "ఖురాన్ ఒకే గ్రంథంగా సంకలనం", en: "Quran compiled into one book" },
+      { te: "ఇస్లాం కింద అరేబియా ఏకీకరణ", en: "Arabia unified under Islam" },
+      { te: "న్యాయమైన, సంప్రదింపుల పాలన", en: "Just and consultative governance" },
+      { te: "పర్షియా, లెవాంట్‌లోకి విస్తరణ", en: "Expansion into Persia & Levant" },
+    ],
     lesson: { te: "న్యాయమైన నాయకత్వం బలమైన సమాజాన్ని నిర్మిస్తుంది", en: "Just leadership builds a strong society" },
     personality: "Umar ibn al-Khattab RA",
   },
   {
-    num: 2, years: "661–750 CE", color: "bg-blue-800",
+    num: 2, years: { te: "క్రీ.శ. 661–750", en: "661–750 CE" }, color: "bg-blue-800",
     title: { te: "ఉమయ్యా సామ్రాజ్యం", en: "Umayyad Dynasty" }, ar: "الأمويون",
     desc: { te: "ఇస్లాం స్పెయిన్ నుండి సింధ్ వరకు విస్తరించింది — దమాస్కస్ రాజధానిగా", en: "Islam spread from Spain to Sindh — capital at Damascus" },
-    highlights: ["Islam reaches Spain (Al-Andalus)", "Islamic architecture flourished", "Arabic became official language", "Maritime expansion"],
+    highlights: [
+      { te: "స్పెయిన్ (అల్-అందలుస్) చేరిన ఇస్లాం", en: "Islam reaches Spain (Al-Andalus)" },
+      { te: "ఇస్లామిక్ వాస్తుశిల్పం వికసించింది", en: "Islamic architecture flourished" },
+      { te: "అరబిక్ అధికార భాషగా మారింది", en: "Arabic became official language" },
+      { te: "సముద్ర మార్గ విస్తరణ", en: "Maritime expansion" },
+    ],
     lesson: { te: "బలమైన వ్యవస్థ నాగరికతను విస్తృతంగా వ్యాప్తి చేస్తుంది", en: "Strong organisation spreads civilisation widely" },
     personality: "Umar ibn Abdul-Aziz",
   },
   {
-    num: 3, years: "750–1258 CE", color: "bg-amber-800",
+    num: 3, years: { te: "క్రీ.శ. 750–1258", en: "750–1258 CE" }, color: "bg-amber-800",
     title: { te: "అబ్బాసీ స్వర్ణయుగం", en: "Abbasid Golden Age" }, ar: "العصر الذهبي",
     desc: { te: "బాగ్దాద్ ప్రపంచ జ్ఞాన కేంద్రం — విజ్ఞాన, గణిత, వైద్య పురోగతి", en: "Baghdad was the world's knowledge centre — science, math, medicine flourished" },
-    highlights: ["House of Wisdom (Bayt al-Hikmah)", "Algebra & Algorithms invented", "Medical Encyclopedia by Ibn Sina", "Paper & libraries spread"],
+    highlights: [
+      { te: "బైత్ అల్-హిక్మా (జ్ఞాన గృహం)", en: "House of Wisdom (Bayt al-Hikmah)" },
+      { te: "బీజగణితం, అల్గారిథమ్‌ల ఆవిష్కరణ", en: "Algebra & Algorithms invented" },
+      { te: "ఇబ్న్ సీనా వైద్య విజ్ఞాన సర్వస్వం", en: "Medical Encyclopedia by Ibn Sina" },
+      { te: "కాగితం, గ్రంథాలయాల విస్తరణ", en: "Paper & libraries spread" },
+    ],
     lesson: { te: "జ్ఞానంలో పెట్టుబడి ఒక నాగరికతనే నిర్మిస్తుంది", en: "Investing in knowledge builds a whole civilisation" },
     personality: "Al-Khwarizmi",
   },
   {
-    num: 4, years: "1299–1924 CE", color: "bg-red-900",
+    num: 4, years: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, color: "bg-red-900",
     title: { te: "ఒట్టోమన్ సామ్రాజ్యం", en: "Ottoman Empire" }, ar: "الدولة العثمانية",
     desc: { te: "600 సంవత్సరాల ఇస్లామిక్ పాలన — కాన్స్టాంటినోపుల్ ఫతహ్, సుల్తాన్ సులేమాన్", en: "600 years of Islamic rule — Fall of Constantinople, Suleiman the Magnificent" },
-    highlights: ["Constantinople conquered 1453", "Largest empire of its time", "Millet system for religious minorities", "Islamic arts and architecture"],
+    highlights: [
+      { te: "1453లో కాన్‌స్టాంటినోపుల్ విజయం", en: "Constantinople conquered 1453" },
+      { te: "ఆ కాలపు అతిపెద్ద సామ్రాజ్యం", en: "Largest empire of its time" },
+      { te: "మతపరమైన మైనారిటీలకు మిల్లెత్ వ్యవస్థ", en: "Millet system for religious minorities" },
+      { te: "ఇస్లామిక్ కళలు, వాస్తుశిల్పం", en: "Islamic arts and architecture" },
+    ],
     lesson: { te: "దృష్టి, క్రమశిక్షణ సామ్రాజ్యాలను నిర్మిస్తాయి", en: "Vision and discipline build empires" },
     personality: "Mehmed II (the Conqueror)",
   },
   {
-    num: 5, years: "18th–20th C", color: "bg-gray-700",
+    num: 5, years: { te: "18–20 శతాబ్దాలు", en: "18th–20th C" }, color: "bg-gray-700",
     title: { te: "వలసవాద కాలం", en: "Colonial Period" }, ar: "الحقبة الاستعمارية",
     desc: { te: "యూరోపియన్ వలసవాదం ముస్లిం ప్రపంచాన్ని విభజించింది — స్వాతంత్ర్య పోరాటాలు", en: "European colonialism divided the Muslim world — independence struggles" },
-    highlights: ["British, French, Dutch occupation", "Abolition of Caliphate (1924)", "Independence movements", "Muslim scholars led resistance"],
+    highlights: [
+      { te: "బ్రిటిష్, ఫ్రెంచ్, డచ్ ఆక్రమణ", en: "British, French, Dutch occupation" },
+      { te: "ఖిలాఫత్ రద్దు (1924)", en: "Abolition of Caliphate (1924)" },
+      { te: "స్వాతంత్ర్య ఉద్యమాలు", en: "Independence movements" },
+      { te: "ముస్లిం విద్వాంసుల నేతృత్వంలో ప్రతిఘటన", en: "Muslim scholars led resistance" },
+    ],
     lesson: { te: "విభజన, పరాధీనత బలమైన నాగరికతలను కూడా బలహీనపరుస్తాయి", en: "Disunity weakens even strong civilisations" },
     personality: "Ibn Khaldun",
   },
   {
-    num: 6, years: "Today", color: "bg-[#0d3b1e]",
+    num: 6, years: { te: "నేడు", en: "Today" }, color: "bg-[#0d3b1e]",
     title: { te: "నేటి ముస్లిం ప్రపంచం & పాఠాలు", en: "Modern Muslim World & Lessons" }, ar: "العالم الإسلامي المعاصر",
     desc: { te: "1.9 బిలియన్ ముస్లింలు 57+ దేశాలలో — ఏకత, న్యాయం మరియు ఇస్లామిక్ విలువలు", en: "1.9 billion Muslims in 57+ countries — unity, justice and Islamic values" },
-    highlights: ["57 OIC member states", "Muslim Nobel laureates in all fields", "Islamic finance growing globally", "Dawah and revival movements"],
+    highlights: [
+      { te: "57 OIC సభ్య దేశాలు", en: "57 OIC member states" },
+      { te: "అన్ని రంగాల్లో ముస్లిం నోబెల్ గ్రహీతలు", en: "Muslim Nobel laureates in all fields" },
+      { te: "ప్రపంచవ్యాప్తంగా పెరుగుతున్న ఇస్లామిక్ ఫైనాన్స్", en: "Islamic finance growing globally" },
+      { te: "దావా, పునరుజ్జీవన ఉద్యమాలు", en: "Dawah and revival movements" },
+    ],
     lesson: { te: "పునరుజ్జీవనం జ్ఞానం, మంచి స్వభావం, ఐక్యత ద్వారా వస్తుంది", en: "Renewal comes through knowledge, character, and unity" },
     personality: "Fatima al-Fihri",
   },
@@ -247,7 +279,7 @@ function IslamicHistoryPage() {
                 <button key={era.num} onClick={() => setActive(i)}
                   className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[100px] ${active === i ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}>
                   <div className={`w-8 h-8 rounded-full ${era.color} flex items-center justify-center text-white text-xs font-bold`}>{era.num}</div>
-                  <span className={`text-[10px] font-semibold text-center leading-tight ${active === i ? "text-[var(--if-gold-pale)]" : "text-[var(--if-text-muted)]"}`}>{era.years}</span>
+                  <span className={`text-[10px] font-semibold text-center leading-tight ${active === i ? "text-[var(--if-gold-pale)]" : "text-[var(--if-text-muted)]"}`}>{era.years[lang]}</span>
                 </button>
               ))}
             </div>
@@ -263,13 +295,13 @@ function IslamicHistoryPage() {
                     <h3 className="font-display text-2xl font-bold text-[var(--if-green)]">{eras[active].title[lang]}</h3>
                     <span className="font-arabic text-lg text-[var(--if-gold-light)]" dir="rtl" lang="ar">{eras[active].ar}</span>
                   </div>
-                  <span className="text-xs font-bold text-[var(--if-gold-ink)] tracking-wider">{eras[active].years}</span>
+                  <span className="text-xs font-bold text-[var(--if-gold-ink)] tracking-wider">{eras[active].years[lang]}</span>
                   <p className="text-[var(--if-text-muted)] mt-3 mb-5 leading-relaxed">{eras[active].desc[lang]}</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
                     {eras[active].highlights.map((h) => (
-                      <div key={h} className="flex items-start gap-2 text-sm">
-                        <span className="text-[var(--if-gold-ink)] mt-0.5 flex-shrink-0">✦</span>
-                        <span className="text-[var(--if-text)]">{h}</span>
+                      <div key={h.en} className="flex items-start gap-2 text-sm">
+                        <span aria-hidden="true" className="text-[var(--if-gold-ink)] mt-0.5 flex-shrink-0">✦</span>
+                        <span className="text-[var(--if-text)]">{h[lang]}</span>
                       </div>
                     ))}
                   </div>

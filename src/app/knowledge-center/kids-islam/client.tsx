@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { useProgress } from "@/lib/progress";
+import { summariesByPortal } from "@/content/lesson-index";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { kidsProphets } from "@/content/portals";
@@ -88,21 +90,28 @@ const salahSteps = [
   { emoji: "🙏", ar: "السُّجُودُ", en: "Prostrate (Sujud)", te: "సాష్టాంగ పడటం (సుజూద్)", desc_en: "Prostrate with 7 body parts on the ground, saying 'Subhana Rabbiyal A'la' three times.", desc_te: "7 అవయవాలతో నేలపై సాష్టాంగ పడి 'సుబ్హాన రబ్బియల్ అ'లా' మూడు సార్లు చెప్పాలి.", color: "#ec4899" },
 ];
 
+/* Options were plain strings, and only some carried Telugu. On Q1 the single
+   option with a Telugu gloss was the correct one, so a child could pick it
+   without knowing the answer; Q2's three options had no Telugu at all. On a
+   portal for 5-15 year olds reading a Telugu-default site, that is the whole
+   exercise defeated. Both languages on every option now. */
 const quiz = [
-  { q: { te: "ఖురాన్ ఏ భాషలో అవతరించింది?", en: "In which language was the Quran revealed?" }, options: ["Urdu", "Arabic / అరబిక్", "Persian"], correct: 1 },
-  { q: { te: "ఇస్లాం ఐదు స్తంభాలు ఏమిటి?", en: "What are the Five Pillars of Islam?" }, options: ["Shahada, Salah, Zakat, Sawm, Hajj", "Prayer, Fasting, Zakat, Hajj, Jihad", "Iman, Prayer, Charity, Fasting, Hajj"], correct: 0 },
-  { q: { te: "ముహమ్మద్ ﷺ ఏ నగరంలో జన్మించారు?", en: "In which city was Prophet Muhammad ﷺ born?" }, options: ["Madinah / మదీనా", "Jerusalem / జెరూసలేం", "Makkah / మక్కా"], correct: 2 },
-  { q: { te: "మొదటి ప్రవక్త ఎవరు?", en: "Who was the very first prophet?" }, options: ["Nuh (AS) / నూహ్ (అ.స)", "Adam (AS) / ఆదమ్ (అ.స)", "Musa (AS) / మూసా (అ.స)"], correct: 1 },
-  { q: { te: "ముస్లింలు రోజూ ఎన్ని సార్లు నమాజ్ చేస్తారు?", en: "How many times a day do Muslims pray?" }, options: ["3 times / 3 సార్లు", "5 times / 5 సార్లు", "7 times / 7 సార్లు"], correct: 1 },
-  { q: { te: "నమాజ్ ముందు వుదూ ఎందుకు చేస్తాం?", en: "What do we do to become clean before Salah?" }, options: ["Wudu / వుదూ", "Sleep / నిద్ర", "Eat / తినడం"], correct: 0 },
-  { q: { te: "పెద్ద నావ నిర్మించిన ప్రవక్త ఎవరు?", en: "Which prophet built a great ark (boat)?" }, options: ["Nuh (AS) / నూహ్ (అ.స)", "Yusuf (AS) / యూసుఫ్ (అ.స)", "Ibrahim (AS) / ఇబ్రాహీమ్ (అ.స)"], correct: 0 },
-  { q: { te: "ఇస్లాం చివరి ప్రవక్త ఎవరు?", en: "Who is the final prophet of Islam?" }, options: ["Ibrahim (AS) / ఇబ్రాహీమ్ (అ.స)", "Isa (AS) / ఈసా (అ.స)", "Muhammad ﷺ / ముహమ్మద్ ﷺ"], correct: 2 },
+  { q: { te: "ఖురాన్ ఏ భాషలో అవతరించింది?", en: "In which language was the Quran revealed?" }, options: [{ te: "ఉర్దూ", en: "Urdu" }, { te: "అరబిక్", en: "Arabic" }, { te: "పర్షియన్", en: "Persian" }], correct: 1 },
+  { q: { te: "ఇస్లాం ఐదు స్తంభాలు ఏమిటి?", en: "What are the Five Pillars of Islam?" }, options: [{ te: "షహాదా, నమాజ్, జకాత్, రోజా, హజ్", en: "Shahada, Salah, Zakat, Sawm, Hajj" }, { te: "నమాజ్, రోజా, జకాత్, హజ్, జిహాద్", en: "Prayer, Fasting, Zakat, Hajj, Jihad" }, { te: "ఈమాన్, నమాజ్, దానం, రోజా, హజ్", en: "Iman, Prayer, Charity, Fasting, Hajj" }], correct: 0 },
+  { q: { te: "ముహమ్మద్ ﷺ ఏ నగరంలో జన్మించారు?", en: "In which city was Prophet Muhammad ﷺ born?" }, options: [{ te: "మదీనా", en: "Madinah" }, { te: "జెరూసలేం", en: "Jerusalem" }, { te: "మక్కా", en: "Makkah" }], correct: 2 },
+  { q: { te: "మొదటి ప్రవక్త ఎవరు?", en: "Who was the very first prophet?" }, options: [{ te: "నూహ్ (అ.స)", en: "Nuh (AS)" }, { te: "ఆదమ్ (అ.స)", en: "Adam (AS)" }, { te: "మూసా (అ.స)", en: "Musa (AS)" }], correct: 1 },
+  { q: { te: "ముస్లింలు రోజూ ఎన్ని సార్లు నమాజ్ చేస్తారు?", en: "How many times a day do Muslims pray?" }, options: [{ te: "3 సార్లు", en: "3 times" }, { te: "5 సార్లు", en: "5 times" }, { te: "7 సార్లు", en: "7 times" }], correct: 1 },
+  { q: { te: "నమాజ్ ముందు శుభ్రం కావడానికి ఏమి చేస్తాం?", en: "What do we do to become clean before Salah?" }, options: [{ te: "వుదూ", en: "Wudu" }, { te: "నిద్ర", en: "Sleep" }, { te: "తినడం", en: "Eat" }], correct: 0 },
+  { q: { te: "పెద్ద నావ నిర్మించిన ప్రవక్త ఎవరు?", en: "Which prophet built a great ark (boat)?" }, options: [{ te: "నూహ్ (అ.స)", en: "Nuh (AS)" }, { te: "యూసుఫ్ (అ.స)", en: "Yusuf (AS)" }, { te: "ఇబ్రాహీమ్ (అ.స)", en: "Ibrahim (AS)" }], correct: 0 },
+  { q: { te: "ఇస్లాం చివరి ప్రవక్త ఎవరు?", en: "Who is the final prophet of Islam?" }, options: [{ te: "ఇబ్రాహీమ్ (అ.స)", en: "Ibrahim (AS)" }, { te: "ఈసా (అ.స)", en: "Isa (AS)" }, { te: "ముహమ్మద్ ﷺ", en: "Muhammad ﷺ" }], correct: 2 },
 ];
-
 // ── COMPONENT ────────────────────────────────────────────────────────────────
 
 function KidsIslamPage() {
   const { lang } = useI18n();
+  const { countFor } = useProgress();
+  const kidsSlugs = summariesByPortal("kids-islam").map((l) => l.slug);
+  const kidsDone = countFor("kids-islam", kidsSlugs);
   const [activeSection, setActiveSection] = useState<number | null>(null);
   const [quizIdx, setQuizIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -502,7 +511,7 @@ function KidsIslamPage() {
                                 : "border-[var(--if-gold)]/10 text-[var(--if-gold-pale)]/40"
                         }`}
                       >
-                        {String.fromCharCode(65 + i)}. {opt}
+                        {String.fromCharCode(65 + i)}. {opt[lang]}
                       </button>
                     ))}
                   </div>
@@ -549,13 +558,16 @@ function KidsIslamPage() {
                 <h3 className="font-display font-bold text-white mb-4 flex items-center gap-2">
                   <span className="text-xl">📊</span> {t("నా పురోగతి", "My Progress")}
                 </h3>
-                <div className="flex gap-3 flex-wrap">
-                  {[{ num: "0/6", label: t("పాఠాలు", "Lessons") }, { num: "0", label: t("XP పాయింట్లు", "XP Points") }, { num: "0", label: t("మిషన్‌లు", "Missions") }].map((stat, i) => (
-                    <div key={i} className="flex-1 min-w-[80px] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/22 rounded-xl p-3 text-center">
-                      <div className="font-display text-2xl font-bold text-[var(--if-gold-light)] leading-none">{stat.num}</div>
-                      <div className="text-xs text-white/75 uppercase tracking-wide mt-1.5">{stat.label}</div>
-                    </div>
-                  ))}
+                {/* This read "0/6 Lessons, 0 XP Points, 0 Missions" as three
+                    hardcoded strings. It never moved, the denominator was wrong
+                    (there are eight kids lessons), and no XP or mission system
+                    exists anywhere in the codebase for the other two to count.
+                    What is left is the one number the site actually tracks. */}
+                <div className="bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/22 rounded-xl p-4 text-center">
+                  <div className="font-display text-3xl font-bold text-[var(--if-gold-light)] leading-none tabular-nums">
+                    {kidsDone} / {kidsSlugs.length}
+                  </div>
+                  <div className="text-xs text-white/75 uppercase tracking-wide mt-2">{t("పూర్తయిన పాఠాలు", "Lessons completed")}</div>
                 </div>
               </div>
               <div className="bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-6">
