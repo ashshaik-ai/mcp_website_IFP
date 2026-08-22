@@ -2176,4 +2176,283 @@ export const authoredLessons: Lesson[] = [
       { label: "Learn Salah portal", url: "/knowledge-center/learn-salah" },
     ],
   },
+
+  {
+    slug: "nikah",
+    portal: "womens-guidance",
+    title: {
+      te: "స్థాయి 1 — నికాహ్: ఒప్పందం, మహర్, హక్కులు",
+      en: "Level 1 — Nikah: the contract, the mahr, and rights",
+    },
+    intro: {
+      te: "నికాహ్ ఒక ఒప్పందం — ఒక వేడుక మాత్రమే కాదు. దానికి నిర్దిష్ట స్తంభాలు, షరతులు ఉన్నాయి, మరియు స్త్రీకి కొన్ని హక్కులు ఉన్నాయి, వాటిని ఎవరూ తీసివేయలేరు. ఈ పాఠం ఆ చట్రాన్ని వివరిస్తుంది.",
+      en: "Nikah is a contract, not only a celebration. It has defined pillars and conditions, and it gives a woman rights that no one can take from her. This lesson sets out that framework.",
+    },
+    sections: [
+      {
+        heading: { te: "ఒప్పందం ఏమి కోరుతుంది", en: "What the contract requires" },
+        body: {
+          te: "ప్రధాన అంశాలు: ప్రతిపాదన (ఈజాబ్), అంగీకారం (ఖబూల్), ఇద్దరి సమ్మతి, మహర్, మరియు సాక్ష్యం. హనఫీ, షాఫయీ, హంబలీ మజ్‌హబ్‌ల్లో ఇద్దరు సాక్షులు అవసరం; మాలికీ మజ్‌హబ్‌లో సాక్షుల బదులు బహిరంగ ప్రకటన సరిపోతుంది. వలీ (సంరక్షకుడు) విషయంలో భేదం: మెజారిటీ మజ్‌హబ్‌లు వలీ అవసరమని అంటాయి; హనఫీ మజ్‌హబ్‌లో వయోజన స్త్రీ తనకు తానే ఒప్పందం చేసుకోగలదు.",
+          en: "The essentials are an offer (ijab), an acceptance (qabul), the consent of both parties, the mahr, and witnessing. The Hanafi, Shafi'i and Hanbali schools require two witnesses; the Maliki school accepts public announcement in their place. On the guardian (wali) the schools differ: the majority require one, while the Hanafi school allows an adult woman to contract her own marriage.",
+        },
+        check: {
+          question: { te: "నికాహ్‌కు ఏది అవసరం?", en: "Which of these is required for a nikah?" },
+          options: [
+            { te: "ఇద్దరి సమ్మతి", en: "The consent of both parties" },
+            { te: "ఖరీదైన వేడుక", en: "An expensive celebration" },
+            { te: "వధువు కుటుంబం నుండి కట్నం", en: "A dowry from the bride's family" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "సమ్మతి — చర్చనీయాంశం కాదు", en: "Consent is not negotiable" },
+        body: {
+          te: "ఖన్సా బింత్ ఖిదామ్ (ర/అ) తండ్రి ఆమె ఇష్టం లేకుండా వివాహం జరిపించారు. ఆమె ప్రవక్త ﷺ వద్దకు వెళ్ళగా, ఆయన ఆ వివాహాన్ని రద్దు చేశారు (బుఖారీ). ఇది స్పష్టం: ఒత్తిడితో జరిపిన వివాహం చెల్లదు. మౌనం అంగీకారంగా పరిగణించబడేది కన్యల విషయంలో సిగ్గు కారణంగా — కానీ అది స్వేచ్ఛాయుత మౌనం అయి ఉండాలి, భయం వల్ల కాదు.",
+          en: "Khansa bint Khidam's (RA) father married her off against her wishes. She came to the Prophet ﷺ and he annulled the marriage (Bukhari). The point is settled: a marriage imposed by pressure is not valid. Silence was treated as assent for a previously unmarried woman out of modesty, but it must be free silence, not silence out of fear.",
+        },
+        check: {
+          question: { te: "ఒత్తిడితో జరిపిన వివాహం గురించి ప్రవక్త ﷺ ఏమి చేశారు?", en: "What did the Prophet ﷺ do about a marriage imposed by force?" },
+          options: [
+            { te: "దాన్ని రద్దు చేశారు", en: "He annulled it" },
+            { te: "దాన్ని ఆమోదించారు", en: "He upheld it" },
+            { te: "ఏమీ చేయలేదు", en: "He did nothing" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "మహర్ మరియు కట్నం — పూర్తిగా వేరు", en: "Mahr and dowry are opposites" },
+        body: {
+          te: "ఇది మన ప్రాంతంలో అత్యంత ముఖ్యమైన తేడా. మహర్ వరుడు వధువుకు ఇచ్చే బహుమతి — ఖురాన్ దీన్ని విధిగా చేస్తుంది: 'స్త్రీలకు వారి మహర్‌లను సంతోషంగా ఇవ్వండి' (అన్-నిసా 4:4). అది ఆమెదే — తండ్రిది కాదు, భర్తది కాదు, అత్తమామలది కాదు. ఆమె దాన్ని ఎలా ఉపయోగించాలో ఆమే నిర్ణయిస్తుంది. కట్నం దీనికి పూర్తి వ్యతిరేకం: వధువు కుటుంబం నుండి వరుడి కుటుంబానికి డిమాండ్ చేసేది. దీనికి ఇస్లాంలో ఎటువంటి ఆధారమూ లేదు; అది సాంస్కృతిక ఆచారం, తరచూ కుటుంబాలను అప్పుల్లోకి నెడుతుంది.",
+          en: "This is the most important distinction in our region. The mahr is a gift from the groom to the bride, made obligatory by the Quran: 'Give the women their bridal gifts graciously' (An-Nisa 4:4). It belongs to her, not to her father, her husband, or her in-laws, and she alone decides what to do with it. Dowry is the reverse: a demand made on the bride's family by the groom's. It has no basis in Islam. It is a cultural practice, and one that regularly drives families into debt.",
+        },
+      },
+      {
+        heading: { te: "సరళత సున్నత్", en: "Simplicity is the sunnah" },
+        body: {
+          te: "ప్రవక్త ﷺ అన్నారు: 'అత్యంత బరకత్ ఉన్న వివాహం ఖర్చు తక్కువగా ఉండేది' (అహ్మద్). ఒక సహచరుడికి ఇనుప ఉంగరాన్ని మహర్‌గా ఇవ్వమని, అది కూడా లేకపోతే తనకు తెలిసిన ఖురాన్ సూరాలను నేర్పమని ప్రవక్త ﷺ చెప్పారు (బుఖారీ). వలీమా (వివాహ విందు) సున్నత్, కానీ అది స్తోమతకు తగినట్లు ఉండాలి — అప్పు చేసి కాదు.",
+          en: "The Prophet ﷺ said: 'The most blessed marriage is the one with the least expense' (Ahmad). He told one companion to give an iron ring as mahr, and when even that was beyond him, to teach his wife the surahs he knew (Bukhari). The walimah, the marriage feast, is sunnah, but it should match what a family can afford rather than be funded by debt.",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "నికాహ్ ఒక ఒప్పందం: ప్రతిపాదన, అంగీకారం, సమ్మతి, మహర్, సాక్ష్యం.", en: "Nikah is a contract: offer, acceptance, consent, mahr and witnessing." },
+      { te: "ఒత్తిడితో జరిపిన వివాహం చెల్లదు — ప్రవక్త ﷺ దాన్ని రద్దు చేశారు.", en: "A forced marriage is invalid; the Prophet ﷺ annulled one." },
+      { te: "మహర్ వధువుది. కట్నానికి ఇస్లాంలో ఆధారం లేదు.", en: "The mahr belongs to the bride. Dowry has no basis in Islam." },
+    ],
+    didYouKnow: [
+      { te: "ఖురాన్ మహర్‌ను స్త్రీ 'హక్కు'గా వర్ణిస్తుంది, బహుమతిగా కాదు — దాన్ని ఆమెకు ఇవ్వడం విధి.", en: "The Quran frames the mahr as the woman's due, not a favour; giving it is an obligation." },
+      { te: "ఉమర్ (ర/అ) మహర్‌పై పరిమితి పెట్టాలనుకున్నప్పుడు ఒక స్త్రీ ఖురాన్ 4:20తో ఆయనను ఖండించారు, ఆయన తన అభిప్రాయాన్ని ఉపసంహరించుకున్నారు.", en: "When Umar (RA) proposed capping the mahr, a woman challenged him with Quran 4:20 and he withdrew the proposal." },
+    ],
+    reflect: [
+      { te: "మీ కుటుంబంలో లేదా పరిచయస్తుల్లో కట్నం ఒత్తిడి ఎదుర్కొంటున్న ఎవరైనా ఉన్నారా? ఈ తేడాను వారితో ఎలా పంచుకోగలరు?", en: "Is anyone in your family or circle facing pressure over dowry? How could you share this distinction with them?" },
+    ],
+    mistakes: [
+      { te: "మహర్‌ను వధువు తండ్రికి లేదా కుటుంబానికి ఇవ్వడం — అది వధువుకే చెందాలి.", en: "Giving the mahr to the bride's father or family, when it belongs to the bride." },
+      { te: "మహర్‌ను 'తర్వాత ఇస్తాం' అని రాసి ఎప్పటికీ ఇవ్వకపోవడం — అది అప్పుగా మిగిలిపోతుంది.", en: "Deferring the mahr on paper and never paying it, leaving it as an outstanding debt." },
+      { te: "కట్నాన్ని ఇస్లామిక్ ఆచారంగా భావించడం.", en: "Treating dowry as an Islamic practice." },
+    ],
+    faqs: [
+      {
+        question: { te: "మహర్ ఎంత ఉండాలి?", en: "How much should the mahr be?" },
+        answer: {
+          te: "కనీస లేదా గరిష్ఠ పరిమితి ఖురాన్‌లో లేదు — ఇది ఇద్దరి మధ్య ఒప్పందం. ప్రవక్త ﷺ తక్కువ ఖర్చు ఉన్న వివాహాన్ని ప్రశంసించారు. ముఖ్యమైనది: వరుడు నిజంగా ఇవ్వగలిగినది, మరియు వధువు సంతృప్తి చెందినది.",
+          en: "The Quran sets no minimum or maximum; it is agreed between the two parties. The Prophet ﷺ praised the marriage of least expense. What matters is that the groom can genuinely pay it and the bride is content with it.",
+        },
+      },
+      {
+        question: { te: "వివాహ ఒప్పందంలో షరతులు పెట్టవచ్చా?", en: "May conditions be written into the marriage contract?" },
+        answer: {
+          te: "అవును. ప్రవక్త ﷺ అన్నారు: 'నెరవేర్చడానికి అత్యంత అర్హమైన షరతులు మీరు వివాహాన్ని అనుమతించే వాటిలో ఉన్నవి' (బుఖారీ). చదువు కొనసాగించడం, ఉద్యోగం, నివాస స్థలం వంటి షరతులను చేర్చవచ్చు. మీ కేసుకు సరైన పదాల కోసం ఒక ఆలిమ్‌ను సంప్రదించండి.",
+          en: "Yes. The Prophet ﷺ said: 'The conditions most deserving to be fulfilled are those by which you make intimacy lawful' (Bukhari). Conditions about continuing education, work, or where the couple will live may be included. Consult a scholar on the right wording for your situation.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "మహర్ ఎవరికి చెందుతుంది?", en: "To whom does the mahr belong?" },
+        options: [
+          { te: "వధువుకు మాత్రమే", en: "To the bride alone" },
+          { te: "వధువు తండ్రికి", en: "To the bride's father" },
+          { te: "వరుడి కుటుంబానికి", en: "To the groom's family" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "హనఫీ మజ్‌హబ్‌లో వయోజన స్త్రీ గురించి ఏమి?", en: "In the Hanafi school, what applies to an adult woman?" },
+        options: [
+          { te: "ఆమె తనకు తానే ఒప్పందం చేసుకోగలదు", en: "She may contract her own marriage" },
+          { te: "ఆమెకు ఎప్పుడూ వలీ అవసరం", en: "She always requires a guardian" },
+          { te: "ఆమె వివాహం చేసుకోలేదు", en: "She cannot marry" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ప్రవక్త ﷺ ప్రకారం అత్యంత బరకత్ ఉన్న వివాహం ఏది?", en: "According to the Prophet ﷺ, which marriage is most blessed?" },
+        options: [
+          { te: "ఖర్చు తక్కువగా ఉండేది", en: "The one with the least expense" },
+          { te: "అత్యంత ఖరీదైనది", en: "The most expensive one" },
+          { te: "అత్యధిక అతిథులు ఉన్నది", en: "The one with the most guests" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "స్తంభాలు: ఈజాబ్, ఖబూల్, సమ్మతి, మహర్, సాక్ష్యం.", en: "Pillars: ijab, qabul, consent, mahr, witnessing." },
+      { te: "ఖురాన్ 4:4 — మహర్ స్త్రీ హక్కు.", en: "Quran 4:4 — the mahr is the woman's due." },
+      { te: "మహర్ ≠ కట్నం. కట్నానికి ఇస్లామిక్ ఆధారం లేదు.", en: "Mahr is not dowry. Dowry has no Islamic basis." },
+    ],
+    summary: {
+      te: "నికాహ్ ఒక ఒప్పందం — ప్రతిపాదన, అంగీకారం, ఇద్దరి స్వేచ్ఛాయుత సమ్మతి, మహర్, సాక్ష్యం. ఒత్తిడితో జరిపినది చెల్లదు. మహర్ వధువుకే చెందుతుంది, మరియు కట్నం దానికి వ్యతిరేకమైన సాంస్కృతిక ఆచారం — ఇస్లామిక్ ఆధారం లేనిది.",
+      en: "Nikah is a contract of offer, acceptance, the free consent of both, a mahr and witnessing. One imposed by force is invalid. The mahr belongs to the bride, and dowry is its cultural opposite with no basis in Islam.",
+    },
+    apply: {
+      te: "ఆచరణ: మీకు తెలిసిన ఒక వివాహ ప్రణాళికలో మహర్ ఎవరికి వెళుతుందో, ఎప్పుడు చెల్లిస్తారో అడిగి తెలుసుకోండి.",
+      en: "Apply it: in a marriage being planned around you, ask who the mahr goes to and when it will be paid.",
+    },
+    reading: [
+      { label: "Women's Guidance portal", url: "/knowledge-center/womens-guidance" },
+    ],
+  },
+
+  {
+    slug: "iddah",
+    portal: "womens-guidance",
+    title: {
+      te: "స్థాయి 2 — ఇద్దత్: వేచి ఉండే కాలం",
+      en: "Level 2 — Iddah: the waiting period",
+    },
+    intro: {
+      te: "విడాకుల తర్వాత లేదా భర్త మరణం తర్వాత స్త్రీ ఒక నిర్ణీత కాలం వేచి ఉంటుంది — దాన్ని ఇద్దత్ అంటారు. దాని వ్యవధులు, దాని ఉద్దేశం, ఆ కాలంలో ఆమె హక్కులు ఏమిటో ఈ పాఠంలో.",
+      en: "After divorce or the death of a husband, a woman observes a defined waiting period called the iddah. This lesson covers its durations, its purpose, and her rights during it.",
+    },
+    sections: [
+      {
+        heading: { te: "వ్యవధులు", en: "The durations" },
+        body: {
+          te: "విడాకులు, ఋతుస్రావం ఉన్న స్త్రీ: మూడు ఋతుచక్రాలు (అల్-బఖరా 2:228). ఋతుస్రావం లేని స్త్రీ (వయస్సు లేదా ఇతర కారణాల వల్ల): మూడు నెలలు (అత్-తలాఖ్ 65:4). గర్భవతి: ప్రసవం వరకు — విడాకులైనా, భర్త మరణించినా (65:4). భర్త మరణం: నాలుగు నెలల పది రోజులు (2:234).",
+          en: "For divorce where the woman menstruates: three cycles (Al-Baqarah 2:228). Where she does not menstruate, through age or otherwise: three months (At-Talaq 65:4). If pregnant: until she gives birth, whether the marriage ended by divorce or death (65:4). On the death of a husband: four months and ten days (2:234).",
+        },
+        check: {
+          question: { te: "గర్భవతి స్త్రీ ఇద్దత్ ఎప్పటివరకు?", en: "How long is the iddah of a pregnant woman?" },
+          options: [
+            { te: "ప్రసవం వరకు", en: "Until she gives birth" },
+            { te: "మూడు నెలలు", en: "Three months" },
+            { te: "నాలుగు నెలల పది రోజులు", en: "Four months and ten days" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "ఎందుకు ఈ కాలం", en: "Why the period exists" },
+        body: {
+          te: "పండితులు మూడు కారణాలను చెబుతారు. ఒకటి: గర్భం ఉందా లేదా అనేది స్పష్టం కావడం — పిల్లల వంశం స్పష్టంగా ఉండటానికి. రెండు: విడాకుల విషయంలో సర్దుబాటుకు అవకాశం — ఖురాన్ ఈ కాలంలో భర్తకు తిరిగి కలుపుకునే హక్కు ఇస్తుంది (2:228). మూడు: భర్త మరణం విషయంలో సంతాపానికి, మార్పుకు సమయం. ఇది శిక్ష కాదు; ఇది రక్షణ మరియు వ్యవధి.",
+          en: "Scholars give three reasons. First, to establish whether there is a pregnancy, so that lineage is clear. Second, in divorce, to leave room for reconciliation; the Quran gives the husband the right to take her back within this period (2:228). Third, on a husband's death, time for grief and for adjustment. It is not a punishment but a protection and a pause.",
+        },
+        check: {
+          question: { te: "విడాకుల ఇద్దత్ కాలంలో ఖురాన్ దేనికి అవకాశం ఇస్తుంది?", en: "During the iddah of divorce, what does the Quran allow room for?" },
+          options: [
+            { te: "సర్దుబాటు — తిరిగి కలుసుకోవడం", en: "Reconciliation" },
+            { te: "వెంటనే మరో వివాహం", en: "Immediate remarriage" },
+            { te: "ఆస్తి పంపకం", en: "Division of property" },
+          ],
+          answer: 0,
+        },
+      },
+      {
+        heading: { te: "ఆ కాలంలో ఆమె హక్కులు", en: "Her rights during it" },
+        body: {
+          te: "విడాకుల ఇద్దత్‌లో నివాసం, ఖర్చు భర్త బాధ్యత — ఖురాన్ స్పష్టంగా చెబుతుంది: 'వారిని మీ స్తోమత ప్రకారం మీరు నివసించే చోటే ఉంచండి; వారిని ఇబ్బంది పెట్టడానికి హాని చేయకండి' (అత్-తలాఖ్ 65:6). ఆమెను ఇంటి నుండి బయటకు నెట్టడం ఖురాన్ నిషేధిస్తుంది (65:1). వితంతువు విషయంలో నివాస, ఖర్చు నియమాలపై మజ్‌హబ్‌ల మధ్య భేదం ఉంది — కానీ ఆమెకు వారసత్వ వాటా ఉంటుంది.",
+          en: "In the iddah of divorce, housing and maintenance are the husband's responsibility. The Quran is explicit: 'Lodge them where you dwell, according to your means, and do not harass them so as to make life difficult for them' (At-Talaq 65:6). Turning her out of the home is forbidden (65:1). For a widow the schools differ on housing and maintenance, though she has her share of the inheritance.",
+        },
+      },
+      {
+        heading: { te: "సాంస్కృతిక అపోహలు", en: "Cultural misunderstandings" },
+        body: {
+          te: "కొన్ని ప్రాంతాల్లో ఇద్దత్‌ను ఖైదులా చూస్తారు — స్త్రీని ఒక గదిలో బంధించడం, ఎవరినీ కలవనివ్వకపోవడం, అవసరమైనా బయటకు వెళ్ళనివ్వకపోవడం. దీనికి షరీఅత్‌లో ఆధారం లేదు. వితంతువు అలంకరణ, సువాసన, కొత్త వివాహ ప్రతిపాదనలను స్పష్టంగా అంగీకరించడం మానుకుంటుంది; కానీ ఆమె అవసరమైనప్పుడు బయటకు వెళ్ళవచ్చు, ఉద్యోగం, వైద్యం, ఆవశ్యక పనులు కొనసాగించవచ్చు. జాబిర్ (ర/అ) ఉల్లేఖనలో ఒక విడాకులు పొందిన స్త్రీ తన ఖర్జూర తోటలో పని చేయడానికి బయటకు వెళ్ళడాన్ని ప్రవక్త ﷺ అనుమతించారు (ముస్లిం).",
+          en: "In some places the iddah is treated as confinement: a woman shut in a room, kept from visitors, not allowed out even when she needs to be. There is no basis for this in the Shariah. A widow refrains from adornment, perfume and openly accepting proposals, but she may go out when she needs to, and may continue work, medical care and necessary errands. In a narration from Jabir (RA), the Prophet ﷺ permitted a divorced woman to go out to tend her date palms (Muslim).",
+        },
+      },
+    ],
+    takeaways: [
+      { te: "విడాకులు: మూడు ఋతుచక్రాలు. వైధవ్యం: నాలుగు నెలల పది రోజులు. గర్భం: ప్రసవం వరకు.", en: "Divorce: three cycles. Widowhood: four months and ten days. Pregnancy: until birth." },
+      { te: "ఇద్దత్ శిక్ష కాదు — వంశ స్పష్టత, సర్దుబాటు అవకాశం, సంతాప సమయం.", en: "The iddah is not a punishment: it establishes lineage, allows reconciliation, and gives time to grieve." },
+      { te: "విడాకుల ఇద్దత్‌లో నివాసం, ఖర్చు భర్త బాధ్యత (65:6).", en: "In the iddah of divorce, housing and maintenance fall on the husband (65:6)." },
+    ],
+    didYouKnow: [
+      { te: "ఖురాన్ ఇద్దత్ కాలంలో స్త్రీని ఇంటి నుండి బయటకు పంపడాన్ని స్పష్టంగా నిషేధిస్తుంది (65:1).", en: "The Quran explicitly forbids turning a woman out of the home during her iddah (65:1)." },
+      { te: "గర్భవతి ఇద్దత్ ప్రసవంతో ముగుస్తుంది — అది ఒక వారమైనా, ఎనిమిది నెలలైనా.", en: "A pregnant woman's iddah ends at birth, whether that is a week away or eight months." },
+    ],
+    reflect: [
+      { te: "మీ చుట్టూ ఇద్దత్ పాటిస్తున్న ఎవరైనా ఉంటే, వారికి ఏకాంతం కాకుండా ఏ సహాయం అవసరం కావచ్చు?", en: "If someone near you is observing iddah, what support might they need that is not isolation?" },
+    ],
+    mistakes: [
+      { te: "ఇద్దత్‌ను గృహ నిర్బంధంగా మార్చడం — దీనికి షరీఅత్ ఆధారం లేదు.", en: "Turning the iddah into house arrest, for which there is no basis in the Shariah." },
+      { te: "ఇద్దత్ కాలంలో స్త్రీని ఇంటి నుండి బయటకు పంపడం — ఖురాన్ 65:1 దీన్ని నిషేధిస్తుంది.", en: "Sending a woman out of the home during her iddah, which Quran 65:1 forbids." },
+      { te: "వితంతువును సంతాప పేరుతో వైద్య సహాయం, ఆవశ్యక పనుల నుండి ఆపడం.", en: "Preventing a widow from medical care or necessary errands in the name of mourning." },
+    ],
+    faqs: [
+      {
+        question: { te: "ఇద్దత్ కాలంలో ఉద్యోగానికి వెళ్ళవచ్చా?", en: "May a woman go to work during her iddah?" },
+        answer: {
+          te: "అవసరం ఉన్నప్పుడు అనుమతించబడుతుందని చాలామంది పండితులు అంటారు — ముఖ్యంగా ఆమె జీవనాధారం అదే అయినప్పుడు. ప్రవక్త ﷺ ఒక స్త్రీని తన తోటలో పని చేయడానికి అనుమతించారు (ముస్లిం). మీ పరిస్థితికి తగిన మార్గదర్శనం కోసం స్థానిక ఆలిమ్‌ను సంప్రదించండి.",
+          en: "Most scholars permit it where there is need, particularly where it is her livelihood. The Prophet ﷺ permitted a woman to go out to tend her garden (Muslim). Consult a local scholar for guidance suited to your circumstances.",
+        },
+      },
+      {
+        question: { te: "ఇద్దత్ ముగిసిన తర్వాత ఏమిటి?", en: "What happens once the iddah ends?" },
+        answer: {
+          te: "ఆమె పూర్తి స్వేచ్ఛ పొందుతుంది — ఆమె కోరుకుంటే మరో వివాహం చేసుకోవచ్చు, మరియు ఆ నిర్ణయం ఆమెదే. వితంతువులు, విడాకులు పొందిన స్త్రీలు మళ్ళీ వివాహం చేసుకోవడం ఇస్లాంలో సాధారణమైనది; ప్రవక్త ﷺ భార్యల్లో చాలామంది గతంలో వివాహితులే.",
+          en: "She is fully free, and may remarry if she wishes, the decision being hers. Remarriage of widows and divorced women is entirely normal in Islam; most of the Prophet's own wives had been married before.",
+        },
+      },
+    ],
+    quiz: [
+      {
+        question: { te: "భర్త మరణించిన స్త్రీ ఇద్దత్ ఎంతకాలం?", en: "How long is the iddah of a widow?" },
+        options: [
+          { te: "నాలుగు నెలల పది రోజులు", en: "Four months and ten days" },
+          { te: "మూడు నెలలు", en: "Three months" },
+          { te: "ఒక సంవత్సరం", en: "One year" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ఖురాన్ 65:1 దేన్ని నిషేధిస్తుంది?", en: "What does Quran 65:1 forbid?" },
+        options: [
+          { te: "ఇద్దత్‌లో స్త్రీని ఇంటి నుండి బయటకు పంపడం", en: "Turning a woman out of the home during iddah" },
+          { te: "ఆమె తిరిగి వివాహం చేసుకోవడం", en: "Her remarrying" },
+          { te: "ఆమె వారసత్వం పొందడం", en: "Her inheriting" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { te: "ఇద్దత్ ఉద్దేశాల్లో ఒకటి ఏది?", en: "Which is one purpose of the iddah?" },
+        options: [
+          { te: "వంశ స్పష్టత", en: "Clarity of lineage" },
+          { te: "శిక్ష", en: "Punishment" },
+          { te: "ఆస్తి బదిలీ", en: "Transfer of property" },
+        ],
+        answer: 0,
+      },
+    ],
+    revision: [
+      { te: "2:228 మూడు ఋతుచక్రాలు; 2:234 నాలుగు నెలల పది రోజులు; 65:4 ప్రసవం వరకు.", en: "2:228 three cycles; 2:234 four months and ten days; 65:4 until birth." },
+      { te: "65:6 — నివాసం, ఖర్చు భర్త బాధ్యత.", en: "65:6 — housing and maintenance are the husband's duty." },
+      { te: "ఇద్దత్ ఖైదు కాదు.", en: "The iddah is not confinement." },
+    ],
+    summary: {
+      te: "ఇద్దత్ విడాకులు లేదా వైధవ్యం తర్వాత వేచి ఉండే నిర్ణీత కాలం — మూడు ఋతుచక్రాలు, నాలుగు నెలల పది రోజులు, లేదా ప్రసవం వరకు. దీని ఉద్దేశం వంశ స్పష్టత, సర్దుబాటు అవకాశం, సంతాప సమయం. ఇది ఖైదు కాదు, మరియు ఆ కాలంలో ఆమెకు నివాస, ఖర్చు హక్కులు ఉన్నాయి.",
+      en: "The iddah is a defined waiting period after divorce or widowhood: three cycles, four months and ten days, or until birth. Its purposes are clarity of lineage, room for reconciliation, and time to grieve. It is not confinement, and she retains rights to housing and maintenance within it.",
+    },
+    apply: {
+      te: "ఆచరణ: ఖురాన్ 65:6ను చదివి, ఇద్దత్ కాలంలో స్త్రీకి ఏమి ఇవ్వాలని అది చెబుతోందో ఒక వాక్యంలో రాయండి.",
+      en: "Apply it: read Quran 65:6 and write one sentence on what it says a woman is owed during her iddah.",
+    },
+    reading: [
+      { label: "Women's Guidance portal", url: "/knowledge-center/womens-guidance" },
+      { label: "Nikah: the contract and the mahr", url: "/knowledge-center/womens-guidance/nikah" },
+    ],
+  },
 ];
