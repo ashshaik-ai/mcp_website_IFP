@@ -73,7 +73,7 @@ function HadithPage() {
 
   return (
     <PageShell>
-      <PortalJump portal="hadith" />
+      <PortalJump portal="hadith" sticky={false} />
       <section className="bg-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
@@ -102,7 +102,7 @@ function HadithPage() {
       </section>
 
       {/* Theme filter */}
-      <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
         <div
           role="tablist"
           aria-label={copy.essential[lang]}
@@ -127,7 +127,7 @@ function HadithPage() {
         </div>
       </div>
 
-      <section id="essential" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="essential" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
@@ -185,7 +185,7 @@ function HadithPage() {
         </div>
       </section>
 
-      <section id="grades" className="if-defer py-16 px-4 bg-[var(--if-cream-light)] scroll-mt-24">
+      <section id="grades" className="if-defer py-16 px-4 bg-[var(--if-cream-light)] scroll-mt-32">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
@@ -216,7 +216,7 @@ function HadithPage() {
         </div>
       </section>
 
-      <section id="books" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="books" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
             <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">

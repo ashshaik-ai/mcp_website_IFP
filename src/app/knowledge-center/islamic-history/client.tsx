@@ -292,7 +292,10 @@ function IslamicHistoryPage() {
       </section>
 
 
-      <section id="eras" className="if-defer py-16 px-4 scroll-mt-24">
+      {/* Removing the two duplicate card grids left five sections in a row on
+          the same cream ground and 6,260px with no change of field. These
+          alternate again. */}
+      <section id="eras" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ఇస్లామిక్ చరిత్ర యుగాలు" : "Eras of Islamic history"}
@@ -313,7 +316,7 @@ function IslamicHistoryPage() {
           twice on this page — once as an upgrade card grid and once here. The
           anchored sections are what the portal sub-navigation links to and
           what draws from the shared content source, so they are what stayed. */}
-      <section id="people" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="people" className="if-defer py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "చరిత్రను మలిచిన వ్యక్తులు" : "The people who shaped it"}
@@ -330,7 +333,7 @@ function IslamicHistoryPage() {
       </section>
 
 
-      <section id="empires" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="empires" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "సామ్రాజ్యాలు" : "Empires"}
@@ -347,7 +350,7 @@ function IslamicHistoryPage() {
       </section>
 
 
-      <section id="cities" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="cities" className="if-defer py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "నగరాలు" : "Cities"}

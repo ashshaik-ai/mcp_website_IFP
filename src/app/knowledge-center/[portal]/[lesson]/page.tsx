@@ -37,6 +37,10 @@ export async function generateMetadata({
   const title = `${lesson.title.te} | ${lesson.title.en} — ${portalName}`;
   const description = (lesson.intro?.en || lesson.summary?.en || "").slice(0, 300);
   const url = `${SITE_URL}/knowledge-center/${portal}/${slug}`;
+  /* Declaring openGraph here replaces the layout's block rather than merging
+     with it, so these 76 pages -- 83% of the site -- shipped a
+     summary_large_image card with no image and shared as a bare text row. */
+  const image = { url: `${SITE_URL}/assets/logo-emblem.png`, width: 1151, height: 1151, alt: SITE_NAME };
 
   return {
     title,
@@ -50,8 +54,9 @@ export async function generateMetadata({
       url,
       title,
       description,
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary", title, description, images: [image.url] },
   };
 }
 

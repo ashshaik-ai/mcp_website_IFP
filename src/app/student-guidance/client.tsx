@@ -250,7 +250,7 @@ function StudentGuidancePage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={copy.e_g_doctor_engineer_ias[lang]}
-                className="w-full min-h-11 pl-9 pr-11 rounded-full bg-white border border-[var(--if-gold)]/25 text-sm text-[var(--if-text)] [&::-webkit-search-cancel-button]:appearance-none placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="w-full min-h-11 pl-9 pr-11 text-base rounded-full bg-white border border-[var(--if-gold)]/25 text-sm text-[var(--if-text)] [&::-webkit-search-cancel-button]:appearance-none placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               />
               {query && (
                 <button
@@ -287,6 +287,12 @@ function StudentGuidancePage() {
               ))}
             </div>
           </div>
+
+          {/* Filtering is instant and silent; without this a screen-reader
+              user has no idea the list under them changed. */}
+          <p className="sr-only" aria-live="polite">
+            {grouped.reduce((n, g) => n + g.cards.length, 0)} {copy.pathways[lang]}
+          </p>
 
           {grouped.length === 0 ? (
             <p className="text-center text-[var(--if-text-muted)] py-16">

@@ -116,7 +116,7 @@ function SpecialPrayersPage() {
 
   return (
     <PageShell>
-      <PortalJump portal="special-prayers" />
+      <PortalJump portal="special-prayers" sticky={false} />
 
       <section className={`${p.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -142,7 +142,7 @@ function SpecialPrayersPage() {
       </section>
 
       {/* Prayer selector */}
-      <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
         <div className="mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1">
           {prayers.map((pr, i) => (
             <button key={pr.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>

@@ -365,7 +365,9 @@ function KidsIslamPage() {
                   <BorderBeam size={100} duration={6} colorFrom="#c8922a" colorTo="#e8b84b" className={activeSection === sec.num ? "opacity-100" : "opacity-0"} />
                   <div className={`${sec.color} p-4 flex items-center justify-between`}>
                     <span className="text-3xl">{sec.emoji}</span>
-                    <span className="text-xs font-bold text-white/80 bg-white/20 px-2 py-0.5 rounded-full">{sec.age} · {t("స్థాయి", "Level")} {sec.num}</span>
+                    {/* White at 80% over a 20% white wash on the level colour did not
+                        clear 4.5:1 at this size; full white on a darker wash does. */}
+                    <span className="text-xs font-bold text-white bg-black/25 px-2 py-0.5 rounded-full">{sec.age} · {t("స్థాయి", "Level")} {sec.num}</span>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center justify-between mb-1">
@@ -599,7 +601,7 @@ function KidsIslamPage() {
       </section>
 
 
-      <section id="prophet-stories" className="py-16 px-4 scroll-mt-24">
+      <section id="prophet-stories" className="py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్తల కథలు" : "Prophet stories"}

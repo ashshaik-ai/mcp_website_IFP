@@ -130,7 +130,7 @@ const achievements = [
 
 const manifesto = [
   { title: { te: "అనాథలకు అంజుమన్ షాదీ ఖానా ఉచితంగా", en: "Anjuman Shadi Khana free for orphans" }, status: "completed" },
-  { title: { te: "పేద అమ్మాయిలకు జహాజ్ (వివాహ బహుమతి)", en: "Wedding gift (Jehaz) for poor girls" }, status: "in_progress" },
+  { title: { te: "పేద అమ్మాయిలకు జహేజ్ (వివాహ బహుమతి)", en: "Wedding gift (Jehaz) for poor girls" }, status: "in_progress" },
   { title: { te: "₹10,000 అంత్యక్రియల సహాయం", en: "₹10,000 funeral assistance" }, status: "completed" },
   { title: { te: "వార్షికంగా 10 మంది విద్యార్థులకు స్కాలర్‌షిప్", en: "Sponsor 10 students annually" }, status: "upcoming" },
   { title: { te: "టైలరింగ్ కేంద్రం + ఉచిత మెషీన్లు", en: "Tailoring centre + free machines" }, status: "in_progress" },

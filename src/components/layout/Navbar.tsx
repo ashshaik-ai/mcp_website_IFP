@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SpotlightNavbar, type NavItem } from "@/components/ui/spotlight-navbar";
 import { useI18n } from "@/lib/i18n/context";
-import { Menu } from "lucide-react";
+import { BookOpen, GraduationCap, Menu } from "lucide-react";
 import { homeSections, sectionHref } from "@/lib/nav";
 import { useScrollSpy } from "@/lib/use-scroll-spy";
 import { SiteSearch } from "@/components/search/SiteSearch";
@@ -40,9 +40,9 @@ export function Navbar() {
       {/* The grid only at lg, where the centre nav exists. Below that it
           squeezed the brand into a column the width of the action group,
           wrapping "Islamic Front" onto two lines. */}
-      <div className="relative mx-auto max-w-7xl xl:max-w-[88rem] px-4 h-16 flex items-center justify-between gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+      <div className="relative mx-auto max-w-7xl xl:max-w-[88rem] px-4 h-16 flex items-center justify-between gap-3 xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 min-h-11 leading-tight group lg:justify-self-start">
+        <Link href="/" className="flex items-center gap-3 min-h-11 leading-tight group xl:justify-self-start">
           <span className="if-mark" aria-hidden="true" />
           {/* Under 360px only the seal fits beside the three controls; the
               name is in the hero and the footer on every page. */}
@@ -60,7 +60,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav, in the middle track of the header grid. */}
-        <div className="hidden lg:block lg:justify-self-center lg:min-w-0">
+        <div className="hidden xl:block xl:justify-self-center xl:min-w-0">
           <SpotlightNavbar
             className="pt-0"
             items={desktopNavItems}
@@ -72,18 +72,28 @@ export function Navbar() {
         </div>
 
         {/* Right actions */}
-        <div className="flex items-center gap-1 sm:gap-2 lg:justify-self-end">
+        <div className="flex items-center gap-1 sm:gap-2 xl:justify-self-end">
+          {/* The site's two other top-level products, as icons at every width
+              the drawer is not shown. Labelled pills were 400px of action
+              group in English, which is more than the header has to spare
+              beside a centred six-item section nav — the nav ran underneath
+              them. The section nav itself only appears from xl, where it
+              fits; below that it is in the drawer with everything else. */}
           <Link
             href="/knowledge-center"
-            className="hidden min-[1400px]:inline-flex items-center gap-1.5 px-2.5 min-h-11 text-[11px] font-semibold whitespace-nowrap shrink-0 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
+            aria-label={t("nav_kc")}
+            title={t("nav_kc")}
+            className="hidden lg:inline-flex items-center justify-center size-11 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
           >
-            {t("nav_kc")}
+            <BookOpen aria-hidden="true" className="h-5 w-5" />
           </Link>
           <Link
             href="/student-guidance"
-            className="hidden min-[1400px]:inline-flex items-center gap-1.5 px-2.5 min-h-11 text-[11px] font-semibold whitespace-nowrap shrink-0 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
+            aria-label={t("nav_sg")}
+            title={t("nav_sg")}
+            className="hidden lg:inline-flex items-center justify-center size-11 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
           >
-            {t("nav_sg")}
+            <GraduationCap aria-hidden="true" className="h-5 w-5" />
           </Link>
           <SiteSearch />
 
@@ -106,7 +116,7 @@ export function Navbar() {
                   type="button"
                   aria-label={t("nav_menu")}
                   title={t("nav_menu")}
-                  className="lg:hidden inline-flex items-center justify-center size-11 rounded-md text-[var(--if-gold-light)] hover:bg-white/10 transition-colors"
+                  className="xl:hidden inline-flex items-center justify-center size-11 rounded-md text-[var(--if-gold-light)] hover:bg-white/10 transition-colors"
                 />
               }
             >

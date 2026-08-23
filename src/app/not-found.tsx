@@ -9,6 +9,7 @@ import { NotFoundClient } from "@/components/NotFoundClient";
 export const metadata: Metadata = {
   title: "పేజీ దొరకలేదు · Page not found | Islamic Front Mangalagiri",
   description: "The page you were looking for is not here. Find your way back to the homepage, the Knowledge Center, or Student Guidance.",
+  alternates: { canonical: "/404" },
   robots: { index: false, follow: true },
 };
 

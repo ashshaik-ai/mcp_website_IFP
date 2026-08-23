@@ -109,7 +109,7 @@ function WomensGuidancePage() {
 
   return (
     <PageShell>
-      <PortalJump portal="womens-guidance" />
+      <PortalJump portal="womens-guidance" sticky={false} />
 
       <section className={`${s.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -135,7 +135,7 @@ function WomensGuidancePage() {
       </section>
 
       {/* Section selector */}
-      <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
         <div className="mx-auto max-w-5xl overflow-x-auto flex gap-2 pb-1">
           {sections.map((sec, i) => (
             <button key={sec.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
@@ -188,7 +188,7 @@ function WomensGuidancePage() {
         </BlurFade>
       </section>
 
-      <section id="worship" className="if-defer py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
+      <section id="worship" className="if-defer py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "హైద్ సమయంలో ఆరాధన" : "Worship during Hayd"}
@@ -209,7 +209,7 @@ function WomensGuidancePage() {
         </div>
       </section>
 
-      <section id="faqs" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="faqs" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-6">
             {lang === "te" ? "తరచుగా అడిగే ప్రశ్నలు" : "Frequently asked"}

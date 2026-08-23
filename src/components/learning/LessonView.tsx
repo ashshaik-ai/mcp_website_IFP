@@ -69,7 +69,10 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
               <button
                 type="button"
                 role="radio"
-                onClick={() => setPicked(i)}
+                /* Once it is right it stays right. Clicking another option
+                   afterwards used to un-solve the question and mark the new
+                   pick wrong. */
+                onClick={() => { if (!settled) setPicked(i); }}
                 aria-checked={chosen}
                 className={`w-full flex items-center gap-2.5 text-left min-h-11 px-3 rounded-lg border text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${state}`}
               >

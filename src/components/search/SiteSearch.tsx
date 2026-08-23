@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
+import { foldSearch } from "@/lib/search-text";
 
 const copy = {
   open: { te: "వెతకండి", en: "Search" },
@@ -37,10 +38,10 @@ type Entry = {
 /* Scored rather than filtered: a title match should beat a body mention, or
    searching "quran" buries the Quran portal under every lesson that says it. */
 function score(e: Entry, q: string, lang: "te" | "en"): number {
-  const title = (e.title[lang] || e.title.en || "").toLowerCase();
-  const other = ((lang === "te" ? e.title.en : e.title.te) || "").toLowerCase();
-  const body = `${e.body.te} ${e.body.en}`.toLowerCase();
-  const extra = (e.extra || "").toLowerCase();
+  const title = foldSearch(e.title[lang] || e.title.en || "");
+  const other = foldSearch((lang === "te" ? e.title.en : e.title.te) || "");
+  const body = foldSearch(`${e.body.te} ${e.body.en}`);
+  const extra = foldSearch(e.extra || "");
 
   if (title === q) return 100;
   if (title.startsWith(q)) return 80;
@@ -68,7 +69,9 @@ export function SiteSearch() {
     let live = true;
     fetch("/search-index.json")
       .then((r) => r.json())
-      .then((d: Entry[]) => live && setIndex(d))
+      /* A shape we do not recognise means no results, not a thrown render:
+         the index is fetched from the network and is not ours to trust. */
+      .then((d: Entry[]) => live && setIndex(Array.isArray(d) ? d.filter((e) => e && e.title && e.body && e.url) : []))
       .catch(() => live && setIndex([]));
     return () => {
       live = false;
@@ -80,7 +83,7 @@ export function SiteSearch() {
   }, [open]);
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = foldSearch(query.trim());
     if (!q || !index) return [];
     return index
       .map((e) => ({ e, s: score(e, q, lang) }))
@@ -246,14 +249,24 @@ export function SiteSearch() {
                   <ul id="search-results" role="listbox" aria-label={copy.open[lang]} ref={listRef} className="p-2">
                     {results.map((r, i) => (
                       <li role="none" key={`${r.url}-${r.title.en}-${i}`}>
-                        <button
-                          type="button"
+                        {/* An anchor, not a button: results are destinations, and a
+                            button cannot be middle-clicked into a new tab or have
+                            its address copied. role="option" keeps the combobox
+                            pattern the input announces. A plain click is still a
+                            client-side navigation; a modified click is left to the
+                            browser. */}
+                        <a
+                          href={r.url}
                           onMouseEnter={() => setActive(i)}
-                          onClick={() => go(r.url)}
+                          onClick={(e) => {
+                            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                            e.preventDefault();
+                            go(r.url);
+                          }}
                           id={`search-opt-${i}`}
                           role="option"
                           aria-selected={i === active}
-                          className={`w-full text-left rounded-xl px-3 py-2.5 min-h-11 transition-colors ${
+                          className={`block w-full text-left rounded-xl px-3 py-2.5 min-h-11 transition-colors ${
                             i === active ? "bg-[var(--if-gold)]/15" : "hover:bg-[var(--if-gold)]/8"
                           }`}
                         >
@@ -270,7 +283,7 @@ export function SiteSearch() {
                               {r.body[lang] || r.body.en}
                             </span>
                           )}
-                        </button>
+                        </a>
                       </li>
                     ))}
                   </ul>

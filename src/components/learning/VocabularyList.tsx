@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Phrase, VocabWord } from "@/content/vocabulary";
+import { foldSearch } from "@/lib/search-text";
 
 const copy = {
   searchLabel: { te: "పదం వెతకండి", en: "Search words" },
@@ -30,13 +31,11 @@ export function VocabularyList({
   const glyphLang = script === "urdu" ? "ur" : "ar";
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    /* Folded on both sides: the glyphs carry harakat and queries do not. */
+    const q = foldSearch(query.trim());
     if (!q) return words;
     return words.filter((w) =>
-      [w.glyph, w.translit, w.meaning.te, w.meaning.en, w.note.te, w.note.en]
-        .join(" ")
-        .toLowerCase()
-        .includes(q),
+      foldSearch([w.glyph, w.translit, w.meaning.te, w.meaning.en, w.note.te, w.note.en].join(" ")).includes(q),
     );
   }, [words, query]);
 

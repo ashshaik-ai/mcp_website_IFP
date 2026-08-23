@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 /* The one always-available way to reach the organisation.
 
@@ -10,7 +11,27 @@ import { useEffect, useState } from "react";
    you are reading down the page and comes back the moment you scroll up or
    stop, which is where a reader looks for it anyway. */
 export function FloatingWhatsApp() {
-  const [hidden, setHidden] = useState(false);
+  const { lang } = useI18n();
+  const [scrolledAway, setScrolledAway] = useState(false);
+  const [fieldFocused, setFieldFocused] = useState(false);
+  const hidden = scrolledAway || fieldFocused;
+
+  /* It also steps aside while a field has focus: at rest it sits over the
+     bottom-right of the page, which on a phone is the right edge of the last
+     row of any form — the Zakat calculator's Debts field among them. */
+  useEffect(() => {
+    const onFocus = (e: FocusEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (t?.matches?.("input, textarea, select")) setFieldFocused(true);
+    };
+    const onBlur = () => setFieldFocused(false);
+    document.addEventListener("focusin", onFocus);
+    document.addEventListener("focusout", onBlur);
+    return () => {
+      document.removeEventListener("focusin", onFocus);
+      document.removeEventListener("focusout", onBlur);
+    };
+  }, []);
 
   useEffect(() => {
     let last = window.scrollY;
@@ -19,11 +40,11 @@ export function FloatingWhatsApp() {
       const y = window.scrollY;
       /* Ignore the small jitter a momentum scroll produces at the ends. */
       if (Math.abs(y - last) > 8) {
-        setHidden(y > last && y > 240);
+        setScrolledAway(y > last && y > 240);
         last = y;
       }
       window.clearTimeout(idle);
-      idle = window.setTimeout(() => setHidden(false), 900);
+      idle = window.setTimeout(() => setScrolledAway(false), 900);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -37,7 +58,7 @@ export function FloatingWhatsApp() {
       href="https://wa.me/919032906677"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
+      aria-label={lang === "te" ? "వాట్సాప్‌లో సందేశం పంపండి" : "Chat on WhatsApp"}
       className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-xl transition-[transform,opacity] duration-300 hover:scale-110 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
         hidden ? "translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
       }`}

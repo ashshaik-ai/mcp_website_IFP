@@ -112,7 +112,9 @@ function SeerahPage() {
           </BlurFade>
           <BlurFade delay={0.25}>
             <div className="flex gap-8 justify-center mt-2">
-              {[["10", t("ఘట్టాలు", "Stages")], ["8", t("స్వభావాలు", "Traits")], ["6", t("నాయకత్వ పాఠాలు", "Leadership")], [t("ఉచితం", "Free"), t("ఎల్లప్పుడూ", "Always")]].map(([n, l]) => (
+              {/* Eight was the count of the local trait list that used to sit on this
+                  page; the section that remains draws ten from the shared content. */}
+              {[["10", t("ఘట్టాలు", "Stages")], ["10", t("స్వభావాలు", "Traits")], ["6", t("నాయకత్వ పాఠాలు", "Leadership")], [t("ఉచితం", "Free"), t("ఎల్లప్పుడూ", "Always")]].map(([n, l]) => (
                 <div key={l} className="text-center">
                   <div className="font-display text-2xl font-bold text-[var(--if-gold-light)]">{n}</div>
                   <div className="text-xs text-[var(--if-gold-pale)]/80 uppercase tracking-wider mt-1">{l}</div>
@@ -320,7 +322,7 @@ function SeerahPage() {
       </section>
 
 
-      <section id="timeline" className="py-16 px-4 scroll-mt-24">
+      <section id="timeline" className="py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ జీవిత కాలక్రమం" : "Timeline of the Prophet's life ﷺ"}
@@ -342,7 +344,7 @@ function SeerahPage() {
           the same ten traits held locally in this file. This is the one the
           portal sub-navigation links to and the one drawing from the shared
           content source, so it is the one that stayed. */}
-      <section id="character" className="py-16 px-4 scroll-mt-24">
+      <section id="character" className="py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్త ﷺ స్వభావం" : "The Prophet's character ﷺ"}
@@ -355,6 +357,19 @@ function SeerahPage() {
             fields={{ summary: "ex", lesson: "ap" }}
             lessonLabel={{ te: "ఆచరణ", en: "Put it into practice" }}
           />
+
+          {/* The hadith this whole section rests on. It used to close the
+              duplicate card grid; it belongs with the traits that remain. */}
+          <div className="mt-10 rounded-2xl bg-[var(--if-green)] p-6 text-center">
+            <p className="font-arabic mb-2 text-xl leading-relaxed text-[var(--if-gold-light)]" dir="rtl" lang="ar">
+              إِنَّمَا بُعِثْتُ لِأُتَمِّمَ مَكَارِمَ الْأَخْلَاقِ
+            </p>
+            <p className="text-sm text-[var(--if-gold-pale)]/80 text-pretty">
+              {lang === "te"
+                ? "“నేను ఉత్తమ స్వభావాన్ని పరిపూర్ణం చేయడానికే పంపబడ్డాను.” — ప్రవక్త ﷺ (అహ్మద్)"
+                : "“I was only sent to perfect good character.” — Prophet ﷺ (Ahmad)"}
+            </p>
+          </div>
         </div>
       </section>
 

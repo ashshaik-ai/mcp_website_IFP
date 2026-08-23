@@ -135,10 +135,16 @@ export function ZakatCalculator() {
                   value={draft[f.key]}
                   onChange={(e) => {
                     const v = e.target.value;
-                    /* Let the field hold anything the number input will accept,
-                       including an empty string and a partial "0." — clamping
-                       on every keystroke is what made it impossible to clear. */
-                    if (v === "" || Number(v) >= 0) setDraft((d) => ({ ...d, [f.key]: v }));
+                    /* Digits and at most one point, up to fifteen of them.
+                       Number(v) >= 0 let "1e999" through, which multiplied out
+                       to Infinity and printed the zakat due as an infinity
+                       sign; it also accepted a lone "-", which the input then
+                       held while swallowing the digit typed after it. An empty
+                       string and a partial "12." stay valid so the field can
+                       still be cleared and a decimal still typed. */
+                    if (v === "" || (/^\d{0,15}(\.\d{0,4})?$/.test(v))) {
+                      setDraft((d) => ({ ...d, [f.key]: v }));
+                    }
                   }}
                   placeholder="0"
                   /* 16px minimum, or iOS Safari zooms the page on focus. */

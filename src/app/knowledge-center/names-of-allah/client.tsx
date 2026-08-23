@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { foldSearch } from "@/lib/search-text";
 import { Simulator } from "@/components/sim/Simulator";
 import { NamesScene } from "@/components/sim/scenes/NamesScene";
 import { namesSteps } from "@/content/simulations";
@@ -151,12 +152,17 @@ function NamesOfAllahPage() {
     window.speechSynthesis.speak(u);
   }, []);
 
-  const filtered = names.filter(n =>
-    n.name.toLowerCase().includes(query.toLowerCase()) ||
-    n.en.toLowerCase().includes(query.toLowerCase()) ||
-    n.te.includes(query) ||
-    n.ar.includes(query)
-  );
+  /* Folded on both sides, so a plain-keyboard الله finds اللَّهُ. */
+  const q = foldSearch(query.trim());
+  const filtered = q
+    ? names.filter(
+        (n) =>
+          foldSearch(n.name).includes(q) ||
+          foldSearch(n.en).includes(q) ||
+          n.te.includes(query.trim()) ||
+          foldSearch(n.ar).includes(q),
+      )
+    : names;
 
   return (
     <PageShell>
@@ -190,12 +196,14 @@ function NamesOfAllahPage() {
         <div className="mx-auto max-w-5xl">
           <div className="relative max-w-sm mx-auto mb-8">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--if-text-muted)]" />
+            {/* type=search, 16px and 44px tall: at 14px iOS Safari zooms the
+                page on focus, and at 42px it missed the tap-target floor. */}
             <input
-              type="text"
+              type="search"
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder={copy.search_a_name[lang]}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full border border-[var(--if-gold)]/25 bg-white text-sm text-[var(--if-text)] focus:outline-none focus:border-[var(--if-gold)]/60"
+              className="w-full min-h-11 pl-10 pr-4 py-2.5 rounded-full border border-[var(--if-gold)]/25 bg-white text-base text-[var(--if-text)] focus:outline-none focus:border-[var(--if-gold)]/60"
             />
           </div>
 
@@ -213,7 +221,8 @@ function NamesOfAllahPage() {
                   {/* Every name carries a Telugu meaning, but the grid rendered
                       the English one unconditionally, so a Telugu reader got
                       ninety-nine English cards. */}
-                  <div className={`text-[10px] mt-0.5 ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? name.te : name.en}</div>
+                  {/* Telugu conjuncts and vowel marks collapse below about 12px. */}
+                  <div className={`text-xs mt-0.5 leading-snug ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/85" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? name.te : name.en}</div>
                 </button>
               </BlurFade>
             ))}
@@ -227,7 +236,7 @@ function NamesOfAllahPage() {
 
       {/* Detail panel */}
       {selected && (
-        <section ref={detailRef} className="if-defer py-10 px-4 scroll-mt-24">
+        <section ref={detailRef} className="if-defer py-10 px-4 scroll-mt-32">
           <div className="mx-auto max-w-md">
             <BlurFade delay={0.05}>
               <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">

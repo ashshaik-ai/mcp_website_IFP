@@ -63,6 +63,17 @@ export const metadata: Metadata = {
     "Islamic Front Mangalagiri — serving the Muslim community of Mangalagiri since 2011. Community welfare, education, and civic participation.",
   keywords: "Islamic Front, Mangalagiri, Muslim community, Anjuman, welfare, Andhra Pradesh",
   applicationName: SITE_NAME,
+  /* The 76 lesson pages build their metadata themselves and never went through
+     pageMetadata(), so they shipped a twitter:card with no image and shared as
+     a bare text row. Declared here, every page inherits it and any page that
+     sets its own still wins. */
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "te_IN",
+    images: [{ url: "/assets/logo-emblem.png", width: 1151, height: 1151, alt: SITE_NAME }],
+  },
+  twitter: { card: "summary", images: ["/assets/logo-emblem.png"] },
   formatDetection: { telephone: true, address: false, email: true },
 };
 

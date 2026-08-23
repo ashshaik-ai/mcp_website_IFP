@@ -53,7 +53,7 @@ export function NotFoundClient() {
   return (
     <PageShell>
       <section className="mx-auto max-w-3xl px-4 py-20 sm:py-28 text-center">
-        <p className="font-display text-6xl sm:text-7xl font-bold text-[var(--if-gold)]/35 tabular-nums leading-none">
+        <p className="font-display text-6xl sm:text-7xl font-bold text-[var(--if-gold-ink)] tabular-nums leading-none">
           {copy.code[lang]}
         </p>
         <h1 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] text-balance">

@@ -346,7 +346,7 @@ function LearnArabicPage() {
       </section>
 
       {/* ── VOCABULARY ── */}
-      <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-24">
+      <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "పదజాలం" : "Vocabulary"}

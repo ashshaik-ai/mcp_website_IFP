@@ -285,7 +285,7 @@ function LearnSalahPage() {
       </section>
 
       {/* Tab bar */}
-      <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2 overflow-x-auto">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2 overflow-x-auto">
         <div className="mx-auto max-w-4xl flex gap-2 min-w-max">
           {tabs.map((tab) => (
             <button

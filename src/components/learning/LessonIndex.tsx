@@ -35,7 +35,10 @@ export function LessonIndex({ portal }: { portal: string }) {
   const totalFaqs = items.reduce((a, l) => a + l.faqs, 0);
 
   return (
-    <section id="lessons" className="py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
+        /* scroll-mt-32, not 24: on the twelve portals with the jump bar the
+       chrome is the 65px header plus a 53px bar, and at 96px the heading
+       landed under it. */
+    <section id="lessons" className="py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
       <div className="mx-auto max-w-5xl">
         <h2 className="font-display text-2xl font-bold text-[var(--if-green)] mb-2">
           {copy.heading[lang]}

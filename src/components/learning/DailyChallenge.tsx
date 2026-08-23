@@ -16,7 +16,19 @@ const CHALLENGE = [
 ] as const;
 
 const CHALLENGE_KEY = "ifp-kids-challenge";
-const todayKey = () => new Date().toISOString().slice(0, 10);
+/* The local day, not the UTC one. toISOString rolls over at 05:30 in IST, so
+   a child ticking a task after 11pm found it already cleared, and midnight
+   itself changed nothing. */
+const todayKey = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+};
+
+/* A stored array from an older, shorter task list would otherwise leave the
+   tasks past its end stuck: done[i] read undefined and the toggle wrote back
+   a hole. */
+const normalise = (v: unknown, n: number) =>
+  Array.from({ length: n }, (_, i) => (Array.isArray(v) ? Boolean(v[i]) : false));
 
 export function DailyChallenge({ lang }: { lang: "te" | "en" }) {
   const [done, setDone] = useState<boolean[]>([false, false, false, false]);
@@ -26,7 +38,7 @@ export function DailyChallenge({ lang }: { lang: "te" | "en" }) {
       const raw = localStorage.getItem(CHALLENGE_KEY);
       const saved = raw ? JSON.parse(raw) : null;
       /* Yesterday's ticks are yesterday's. */
-      if (saved && saved.date === todayKey() && Array.isArray(saved.done)) setDone(saved.done);
+      if (saved && saved.date === todayKey()) setDone(normalise(saved.done, CHALLENGE.length));
     } catch {
       /* Storage blocked: the checklist still works for this visit. */
     }

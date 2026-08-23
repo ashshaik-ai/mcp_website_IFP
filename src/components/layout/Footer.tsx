@@ -10,7 +10,9 @@ export function Footer() {
   const { t } = useI18n();
   const pathname = usePathname();
   return (
-    <footer className="bg-[var(--if-green)] text-[var(--if-gold-pale)]/80 border-t border-[var(--if-gold)]/20">
+    /* pb on small screens keeps the last line clear of the floating WhatsApp
+       button, which sits 16px from the bottom-right corner. */
+    <footer className="bg-[var(--if-green)] text-[var(--if-gold-pale)]/80 border-t border-[var(--if-gold)]/20 pb-16 sm:pb-0">
       <div className="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Brand */}
         <div className="space-y-3">

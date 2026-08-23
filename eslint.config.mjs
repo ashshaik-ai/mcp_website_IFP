@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Generated content modules — half a megabyte of data, nothing to lint.
     "src/content/*.ts",
+    // Audit and verification scratch: throwaway scripts, not shipped code.
+    ".audit/**",
+    ".audit-tmp/**",
+    ".tmp-*",
   ]),
   {
     /* Reading localStorage, the current time, or a fetched index has to happen

@@ -67,7 +67,7 @@ function HajjUmrahPage() {
 
   return (
     <PageShell>
-      <PortalJump portal="hajj-umrah" />
+      <PortalJump portal="hajj-umrah" sticky={false} />
 
       <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -93,7 +93,7 @@ function HajjUmrahPage() {
       </section>
 
       {/* Tabs */}
-      <div className="sticky top-[68px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
         <div className="mx-auto max-w-3xl flex gap-2 overflow-x-auto min-w-0">
           {(["hajj", "umrah", "ihram"] as const).map((t) => (
             <button key={t} onClick={() => { setTab(t); setStep(0); }} className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${tab === t ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
