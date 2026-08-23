@@ -249,7 +249,7 @@ function NamesOfAllahPage() {
                     one they did not ask for. */}
                 <div className="text-sm text-[var(--if-gold-pale)]/80 mb-1">{lang === "te" ? selected.te : selected.en}</div>
                 <div className="text-sm text-[var(--if-gold-pale)]/70 mb-5">{lang === "te" ? selected.en : selected.te}</div>
-                <button onClick={() => speak(selected.ar)} className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
+                <button onClick={() => speak(selected.ar)} className="inline-flex min-h-11 items-center gap-2 mx-auto px-4 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30">
                   <Volume2 className="h-4 w-4" />{copy.listen[lang]}
                 </button>
               </div>

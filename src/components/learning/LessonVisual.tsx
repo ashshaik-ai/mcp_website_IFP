@@ -70,7 +70,7 @@ export function LessonVisual({ portal, slug }: { portal: string; slug: string })
   if (!Scene) return null;
 
   return (
-    <section aria-label={copy.watch[lang]}>
+    <section aria-label={copy.watch[lang]} className="min-w-0">
       <h2 className="mb-3 font-display text-lg font-bold text-[var(--if-green)]">
         {spec.title ? spec.title[lang] : copy.watch[lang]}
       </h2>

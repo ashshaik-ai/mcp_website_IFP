@@ -204,7 +204,7 @@ export function LessonView({
         </p>
       )}
 
-      <div className="mt-10 grid gap-8">
+      <div className="mt-10 grid min-w-0 gap-8">
         {lesson.sections.map((s, i) => (
           <section key={i}>
             {s.heading && (
@@ -235,7 +235,7 @@ export function LessonView({
         ))}
       </div>
 
-      <div className="mt-10 grid gap-6">
+      <div className="mt-10 grid min-w-0 gap-6">
         <BiList items={lesson.takeaways} title={copy.takeaways} tone="gold" />
         <BiList items={lesson.didYouKnow} title={copy.didYouKnow} tone="green" />
         <BiList items={lesson.mistakes} title={copy.mistakes} tone="amber" />

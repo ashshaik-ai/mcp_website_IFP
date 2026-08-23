@@ -316,7 +316,7 @@ function LearnArabicPage() {
               <div className="text-[var(--if-gold-pale)]/80 text-sm mb-5 text-pretty">{w.note[lang]}</div>
               <button
                 onClick={() => speak(w.glyph)}
-                className="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm font-medium hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30 mb-5"
+                className="inline-flex min-h-11 items-center gap-2 mx-auto px-4 rounded-full bg-[var(--if-gold)]/15 text-[var(--if-gold-light)] text-sm font-medium hover:bg-[var(--if-gold)]/25 transition-colors border border-[var(--if-gold)]/30 mb-5"
               >
                 <Volume2 className="h-4 w-4" />
                 {copy.listen[lang]}
@@ -394,7 +394,7 @@ function LearnArabicPage() {
                 type="button"
                 aria-label={lang === "te" ? "మునుపటి కార్డు" : "Previous card"}
                 onClick={() => { setFcIdx(i => (i - 1 + alphabet.length) % alphabet.length); setFcFlipped(false); }}
-                className="p-2.5 rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
               >
                 <ChevronLeft aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
               </button>
@@ -405,7 +405,7 @@ function LearnArabicPage() {
                 type="button"
                 aria-label={lang === "te" ? "తదుపరి కార్డు" : "Next card"}
                 onClick={() => { setFcIdx(i => (i + 1) % alphabet.length); setFcFlipped(false); }}
-                className="p-2.5 rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[var(--if-gold)]/30 hover:bg-white transition-colors"
               >
                 <ChevronRight aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
               </button>

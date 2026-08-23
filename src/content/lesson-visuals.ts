@@ -108,6 +108,30 @@ const visuals: Record<string, LessonVisualSpec> = {
     scene: "moon",
     title: { te: "చంద్రవంక చూసి రమజాన్ మొదలవుతుంది", en: "Ramadan begins when the crescent is seen" },
   },
+
+  /* ── Learn Arabic and Learn Urdu ──────────────────────────────────────
+     The alphabet lesson is about the shape of the letters and how a pen makes
+     them, and the site draws exactly that. The other lessons are harakat,
+     vocabulary, grammar and phrases, where the lesson's own tables and word
+     lists are the visual content and a letter animation would be decoration. */
+  "learn-arabic/alphabet": {
+    source: "arabicLetterSteps",
+    steps: [],
+    scene: "letters",
+    title: { te: "అక్షరాలు ఎలా రాస్తారు", en: "How the letters are written" },
+  },
+  "learn-urdu/alphabet": {
+    source: "urduLetterSteps",
+    steps: [],
+    scene: "letters",
+    title: { te: "అక్షరాలు ఎలా రాస్తారు", en: "How the letters are written" },
+  },
+  "learn-urdu/writing": {
+    source: "urduLetterSteps",
+    steps: [],
+    scene: "letters",
+    title: { te: "కలం ఎలా కదులుతుంది", en: "How the pen moves" },
+  },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {
