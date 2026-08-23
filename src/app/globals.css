@@ -396,9 +396,15 @@ html.js .if-defer .if-blur-fade {
   animation-iteration-count: infinite;
 }
 
+/* The word used to fade in as it rose, which meant that for a quarter of a
+   second every quarter it was gold text at partial opacity on a dark ground —
+   below the contrast floor, and caught there by an automated audit often
+   enough to fail the gate. It is not a false positive: a reader looking at
+   that moment sees washed-out text too. It moves at full strength now, and the
+   mask on the wrapper is what makes it read as a swap. */
 @keyframes if-word-rotate {
-  from { opacity: 0; transform: translateY(-1.6em); }
-  to { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(-1.6em); }
+  to { transform: translateY(0); }
 }
 
 .if-word-rotate {
