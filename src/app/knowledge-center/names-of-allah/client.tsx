@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -11,6 +11,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { ChevronLeft, Volume2, Search } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -130,6 +131,17 @@ function NamesOfAllahPage() {
   const { lang } = useI18n();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<typeof names[0] | null>(null);
+  /* The detail card renders after the grid of ninety-nine, which puts it
+     thousands of pixels below the tile you just tapped — the click read as
+     doing nothing at all. Bring it to the reader instead. */
+  const detailRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!selected) return;
+    const el = detailRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+  }, [selected]);
 
   const speak = useCallback((text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -148,6 +160,7 @@ function NamesOfAllahPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="names-of-allah" />
 
       <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
@@ -214,7 +227,7 @@ function NamesOfAllahPage() {
 
       {/* Detail panel */}
       {selected && (
-        <section className="if-defer py-10 px-4">
+        <section ref={detailRef} className="if-defer py-10 px-4 scroll-mt-24">
           <div className="mx-auto max-w-md">
             <BlurFade delay={0.05}>
               <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">

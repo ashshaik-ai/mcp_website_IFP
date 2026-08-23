@@ -30,26 +30,66 @@ const FIELDS: { key: keyof Assets; te: string; en: string; unit: "g" | "inr" }[]
   { key: "liabilities", te: "అప్పులు (తీసివేయబడతాయి)", en: "Debts (deducted)", unit: "inr" },
 ];
 
-const EMPTY: Assets = { gold: 0, silver: 0, cash: 0, business: 0, liabilities: 0 };
+/* Held as the text the visitor typed, not as numbers. Numbers meant the five
+   fields opened pre-filled with "0": you could not clear one (clearing parsed
+   back to 0 and React put the zero straight back), and typing in front of it
+   turned an intended 5 into 50. Now an empty field is empty, and the number is
+   derived only when the calculation runs. */
+type Draft = Record<keyof Assets, string>;
+const EMPTY_DRAFT: Draft = { gold: "", silver: "", cash: "", business: "", liabilities: "" };
+
+const toAssets = (d: Draft): Assets => ({
+  gold: Number(d.gold) || 0,
+  silver: Number(d.silver) || 0,
+  cash: Number(d.cash) || 0,
+  business: Number(d.business) || 0,
+  liabilities: Number(d.liabilities) || 0,
+});
+
+/* rates.json is written by a scheduled job against a third-party source. If it
+   ever lands with a missing or non-numeric field the calculator used to render
+   "Gold Rundefined/g" and a nisab of NaN, which looks like a broken tool
+   rather than a stale one. */
+const ratesAreUsable = (r: unknown): r is Rates => {
+  const x = r as Rates | null;
+  return (
+    !!x &&
+    Number.isFinite(x.goldGramInr) &&
+    Number.isFinite(x.silverGramInr) &&
+    x.goldGramInr > 0 &&
+    x.silverGramInr > 0
+  );
+};
 
 export function ZakatCalculator() {
   const { lang } = useI18n();
   const [rates, setRates] = useState<Rates | null>(null);
   const [failed, setFailed] = useState(false);
-  const [assets, setAssets] = useState<Assets>(EMPTY);
+  const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
+  /* Nothing is owed until something is entered. The result panel used to
+     appear the moment the rates loaded, announcing "no Zakat is due" to a
+     visitor who had not typed anything. */
+  const touched = Object.values(draft).some((v) => v.trim() !== "");
 
   useEffect(() => {
     let live = true;
     fetch("/rates.json")
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((d: Rates) => live && setRates(d))
+      .then((d: Rates) => {
+        if (!live) return;
+        if (ratesAreUsable(d)) setRates(d);
+        else setFailed(true);
+      })
       .catch(() => live && setFailed(true));
     return () => {
       live = false;
     };
   }, []);
 
-  const result = useMemo(() => (rates ? calculateZakat(assets, rates) : null), [assets, rates]);
+  const result = useMemo(
+    () => (rates && touched ? calculateZakat(toAssets(draft), rates) : null),
+    [draft, rates, touched],
+  );
 
   if (failed) {
     return (
@@ -92,12 +132,14 @@ export function ZakatCalculator() {
                   inputMode="decimal"
                   min={0}
                   step="any"
-                  /* `|| ""` treated a typed 0 as empty and React reset the
-                     field, so "0" vanished and "0.5" became ".5". */
-                  value={assets[f.key] ?? ""}
-                  onChange={(e) =>
-                    setAssets((a) => ({ ...a, [f.key]: Math.max(0, Number(e.target.value) || 0) }))
-                  }
+                  value={draft[f.key]}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    /* Let the field hold anything the number input will accept,
+                       including an empty string and a partial "0." — clamping
+                       on every keystroke is what made it impossible to clear. */
+                    if (v === "" || Number(v) >= 0) setDraft((d) => ({ ...d, [f.key]: v }));
+                  }}
                   placeholder="0"
                   /* 16px minimum, or iOS Safari zooms the page on focus. */
                   className="w-full min-h-11 pl-8 pr-3 text-base rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/25 text-[var(--if-text)] tabular-nums focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"

@@ -166,6 +166,17 @@
   }
 }
 
+/* Tailwind v4's preflight no longer sets cursor:pointer on buttons, so every
+   button on the site showed the arrow. Anything that behaves like a control
+   should say so under the pointer. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary {
+    cursor: pointer;
+  }
+}
+
 /* Telugu font utility */
 .font-telugu {
   font-family: var(--font-noto-telugu), 'Noto Sans Telugu', sans-serif;

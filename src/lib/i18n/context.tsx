@@ -20,14 +20,28 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (existing) return;
-    const stored = localStorage.getItem(LANG_KEY) as Lang | null;
+    /* Reading localStorage throws, not returns null, when site data is
+       blocked — a browser set to block all cookies, or an in-app WebView with
+       DOM storage off. Unguarded, that threw inside the effect and React tore
+       the whole tree down, so every page rendered blank. The language is a
+       preference; it is not worth the site. */
+    let stored: Lang | null = null;
+    try {
+      stored = localStorage.getItem(LANG_KEY) as Lang | null;
+    } catch {
+      stored = null;
+    }
     if (stored === "te" || stored === "en") setLang(stored);
   }, [existing]);
 
   const toggle = useCallback(() => {
     setLang((l) => {
       const next = l === "te" ? "en" : "te";
-      localStorage.setItem(LANG_KEY, next);
+      try {
+        localStorage.setItem(LANG_KEY, next);
+      } catch {
+        /* Blocked or full: the choice still holds for this session. */
+      }
       return next;
     });
   }, []);

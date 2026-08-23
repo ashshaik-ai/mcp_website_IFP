@@ -11,6 +11,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -115,6 +116,7 @@ function SpecialPrayersPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="special-prayers" />
 
       <section className={`${p.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">

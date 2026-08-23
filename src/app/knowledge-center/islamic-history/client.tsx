@@ -8,6 +8,7 @@ import { EmpiresScene } from "@/components/sim/scenes/EmpiresScene";
 import { historySteps } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { historyEras, historyPeople, historyEmpires, historyCities } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
@@ -120,89 +121,7 @@ const eras = [
   },
 ];
 
-const personalities = [
-  {
-    name: "Umar ibn al-Khattab RA", ar: "عمر بن الخطاب",
-    era: { te: "రాషిదూన్ · 634–644 CE", en: "Rashidun · 634–644 CE" },
-    role: { te: "రెండవ ఖలీఫ — న్యాయం & పాలన", en: "2nd Caliph — justice and governance" },
-    contribution: { te: "పరిపాలన వ్యవస్థ, హిజ్రీ క్యాలెండర్ నిర్మించారు; ప్రజల మధ్య తిరిగి క్షేమం చూసేవారు.", en: "Built state administration and the Hijri calendar; walked among the people to check on their welfare." },
-    legacy: { te: "న్యాయంలో ఇస్లామిక్ పాలనకు శాశ్వత ఆదర్శం", en: "Eternal model of just Islamic governance" },
-  },
-  {
-    name: "Khalid ibn al-Walid RA", ar: "خالد بن الوليد",
-    era: { te: "రాషిదూన్ · 7వ శతాబ్దం", en: "Rashidun · 7th century" },
-    role: { te: "అపరాజిత సేనాపతి", en: "Undefeated military commander" },
-    contribution: { te: "100కు పైగా యుద్ధాలలో ఒక్కసారి కూడా పరాజయం చెందలేదు; పర్షియా, లెవంట్‌ను ఇస్లాం కోసం తెరిచారు.", en: "Never lost a battle in over 100 engagements; opened Persia and the Levant to Islam." },
-    legacy: { te: "ఇస్లామిక్ చరిత్రలో గొప్ప సైనిక వ్యూహకర్తగా గుర్తింపు", en: "Remembered as the greatest military strategist in Islamic history" },
-  },
-  {
-    name: "Ibn Sina (Avicenna)", ar: "ابن سينا",
-    era: { te: "అబ్బాసీద్ స్వర్ణయుగం · 980–1037 CE", en: "Abbasid Golden Age · 980–1037 CE" },
-    role: { te: "వైద్య విజ్ఞాన పిత — Canon of Medicine", en: "Father of medicine — Canon of Medicine" },
-    contribution: { te: "క్యానన్ ఆఫ్ మెడిసిన్ 600 సంవత్సరాలపాటు ఐరోపాలో వైద్య పాఠ్యపుస్తకంగా ఉండింది.", en: "The Canon of Medicine served as the standard European medical textbook for 600 years." },
-    legacy: { te: "ఆధునిక వైద్య విజ్ఞానానికి పునాది వేసిన అమర రచన", en: "His timeless work laid the foundation of modern medical science" },
-  },
-  {
-    name: "Al-Khwarizmi", ar: "الخوارزمي",
-    era: { te: "అబ్బాసీద్ స్వర్ణయుగం · 780–850 CE", en: "Abbasid Golden Age · 780–850 CE" },
-    role: { te: "బీజగణిత పిత — Algorithms", en: "Father of Algebra — inventor of Algorithms" },
-    contribution: { te: "బీజగణితాన్ని ఒక స్వతంత్ర శాస్త్రంగా స్థాపించారు; 'algorithm' పదం ఆయన పేరు నుండి వచ్చింది.", en: "Established algebra as an independent discipline; the word 'algorithm' derives from his name." },
-    legacy: { te: "నేటి కంప్యూటర్ సైన్స్, గణిత శాస్త్రం ఆయన పునాదిపై నిర్మించబడ్డాయి", en: "Modern computer science and mathematics rest on his foundations" },
-  },
-  {
-    name: "Sultan Saladin", ar: "صلاح الدين",
-    era: { te: "అయ్యూబీ · 1137–1193 CE", en: "Ayyubid · 1137–1193 CE" },
-    role: { te: "జెరూసలేం విమోచన నాయకుడు", en: "Liberator of Jerusalem" },
-    contribution: { te: "1187లో జెరూసలేంను విజయవంతంగా జయించారు; క్రూసేడర్లకు కూడా దయ చూపి శత్రువుల గౌరవం పొందారు.", en: "Captured Jerusalem in 1187 and earned the respect of even his Crusader opponents through chivalry." },
-    legacy: { te: "న్యాయం, క్షమాగుణంలో ఇస్లామిక్ నాయకత్వానికి ప్రపంచ ఆదర్శం", en: "A global symbol of Islamic leadership in justice and magnanimity" },
-  },
-  {
-    name: "Ibn Battuta", ar: "ابن بطوطة",
-    era: { te: "మధ్యయుగ · 1304–1368 CE", en: "Medieval · 1304–1368 CE" },
-    role: { te: "ప్రపంచ పర్యాటకుడు — 75,000 miles", en: "World traveller — covered 75,000+ miles" },
-    contribution: { te: "29 సంవత్సరాల్లో 75,000+ మైళ్లు ప్రయాణించి, 40+ దేశాలను సందర్శించి, రిహ్లా అనే మహాగ్రంథం రాశారు.", en: "Travelled 75,000+ miles over 29 years, visiting 40+ countries and writing the Rihla — his great travel memoir." },
-    legacy: { te: "ముస్లిం ప్రపంచ పరిధి, వైవిధ్యానికి అమూల్యమైన చారిత్రక సాక్ష్యం", en: "An invaluable historical record of the Muslim world's reach and diversity" },
-  },
-];
 
-const cities = [
-  {
-    name: { te: "మక్కా", en: "Makkah" }, ar: "مكة المكرمة",
-    era: { te: "అరేబియా · పవిత్ర నగరం", en: "Arabia · Holy City" },
-    importance: { te: "ప్రవక్త ﷺ జన్మస్థలం, కాబా నిలయం — ఇస్లాం ఖిబ్లా మరియు ఆధ్యాత్మిక హృదయం.", en: "The birthplace of the Prophet ﷺ and home of the Kaaba — the qiblah and spiritual heart of Islam." },
-    achievement: { te: "ప్రతి జాతి నుండి లక్షలాది మందిని ఏకం చేసే వార్షిక హజ్ గమ్యస్థానం.", en: "The destination of the annual Hajj that unites millions from every nation." },
-  },
-  {
-    name: { te: "మదీనా", en: "Madinah" }, ar: "المدينة المنورة",
-    era: { te: "అరేబియా · ప్రవక్త నగరం", en: "Arabia · City of the Prophet" },
-    importance: { te: "హిజ్రా నగరం, మస్జిద్ నబవీ నిలయం మరియు మొదటి వ్యవస్థీకృత ముస్లిం సమాజం.", en: "The city of the Hijrah, home of the Prophet's Mosque and the first organised Muslim community." },
-    achievement: { te: "మొదటి ఇస్లామిక్ రాజ్యం, దాని ఒడంబడిక, సామాజిక జీవనం రూపుదిద్దుకున్న చోటు.", en: "Where the first Islamic state, its constitution, and community life took shape." },
-  },
-  {
-    name: { te: "బాగ్దాద్", en: "Baghdad" }, ar: "بغداد",
-    era: { te: "ఇరాక్ · అబ్బాసీద్ రాజధాని", en: "Iraq · Abbasid Capital" },
-    importance: { te: "అబ్బాసీద్ రాజధాని, బైతుల్ హిక్మా నిలయం — ప్రపంచంలోనే గొప్ప జ్ఞాన కేంద్రం.", en: "The Abbasid capital and home of the House of Wisdom, the world's greatest centre of learning." },
-    achievement: { te: "స్వర్ణయుగ హృదయం — గ్రీకు, భారతీయ, పర్షియన్ జ్ఞానం కాపాడబడి, ముందుకు సాగిన చోటు.", en: "Heart of the Golden Age, where Greek, Indian, and Persian knowledge was preserved and advanced." },
-  },
-  {
-    name: { te: "కార్డోబా", en: "Cordoba" }, ar: "قرطبة",
-    era: { te: "స్పెయిన్ · అల్-అందలూస్", en: "Spain · Al-Andalus" },
-    importance: { te: "ముస్లిం స్పెయిన్ రత్నం — తారు రోడ్లు, వీధి దీపాలు, లక్షలాది గ్రంథాల గ్రంథాలయాలు.", en: "The jewel of Muslim Spain, with paved lit streets and libraries holding hundreds of thousands of books." },
-    achievement: { te: "ఐరోపా తదుపరి పునరుజ్జీవనానికి దోహదపడిన విజ్ఞానం, సహజీవనం దీపం.", en: "A beacon of science and coexistence that helped spark Europe's later revival." },
-  },
-  {
-    name: { te: "ఇస్తాంబుల్", en: "Istanbul" }, ar: "إسطنبول",
-    era: { te: "టర్కీ · ఉస్మానీయ రాజధాని", en: "Turkey · Ottoman Capital" },
-    importance: { te: "1453లో జయించబడి, ఐరోపా, ఆసియాను కలిపే ఉస్మానీయ రాజధానిగా మారింది.", en: "Conquered in 1453, it became the Ottoman capital bridging Europe and Asia." },
-    achievement: { te: "దాదాపు ఐదు శతాబ్దాలపాటు ఉస్మానీయ కళ, వాస్తుశిల్పం, పరిపాలన కేంద్రం.", en: "Centre of Ottoman art, architecture, and administration for nearly five centuries." },
-  },
-  {
-    name: { te: "కైరో", en: "Cairo" }, ar: "القاهرة",
-    era: { te: "ఈజిప్ట్ · ఫాతిమీద్ రాజధాని", en: "Egypt · Fatimid Capital" },
-    importance: { te: "అల్-అజ్హర్ విశ్వవిద్యాలయానికి నిలయం — ప్రపంచంలోనే అత్యంత పురాతన విశ్వవిద్యాలయాలలో ఒకటి.", en: "Home of Al-Azhar University — one of the oldest and greatest universities in the world." },
-    achievement: { te: "ఇస్లామిక్ విద్య, న్యాయశాస్త్రంలో వెయ్యి సంవత్సరాలకు పైగా నాయకత్వ కేంద్రం.", en: "A centre of Islamic scholarship and jurisprudence for over a thousand years." },
-  },
-];
 
 const lessons = [
   {
@@ -243,6 +162,7 @@ function IslamicHistoryPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="islamic-history" />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-[var(--if-green)] to-stone-800 text-[var(--if-gold-pale)] py-20 px-4">
@@ -331,76 +251,6 @@ function IslamicHistoryPage() {
         </div>
       </section>
 
-      {/* Personalities */}
-      <section className="if-defer py-16 px-4">
-        <div className="mx-auto max-w-5xl">
-          <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {copy.historical_personalities[lang]}
-            </h2>
-            <p className="text-center text-[var(--if-text-muted)] text-sm mb-10">
-              {copy.great_figures_who_shaped_islamic[lang]}
-            </p>
-          </BlurFade>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {personalities.map((p, i) => (
-              <BlurFade key={p.name} delay={0.07 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/50 transition-all group h-full flex flex-col">
-                  <BorderBeam size={80} duration={7} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold flex-shrink-0">{p.name[0]}</div>
-                    <div>
-                      <h3 className="font-semibold text-[var(--if-green)] text-sm leading-snug">{p.name}</h3>
-                      <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{p.ar}</span>
-                    </div>
-                  </div>
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--if-gold-ink)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-full px-2 py-0.5 mb-2">{p.era[lang]}</span>
-                  <p className="text-xs text-[var(--if-text-muted)] mb-2">{p.role[lang]}</p>
-                  <p className="text-xs text-[var(--if-text)] leading-relaxed mb-3 flex-1">{p.contribution[lang]}</p>
-                  <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/18 rounded-lg px-2.5 py-2 mt-auto">
-                    <span className="font-bold text-[var(--if-gold-ink)] flex-shrink-0">{copy.legacy[lang]}</span>
-                    <span className="text-[var(--if-text-muted)]">{p.legacy[lang]}</span>
-                  </div>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Cities Explorer */}
-      <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
-        <div className="mx-auto max-w-5xl">
-          <BlurFade delay={0.1}>
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">{copy.civilization_explorer[lang]}</p>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
-              {copy.great_cities_of_history[lang]}
-            </h2>
-            <p className="text-center text-[var(--if-text-muted)] text-sm mb-10">
-              {copy.great_cities_that_powered_islamic[lang]}
-            </p>
-          </BlurFade>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {cities.map((city, i) => (
-              <BlurFade key={city.name.en} delay={0.06 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/40 hover:-translate-y-1 transition-all group h-full flex flex-col">
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <span className="font-arabic text-2xl text-[var(--if-gold-light)] leading-snug" dir="rtl" lang="ar">{city.ar}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--if-gold-ink)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-full px-2 py-0.5 whitespace-nowrap">{city.era[lang]}</span>
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-[var(--if-green)] mb-2">{city.name[lang]}</h3>
-                  <p className="text-xs text-[var(--if-text-muted)] leading-relaxed mb-3 flex-1">{city.importance[lang]}</p>
-                  <div className="flex items-start gap-2 text-xs bg-[var(--if-green)]/7 border border-[var(--if-green)]/15 rounded-lg px-2.5 py-2 mt-auto">
-                    <span className="font-bold text-[var(--if-green)] flex-shrink-0">✦</span>
-                    <span className="text-[var(--if-text-muted)]">{city.achievement[lang]}</span>
-                  </div>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* History Lessons */}
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-5xl">
@@ -459,6 +309,10 @@ function IslamicHistoryPage() {
       </section>
 
 
+      {/* The people, the empires and the cities each used to be rendered
+          twice on this page — once as an upgrade card grid and once here. The
+          anchored sections are what the portal sub-navigation links to and
+          what draws from the shared content source, so they are what stayed. */}
       <section id="people" className="if-defer py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">

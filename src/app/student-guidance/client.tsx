@@ -34,7 +34,7 @@ const copy = {
   no_matches_try_a_different: { te: "ఫలితాలు లేవు. వేరే పదం ప్రయత్నించండి.", en: "No matches. Try a different term." },
   apply_for_a_scholarship: { te: "స్కాలర్‌షిప్ కోసం దరఖాస్తు చేయండి", en: "Apply for a Scholarship" },
   islamic_front_awards_scholarships_to: { te: "ఇస్లామిక్ ఫ్రంట్ ప్రతి సంవత్సరం 10 మంది విద్యార్థులకు స్కాలర్‌షిప్ అందిస్తుంది — మెరిట్ + అవసరం ఆధారంగా", en: "Islamic Front awards scholarships to 10 students annually — merit + need based" },
-  scholarship_details: { te: "స్కాలర్‌షిప్ వివరాలు", en: "Scholarship Details" },
+  scholarship_details: { te: "స్కాలర్‌షిప్ గురించి సంప్రదించండి", en: "Ask about scholarships" },
 } as const;
 
 
@@ -158,6 +158,27 @@ function StudentGuidancePage() {
     });
   }, [stream, query]);
 
+  /* The chips carried a count baked into the content file. It never moved
+     when a card was added and it never reflected the search, so filtering to a
+     stream showed "(17)" above three cards. Count what will actually render. */
+  const streamCounts = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const matchesQuery = (c: (typeof guidanceCards)[number]) =>
+      !q ||
+      c.search.includes(q) ||
+      c.title.te.toLowerCase().includes(q) ||
+      c.title.en.toLowerCase().includes(q) ||
+      c.summary.te.toLowerCase().includes(q) ||
+      c.summary.en.toLowerCase().includes(q);
+    const counts: Record<string, number> = {};
+    for (const st of guidanceStreams) {
+      counts[st.id] = guidanceCards.filter(
+        (c) => (st.id === "all" || c.stream.split(" ").includes(st.id)) && matchesQuery(c),
+      ).length;
+    }
+    return counts;
+  }, [query]);
+
   const grouped = useMemo(
     () =>
       guidanceSections
@@ -261,7 +282,7 @@ function StudentGuidancePage() {
                   }`}
                 >
                   {s.label[lang]}
-                  <span className="ml-1.5 text-xs">({s.count})</span>
+                  <span className="ml-1.5 text-xs tabular-nums">({streamCounts[s.id] ?? 0})</span>
                 </button>
               ))}
             </div>
@@ -306,8 +327,13 @@ function StudentGuidancePage() {
             <p className="text-[var(--if-gold-pale)]/70 text-sm mb-6 text-pretty">
               {copy.islamic_front_awards_scholarships_to[lang]}
             </p>
+            {/* This pointed at /#schemes, which is the Anjuman funeral
+                assistance scheme and says nothing about scholarships — a
+                button labelled "Scholarship details" that landed on a funeral
+                fund. There is no scholarship programme page to link to yet, so
+                it goes where someone can actually ask. */}
             <Link
-              href="/#schemes"
+              href="/#contact"
               className="inline-flex items-center gap-2 min-h-11 px-6 rounded-full bg-[var(--if-gold)] text-[var(--if-green)] font-bold hover:bg-[var(--if-gold-light)] transition-colors text-sm"
             >
               {copy.scholarship_details[lang]}

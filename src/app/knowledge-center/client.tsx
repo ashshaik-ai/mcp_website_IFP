@@ -144,7 +144,9 @@ const portals = [
     id: "womens-guidance",
     title: { te: "మహిళల మార్గదర్శకం", en: "Women's Guidance" },
     arabic: "أحكام المرأة",
-    desc: { te: "హైద్ · నిఫాస్ · తహారా · గుస్ల్ · రమజాన్ — విశ్వసనీయ ఫిఖ్ మార్గదర్శకం", en: "Hayd · Nifas · Taharah · Ghusl · Ramadan — trusted fiqh guidance" },
+    /* The card used to promise haid, nifas, taharah, ghusl and Ramadan —
+       a different portal's subject. This is what the page actually covers. */
+    desc: { te: "హక్కులు, నమాజ్, హిజాబ్, కుటుంబం — నికాహ్ మరియు ఇద్దత్ పాఠాలతో", en: "Rights, prayer, hijab, family — with lessons on nikah and iddah" },
     meta: { te: "పూర్తి మార్గదర్శకం · గోప్యం · ఉచితం", en: "Complete Guide · Private · Free" },
     icon: Users,
     color: "from-[var(--if-green-mid)] to-[var(--if-green)]",

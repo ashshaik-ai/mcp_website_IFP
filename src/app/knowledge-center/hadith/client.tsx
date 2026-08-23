@@ -11,6 +11,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { ChevronLeft } from "lucide-react";
 import { essentialHadith, hadithBooks, hadithGrades } from "@/content/hadith";
 
@@ -72,6 +73,7 @@ function HadithPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="hadith" />
       <section className="bg-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>

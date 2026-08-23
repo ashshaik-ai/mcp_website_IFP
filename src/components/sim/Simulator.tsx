@@ -60,7 +60,7 @@ function CornerTicks() {
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"
-      className="pointer-events-none absolute inset-3 sm:inset-4 z-10 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] sm:h-[calc(100%-2rem)] sm:w-[calc(100%-2rem)]"
+      className="pointer-events-none absolute inset-3 sm:inset-4 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] sm:h-[calc(100%-2rem)] sm:w-[calc(100%-2rem)]"
     >
       <g fill="none" stroke="var(--if-gold)" strokeOpacity="0.3" strokeWidth="0.5" vectorEffect="non-scaling-stroke">
         <path d="M0 6 V0 H6" />
@@ -169,7 +169,7 @@ export function Simulator({
         <div key={`cap-${index}`} className="if-sim-cap-in relative flex flex-wrap items-end gap-x-3 gap-y-1 sm:gap-x-4 border-t border-[var(--if-gold)]/15 bg-[#061c0d]/55 px-4 sm:px-6 pb-4 pt-3">
           <span
             aria-hidden="true"
-            className="if-sim-num shrink-0 self-center select-none font-display text-xl sm:text-2xl font-bold leading-none text-[var(--if-gold)]/40"
+            className="if-sim-num shrink-0 self-center select-none font-display text-xl sm:text-2xl font-bold leading-none text-[var(--if-gold)]/55"
           >
             {String(index + 1).padStart(2, "0")}
           </span>

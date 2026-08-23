@@ -54,3 +54,8 @@ playwright-report/
 # Lighthouse output
 lighthouse-report.json
 .shots/
+
+# audit and verification scratch (agents write here)
+.audit/
+.audit-tmp/
+.tmp-*

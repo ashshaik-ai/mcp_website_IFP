@@ -160,7 +160,7 @@ const stories = [
    Telugu default. Hadith is listed here too -- the Knowledge Center carries
    seven portals and the homepage was still advertising six. */
 const kc_portals = [
-  { title: { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" }, sub: { te: "6 స్థాయిలు · 20+ పాఠాలు", en: "6 Levels · 20+ Lessons" }, href: "/knowledge-center/learn-arabic", arabic: "تعلُّم العربية" },
+  { title: { te: "అరబిక్ నేర్చుకోండి", en: "Learn Arabic" }, sub: { te: "6 స్థాయిలు · అక్షరాల నుండి పఠనం వరకు", en: "6 Levels · Letters to reading" }, href: "/knowledge-center/learn-arabic", arabic: "تعلُّم العربية" },
   { title: { te: "ఉర్దూ నేర్చుకోండి", en: "Learn Urdu" }, sub: { te: "6 స్థాయిలు · లిపి నుండి పఠనం వరకు", en: "6 Levels · Script to reading" }, href: "/knowledge-center/learn-urdu", arabic: "اردو سیکھیں" },
   { title: { te: "ఖురాన్ నేర్చుకోండి", en: "Learn Quran" }, sub: { te: "4 మాడ్యూల్స్ · తజ్వీద్ + తఫ్సీర్", en: "4 Modules · Tajweed + Tafseer" }, href: "/knowledge-center/learn-quran", arabic: "تعلُّم القرآن" },
   { title: { te: "నమాజ్ నేర్చుకోండి", en: "Learn Salah" }, sub: { te: "6 మాడ్యూల్స్ · వుజూ నుండి దుఆల వరకు", en: "6 Modules · Wudu to Duas" }, href: "/knowledge-center/learn-salah", arabic: "تعلُّم الصلاة" },

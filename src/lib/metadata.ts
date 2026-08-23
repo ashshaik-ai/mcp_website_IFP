@@ -10,6 +10,17 @@ export function pageMetadata(path: string): Metadata {
   const description = metaDescription(r);
   const url = `${SITE_URL}${r.path === "/" ? "" : r.path}`;
 
+  /* twitter:card was summary_large_image with no image anywhere, so every
+     share — WhatsApp especially, which is how this community passes links
+     around — rendered as a bare text row. The seal is the one asset that is
+     recognisably this organisation at thumbnail size. */
+  const image = {
+    url: `${SITE_URL}/assets/logo-emblem.png`,
+    width: 1151,
+    height: 1151,
+    alt: SITE_NAME,
+  };
+
   return {
     title,
     description,
@@ -22,7 +33,8 @@ export function pageMetadata(path: string): Metadata {
       url,
       title,
       description,
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary", title, description, images: [image.url] },
   };
 }

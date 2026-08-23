@@ -11,6 +11,8 @@ import { salahSteps as simSalah, wuduSteps as simWudu } from "@/content/simulati
 import { useProgress } from "@/lib/progress";
 import { summariesByPortal } from "@/content/lesson-index";
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
+import { DailyChallenge } from "@/components/learning/DailyChallenge";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { kidsProphets } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
@@ -138,6 +140,7 @@ function KidsIslamPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="kids-islam" />
 
       {/* ── HERO ── */}
       <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
@@ -457,28 +460,7 @@ function KidsIslamPage() {
             <p className="text-sm text-center text-white/65 mb-8 max-w-md mx-auto">
               {t("ప్రతిరోజూ ఈ చిన్న పనులు చేయడం ద్వారా మంచి ముస్లింగా మారండి!", "Complete these small daily tasks to grow into a better Muslim!")}
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                { emoji: "🤲", te: "ఫజ్ర్ నమాజ్ చేశాను", en: "Prayed Fajr on time" },
-                { emoji: "📖", te: "ఒక ఆయత్ చదివాను", en: "Read one Ayah of Quran" },
-                { emoji: "😊", te: "ఒకరికి మంచి చేశాను", en: "Did one kind deed" },
-                { emoji: "🤲", te: "తల్లిదండ్రులకు సాయపడ్డాను", en: "Helped my parents today" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 bg-white/6 border border-white/15 rounded-xl">
-                  <div className="w-8 h-8 rounded-lg border-2 border-[var(--if-gold)]/40 flex-shrink-0" />
-                  <span className="text-xl">{item.emoji}</span>
-                  <span className="text-sm text-white/85">{lang === "te" ? item.te : item.en}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
-              {["🌱", "⭐", "🏆", "👑"].map((badge, i) => (
-                <div key={i} className="flex flex-col items-center gap-1">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl bg-white/5 border border-white/15 opacity-40">{badge}</div>
-                  <span className="text-xs text-white/75">{["1", "3", "7", "30"][i]}d</span>
-                </div>
-              ))}
-            </div>
+            <DailyChallenge lang={lang} />
           </BlurFade>
         </div>
       </section>

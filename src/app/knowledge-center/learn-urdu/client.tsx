@@ -8,6 +8,7 @@ import { LetterScene } from "@/components/sim/scenes/LetterScene";
 import { urduLetterSteps } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
 import { LetterReview } from "@/components/learning/LetterReview";
 import { VocabularyList } from "@/components/learning/VocabularyList";
@@ -55,6 +56,7 @@ function LearnUrduPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="learn-urdu" />
 
       <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">

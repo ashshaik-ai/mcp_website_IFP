@@ -8,6 +8,7 @@ import { TajweedScene } from "@/components/sim/scenes/TajweedScene";
 import { tajweedSteps as simTajweed } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -293,6 +294,7 @@ function LearnQuranPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="learn-quran" />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">

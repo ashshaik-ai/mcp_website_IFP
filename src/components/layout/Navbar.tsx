@@ -30,17 +30,19 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--if-gold)]/20 bg-[var(--if-green)] text-[var(--if-gold-pale)]">
-      {/* Three grid tracks with the outer two sharing the slack, so the nav
-          sits on the page's centre line. It was a justify-between flex row,
-          which centred it in the gap between a narrow brand and a wide action
-          group — about 150px left of the page's own centre. */}
-      {/* The three-track grid only at lg, where the centre nav exists. Below
-          that it squeezed the brand into a column the width of the action
-          group, wrapping "Islamic Front" onto two lines and clipping the
-          tagline at 390px. */}
-      <div className="relative mx-auto max-w-7xl px-4 h-16 flex items-center justify-between gap-3">
+      {/* Three grid tracks with the outer two sharing the slack equally, so the
+          nav sits on the page's centre line AND can never be reached by the
+          action group. It was absolutely centred, which is centred but not in
+          flow: in English the action group is 400px wide against the brand's
+          188px, so the centred nav ran 84px underneath it and "Contact" sat on
+          top of the Knowledge Center pill. minmax(0,1fr) keeps the outer tracks
+          equal — a bare 1fr lets the wider one grow and drags the centre off. */}
+      {/* The grid only at lg, where the centre nav exists. Below that it
+          squeezed the brand into a column the width of the action group,
+          wrapping "Islamic Front" onto two lines. */}
+      <div className="relative mx-auto max-w-7xl xl:max-w-[88rem] px-4 h-16 flex items-center justify-between gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 min-h-11 leading-tight group">
+        <Link href="/" className="flex items-center gap-3 min-h-11 leading-tight group lg:justify-self-start">
           <span className="if-mark" aria-hidden="true" />
           {/* Under 360px only the seal fits beside the three controls; the
               name is in the hero and the footer on every page. */}
@@ -48,17 +50,17 @@ export function Navbar() {
             <span className="font-display text-[var(--if-gold-light)] font-bold text-lg tracking-tight leading-tight">
               Islamic Front
             </span>
-            <span className="text-[10px] text-[var(--if-gold-light)] tracking-widest uppercase">
+            {/* Hidden until 400px: between 360 and 388 the tagline pushed the
+                row 27px past the viewport and clipped the menu button off the
+                right edge. */}
+            <span className="hidden min-[400px]:block text-[10px] text-[var(--if-gold-light)] tracking-widest uppercase">
               Mangalagiri · Est. 2011
             </span>
           </span>
         </Link>
 
-        {/* Desktop nav, pinned to the page's centre line regardless of how
-            wide the brand and the action group happen to be. A 1fr/auto/1fr
-            grid still sat 7.7px left, because the action group overran its
-            share and pushed the middle track. */}
-        <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        {/* Desktop nav, in the middle track of the header grid. */}
+        <div className="hidden lg:block lg:justify-self-center lg:min-w-0">
           <SpotlightNavbar
             className="pt-0"
             items={desktopNavItems}
@@ -70,16 +72,16 @@ export function Navbar() {
         </div>
 
         {/* Right actions */}
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 lg:justify-self-end">
           <Link
             href="/knowledge-center"
-            className="hidden xl:inline-flex items-center gap-1.5 px-3 min-h-11 text-xs font-semibold whitespace-nowrap shrink-0 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
+            className="hidden min-[1400px]:inline-flex items-center gap-1.5 px-2.5 min-h-11 text-[11px] font-semibold whitespace-nowrap shrink-0 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
           >
             {t("nav_kc")}
           </Link>
           <Link
             href="/student-guidance"
-            className="hidden xl:inline-flex items-center gap-1.5 px-3 min-h-11 text-xs font-semibold whitespace-nowrap shrink-0 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
+            className="hidden min-[1400px]:inline-flex items-center gap-1.5 px-2.5 min-h-11 text-[11px] font-semibold whitespace-nowrap shrink-0 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors"
           >
             {t("nav_sg")}
           </Link>
@@ -91,7 +93,7 @@ export function Navbar() {
             type="button"
             onClick={toggle}
             aria-label={`${t("lang_toggle")} — ${lang === "te" ? "భాష మార్చండి" : "switch language"}`}
-            className="min-h-11 px-4 text-xs font-semibold rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+            className="min-h-11 px-3 text-[11px] font-semibold rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
           >
             {t("lang_toggle")}
           </button>

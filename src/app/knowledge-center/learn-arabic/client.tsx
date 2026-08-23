@@ -9,6 +9,7 @@ import { LetterScene } from "@/components/sim/scenes/LetterScene";
 import { arabicLetterSteps } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { AlphabetGrid } from "@/components/learning/AlphabetGrid";
 import { LetterReview } from "@/components/learning/LetterReview";
 import { VocabularyList } from "@/components/learning/VocabularyList";
@@ -137,6 +138,7 @@ function LearnArabicPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="learn-arabic" />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-emerald-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">

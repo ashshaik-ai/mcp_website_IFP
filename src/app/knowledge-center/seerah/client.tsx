@@ -8,6 +8,7 @@ import { JourneyMap } from "@/components/sim/scenes/JourneyMap";
 import { seerahSteps } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { seerahEvents, seerahCharacter } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
@@ -27,18 +28,6 @@ const stages = [
   { num: 8, year: { te: "క్రీ.శ. 632", en: "632 CE" }, title: { te: "విదాయ్ హజ్జ్", en: "Farewell Pilgrimage" }, arabic: "حجة الوداع", desc: { te: "అరఫాత్ ఖుత్బా — ఇస్లామిక్ సూత్రాల చివరి ప్రకటన", en: "Sermon of Arafat — final declaration of Islamic principles" }, events: { te: ["లక్ష మందికి పైగా సాహబాలకు ఖుత్బా", "మానవ సమానత్వం ప్రకటించబడింది", "స్త్రీల హక్కులు ధృవీకరించబడ్డాయి", "ధర్మ పరిపూర్ణత ప్రకటించబడింది"], en: ["Khutbah to over 100,000 companions", "Equality of all people declared", "Rights of women affirmed", "Completion of religion declared"] }, lesson: { te: "మానవులందరూ సమానం; హక్కులను గౌరవించండి, సందేశం మీ ద్వారా సజీవంగా ఉంటుంది", en: "All people are equal; honour rights, and the message lives on through you" }, color: "bg-[var(--if-green)]" },
   { num: 9, year: { te: "క్రీ.శ. 632", en: "632 CE" }, title: { te: "వారసత్వం & బోధనలు", en: "Legacy & Teachings" }, arabic: "الإرث والتعاليم", desc: { te: "ఖురాన్ మరియు సున్నత్ — మానవజాతికి శాశ్వత మార్గదర్శి", en: "Quran and Sunnah — an eternal guide left for humanity" }, events: { te: ["ఖురాన్ — 23 సంవత్సరాల సంపూర్ణ వహీ", "సున్నత్ — ఆదర్శ జీవన విధానం", "ఉత్తమ స్వభావానికి సజీవ ఆదర్శం", "సాహబాల ద్వారా జ్ఞానం వ్యాపించింది"], en: ["Quran — 23 years of complete revelation", "Sunnah — a perfect way of life", "Living example of the best character", "Knowledge spread through companions"] }, lesson: { te: "ఆయన బంగారం కాదు, మార్గదర్శనాన్ని వదిలారు — ఇది ప్రతి విశ్వాసి మోసే అమానత్", en: "He left not gold, but guidance — a trust now carried by every believer" }, color: "bg-[var(--if-green)]" },
   { num: 10, year: { te: "నేడు", en: "Today" }, title: { te: "ఆధునిక జీవితంలో అనువర్తనం", en: "Application in Modern Life" }, arabic: "التطبيق في الحياة المعاصرة", desc: { te: "ప్రవక్త సీరత్ నుండి నేటి సవాళ్ళకు పరిష్కారాలు నేర్చుకోవడం", en: "Drawing lessons from the Prophet's biography for today's challenges" }, events: { te: ["సీరా పఠనంతో విశ్వాసం బలపడటం", "ఆయన స్వభావాన్ని కుటుంబంలో ఆచరించడం", "నాయకత్వ పాఠాలను పని స్థలంలో అనువర్తించడం", "తరచూ సలవాత్ పంపడం"], en: ["Strengthening faith through Seerah reading", "Practising his character in family life", "Applying leadership lessons at work", "Sending salawat frequently"] }, lesson: { te: "సున్నత్‌ను జీవించండి, నేర్చుకున్నది అందించండి — అదే వారసత్వం", en: "Live the Sunnah and pass on what you learn — that is the legacy" }, color: "bg-green-800" },
-];
-
-/* ── CHARACTER TRAITS ── */
-const traits = [
-  { ar: "الرَّحْمَة", en: "Mercy / Rahmah", te: "దయ / రహ్మత్", ex: { te: "ఆయన పిల్లలతో మృదువుగా, జంతువులపై దయగా ఉండేవారు; తాయిఫ్‌లో హాని చేసినవారికోసం కూడా దుఆ చేశారు.", en: "He was gentle with children, kind to animals, and prayed for those who harmed him at Taif." }, ap: { te: "కుటుంబంతో, చిన్నవారితో, బలహీనులతో మృదువుగా ఉండండి.", en: "Be gentle with family, the young, and the weak." } },
-  { ar: "الأَمَانَة", en: "Honesty / Amanah", te: "నిజాయితీ / అమానహ్", ex: { te: "ప్రవక్తత్వానికి ముందే మక్కా ప్రజలు ఆయనను అల్-అమీన్ — నమ్మకస్థుడు — అని పిలిచేవారు.", en: "Even before prophethood the people of Makkah called him Al-Ameen — the Trustworthy." }, ap: { te: "ఎల్లప్పుడూ మాట నిలబెట్టుకోండి, మీకు అప్పగించినదాన్ని కాపాడండి.", en: "Always keep your word and guard what is entrusted to you." } },
-  { ar: "الصَّبْر", en: "Patience / Sabr", te: "ఓర్పు / సబ్ర్", ex: { te: "ఆయన ఆశ కోల్పోకుండా ఏళ్ల తరబడి హింసను, ప్రియమైనవారిని కోల్పోవడాన్ని ఓర్చుకున్నారు.", en: "He endured years of persecution and the loss of loved ones without losing hope." }, ap: { te: "కష్ట సమయంలో స్థిరంగా ఉండండి, అల్లాహ్‌పై నమ్మకం ఉంచండి.", en: "Stay steadfast and trust Allah during hardship." } },
-  { ar: "التَّوَاضُع", en: "Humility / Tawadu", te: "వినయం / తవాదు", ex: { te: "ఆయన తన దుస్తులను తానే కుట్టుకునేవారు, ఇంటి పనుల్లో సహాయం చేసేవారు, పేదలతో సమానంగా కూర్చునేవారు.", en: "He mended his own clothes, helped at home, and sat among the poor as an equal." }, ap: { te: "ఇతరులకు సంతోషంగా సేవ చేయండి, ఎవరినీ చిన్నచూపు చూడకండి.", en: "Serve others gladly and never look down on anyone." } },
-  { ar: "الكَرَم", en: "Generosity / Karam", te: "దానశీలత / కరమ్", ex: { te: "ఆయన ఉదారంగా ఇచ్చేవారు; ఏదైనా అడిగినవారిని తిరస్కరించడం ఎన్నడూ తెలియదు.", en: "He gave freely and was never known to refuse a person who asked him for something." }, ap: { te: "మీ దగ్గర కొంచెమే ఉన్నా సంతోషంగా దానం చేయండి.", en: "Give cheerfully, even when you have little." } },
-  { ar: "العَفْو", en: "Forgiveness / Afw", te: "క్షమాపణ / అఫ్వ్", ex: { te: "మక్కాలోకి ప్రవేశించినప్పుడు, ఆయనతో పోరాడి తరిమివేసిన ప్రజలనే ఆయన క్షమించారు.", en: "On entering Makkah he forgave the very people who had fought and driven him out." }, ap: { te: "మీకు అన్యాయం చేసినవారిని క్షమించండి, ద్వేషాన్ని వదిలేయండి.", en: "Pardon those who wrong you and let go of grudges." } },
-  { ar: "الشَّجَاعَة", en: "Courage / Shajaaah", te: "ధైర్యం / షజాఅహ్", ex: { te: "ఆయన యుద్ధంలో స్థిరంగా నిలిచారు, ఒంటరిగా ఉన్నా సత్యాన్ని ధైర్యంగా పలికారు.", en: "He stood firm in battle and spoke the truth boldly, even when he stood alone." }, ap: { te: "కష్టమైనా సరే, సరైనదాని కోసం నిలబడండి.", en: "Stand for what is right, even when it is hard." } },
-  { ar: "حُسْنُ العِشْرَة", en: "Family Care / Husn al-Ishrah", te: "కుటుంబ ప్రేమ", ex: { te: "ఆయన ఇంటి పనుల్లో సహాయం చేసేవారు, భార్యలతో మృదువుగా ఉండేవారు, మనవళ్ళతో ఆడుకునేవారు.", en: "He helped with housework, was tender with his wives, and played with his grandchildren." }, ap: { te: "మీ కుటుంబానికి ఉత్తమంగా ఉండండి — ఇంట్లో దయగా, చేరువగా, న్యాయంగా.", en: "Be the best to your family — kind, present, and fair at home." } },
 ];
 
 /* ── LEADERSHIP LESSONS ── */
@@ -97,6 +86,7 @@ function SeerahPage() {
 
   return (
     <PageShell>
+      <PortalJump portal="seerah" />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
@@ -214,46 +204,6 @@ function SeerahPage() {
                   <ChevronRight aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
                 </button>
               </div>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
-
-      {/* Character of the Prophet ﷺ */}
-      <section className="py-16 px-4">
-        <div className="mx-auto max-w-5xl">
-          <BlurFade delay={0.1}>
-            <div className="text-center mb-10">
-              <div className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-widest mb-2">{t("స్వభావ అకాడమీ", "Character Academy")}</div>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-3">
-                {t("ప్రవక్త ﷺ స్వభావం", "Character of the Prophet ﷺ")}
-              </h2>
-              <p className="text-[var(--if-text-muted)] max-w-xl mx-auto text-sm">
-                {t("ఆయన స్వభావం నేర్చుకొని ఆచరించడమే నిజమైన సీరా అనుసరణ.", "Learning and practising his character is the truest way to follow the Seerah.")}
-              </p>
-            </div>
-          </BlurFade>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {traits.map((tr, i) => (
-              <BlurFade key={tr.ar} delay={0.06 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/50 hover:-translate-y-1 transition-all group flex flex-col h-full">
-                  <BorderBeam size={80} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
-                  <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-2 text-right" dir="rtl" lang="ar">{tr.ar}</div>
-                  <h3 className="font-semibold text-[var(--if-green)] text-sm mb-3">{lang === "te" ? tr.te : tr.en}</h3>
-                  <p className="text-xs text-[var(--if-text-muted)] leading-relaxed flex-1 mb-3">{tr.ex[lang]}</p>
-                  <div className="flex gap-2 items-start bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/20 rounded-lg p-2.5 mt-auto">
-                    <span className="text-[var(--if-gold-ink)] font-bold text-xs flex-shrink-0">{t("ఆచరణ:", "Apply:")}</span>
-                    <span className="text-xs text-[var(--if-text-muted)] leading-relaxed">{tr.ap[lang]}</span>
-                  </div>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-          {/* Hadith callout */}
-          <BlurFade delay={0.3}>
-            <div className="mt-10 bg-[var(--if-green)] rounded-2xl p-6 text-center">
-              <div className="font-arabic text-xl text-[var(--if-gold-light)] mb-2 leading-relaxed" dir="rtl" lang="ar">إِنَّمَا بُعِثْتُ لِأُتَمِّمَ مَكَارِمَ الْأَخْلَاقِ</div>
-              <p className="text-sm text-[var(--if-gold-pale)]/80">{t("\"నేను ఉత్తమ స్వభావాన్ని పరిపూర్ణం చేయడానికే పంపబడ్డాను.\" — ప్రవక్త ﷺ (అహ్మద్)", '"I was only sent to perfect good character." — Prophet ﷺ (Ahmad)')}</p>
             </div>
           </BlurFade>
         </div>
@@ -387,6 +337,11 @@ function SeerahPage() {
       </section>
 
 
+      {/* The ten traits used to appear twice on this page: once here and once
+          as a "Character Academy" card grid further up, from a second copy of
+          the same ten traits held locally in this file. This is the one the
+          portal sub-navigation links to and the one drawing from the shared
+          content source, so it is the one that stayed. */}
       <section id="character" className="py-16 px-4 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
