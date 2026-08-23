@@ -136,7 +136,11 @@ export function Simulator({
   const atEnd = index === steps.length - 1;
 
   return (
-    <div className={`if-sim ${className}`}>
+    /* min-w-0: the transport row is intrinsically wide with thirteen step
+       dots in it, and a grid or flex parent sizes its items to that unless
+       told otherwise — which pushed the whole simulator 66px past a 768px
+       viewport on the one portal that stacks three of them in a grid. */
+    <div className={`if-sim min-w-0 ${className}`}>
       {/* Stage */}
       <div
         ref={stageRef}
@@ -239,7 +243,10 @@ export function Simulator({
 
         {/* Step dots double as a scrubber. Below sm thirteen of them fall under
             the 24px target floor, so phones get prev/next and the counter. */}
-        <ol className="ml-2 hidden sm:flex flex-1 items-center gap-1" aria-label={`${copy.step[lang]} ${index + 1} ${copy.of[lang]} ${steps.length}`}>
+        {/* min-w-11 on each dot holds the tap-target floor, so a thirteen-step
+            sequence needs more room than the row has: it scrolls, with the
+            same faded end the portal tab strips use. */}
+        <ol className="if-tabstrip ml-2 hidden sm:flex min-w-0 flex-1 items-center gap-1 overflow-x-auto" aria-label={`${copy.step[lang]} ${index + 1} ${copy.of[lang]} ${steps.length}`}>
           {steps.map((s, i) => (
             <li key={s.id} className="flex-1">
               <button
@@ -247,7 +254,7 @@ export function Simulator({
                 onClick={() => { setPlaying(false); setIndex(i); }}
                 aria-label={`${copy.step[lang]} ${i + 1}: ${s.label[lang]}`}
                 aria-current={i === index ? "step" : undefined}
-                className="block w-full min-h-11 py-4 group"
+                className="block w-full min-w-11 min-h-11 py-4 group"
               >
                 <span
                   className={`block h-1.5 rounded-full transition-all duration-300 ${

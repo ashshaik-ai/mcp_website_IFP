@@ -19,7 +19,7 @@ export type LessonVisualSpec = {
   /** Step ids to keep, in the order the array has them. Empty means all. */
   steps: string[];
   /** Overrides the portal's default scene, where a portal has two. */
-  scene?: "wudu" | "salah";
+  scene?: "wudu" | "salah" | "moon" | "letters";
   /** Heading above the player, when "Watch it" is not specific enough. */
   title?: Bi;
 };
@@ -91,6 +91,23 @@ const visuals: Record<string, LessonVisualSpec> = {
   "islamic-history/scholars": { source: "historySteps", steps: ["abbasid"], title: { te: "పండితులు పనిచేసిన నగరాలు", en: "The cities the scholars worked in" } },
   "islamic-history/colonial": { source: "historySteps", steps: ["colonial"], title: { te: "వలస కాలం — విడిపోయిన భూభాగాలు", en: "The colonial era, broken into pieces" } },
   "islamic-history/modern": { source: "historySteps", steps: ["modern"], title: { te: "నేటి ముస్లిం ప్రపంచం", en: "The Muslim world today" } },
+
+  /* ── Kids Islam ───────────────────────────────────────────────────────
+     Two of the eight lessons are about something the site already draws. The
+     other six are manners, stories and character, and inventing a picture for
+     those would be worse than leaving them as they are. */
+  "kids-islam/salah-and-quran-basics": {
+    source: "salahSteps",
+    steps: [],
+    scene: "salah",
+    title: { te: "నమాజు ఎలా చేయాలి — చూడండి", en: "Watch how the prayer is performed" },
+  },
+  "kids-islam/ramadan-and-eid": {
+    source: "moonSteps",
+    steps: ["new", "crescent"],
+    scene: "moon",
+    title: { te: "చంద్రవంక చూసి రమజాన్ మొదలవుతుంది", en: "Ramadan begins when the crescent is seen" },
+  },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {

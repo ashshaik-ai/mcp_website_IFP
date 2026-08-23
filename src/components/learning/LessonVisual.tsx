@@ -48,6 +48,8 @@ const SCENES: Record<string, ComponentType<SceneProps>> = {
 const NAMED: Record<string, ComponentType<SceneProps>> = {
   wudu: dynamic(() => import("@/components/sim/scenes/WuduScene").then((m) => m.WuduScene)),
   salah: dynamic(() => import("@/components/sim/scenes/SalahFigure").then((m) => m.SalahFigure)),
+  moon: dynamic(() => import("@/components/sim/scenes/MoonScene").then((m) => m.MoonScene)),
+  letters: dynamic(() => import("@/components/sim/scenes/LetterScene").then((m) => m.LetterScene)),
 };
 
 const copy = {
