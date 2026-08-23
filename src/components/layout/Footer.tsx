@@ -42,7 +42,7 @@ export function Footer() {
               <li key={key}>
                 <Link
                   href={sectionHref(fragment, pathname)}
-                  className="text-sm inline-flex items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors"
+                  className="text-sm inline-flex min-w-11 items-center min-h-11 hover:text-[var(--if-gold-light)] transition-colors"
                 >
                   {t(key)}
                 </Link>

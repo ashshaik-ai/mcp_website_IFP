@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, Check, HelpCircle, ListChecks } from "lucide-react";
+import { ArrowRight, BookOpen, Check, Clock, HelpCircle, ListChecks } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 /* The generated summaries, not the full lessons module. See
    scripts/build-lesson-index.mjs for why. */
 import { summariesByPortal } from "@/content/lesson-index";
 import { useProgress } from "@/lib/progress";
+import { PortalCertificate } from "./PortalCertificate";
+import { routeByPath } from "@/lib/site";
 
 const copy = {
   heading: { te: "పూర్తి పాఠాలు", en: "Full lessons" },
@@ -16,23 +18,30 @@ const copy = {
   },
   lessons: { te: "పాఠాలు", en: "lessons" },
   sections: { te: "విభాగాలు", en: "sections" },
+  min: { te: "నిమి", en: "min" },
+  totalTime: { te: "మొత్తం సమయం", en: "total time" },
   questions: { te: "ప్రశ్నలు", en: "questions" },
   faqs: { te: "ప్రశ్నోత్తరాలు", en: "FAQs" },
   start: { te: "పాఠం చదవండి", en: "Read lesson" },
   progress: { te: "పూర్తయినవి", en: "completed" },
   doneLabel: { te: "పూర్తయింది", en: "Completed" },
+  finished: { te: "ఈ పోర్టల్ పూర్తయింది", en: "You finished this portal" },
 } as const;
 
 export function LessonIndex({ portal }: { portal: string }) {
   const { lang } = useI18n();
   const { ready, isDone, countFor } = useProgress();
   const items = summariesByPortal(portal);
+  /* The portal's own name, from the route catalog the metadata already uses,
+     so the certificate and the page agree. */
+  const portalTitle = routeByPath.get(`/knowledge-center/${portal}`)?.title[lang] ?? portal;
   const slugs = items.map((l) => l.slug);
   if (!items.length) return null;
 
   const totalSections = items.reduce((a, l) => a + l.sections, 0);
   const totalQuiz = items.reduce((a, l) => a + l.quiz, 0);
   const totalFaqs = items.reduce((a, l) => a + l.faqs, 0);
+  const totalMinutes = items.reduce((a, l) => a + (l.minutes ?? 0), 0);
 
   return (
         /* scroll-mt-32, not 24: on the twelve portals with the jump bar the
@@ -50,6 +59,7 @@ export function LessonIndex({ portal }: { portal: string }) {
         <dl className="flex flex-wrap gap-x-6 gap-y-2 mb-7 text-sm">
           {[
             [BookOpen, items.length, copy.lessons[lang]],
+            [Clock, totalMinutes, copy.min[lang]],
             [ListChecks, totalSections, copy.sections[lang]],
             [HelpCircle, totalQuiz + totalFaqs, `${copy.questions[lang]} + ${copy.faqs[lang]}`],
           ].map(([Icon, n, label], i) => {
@@ -67,10 +77,26 @@ export function LessonIndex({ portal }: { portal: string }) {
           })}
         </dl>
 
-        {ready && countFor(portal, slugs) > 0 && (
+        {ready && countFor(portal, slugs) > 0 && countFor(portal, slugs) < items.length && (
           <p className="mb-5 text-sm font-semibold text-[var(--if-green)] tabular-nums">
             {countFor(portal, slugs)} / {items.length} {copy.progress[lang]}
           </p>
+        )}
+
+        {/* Finishing a portal produced nothing at all — not a line of
+            acknowledgement. */}
+        {ready && countFor(portal, slugs) === items.length && (
+          <div className="mb-6 flex flex-wrap items-center gap-4 rounded-2xl border border-[var(--if-gold)]/40 bg-[color-mix(in_srgb,var(--if-gold)_10%,white)] p-5">
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-lg font-bold text-[var(--if-green)]">
+                {copy.finished[lang]}
+              </p>
+              <p className="text-sm text-[var(--if-text-muted)] tabular-nums">
+                {items.length} / {items.length} {copy.progress[lang]}
+              </p>
+            </div>
+            <PortalCertificate portalTitle={portalTitle} lessonCount={items.length} />
+          </div>
         )}
 
         <ol className="grid gap-3 sm:grid-cols-2">
@@ -99,6 +125,23 @@ export function LessonIndex({ portal }: { portal: string }) {
                       {l.intro[lang]}
                     </span>
                   )}
+                  <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                    {l.minutes > 0 && (
+                      /* A learner deciding whether to open this now wants to
+                         know what it costs them. Measured from the lesson's own
+                         word count at build time, not guessed. */
+                      <span className="inline-flex items-center gap-1 text-xs text-[var(--if-text-muted)]">
+                        <Clock aria-hidden="true" className="h-3.5 w-3.5" />
+                        <span className="tabular-nums">{l.minutes}</span> {copy.min[lang]}
+                      </span>
+                    )}
+                    {l.quiz > 0 && (
+                      <span className="inline-flex items-center gap-1 text-xs text-[var(--if-text-muted)]">
+                        <HelpCircle aria-hidden="true" className="h-3.5 w-3.5" />
+                        <span className="tabular-nums">{l.quiz}</span>
+                      </span>
+                    )}
+                  </span>
                   <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[var(--if-gold-ink)]">
                     {copy.start[lang]}
                     <ArrowRight

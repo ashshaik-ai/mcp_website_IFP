@@ -16,6 +16,8 @@ export type LessonSummary = {
   sections: number;
   quiz: number;
   faqs: number;
+  /** Estimated reading time in minutes, measured at build time. */
+  minutes: number;
 };
 
 export const lessonSummaries: LessonSummary[] = [
@@ -32,7 +34,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "learn-quran",
@@ -47,7 +50,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-quran",
@@ -62,7 +66,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-quran",
@@ -77,7 +82,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-quran",
@@ -92,7 +98,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-quran",
@@ -107,7 +114,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-quran",
@@ -122,7 +130,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-quran",
@@ -137,7 +146,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-salah",
@@ -152,7 +162,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "learn-salah",
@@ -167,7 +178,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-salah",
@@ -182,7 +194,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-salah",
@@ -197,7 +210,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "learn-salah",
@@ -212,7 +226,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "learn-salah",
@@ -227,7 +242,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "learn-salah",
@@ -242,7 +258,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "learn-salah",
@@ -257,7 +274,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "seerah",
@@ -272,7 +290,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "seerah",
@@ -287,7 +306,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "seerah",
@@ -302,7 +322,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "seerah",
@@ -317,7 +338,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "seerah",
@@ -332,7 +354,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 6
   },
   {
     "portal": "seerah",
@@ -347,7 +370,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "seerah",
@@ -362,7 +386,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "seerah",
@@ -377,7 +402,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -392,7 +418,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "islamic-history",
@@ -407,7 +434,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "islamic-history",
@@ -422,7 +450,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "islamic-history",
@@ -437,7 +466,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -452,7 +482,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -467,7 +498,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -482,7 +514,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -497,7 +530,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -512,7 +546,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-history",
@@ -527,7 +562,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -542,7 +578,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -557,7 +594,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -572,7 +610,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -587,7 +626,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -602,7 +642,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -617,7 +658,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -632,7 +674,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "kids-islam",
@@ -647,7 +690,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 7,
     "quiz": 3,
-    "faqs": 1
+    "faqs": 1,
+    "minutes": 5
   },
   {
     "portal": "learn-arabic",
@@ -662,7 +706,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-arabic",
@@ -677,7 +722,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-arabic",
@@ -692,7 +738,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-arabic",
@@ -707,7 +754,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-arabic",
@@ -722,7 +770,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-arabic",
@@ -737,7 +786,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-urdu",
@@ -752,7 +802,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-urdu",
@@ -767,7 +818,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-urdu",
@@ -782,7 +834,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-urdu",
@@ -797,7 +850,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-urdu",
@@ -812,7 +866,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "learn-urdu",
@@ -827,7 +882,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hadith",
@@ -842,7 +898,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hadith",
@@ -857,7 +914,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 6
   },
   {
     "portal": "hadith",
@@ -872,7 +930,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hadith",
@@ -887,7 +946,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hajj-umrah",
@@ -902,7 +962,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hajj-umrah",
@@ -917,7 +978,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hajj-umrah",
@@ -932,7 +994,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 4
   },
   {
     "portal": "hajj-umrah",
@@ -947,7 +1010,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hajj-umrah",
@@ -962,7 +1026,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 5,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "hajj-umrah",
@@ -977,7 +1042,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 4
   },
   {
     "portal": "names-of-allah",
@@ -992,7 +1058,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "names-of-allah",
@@ -1007,7 +1074,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "names-of-allah",
@@ -1022,7 +1090,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 4
   },
   {
     "portal": "islamic-calendar",
@@ -1037,7 +1106,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 4
   },
   {
     "portal": "islamic-calendar",
@@ -1052,7 +1122,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "islamic-calendar",
@@ -1067,7 +1138,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 4
   },
   {
     "portal": "special-prayers",
@@ -1082,7 +1154,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "special-prayers",
@@ -1097,7 +1170,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "special-prayers",
@@ -1112,7 +1186,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "womens-guidance",
@@ -1127,7 +1202,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   },
   {
     "portal": "womens-guidance",
@@ -1142,7 +1218,8 @@ export const lessonSummaries: LessonSummary[] = [
     },
     "sections": 4,
     "quiz": 3,
-    "faqs": 2
+    "faqs": 2,
+    "minutes": 5
   }
 ];
 

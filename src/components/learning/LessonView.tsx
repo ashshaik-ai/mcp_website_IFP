@@ -173,6 +173,12 @@ export function LessonView({
     (i: number) => record(lesson.portal, lesson.slug, i),
     [record, lesson.portal, lesson.slug],
   );
+  const checkKey = `${lesson.slug}#check`;
+  const checked = answeredFor(lesson.portal, checkKey);
+  const recordCheck = useCallback(
+    (i: number) => record(lesson.portal, checkKey, i),
+    [record, lesson.portal, checkKey],
+  );
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
@@ -213,7 +219,15 @@ export function LessonView({
                 <p className="text-xs font-bold uppercase tracking-wide text-[var(--if-gold-ink)] mb-2">
                   {copy.check[lang]}
                 </p>
-                <Quiz item={s.check} idPrefix={`check-${i}`} />
+                <Quiz
+                    item={s.check}
+                    idPrefix={`check-${i}`}
+                    /* Kept under their own key: they are questions and should
+                       be remembered, but they are not the numbered quiz and
+                       must not inflate its score. */
+                    alreadyRight={checked.includes(i)}
+                    onCorrect={() => recordCheck(i)}
+                  />
               </div>
             )}
           </section>
@@ -349,7 +363,7 @@ export function LessonView({
         {prev ? (
           <Link
             href={`${portalHref}/${prev.slug}`}
-            className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 transition-colors"
+            className="flex min-w-0 items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 transition-colors"
           >
             <ArrowLeft aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
@@ -367,7 +381,7 @@ export function LessonView({
         {next && (
           <Link
             href={`${portalHref}/${next.slug}`}
-            className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 transition-colors sm:text-right sm:flex-row-reverse"
+            className="flex min-w-0 items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 transition-colors sm:text-right sm:flex-row-reverse"
           >
             <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
