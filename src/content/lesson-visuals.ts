@@ -61,6 +61,36 @@ const visuals: Record<string, LessonVisualSpec> = {
     steps: [],
     title: { te: "ఉమ్రహ్ — నాలుగు దశలు", en: "Umrah, in four rites" },
   },
+
+  /* ── Islamic Calendar ─────────────────────────────────────────────────
+     The month is a shape in the sky, and the lessons describe it in words. */
+  "islamic-calendar/how-it-works": {
+    source: "moonSteps",
+    steps: ["new", "crescent", "first-quarter", "full", "last-quarter", "old"],
+    title: { te: "ఒక చాంద్రమాసం", en: "One lunar month" },
+  },
+  "islamic-calendar/moon-sighting": {
+    source: "moonSteps",
+    steps: ["new", "crescent"],
+    title: { te: "అమావాస్య నుండి తొలి చంద్రవంక వరకు", en: "From the new moon to the first crescent" },
+  },
+  "islamic-calendar/sacred-months": {
+    source: "moonSteps",
+    steps: ["month9", "month12"],
+    title: { te: "సంవత్సరంలో నెలలు", en: "The months of the year" },
+  },
+
+  /* ── Islamic History ──────────────────────────────────────────────────
+     Each era lesson shows its own extent on the map: where the rule reached,
+     and which city was its capital. */
+  "islamic-history/rashidun": { source: "historySteps", steps: ["rashidun"], title: { te: "రాషిదూన్ ఖిలాఫత్ — విస్తరణ", en: "The Rashidun Caliphate on the map" } },
+  "islamic-history/umayyad": { source: "historySteps", steps: ["umayyad"], title: { te: "ఉమయ్యద్ ఖిలాఫత్ — విస్తరణ", en: "The Umayyad Caliphate on the map" } },
+  "islamic-history/wisdom": { source: "historySteps", steps: ["abbasid"], title: { te: "అబ్బాసీద్ కాలం — బగ్దాద్ కేంద్రంగా", en: "The Abbasid age, centred on Baghdad" } },
+  "islamic-history/andalus": { source: "historySteps", steps: ["andalus"], title: { te: "అల్-అందలుస్ — కార్డోబా", en: "Al-Andalus, from Cordoba" } },
+  "islamic-history/ottoman": { source: "historySteps", steps: ["ottoman"], title: { te: "ఉస్మానీయ సామ్రాజ్యం", en: "The Ottoman Empire" } },
+  "islamic-history/scholars": { source: "historySteps", steps: ["abbasid"], title: { te: "పండితులు పనిచేసిన నగరాలు", en: "The cities the scholars worked in" } },
+  "islamic-history/colonial": { source: "historySteps", steps: ["colonial"], title: { te: "వలస కాలం — విడిపోయిన భూభాగాలు", en: "The colonial era, broken into pieces" } },
+  "islamic-history/modern": { source: "historySteps", steps: ["modern"], title: { te: "నేటి ముస్లిం ప్రపంచం", en: "The Muslim world today" } },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {
