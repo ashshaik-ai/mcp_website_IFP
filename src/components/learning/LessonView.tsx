@@ -8,6 +8,7 @@ import { readingLabelTe } from "@/content/reading-labels";
 import { useI18n } from "@/lib/i18n/context";
 import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
+import { LessonVisual } from "./LessonVisual";
 import { useQuizResults } from "@/lib/quiz-results";
 
 const copy = {
@@ -266,6 +267,8 @@ export function LessonView({
             </div>
           </section>
         )}
+
+        <LessonVisual portal={lesson.portal} slug={lesson.slug} />
 
         {lesson.quiz.length > 0 && (
           <section>
