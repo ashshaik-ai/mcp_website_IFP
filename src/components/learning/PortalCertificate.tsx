@@ -24,6 +24,7 @@ const copy = {
   forCompleting: { te: "పూర్తి చేసినందుకు", en: "for completing" },
   lessons: { te: "పాఠాలు", en: "lessons" },
   org: { te: "ఇస్లామిక్ ఫ్రంట్, మంగళగిరి", en: "Islamic Front, Mangalagiri" },
+  assessment: { te: "చివరి పరీక్ష", en: "final assessment" },
   print: { te: "ప్రింట్ చేయండి", en: "Print" },
   close: { te: "మూసివేయండి", en: "Close" },
   disclaimer: {
@@ -35,13 +36,28 @@ const copy = {
 export function PortalCertificate({
   portalTitle,
   lessonCount,
+  portal,
 }: {
   portalTitle: string;
   lessonCount: number;
+  portal: string;
 }) {
   const { lang } = useI18n();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  /* If they sat the final assessment and passed it, that belongs on here —
+     it is the only part of this record that was actually tested. */
+  const [assessment, setAssessment] = useState<number | null>(null);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("ifp-assessment-v1");
+      const best = raw ? JSON.parse(raw)[portal] : null;
+      if (typeof best === "number" && best >= 70) setAssessment(best);
+    } catch {
+      /* Storage blocked: the certificate simply does not mention a score. */
+    }
+  }, [portal]);
   const dialogRef = useRef<HTMLDivElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
 
@@ -145,6 +161,12 @@ export function PortalCertificate({
               </p>
               <p className="mt-1 text-sm text-[var(--if-text-muted)] tabular-nums">
                 {lessonCount} {copy.lessons[lang]}
+                {assessment !== null && (
+                  <>
+                    {" · "}
+                    {copy.assessment[lang]} {assessment}%
+                  </>
+                )}
               </p>
               <div className="mt-10 flex items-end justify-between gap-4 border-t border-[var(--if-gold)]/30 pt-5 text-left">
                 <span className="text-sm font-semibold text-[var(--if-green)]">{copy.org[lang]}</span>

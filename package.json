@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prebuild": "node --experimental-strip-types scripts/build-lesson-index.mjs && node --experimental-strip-types scripts/build-search-index.mjs",
+    "prebuild": "node --experimental-strip-types scripts/build-lesson-index.mjs && node --experimental-strip-types scripts/build-assessment-bank.mjs && node --experimental-strip-types scripts/build-search-index.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "verify": "tsc --noEmit && eslint && npm run build && playwright test",

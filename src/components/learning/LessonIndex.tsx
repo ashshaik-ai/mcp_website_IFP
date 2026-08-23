@@ -8,6 +8,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { summariesByPortal } from "@/content/lesson-index";
 import { useProgress } from "@/lib/progress";
 import { PortalCertificate } from "./PortalCertificate";
+import { PortalAssessment } from "./PortalAssessment";
 import { routeByPath } from "@/lib/site";
 
 const copy = {
@@ -95,9 +96,13 @@ export function LessonIndex({ portal }: { portal: string }) {
                 {items.length} / {items.length} {copy.progress[lang]}
               </p>
             </div>
-            <PortalCertificate portalTitle={portalTitle} lessonCount={items.length} />
+            <PortalCertificate portal={portal} portalTitle={portalTitle} lessonCount={items.length} />
           </div>
         )}
+
+        <div className="mb-8">
+          <PortalAssessment portal={portal} />
+        </div>
 
         <ol className="grid gap-3 sm:grid-cols-2">
           {items.map((l, i) => (
