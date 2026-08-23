@@ -103,8 +103,13 @@ function HadithPage() {
 
       {/* Theme filter */}
       <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
+        {/* These filter one list; they do not switch panels. Declaring the tab
+            pattern promised a tabpanel, aria-controls and arrow-key movement
+            that were never there, so a screen-reader user was told to expect
+            behaviour the page does not have. A pressed toggle is what they
+            actually are. */}
         <div
-          role="tablist"
+          role="group"
           aria-label={copy.essential[lang]}
           className="if-tabstrip mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1"
         >
@@ -112,8 +117,7 @@ function HadithPage() {
             <button
               key={t}
               type="button"
-              role="tab"
-              aria-selected={theme === t}
+              aria-pressed={theme === t}
               onClick={() => setTheme(t)}
               className={`flex-shrink-0 min-h-11 px-4 rounded-full text-sm font-semibold transition-colors whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
                 theme === t

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SpotlightNavbar, type NavItem } from "@/components/ui/spotlight-navbar";
@@ -18,6 +18,7 @@ const SECTION_IDS = homeSections.map((s) => s.fragment.slice(1));
 export function Navbar() {
   const { t, toggle, lang } = useI18n();
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   /* Only the homepage has these sections in the document; anywhere else the
      links point back at "/" and nothing should be marked current. */
@@ -66,7 +67,19 @@ export function Navbar() {
             items={desktopNavItems}
             activeIndex={activeIndex}
             onItemClick={(item) => {
-              window.location.assign(item.href);
+              /* location.assign tore the whole document down and rebuilt it for
+                 a link to a section of the page you were already on, and for
+                 cross-page links it threw away the client router entirely — the
+                 same destination reached from the footer was instant. It also
+                 left fragments stacked up: /#victory#contact after two clicks. */
+              if (item.href.startsWith("#")) {
+                const target = document.querySelector(item.href);
+                const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+                target?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+                history.replaceState(null, "", item.href);
+              } else {
+                router.push(item.href);
+              }
             }}
           />
         </div>

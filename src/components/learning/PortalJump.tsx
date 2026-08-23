@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Check } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { summariesByPortal } from "@/content/lesson-index";
 import { useProgress } from "@/lib/progress";
@@ -19,6 +19,7 @@ const copy = {
   lessons: { te: "పాఠాలు", en: "lessons" },
   go: { te: "పాఠాలకు వెళ్ళండి", en: "Go to lessons" },
   done: { te: "పూర్తయినవి", en: "done" },
+  complete: { te: "పోర్టల్ పూర్తయింది", en: "Portal complete" },
 } as const;
 
 export function PortalJump({ portal, sticky = true }: { portal: string; sticky?: boolean }) {
@@ -28,6 +29,8 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
   if (!items.length) return null;
 
   const done = ready ? countFor(portal, items.map((l) => l.slug)) : 0;
+  /* Finishing an entire portal used to pass without a word. */
+  const finished = ready && done === items.length;
 
   return (
     /* Four portals already carry their own sticky tab bar under the header.
@@ -41,11 +44,23 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-2">
         <p className="min-w-0 truncate text-xs font-semibold text-[var(--if-text-mid)] sm:text-sm">
-          <span className="tabular-nums">{items.length}</span> {copy.lessons[lang]}
-          {done > 0 && (
-            <span className="ml-2 text-[var(--if-gold-ink)]">
-              · <span className="tabular-nums">{done}</span> {copy.done[lang]}
+          {finished ? (
+            <span className="inline-flex items-center gap-1.5 text-[var(--if-green)]">
+              <Check aria-hidden="true" className="h-4 w-4" />
+              {copy.complete[lang]}
+              <span className="tabular-nums text-[var(--if-gold-ink)]">
+                {done}/{items.length}
+              </span>
             </span>
+          ) : (
+            <>
+              <span className="tabular-nums">{items.length}</span> {copy.lessons[lang]}
+              {done > 0 && (
+                <span className="ml-2 text-[var(--if-gold-ink)]">
+                  · <span className="tabular-nums">{done}</span> {copy.done[lang]}
+                </span>
+              )}
+            </>
           )}
         </p>
         <a

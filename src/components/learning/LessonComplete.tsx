@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Check, Circle } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { useProgress } from "@/lib/progress";
@@ -8,13 +9,33 @@ const copy = {
   mark: { te: "పూర్తయినట్టు గుర్తించండి", en: "Mark as complete" },
   done: { te: "పూర్తయింది", en: "Completed" },
   undo: { te: "గుర్తు తీసివేయండి", en: "Mark as not complete" },
+  allRight: { te: "సరైనవి", en: "right" },
   saved: { te: "ఈ బ్రౌజర్‌లో మాత్రమే సేవ్ అవుతుంది", en: "Saved in this browser only" },
 } as const;
 
-export function LessonComplete({ portal, slug }: { portal: string; slug: string }) {
+export function LessonComplete({
+  portal,
+  slug,
+  quizScore = 0,
+  quizTotal = 0,
+}: {
+  portal: string;
+  slug: string;
+  quizScore?: number;
+  quizTotal?: number;
+}) {
   const { lang } = useI18n();
   const { ready, isDone, toggle } = useProgress();
   const done = isDone(portal, slug);
+  const aced = quizTotal > 0 && quizScore >= quizTotal;
+
+  /* Answering every question correctly is finishing the lesson. Until now the
+     only thing that counted was this button: a reader could work through the
+     whole page, get all five right, and the portal would still show nothing
+     against their name. */
+  useEffect(() => {
+    if (ready && aced && !done) toggle(portal, slug);
+  }, [ready, aced, done, toggle, portal, slug]);
 
   return (
     <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -39,6 +60,12 @@ export function LessonComplete({ portal, slug }: { portal: string; slug: string 
         )}
         {done ? copy.done[lang] : copy.mark[lang]}
       </button>
+      {aced && (
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--if-gold)]/15 px-3 py-1 text-xs font-bold text-[var(--if-gold-ink)]">
+          <Check aria-hidden="true" className="h-3.5 w-3.5" />
+          {quizScore} / {quizTotal} {copy.allRight[lang]}
+        </span>
+      )}
       <span className="text-xs text-[var(--if-text-muted)]">{copy.saved[lang]}</span>
     </div>
   );

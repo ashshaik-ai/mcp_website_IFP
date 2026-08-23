@@ -11,6 +11,7 @@ const copy = {
   placeholder: { te: "పాఠాలు, పదాలు, కెరీర్లు వెతకండి…", en: "Search lessons, words, careers…" },
   close: { te: "మూసివేయండి", en: "Close" },
   empty: { te: "ఏమీ దొరకలేదు.", en: "Nothing found." },
+  failed: { te: "శోధన సూచీ లోడ్ కాలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.", en: "The search index could not be loaded. Please try again." },
   hint: { te: "వెతకడం మొదలుపెట్టండి", en: "Start typing to search" },
   loading: { te: "లోడ్ అవుతోంది…", en: "Loading…" },
   results: { te: "ఫలితాలు", en: "results" },
@@ -58,6 +59,9 @@ export function SiteSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState<Entry[] | null>(null);
+  /* A failed fetch used to store an empty array, which is truthy, so the
+     dialog said "Nothing found" for every query for the rest of the session. */
+  const [failed, setFailed] = useState(false);
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
@@ -72,7 +76,7 @@ export function SiteSearch() {
       /* A shape we do not recognise means no results, not a thrown render:
          the index is fetched from the network and is not ours to trust. */
       .then((d: Entry[]) => live && setIndex(Array.isArray(d) ? d.filter((e) => e && e.title && e.body && e.url) : []))
-      .catch(() => live && setIndex([]));
+      .catch(() => live && setFailed(true));
     return () => {
       live = false;
     };
@@ -234,11 +238,11 @@ export function SiteSearch() {
             <div className="max-h-[60vh] overflow-y-auto">
               {!query.trim() ? (
                 <p className="px-4 py-8 text-center text-sm text-[var(--if-text-muted)]">
-                  {index ? copy.hint[lang] : copy.loading[lang]}
+                  {failed ? copy.failed[lang] : index ? copy.hint[lang] : copy.loading[lang]}
                 </p>
               ) : results.length === 0 ? (
                 <p className="px-4 py-8 text-center text-sm text-[var(--if-text-muted)]">
-                  {index ? copy.empty[lang] : copy.loading[lang]}
+                  {failed ? copy.failed[lang] : index ? copy.empty[lang] : copy.loading[lang]}
                 </p>
               ) : (
                 <>

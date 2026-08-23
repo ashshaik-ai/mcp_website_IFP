@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, X } from "lucide-react";
 import { quizOrder } from "@/lib/quiz-order";
@@ -8,6 +8,7 @@ import { readingLabelTe } from "@/content/reading-labels";
 import { useI18n } from "@/lib/i18n/context";
 import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
+import { useQuizResults } from "@/lib/quiz-results";
 
 const copy = {
   back: { te: "పోర్టల్‌కు తిరిగి", en: "Back to portal" },
@@ -19,6 +20,7 @@ const copy = {
   reflect: { te: "ఆలోచించండి", en: "Reflect" },
   faqs: { te: "తరచుగా అడిగే ప్రశ్నలు", en: "Frequently asked" },
   quiz: { te: "మీకు ఎంత గుర్తుంది?", en: "Check what you remember" },
+  right: { te: "సరైనవి", en: "right" },
   revision: { te: "పునశ్చరణ", en: "Revision" },
   summary: { te: "సారాంశం", en: "In summary" },
   apply: { te: "ఆచరణలో పెట్టండి", en: "Put it into practice" },
@@ -31,7 +33,18 @@ const copy = {
 
 } as const;
 
-function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
+function Quiz({
+  item,
+  idPrefix,
+  onCorrect,
+  alreadyRight,
+}: {
+  item: QuizItem;
+  idPrefix: string;
+  onCorrect?: () => void;
+  /** Answered correctly on a previous visit. */
+  alreadyRight?: boolean;
+}) {
   const { lang } = useI18n();
   const [picked, setPicked] = useState<number | null>(null);
   /* Options are shown in a seeded order, because every question on the site
@@ -42,21 +55,30 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
   );
   const right = picked === answer;
 
+  /* Recorded the moment it lands, not on some later submit — there is no submit
+     here, and a score nobody stores is a score nobody has. */
+  useEffect(() => {
+    if (right) onCorrect?.();
+  }, [right, onCorrect]);
+
   return (
     <div className="rounded-xl border border-[var(--if-gold)]/20 bg-white p-4">
       <p id={`${idPrefix}-q`} className="font-semibold text-[var(--if-text)] text-pretty">
         {item.question[lang]}
       </p>
-      {/* A radiogroup, not a row of toggle buttons: these are one choice, and
-          aria-pressed announced them as four independent switches. */}
-      <div role="radiogroup" aria-labelledby={`${idPrefix}-q`} className="mt-3 grid gap-2">
+      {/* Declared as a radiogroup once, which promises roving focus and
+          arrow-key movement that select as they go. Neither was here, and
+          arrow-selection is wrong for a quiz anyway: it would mark whatever you
+          arrowed past as a wrong answer. These are what they behave like — a
+          group of answer buttons, one of which becomes pressed. */}
+      <div role="group" aria-labelledby={`${idPrefix}-q`} className="mt-3 grid gap-2">
         {order.map((original, i) => {
           const o = item.options[original];
           const chosen = picked === i;
           const isAnswer = i === answer;
           /* Only reveal the answer once it has been found. Marking it green on
              a wrong pick and then saying "try again" left nothing to try. */
-          const settled = picked !== null && right;
+          const settled = (picked !== null && right) || Boolean(alreadyRight && picked === null && i === answer);
           const state = settled
             ? isAnswer
               ? "border-emerald-400 bg-emerald-50"
@@ -68,12 +90,12 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
             <div key={`${idPrefix}-${original}`}>
               <button
                 type="button"
-                role="radio"
                 /* Once it is right it stays right. Clicking another option
                    afterwards used to un-solve the question and mark the new
                    pick wrong. */
                 onClick={() => { if (!settled) setPicked(i); }}
-                aria-checked={chosen}
+                aria-pressed={chosen}
+                aria-disabled={settled || undefined}
                 className={`w-full flex items-center gap-2.5 text-left min-h-11 px-3 rounded-lg border text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${state}`}
               >
                 {settled && isAnswer && (
@@ -144,6 +166,13 @@ export function LessonView({
   portalTitle: Bi;
 }) {
   const { lang } = useI18n();
+  const { ready: quizReady, scoreFor, record, answeredFor } = useQuizResults();
+  const score = scoreFor(lesson.portal, lesson.slug);
+  const answered = answeredFor(lesson.portal, lesson.slug);
+  const recordAnswer = useCallback(
+    (i: number) => record(lesson.portal, lesson.slug, i),
+    [record, lesson.portal, lesson.slug],
+  );
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
@@ -226,12 +255,29 @@ export function LessonView({
 
         {lesson.quiz.length > 0 && (
           <section>
-            <h2 className="font-display text-lg font-bold text-[var(--if-green)] mb-3">
-              {copy.quiz[lang]}
-            </h2>
+            <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4">
+              <h2 className="font-display text-lg font-bold text-[var(--if-green)]">
+                {copy.quiz[lang]}
+              </h2>
+              {/* Five questions used to be asked and nothing done with the
+                  answers. The count is the whole point of asking. */}
+              <p
+                className="text-sm font-semibold text-[var(--if-gold-ink)] tabular-nums"
+                aria-live="polite"
+                style={{ visibility: quizReady ? "visible" : "hidden" }}
+              >
+                {score} / {lesson.quiz.length} {copy.right[lang]}
+              </p>
+            </div>
             <div className="grid gap-3">
               {lesson.quiz.map((q, i) => (
-                <Quiz key={i} item={q} idPrefix={`quiz-${i}`} />
+                <Quiz
+                  key={i}
+                  item={q}
+                  idPrefix={`quiz-${i}`}
+                  alreadyRight={answered.includes(i)}
+                  onCorrect={() => recordAnswer(i)}
+                />
               ))}
             </div>
           </section>
@@ -294,7 +340,7 @@ export function LessonView({
         )}
       </div>
 
-      <LessonComplete portal={lesson.portal} slug={lesson.slug} />
+      <LessonComplete portal={lesson.portal} slug={lesson.slug} quizScore={score} quizTotal={lesson.quiz.length} />
 
       <nav
         aria-label={copy.lesson[lang]}

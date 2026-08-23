@@ -88,6 +88,7 @@ export function AlphabetGrid({
           return (
             <button
               key={`${l.glyph}-${i}`}
+              id={`if-letter-${i}`}
               type="button"
               onClick={() => {
                 setOpenIdx(isOpen ? null : i);
@@ -121,6 +122,17 @@ export function AlphabetGrid({
               <span className="text-xs text-[var(--if-text-muted)] text-center leading-snug px-1">
                 {l.name[lang]}
               </span>
+              {/* The legend above this grid names sun and moon letters in amber
+                  and green, and nothing on the tiles carried either colour — all
+                  28 rendered identically, so the key pointed at nothing. */}
+              {extras?.[baseGlyph(l.glyph)] && (
+                <span
+                  aria-hidden="true"
+                  className={`absolute bottom-1.5 left-1.5 h-2 w-2 rounded-full ${
+                    extras[baseGlyph(l.glyph)].sunLetter ? "bg-amber-500" : "bg-[var(--if-green)]"
+                  }`}
+                />
+              )}
             </button>
           );
         })}
@@ -167,7 +179,16 @@ export function AlphabetGrid({
 
             <button
               type="button"
-              onClick={() => setOpenIdx(null)}
+              /* Closing unmounts the panel, and focus fell to <body> — a
+                 keyboard user landed at the top of the document and had to tab
+                 all the way back. Send it to the tile that opened it. */
+              onClick={() => {
+                const idx = openIdx;
+                setOpenIdx(null);
+                requestAnimationFrame(() => {
+                  document.getElementById(`if-letter-${idx}`)?.focus();
+                });
+              }}
               aria-label={copy.close[lang]}
               className="inline-flex items-center justify-center min-h-11 min-w-11 rounded-full hover:bg-[var(--if-gold)]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
             >

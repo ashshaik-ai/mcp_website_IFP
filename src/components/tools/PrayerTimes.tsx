@@ -18,6 +18,11 @@ const copy = {
   loading_prayer_times: { te: "నమాజ్ సమయాలు లోడ్ అవుతున్నాయి", en: "Loading prayer times" },
   next_prayer: { te: "తదుపరి నమాజ్", en: "Next prayer" },
   in: { te: "మిగిలిన సమయం", en: "in" },
+  jumuah: { te: "శుక్రవారం — జుమా", en: "Friday — Jumu'ah" },
+  jumuah_note: {
+    te: "జుహర్ స్థానంలో జుమా — మసీదులో ఖుత్బా సమయాన్ని నిర్ధారించుకోండి.",
+    en: "Jumu'ah replaces Dhuhr — check the khutbah time at your masjid.",
+  },
   calculated_for_mangalagiri_karachi_method: { te: "మంగళగిరి కోసం లెక్కించబడింది (కరాచీ పద్ధతి, హనఫీ అస్ర్). మీ స్థానిక మసీదు సమయమే ప్రామాణికం.", en: "Calculated for Mangalagiri (Karachi method, Hanafi Asr). Your local masjid remains authoritative." },
 } as const;
 
@@ -58,13 +63,26 @@ export function PrayerTimesCard() {
   const times = prayerTimes(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate());
   const nowHours = now.getUTCHours() + now.getUTCMinutes() / 60;
   const next = nextPrayer(times, nowHours);
+  const isFriday = now.getUTCDay() === 5;
+  const dateLabel = new Intl.DateTimeFormat(lang === "te" ? "te-IN" : "en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+  }).format(now);
 
   return (
     <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white overflow-hidden">
       <div className="bg-[var(--if-green)] px-6 py-5">
-        <p className="text-xs uppercase tracking-widest text-[var(--if-gold-light)]">
-          {copy.next_prayer[lang]}
-        </p>
+        {/* The card gave a time with no day attached, and never said anything
+            about Jumu'ah — the one prayer of the week whose time is not the one
+            in the table. */}
+        <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+          <p className="text-xs uppercase tracking-widest text-[var(--if-gold-light)]">
+            {copy.next_prayer[lang]}
+          </p>
+          <p className="text-xs text-[var(--if-gold-pale)]/70 tabular-nums">{dateLabel}</p>
+        </div>
         <div className="flex items-baseline gap-3 mt-1 flex-wrap">
           <span className="font-display text-2xl font-bold text-[var(--if-gold-light)]">
             {LABELS[next.key][lang]}
@@ -93,7 +111,7 @@ export function PrayerTimesCard() {
               <span
                 className={`font-semibold ${isNext ? "text-[var(--if-green)]" : "text-[var(--if-text)]"}`}
               >
-                {LABELS[key][lang]}
+                {isFriday && key === "dhuhr" ? copy.jumuah[lang] : LABELS[key][lang]}
               </span>
               <span className="font-arabic text-[var(--if-text-muted)]" dir="rtl" lang="ar">
                 {LABELS[key].ar}
@@ -111,7 +129,7 @@ export function PrayerTimesCard() {
       </ul>
 
       <p className="px-6 py-4 text-xs text-[var(--if-text-muted)] bg-[var(--if-cream-light)] text-pretty">
-        {copy.calculated_for_mangalagiri_karachi_method[lang]}
+        {isFriday ? `${copy.jumuah_note[lang]} ${copy.calculated_for_mangalagiri_karachi_method[lang]}` : copy.calculated_for_mangalagiri_karachi_method[lang]}
       </p>
     </div>
   );
