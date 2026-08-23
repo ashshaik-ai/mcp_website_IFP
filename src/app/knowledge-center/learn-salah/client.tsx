@@ -285,7 +285,7 @@ function LearnSalahPage() {
       </section>
 
       {/* Tab bar */}
-      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2 overflow-x-auto">
+      <div className="if-tabstrip sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2 overflow-x-auto">
         <div className="mx-auto max-w-4xl flex gap-2 min-w-max">
           {tabs.map((tab) => (
             <button
@@ -304,7 +304,7 @@ function LearnSalahPage() {
         <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-4xl">
             <BlurFade delay={0.1}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
                 {copy.the_5_obligatory_prayers[lang]}
               </h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">
@@ -348,7 +348,7 @@ function LearnSalahPage() {
               ))}
             </div>
             <BlurFade delay={0.5}>
-              <div className="mt-6 p-4 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 text-center text-sm text-[var(--if-text-muted)]">
+              <div className="mt-6 p-4 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 text-center text-sm text-[var(--if-text-muted)]">
                 {copy.prayer_times_vary_by_location[lang]}
               </div>
             </BlurFade>
@@ -364,7 +364,7 @@ function LearnSalahPage() {
           </div>
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
                 {copy.wudu_ablution[lang]}
               </h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-6">
@@ -418,7 +418,7 @@ function LearnSalahPage() {
         <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
                 {copy.salah_step_by_step[lang]}
               </h2>
             </BlurFade>
@@ -434,7 +434,7 @@ function LearnSalahPage() {
                 { n: 8, name: "Salam", ar: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه", tr: "As-salāmu ʿalaykum wa raḥmatullāh", te: "మీపై శాంతి మరియు అల్లాహ్ కరుణ", en: "Peace and mercy of Allah be upon you", pos: { te: "తలను కుడి, తర్వాత ఎడమకు తిప్పి", en: "Turn head right, then left" } },
               ].map((step, i) => (
                 <BlurFade key={step.n} delay={0.05 * i}>
-                  <div className="bg-white rounded-xl border border-[var(--if-gold)]/15 p-4 flex gap-4">
+                  <div className="bg-white rounded-xl border border-[var(--if-gold)]/20 p-4 flex gap-4">
                     <span className="w-8 h-8 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">{step.n}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-2 mb-1">
@@ -458,7 +458,7 @@ function LearnSalahPage() {
         <section className="py-16 px-4 bg-[var(--if-cream-light)]">
           <div className="mx-auto max-w-3xl">
             <BlurFade delay={0.05}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">{copy.salah_simulator[lang]}</h2>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">{copy.salah_simulator[lang]}</h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">{lang === "te" ? "తక్బీర్ నుండి సలాం వరకు — చూసి నేర్చుకోండి" : "From Takbeer to Salam — watch, then follow"}</p>
             </BlurFade>
             <Simulator steps={salahSteps} scene={SalahFigure} autoplay />
@@ -470,7 +470,7 @@ function LearnSalahPage() {
         <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
           <div className="mx-auto max-w-4xl">
             <BlurFade delay={0.1}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
                 {copy.common_mistakes[lang]}
               </h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-10">
@@ -480,7 +480,7 @@ function LearnSalahPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {mistakes.map((m, mi) => (
                 <BlurFade key={mi} delay={0.07 * mi}>
-                  <div className="bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 h-full">
+                  <div className="bg-white rounded-2xl border border-[var(--if-gold)]/20 p-5 h-full">
                     <div className="flex items-center gap-3 mb-4 pb-3 border-b border-[var(--if-gold)]/10">
                       <span className="text-2xl">{m.icon}</span>
                       <h3 className="font-display font-bold text-[var(--if-green)]">{m.cat[lang]}</h3>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { PrayerTimesCard } from "@/components/tools/PrayerTimes";
@@ -9,7 +8,6 @@ import { ZakatCalculator } from "@/components/tools/ZakatCalculator";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { ChevronRight, Star, Clock, Users, BookOpen, Calculator, Calendar, Baby, Globe, ScrollText } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -225,7 +223,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
       <section id="tools" className="if-defer py-12 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-6">
               {copy.islamic_tools[lang]}
             </h2>
           </BlurFade>
@@ -234,7 +232,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
               <BlurFade key={href} delay={0.1}>
                 <Link
                   href={href}
-                  className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all group"
+                  className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/50 transition-all group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-[var(--if-green)] flex items-center justify-center flex-shrink-0">
                     <Icon className="h-5 w-5 text-[var(--if-gold-light)]" />
@@ -271,7 +269,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)]">
                 {copy.learning_portals[lang]}
               </h2>
             </div>
@@ -279,14 +277,18 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
 
           {/* Thirteen cards in three columns leaves one alone on the last row;
               it spans the row instead, at a reading width. */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 [&>*:last-child:nth-child(3n+1)]:lg:col-span-3 [&>*:last-child:nth-child(3n+1)]:lg:max-w-md [&>*:last-child:nth-child(3n+1)]:lg:justify-self-center [&>*:last-child:nth-child(3n+1)]:lg:w-full">
+          <div /* Thirteen cards leave one alone on the last row. Putting it in the middle
+              column keeps it on the grid at exactly a sibling's width — the old rule
+              spanned all three columns and capped it at max-w-md, which came out 35px
+              wider than its twelve siblings and off the column rhythm. */
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 [&>*:last-child:nth-child(3n+1)]:lg:col-start-2 [&>*:last-child:nth-child(odd)]:sm:max-lg:col-span-2 [&>*:last-child:nth-child(odd)]:sm:max-lg:mx-auto [&>*:last-child:nth-child(odd)]:sm:max-lg:w-[calc(50%-0.625rem)]">
             {filtered.map((portal, i) => {
               const Icon = portal.icon;
               return (
                 <BlurFade key={portal.id} delay={0.05 * i}>
                   <Link
                     href={`/knowledge-center/${portal.id}`}
-                    className="relative overflow-hidden group flex flex-col h-full rounded-2xl border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/50 transition-all hover:shadow-xl hover:shadow-[var(--if-gold)]/10 bg-white"
+                    className="relative overflow-hidden group flex flex-col h-full rounded-2xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/50 transition-all hover:shadow-xl hover:shadow-[var(--if-gold)]/10 bg-white"
                   >
                     <BorderBeam size={120} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
 
@@ -319,19 +321,52 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
         </div>
       </section>
 
-      {/* Back to home CTA */}
-      <section className="if-defer py-12 px-4 bg-[var(--if-cream-light)] text-center">
-        <BlurFade delay={0.1}>
-          <p className="text-[var(--if-text-muted)] mb-4">
-            {copy.learn_about_the_party_and[lang]}
-          </p>
-          {/* Was a <Link> wrapping the button: an inline element cannot centre
-              a flex block child, so it hugged the left of a centred section.
-              ShimmerButton takes the href itself now. */}
-          <ShimmerButton href="/" shimmerColor="#e8b84b" background="#0d3b1e" className="mx-auto text-[var(--if-gold-light)] font-semibold">
-            {copy.back_to_homepage[lang]}
-          </ShimmerButton>
-        </BlurFade>
+      {/* The page used to end by offering to send you back to the homepage —
+          the one place every reader here has already been. Student Guidance is
+          the site's third product and is mentioned nowhere else on this page,
+          so this is where it belongs. */}
+      <section className="if-defer px-4 py-16 bg-[var(--if-cream-light)]">
+        <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2">
+          <Link
+            href="/student-guidance"
+            className="group flex flex-col gap-2 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-7 transition-colors hover:border-[var(--if-gold)]/60"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)]">
+              {lang === "te" ? "తర్వాత ఏమిటి" : "Next"}
+            </span>
+            <span className="font-display text-xl font-bold text-[var(--if-green)]">
+              {lang === "te" ? "విద్యార్థి మార్గదర్శి" : "Student Guidance"}
+            </span>
+            <span className="text-sm text-[var(--if-text-muted)] text-pretty">
+              {lang === "te"
+                ? "79 కెరీర్ మార్గాలు — ఇంటర్ తర్వాత ఏ కోర్సు, ఏ పరీక్ష, ఏ స్కాలర్‌షిప్."
+                : "79 career pathways — which course after intermediate, which exam, which scholarship."}
+            </span>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-bold text-[var(--if-green)]">
+              {lang === "te" ? "చూడండి" : "Open"}
+              <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+
+          <Link
+            href="/"
+            className="group flex flex-col gap-2 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-7 transition-colors hover:border-[var(--if-gold)]/60"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)]">
+              {lang === "te" ? "సంస్థ గురించి" : "The organisation"}
+            </span>
+            <span className="font-display text-xl font-bold text-[var(--if-green)]">
+              {lang === "te" ? "ఇస్లామిక్ ఫ్రంట్, మంగళగిరి" : "Islamic Front, Mangalagiri"}
+            </span>
+            <span className="text-sm text-[var(--if-text-muted)] text-pretty">
+              {copy.learn_about_the_party_and[lang]}
+            </span>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-bold text-[var(--if-green)]">
+              {copy.back_to_homepage[lang]}
+              <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+        </div>
       </section>
 
     </PageShell>

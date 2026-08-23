@@ -127,7 +127,7 @@ export function ReviewDeck({ name, cards }: { name: string; cards: ReviewCard[] 
           </p>
         </div>
       ) : (
-        <div className="rounded-2xl border border-[var(--if-gold)]/25 bg-white overflow-hidden">
+        <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white overflow-hidden">
           <div className="p-8 min-h-[13rem] flex flex-col items-center justify-center gap-3 text-center">
             <span
               dir={card.frontLang ? "rtl" : undefined}
@@ -165,7 +165,7 @@ export function ReviewDeck({ name, cards }: { name: string; cards: ReviewCard[] 
             </div>
           </div>
 
-          <div className="border-t border-[var(--if-gold)]/15 p-4">
+          <div className="border-t border-[var(--if-gold)]/20 p-4">
             {!flipped ? (
               <button
                 type="button"

@@ -82,7 +82,7 @@ export function LetterReview({
               className={`min-h-11 px-4 rounded-full text-sm font-semibold border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
                 tab === t.key
                   ? "bg-[var(--if-green)] text-[var(--if-gold-light)] border-transparent"
-                  : "bg-white border-[var(--if-gold)]/25 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]/60"
+                  : "bg-white border-[var(--if-gold)]/20 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]/60"
               }`}
             >
               {t.label}

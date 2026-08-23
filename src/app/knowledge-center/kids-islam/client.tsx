@@ -176,7 +176,7 @@ function KidsIslamPage() {
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">
               {t("మొదటి కలిమా", "The First Kalimah")}
             </div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("మన విశ్వాస ప్రకటన", "Our Declaration of Faith")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-8 max-w-lg mx-auto">
@@ -203,7 +203,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ఇస్లాం పునాదులు", "Foundations of Islam")}</div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("ఇస్లాం ఐదు మూల స్తంభాలు", "The Five Pillars of Islam")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-10 max-w-md mx-auto">
@@ -230,7 +230,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("అస్మా-ఉల్-హుస్నా", "Asma ul-Husna")}</div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("అల్లాహ్ అందమైన పేర్లు", "The Beautiful Names of Allah")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-10 max-w-md mx-auto">
@@ -256,7 +256,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("మంచి స్వభావం", "Good Character")}</div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("స్వభావ అకాడమీ", "Character Academy")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-10 max-w-md mx-auto">
@@ -289,7 +289,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("రోజువారీ దువాలు", "Everyday Duas")}</div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("రోజు కోసం చిన్న దువాలు", "Little Duas for the Day")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-10 max-w-md mx-auto">
@@ -320,7 +320,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("ప్రవక్తల కథలు", "Prophet Stories")}</div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("ఇంటరాక్టివ్ ప్రవక్తల కథలు", "Interactive Prophet Stories")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-10 max-w-md mx-auto">
@@ -351,7 +351,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-white">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-10">
               {t("నా ఇస్లాం అన్వేషణ", "My Islam Adventure")}
             </h2>
           </BlurFade>
@@ -360,7 +360,7 @@ function KidsIslamPage() {
               <BlurFade key={sec.num} delay={0.06 * i}>
                 <button
                   onClick={() => setActiveSection(activeSection === sec.num ? null : sec.num)}
-                  className={`relative overflow-hidden w-full text-left rounded-2xl border transition-all ${activeSection === sec.num ? "border-[var(--if-gold)]/50 shadow-lg shadow-[var(--if-gold)]/10" : "border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"} bg-white`}
+                  className={`relative overflow-hidden w-full text-left rounded-2xl border transition-all ${activeSection === sec.num ? "border-[var(--if-gold)]/50 shadow-lg shadow-[var(--if-gold)]/10" : "border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"} bg-white`}
                 >
                   <BorderBeam size={100} duration={6} colorFrom="#c8922a" colorTo="#e8b84b" className={activeSection === sec.num ? "opacity-100" : "opacity-0"} />
                   <div className={`${sec.color} p-4 flex items-center justify-between`}>
@@ -398,7 +398,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నమాజ్ కోసం పవిత్రత", "Purification for Prayer")}</div>
-            <h2 className="font-display text-3xl font-bold text-white text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white text-center mb-3">
               {t("నా మొదటి వుదూ", "My First Wudu")}
             </h2>
             <p className="text-sm text-center text-white/70 mb-10 max-w-md mx-auto">
@@ -427,7 +427,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-ink)] mb-2 text-center">{t("నమాజ్ నేర్చుకోవడం", "Learning Prayer")}</div>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {t("నా మొదటి నమాజ్", "My First Salah")}
             </h2>
             <p className="text-sm text-center text-[var(--if-text-muted)] mb-10 max-w-md mx-auto">
@@ -456,7 +456,7 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("నేటి సవాల్", "Daily Challenge")}</div>
-            <h2 className="font-display text-3xl font-bold text-white text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white text-center mb-3">
               {t("నేటి ఇస్లామిక్ సవాల్", "Today's Islamic Challenge")}
             </h2>
             <p className="text-sm text-center text-white/65 mb-8 max-w-md mx-auto">
@@ -471,7 +471,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
               {t("🎯 ఇస్లాం క్విజ్", "🎯 Islam Quiz")}
             </h2>
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8">
@@ -558,11 +558,11 @@ function KidsIslamPage() {
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
             <div className="text-xs font-bold tracking-widest uppercase text-[var(--if-gold-light)] mb-2 text-center">{t("తల్లిదండ్రులు", "For Parents")}</div>
-            <h2 className="font-display text-3xl font-bold text-white text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white text-center mb-10">
               {t("తల్లిదండ్రుల మూల", "Parent Corner")}
             </h2>
             <div className="grid sm:grid-cols-2 gap-5">
-              <div className="bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-6">
+              <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-6">
                 <h3 className="font-display font-bold text-white mb-4 flex items-center gap-2">
                   <span className="text-xl">📊</span> {t("నా పురోగతి", "My Progress")}
                 </h3>
@@ -578,7 +578,7 @@ function KidsIslamPage() {
                   <div className="text-xs text-white/75 uppercase tracking-wide mt-2">{t("పూర్తయిన పాఠాలు", "Lessons completed")}</div>
                 </div>
               </div>
-              <div className="bg-white/5 border border-[var(--if-gold)]/25 rounded-2xl p-6">
+              <div className="bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-6">
                 <h3 className="font-display font-bold text-white mb-3 flex items-center gap-2">
                   <span className="text-xl">👨‍👩‍👧</span> {t("తల్లిదండ్రులకు చిట్కాలు", "Tips for Parents")}
                 </h3>
@@ -603,7 +603,7 @@ function KidsIslamPage() {
 
       <section id="prophet-stories" className="py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ప్రవక్తల కథలు" : "Prophet stories"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -619,7 +619,7 @@ function KidsIslamPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <div className="grid gap-10"><Simulator steps={simWudu} scene={WuduScene} autoplay /><Simulator steps={simSalah} scene={SalahFigure} /></div>
         </div>
       </section>

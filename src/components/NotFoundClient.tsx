@@ -68,7 +68,7 @@ export function NotFoundClient() {
             <li key={href}>
               <Link
                 href={href}
-                className="group flex h-full flex-col gap-2 rounded-2xl border border-[var(--if-gold)]/25 bg-[var(--if-cream-light)] p-5 transition-colors hover:border-[var(--if-gold)] hover:bg-[color-mix(in_srgb,var(--if-gold)_8%,var(--if-cream-light))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="group flex h-full flex-col gap-2 rounded-2xl border border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] p-5 transition-colors hover:border-[var(--if-gold)] hover:bg-[color-mix(in_srgb,var(--if-gold)_8%,var(--if-cream-light))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               >
                 <Icon className="h-5 w-5 text-[var(--if-gold-ink)]" aria-hidden="true" />
                 <span className="font-display font-bold text-[var(--if-green)]">

@@ -135,8 +135,8 @@ function WomensGuidancePage() {
       </section>
 
       {/* Section selector */}
-      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
-        <div className="mx-auto max-w-5xl overflow-x-auto flex gap-2 pb-1">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
+        <div className="if-tabstrip mx-auto max-w-5xl overflow-x-auto flex gap-2 pb-1">
           {sections.map((sec, i) => (
             <button key={sec.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {sec.title[lang]}
@@ -153,7 +153,7 @@ function WomensGuidancePage() {
               <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-center gap-3 mb-1">
                 <span className="text-3xl">{s.icon}</span>
-                <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">{s.title[lang]}</h2>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)]">{s.title[lang]}</h2>
               </div>
               <div className="font-arabic text-lg text-[var(--if-gold-light)] mb-6" dir="rtl">{s.ar}</div>
               <div className="space-y-3">
@@ -190,7 +190,7 @@ function WomensGuidancePage() {
 
       <section id="worship" className="if-defer py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "హైద్ సమయంలో ఆరాధన" : "Worship during Hayd"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -211,7 +211,7 @@ function WomensGuidancePage() {
 
       <section id="faqs" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-6">
             {lang === "te" ? "తరచుగా అడిగే ప్రశ్నలు" : "Frequently asked"}
           </h2>
           <FaqList items={womensFaqs} />
@@ -222,7 +222,7 @@ function WomensGuidancePage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={ghuslSteps} scene={WuduScene} autoplay />
         </div>
       </section>

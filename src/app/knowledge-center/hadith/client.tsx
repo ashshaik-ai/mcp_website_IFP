@@ -102,11 +102,11 @@ function HadithPage() {
       </section>
 
       {/* Theme filter */}
-      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
         <div
           role="tablist"
           aria-label={copy.essential[lang]}
-          className="mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1"
+          className="if-tabstrip mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1"
         >
           {themes.map((t) => (
             <button
@@ -130,7 +130,7 @@ function HadithPage() {
       <section id="essential" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
               {copy.essential[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] mb-8 text-pretty max-w-2xl">
@@ -169,7 +169,7 @@ function HadithPage() {
                       </div>
                     </dl>
 
-                    <div className="border-t border-[var(--if-gold)]/15 pt-4">
+                    <div className="border-t border-[var(--if-gold)]/20 pt-4">
                       <h3 className="text-xs font-bold text-[var(--if-gold-ink)] uppercase tracking-widest mb-2">
                         {copy.why_here[lang]}
                       </h3>
@@ -188,7 +188,7 @@ function HadithPage() {
       <section id="grades" className="if-defer py-16 px-4 bg-[var(--if-cream-light)] scroll-mt-32">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
               {copy.grades_heading[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] mb-7 text-pretty max-w-2xl">
@@ -219,7 +219,7 @@ function HadithPage() {
       <section id="books" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.05}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
               {copy.six_books[lang]}
             </h2>
             <p className="text-[var(--if-text-muted)] mb-8 text-pretty max-w-2xl">
@@ -254,7 +254,7 @@ function HadithPage() {
                         <dd className="text-[var(--if-text)]">{b.count[lang]}</dd>
                       </div>
                     </dl>
-                    <p className="text-sm text-[var(--if-text-muted)] leading-relaxed text-pretty border-t border-[var(--if-gold)]/15 pt-3">
+                    <p className="text-sm text-[var(--if-text-muted)] leading-relaxed text-pretty border-t border-[var(--if-gold)]/20 pt-3">
                       {b.note[lang]}
                     </p>
                   </div>
@@ -267,7 +267,7 @@ function HadithPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={isnadSteps} scene={IsnadScene} autoplay />
         </div>
       </section>

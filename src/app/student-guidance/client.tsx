@@ -48,7 +48,7 @@ function CardTile({ card, open, onToggle }: { card: GuidanceCard; open: boolean;
       className={`relative overflow-hidden bg-white rounded-2xl border transition-colors ${
         open
           ? "border-[var(--if-gold)]/50 shadow-lg shadow-[var(--if-gold)]/10"
-          : "border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"
+          : "border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"
       }`}
     >
       {open && <BorderBeam size={150} duration={8} colorFrom="#0d3b1e" colorTo="#c8922a" />}
@@ -250,7 +250,7 @@ function StudentGuidancePage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={copy.e_g_doctor_engineer_ias[lang]}
-                className="w-full min-h-11 pl-9 pr-11 text-base rounded-full bg-white border border-[var(--if-gold)]/25 text-sm text-[var(--if-text)] [&::-webkit-search-cancel-button]:appearance-none placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="w-full min-h-11 pl-9 pr-11 text-base rounded-full bg-white border border-[var(--if-gold)]/20 text-sm text-[var(--if-text)] [&::-webkit-search-cancel-button]:appearance-none placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               />
               {query && (
                 <button
@@ -278,7 +278,7 @@ function StudentGuidancePage() {
                   className={`min-h-11 px-4 rounded-full text-sm font-semibold border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${
                     stream === s.id
                       ? "bg-[var(--if-green)] text-[var(--if-gold-light)] border-transparent"
-                      : "bg-white border-[var(--if-gold)]/25 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]/50"
+                      : "bg-white border-[var(--if-gold)]/20 text-[var(--if-text-muted)] hover:border-[var(--if-gold)]/50"
                   }`}
                 >
                   {s.label[lang]}

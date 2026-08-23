@@ -93,8 +93,8 @@ function HajjUmrahPage() {
       </section>
 
       {/* Tabs */}
-      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
-        <div className="mx-auto max-w-3xl flex gap-2 overflow-x-auto min-w-0">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
+        <div className="if-tabstrip mx-auto max-w-3xl flex gap-2 overflow-x-auto min-w-0">
           {(["hajj", "umrah", "ihram"] as const).map((t) => (
             <button key={t} onClick={() => { setTab(t); setStep(0); }} className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${tab === t ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {t === "hajj" ? (copy.hajj_steps[lang]) : t === "umrah" ? (copy.umrah_steps[lang]) : (copy.ihram_rules[lang])}
@@ -111,7 +111,7 @@ function HajjUmrahPage() {
           </div>
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
                 {tab === "hajj" ? (copy.hajj_step_by_step[lang]) : (copy.umrah_step_by_step[lang])}
               </h2>
             </BlurFade>
@@ -125,11 +125,11 @@ function HajjUmrahPage() {
               <div className="font-arabic text-lg text-[var(--if-gold-light)] mb-3" dir="rtl">{steps[step].ar}</div>
               <p className="text-[var(--if-text-muted)] leading-relaxed">{steps[step].desc[lang]}</p>
               <div className="flex items-center justify-between mt-6">
-                <button disabled={step === 0} onClick={() => setStep(s => s - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
+                <button disabled={step === 0} onClick={() => setStep(s => s - 1)} className="inline-flex min-h-11 items-center gap-1 rounded-full border border-[var(--if-gold)]/30 px-4 text-sm disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
                   <ChevronLeft className="h-4 w-4 text-[var(--if-green)]" />{copy.back[lang]}
                 </button>
                 <span className="text-xs text-[var(--if-text-muted)]">{step + 1} / {steps.length}</span>
-                <button disabled={step === steps.length - 1} onClick={() => setStep(s => s + 1)} className="flex items-center gap-1 px-4 py-2 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30">
+                <button disabled={step === steps.length - 1} onClick={() => setStep(s => s + 1)} className="inline-flex min-h-11 items-center gap-1 rounded-full bg-[var(--if-green)] px-4 text-sm text-[var(--if-gold-light)] disabled:opacity-30">
                   {copy.next[lang]}<ChevronRight className="h-4 w-4" />
                 </button>
               </div>
@@ -143,7 +143,7 @@ function HajjUmrahPage() {
                   onClick={() => setStep(i)}
                   aria-label={`${copy.step[lang]} ${i + 1}`}
                   aria-current={i === step ? "step" : undefined}
-                  className="flex-1 min-h-6 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] rounded-full"
+                  className="flex-1 min-h-11 flex items-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] rounded-full"
                 >
                   <span
                     aria-hidden="true"
@@ -161,14 +161,14 @@ function HajjUmrahPage() {
         <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-3xl">
             <BlurFade delay={0.1}>
-              <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
                 {copy.ihram_prohibitions[lang]}
               </h2>
             </BlurFade>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {ihramRules.map((r, i) => (
                 <BlurFade key={i} delay={0.07 * i}>
-                  <div className="flex items-center gap-3 bg-white border border-[var(--if-gold)]/15 rounded-xl p-4">
+                  <div className="flex items-center gap-3 bg-white border border-[var(--if-gold)]/20 rounded-xl p-4">
                     <span className="text-xl flex-shrink-0">🚫</span>
                     <div>
                       <div className="font-semibold text-[var(--if-green)] text-sm">{r.rule[lang]}</div>

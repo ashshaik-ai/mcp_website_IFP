@@ -338,7 +338,7 @@ function LearnQuranPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-3xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-10">
               {copy.n_4_stage_learning_journey[lang]}
             </h2>
           </BlurFade>
@@ -355,7 +355,7 @@ function LearnQuranPage() {
                     className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${
                       openStage === s.num
                         ? "bg-[var(--if-green)] border-[var(--if-gold)]/40 text-[var(--if-gold-pale)]"
-                        : "bg-white border-[var(--if-gold)]/15 text-[var(--if-text)] hover:border-[var(--if-gold)]/40"
+                        : "bg-white border-[var(--if-gold)]/20 text-[var(--if-text)] hover:border-[var(--if-gold)]/40"
                     }`}
                   >
                     <div className={`w-10 h-10 rounded-full ${s.color} flex items-center justify-center`}>
@@ -410,7 +410,7 @@ function LearnQuranPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-light)] mb-2">
               {copy.flagship_section[lang]}
             </p>
-            <h2 className="font-display text-3xl font-bold text-white mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
               {copy.tajweed_academy[lang]}
               <span className="font-arabic text-[var(--if-gold-light)] ml-3 font-normal">علم التجويد</span>
             </h2>
@@ -428,7 +428,7 @@ function LearnQuranPage() {
                 onClick={() => setTjIdx(i)}
                 aria-label={`${copy.rule[lang]} ${i + 1}`}
                 aria-current={i === tjIdx ? "step" : undefined}
-                className="flex-1 min-w-[14px] min-h-6 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="flex-1 min-w-[14px] min-h-11 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               >
                 {/* 24px hit box (WCAG 2.2 AA), 8px visual bar inside. */}
                 <span
@@ -446,7 +446,7 @@ function LearnQuranPage() {
 
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-6 items-start">
             {/* Glyph panel */}
-            <div className="rounded-2xl border border-[var(--if-gold)]/25 bg-white/5 p-6 flex flex-col items-center justify-center min-h-[220px] gap-4">
+            <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white/5 p-6 flex flex-col items-center justify-center min-h-[220px] gap-4">
               <div className="font-arabic text-5xl text-[var(--if-gold-light)] leading-relaxed" dir="rtl" lang="ar">
                 {step.glyph}
               </div>
@@ -457,7 +457,7 @@ function LearnQuranPage() {
             </div>
 
             {/* Detail panel */}
-            <div className="rounded-2xl border border-[var(--if-gold)]/25 bg-white/5 p-6 space-y-4">
+            <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white/5 p-6 space-y-4">
               <h3 className="text-lg font-bold text-white">
                 {step.name[lang]}
               </h3>
@@ -518,7 +518,7 @@ function LearnQuranPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2 text-center">
               {copy.quran_duas[lang]}
             </p>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
               {copy.the_rabbana_duas[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-10">
@@ -549,14 +549,14 @@ function LearnQuranPage() {
       <section className="py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-10">
               {copy.key_surah_lessons[lang]}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {surahs.map((s, i) => (
               <BlurFade key={s.no} delay={0.06 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/50 transition-all group flex flex-col gap-3">
+                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-5 hover:border-[var(--if-gold)]/50 transition-all group flex flex-col gap-3">
                   <BorderBeam size={80} duration={6} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
                   <div className="flex items-start justify-between">
                     <div>
@@ -587,13 +587,13 @@ function LearnQuranPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--if-gold-light)] mb-2 text-center">
               {copy.ayah_of_the_day[lang]}
             </p>
-            <h2 className="font-display text-3xl font-bold text-white text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white text-center mb-10">
               {copy.daily_quran_challenge[lang]}
             </h2>
           </BlurFade>
 
           <BlurFade delay={0.15}>
-            <div className="relative overflow-hidden rounded-2xl border border-[var(--if-gold)]/25 bg-[var(--if-gold)]/8 p-7 text-center">
+            <div className="relative overflow-hidden rounded-2xl border border-[var(--if-gold)]/20 bg-[var(--if-gold)]/8 p-7 text-center">
               <BorderBeam size={300} duration={12} colorFrom="#c8922a" colorTo="#e8b84b" />
               <p className="font-arabic text-3xl text-[var(--if-gold-light)] leading-relaxed mb-5" dir="rtl" lang="ar">
                 {todayAyah.ar}
@@ -640,7 +640,7 @@ function LearnQuranPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={simTajweed} scene={TajweedScene} autoplay />
         </div>
       </section>

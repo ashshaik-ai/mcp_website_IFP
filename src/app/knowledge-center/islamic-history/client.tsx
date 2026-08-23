@@ -10,7 +10,7 @@ import { historySteps } from "@/content/simulations";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
-import { historyEras, historyPeople, historyEmpires, historyCities } from "@/content/portals";
+import { type PortalEntry, historyEras, historyPeople, historyEmpires, historyCities } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -192,16 +192,16 @@ function IslamicHistoryPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-10">
               {copy.n_6_era_history_timeline[lang]}
             </h2>
           </BlurFade>
 
-          <div className="overflow-x-auto pb-4 mb-6">
+          <div className="if-tabstrip overflow-x-auto pb-4 mb-6">
             <div className="flex gap-3 min-w-max">
               {eras.map((era, i) => (
                 <button key={era.num} onClick={() => setActive(i)}
-                  className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[100px] ${active === i ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}>
+                  className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[100px] ${active === i ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}>
                   <div className={`w-8 h-8 rounded-full ${era.color} flex items-center justify-center text-white text-xs font-bold`}>{era.num}</div>
                   <span className={`text-[10px] font-semibold text-center leading-tight ${active === i ? "text-[var(--if-gold-pale)]" : "text-[var(--if-text-muted)]"}`}>{era.years[lang]}</span>
                 </button>
@@ -256,7 +256,7 @@ function IslamicHistoryPage() {
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
             <p className="text-center text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)] mb-2">{copy.apply_today[lang]}</p>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
               {copy.lessons_from_history[lang]}
             </h2>
             <p className="text-center text-[var(--if-text-muted)] text-sm mb-10">
@@ -266,7 +266,7 @@ function IslamicHistoryPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {lessons.map((lesson, i) => (
               <BlurFade key={lesson.title.en} delay={0.07 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-5 hover:border-[var(--if-gold)]/40 transition-all group h-full flex flex-col">
+                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-5 hover:border-[var(--if-gold)]/40 transition-all group h-full flex flex-col">
                   <BorderBeam size={80} duration={8} colorFrom="#c8922a" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
                   <h3 className="font-display text-base font-bold text-[var(--if-green)] mb-3">{lesson.title[lang]}</h3>
                   <p className="text-xs text-[var(--if-text-muted)] leading-relaxed mb-4 flex-1">{lesson.example[lang]}</p>
@@ -297,15 +297,15 @@ function IslamicHistoryPage() {
           alternate again. */}
       <section id="eras" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "ఇస్లామిక్ చరిత్ర యుగాలు" : "Eras of Islamic history"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
             {lang === "te" ? "రాషిదూన్ నుండి ఆధునిక కాలం వరకు తొమ్మిది యుగాలు." : "Nine eras from the Rashidun to the modern age."}
           </p>
           <NarrativeCards
-            entries={historyEras}
-            fields={{ meta: "pr", summary: "s", lesson: "l" }}
+            entries={erasWithDepth}
+            fields={{ meta: "pr", summary: "s", extra: "depth", lesson: "l" }}
             numbered
           />
         </div>
@@ -318,7 +318,7 @@ function IslamicHistoryPage() {
           what draws from the shared content source, so they are what stayed. */}
       <section id="people" className="if-defer py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "చరిత్రను మలిచిన వ్యక్తులు" : "The people who shaped it"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -333,26 +333,9 @@ function IslamicHistoryPage() {
       </section>
 
 
-      <section id="empires" className="if-defer py-16 px-4 scroll-mt-32">
+      <section id="cities" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
-            {lang === "te" ? "సామ్రాజ్యాలు" : "Empires"}
-          </h2>
-          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
-            {lang === "te" ? "ఐదు సామ్రాజ్యాలు — ఎలా ఎదిగాయి, ఏమి సాధించాయి, ఏమి మిగిల్చాయి." : "Five empires — how they rose, what they achieved, what remains."}
-          </p>
-          <NarrativeCards
-            entries={historyEmpires}
-            fields={{ meta: "pr", summary: "rise", extra: "ach", lesson: "leg" }}
-            lessonLabel={{ te: "వారసత్వం", en: "Legacy" }}
-          />
-        </div>
-      </section>
-
-
-      <section id="cities" className="if-defer py-16 px-4 scroll-mt-32 bg-[var(--if-cream-light)]">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "నగరాలు" : "Cities"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -368,7 +351,7 @@ function IslamicHistoryPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={historySteps} scene={EmpiresScene} autoplay />
         </div>
       </section>
@@ -379,6 +362,43 @@ function IslamicHistoryPage() {
     </PageShell>
   );
 }
+
+/* The five empires were a second section listing subjects the era chronology
+   already covers — Umayyad, Abbasid, Ottoman, Mughal and al-Andalus appeared
+   once as eras and again as empires, in different prose, on the same page.
+   Rather than throw either away, the empire's rise, achievements and legacy
+   are folded into the matching era card as the passage it opens to. Nothing
+   an author wrote is lost; the reader sees each subject once. */
+const normalise = (t: string) =>
+  t.toLowerCase().replace(/[()]/g, "").replace(/\s+/g, " ").split(" ").sort().join(" ");
+
+const titleEn = (e: PortalEntry) => {
+  const t = e.title;
+  return typeof t === "object" && t !== null && "en" in t ? (t as { en: string }).en : "";
+};
+
+const empireByKey = new Map(historyEmpires.map((e) => [normalise(titleEn(e)), e]));
+
+const join = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(" ");
+
+const erasWithDepth = historyEras.map((era) => {
+  const emp = empireByKey.get(normalise(titleEn(era)));
+  if (!emp) return era;
+  const bi = (k: string) => {
+    const v = emp[k] as { te: string; en: string } | undefined;
+    return v && typeof v === "object" ? v : undefined;
+  };
+  const rise = bi("rise");
+  const ach = bi("ach");
+  const leg = bi("leg");
+  return {
+    ...era,
+    depth: {
+      te: join(rise?.te, ach?.te, leg?.te),
+      en: join(rise?.en, ach?.en, leg?.en),
+    },
+  };
+});
 
 export default function IslamicHistory() {
   return <IslamicHistoryPage />;

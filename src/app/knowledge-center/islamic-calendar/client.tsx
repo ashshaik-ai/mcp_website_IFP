@@ -111,7 +111,7 @@ function IslamicCalendarPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {copy.n_12_hijri_months[lang]}
             </h2>
             <p className="text-center text-sm text-[var(--if-text-muted)] mb-10">
@@ -123,7 +123,7 @@ function IslamicCalendarPage() {
               <BlurFade key={m.n} delay={0.04 * i}>
                 <button
                   onClick={() => setActive(active === m.n ? null : m.n)}
-                  className={`relative overflow-hidden w-full text-left p-4 rounded-2xl border transition-all ${active === m.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}
+                  className={`relative overflow-hidden w-full text-left p-4 rounded-2xl border transition-all ${active === m.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}
                 >
                   {active === m.n && <BorderBeam size={80} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" />}
                   <div className={`text-[10px] font-bold mb-1 ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{copy.month_n[lang]} {m.n}</div>
@@ -175,11 +175,11 @@ function IslamicCalendarPage() {
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-4xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-10">
               {copy.key_islamic_dates[lang]}
             </h2>
           </BlurFade>
-          <div className="overflow-x-auto rounded-2xl border border-[var(--if-gold)]/15">
+          <div className="overflow-x-auto rounded-2xl border border-[var(--if-gold)]/20">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-[var(--if-green)] text-[var(--if-gold-light)]">
@@ -221,7 +221,7 @@ function IslamicCalendarPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={moonSteps} scene={MoonScene} autoplay />
         </div>
       </section>

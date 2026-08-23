@@ -142,8 +142,8 @@ function SpecialPrayersPage() {
       </section>
 
       {/* Prayer selector */}
-      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/15 px-4 py-2">
-        <div className="mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1">
+      <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
+        <div className="if-tabstrip mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1">
           {prayers.map((pr, i) => (
             <button key={pr.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {pr.name[lang]}
@@ -160,7 +160,7 @@ function SpecialPrayersPage() {
               <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-start gap-4 flex-wrap mb-5">
                 <div>
-                  <h2 className="font-display text-3xl font-bold text-[var(--if-green)]">{p.name[lang]}</h2>
+                  <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)]">{p.name[lang]}</h2>
                   <div className="font-arabic text-xl text-[var(--if-gold-light)] mt-1" dir="rtl">{p.ar}</div>
                 </div>
                 <div className="ml-auto flex flex-col items-end gap-1">
@@ -205,7 +205,7 @@ function SpecialPrayersPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={salahSteps} scene={SalahFigure} autoplay />
         </div>
       </section>

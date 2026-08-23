@@ -181,14 +181,14 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-10">
               {copy.why_learn_arabic[lang]}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {whyLearn.map((item, i) => (
               <BlurFade key={i} delay={0.08 * i}>
-                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/15 p-6 text-center hover:border-[var(--if-gold)]/40 transition-colors group">
+                <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 text-center hover:border-[var(--if-gold)]/40 transition-colors group">
                   <BorderBeam size={80} duration={6} colorFrom="#c8922a" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
                   <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-4 leading-relaxed" dir="rtl">{item.ar}</div>
                   <h3 className="font-semibold text-[var(--if-green)] mb-2">{item.title[lang]}</h3>
@@ -204,7 +204,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
               {copy.arabic_alphabet_28_huroof[lang]}
             </h2>
             <p className="text-center text-[var(--if-text-muted)] mb-3 text-sm">
@@ -279,7 +279,7 @@ function LearnArabicPage() {
                     </div>
 
                     {/* Example word */}
-                    <div className="flex items-center gap-4 p-3 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15">
+                    <div className="flex items-center gap-4 p-3 rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20">
                       <button
                         onClick={() => speak(selected.example.ar)}
                         className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--if-gold)]/10 flex items-center justify-center hover:bg-[var(--if-gold)]/20 transition-colors"
@@ -305,7 +305,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
               {copy.word_of_the_day[lang]}
             </h2>
             <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
@@ -348,7 +348,7 @@ function LearnArabicPage() {
       {/* ── VOCABULARY ── */}
       <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "పదజాలం" : "Vocabulary"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -364,7 +364,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-md">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-1">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-1">
               {copy.letter_flashcards[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
@@ -418,7 +418,7 @@ function LearnArabicPage() {
       <section className="if-defer py-16 px-4">
         <div className="mx-auto max-w-lg">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-1">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-1">
               {copy.arabic_quiz[lang]}
             </h2>
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
@@ -500,7 +500,7 @@ function LearnArabicPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={arabicLetterSteps} scene={LetterScene} autoplay />
         </div>
       </section>

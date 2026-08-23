@@ -166,6 +166,46 @@
   }
 }
 
+/* One focus ring for the whole site. It was split between a designed 2px gold
+   outline on some controls and whatever the browser draws on the rest, which
+   on a dark green header is a black ring nobody can see. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--if-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Touch feedback. Every card and link highlights on a desktop hover and did
+   nothing at all under a thumb, so a tap read as a dead press until the next
+   page painted. */
+@layer base {
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (hover: none) {
+  a:active,
+  button:not(:disabled):active,
+  [role="button"]:active {
+    /* Transform only — no layout, no repaint of the row underneath. */
+    transform: scale(0.985);
+    transition: transform 0.08s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a:active,
+  button:active,
+  [role="button"]:active {
+    transform: none;
+  }
+}
+
 /* Tailwind v4's preflight no longer sets cursor:pointer on buttons, so every
    button on the site showed the arrow. Anything that behaves like a control
    should say so under the pointer. */
@@ -611,6 +651,17 @@ html.js .if-defer .if-blur-fade {
   .if-founder { width: 12.5rem; height: 12.5rem; }
 }
 
+/* Portal tab strips scroll sideways on a phone with nothing to say so — up to
+   three of five sections sat off the right edge looking like they did not
+   exist. The mask fades the overflowing end, which is the whole affordance.
+   scrollbar-width:none keeps the strip clean; the fade is what does the work. */
+.if-tabstrip {
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2rem), transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2rem), transparent 100%);
+  scrollbar-width: none;
+}
+.if-tabstrip::-webkit-scrollbar { display: none; }
+
 /* Edge fade for continuously scrolling rows, so faces dissolve at the margins
    rather than being sliced off against a hard edge. */
 .if-fade-x {
@@ -623,7 +674,9 @@ html.js .if-defer .if-blur-fade {
    view. Transform only. */
 .if-heading {
   position: relative;
-  padding-bottom: 1rem;
+  /* 1rem put the rule through the descenders of Telugu conjuncts — the tail of
+     a ై or a ృ crossed it on almost every section title. */
+  padding-bottom: 1.5rem;
 }
 
 .if-heading::after {

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, useSyncExternalStore } from "react";
 import { strings, type Lang, type StringKey } from "./strings";
 
 interface I18nCtx {
@@ -10,38 +10,59 @@ interface I18nCtx {
 }
 
 const I18nContext = createContext<I18nCtx | null>(null);
-const LANG_KEY = "ifp-lang";
+export const LANG_KEY = "ifp-lang";
+
+/* The pre-paint script in the layout writes the stored choice here before the
+   page is painted, so the very first client render can use it rather than
+   rendering Telugu and correcting itself a beat later.
+
+   The routes are prerendered in Telugu, so an English reader still sees Telugu
+   in the static HTML until React takes over. That part is bounded by hydration
+   and cannot be removed without shipping a second, English copy of every
+   route. What this removes is the second wait: the swap now lands in the
+   hydration render rather than in a passive effect after it. */
+declare global {
+  interface Window {
+    __ifpLang?: Lang;
+  }
+}
+
+const readPreferred = (): Lang => {
+  if (typeof window === "undefined") return "te";
+  if (window.__ifpLang === "en" || window.__ifpLang === "te") return window.__ifpLang;
+  try {
+    const v = localStorage.getItem(LANG_KEY);
+    return v === "en" ? "en" : "te";
+  } catch {
+    /* Site data blocked: reading it throws rather than returning null, and an
+       unguarded throw here took the whole tree down with it. */
+    return "te";
+  }
+};
+
+/* Subscribing to nothing: the stored value only changes through toggle(),
+   which keeps its own state. useSyncExternalStore is here for its server
+   snapshot — it lets the server render Telugu and the client read the stored
+   choice on the first render, with no setState inside an effect. */
+const subscribe = () => () => {};
+const serverSnapshot = (): Lang => "te";
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const existing = useContext(I18nContext);
+  const preferred = useSyncExternalStore(subscribe, readPreferred, serverSnapshot);
 
-  // Always call hooks (Rules of Hooks) — values unused when nested
-  const [lang, setLang] = useState<Lang>("te");
-
-  useEffect(() => {
-    if (existing) return;
-    /* Reading localStorage throws, not returns null, when site data is
-       blocked — a browser set to block all cookies, or an in-app WebView with
-       DOM storage off. Unguarded, that threw inside the effect and React tore
-       the whole tree down, so every page rendered blank. The language is a
-       preference; it is not worth the site. */
-    let stored: Lang | null = null;
-    try {
-      stored = localStorage.getItem(LANG_KEY) as Lang | null;
-    } catch {
-      stored = null;
-    }
-    if (stored === "te" || stored === "en") setLang(stored);
-  }, [existing]);
+  const [override, setOverride] = useState<Lang | null>(null);
+  const lang = override ?? preferred;
 
   const toggle = useCallback(() => {
-    setLang((l) => {
-      const next = l === "te" ? "en" : "te";
+    setOverride((current) => {
+      const next = (current ?? readPreferred()) === "te" ? "en" : "te";
       try {
         localStorage.setItem(LANG_KEY, next);
       } catch {
         /* Blocked or full: the choice still holds for this session. */
       }
+      if (typeof window !== "undefined") window.__ifpLang = next;
       return next;
     });
   }, []);

@@ -17,7 +17,8 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { MagicCard } from "@/components/ui/magic-card";
-import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Users, Building2, BookOpen, Heart, Moon } from "lucide-react";
+import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Calculator, GraduationCap, Users, Building2, BookOpen, Heart, Moon } from "lucide-react";
+import { ApplyActions } from "@/components/ApplyActions";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -312,7 +313,7 @@ function Homepage() {
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--if-gold-ink)]">
                 {t("section_victory_tag")}
               </span>
-              <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-3">
+              <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] mt-3 mb-3">
                 {t("section_victory_title")}
               </h2>
               <p className="text-[var(--if-text-muted)] max-w-xl mx-auto">
@@ -418,7 +419,7 @@ function Homepage() {
       <section id="achievements" className="if-defer py-20 px-4 bg-[var(--if-cream-light)] scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-center mb-12">
               <span className="text-[var(--if-green)]">{t("section_achievements")}</span>
             </h2>
           </BlurFade>
@@ -462,7 +463,7 @@ function Homepage() {
 
       {/* ── MANIFESTO ── */}
       <section id="manifesto" className="if-defer py-20 px-4 scroll-mt-20 overflow-hidden">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
 
           {/* Header */}
           <BlurFade delay={0.05}>
@@ -470,7 +471,7 @@ function Homepage() {
               <span className="text-xs font-bold tracking-[0.22em] uppercase text-[var(--if-gold-ink)]">
                 {copy.action_plan_2023_2028[lang]}
               </span>
-              <h2 className="if-heading font-display text-4xl font-bold mt-2">
+              <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold mt-2">
                 <span className="text-[var(--if-green)]">{t("section_manifesto")}</span>
               </h2>
               <p className="text-[var(--if-text-muted)] mt-2 text-sm">
@@ -559,7 +560,9 @@ function Homepage() {
           {/* Premium download */}
           <BlurFade delay={0.35} className="text-center mt-10">
             <a
-              href="/Islamic_Front_Manifesto.pdf"
+              /* Both language editions are built and shipped; the button
+                 served the same combined file to everyone regardless. */
+              href={lang === "en" ? "/manifesto-en.pdf" : "/manifesto-te.pdf"}
               download
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold shadow-lg shadow-[var(--if-green)]/25 hover:shadow-xl hover:shadow-[var(--if-green)]/35 hover:-translate-y-1 transition-all duration-300"
             >
@@ -577,7 +580,7 @@ function Homepage() {
       <section id="schemes" className="if-defer py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
               {t("section_schemes")}
             </h2>
           </BlurFade>
@@ -639,6 +642,22 @@ function Homepage() {
               </div>
             </BlurFade>
           </div>
+
+          {/* The scheme described itself and stopped. There is no form to post
+              to on a static site, but there is a number that answers. */}
+          <BlurFade delay={0.25}>
+            <div className="mt-10 rounded-2xl border border-[var(--if-gold)]/20 bg-[var(--if-green-mid)]/25 p-6 sm:p-8">
+              <p className="font-display text-lg font-bold text-[var(--if-gold-light)] text-balance">
+                {lang === "te" ? "సహాయం కావాలా? నేరుగా మమ్మల్ని సంప్రదించండి." : "Need this help? Reach us directly."}
+              </p>
+              <p className="mt-1 mb-5 max-w-[60ch] text-sm text-[var(--if-gold-pale)]/75 text-pretty">
+                {lang === "te"
+                  ? "దరఖాస్తు ఫారం లేదు. ఫోన్ చేయండి లేదా వాట్సాప్‌లో సందేశం పంపండి — అంజుమన్ నేరుగా స్పందిస్తుంది."
+                  : "There is no application form. Call or send a WhatsApp message and the Anjuman responds directly."}
+              </p>
+              <ApplyActions topic={{ te: "అంత్యక్రియల సహాయ పథకం", en: "the funeral aid programme" }} />
+            </div>
+          </BlurFade>
         </div>
       </section>
 
@@ -646,14 +665,14 @@ function Homepage() {
       <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_infra")}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
             {infra.map(({ icon: Icon, count, label }, i) => (
               <BlurFade key={i} delay={0.08 * i}>
-                <div className="relative overflow-hidden text-center p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors group">
+                <div className="relative overflow-hidden text-center p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40 transition-colors group">
                   <BorderBeam size={60} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
                   <Icon className="h-7 w-7 mx-auto mb-3 text-[var(--if-gold-ink)]" />
                   <div className="font-display text-3xl font-bold text-[var(--if-green)]">
@@ -678,7 +697,7 @@ function Homepage() {
               <AnimatedShinyText shimmerWidth={120} className="text-xs font-bold tracking-[0.2em] uppercase !text-[var(--if-gold-ink)]">
                 {lang === "te" ? "స్థాపన 26-08-2011" : "Est. 26-08-2011"}
               </AnimatedShinyText>
-              <h2 className="if-heading if-heading-left font-display text-4xl font-bold text-[var(--if-green)] mt-3 mb-4">
+              <h2 className="if-heading if-heading-left font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] mt-3 mb-4">
                 {t("section_about")}
               </h2>
               <p className="text-[var(--if-text-muted)] mb-6 leading-relaxed">
@@ -740,14 +759,14 @@ function Homepage() {
       <section className="if-defer py-20 px-4 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_stories")}
             </h2>
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {stories.map((s, i) => (
               <BlurFade key={i} delay={0.08 * i}>
-                <div className="bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/15 p-6 hover:border-[var(--if-gold)]/40 transition-colors h-full">
+                <div className="bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/20 p-6 hover:border-[var(--if-gold)]/40 transition-colors h-full">
                   <div className="w-10 h-10 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold mb-3">
                     {s.name[0]}
                   </div>
@@ -768,9 +787,9 @@ function Homepage() {
           Reinstate the section when there are real photographs. */}
       {/* ── EVENTS ── */}
       <section id="events" className="if-defer py-20 px-4 scroll-mt-20">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_events")}
             </h2>
           </BlurFade>
@@ -780,7 +799,7 @@ function Homepage() {
                 {/* Title, venue and date were one run-on line down the left, which
                     left the right half of every row empty. The date is the thing
                     a reader scans for, so it gets its own column. */}
-                <div className="if-row flex items-center gap-4 p-5 bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/15">
+                <div className="if-row flex items-center gap-4 p-5 bg-[var(--if-cream-light)] rounded-2xl border border-[var(--if-gold)]/20">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--if-green)] flex items-center justify-center">
                     <Calendar className="h-5 w-5 text-[var(--if-gold-light)]" aria-hidden="true" />
                   </div>
@@ -788,7 +807,7 @@ function Homepage() {
                     <h3 className="font-semibold text-[var(--if-green)] text-pretty flex items-center gap-2 flex-wrap">
                       {ev.title[lang]}
                       {ev.repeats && (
-                        <span className="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--if-gold)]/12 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/25">
+                        <span className="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--if-gold)]/12 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20">
                           {ev.repeats[lang]}
                         </span>
                       )}
@@ -803,14 +822,29 @@ function Homepage() {
               </BlurFade>
             ))}
           </div>
+
+          <BlurFade delay={0.3}>
+            <div className="mt-8 flex flex-col items-center gap-3 text-center">
+              <p className="text-sm text-[var(--if-text-mid)] text-pretty">
+                {lang === "te"
+                  ? "ఏదైనా కార్యక్రమంలో పాల్గొనాలనుకుంటున్నారా, లేదా వివరాలు కావాలా?"
+                  : "Want to take part in one of these, or need the details?"}
+              </p>
+              <ApplyActions
+                tone="light"
+                topic={{ te: "రాబోయే కార్యక్రమం", en: "an upcoming event" }}
+                className="justify-center"
+              />
+            </div>
+          </BlurFade>
         </div>
       </section>
 
       {/* ── VOLUNTEER ── */}
       <section id="volunteer" className="if-defer py-20 px-4 scroll-mt-20">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-green)] text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-green)] text-center mb-12">
               {t("section_volunteer")}
             </h2>
           </BlurFade>
@@ -822,7 +856,7 @@ function Homepage() {
               { role: { te: "విద్యా వాలంటీర్", en: "Educational Volunteer" }, seats: 0, desc: { te: "ఉపాధ్యాయులు ఆహ్వానించబడ్డారు", en: "Teachers welcome" } },
             ].map(({ role, seats, desc }, i) => (
               <BlurFade key={i} delay={0.07 * i}>
-                <div className="p-5 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40 transition-colors">
+                <div className="p-5 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40 transition-colors">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-[var(--if-green)]">{role[lang]}</h3>
                     {seats > 0 && (
@@ -852,9 +886,9 @@ function Homepage() {
 
       {/* ── CONTACT ── */}
       <section id="contact" className="if-defer py-20 px-4 bg-[var(--if-green)] scroll-mt-20">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="if-heading font-display text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
+            <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold text-[var(--if-gold-light)] text-center mb-12">
               {t("section_contact")}
             </h2>
           </BlurFade>
@@ -899,7 +933,7 @@ function Homepage() {
         <div className="mx-auto max-w-7xl">
           <BlurFade delay={0.1}>
             <div className="text-center mb-12">
-              <h2 className="if-heading font-display text-4xl font-bold">
+              <h2 className="if-heading font-display text-3xl sm:text-4xl font-bold">
                 <span className="text-[var(--if-green)]">{t("section_kc_promo")}</span>
               </h2>
               <p className="text-[var(--if-text-muted)] mt-2">
@@ -929,10 +963,55 @@ function Homepage() {
               </BlurFade>
             ))}
           </div>
+          {/* Three of the site's most-used things were reachable only by
+              guessing: the Zakat calculator and the prayer times live inside
+              the Knowledge Center, and Student Guidance — one of the three
+              top-level products — was not named anywhere on this page. */}
+          <BlurFade delay={0.45}>
+            <div className="mt-10 grid gap-3 sm:grid-cols-3">
+              {[
+                {
+                  href: "/student-guidance",
+                  icon: GraduationCap,
+                  title: { te: "విద్యార్థి మార్గదర్శి", en: "Student Guidance" },
+                  sub: { te: "79 కెరీర్ మార్గాలు", en: "79 career pathways" },
+                },
+                {
+                  href: "/knowledge-center#zakat",
+                  icon: Calculator,
+                  title: { te: "జకాత్ కాలిక్యులేటర్", en: "Zakat calculator" },
+                  sub: { te: "నేటి బంగారం, వెండి ధరలతో", en: "With today's gold and silver rates" },
+                },
+                {
+                  href: "/knowledge-center#prayer-times",
+                  icon: Clock,
+                  title: { te: "నమాజు సమయాలు", en: "Prayer times" },
+                  sub: { te: "మంగళగిరి — ప్రతిరోజూ", en: "Mangalagiri — every day" },
+                },
+              ].map(({ href, icon: Icon, title, sub }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="group flex items-center gap-3 rounded-2xl border border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] px-5 py-4 transition-colors hover:border-[var(--if-gold)]/60"
+                >
+                  <Icon aria-hidden="true" className="h-5 w-5 shrink-0 text-[var(--if-gold-ink)]" />
+                  <span className="min-w-0">
+                    <span className="block font-semibold text-[var(--if-green)]">{title[lang]}</span>
+                    <span className="block text-xs text-[var(--if-text-muted)] text-pretty">{sub[lang]}</span>
+                  </span>
+                  <ChevronRight
+                    aria-hidden="true"
+                    className="ml-auto h-4 w-4 shrink-0 text-[var(--if-gold-ink)] transition-transform group-hover:translate-x-0.5"
+                  />
+                </Link>
+              ))}
+            </div>
+          </BlurFade>
+
           <BlurFade delay={0.5} className="text-center">
             <Link
               href="/knowledge-center"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold hover:bg-[var(--if-green)]/90 transition-colors"
+              className="mt-10 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold hover:bg-[var(--if-green)]/90 transition-colors"
             >
               {t("open_kc")} <ChevronRight className="h-4 w-4" />
             </Link>

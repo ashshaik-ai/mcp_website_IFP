@@ -93,7 +93,7 @@ function LearnUrduPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
               {copy.urdu_alphabet[lang]}
             </h2>
             <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">
@@ -109,7 +109,7 @@ function LearnUrduPage() {
       <section className="if-defer py-16 px-4 bg-[var(--if-green)]">
         <div className="mx-auto max-w-md text-center">
           <BlurFade delay={0.1}>
-            <h2 className="font-display text-3xl font-bold text-[var(--if-gold-light)] mb-8">{copy.urdu_word_of_the_day[lang]}</h2>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-gold-light)] mb-8">{copy.urdu_word_of_the_day[lang]}</h2>
             <div className="relative overflow-hidden bg-white/5 border border-[var(--if-gold)]/20 rounded-2xl p-8">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
               <div className="text-5xl text-[var(--if-gold-light)] mb-2 leading-relaxed" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">{w.glyph}</div>
@@ -130,7 +130,7 @@ function LearnUrduPage() {
 
       <section id="vocabulary" className="if-defer py-16 px-4 scroll-mt-32">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] mb-2">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
             {lang === "te" ? "పదజాలం" : "Vocabulary"}
           </h2>
           <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
@@ -144,7 +144,7 @@ function LearnUrduPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={urduLetterSteps} scene={LetterScene} autoplay />
         </div>
       </section>

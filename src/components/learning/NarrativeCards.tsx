@@ -63,7 +63,7 @@ export function NarrativeCards({
         return (
           <li
             key={`${title}-${i}`}
-            className="rounded-2xl border border-[var(--if-gold)]/15 bg-white p-5 hover:border-[var(--if-gold)]/40 transition-colors"
+            className="rounded-2xl border border-[var(--if-gold)]/20 bg-white p-5 hover:border-[var(--if-gold)]/40 transition-colors"
           >
             <div className="flex items-start gap-4">
               {numbered && (

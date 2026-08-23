@@ -216,7 +216,7 @@ export function AlphabetGrid({
               {FORM_KEYS.map((k) => (
                 <div
                   key={k}
-                  className="rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 px-3 py-3 text-center"
+                  className="rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 px-3 py-3 text-center"
                 >
                   <dt className="text-[10px] uppercase tracking-wide text-[var(--if-text-muted)] mb-1">
                     {copy[k][lang]}

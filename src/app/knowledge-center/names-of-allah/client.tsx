@@ -203,7 +203,7 @@ function NamesOfAllahPage() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder={copy.search_a_name[lang]}
-              className="w-full min-h-11 pl-10 pr-4 py-2.5 rounded-full border border-[var(--if-gold)]/25 bg-white text-base text-[var(--if-text)] focus:outline-none focus:border-[var(--if-gold)]/60"
+              className="w-full min-h-11 pl-10 pr-4 py-2.5 rounded-full border border-[var(--if-gold)]/20 bg-white text-base text-[var(--if-text)] focus:outline-none focus:border-[var(--if-gold)]/60"
             />
           </div>
 
@@ -212,7 +212,7 @@ function NamesOfAllahPage() {
               <BlurFade key={name.n} delay={Math.min(0.02 * i, 0.4)}>
                 <button
                   onClick={() => { setSelected(selected?.n === name.n ? null : name); speak(name.ar); }}
-                  className={`relative overflow-hidden w-full text-center p-3 rounded-xl border transition-all ${selected?.n === name.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/15 hover:border-[var(--if-gold)]/40"}`}
+                  className={`relative overflow-hidden w-full text-center p-3 rounded-xl border transition-all ${selected?.n === name.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}
                 >
                   {selected?.n === name.n && <BorderBeam size={80} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" />}
                   <div className={`text-[10px] font-bold mb-1 ${selected?.n === name.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{name.n}</div>
@@ -262,7 +262,7 @@ function NamesOfAllahPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={namesSteps} scene={NamesScene} autoplay />
         </div>
       </section>

@@ -60,10 +60,10 @@ function Quiz({ item, idPrefix }: { item: QuizItem; idPrefix: string }) {
           const state = settled
             ? isAnswer
               ? "border-emerald-400 bg-emerald-50"
-              : "border-[var(--if-gold)]/15 bg-white opacity-60"
+              : "border-[var(--if-gold)]/20 bg-white opacity-60"
             : chosen
               ? "border-red-300 bg-red-50"
-              : "border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 bg-white";
+              : "border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 bg-white";
           return (
             <div key={`${idPrefix}-${original}`}>
               <button
@@ -105,7 +105,7 @@ function BiList({ items, title, tone }: { items: Bi[]; title: Bi; tone: "gold" |
   const { lang } = useI18n();
   if (!items.length) return null;
   const tones = {
-    gold: "bg-[var(--if-gold)]/8 border-[var(--if-gold)]/25",
+    gold: "bg-[var(--if-gold)]/8 border-[var(--if-gold)]/20",
     green: "bg-[var(--if-green)]/5 border-[var(--if-green)]/20",
     amber: "bg-amber-50 border-amber-200",
   };
@@ -303,7 +303,7 @@ export function LessonView({
         {prev ? (
           <Link
             href={`${portalHref}/${prev.slug}`}
-            className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 transition-colors"
+            className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 transition-colors"
           >
             <ArrowLeft aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">
@@ -321,7 +321,7 @@ export function LessonView({
         {next && (
           <Link
             href={`${portalHref}/${next.slug}`}
-            className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/25 hover:border-[var(--if-gold)]/60 transition-colors sm:text-right sm:flex-row-reverse"
+            className="flex items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/60 transition-colors sm:text-right sm:flex-row-reverse"
           >
             <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
             <span className="min-w-0">

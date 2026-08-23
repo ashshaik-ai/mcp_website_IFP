@@ -53,7 +53,7 @@ export function VocabularyList({
           onChange={(e) => setQuery(e.target.value)}
           placeholder={copy.placeholder[lang]}
           /* 16px minimum, or iOS Safari zooms the page on focus. */
-          className="w-full min-h-11 pl-9 pr-10 text-base rounded-full bg-white border border-[var(--if-gold)]/25 text-[var(--if-text)] placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+          className="w-full min-h-11 pl-9 pr-10 text-base rounded-full bg-white border border-[var(--if-gold)]/20 text-[var(--if-text)] placeholder:text-[var(--if-text-muted)]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
         />
         {query && (
           <button
@@ -78,7 +78,7 @@ export function VocabularyList({
           {filtered.map((w) => (
             <li
               key={`${w.glyph}-${w.translit}`}
-              className="rounded-2xl border border-[var(--if-gold)]/15 bg-white p-4 hover:border-[var(--if-gold)]/40 transition-colors"
+              className="rounded-2xl border border-[var(--if-gold)]/20 bg-white p-4 hover:border-[var(--if-gold)]/40 transition-colors"
             >
               <div className="flex items-baseline justify-between gap-3 flex-wrap">
                 <span
@@ -110,7 +110,7 @@ export function VocabularyList({
             {phrases.map((p) => (
               <li
                 key={p.glyph}
-                className="rounded-2xl border border-[var(--if-gold)]/15 bg-[var(--if-cream-light)] p-4"
+                className="rounded-2xl border border-[var(--if-gold)]/20 bg-[var(--if-cream-light)] p-4"
               >
                 <span
                   dir="rtl"

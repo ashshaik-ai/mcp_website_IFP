@@ -101,7 +101,7 @@ export function ZakatCalculator() {
 
   return (
     <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white overflow-hidden">
-      <div className="px-6 py-5 border-b border-[var(--if-gold)]/15">
+      <div className="px-6 py-5 border-b border-[var(--if-gold)]/20">
         <h3 className="font-display text-xl font-bold text-[var(--if-green)]">
           {copy.zakat_calculator[lang]}
         </h3>
@@ -148,7 +148,7 @@ export function ZakatCalculator() {
                   }}
                   placeholder="0"
                   /* 16px minimum, or iOS Safari zooms the page on focus. */
-                  className="w-full min-h-11 pl-8 pr-3 text-base rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/25 text-[var(--if-text)] tabular-nums focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                  className="w-full min-h-11 pl-8 pr-3 text-base rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 text-[var(--if-text)] tabular-nums focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
                 />
               </div>
             </label>
@@ -158,7 +158,7 @@ export function ZakatCalculator() {
 
       {result && (
         <div className="px-6 pb-6" aria-live="polite">
-          <dl className="rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/15 divide-y divide-[var(--if-gold)]/10 text-sm">
+          <dl className="rounded-xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 divide-y divide-[var(--if-gold)]/10 text-sm">
             <div className="flex justify-between px-4 py-2.5">
               <dt className="text-[var(--if-text-muted)]">
                 {copy.net_wealth[lang]}
@@ -177,7 +177,7 @@ export function ZakatCalculator() {
             className={`mt-4 rounded-xl p-5 text-center border ${
               result.meetsNisab
                 ? "bg-[var(--if-green)] border-transparent"
-                : "bg-white border-[var(--if-gold)]/25"
+                : "bg-white border-[var(--if-gold)]/20"
             }`}
           >
             {result.meetsNisab ? (

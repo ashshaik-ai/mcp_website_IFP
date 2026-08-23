@@ -147,6 +147,21 @@ export function Navbar() {
                 <Link href="/student-guidance" onClick={() => setOpen(false)} className="px-4 py-3 text-[var(--if-gold-light)] font-semibold">
                   {t("nav_sg")}
                 </Link>
+
+                {/* Opening the drawer covers the language toggle in the header,
+                    so the one control a Telugu-or-English reader most wants is
+                    the one the menu takes away. */}
+                <div className="border-t border-[var(--if-gold)]/20 my-2" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    toggle();
+                    setOpen(false);
+                  }}
+                  className="mx-4 inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--if-gold)]/40 px-4 text-sm font-semibold text-[var(--if-gold-light)] transition-colors hover:bg-[var(--if-gold)]/10"
+                >
+                  {t("lang_toggle")}
+                </button>
               </div>
             </SheetContent>
           </Sheet>

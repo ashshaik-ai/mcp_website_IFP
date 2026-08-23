@@ -83,6 +83,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="te"
       className={`${dmSans.variable} ${playfair.variable} ${notoTelugu.variable} ${amiri.variable} ${nastaliq.variable} h-full antialiased`}
     >
+      {/* Read the stored language before the first paint, so the html lang
+          attribute is right from the start and React's first client render can
+          use it instead of rendering Telugu and correcting itself. Inline and
+          synchronous by design: a deferred script would run after paint, which
+          is the problem. */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html:
+            'try{var l=localStorage.getItem("ifp-lang");if(l==="en"||l==="te"){window.__ifpLang=l;document.documentElement.lang=l}}catch(e){}',
+        }}
+      />
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ClientProviders>{children}</ClientProviders>
       </body>
