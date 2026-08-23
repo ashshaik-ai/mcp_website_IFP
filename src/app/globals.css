@@ -787,8 +787,10 @@ html:not(.js) .if-heading::after {
 .if-mark {
   position: relative;
   display: inline-block;
-  width: 2.5rem;
-  height: 2.5rem;
+  /* 44px, not 40: below 360px the seal is the whole brand link, and at 40 it
+     was the one control on the page under the tap-target floor. */
+  width: 2.75rem;
+  height: 2.75rem;
   flex-shrink: 0;
 }
 

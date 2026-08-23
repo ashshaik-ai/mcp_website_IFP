@@ -49,17 +49,17 @@ export const seerahSteps: SimStep[] = [
 ];
 
 export const hajjSteps: SimStep[] = [
-  { id: "ihram", label: { te: "ఇహ్రామ్", en: "Ihram" }, arabic: "لَبَّيْكَ اللَّهُمَّ لَبَّيْك", translit: "Labbayk Allāhumma labbayk", dur: 3200 },
+  { id: "ihram", label: { te: "ఇహ్రామ్", en: "Ihram" }, arabic: "لَبَّيْكَ اللَّهُمَّ لَبَّيْك", translit: "Labbayk Allāhumma labbayk", caption: { te: "ఇహ్రామ్ (2 తెల్లని వస్త్రాలు) ధరించి తల్బియా చదవండి", en: "Wear ihram — two white cloths — and begin the Talbiyah" }, dur: 3200 },
   { id: "tawaf", label: { te: "తవాఫ్", en: "Tawaf" }, count: 7, caption: { te: "కాబా చుట్టూ అపసవ్య దిశలో", en: "Anticlockwise around the Kaaba" }, dur: 4200 },
   { id: "sai", label: { te: "సఈ", en: "Sa'i" }, count: 7, caption: { te: "సఫా నుండి మర్వా వరకు", en: "Safa to Marwa and back" }, dur: 4200 },
-  { id: "mina", label: { te: "మినా", en: "Mina" }, caption: { te: "జుల్‌హిజ్జా 8", en: "8 Dhu al-Hijjah" }, dur: 2800 },
-  { id: "arafah", label: { te: "అరఫా", en: "Arafah" }, caption: { te: "జుల్‌హిజ్జా 9 — హజ్ కేంద్రం", en: "9 Dhu al-Hijjah — the heart of Hajj" }, dur: 3400 },
-  { id: "muzdalifah", label: { te: "ముజ్దలిఫా", en: "Muzdalifah" }, caption: { te: "రాత్రి — గులకరాళ్ళు సేకరించడం", en: "Night — gathering pebbles" }, dur: 3200 },
-  { id: "rami", label: { te: "రమీ", en: "Rami" }, count: 7, caption: { te: "జమరాత్ వద్ద", en: "At the Jamarat" }, dur: 3600 },
-  { id: "sacrifice", label: { te: "ఖుర్బానీ", en: "Sacrifice" }, caption: { te: "జుల్‌హిజ్జా 10", en: "10 Dhu al-Hijjah" }, dur: 2600 },
-  { id: "halq", label: { te: "హల్ఖ్ / తఖ్సీర్", en: "Halq / Taqsir" }, dur: 2400 },
-  { id: "tawaf-ifadah", label: { te: "తవాఫ్ అల్-ఇఫాదా", en: "Tawaf al-Ifadah" }, count: 7, dur: 3600 },
-  { id: "tawaf-wida", label: { te: "విదాయ్ తవాఫ్", en: "Farewell Tawaf" }, count: 7, dur: 3400 },
+  { id: "mina", label: { te: "మినా", en: "Mina" }, caption: { te: "జుల్‌హిజ్జా 8 — మినాలో ఆ రోజు గడపండి", en: "8 Dhu al-Hijjah — spend the day at Mina" }, dur: 2800 },
+  { id: "arafah", label: { te: "అరఫా", en: "Arafah" }, caption: { te: "జుల్‌హిజ్జా 9 — మధ్యాహ్నం నుండి సూర్యాస్తమయం వరకు నిలబడటం; దుఆ, జిక్ర్, తౌబా", en: "9 Dhu al-Hijjah — stand from noon to sunset: dua, dhikr, repentance" }, dur: 3400 },
+  { id: "muzdalifah", label: { te: "ముజ్దలిఫా", en: "Muzdalifah" }, caption: { te: "మగ్రిబ్ + ఇషా కలిపి, రాత్రి బస, 70 గులకరాళ్ళు సేకరించడం", en: "Combine Maghrib and Isha, rest the night, gather seventy pebbles" }, dur: 3200 },
+  { id: "rami", label: { te: "రమీ", en: "Rami" }, count: 7, caption: { te: "పెద్ద జమరా వద్ద 7 గులకరాళ్ళు", en: "Seven pebbles at the largest Jamarat" }, dur: 3600 },
+  { id: "sacrifice", label: { te: "ఖుర్బానీ", en: "Sacrifice" }, caption: { te: "జుల్‌హిజ్జా 10 — జంతువును ఖుర్బానీ చేయడం", en: "10 Dhu al-Hijjah — an animal is sacrificed" }, dur: 2600 },
+  { id: "halq", label: { te: "హల్ఖ్ / తఖ్సీర్", en: "Halq / Taqsir" }, caption: { te: "తల గొరిగించడం లేదా జుట్టు కత్తిరించడం — తరువాత ఇహ్రామ్ తీసివేయవచ్చు", en: "Shave or cut the hair; ihram may then be removed" }, dur: 2400 },
+  { id: "tawaf-ifadah", label: { te: "తవాఫ్ అల్-ఇఫాదా", en: "Tawaf al-Ifadah" }, count: 7, caption: { te: "జుల్‌హిజ్జా 10–12 — తవాఫ్, సఈ, ప్రతిరోజూ మూడు జమరాత్‌లకు రమీ", en: "10–12 Dhu al-Hijjah — tawaf, sa’i, and stoning all three Jamarat daily" }, dur: 3600 },
+  { id: "tawaf-wida", label: { te: "విదాయ్ తవాఫ్", en: "Farewell Tawaf" }, count: 7, caption: { te: "బయలుదేరే ముందు చివరి తవాఫ్ — హజ్ పూర్తయింది", en: "The last tawaf before leaving — the Hajj is complete" }, dur: 3400 },
 ];
 
 export const umrahSteps: SimStep[] = [
