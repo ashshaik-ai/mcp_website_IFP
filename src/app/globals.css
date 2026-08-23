@@ -166,6 +166,28 @@
   }
 }
 
+/* Both languages are in the HTML for the header and the hero; this picks one
+   before anything is painted, from the attribute the layout's pre-paint script
+   sets. display:contents so the wrapper never becomes a box of its own — the
+   text lays out exactly as it did when it was a bare string. Telugu shows when
+   nothing has been chosen, which is the site's default and what the routes are
+   prerendered in. */
+[data-l] {
+  display: contents;
+}
+
+[data-l="en"] {
+  display: none;
+}
+
+html[data-lang="en"] [data-l="en"] {
+  display: contents;
+}
+
+html[data-lang="en"] [data-l="te"] {
+  display: none;
+}
+
 /* One focus ring for the whole site. It was split between a designed 2px gold
    outline on some controls and whatever the browser draws on the rest, which
    on a dark green header is a black ring nobody can see. */

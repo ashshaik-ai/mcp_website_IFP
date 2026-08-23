@@ -91,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <script
         dangerouslySetInnerHTML={{
           __html:
-            'try{var l=localStorage.getItem("ifp-lang");if(l==="en"||l==="te"){window.__ifpLang=l;document.documentElement.lang=l}}catch(e){}',
+            'try{var l=localStorage.getItem("ifp-lang");if(l==="en"||l==="te"){window.__ifpLang=l;document.documentElement.lang=l;document.documentElement.dataset.lang=l}}catch(e){}',
         }}
       />
       <body className="min-h-full flex flex-col bg-background text-foreground">

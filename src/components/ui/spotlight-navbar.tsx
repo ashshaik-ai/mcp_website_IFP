@@ -30,7 +30,9 @@ function tweenProperty(
 import { cn } from "@/lib/utils";
 
 export interface NavItem {
-    label: string;
+    /* A node, not a string: the header is on screen at the first paint, so it
+       renders both languages and lets CSS choose. See src/lib/i18n/T.tsx. */
+    label: React.ReactNode;
     href: string;
 }
 

@@ -62,7 +62,12 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       } catch {
         /* Blocked or full: the choice still holds for this session. */
       }
-      if (typeof window !== "undefined") window.__ifpLang = next;
+      if (typeof window !== "undefined") {
+        window.__ifpLang = next;
+        /* The CSS that picks between the two rendered languages keys off this,
+           so it has to move with the choice, not after it. */
+        document.documentElement.dataset.lang = next;
+      }
       return next;
     });
   }, []);
@@ -74,6 +79,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (existing) return;
     document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
   }, [existing, lang]);
 
   const t = useCallback((key: StringKey) => strings[key][lang], [lang]);

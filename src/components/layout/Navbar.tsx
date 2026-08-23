@@ -10,6 +10,7 @@ import { BookOpen, GraduationCap, Menu } from "lucide-react";
 import { homeSections, sectionHref } from "@/lib/nav";
 import { useScrollSpy } from "@/lib/use-scroll-spy";
 import { SiteSearch } from "@/components/search/SiteSearch";
+import { T } from "@/lib/i18n/T";
 
 /* Stable identity: the hook keys an effect on this array, so rebuilding it
    every render would re-create the observer on every render. */
@@ -25,7 +26,7 @@ export function Navbar() {
   const spied = useScrollSpy(SECTION_IDS);
   const activeIndex = pathname === "/" ? spied : -1;
   const desktopNavItems: NavItem[] = homeSections.map(({ key, fragment }) => ({
-    label: t(key),
+    label: <T k={key} />,
     href: sectionHref(fragment, pathname),
   }));
 
@@ -118,7 +119,7 @@ export function Navbar() {
             aria-label={`${t("lang_toggle")} — ${lang === "te" ? "భాష మార్చండి" : "switch language"}`}
             className="min-h-11 px-3 text-[11px] font-semibold rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] hover:bg-[var(--if-gold)]/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
           >
-            {t("lang_toggle")}
+            <T k="lang_toggle" />
           </button>
 
           {/* Mobile menu */}

@@ -19,6 +19,7 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { MagicCard } from "@/components/ui/magic-card";
 import { CheckCircle2, Clock, Circle, ChevronRight, Phone, Mail, MapPin, Calendar, Calculator, GraduationCap, Users, Building2, BookOpen, Heart, Moon } from "lucide-react";
 import { ApplyActions } from "@/components/ApplyActions";
+import { T } from "@/lib/i18n/T";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -220,15 +221,15 @@ function Homepage() {
               measures by the full length of the animation. */}
           <span className="if-rise inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-sm font-medium">
             <Moon aria-hidden="true" className="h-3.5 w-3.5 text-[var(--if-gold-light)]" />
-            <span className="text-sm font-medium text-[var(--if-gold-light)]">{t("hero_badge")}</span>
+            <span className="text-sm font-medium text-[var(--if-gold-light)]"><T k="hero_badge" /></span>
           </span>
 
           <h1 className="if-rise font-display text-5xl md:text-7xl font-bold text-[var(--if-gold-light)] leading-tight">
-            {t("hero_title")}
+            <T k="hero_title" />
           </h1>
 
           <p className="if-rise text-[var(--if-gold-pale)]/80 max-w-xl text-lg md:text-xl leading-relaxed">
-            {t("hero_sub")}
+            <T k="hero_sub" />
           </p>
 
           <BlurFade delay={0.18}>
@@ -256,13 +257,13 @@ function Homepage() {
               <span className="font-display text-3xl font-bold text-[var(--if-gold-light)] flex items-baseline gap-0.5">
                 <NumberTicker value={7} className="font-display text-3xl font-bold text-[var(--if-gold-light)]" />/9
               </span>
-              <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1">{t("hero_seats")}</span>
+              <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1"><T k="hero_seats" /></span>
             </div>
             <div className="if-panel flex flex-col items-center px-6 py-3 rounded-2xl min-w-[140px]">
               <span className="font-display text-3xl font-bold text-[var(--if-gold-light)] flex items-baseline gap-0.5">
                 <NumberTicker value={15} className="font-display text-3xl font-bold text-[var(--if-gold-light)]" />+
               </span>
-              <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1">{t("hero_years")}</span>
+              <span className="text-xs text-[var(--if-gold-pale)]/70 mt-1"><T k="hero_years" /></span>
             </div>
           </BlurFade>
 
@@ -277,13 +278,13 @@ function Homepage() {
               background="var(--if-gold-light)"
               className="border-transparent text-[var(--if-green)] font-semibold shadow-[0_8px_24px_-8px_rgba(200,146,42,0.7)] hover:shadow-[0_10px_30px_-8px_rgba(200,146,42,0.9)]"
             >
-              {t("hero_cta")}
+              <T k="hero_cta" />
             </ShimmerButton>
             <Link
               href="/knowledge-center"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--if-gold-pale)]/30 text-[var(--if-gold-pale)]/80 hover:bg-white/5 transition-colors text-sm font-medium"
             >
-              {t("nav_kc")} <ChevronRight className="h-4 w-4" />
+              <T k="nav_kc" /> <ChevronRight className="h-4 w-4" />
             </Link>
           </BlurFade>
         </div>
