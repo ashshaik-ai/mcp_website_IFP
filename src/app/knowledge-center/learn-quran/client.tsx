@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -12,7 +12,7 @@ import { PortalJump } from "@/components/learning/PortalJump";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronLeft, ChevronRight, ChevronDown, BookOpen, Mic, Brain, Heart, Target, TriangleAlert } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen, Mic, Brain, Heart, Target, TriangleAlert } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -277,6 +277,10 @@ const ayatOfWeek = [
     reflect: { te: "మీరు కోరే 'మేలు' ఏది — అది పరలోకానికీ మేలు కలిగిస్తుందా?", en: "What 'good' are you seeking — and is it good for your next life too?" } },
 ];
 
+const subscribeNever = () => () => {};
+const readDay = () => new Date().getDay();
+const readServerDay = () => 0;
+
 /* Day 0=Sun … 6=Sat. Picked after mount, never during render: the page is
    prerendered on whatever weekday the build ran, the visitor hydrates on
    theirs, and six days out of seven the two texts differed — a React #418
@@ -291,10 +295,12 @@ function LearnQuranPage() {
   const [openStage, setOpenStage] = useState<number | null>(1);
   const [tjIdx, setTjIdx] = useState(0);
 
-  const [todayAyah, setTodayAyah] = useState(ayatOfWeek[0]);
-  useEffect(() => {
-    setTodayAyah(ayatOfWeek[new Date().getDay()]);
-  }, []);
+  /* useSyncExternalStore hydrates with the server snapshot and swaps to the
+     real weekday in the pass after — the contract that exists for exactly
+     this. A setState-in-effect draft of this tripped the lint rule that
+     guards against cascading renders, and the rule was right. */
+  const day = useSyncExternalStore(subscribeNever, readDay, readServerDay);
+  const todayAyah = ayatOfWeek[day];
   const step = tajweedSteps[tjIdx];
 
   return (
