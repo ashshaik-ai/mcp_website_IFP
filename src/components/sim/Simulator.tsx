@@ -239,8 +239,15 @@ function Practice({
     <div className="mt-3 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-5">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
         <p className="font-semibold text-[var(--if-text)]">{copy.whatNext[lang]}</p>
+        {/* The best run shows from the first question — a returning learner
+            used to see no trace of their record until they finished again. */}
         <p className="text-sm font-semibold text-[var(--if-gold-ink)] tabular-nums" aria-live="polite">
           {copy.score[lang]} {score} / {total}
+          {best !== null && (
+            <span className="ml-2 font-medium text-[var(--if-text-muted)]">
+              · {copy.best[lang]} {best} / {total}
+            </span>
+          )}
         </p>
       </div>
       {/* Keyed by question: reused buttons animated their colour from the
@@ -369,6 +376,10 @@ export function Simulator({
   };
 
   const onKey = (e: React.KeyboardEvent) => {
+    /* In practice mode the stage is the question — stepping it with arrows
+       desynced the scene from the graded answer (two audit personas made the
+       correct choice vanish from its own options this way). */
+    if (practice) return;
     if (e.key === "ArrowRight") { e.preventDefault(); setPlaying(false); go(index + 1); }
     else if (e.key === "ArrowLeft") { e.preventDefault(); setPlaying(false); go(index - 1); }
     else if (e.key === " ") { e.preventDefault(); setPlaying((p) => !p); }
@@ -480,7 +491,7 @@ export function Simulator({
           type="button"
           onClick={() => { setPlaying(false); go(index - 1); }}
           aria-label={copy.prev[lang]}
-          disabled={index === 0}
+          disabled={index === 0 || practice}
           className="if-sim-btn disabled:opacity-35"
         >
           <ChevronLeft aria-hidden="true" className="h-5 w-5" />
@@ -489,7 +500,8 @@ export function Simulator({
           type="button"
           onClick={() => { if (atEnd && !playing) { setIndex(0); setPlaying(true); } else setPlaying((p) => !p); }}
           aria-label={playing ? copy.pause[lang] : atEnd ? copy.restart[lang] : copy.play[lang]}
-          className="if-sim-btn if-sim-btn-primary"
+          disabled={practice}
+          className="if-sim-btn if-sim-btn-primary disabled:opacity-35"
         >
           {playing ? <Pause aria-hidden="true" className="h-5 w-5" /> : atEnd ? <RotateCcw aria-hidden="true" className="h-5 w-5" /> : <Play aria-hidden="true" className="h-5 w-5 translate-x-px" />}
         </button>
@@ -497,7 +509,7 @@ export function Simulator({
           type="button"
           onClick={() => { setPlaying(false); go(index + 1); }}
           aria-label={copy.next[lang]}
-          disabled={atEnd}
+          disabled={atEnd || practice}
           className="if-sim-btn disabled:opacity-35"
         >
           <ChevronRight aria-hidden="true" className="h-5 w-5" />
@@ -516,7 +528,8 @@ export function Simulator({
                 onClick={() => { setPlaying(false); setIndex(i); }}
                 aria-label={`${copy.step[lang]} ${i + 1}: ${s.label[lang]}`}
                 aria-current={i === index ? "step" : undefined}
-                className="block w-full min-w-11 min-h-11 py-4 group"
+                disabled={practice}
+                className="block w-full min-w-11 min-h-11 py-4 group disabled:opacity-40"
               >
                 <span
                   className={`block h-1.5 rounded-full transition-all duration-300 ${

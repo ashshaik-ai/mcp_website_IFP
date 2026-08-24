@@ -63,6 +63,8 @@ const POSES: Record<string, Pose> = {
 /* Step ids from any portal onto a posture; unknown ids stand. */
 const POSE_FOR: Record<string, keyof typeof POSES> = {
   niyyah: "qiyam", takbeer: "takbeer", qiyam: "qiyam", fatiha: "qiyam", surah: "qiyam",
+  /* The funeral prayer's later takbirs, all made standing. */
+  takbeer2: "takbeer", takbeer3: "takbeer", takbeer4: "takbeer", durood: "qiyam", dua: "qiyam",
   ruku: "ruku", itidal: "itidal", sujud: "sujud", sujud1: "sujud", sujud2: "sujud",
   julus: "julus", jalsa: "julus", tashahhud: "julus", salam: "salamR", salam2: "salamL",
   standing: "qiyam", sitting: "julus", bowing: "ruku", prostration: "sujud",
@@ -351,7 +353,7 @@ function applyPose(rig: Rig, p: Pose) {
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-export function Salah3D({ step, playing }: SceneProps) {
+export function Salah3D({ step, playing, lang }: SceneProps) {
   const wrap = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rigRef = useRef<Rig | null>(null);
@@ -394,7 +396,12 @@ export function Salah3D({ step, playing }: SceneProps) {
     };
     const move = (e: PointerEvent) => {
       if (!dragging) return;
-      rig.azimuth -= (e.clientX - px) * 0.008;
+      /* Azimuth is clamped as well as polar now: it used to be free, so a
+         short flick swung the camera behind the mihrab, where the columns
+         stand between it and the figure and the scene reads as empty. The
+         arc left here is wide — about 200 degrees — and still frames the
+         prayer from the front. */
+      rig.azimuth = Math.min(2.9, Math.max(-0.35, rig.azimuth - (e.clientX - px) * 0.008));
       rig.polar = Math.min(1.45, Math.max(0.5, rig.polar - (e.clientY - py) * 0.005));
       px = e.clientX;
       py = e.clientY;
@@ -497,9 +504,31 @@ export function Salah3D({ step, playing }: SceneProps) {
     if (rig && !playing) rig.idle = 0;
   }, [playing]);
 
+  /* A way back to the framing the scene was designed in, for anyone who has
+     spun it somewhere unhelpful. */
+  const resetView = () => {
+    const rig = rigRef.current;
+    if (!rig) return;
+    rig.azimuth = 1.45;
+    rig.polar = 1.32;
+    rig.dist = 4.2;
+  };
+
   return (
     <div ref={wrap} className="absolute inset-0 cursor-grab active:cursor-grabbing touch-pan-y">
       <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
+      <button
+        type="button"
+        onClick={resetView}
+        aria-label={lang === "te" ? "వీక్షణను రీసెట్ చేయండి" : "Reset the view"}
+        title={lang === "te" ? "వీక్షణను రీసెట్ చేయండి" : "Reset the view"}
+        className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full bg-black/25 text-[var(--if-gold-light)] backdrop-blur-sm transition-colors hover:bg-black/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M3 12a9 9 0 1 0 3-6.7" />
+          <path d="M3 4v5h5" />
+        </svg>
+      </button>
     </div>
   );
 }

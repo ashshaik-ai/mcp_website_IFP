@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -12,6 +12,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
+import { NightThirds } from "@/components/tools/NightThirds";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -112,13 +113,22 @@ function SpecialPrayersPage() {
   const { lang } = useI18n();
   const [active, setActive] = useState(0);
 
+  /* The pill strip follows the selection, so the active prayer is never
+     parked off-screen on a phone. */
+  useEffect(() => {
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    document
+      .getElementById(`if-sp-pill-${active}`)
+      ?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
+  }, [active]);
+
   const p = prayers[active];
 
   return (
     <PageShell>
       <PortalJump portal="special-prayers" sticky={false} />
 
-      <section className={`${p.color} text-[var(--if-gold-pale)] py-20 px-4 transition-colors duration-500`}>
+      <section className={`${p.color} text-[var(--if-gold-pale)] py-10 sm:py-20 px-4 transition-colors duration-500`}>
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-2">
@@ -145,7 +155,7 @@ function SpecialPrayersPage() {
       <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
         <div className="if-tabstrip mx-auto max-w-4xl overflow-x-auto flex gap-2 pb-1">
           {prayers.map((pr, i) => (
-            <button key={pr.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
+            <button key={pr.id} id={`if-sp-pill-${i}`} onClick={() => setActive(i)} aria-pressed={active === i} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {pr.name[lang]}
             </button>
           ))}
@@ -203,6 +213,13 @@ function SpecialPrayersPage() {
 
       {/* The selector above is a summary; these go into the detail. */}
       {/* ── Simulator ── */}
+      {/* The tahajjud lesson says "the last third"; this says when that is. */}
+      <section className="py-12 px-4 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-3xl">
+          <NightThirds />
+        </div>
+      </section>
+
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>

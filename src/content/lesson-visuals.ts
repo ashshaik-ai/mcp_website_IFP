@@ -200,9 +200,9 @@ const visuals: Record<string, LessonVisualSpec> = {
     title: { te: "రాత్రి నమాజు భంగిమలు", en: "The postures of the night prayer" },
   },
   "special-prayers/janazah": {
-    source: "salahSteps",
-    steps: ["niyyah", "takbeer", "qiyam", "salam"],
-    title: { te: "జనాజా — నిలబడి మాత్రమే", en: "Janazah: standing only" },
+    source: "janazahSteps",
+    steps: [],
+    title: { te: "జనాజా — నాలుగు తక్బీర్‌లు", en: "Janazah: the four takbirs" },
   },
 };
 

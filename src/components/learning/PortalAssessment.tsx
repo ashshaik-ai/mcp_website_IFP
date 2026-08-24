@@ -241,6 +241,9 @@ export function PortalAssessment({ portal }: { portal: string }) {
                 const nextBest = Math.max(b ?? 0, pct);
                 try {
                   localStorage.setItem(BEST_KEY, JSON.stringify({ ...readBest(), [portal]: nextBest }));
+                  /* The certificate sits on the same page and unlocks on a
+                     pass; without this it would keep its lock until reload. */
+                  window.dispatchEvent(new Event("ifp-assessment-changed"));
                 } catch {
                   /* Storage blocked; the score still stands for this visit. */
                 }

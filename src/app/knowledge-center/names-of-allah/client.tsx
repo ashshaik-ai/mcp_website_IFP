@@ -1,11 +1,12 @@
 "use client";
 
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { foldSearch } from "@/lib/search-text";
 import { Simulator } from "@/components/sim/Simulator";
 import { Tasbih } from "@/components/tools/Tasbih";
+import { ReviewDeck, type ReviewCard } from "@/components/learning/ReviewDeck";
 import { NamesScene } from "@/components/sim/scenes/NamesScene";
 import { namesSteps } from "@/content/simulations";
 
@@ -50,7 +51,7 @@ const names = [
   { n: 20, ar: "الْعَلِيمُ",    name: "Al-Alim",      te: "అల్-అలీమ్",          en: "The All-Knowing" },
   { n: 21, ar: "الْقَابِضُ",    name: "Al-Qabid",     te: "అల్-ఖాబిద్",         en: "The Constrictor" },
   { n: 22, ar: "الْبَاسِطُ",    name: "Al-Basit",     te: "అల్-బాసిత్",         en: "The Extender" },
-  { n: 23, ar: "الْحَافِضُ",    name: "Al-Khafid",    te: "అల్-ఖాఫిద్",         en: "The Abaser" },
+  { n: 23, ar: "الْخَافِضُ",    name: "Al-Khafid",    te: "అల్-ఖాఫిద్",         en: "The Abaser" },
   { n: 24, ar: "الرَّافِعُ",    name: "Ar-Rafi",      te: "అర్-రాఫి",           en: "The Exalter" },
   { n: 25, ar: "الْمُعِزُّ",    name: "Al-Muizz",     te: "అల్-ముఇజ్జ్",        en: "The Honourer" },
   { n: 26, ar: "الْمُذِلُّ",    name: "Al-Mudhill",   te: "అల్-ముజిల్",         en: "The Dishonourer" },
@@ -113,7 +114,7 @@ const names = [
   { n: 83, ar: "الْعَفُوُّ",    name: "Al-Afu",       te: "అల్-అఫువ్వ్",        en: "The Pardoner" },
   { n: 84, ar: "الرَّؤُوفُ",    name: "Ar-Rauf",      te: "అర్-రఊఫ్",           en: "The Most Kind" },
   { n: 85, ar: "مَالِكُ الْمُلْكِ", name: "Maalik-ul-Mulk", te: "మాలికుల్-ముల్క్", en: "Owner of all Sovereignty" },
-  { n: 86, ar: "ذُو الْجَلَالِ", name: "Dhul-Jalal",  te: "జుల్-జలాల్",        en: "Lord of Majesty & Bounty" },
+  { n: 86, ar: "ذُو الْجَلَالِ وَالْإِكْرَامِ", name: "Dhul-Jalali wal-Ikram",  te: "జుల్-జలాలి వల్-ఇక్రామ్",        en: "Lord of Majesty & Bounty" },
   { n: 87, ar: "الْمُقْسِطُ",   name: "Al-Muqsit",    te: "అల్-ముఖ్సిత్",      en: "The Equitable" },
   { n: 88, ar: "الْجَامِعُ",    name: "Al-Jami",      te: "అల్-జామి",           en: "The Gatherer" },
   { n: 89, ar: "الْغَنِيُّ",    name: "Al-Ghani",     te: "అల్-ఘనీ",           en: "The Self-Sufficient" },
@@ -133,6 +134,20 @@ function NamesOfAllahPage() {
   const { lang } = useI18n();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<typeof names[0] | null>(null);
+
+  /* One card per name: the Arabic to recall from, the meaning behind it. */
+  const nameCards = useMemo<ReviewCard[]>(
+    () =>
+      names.map((n) => ({
+        id: `name-${n.n}`,
+        front: n.ar,
+        back: lang === "te" ? n.te : n.en,
+        hint: n.name,
+        frontClass: "font-arabic",
+        frontLang: "ar",
+      })),
+    [lang],
+  );
 
   const speak = useCallback((text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -251,6 +266,24 @@ function NamesOfAllahPage() {
       </section>
 
       {/* The grid teaches the names; these teach what to do with them. */}
+      {/* Ninety-nine names is a memorisation task, and the grid only ever
+          showed them. The same spaced-repetition deck the Arabic portal uses
+          for letters and vocabulary schedules them here: names you stumble on
+          come back sooner, names you know drop away. */}
+      <section id="review" className="py-16 px-4 scroll-mt-24 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] mb-2">
+            {lang === "te" ? "కంఠస్థం చేయండి" : "Memorise them"}
+          </h2>
+          <p className="text-[var(--if-text-muted)] mb-6 text-pretty">
+            {lang === "te"
+              ? "పేరు చూసి అర్థం గుర్తుచేసుకోండి. కష్టమైనవి త్వరగా మళ్ళీ వస్తాయి."
+              : "See the name, recall its meaning. The ones you find hard come back sooner."}
+          </p>
+          <ReviewDeck name="names-99" cards={nameCards} />
+        </div>
+      </section>
+
       {/* ── Simulator ── */}
       <section className="py-16 px-4">
         <div className="mx-auto max-w-3xl">

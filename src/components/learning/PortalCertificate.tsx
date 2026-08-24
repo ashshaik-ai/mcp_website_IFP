@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Award, Printer, X } from "lucide-react";
+import { Award, Lock, Printer, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 
 /* Something to keep at the end of a portal.
@@ -28,8 +28,12 @@ const copy = {
   print: { te: "ప్రింట్ చేయండి", en: "Print" },
   close: { te: "మూసివేయండి", en: "Close" },
   disclaimer: {
-    te: "ఇది స్వీయ-ధృవీకరణ రికార్డు — ఖాతా లేదా పరీక్ష ద్వారా ధృవీకరించబడలేదు.",
+    te: "ఇది స్వీయ-ధృవీకరణ రికార్డు — ఖాతా లేదా సర్వర్ ద్వారా ధృవీకరించబడలేదు.",
     en: "A self-recorded certificate. There are no accounts here and nothing is verified against a server.",
+  },
+  locked: {
+    te: "చివరి పరీక్షలో 70% సాధిస్తే ధృవపత్రం తెరుచుకుంటుంది",
+    en: "Pass the final assessment (70%) to unlock the certificate",
   },
 } as const;
 
@@ -49,14 +53,32 @@ export function PortalCertificate({
      it is the only part of this record that was actually tested. */
   const [assessment, setAssessment] = useState<number | null>(null);
 
+  /* The certificate is earned, not merely collected: two audit personas
+     printed one while the failing 6/10 score sat directly underneath it.
+     It now unlocks only after passing the assessment — for portals that
+     have one, which is what hasBank checks. The re-read listens for the
+     assessment's own save event so passing unlocks it without a reload. */
+  const [hasBank, setHasBank] = useState(false);
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("ifp-assessment-v1");
-      const best = raw ? JSON.parse(raw)[portal] : null;
-      if (typeof best === "number" && best >= 70) setAssessment(best);
-    } catch {
-      /* Storage blocked: the certificate simply does not mention a score. */
-    }
+    let live = true;
+    import("@/content/assessment-bank").then((m) => {
+      if (live) setHasBank(m.assessmentFor(portal).length > 0);
+    });
+    const read = () => {
+      try {
+        const raw = localStorage.getItem("ifp-assessment-v1");
+        const best = raw ? JSON.parse(raw)[portal] : null;
+        setAssessment(typeof best === "number" && best >= 70 ? best : null);
+      } catch {
+        /* Storage blocked: the certificate simply does not mention a score. */
+      }
+    };
+    read();
+    window.addEventListener("ifp-assessment-changed", read);
+    return () => {
+      live = false;
+      window.removeEventListener("ifp-assessment-changed", read);
+    };
   }, [portal]);
   const dialogRef = useRef<HTMLDivElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
@@ -65,6 +87,26 @@ export function PortalCertificate({
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
+      /* aria-modal promises focus stays inside, and five audit personas
+         caught Tab escaping into the page behind. Cycle it. */
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
+          'input, button, [tabindex]:not([tabindex="-1"])',
+        );
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        } else if (!dialogRef.current.contains(document.activeElement)) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener("keydown", onKey);
     dialogRef.current?.querySelector<HTMLInputElement>("input")?.focus();
@@ -82,8 +124,16 @@ export function PortalCertificate({
     year: "numeric",
   }).format(new Date());
 
+  const locked = hasBank && assessment === null;
+
   return (
     <>
+      {locked ? (
+        <p className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--if-gold)]/40 bg-white px-4 text-sm font-semibold text-[var(--if-text-muted)]">
+          <Lock aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
+          {copy.locked[lang]}
+        </p>
+      ) : (
       <button
         ref={opener}
         type="button"
@@ -93,6 +143,7 @@ export function PortalCertificate({
         <Award aria-hidden="true" className="h-4 w-4" />
         {copy.cta[lang]}
       </button>
+      )}
 
       {open && (
         <div

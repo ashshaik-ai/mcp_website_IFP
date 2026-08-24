@@ -137,7 +137,11 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
           <span className="max-w-[10rem] truncate sm:max-w-none">
             {actionLabel}
             {nextUp && !finished && done > 0 && (
-              <span className="hidden font-semibold text-[var(--if-text-muted)] md:inline">
+              /* From sm rather than md: a returning learner should see which
+                 lesson Continue leads to as early as the width allows. Below
+                 that the bar is too tight for a title that would only be
+                 truncated to a stub. */
+              <span className="hidden font-semibold text-[var(--if-text-muted)] sm:inline">
                 {" — "}
                 {nextUp.title[lang]}
               </span>

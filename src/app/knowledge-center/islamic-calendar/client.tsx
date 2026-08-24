@@ -12,6 +12,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
+import { HijriConverter } from "@/components/tools/HijriConverter";
 import { ChevronLeft } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
@@ -107,6 +108,13 @@ function IslamicCalendarPage() {
         </div>
       </section>
 
+      {/* The portal taught the calendar and could not tell you the date. */}
+      <section className="py-12 px-4">
+        <div className="mx-auto max-w-3xl">
+          <HijriConverter />
+        </div>
+      </section>
+
       {/* 12 months grid */}
       <section className="if-defer py-16 px-4 bg-[var(--if-cream-light)]">
         <div className="mx-auto max-w-5xl">
@@ -124,6 +132,7 @@ function IslamicCalendarPage() {
               <BlurFade delay={0.04 * i}>
                 <button
                   onClick={() => setActive(active === m.n ? null : m.n)}
+                  aria-expanded={active === m.n}
                   className={`relative overflow-hidden w-full text-left p-4 rounded-2xl border transition-all ${active === m.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}
                 >
                   {active === m.n && <BorderBeam size={80} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" />}

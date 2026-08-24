@@ -108,6 +108,8 @@ POSES.salamL = { ...POSES.julus, turn: -30 };
 /* Map step ids from any portal onto a posture. Unknown ids stand. */
 const POSE_FOR: Record<string, keyof typeof POSES> = {
   niyyah: "qiyam", takbeer: "takbeer", qiyam: "qiyam", fatiha: "qiyam", surah: "qiyam",
+  /* The funeral prayer's later takbirs, all made standing. */
+  takbeer2: "takbeer", takbeer3: "takbeer", takbeer4: "takbeer", durood: "qiyam", dua: "qiyam",
   ruku: "ruku", itidal: "itidal", sujud: "sujud", sujud1: "sujud", sujud2: "sujud",
   julus: "julus", jalsa: "julus", tashahhud: "julus", salam: "salamR", salam2: "salamL",
   standing: "qiyam", sitting: "julus", bowing: "ruku", prostration: "sujud",

@@ -117,7 +117,7 @@ const portals = [
     id: "islamic-calendar",
     title: { te: "ఇస్లామిక్ క్యాలెండర్", en: "Islamic Calendar" },
     arabic: "التقويم الإسلامي",
-    desc: { te: "12 హిజ్రీ నెలలు · ముస్లిం పండుగలు · ముఖ్యమైన తేదీలు", en: "12 Hijri months · Islamic festivals · Key dates" },
+    desc: { te: "హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి · ముస్లిం పండుగలు · ముఖ్యమైన తేదీలు", en: "Hijri ↔ Gregorian converter · Islamic festivals · Key dates" },
     meta: { te: "మార్పిడి సాధనం · పండుగలు · ఉచితం", en: "Conversion Tool · Festivals · Free" },
     icon: Calendar,
     color: "from-[var(--if-green-mid)] to-[var(--if-green)]",

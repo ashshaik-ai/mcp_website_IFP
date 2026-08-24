@@ -999,6 +999,9 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
+  /* 44px is the target floor, and as flex items in a tight transport row
+     these were being squeezed to 43 at 390px. */
+  flex-shrink: 0;
   border-radius: 9999px;
   border: 1px solid color-mix(in srgb, var(--if-gold) 40%, transparent);
   color: var(--if-green);

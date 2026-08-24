@@ -5,6 +5,7 @@ import { Volume2, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Letter } from "@/content/alphabets";
 import type { LetterExtra } from "@/content/arabic-extras";
+import { LetterTracer } from "./LetterTracer";
 
 /* Combining marks removed, so a letter matches its extras entry whichever
    hamza form the source happened to use. */
@@ -252,6 +253,17 @@ export function AlphabetGrid({
                 </div>
               ))}
             </dl>
+          </div>
+
+          {/* Reading the shape and making it are different skills; this is
+              where the second one gets practised. */}
+          <div className="mt-4">
+            <LetterTracer
+              id={`${script}-${baseGlyph(open.glyph)}`}
+              glyph={open.forms.isolated || open.glyph}
+              fontClass={glyphFont}
+              lang={script === "urdu" ? "ur" : "ar"}
+            />
           </div>
         </div>
             )}

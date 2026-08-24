@@ -18,6 +18,23 @@ export const salahSteps: SimStep[] = [
   { id: "salam2", label: { te: "సలాం — ఎడమ", en: "Salam — left" }, arabic: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه", translit: "As-salāmu ʿalaykum wa raḥmatullāh", dur: 2400 },
 ];
 
+/* The funeral prayer, which is not the five-times prayer with parts removed:
+   no ruku, no sujud, no adhan, four takbirs standing, each followed by its
+   own recitation. The lesson teaches that structure and the visual used to
+   contradict it by borrowing four steps out of salahSteps. */
+export const janazahSteps: SimStep[] = [
+  { id: "niyyah", label: { te: "నియ్యత్", en: "Niyyah" }, caption: { te: "మృతదేహం ముందు, ఇమామ్ వెనుక వరుసలు", en: "The body in front, rows behind the imam" }, dur: 2600 },
+  { id: "takbeer", label: { te: "1వ తక్బీర్", en: "1st takbir" }, arabic: "اللَّهُ أَكْبَر", translit: "Allāhu Akbar", dur: 2400 },
+  { id: "fatiha", label: { te: "సూరా ఫాతిహా", en: "Al-Fatihah" }, arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِين", translit: "Al-ḥamdu lillāhi rabbil-ʿālamīn", caption: { te: "హనఫీ మజ్‌హబ్‌లో ఇక్కడ సనా", en: "In the Hanafi school, the thana here" }, dur: 3600 },
+  { id: "takbeer2", label: { te: "2వ తక్బీర్", en: "2nd takbir" }, arabic: "اللَّهُ أَكْبَر", translit: "Allāhu Akbar", dur: 2200 },
+  { id: "durood", label: { te: "దురూద్", en: "Durood" }, arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّد", translit: "Allāhumma ṣalli ʿalā Muḥammad", caption: { te: "నమాజులో చదివేదే", en: "The same durood as in prayer" }, dur: 3200 },
+  { id: "takbeer3", label: { te: "3వ తక్బీర్", en: "3rd takbir" }, arabic: "اللَّهُ أَكْبَر", translit: "Allāhu Akbar", dur: 2200 },
+  { id: "dua", label: { te: "మృతుని కోసం దుఆ", en: "Dua for the deceased" }, arabic: "اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْه", translit: "Allāhumma-ghfir lahu warḥamh", caption: { te: "ఈ నమాజు మొత్తం ఇదే దుఆ కోసం", en: "This supplication is the whole point of the prayer" }, dur: 3600 },
+  { id: "takbeer4", label: { te: "4వ తక్బీర్", en: "4th takbir" }, arabic: "اللَّهُ أَكْبَر", translit: "Allāhu Akbar", caption: { te: "కొద్దిసేపు ఆగండి", en: "Pause briefly" }, dur: 2400 },
+  { id: "salam", label: { te: "సలాం — కుడి", en: "Salam — right" }, arabic: "السَّلَامُ عَلَيْكُم", translit: "As-salāmu ʿalaykum", dur: 2400 },
+  { id: "salam2", label: { te: "సలాం — ఎడమ", en: "Salam — left" }, arabic: "السَّلَامُ عَلَيْكُم", translit: "As-salāmu ʿalaykum", dur: 2400 },
+];
+
 export const wuduSteps: SimStep[] = [
   { id: "niyyah", label: { te: "నియ్యత్", en: "Niyyah" }, caption: { te: "మనసులో ఉద్దేశం", en: "Intend in the heart" }, dur: 2200 },
   { id: "bismillah", label: { te: "బిస్మిల్లాహ్", en: "Bismillah" }, arabic: "بِسْمِ اللَّهِ", translit: "Bismillāh", dur: 2200 },
@@ -156,16 +173,16 @@ export const historySteps: SimStep[] = [
 ];
 
 export const namesSteps: SimStep[] = [
-  { id: "n1", label: { te: "అల్లాహ్", en: "Allah" }, arabic: "اللّٰه", translit: "Allāh", caption: { te: "ఒకే నిజమైన దేవుడు", en: "The one true God" }, dur: 3200 },
-  { id: "n2", label: { te: "అర్-రహ్మాన్", en: "Ar-Rahman" }, arabic: "الرَّحْمَٰن", translit: "Ar-Raḥmān", caption: { te: "అత్యంత కరుణామయుడు", en: "The Most Merciful" }, dur: 3000 },
-  { id: "n3", label: { te: "అర్-రహీమ్", en: "Ar-Raheem" }, arabic: "الرَّحِيم", translit: "Ar-Raḥīm", caption: { te: "అత్యంత దయగలవాడు", en: "The Especially Merciful" }, dur: 3000 },
-  { id: "n4", label: { te: "అల్-మలిక్", en: "Al-Malik" }, arabic: "الْمَلِك", translit: "Al-Malik", caption: { te: "రాజు", en: "The King" }, dur: 3000 },
-  { id: "n5", label: { te: "అల్-ఖుద్దూస్", en: "Al-Quddus" }, arabic: "الْقُدُّوس", translit: "Al-Quddūs", caption: { te: "పరమ పవిత్రుడు", en: "The Most Holy" }, dur: 3000 },
-  { id: "n6", label: { te: "అస్-సలాం", en: "As-Salam" }, arabic: "السَّلَام", translit: "As-Salām", caption: { te: "శాంతి మూలం", en: "The Source of Peace" }, dur: 3000 },
-  { id: "n7", label: { te: "అల్-ముఅమిన్", en: "Al-Mu'min" }, arabic: "الْمُؤْمِن", translit: "Al-Muʾmin", caption: { te: "భద్రత ఇచ్చేవాడు", en: "The Giver of Security" }, dur: 3000 },
-  { id: "n8", label: { te: "అల్-అజీజ్", en: "Al-Aziz" }, arabic: "الْعَزِيز", translit: "Al-ʿAzīz", caption: { te: "సర్వశక్తిమంతుడు", en: "The Almighty" }, dur: 3000 },
-  { id: "n9", label: { te: "అల్-ఖాలిఖ్", en: "Al-Khaliq" }, arabic: "الْخَالِق", translit: "Al-Khāliq", caption: { te: "సృష్టికర్త", en: "The Creator" }, dur: 3000 },
-  { id: "n10", label: { te: "అల్-గఫ్ఫార్", en: "Al-Ghaffar" }, arabic: "الْغَفَّار", translit: "Al-Ghaffār", caption: { te: "మళ్ళీ మళ్ళీ క్షమించేవాడు", en: "The Ever-Forgiving" }, dur: 3000 },
-  { id: "n11", label: { te: "అర్-రజ్జాఖ్", en: "Ar-Razzaq" }, arabic: "الرَّزَّاق", translit: "Ar-Razzāq", caption: { te: "ఉపాధి ఇచ్చేవాడు", en: "The Provider" }, dur: 3000 },
-  { id: "n12", label: { te: "అల్-అలీమ్", en: "Al-Aleem" }, arabic: "الْعَلِيم", translit: "Al-ʿAlīm", caption: { te: "సర్వజ్ఞుడు", en: "The All-Knowing" }, dur: 3000 },
+  { id: "n1", meta: "1", label: { te: "అల్లాహ్", en: "Allah" }, arabic: "اللّٰه", translit: "Allāh", caption: { te: "ఒకే నిజమైన దేవుడు", en: "The one true God" }, dur: 3200 },
+  { id: "n2", meta: "2", label: { te: "అర్-రహ్మాన్", en: "Ar-Rahman" }, arabic: "الرَّحْمَٰن", translit: "Ar-Raḥmān", caption: { te: "అత్యంత కరుణామయుడు", en: "The Most Merciful" }, dur: 3000 },
+  { id: "n3", meta: "3", label: { te: "అర్-రహీమ్", en: "Ar-Raheem" }, arabic: "الرَّحِيم", translit: "Ar-Raḥīm", caption: { te: "అత్యంత దయగలవాడు", en: "The Especially Merciful" }, dur: 3000 },
+  { id: "n4", meta: "4", label: { te: "అల్-మలిక్", en: "Al-Malik" }, arabic: "الْمَلِك", translit: "Al-Malik", caption: { te: "రాజు", en: "The King" }, dur: 3000 },
+  { id: "n5", meta: "5", label: { te: "అల్-ఖుద్దూస్", en: "Al-Quddus" }, arabic: "الْقُدُّوس", translit: "Al-Quddūs", caption: { te: "పరమ పవిత్రుడు", en: "The Most Holy" }, dur: 3000 },
+  { id: "n6", meta: "6", label: { te: "అస్-సలాం", en: "As-Salam" }, arabic: "السَّلَام", translit: "As-Salām", caption: { te: "శాంతి మూలం", en: "The Source of Peace" }, dur: 3000 },
+  { id: "n7", meta: "7", label: { te: "అల్-ముఅమిన్", en: "Al-Mumin" }, arabic: "الْمُؤْمِن", translit: "Al-Muʾmin", caption: { te: "భద్రత ఇచ్చేవాడు", en: "The Giver of Security" }, dur: 3000 },
+  { id: "n8", meta: "9", label: { te: "అల్-అజీజ్", en: "Al-Aziz" }, arabic: "الْعَزِيز", translit: "Al-ʿAzīz", caption: { te: "సర్వశక్తిమంతుడు", en: "The Almighty" }, dur: 3000 },
+  { id: "n9", meta: "12", label: { te: "అల్-ఖాలిఖ్", en: "Al-Khaliq" }, arabic: "الْخَالِق", translit: "Al-Khāliq", caption: { te: "సృష్టికర్త", en: "The Creator" }, dur: 3000 },
+  { id: "n10", meta: "15", label: { te: "అల్-గఫ్ఫార్", en: "Al-Ghaffar" }, arabic: "الْغَفَّار", translit: "Al-Ghaffār", caption: { te: "మళ్ళీ మళ్ళీ క్షమించేవాడు", en: "The Ever-Forgiving" }, dur: 3000 },
+  { id: "n11", meta: "18", label: { te: "అర్-రజ్జాఖ్", en: "Ar-Razzaq" }, arabic: "الرَّزَّاق", translit: "Ar-Razzāq", caption: { te: "ఉపాధి ఇచ్చేవాడు", en: "The Provider" }, dur: 3000 },
+  { id: "n12", meta: "20", label: { te: "అల్-అలీమ్", en: "Al-Alim" }, arabic: "الْعَلِيم", translit: "Al-ʿAlīm", caption: { te: "సర్వజ్ఞుడు", en: "The All-Knowing" }, dur: 3000 },
 ];

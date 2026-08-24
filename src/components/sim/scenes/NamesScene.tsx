@@ -13,6 +13,10 @@ import type { SceneProps } from "../Simulator";
 export function NamesScene({ step, index }: SceneProps) {
   const N = 99;
   const cx = 180, cy = 150, RX = 236, RY = 118;
+  /* The twelve steps are not the first twelve names — Al-Aziz is #9,
+     Al-Alim #20. Each step carries its list number in meta; the counter
+     used to print the step index as though it were the name's position. */
+  const num = Number(step.meta) || index + 1;
 
   return (
     <svg viewBox="0 0 576 324" className="absolute inset-0 h-full w-full" aria-hidden="true">
@@ -32,8 +36,8 @@ export function NamesScene({ step, index }: SceneProps) {
         const a = (i / N) * Math.PI * 2 - Math.PI / 2;
         const x = cx + Math.cos(a) * RX;
         const y = cy + Math.sin(a) * RY;
-        const on = i === index;
-        const done = i < index;
+        const on = i === num - 1;
+        const done = i < num - 1;
         return (
           <circle
             key={i}
@@ -56,7 +60,7 @@ export function NamesScene({ step, index }: SceneProps) {
       {/* cy+92, not +66: Amiri's descenders at 82px reach ~33px below the
           baseline and were striking through the transliteration. */}
       <text x={cx} y={cy + 92} textAnchor="middle" fontSize="15" fill="rgba(245,230,192,0.75)" fontStyle="italic">{step.translit}</text>
-      <text x="462" y="304" textAnchor="end" fontSize="13" fill="rgba(245,230,192,0.55)" fontWeight="700">{index + 1} / {N}</text>
+      <text x="462" y="304" textAnchor="end" fontSize="13" fill="rgba(245,230,192,0.55)" fontWeight="700">#{num} / {N}</text>
     </g>
     </svg>
   );

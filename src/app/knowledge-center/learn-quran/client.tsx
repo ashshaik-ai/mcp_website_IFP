@@ -158,7 +158,7 @@ const tajweedSteps = [
     glyph: "ق ط ب ج د", ar: "القلقلة",
     name: { te: "ఖల్‌ఖలా (ప్రతిధ్వని)", en: "Qalqalah (Echoing)" },
     expl: { te: "ఖల్‌ఖలా అనేది ఐదు అక్షరాలు (ق ط ب ج د) సుకూన్‌తో ఉన్నప్పుడు వాటిపై వచ్చే ప్రతిధ్వని.", en: "Qalqalah is a bouncing echo on five letters (ق ط ب ج د) when they carry a sukoon." },
-    example_ar: "قُلْ · أَحَدْ",
+    example_ar: "أَحَدْ · الْفَلَقْ",
     note: { te: "చివర దాల్ (د)పై స్వరం చేర్చకుండా తేలికైన ప్రతిధ్వని.", en: "A light bounce on the daal (د) at the end without adding a vowel." },
     mistake: { te: "ఏ ప్రతిధ్వనీ ఇవ్వకపోవడం, లేదా అక్షరానికి పూర్తి స్వరం చేర్చడం.", en: "Giving no echo at all, or adding a full vowel sound to the letter." },
   },
