@@ -9,6 +9,7 @@ import { WuduScene } from "@/components/sim/scenes/WuduScene";
 import { salahSteps, wuduSteps as simWudu } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
+import { PortalJump } from "@/components/learning/PortalJump";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -261,6 +262,10 @@ function LearnSalahPage() {
 
   return (
     <PageShell>
+      {/* Non-sticky, like the other portals that carry their own sticky tab
+          bar: the flagship teaching portal was the one place a returning
+          learner had no Start/Continue at all. */}
+      <PortalJump portal="learn-salah" sticky={false} />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-teal-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">

@@ -149,6 +149,28 @@ const visuals: Record<string, LessonVisualSpec> = {
     steps: ["w0", "w1", "w2", "w3"],
     title: { te: "పదం వెంట పదం చదవడం", en: "Reading word by word" },
   },
+
+  /* ── Learn Salah ──────────────────────────────────────────────────────
+     The portal this whole idea was made for: wudu, ghusl and the prayer are
+     physical sequences, and each lesson now shows its own. */
+  "learn-salah/wudu": {
+    source: "wuduSteps",
+    steps: [],
+    scene: "wudu",
+    title: { te: "వుజూ — దశల వారీగా చూడండి", en: "Wudu, step by step" },
+  },
+  "learn-salah/ghusl": {
+    source: "ghuslSteps",
+    steps: [],
+    scene: "wudu",
+    title: { te: "గుస్ల్ — దశల వారీగా చూడండి", en: "Ghusl, step by step" },
+  },
+  "learn-salah/howtopray": {
+    source: "salahSteps",
+    steps: [],
+    scene: "salah",
+    title: { te: "నమాజు భంగిమలు — చూడండి", en: "The postures of the prayer" },
+  },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {
