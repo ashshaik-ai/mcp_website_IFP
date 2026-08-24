@@ -270,7 +270,7 @@ function KidsIslamPage() {
                   <div className="text-3xl mb-3">{c.emoji}</div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-display font-bold text-[var(--if-green)]">{lang === "te" ? c.te : c.en}</span>
-                    <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{c.ar}</span>
+                    <span className="font-arabic text-sm text-[var(--if-gold-ink)]" dir="rtl" lang="ar">{c.ar}</span>
                   </div>
                   <p className="text-sm text-[var(--if-text-muted)] leading-relaxed mb-3">{lang === "te" ? c.desc_te : c.desc_en}</p>
                   <div className="flex gap-2 items-start text-xs text-[var(--if-text-muted)] bg-[var(--if-gold)]/8 border border-[var(--if-gold)]/20 rounded-xl p-3">
@@ -372,7 +372,7 @@ function KidsIslamPage() {
                   <div className="p-5">
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="font-display font-bold text-[var(--if-green)]">{sec.title[lang]}</h3>
-                      <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{sec.arabic}</span>
+                      <span className="font-arabic text-sm text-[var(--if-gold-ink)]" dir="rtl" lang="ar">{sec.arabic}</span>
                     </div>
                     <p className="text-sm text-[var(--if-text-muted)] leading-relaxed">{sec.desc[lang]}</p>
                     {activeSection === sec.num && (
@@ -387,6 +387,17 @@ function KidsIslamPage() {
                     )}
                   </div>
                 </button>
+                {/* The expanded topics named things a child then could not
+                    reach; the card now ends in a route to the lessons that
+                    teach them. */}
+                {activeSection === sec.num && (
+                  <a
+                    href="#lessons"
+                    className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-2 text-sm font-bold text-[var(--if-gold-ink)]"
+                  >
+                    {t("ఈ స్థాయి పాఠాలకు వెళ్ళండి →", "Go to the lessons →")}
+                  </a>
+                )}
               </BlurFade>
             ))}
           </div>

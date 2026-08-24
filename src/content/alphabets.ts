@@ -278,7 +278,7 @@ export const urduLetters: Letter[] = [
   },
   {
     glyph: "ٹ",
-    name: { te: "ṭe", en: "Ṭe" },
+    name: { te: "టే", en: "Ṭe" },
     translit: "t",
     forms: { isolated: "ٹ", initial: "ٹـ", medial: "ـٹـ", final: "ـٹ" },
     note: { te: "నాలుక వెనుకకు వంచే \"ట\" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకం.", en: "A heavy \"t\" — tongue curls back to the roof of the mouth. Unique to South Asian languages." },
@@ -310,7 +310,7 @@ export const urduLetters: Letter[] = [
   },
   {
     glyph: "ح",
-    name: { te: "ḥe", en: "Ḥe" },
+    name: { te: "బడీ హే", en: "Baṛī Ḥe" },
     translit: "h",
     forms: { isolated: "ح", initial: "حـ", medial: "ـحـ", final: "ـح" },
     note: { te: "గొంతు లోతు నుండి వచ్చే \"హ\" శ్వాస శబ్దం. ہ కంటే బరువుగా. చుక్క లేదు.", en: "A breathy \"h\" from deep in the throat — heavier than ہ. No dot. Same as Arabic ح." },
@@ -334,7 +334,7 @@ export const urduLetters: Letter[] = [
   },
   {
     glyph: "ڈ",
-    name: { te: "ḍāl", en: "Ḍāl" },
+    name: { te: "డాల్", en: "Ḍāl" },
     translit: "d",
     forms: { isolated: "ڈ", initial: "ڈ", medial: "ـڈ", final: "ـڈ" },
     note: { te: "నాలుక వెనుకకు వంచే \"డ\" శబ్దం. ఉర్దూకు ప్రత్యేకం.", en: "A heavy \"d\" — tongue curls back. Unique to Urdu and South Asian languages." },
@@ -358,7 +358,7 @@ export const urduLetters: Letter[] = [
   },
   {
     glyph: "ڑ",
-    name: { te: "ṛe", en: "Ṛe" },
+    name: { te: "ఱే", en: "Ṛe" },
     translit: "r",
     forms: { isolated: "ڑ", initial: "ڑ", medial: "ـڑ", final: "ـڑ" },
     note: { te: "నాలుక వెనుకకు వంచే \"ఱ\" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకమైన శబ్దం.", en: "A flapped \"r\" with tongue curling back. Unique to South Asian languages. Looks like ر with a mark." },
@@ -518,7 +518,7 @@ export const urduLetters: Letter[] = [
   },
   {
     glyph: "ہ",
-    name: { te: "He", en: "He" },
+    name: { te: "చోటీ హే", en: "Choṭī He" },
     translit: "h",
     forms: { isolated: "ہ", initial: "ہـ", medial: "ـہـ", final: "ـہ" },
     note: { te: "తేలికపాటి \"హ\" శబ్దం — ح కంటే మృదువుగా. వివిధ స్థానాల్లో రూపం చాలా మారుతుంది.", en: "A light \"h\" — softer than ح. Its form changes significantly by position, very distinctive in Nastaliq." },

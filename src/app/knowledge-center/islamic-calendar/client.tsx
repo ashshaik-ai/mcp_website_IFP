@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -54,16 +54,16 @@ const months = [
 ];
 
 const specialDates = [
-  { date: "1 Muharram",   name: "Islamic New Year",         ar: "رأس السنة الهجرية", te: "ఇస్లామిక్ నూతన సంవత్సరం" },
-  { date: "10 Muharram",  name: "Day of Ashura",            ar: "يوم عاشوراء",       te: "ఆషూరా దినం" },
-  { date: "12 Rabi I",    name: "Prophet's Birthday ﷺ",     ar: "المولد النبوي",     te: "నబీ జన్మదినం" },
-  { date: "27 Rajab",     name: "Isra Wal Miraj",           ar: "الإسراء والمعراج",  te: "మేరాజ్" },
-  { date: "15 Sha'ban",   name: "Shab e Barat",             ar: "شب البراءة",       te: "షబ్-ఎ-బారాత్" },
-  { date: "1-30 Ramadan", name: "Month of Fasting",         ar: "شهر رمضان",        te: "రోజా మాసం" },
-  { date: "27 Ramadan",   name: "Laylat al-Qadr",           ar: "ليلة القدر",       te: "లైలతుల్-ఖద్ర్" },
-  { date: "1 Shawwal",    name: "Eid al-Fitr",              ar: "عيد الفطر",        te: "ఈద్-అల్-ఫిత్ర్" },
-  { date: "9 Dhu al-Hijjah", name: "Day of Arafah",        ar: "يوم عرفة",         te: "అరఫా దినం" },
-  { date: "10 Dhu al-Hijjah", name: "Eid al-Adha",         ar: "عيد الأضحى",      te: "ఈద్-అల్-అద్హా" },
+  { date: { te: "ముహర్రం 1", en: "1 Muharram" },   name: "Islamic New Year",         ar: "رأس السنة الهجرية", te: "ఇస్లామిక్ నూతన సంవత్సరం" },
+  { date: { te: "ముహర్రం 10", en: "10 Muharram" },  name: "Day of Ashura",            ar: "يوم عاشوراء",       te: "ఆషూరా దినం" },
+  { date: { te: "రబీఉల్ అవ్వల్ 12", en: "12 Rabi I" },    name: "Prophet's Birthday ﷺ",     ar: "المولد النبوي",     te: "నబీ జన్మదినం" },
+  { date: { te: "రజబ్ 27", en: "27 Rajab" },     name: "Isra Wal Miraj",           ar: "الإسراء والمعراج",  te: "మేరాజ్" },
+  { date: { te: "షాబాన్ 15", en: "15 Sha'ban" },   name: "Shab e Barat",             ar: "شب البراءة",       te: "షబ్-ఎ-బారాత్" },
+  { date: { te: "రమజాన్ 1–30", en: "1-30 Ramadan" }, name: "Month of Fasting",         ar: "شهر رمضان",        te: "రోజా మాసం" },
+  { date: { te: "రమజాన్ 27", en: "27 Ramadan" },   name: "Laylat al-Qadr",           ar: "ليلة القدر",       te: "లైలతుల్-ఖద్ర్" },
+  { date: { te: "షవ్వాల్ 1", en: "1 Shawwal" },    name: "Eid al-Fitr",              ar: "عيد الفطر",        te: "ఈద్-అల్-ఫిత్ర్" },
+  { date: { te: "జుల్ హిజ్జా 9", en: "9 Dhu al-Hijjah" }, name: "Day of Arafah",        ar: "يوم عرفة",         te: "అరఫా దినం" },
+  { date: { te: "జుల్ హిజ్జా 10", en: "10 Dhu al-Hijjah" }, name: "Eid al-Adha",         ar: "عيد الأضحى",      te: "ఈద్-అల్-అద్హా" },
 ];
 
 function IslamicCalendarPage() {
@@ -120,7 +120,8 @@ function IslamicCalendarPage() {
           </BlurFade>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {months.map((m, i) => (
-              <BlurFade key={m.n} delay={0.04 * i}>
+              <Fragment key={m.n}>
+              <BlurFade delay={0.04 * i}>
                 <button
                   onClick={() => setActive(active === m.n ? null : m.n)}
                   className={`relative overflow-hidden w-full text-left p-4 rounded-2xl border transition-all ${active === m.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}
@@ -135,14 +136,13 @@ function IslamicCalendarPage() {
                   )}
                 </button>
               </BlurFade>
-            ))}
-          </div>
-
-          {active !== null && (() => {
-            const m = months.find(x => x.n === active)!;
-            return (
+              {/* The detail opens inside the grid, right under the tapped
+                  month's row — it used to mount after all twelve tiles, two
+                  phone-screens below the tap, which read as no response. */}
+              {active === m.n && (
+              <div className="col-span-full">
               <BlurFade delay={0.05} key={active}>
-                <div className="mt-6 bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6">
+                <div className="bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6">
                   <div className="flex items-center gap-4 mb-4 flex-wrap">
                     <div className="font-arabic text-3xl text-[var(--if-green)]" dir="rtl">{m.ar}</div>
                     <div>
@@ -166,8 +166,11 @@ function IslamicCalendarPage() {
                   )}
                 </div>
               </BlurFade>
-            );
-          })()}
+              </div>
+              )}
+              </Fragment>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -197,7 +200,7 @@ function IslamicCalendarPage() {
               <tbody>
                 {specialDates.map((d, i) => (
                   <tr key={d.name} className={i % 2 === 0 ? "bg-white" : "bg-[var(--if-cream-light)]"}>
-                    <td className="p-4 font-semibold text-[var(--if-gold-ink)] whitespace-nowrap">{d.date}</td>
+                    <td className="p-4 font-semibold text-[var(--if-gold-ink)] whitespace-nowrap">{d.date[lang]}</td>
                     <td className="p-4 text-[var(--if-text)]">{lang === "te" ? d.te : d.name}</td>
                     <td className="p-4 text-[var(--if-text-muted)] hidden sm:table-cell">{lang === "te" ? d.name : d.te}</td>
                     <td className="p-4 font-arabic text-right text-[var(--if-green)] hidden md:table-cell" lang="ar" dir="rtl">{d.ar}</td>

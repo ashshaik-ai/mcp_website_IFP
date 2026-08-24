@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { Volume2, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Letter } from "@/content/alphabets";
@@ -86,8 +86,8 @@ export function AlphabetGrid({
         {letters.map((l, i) => {
           const isOpen = openIdx === i;
           return (
+            <Fragment key={`${l.glyph}-${i}`}>
             <button
-              key={`${l.glyph}-${i}`}
               id={`if-letter-${i}`}
               type="button"
               onClick={() => {
@@ -134,17 +134,17 @@ export function AlphabetGrid({
                 />
               )}
             </button>
-          );
-        })}
-      </div>
-
-      {open && (
+            {/* The detail opens inside the grid, right under the tapped
+                tile's row. It used to mount below all the tiles, and the
+                focus call scrolled the page ~1200px away from the letter the
+                reader had just tapped. col-span-full breaks the row here. */}
+            {isOpen && open && (
         <div
           ref={panelRef}
           tabIndex={-1}
           role="region"
           aria-label={open.name[lang]}
-          className="mt-4 rounded-2xl border border-[var(--if-gold)]/30 bg-white p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+          className="col-span-full rounded-2xl border border-[var(--if-gold)]/30 bg-white p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
         >
           <div className="flex items-start gap-4">
             <span
@@ -254,7 +254,11 @@ export function AlphabetGrid({
             </dl>
           </div>
         </div>
-      )}
+            )}
+            </Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 }

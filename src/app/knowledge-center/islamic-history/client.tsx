@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -21,8 +21,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const copy = {
   knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
   islamic_history: { te: "ఇస్లామిక్ చరిత్ర", en: "Islamic History" },
-  from_rashidun_to_today_6: { te: "రాషిదీన్ నుండి నేటి వరకు — 6 యుగాల గొప్ప ఇస్లామిక్ నాగరికత", en: "From Rashidun to today — 6 eras of great Islamic civilisation" },
-  n_6_era_history_timeline: { te: "6-యుగాల చరిత్ర కాలపట్టిక", en: "6-Era History Timeline" },
+  /* No era count here: the timeline widget groups six, the era cards section
+     below counts nine, and a persona caught the page contradicting itself. */
+  from_rashidun_to_today_6: { te: "రాషిదీన్ నుండి నేటి వరకు — గొప్ప ఇస్లామిక్ నాగరికత ప్రయాణం", en: "From Rashidun to today — the journey of a great Islamic civilisation" },
+  n_6_era_history_timeline: { te: "చరిత్ర కాలపట్టిక", en: "History Timeline" },
   lesson: { te: "పాఠం:", en: "Lesson:" },
   notable: { te: "ప్రముఖుడు:", en: "Notable:" },
   historical_personalities: { te: "చారిత్రక వ్యక్తిత్వాలు", en: "Historical Personalities" },
@@ -160,6 +162,15 @@ function IslamicHistoryPage() {
   const { lang } = useI18n();
   const [active, setActive] = useState(0);
 
+  /* The pager arrows move the selection but the chip strip did not follow —
+     past the fourth era the highlighted chip sat off-screen. */
+  useEffect(() => {
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    document
+      .getElementById(`if-era-chip-${active}`)
+      ?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
+  }, [active]);
+
   return (
     <PageShell>
       <PortalJump portal="islamic-history" />
@@ -200,7 +211,7 @@ function IslamicHistoryPage() {
           <div className="if-tabstrip overflow-x-auto pb-4 mb-6">
             <div className="flex gap-3 min-w-max">
               {eras.map((era, i) => (
-                <button key={era.num} onClick={() => setActive(i)}
+                <button key={era.num} id={`if-era-chip-${i}`} onClick={() => setActive(i)}
                   className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[100px] ${active === i ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}>
                   <div className={`w-8 h-8 rounded-full ${era.color} flex items-center justify-center text-white text-xs font-bold`}>{era.num}</div>
                   <span className={`text-[10px] font-semibold text-center leading-tight ${active === i ? "text-[var(--if-gold-pale)]" : "text-[var(--if-text-muted)]"}`}>{era.years[lang]}</span>
@@ -241,7 +252,9 @@ function IslamicHistoryPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-3 mt-6 justify-end">
+              {/* pr-14 below sm keeps the pager clear of the fixed WhatsApp
+                  button, which sat directly on the next arrow at 390px. */}
+              <div className="flex gap-3 mt-6 justify-end pr-14 sm:pr-0">
                 <button type="button" aria-label={lang === "te" ? "మునుపటి యుగం" : "Previous era"} disabled={active === 0} onClick={() => setActive(a => a - 1)} className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronLeft className="h-4 w-4 text-[var(--if-green)]" /></button>
                 <span className="self-center text-xs text-[var(--if-text-muted)]">{active + 1} / {eras.length}</span>
                 <button type="button" aria-label={lang === "te" ? "తదుపరి యుగం" : "Next era"} disabled={active === eras.length - 1} onClick={() => setActive(a => a + 1)} className="size-11 inline-flex items-center justify-center rounded-full border border-[var(--if-gold)]/30 disabled:opacity-30 hover:bg-[var(--if-cream-light)]"><ChevronRight className="h-4 w-4 text-[var(--if-green)]" /></button>

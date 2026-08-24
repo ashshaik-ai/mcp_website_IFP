@@ -731,11 +731,31 @@ html.js .if-defer .if-blur-fade {
    exist. The mask fades the overflowing end, which is the whole affordance.
    scrollbar-width:none keeps the strip clean; the fade is what does the work. */
 .if-tabstrip {
-  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2rem), transparent 100%);
-  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2rem), transparent 100%);
+  /* 3.5rem, up from 2rem: at 2rem a tab ending near the edge dissolved in so
+     narrow a band that two audit personas never noticed the strip scrolled.
+     The wider ramp leaves a clearly half-faded tab peeking. scroll-padding
+     keeps a tapped tab from parking flush under the fade. */
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 3.5rem), transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 3.5rem), transparent 100%);
+  scroll-padding-inline: 1rem;
   scrollbar-width: none;
 }
 .if-tabstrip::-webkit-scrollbar { display: none; }
+
+/* During a Back/Forward traversal BackRestore.tsx sets this class so deferred
+   sections lay out at full height before the browser restores the scroll
+   offset; without it the restored pixel position overshoots into the footer. */
+.if-back-nav .if-defer {
+  content-visibility: visible;
+}
+
+/* Chromium draws its own clear (X) inside type=search inputs; the vocabulary
+   search boxes draw theirs, and the two sat side by side. */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
 
 /* Edge fade for continuously scrolling rows, so faces dissolve at the margins
    rather than being sliced off against a hard edge. */

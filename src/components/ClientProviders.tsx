@@ -6,6 +6,7 @@ import { DecksProvider } from "@/lib/decks";
 import { QuizResultsProvider } from "@/lib/quiz-results";
 import { FloatingWhatsApp } from "./FloatingWhatsApp";
 import { ServiceWorker } from "./ServiceWorker";
+import { BackRestore } from "./BackRestore";
 
 export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
@@ -16,6 +17,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
         {children}
         <FloatingWhatsApp />
         <ServiceWorker />
+        <BackRestore />
         </QuizResultsProvider>
         </DecksProvider>
       </ProgressProvider>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Check, Circle } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { useProgress } from "@/lib/progress";
@@ -28,6 +28,15 @@ export function LessonComplete({
   const { lang } = useI18n();
   const { ready, isDone, toggle } = useProgress();
   const done = isDone(portal, slug);
+  /* An accidental double-tap marked the lesson done and silently un-marked it
+     again. Un-marking within half a second of marking is never intended. */
+  const lastToggle = useRef(0);
+  const guardedToggle = () => {
+    const now = Date.now();
+    if (done && now - lastToggle.current < 500) return;
+    lastToggle.current = now;
+    toggle(portal, slug);
+  };
   const aced = quizTotal > 0 && quizScore >= quizTotal;
 
   /* Answering every question correctly is finishing the lesson. Until now the
@@ -45,7 +54,7 @@ export function LessonComplete({
     <div className="mt-10 flex flex-wrap items-center gap-3">
       <button
         type="button"
-        onClick={() => toggle(portal, slug)}
+        onClick={guardedToggle}
         aria-pressed={done}
         aria-label={done ? copy.undo[lang] : copy.mark[lang]}
         /* Invisible until storage has been read, so the button never flips

@@ -36,6 +36,27 @@ type Entry = {
   extra?: string;
 };
 
+/* Spelling variants the folding cannot derive. The salah lessons write వుజూ
+   while a child typing what they heard writes వుదూ (a kid persona typed the
+   portal's own word and got nothing); both Roman spellings circulate too.
+   Each pair maps in both directions. */
+const ALIASES: [string, string][] = [
+  ["వుదూ", "వుజూ"],
+  ["వుజు", "వుజూ"],
+  ["wudu", "wuzu"],
+  ["namaz", "salah"],
+  ["నమాజు", "నమాజ్"],
+];
+
+function queryVariants(q: string): string[] {
+  const out = [q];
+  for (const [a, b] of ALIASES) {
+    if (q.includes(a)) out.push(q.replaceAll(a, b));
+    if (q.includes(b)) out.push(q.replaceAll(b, a));
+  }
+  return out;
+}
+
 /* Scored rather than filtered: a title match should beat a body mention, or
    searching "quran" buries the Quran portal under every lesson that says it. */
 function score(e: Entry, q: string, lang: "te" | "en"): number {
@@ -89,8 +110,9 @@ export function SiteSearch() {
   const results = useMemo(() => {
     const q = foldSearch(query.trim());
     if (!q || !index) return [];
+    const variants = queryVariants(q);
     return index
-      .map((e) => ({ e, s: score(e, q, lang) }))
+      .map((e) => ({ e, s: Math.max(...variants.map((v) => score(e, v, lang))) }))
       .filter((r) => r.s > 0)
       .sort((a, b) => b.s - a.s)
       .slice(0, 30)

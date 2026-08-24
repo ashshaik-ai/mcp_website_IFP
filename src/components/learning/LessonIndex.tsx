@@ -87,7 +87,7 @@ export function LessonIndex({ portal }: { portal: string }) {
         {/* Finishing a portal produced nothing at all — not a line of
             acknowledgement. */}
         {ready && countFor(portal, slugs) === items.length && (
-          <div className="mb-6 flex flex-wrap items-center gap-4 rounded-2xl border border-[var(--if-gold)]/40 bg-[color-mix(in_srgb,var(--if-gold)_10%,white)] p-5">
+          <div className="mb-6 flex flex-col items-start gap-4 rounded-2xl border border-[var(--if-gold)]/40 bg-[color-mix(in_srgb,var(--if-gold)_10%,white)] p-5 sm:flex-row sm:items-center">
             <div className="min-w-0 flex-1">
               <p className="font-display text-lg font-bold text-[var(--if-green)]">
                 {copy.finished[lang]}

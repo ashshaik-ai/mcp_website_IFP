@@ -14,9 +14,11 @@ const copy = {
     te: "మీరు వెతుకుతున్న పేజీ తీసివేయబడి ఉండవచ్చు, లేదా చిరునామా తప్పుగా ఉండవచ్చు. కింది వాటిలో ఒకటి ప్రయత్నించండి.",
     en: "The page you were looking for may have moved, or the address may have a typo. Try one of these instead.",
   },
+  /* The header carries a magnifier icon, not a visible box — the old wording
+     sent readers hunting for a field that is not there. */
   search_hint: {
-    te: "పైన ఉన్న శోధనలో వెతకవచ్చు.",
-    en: "You can also search from the box in the header.",
+    te: "పైన ఉన్న భూతద్దం గుర్తు (శోధన) నుండి కూడా వెతకవచ్చు.",
+    en: "You can also search — the magnifier icon in the header, or Ctrl+K.",
   },
 } as const;
 

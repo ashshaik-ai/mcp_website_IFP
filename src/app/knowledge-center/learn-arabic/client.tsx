@@ -190,7 +190,7 @@ function LearnArabicPage() {
               <BlurFade key={i} delay={0.08 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-6 text-center hover:border-[var(--if-gold)]/40 transition-colors group">
                   <BorderBeam size={80} duration={6} colorFrom="#c8922a" colorTo="#c8922a" className="opacity-0 group-hover:opacity-100" />
-                  <div className="font-arabic text-2xl text-[var(--if-gold-light)] mb-4 leading-relaxed" dir="rtl">{item.ar}</div>
+                  <div className="font-arabic text-2xl text-[var(--if-gold-ink)] mb-4 leading-relaxed" dir="rtl">{item.ar}</div>
                   <h3 className="font-semibold text-[var(--if-green)] mb-2">{item.title[lang]}</h3>
                   <p className="text-sm text-[var(--if-text-muted)]">{item.desc[lang]}</p>
                 </div>

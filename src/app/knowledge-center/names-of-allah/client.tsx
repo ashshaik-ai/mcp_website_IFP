@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { foldSearch } from "@/lib/search-text";
@@ -133,17 +133,6 @@ function NamesOfAllahPage() {
   const { lang } = useI18n();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<typeof names[0] | null>(null);
-  /* The detail card renders after the grid of ninety-nine, which puts it
-     thousands of pixels below the tile you just tapped — the click read as
-     doing nothing at all. Bring it to the reader instead. */
-  const detailRef = useRef<HTMLElement>(null);
-  useEffect(() => {
-    if (!selected) return;
-    const el = detailRef.current;
-    if (!el) return;
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
-  }, [selected]);
 
   const speak = useCallback((text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -210,7 +199,8 @@ function NamesOfAllahPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {filtered.map((name, i) => (
-              <BlurFade key={name.n} delay={Math.min(0.02 * i, 0.4)}>
+              <Fragment key={name.n}>
+              <BlurFade delay={Math.min(0.02 * i, 0.4)}>
                 <button
                   onClick={() => { setSelected(selected?.n === name.n ? null : name); speak(name.ar); }}
                   className={`relative overflow-hidden w-full text-center p-3 rounded-xl border transition-all ${selected?.n === name.n ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}
@@ -226,21 +216,14 @@ function NamesOfAllahPage() {
                   <div className={`text-xs mt-0.5 leading-snug ${selected?.n === name.n ? "text-[var(--if-gold-pale)]/85" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? name.te : name.en}</div>
                 </button>
               </BlurFade>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <p className="text-center text-[var(--if-text-muted)] mt-8">{copy.no_results_found[lang]}</p>
-          )}
-        </div>
-      </section>
-
-      {/* Detail panel */}
-      {selected && (
-        <section ref={detailRef} className="if-defer py-10 px-4 scroll-mt-32">
-          <div className="mx-auto max-w-md">
+              {/* The detail opens inside the grid, right under the tapped
+                  tile's row. A separate section below all ninety-nine cards
+                  meant a long scroll away and back for every name — and a
+                  detail that could outlive the search that hid its card. */}
+              {selected?.n === name.n && (
+              <div className="col-span-full">
             <BlurFade delay={0.05}>
-              <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)]">
+              <div className="relative overflow-hidden bg-[var(--if-green)] rounded-2xl p-8 text-center text-[var(--if-gold-pale)] mx-auto max-w-md">
                 <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#e8b84b" />
                 <div className="text-xs font-bold text-[var(--if-gold-light)] mb-2">#{selected.n}</div>
                 <div className="font-arabic text-5xl text-[var(--if-gold-light)] mb-3 leading-relaxed" dir="rtl">{selected.ar}</div>
@@ -255,9 +238,17 @@ function NamesOfAllahPage() {
                 </button>
               </div>
             </BlurFade>
+              </div>
+              )}
+              </Fragment>
+            ))}
           </div>
-        </section>
-      )}
+
+          {filtered.length === 0 && (
+            <p className="text-center text-[var(--if-text-muted)] mt-8">{copy.no_results_found[lang]}</p>
+          )}
+        </div>
+      </section>
 
       {/* The grid teaches the names; these teach what to do with them. */}
       {/* ── Simulator ── */}

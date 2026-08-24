@@ -672,11 +672,14 @@ function Homepage() {
           </BlurFade>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
             {infra.map(({ icon: Icon, count, label }, i) => (
-              <BlurFade key={i} delay={0.08 * i}>
-                <div className="relative overflow-hidden text-center p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40 transition-colors group">
+              <BlurFade key={i} delay={0.08 * i} className="h-full">
+                <div className="relative h-full overflow-hidden text-center p-6 rounded-2xl bg-[var(--if-cream-light)] border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40 transition-colors group">
                   <BorderBeam size={60} duration={5} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
                   <Icon className="h-7 w-7 mx-auto mb-3 text-[var(--if-gold-ink)]" />
-                  <div className="font-display text-3xl font-bold text-[var(--if-green)]">
+                  {/* nowrap and a phone size step: at 390px the three-up cards
+                      are ~62px inside padding, and "120+" broke its plus sign
+                      onto its own line. */}
+                  <div className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] whitespace-nowrap">
                     <NumberTicker value={parseInt(count) || 0} />
                     {count.includes("+") ? "+" : ""}
                   </div>

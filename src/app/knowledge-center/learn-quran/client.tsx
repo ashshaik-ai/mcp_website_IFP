@@ -220,27 +220,27 @@ const rabbanaDuas = [
 ];
 
 const surahs = [
-  { no: 1,   ar: "الفاتحة",  en: "Al-Fatihah", meaning: { te: "ఆరంభం", en: "The Opening" },
+  { no: 1,   ar: "الفاتحة",  en: "Al-Fatihah", te: "అల్-ఫాతిహా", meaning: { te: "ఆరంభం", en: "The Opening" },
     virtue: { te: "అత్యంత గొప్ప సూరా — ప్రతి నమాజ్ రకాత్‌లో పఠించబడుతుంది.", en: "The greatest Surah — recited in every unit of every prayer." },
     lesson: { te: "పూర్తి రోజువారీ ప్రార్థన: స్తుతి, భక్తి, మార్గదర్శనం కోరడం.", en: "A complete daily prayer: praise, devotion, and asking for guidance." },
     tip: { te: "ప్రతి నమాజ్‌లో పఠిస్తారు కాబట్టి ఇది మొదట కంఠస్థం చేయండి.", en: "Memorise this first — it is recited in every prayer." } },
-  { no: 112, ar: "الإخلاص", en: "Al-Ikhlas", meaning: { te: "నిష్కాపట్యం", en: "Sincerity" },
+  { no: 112, ar: "الإخلاص", en: "Al-Ikhlas", te: "అల్-ఇఖ్లాస్", meaning: { te: "నిష్కాపట్యం", en: "Sincerity" },
     virtue: { te: "ప్రతిఫలంలో ఖురాన్‌లో మూడింట ఒక వంతు; తౌహీద్ సారాంశం.", en: "Equals one-third of the Quran in reward; the essence of Tawheed." },
     lesson: { te: "అల్లాహ్ ఏకైకుడు, భాగస్వామి లేడు — స్వచ్ఛ విశ్వాసం హృదయం.", en: "Allah is One, with no partner — the heart of pure faith." },
     tip: { te: "కేవలం 4 వచనాలు — ప్రారంభకుల కోసం ఆదర్శం.", en: "Only 4 verses — ideal for beginners to memorise first." } },
-  { no: 113, ar: "الفلق",   en: "Al-Falaq", meaning: { te: "ఉదయం", en: "The Daybreak" },
+  { no: 113, ar: "الفلق",   en: "Al-Falaq", te: "అల్-ఫలఖ్", meaning: { te: "ఉదయం", en: "The Daybreak" },
     virtue: { te: "అన్ని హానుల నుండి శరణు కోసం పఠించే రక్షణ సూరా.", en: "A protection (muʿawwidhat) recited for refuge from all harm." },
     lesson: { te: "ప్రతి బాహ్య హాని నుండి అల్లాహ్ రక్షణను కోరండి.", en: "Seek Allah's protection from every outward harm." },
     tip: { te: "అల్-ఫలఖ్ మరియు అన్-నాస్ రాత్రి నిద్రపోయే ముందు కలిపి చదవండి.", en: "Recite Al-Falaq and An-Nas together before sleeping each night." } },
-  { no: 114, ar: "الناس",   en: "An-Nas", meaning: { te: "మానవజాతి", en: "Mankind" },
+  { no: 114, ar: "الناس",   en: "An-Nas", te: "అన్-నాస్", meaning: { te: "మానవజాతి", en: "Mankind" },
     virtue: { te: "చెడు గుసగుసలాడేవాడి నుండి అల్లాహ్ శరణు కోరుతుంది.", en: "Seeks refuge in Allah from the whisperer of evil." },
     lesson: { te: "లోపలి గుసగుసలు, సందేహాల నుండి అల్లాహ్ రక్షణను కోరండి.", en: "Seek Allah's protection from inner whispers and doubt." },
     tip: { te: "ఈ సూరా ఉదయం మరియు సాయంత్రం రక్షణ కోసం పఠించండి.", en: "Recite morning and evening for daily protection." } },
-  { no: 103, ar: "العصر",   en: "Al-Asr", meaning: { te: "కాలం", en: "Time" },
+  { no: 103, ar: "العصر",   en: "Al-Asr", te: "అల్-అస్ర్", meaning: { te: "కాలం", en: "Time" },
     virtue: { te: "ఇమామ్ షాఫయీ: ఇది ఒక్కటే అవతరించినా ప్రజలకు సరిపోయేది.", en: "Imam Shafiʿi: had only this been revealed, it would suffice." },
     lesson: { te: "విశ్వాసం, సత్కర్మలు, సత్యం, ఓర్పు నష్టం నుండి కాపాడతాయి.", en: "Faith, good deeds, truth, and patience save us from loss." },
     tip: { te: "3 వచనాలలో సమగ్ర జీవిత మార్గదర్శనం — ముందుగా కంఠస్థం చేయండి.", en: "Complete life guidance in 3 verses — memorise early." } },
-  { no: 67,  ar: "الملك",   en: "Al-Mulk", meaning: { te: "సార్వభౌమత్వం", en: "The Sovereignty" },
+  { no: 67,  ar: "الملك",   en: "Al-Mulk", te: "అల్-ముల్క్", meaning: { te: "సార్వభౌమత్వం", en: "The Sovereignty" },
     virtue: { te: "పఠించేవారికి సిఫారసు చేస్తుంది, సమాధి శిక్ష నుండి కాపాడుతుంది.", en: "Intercedes for its reciter and guards from the punishment of the grave." },
     lesson: { te: "సర్వాధికారం అల్లాహ్‌దే, ఆయన ప్రతిదీ చూస్తాడు, పరీక్షిస్తాడు.", en: "All power belongs to Allah, who sees and tests everything." },
     tip: { te: "రాత్రి నిద్రపోయే ముందు ప్రతిరోజూ పఠించడం సున్నత్.", en: "Sunnah to recite every night before sleeping." } },
@@ -430,8 +430,10 @@ function LearnQuranPage() {
             </p>
           </BlurFade>
 
-          {/* Step dots */}
-          <div className="flex gap-2 flex-wrap mb-3">
+          {/* Step dots. min-w-9 with a max-w cap: at 44px minimum the eight
+              dots overflowed a 390px row and the wrapped eighth grew into a
+              full-width second bar. 36px still clears the 24px target floor. */}
+          <div className="flex gap-1.5 sm:gap-2 flex-wrap mb-3">
             {tajweedSteps.map((_, i) => (
               <button
                 key={i}
@@ -439,7 +441,7 @@ function LearnQuranPage() {
                 onClick={() => setTjIdx(i)}
                 aria-label={`${copy.rule[lang]} ${i + 1}`}
                 aria-current={i === tjIdx ? "step" : undefined}
-                className="flex-1 min-w-11 min-h-11 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="flex-1 min-w-9 max-w-16 min-h-11 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               >
                 {/* 24px hit box (WCAG 2.2 AA), 8px visual bar inside. */}
                 <span
@@ -571,7 +573,7 @@ function LearnQuranPage() {
                   <BorderBeam size={80} duration={6} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="font-semibold text-[var(--if-green)]">{s.en}</h3>
+                      <h3 className="font-semibold text-[var(--if-green)]">{lang === "te" ? s.te : s.en}</h3>
                       <p className="text-xs text-emerald-700 font-medium">{s.meaning[lang]}</p>
                     </div>
                     <span className="font-arabic text-3xl text-[var(--if-gold-light)]" dir="rtl" lang="ar">{s.ar}</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -105,6 +105,15 @@ function WomensGuidancePage() {
   const { lang } = useI18n();
   const [active, setActive] = useState(0);
 
+  /* Next/Previous move the selection; the pill strip follows, or past the
+     third section the highlighted pill sat off-screen. */
+  useEffect(() => {
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    document
+      .getElementById(`if-wg-pill-${active}`)
+      ?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", inline: "center", block: "nearest" });
+  }, [active]);
+
   const s = sections[active];
 
   return (
@@ -138,7 +147,7 @@ function WomensGuidancePage() {
       <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
         <div className="if-tabstrip mx-auto max-w-5xl overflow-x-auto flex gap-2 pb-1">
           {sections.map((sec, i) => (
-            <button key={sec.id} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
+            <button key={sec.id} id={`if-wg-pill-${i}`} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {sec.title[lang]}
             </button>
           ))}
@@ -222,7 +231,14 @@ function WomensGuidancePage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+            {lang === "te" ? "ఘుస్ల్ — దశలవారీగా చూడండి" : "Ghusl — step by step"}
+          </h2>
+          <p className="text-center text-sm text-[var(--if-text-muted)] mb-8 text-pretty">
+            {lang === "te"
+              ? "హైద్ లేదా జనాబత్ తర్వాత పూర్తి స్నానం ఎలా చేయాలో ఈ సిమ్యులేటర్ చూపిస్తుంది."
+              : "How the full purifying bath is performed after hayd or janabah, played through."}
+          </p>
           <Simulator steps={ghuslSteps} scene={WuduScene} autoplay />
         </div>
       </section>

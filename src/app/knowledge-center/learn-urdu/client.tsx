@@ -66,7 +66,7 @@ function LearnUrduPage() {
             </Link>
           </BlurFade>
           <BlurFade delay={0.1}>
-            <span className="text-4xl text-[var(--if-gold-light)]" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">سیکھیں اردو</span>
+            <span className="text-4xl text-[var(--if-gold-light)]" style={{ fontFamily: "'Noto Nastaliq Urdu', serif" }} dir="rtl">اردو سیکھیں</span>
           </BlurFade>
           <BlurFade delay={0.15}>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-[var(--if-gold-light)]">

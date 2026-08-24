@@ -104,12 +104,15 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
 
           {/* Hidden until storage has been read, so the bar never animates from
               empty to full in front of a returning learner. */}
+          {/* Phones used to hide this entirely, which defeated the bar's whole
+              purpose for the audience most of the site serves; it now shows a
+              narrower track instead. */}
           <div
-            className="hidden items-center gap-2 sm:flex"
+            className="flex items-center gap-2"
             style={{ visibility: ready && done > 0 ? "visible" : "hidden" }}
           >
             <div
-              className="h-1.5 w-16 overflow-hidden rounded-full bg-[var(--if-gold)]/20 sm:w-24"
+              className="h-1.5 w-10 overflow-hidden rounded-full bg-[var(--if-gold)]/20 sm:w-24"
               role="progressbar"
               aria-valuemin={0}
               aria-valuemax={items.length}

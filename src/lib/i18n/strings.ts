@@ -20,8 +20,10 @@ export const strings = {
   hero_title:     { te: "ఇస్లామిక్ ఫ్రంట్", en: "Islamic Front" },
   hero_sub:       { te: "2011 నుండి మంగళగిరి ముస్లిం సమాజానికి సేవ చేస్తున్నాం", en: "Serving the Muslim community of Mangalagiri since 2011" },
   hero_cta:       { te: "మా సాధనలు చూడండి →", en: "Our Achievements →" },
-  hero_seats:     { te: "7/9 సీట్లు గెలిచాం 2023", en: "7/9 Seats Won 2023" },
-  hero_years:     { te: "15+ సేవా సంవత్సరాలు", en: "15+ Years of Service" },
+  /* No figure in these: the stat card prints the number large directly above
+     this caption, and it used to be repeated — "7/9" over "7/9 Seats Won". */
+  hero_seats:     { te: "సీట్లు గెలిచాం · 2023", en: "seats won · 2023" },
+  hero_years:     { te: "సేవా సంవత్సరాలు", en: "years of service" },
 
   // Sections
   section_victory_tag:  { te: "ఎన్నికల ఫలితాలు · జూలై 2023", en: "Election Results · July 2023" },

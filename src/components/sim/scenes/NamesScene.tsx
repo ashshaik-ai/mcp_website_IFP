@@ -53,7 +53,9 @@ export function NamesScene({ step, index }: SceneProps) {
           {step.arabic}
         </text>
       </g>
-      <text x={cx} y={cy + 66} textAnchor="middle" fontSize="15" fill="rgba(245,230,192,0.75)" fontStyle="italic">{step.translit}</text>
+      {/* cy+92, not +66: Amiri's descenders at 82px reach ~33px below the
+          baseline and were striking through the transliteration. */}
+      <text x={cx} y={cy + 92} textAnchor="middle" fontSize="15" fill="rgba(245,230,192,0.75)" fontStyle="italic">{step.translit}</text>
       <text x="462" y="304" textAnchor="end" fontSize="13" fill="rgba(245,230,192,0.55)" fontWeight="700">{index + 1} / {N}</text>
     </g>
     </svg>

@@ -19,9 +19,10 @@ export function ComparisonTable({
   const { lang } = useI18n();
 
   return (
-    /* tabIndex and a region role make the horizontal scroll reachable by
+    <div>
+    {/* tabIndex and a region role make the horizontal scroll reachable by
        keyboard. Without them someone who cannot use a pointer can see the
-       table is cut off and has no way to scroll it. */
+       table is cut off and has no way to scroll it. */}
     <div
       role="region"
       aria-label={lang === "te" ? "పోలిక పట్టిక" : "Comparison table"}
@@ -67,6 +68,12 @@ export function ComparisonTable({
           ))}
         </tbody>
       </table>
+    </div>
+    {/* The table is 34rem wide and phones show ~24 of them; nothing said the
+        Note column existed. Hidden from sm up, where the table fits whole. */}
+    <p aria-hidden="true" className="mt-1.5 text-right text-xs text-[var(--if-text-muted)] sm:hidden">
+      {lang === "te" ? "పట్టికను పక్కకు జరపండి →" : "Swipe the table sideways →"}
+    </p>
     </div>
   );
 }

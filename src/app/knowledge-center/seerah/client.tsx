@@ -48,12 +48,12 @@ const eraLabel: Record<string, { te: string; en: string }> = {
 };
 
 const characters = [
-  { name: "Khadijah RA", ar: "خديجة", role: { te: "మొదటి భార్య — ఇస్లామ్‌లో మొదటి విశ్వాసి", en: "First wife — first believer in Islam" }, event: { te: "ఆయన హిరాలో ప్రకంపించినప్పుడు ఓదార్చి, వెంటనే విశ్వసించారు", en: "Comforted him when he trembled at Hira and believed at once" }, era: "Makkah" },
-  { name: "Abu Bakr RA", ar: "أبو بكر", role: { te: "అత్యంత సన్నిహిత తోడు — అస్-సిద్దీఖ్", en: "Closest companion — As-Siddiq (the truthful)" }, event: { te: "హిజ్రా సమయంలో సౌర్ గుహలో ఆయనతో ఉన్నారు", en: "Accompanied him in Cave Thawr during the Hijrah" }, era: "Both" },
-  { name: "Umar ibn Khattab RA", ar: "عمر", role: { te: "ఇస్లాం బలోపేతానికి కారణమైన అల్-ఫారూఖ్", en: "Al-Farooq — whose embrace strengthened Islam" }, event: { te: "ఆయన ఇస్లాం స్వీకారం ముస్లింలలో ధైర్యాన్ని పెంచింది", en: "His conversion gave the Muslims new confidence to practise openly" }, era: "Makkah" },
-  { name: "Ali ibn Abi Talib RA", ar: "علي", role: { te: "వ్యవస్థాపకుడి సోదరుడు — జ్ఞానపు ద్వారం", en: "Cousin and son-in-law — 'Gate of knowledge'" }, event: { te: "హిజ్రా రాత్రి ప్రవక్త ﷺ మంచంలో ప్రాణ ప్రమాదం ఉన్నా పడుకున్నారు", en: "Slept in the Prophet's ﷺ bed the night of Hijrah, risking his life" }, era: "Both" },
-  { name: "Bilal ibn Rabah RA", ar: "بلال", role: { te: "మొదటి ముఆజ్జిన్ — సహనానికి చిహ్నం", en: "First Muezzin — symbol of patience and resilience" }, event: { te: "హింసలో 'అహద్! అహద్!' అని ఓర్చుకున్న నిష్కల విశ్వాసం", en: "Endured torture crying 'Ahad! Ahad!' — a symbol of unshakeable faith" }, era: "Makkah" },
-  { name: "Fatimah RA", ar: "فاطمة", role: { te: "ప్రవక్త కుమార్తె — స్వర్గ మహిళలకు నాయకురాలు", en: "Prophet's daughter — leader of women in Paradise" }, event: { te: "ప్రవక్త ﷺ ఆమె వచ్చినప్పుడు లేచి నుదుటిపై ముద్దు పెట్టేవారు", en: "The Prophet ﷺ would rise and kiss her forehead whenever she came" }, era: "Madinah" },
+  { name: { te: "ఖదీజా (ర/అ)", en: "Khadijah RA" }, ar: "خديجة", role: { te: "మొదటి భార్య — ఇస్లామ్‌లో మొదటి విశ్వాసి", en: "First wife — first believer in Islam" }, event: { te: "ఆయన హిరాలో ప్రకంపించినప్పుడు ఓదార్చి, వెంటనే విశ్వసించారు", en: "Comforted him when he trembled at Hira and believed at once" }, era: "Makkah" },
+  { name: { te: "అబూ బక్ర్ (ర/అ)", en: "Abu Bakr RA" }, ar: "أبو بكر", role: { te: "అత్యంత సన్నిహిత తోడు — అస్-సిద్దీఖ్", en: "Closest companion — As-Siddiq (the truthful)" }, event: { te: "హిజ్రా సమయంలో సౌర్ గుహలో ఆయనతో ఉన్నారు", en: "Accompanied him in Cave Thawr during the Hijrah" }, era: "Both" },
+  { name: { te: "ఉమర్ ఇబ్న్ ఖత్తాబ్ (ర/అ)", en: "Umar ibn Khattab RA" }, ar: "عمر", role: { te: "ఇస్లాం బలోపేతానికి కారణమైన అల్-ఫారూఖ్", en: "Al-Farooq — whose embrace strengthened Islam" }, event: { te: "ఆయన ఇస్లాం స్వీకారం ముస్లింలలో ధైర్యాన్ని పెంచింది", en: "His conversion gave the Muslims new confidence to practise openly" }, era: "Makkah" },
+  { name: { te: "అలీ ఇబ్న్ అబీ తాలిబ్ (ర/అ)", en: "Ali ibn Abi Talib RA" }, ar: "علي", role: { te: "వ్యవస్థాపకుడి సోదరుడు — జ్ఞానపు ద్వారం", en: "Cousin and son-in-law — 'Gate of knowledge'" }, event: { te: "హిజ్రా రాత్రి ప్రవక్త ﷺ మంచంలో ప్రాణ ప్రమాదం ఉన్నా పడుకున్నారు", en: "Slept in the Prophet's ﷺ bed the night of Hijrah, risking his life" }, era: "Both" },
+  { name: { te: "బిలాల్ ఇబ్న్ రబాహ్ (ర/అ)", en: "Bilal ibn Rabah RA" }, ar: "بلال", role: { te: "మొదటి ముఆజ్జిన్ — సహనానికి చిహ్నం", en: "First Muezzin — symbol of patience and resilience" }, event: { te: "హింసలో 'అహద్! అహద్!' అని ఓర్చుకున్న నిష్కల విశ్వాసం", en: "Endured torture crying 'Ahad! Ahad!' — a symbol of unshakeable faith" }, era: "Makkah" },
+  { name: { te: "ఫాతిమా (ర/అ)", en: "Fatimah RA" }, ar: "فاطمة", role: { te: "ప్రవక్త కుమార్తె — స్వర్గ మహిళలకు నాయకురాలు", en: "Prophet's daughter — leader of women in Paradise" }, event: { te: "ప్రవక్త ﷺ ఆమె వచ్చినప్పుడు లేచి నుదుటిపై ముద్దు పెట్టేవారు", en: "The Prophet ﷺ would rise and kiss her forehead whenever she came" }, era: "Madinah" },
 ];
 
 /* ── SALAWAT ── */
@@ -256,16 +256,16 @@ function SeerahPage() {
           </BlurFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {characters.map((c, i) => (
-              <BlurFade key={c.name} delay={0.07 * i}>
+              <BlurFade key={c.name.en} delay={0.07 * i}>
                 <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-5 hover:border-[var(--if-gold)]/50 transition-all group flex flex-col">
                   <BorderBeam size={80} duration={7} colorFrom="#c8922a" colorTo="#e8b84b" className="opacity-0 group-hover:opacity-100" />
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-11 h-11 rounded-full bg-[var(--if-green)] flex items-center justify-center text-[var(--if-gold-light)] font-bold flex-shrink-0">
-                      {c.name[0]}
+                      {c.name[lang][0]}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[var(--if-green)] text-sm">{c.name}</h3>
-                      <span className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl" lang="ar">{c.ar}</span>
+                      <h3 className="font-semibold text-[var(--if-green)] text-sm">{c.name[lang]}</h3>
+                      <span className="font-arabic text-sm text-[var(--if-gold-ink)]" dir="rtl" lang="ar">{c.ar}</span>
                     </div>
                     <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full bg-[var(--if-gold)]/10 text-[var(--if-gold-ink)] border border-[var(--if-gold)]/20">{eraLabel[c.era][lang]}</span>
                   </div>

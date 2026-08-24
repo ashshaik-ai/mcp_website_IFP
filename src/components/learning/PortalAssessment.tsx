@@ -7,6 +7,16 @@ import { useI18n } from "@/lib/i18n/context";
 import { buzz } from "@/lib/haptics";
 import { celebrate } from "@/lib/celebrate";
 import type { AssessmentQuestion } from "@/content/assessment-bank";
+import { quizOrder } from "@/lib/quiz-order";
+
+/* The bank inherits the site's `answer: 0` authoring convention, so without
+   this the first option is always right — five audit personas passed 12/12
+   without reading a question. Same seeded shuffle the lesson quizzes use. */
+const shuffle = (qs: AssessmentQuestion[]): AssessmentQuestion[] =>
+  qs.map((q) => {
+    const { order, answer } = quizOrder(q.q.en, q.options.length, q.answer);
+    return { ...q, options: order.map((i) => q.options[i]), answer };
+  });
 
 /* The end-of-portal assessment.
 
@@ -93,7 +103,7 @@ export function PortalAssessment({ portal }: { portal: string }) {
   const start = useCallback(async () => {
     setLoading(true);
     const m = await import("@/content/assessment-bank");
-    const qs = m.assessmentFor(portal);
+    const qs = shuffle(m.assessmentFor(portal));
     setBank(qs);
     setPicks(Array(qs.length).fill(null));
     setAt(0);
@@ -248,7 +258,7 @@ export function PortalAssessment({ portal }: { portal: string }) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-6">
+    <div className="flex flex-col items-start gap-4 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-6 sm:flex-row sm:items-center">
       <div className="min-w-0 flex-1">
         <p className="inline-flex items-center gap-2 font-display text-lg font-bold text-[var(--if-green)]">
           <ClipboardCheck aria-hidden="true" className="h-5 w-5 text-[var(--if-gold-ink)]" />
@@ -266,7 +276,7 @@ export function PortalAssessment({ portal }: { portal: string }) {
       <button
         type="button"
         onClick={start}
-        className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-[var(--if-green)] px-5 text-sm font-bold text-[var(--if-gold-light)] transition-colors hover:bg-[var(--if-green-mid)]"
+        className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[var(--if-green)] px-5 text-sm font-bold text-[var(--if-gold-light)] transition-colors hover:bg-[var(--if-green-mid)] sm:w-auto"
       >
         {loading ? copy.loading[lang] : best !== null ? copy.retake[lang] : copy.start[lang]}
         <ArrowRight aria-hidden="true" className="h-4 w-4" />

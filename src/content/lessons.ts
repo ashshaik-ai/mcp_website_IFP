@@ -3182,7 +3182,7 @@ export const lessons: Lesson[] = [
           "en": "Birth and lineage"
         },
         "body": {
-          "te": "ఆయన 570 సా.శ.లో, ఏనుగు సంవత్సరంలో, గౌరవనీయ బనూ హాషిం వంశంలో మక్కాలో జన్మించారు. జననానికి ముందే తండ్రి అబ్దుల్లాహ్, ఆరేళ్ల వయసులో తల్లి ఆమినా మరణించడంతో అనాథగా పెరిగారు.",
+          "te": "ఆయన 570 క్రీ.శ.లో, ఏనుగు సంవత్సరంలో, గౌరవనీయ బనూ హాషిం వంశంలో మక్కాలో జన్మించారు. జననానికి ముందే తండ్రి అబ్దుల్లాహ్, ఆరేళ్ల వయసులో తల్లి ఆమినా మరణించడంతో అనాథగా పెరిగారు.",
           "en": "He was born in Makkah in 570 CE, the Year of the Elephant, into the respected clan of Banu Hashim. His father Abdullah died before his birth and his mother Aminah died when he was six, so he grew up as an orphan."
         }
       },
@@ -3302,15 +3302,15 @@ export const lessons: Lesson[] = [
         },
         "options": [
           {
-            "te": "570 సా.శ.",
+            "te": "570 క్రీ.శ.",
             "en": "570 CE"
           },
           {
-            "te": "610 సా.శ.",
+            "te": "610 క్రీ.శ.",
             "en": "610 CE"
           },
           {
-            "te": "622 సా.శ.",
+            "te": "622 క్రీ.శ.",
             "en": "622 CE"
           }
         ],
@@ -3862,7 +3862,7 @@ export const lessons: Lesson[] = [
           "en": "The Hijrah"
         },
         "body": {
-          "te": "622 సా.శ.లో ప్రవక్త ﷺ అబూ బక్ర్ (ర/అ)తో మక్కా నుండి మదీనాకు వలస వెళ్లారు, మార్గమధ్యంలో సౌర్ గుహలో ఆశ్రయం పొందారు. ఈ వలస ఇస్లామిక్ (హిజ్రీ) క్యాలెండర్ ఆరంభాన్ని సూచిస్తుంది.",
+          "te": "622 క్రీ.శ.లో ప్రవక్త ﷺ అబూ బక్ర్ (ర/అ)తో మక్కా నుండి మదీనాకు వలస వెళ్లారు, మార్గమధ్యంలో సౌర్ గుహలో ఆశ్రయం పొందారు. ఈ వలస ఇస్లామిక్ (హిజ్రీ) క్యాలెండర్ ఆరంభాన్ని సూచిస్తుంది.",
           "en": "In 622 CE the Prophet ﷺ migrated from Makkah to Madinah with Abu Bakr (RA), sheltering in the Cave of Thawr along the way. This migration marks the start of the Islamic (Hijri) calendar."
         },
         "check": {
@@ -4086,7 +4086,7 @@ export const lessons: Lesson[] = [
           "en": "Badr, Uhud, and Khandaq"
         },
         "body": {
-          "te": "బద్ర్ (624 సా.శ.)లో చిన్న ముస్లిం సైన్యానికి విజయం లభించింది. ఉహుద్ (625 సా.శ.)లో నియమిత స్థానాన్ని వదలడం ఆధిక్యతను కష్టంగా మార్చింది — క్రమశిక్షణలో పాఠం. ఖందఖ్ (627 సా.శ.)లో సల్మాన్ అల్-ఫారిసీ (ర/అ) సూచించిన రక్షణ కందకం మదీనాను కాపాడింది.",
+          "te": "బద్ర్ (624 క్రీ.శ.)లో చిన్న ముస్లిం సైన్యానికి విజయం లభించింది. ఉహుద్ (625 క్రీ.శ.)లో నియమిత స్థానాన్ని వదలడం ఆధిక్యతను కష్టంగా మార్చింది — క్రమశిక్షణలో పాఠం. ఖందఖ్ (627 క్రీ.శ.)లో సల్మాన్ అల్-ఫారిసీ (ర/అ) సూచించిన రక్షణ కందకం మదీనాను కాపాడింది.",
           "en": "At Badr (624 CE) a small Muslim force was granted victory. At Uhud (625 CE) leaving an assigned post turned advantage into hardship — a lesson in discipline. At Khandaq (627 CE) a defensive trench, suggested by Salman al-Farisi (RA), protected Madinah."
         },
         "check": {
@@ -4117,7 +4117,7 @@ export const lessons: Lesson[] = [
           "en": "Hudaybiyyah and the Conquest of Makkah"
         },
         "body": {
-          "te": "హుదైబియా ఒప్పందం (628 సా.శ.) ఖురాన్ స్పష్టమైన విజయం అని పిలిచిన శాంతిని తెచ్చింది. 630 సా.శ.లో మక్కాలోకి శాంతియుతంగా ప్రవేశించారు, తనతో పోరాడినవారిని ప్రవక్త ﷺ క్షమించారు.",
+          "te": "హుదైబియా ఒప్పందం (628 క్రీ.శ.) ఖురాన్ స్పష్టమైన విజయం అని పిలిచిన శాంతిని తెచ్చింది. 630 క్రీ.శ.లో మక్కాలోకి శాంతియుతంగా ప్రవేశించారు, తనతో పోరాడినవారిని ప్రవక్త ﷺ క్షమించారు.",
           "en": "The Treaty of Hudaybiyyah (628 CE) brought a peace that the Quran called a clear victory. In 630 CE Makkah was entered peacefully, and the Prophet ﷺ forgave those who had fought him."
         }
       },
@@ -4127,7 +4127,7 @@ export const lessons: Lesson[] = [
           "en": "The Farewell Pilgrimage"
         },
         "body": {
-          "te": "632 సా.శ.లో, విశాల సమూహం ముందు ప్రవక్త ﷺ వీడ్కోలు ప్రసంగం చేసి, మానవులందరి సమానత్వం, ప్రాణ, ఆస్తి పవిత్రత, స్త్రీల హక్కులను ధృవీకరించారు.",
+          "te": "632 క్రీ.శ.లో, విశాల సమూహం ముందు ప్రవక్త ﷺ వీడ్కోలు ప్రసంగం చేసి, మానవులందరి సమానత్వం, ప్రాణ, ఆస్తి పవిత్రత, స్త్రీల హక్కులను ధృవీకరించారు.",
           "en": "In 632 CE, before a vast gathering, the Prophet ﷺ delivered the Farewell Sermon, affirming the equality of all people, the sanctity of life and property, and the rights of women."
         }
       }
@@ -4330,7 +4330,7 @@ export const lessons: Lesson[] = [
           "en": "The Final Sermon and his passing"
         },
         "body": {
-          "te": "వీడ్కోలు ప్రసంగంలో ఆయన సమానత్వం, హక్కులు, ధర్మ పరిపూర్ణతను ధృవీకరించారు. 632 సా.శ.లో మదీనాలో మరణించారు, ప్రతి విశ్వాసికి అమానత్‌గా ఖురాన్, తన సున్నత్‌ను వదిలారు.",
+          "te": "వీడ్కోలు ప్రసంగంలో ఆయన సమానత్వం, హక్కులు, ధర్మ పరిపూర్ణతను ధృవీకరించారు. 632 క్రీ.శ.లో మదీనాలో మరణించారు, ప్రతి విశ్వాసికి అమానత్‌గా ఖురాన్, తన సున్నత్‌ను వదిలారు.",
           "en": "In the Farewell Sermon he affirmed equality, rights, and the completion of the religion. He passed away in Madinah in 632 CE, leaving the Quran and his Sunnah as a trust for every believer."
         },
         "check": {
@@ -5081,7 +5081,7 @@ export const lessons: Lesson[] = [
           "en": "Historical Background"
         },
         "body": {
-          "te": "ప్రవక్త ముహమ్మద్ ﷺ 570 సా.శ.లో మక్కాలో జన్మించారు, నలభయ్యవ ఏట మొదటి వహీ పొందారు. ఇరవై మూడేళ్లలో ఇస్లాంను అందించి, మొదటి ముస్లిం సమాజాన్ని నిర్మించారు.",
+          "te": "ప్రవక్త ముహమ్మద్ ﷺ 570 క్రీ.శ.లో మక్కాలో జన్మించారు, నలభయ్యవ ఏట మొదటి వహీ పొందారు. ఇరవై మూడేళ్లలో ఇస్లాంను అందించి, మొదటి ముస్లిం సమాజాన్ని నిర్మించారు.",
           "en": "Prophet Muhammad ﷺ was born in Makkah in 570 CE and received the first revelation at the age of forty. Over twenty-three years he conveyed Islam and built the first Muslim community."
         },
         "check": {
@@ -5183,15 +5183,15 @@ export const lessons: Lesson[] = [
         },
         "options": [
           {
-            "te": "610 సా.శ.",
+            "te": "610 క్రీ.శ.",
             "en": "610 CE"
           },
           {
-            "te": "622 సా.శ.",
+            "te": "622 క్రీ.శ.",
             "en": "622 CE"
           },
           {
-            "te": "632 సా.శ.",
+            "te": "632 క్రీ.శ.",
             "en": "632 CE"
           }
         ],

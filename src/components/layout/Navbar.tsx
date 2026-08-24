@@ -77,7 +77,12 @@ export function Navbar() {
                 const target = document.querySelector(item.href);
                 const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
                 target?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-                history.replaceState(null, "", item.href);
+                /* pushState, not replaceState: replace erased the history
+                   entry, so Back from a section skipped the page you came
+                   from. Same-hash repeat clicks still replace, so tapping the
+                   same tab twice does not stack duplicate entries. */
+                if (location.hash === item.href) history.replaceState(null, "", item.href);
+                else history.pushState(null, "", item.href);
               } else {
                 router.push(item.href);
               }

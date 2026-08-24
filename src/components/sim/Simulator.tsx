@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
-import { ChevronLeft, ChevronRight, Gamepad2, Pause, Play, RotateCcw } from "lucide-react";
+import { ChevronLeft, ChevronRight, Gamepad2, Pause, Play, RotateCcw, Volume2 } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { buzz } from "@/lib/haptics";
 import { celebrate } from "@/lib/celebrate";
@@ -59,7 +59,24 @@ const copy = {
   score: { te: "స్కోరు", en: "Score" },
   best: { te: "అత్యుత్తమం", en: "Best" },
   again: { te: "మళ్ళీ ఆడండి", en: "Play again" },
+  listen: { te: "అరబీ వినండి", en: "Hear the Arabic" },
 } as const;
+
+/* The words themselves, out loud. Every persona who reached an Arabic phrase
+   asked how it sounds; the browser's own speech synthesis answers with no
+   audio files to record or ship. Quality varies by device voice, which is
+   still far better than silence for a first-time reader. */
+function speakArabic(text: string) {
+  try {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "ar-SA";
+    u.rate = 0.8;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  } catch {
+    /* No synthesis on this browser; the button is hidden anyway. */
+  }
+}
 
 const DEFAULT_DUR = 3200;
 
@@ -177,6 +194,8 @@ function Practice({
     setPicked(i);
     const nextScore = i === answer ? score + 1 : score;
     if (i === answer) setScore(nextScore);
+    /* A wrong pick holds twice as long: the correction line has to be read,
+       and one persona reported it vanishing before it could be. */
     window.setTimeout(() => {
       if (answer >= steps.length - 1) {
         setFinished(true);
@@ -189,7 +208,7 @@ function Practice({
         setOptions(pickOptions(steps, answer));
         setPicked(null);
       }
-    }, 1100);
+    }, i === answer ? 1100 : 2300);
   };
 
   if (finished) {
@@ -224,7 +243,9 @@ function Practice({
           {copy.score[lang]} {score} / {total}
         </p>
       </div>
-      <div role="group" aria-label={copy.whatNext[lang]} className="grid gap-2 sm:grid-cols-3">
+      {/* Keyed by question: reused buttons animated their colour from the
+          previous verdict, so a red flash bled into the next question. */}
+      <div key={index} role="group" aria-label={copy.whatNext[lang]} className="grid gap-2 sm:grid-cols-3">
         {options.map((opt) => {
           const isPick = picked === opt;
           const isAnswer = opt === answer;
@@ -304,10 +325,19 @@ export function Simulator({
     return () => io.disconnect();
   }, [autoplay]);
 
+  /* Clamped, not wrapped: previous from step 1 used to jump to the last step,
+     which read as a glitch, not a feature. Restart is the play button's job. */
   const go = useCallback(
-    (i: number) => setIndex(((i % steps.length) + steps.length) % steps.length),
+    (i: number) => setIndex(Math.max(0, Math.min(steps.length - 1, i))),
     [steps.length],
   );
+
+  /* Speech synthesis exists nearly everywhere, but the button only appears
+     once a mounted client confirms it — never a dead control. */
+  const [canSpeak, setCanSpeak] = useState(false);
+  useEffect(() => {
+    setCanSpeak(typeof window !== "undefined" && "speechSynthesis" in window);
+  }, []);
 
   useEffect(() => {
     if (!playing) return;
@@ -404,15 +434,28 @@ export function Simulator({
             )}
           </div>
           {(step.arabic || step.translit) && (
-            <div className="min-w-0 basis-full text-right sm:basis-auto sm:max-w-[50%]">
-              {step.arabic && (
-                <p lang="ar" dir="rtl" className="font-arabic text-xl sm:text-2xl text-[var(--if-gold-light)] leading-relaxed">
-                  {step.arabic}
-                </p>
+            <div className="flex min-w-0 basis-full items-center justify-end gap-2 sm:basis-auto sm:max-w-[50%]">
+              {step.arabic && canSpeak && (
+                <button
+                  type="button"
+                  onClick={() => speakArabic(step.arabic!)}
+                  aria-label={copy.listen[lang]}
+                  title={copy.listen[lang]}
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[var(--if-gold)]/70 transition-colors hover:bg-white/10 hover:text-[var(--if-gold-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                >
+                  <Volume2 aria-hidden="true" className="h-4 w-4" />
+                </button>
               )}
-              {step.translit && (
-                <p className="text-[11px] sm:text-xs text-[var(--if-gold-pale)]/75 italic text-pretty">{step.translit}</p>
-              )}
+              <div className="min-w-0 text-right">
+                {step.arabic && (
+                  <p lang="ar" dir="rtl" className="font-arabic text-xl sm:text-2xl text-[var(--if-gold-light)] leading-relaxed">
+                    {step.arabic}
+                  </p>
+                )}
+                {step.translit && (
+                  <p className="text-[11px] sm:text-xs text-[var(--if-gold-pale)]/75 italic text-pretty">{step.translit}</p>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -427,13 +470,18 @@ export function Simulator({
         </div>
       </div>
 
-      {/* Transport */}
-      <div className="mt-3 flex items-center gap-2">
+      {/* Transport. Hidden entirely for a one-step scene — a 1/1 stepper with
+          inert arrows told one audit persona the control was broken. pr-14 on
+          phones keeps the right end clear of the fixed WhatsApp button, which
+          sat exactly on the Practice toggle at 390px. */}
+      {steps.length > 1 && (
+      <div className="mt-3 flex items-center gap-2 pr-14 sm:pr-0">
         <button
           type="button"
           onClick={() => { setPlaying(false); go(index - 1); }}
           aria-label={copy.prev[lang]}
-          className="if-sim-btn"
+          disabled={index === 0}
+          className="if-sim-btn disabled:opacity-35"
         >
           <ChevronLeft aria-hidden="true" className="h-5 w-5" />
         </button>
@@ -449,7 +497,8 @@ export function Simulator({
           type="button"
           onClick={() => { setPlaying(false); go(index + 1); }}
           aria-label={copy.next[lang]}
-          className="if-sim-btn"
+          disabled={atEnd}
+          className="if-sim-btn disabled:opacity-35"
         >
           <ChevronRight aria-hidden="true" className="h-5 w-5" />
         </button>
@@ -501,6 +550,7 @@ export function Simulator({
           </button>
         )}
       </div>
+      )}
 
       {practice && steps.length >= 4 && (
         <Practice steps={steps} seqId={seqId} index={index} onIndex={(i) => { setPlaying(false); setIndex(i); }} lang={lang} />

@@ -45,7 +45,10 @@ export function IsnadScene({ index, lang }: SceneProps) {
             <text x="-42" y={y(i) + 4} fontSize={now ? 15 : 12} fontWeight={now ? 700 : 500} fill={on ? "var(--if-gold-light)" : "rgba(245,230,192,0.45)"} style={{ transition: "fill 0.4s, font-size 0.3s" }}>
               {lang === "te" ? n.te : n.en}
             </text>
-            <text x="428" y={y(i) + 4} textAnchor="end" fontSize="13" fill={on ? "rgba(245,230,192,0.85)" : "rgba(245,230,192,0.3)"} className="font-arabic" lang="ar" direction="rtl" style={{ transition: "fill 0.4s" }}>
+            {/* start, not end: with direction="rtl" the anchor "end" is the
+                LEFT end of the text, so the names ran rightward off the
+                stage. "start" pins the right edge at x and extends left. */}
+            <text x="428" y={y(i) + 4} textAnchor="start" fontSize="13" fill={on ? "rgba(245,230,192,0.85)" : "rgba(245,230,192,0.3)"} className="font-arabic" lang="ar" direction="rtl" style={{ transition: "fill 0.4s" }}>
               {n.ar}
             </text>
           </g>

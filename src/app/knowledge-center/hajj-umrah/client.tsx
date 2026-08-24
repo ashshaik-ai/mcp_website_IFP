@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -44,9 +44,35 @@ const ihramRules = [
   { rule: { te: "కుట్టిన దుస్తులు నిషేధం (పురుషులు)", en: "No stitched clothing (men)" }, ar: "لا مخيط للرجال" },
 ];
 
+const TABS = ["hajj", "umrah", "ihram"] as const;
+type Tab = (typeof TABS)[number];
+const TAB_KEY = "ifp-hajj-tab";
+const subscribeNever = () => () => {};
+const readStoredTab = (): Tab | null => {
+  try {
+    const t = sessionStorage.getItem(TAB_KEY);
+    return TABS.includes(t as Tab) ? (t as Tab) : null;
+  } catch {
+    return null;
+  }
+};
+
 function HajjUmrahPage() {
   const { lang } = useI18n();
-  const [tab, setTab] = useState<"hajj" | "umrah" | "ihram">("hajj");
+  /* Coming Back to this page reset the tab to Hajj whatever the reader had
+     open. The stored choice reads through useSyncExternalStore so the server
+     render stays "hajj" and the restore lands post-hydration mismatch-free. */
+  const stored = useSyncExternalStore(subscribeNever, readStoredTab, () => null);
+  const [picked, setPicked] = useState<Tab | null>(null);
+  const tab = picked ?? stored ?? "hajj";
+  const setTab = (t: Tab) => {
+    setPicked(t);
+    try {
+      sessionStorage.setItem(TAB_KEY, t);
+    } catch {
+      /* Storage blocked; the tab still switches for this page view. */
+    }
+  };
 
   return (
     <PageShell>
@@ -114,7 +140,7 @@ function HajjUmrahPage() {
                     <span className="text-xl flex-shrink-0">🚫</span>
                     <div>
                       <div className="font-semibold text-[var(--if-green)] text-sm">{r.rule[lang]}</div>
-                      <div className="font-arabic text-sm text-[var(--if-gold-light)]" dir="rtl">{r.ar}</div>
+                      <div className="font-arabic text-sm text-[var(--if-gold-ink)]" dir="rtl">{r.ar}</div>
                     </div>
                   </div>
                 </BlurFade>
