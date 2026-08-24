@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
-import { ChevronLeft, ChevronRight, Pause, Play, RotateCcw } from "lucide-react";
+import { ChevronLeft, ChevronRight, Gamepad2, Pause, Play, RotateCcw } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 
 /* The simulator engine.
@@ -48,6 +48,15 @@ const copy = {
   step: { te: "దశ", en: "Step" },
   of: { te: "/", en: "of" },
   times: { te: "సార్లు", en: "times" },
+  practice: { te: "ప్రాక్టీస్", en: "Practice" },
+  watch: { te: "చూడటం", en: "Watch" },
+  whatNext: { te: "తర్వాత ఏ దశ వస్తుంది?", en: "What comes next?" },
+  right: { te: "సరైనది!", en: "Right!" },
+  wrong: { te: "కాదు — సరైనది:", en: "Not this one — the answer:" },
+  done: { te: "పూర్తయింది", en: "Done" },
+  score: { te: "స్కోరు", en: "Score" },
+  best: { te: "అత్యుత్తమం", en: "Best" },
+  again: { te: "మళ్ళీ ఆడండి", en: "Play again" },
 } as const;
 
 const DEFAULT_DUR = 3200;
@@ -72,6 +81,184 @@ function CornerTicks() {
   );
 }
 
+/* Practice mode: the sequence as a game.
+
+   Watching a rite step through is one kind of learning; being asked, at each
+   step, what comes next is another, and it is the one that sticks. Every
+   platform this site was benchmarked against gamifies its sequences somewhere
+   — Khan's energy points, Duolingo's whole model — and this gets the same
+   effect from content the simulators already carry, with nothing new authored:
+   the scene shows the current step, and the learner picks the following one
+   from three choices. The best run is remembered per sequence.
+
+   Only offered when a sequence has at least four steps; below that there is
+   nothing to guess. */
+const PRACTICE_KEY = "ifp-practice-v1";
+
+function readBest(id: string): number | null {
+  try {
+    const raw = localStorage.getItem(PRACTICE_KEY);
+    const v = raw ? JSON.parse(raw)[id] : null;
+    return typeof v === "number" ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeBest(id: string, score: number) {
+  try {
+    const raw = localStorage.getItem(PRACTICE_KEY);
+    const all = raw ? JSON.parse(raw) : {};
+    if (typeof all[id] !== "number" || score > all[id]) {
+      all[id] = score;
+      localStorage.setItem(PRACTICE_KEY, JSON.stringify(all));
+    }
+  } catch {
+    /* Storage blocked: the run still counts on screen. */
+  }
+}
+
+function pickOptions(steps: SimStep[], at: number): number[] {
+  const answer = at + 1;
+  const decoys: number[] = [];
+  const pool = steps.map((_, i) => i).filter((i) => i !== answer && i !== at);
+  while (decoys.length < 2 && pool.length) {
+    const j = Math.floor(Math.random() * pool.length);
+    decoys.push(pool.splice(j, 1)[0]);
+  }
+  const opts = [answer, ...decoys];
+  for (let i = opts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [opts[i], opts[j]] = [opts[j], opts[i]];
+  }
+  return opts;
+}
+
+function Practice({
+  steps,
+  seqId,
+  index,
+  onIndex,
+  lang,
+}: {
+  steps: SimStep[];
+  seqId: string;
+  index: number;
+  onIndex: (i: number) => void;
+  lang: "te" | "en";
+}) {
+  const [options, setOptions] = useState<number[]>(() => pickOptions(steps, 0));
+  const [picked, setPicked] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
+  const [best, setBest] = useState<number | null>(null);
+
+  useEffect(() => {
+    setBest(readBest(seqId));
+  }, [seqId]);
+
+  const total = steps.length - 1;
+
+  const restart = () => {
+    onIndex(0);
+    setOptions(pickOptions(steps, 0));
+    setPicked(null);
+    setScore(0);
+    setFinished(false);
+  };
+
+  const answer = index + 1;
+
+  const choose = (i: number) => {
+    if (picked !== null) return;
+    setPicked(i);
+    const nextScore = i === answer ? score + 1 : score;
+    if (i === answer) setScore(nextScore);
+    window.setTimeout(() => {
+      if (answer >= steps.length - 1) {
+        setFinished(true);
+        writeBest(seqId, nextScore);
+        setBest((b) => (b === null || nextScore > b ? nextScore : b));
+        onIndex(steps.length - 1);
+      } else {
+        onIndex(answer);
+        setOptions(pickOptions(steps, answer));
+        setPicked(null);
+      }
+    }, 1100);
+  };
+
+  if (finished) {
+    return (
+      <div className="mt-3 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-5 text-center">
+        <p className="text-xs font-bold uppercase text-[var(--if-gold-ink)]">{copy.done[lang]}</p>
+        <p className="mt-1 font-display text-3xl font-bold text-[var(--if-green)] tabular-nums">
+          {score} / {total}
+        </p>
+        {best !== null && (
+          <p className="mt-1 text-sm text-[var(--if-text-muted)] tabular-nums">
+            {copy.best[lang]}: {best} / {total}
+          </p>
+        )}
+        <button
+          type="button"
+          onClick={restart}
+          className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--if-green)] px-5 text-sm font-bold text-[var(--if-gold-light)]"
+        >
+          <RotateCcw aria-hidden="true" className="h-4 w-4" />
+          {copy.again[lang]}
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-5">
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+        <p className="font-semibold text-[var(--if-text)]">{copy.whatNext[lang]}</p>
+        <p className="text-sm font-semibold text-[var(--if-gold-ink)] tabular-nums" aria-live="polite">
+          {copy.score[lang]} {score} / {total}
+        </p>
+      </div>
+      <div role="group" aria-label={copy.whatNext[lang]} className="grid gap-2 sm:grid-cols-3">
+        {options.map((opt) => {
+          const isPick = picked === opt;
+          const isAnswer = opt === answer;
+          const tone =
+            picked === null
+              ? "border-[var(--if-gold)]/25 bg-white hover:border-[var(--if-gold)]/60"
+              : isAnswer
+                ? "border-emerald-400 bg-emerald-50"
+                : isPick
+                  ? "border-red-300 bg-red-50"
+                  : "border-[var(--if-gold)]/20 bg-white opacity-60";
+          return (
+            <button
+              key={opt}
+              type="button"
+              aria-pressed={isPick}
+              onClick={() => choose(opt)}
+              className={`min-h-11 rounded-xl border px-3 text-sm font-semibold text-[var(--if-green)] transition-colors ${tone}`}
+            >
+              {steps[opt]?.label[lang]}
+            </button>
+          );
+        })}
+      </div>
+      <p className="mt-2 min-h-5 text-sm font-semibold" aria-live="polite">
+        {picked !== null &&
+          (picked === answer ? (
+            <span className="text-emerald-700">{copy.right[lang]}</span>
+          ) : (
+            <span className="text-[var(--if-gold-ink)]">
+              {copy.wrong[lang]} {steps[answer]?.label[lang]}
+            </span>
+          ))}
+      </p>
+    </div>
+  );
+}
+
 export function Simulator({
   steps,
   scene: Scene,
@@ -86,6 +273,8 @@ export function Simulator({
   const { lang } = useI18n();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [practice, setPractice] = useState(false);
+  const seqId = `${steps[0]?.id ?? "seq"}-${steps.length}`;
   const reduced = useRef(false);
   const timer = useRef<number | null>(null);
   const step = steps[index];
@@ -127,6 +316,24 @@ export function Simulator({
     };
   }, [playing, index, dur, steps.length]);
 
+  /* A horizontal swipe on the stage steps the sequence — the gesture every
+     phone user tries first. Vertical movement passes through to the page. */
+  const swipe = useRef<{ x: number; y: number } | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    swipe.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const s0 = swipe.current;
+    swipe.current = null;
+    if (!s0 || practice) return;
+    const dx = e.changedTouches[0].clientX - s0.x;
+    const dy = e.changedTouches[0].clientY - s0.y;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      setPlaying(false);
+      go(index + (dx < 0 ? 1 : -1));
+    }
+  };
+
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowRight") { e.preventDefault(); setPlaying(false); go(index + 1); }
     else if (e.key === "ArrowLeft") { e.preventDefault(); setPlaying(false); go(index - 1); }
@@ -149,6 +356,8 @@ export function Simulator({
         aria-label={step.label[lang]}
         tabIndex={0}
         onKeyDown={onKey}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         className="if-sim-stage relative overflow-hidden rounded-3xl ring-1 ring-[var(--if-gold)]/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
       >
         {/* The picture. Everything decorative is scoped to this box so none of
@@ -268,7 +477,30 @@ export function Simulator({
         <span className="ml-auto sm:ml-0 text-sm sm:text-xs font-semibold tabular-nums text-[var(--if-text-muted)] whitespace-nowrap">
           {index + 1} / {steps.length}
         </span>
+        {steps.length >= 4 && (
+          <button
+            type="button"
+            onClick={() => {
+              setPlaying(false);
+              setIndex(0);
+              setPractice((v) => !v);
+            }}
+            aria-pressed={practice}
+            className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-xs font-bold transition-colors ${
+              practice
+                ? "border-transparent bg-[var(--if-green)] text-[var(--if-gold-light)]"
+                : "border-[var(--if-gold)]/40 bg-white text-[var(--if-green)] hover:border-[var(--if-gold)]"
+            }`}
+          >
+            <Gamepad2 aria-hidden="true" className="h-4 w-4" />
+            {practice ? copy.watch[lang] : copy.practice[lang]}
+          </button>
+        )}
       </div>
+
+      {practice && steps.length >= 4 && (
+        <Practice steps={steps} seqId={seqId} index={index} onIndex={(i) => { setPlaying(false); setIndex(i); }} lang={lang} />
+      )}
     </div>
   );
 }

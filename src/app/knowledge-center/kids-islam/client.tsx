@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
-import { SalahFigure } from "@/components/sim/scenes/SalahFigure";
+import { SalahScene } from "@/components/sim/scenes3d/SalahScene";
 import { WuduScene } from "@/components/sim/scenes/WuduScene";
 import { salahSteps as simSalah, wuduSteps as simWudu } from "@/content/simulations";
 
@@ -620,7 +620,7 @@ function KidsIslamPage() {
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
-          <div className="grid gap-10"><Simulator steps={simWudu} scene={WuduScene} autoplay /><Simulator steps={simSalah} scene={SalahFigure} /></div>
+          <div className="grid gap-10"><Simulator steps={simWudu} scene={WuduScene} autoplay /><Simulator steps={simSalah} scene={SalahScene} /></div>
         </div>
       </section>
 

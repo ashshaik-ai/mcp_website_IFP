@@ -32,14 +32,14 @@ const SCENES: Record<string, ComponentType<SceneProps>> = {
   "hajj-umrah": dynamic(() => import("@/components/sim/scenes/HajjScene").then((m) => m.HajjScene)),
   "islamic-calendar": dynamic(() => import("@/components/sim/scenes/MoonScene").then((m) => m.MoonScene)),
   "islamic-history": dynamic(() => import("@/components/sim/scenes/EmpiresScene").then((m) => m.EmpiresScene)),
-  "kids-islam": dynamic(() => import("@/components/sim/scenes/SalahFigure").then((m) => m.SalahFigure)),
+  "kids-islam": dynamic(() => import("@/components/sim/scenes3d/SalahScene").then((m) => m.SalahScene)),
   "learn-arabic": dynamic(() => import("@/components/sim/scenes/LetterScene").then((m) => m.LetterScene)),
   "learn-quran": dynamic(() => import("@/components/sim/scenes/TajweedScene").then((m) => m.TajweedScene)),
-  "learn-salah": dynamic(() => import("@/components/sim/scenes/SalahFigure").then((m) => m.SalahFigure)),
+  "learn-salah": dynamic(() => import("@/components/sim/scenes3d/SalahScene").then((m) => m.SalahScene)),
   "learn-urdu": dynamic(() => import("@/components/sim/scenes/LetterScene").then((m) => m.LetterScene)),
   "names-of-allah": dynamic(() => import("@/components/sim/scenes/NamesScene").then((m) => m.NamesScene)),
   seerah: dynamic(() => import("@/components/sim/scenes/JourneyMap").then((m) => m.JourneyMap)),
-  "special-prayers": dynamic(() => import("@/components/sim/scenes/SalahFigure").then((m) => m.SalahFigure)),
+  "special-prayers": dynamic(() => import("@/components/sim/scenes3d/SalahScene").then((m) => m.SalahScene)),
   "womens-guidance": dynamic(() => import("@/components/sim/scenes/WuduScene").then((m) => m.WuduScene)),
 };
 
@@ -47,7 +47,7 @@ const SCENES: Record<string, ComponentType<SceneProps>> = {
    for it by name rather than by portal. */
 const NAMED: Record<string, ComponentType<SceneProps>> = {
   wudu: dynamic(() => import("@/components/sim/scenes/WuduScene").then((m) => m.WuduScene)),
-  salah: dynamic(() => import("@/components/sim/scenes/SalahFigure").then((m) => m.SalahFigure)),
+  salah: dynamic(() => import("@/components/sim/scenes3d/SalahScene").then((m) => m.SalahScene)),
   moon: dynamic(() => import("@/components/sim/scenes/MoonScene").then((m) => m.MoonScene)),
   letters: dynamic(() => import("@/components/sim/scenes/LetterScene").then((m) => m.LetterScene)),
 };

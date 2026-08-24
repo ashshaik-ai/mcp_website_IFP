@@ -183,13 +183,30 @@ export function LessonView({
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
-      <Link
-        href={portalHref}
-        className="inline-flex items-center gap-1.5 min-h-11 text-sm font-semibold text-[var(--if-gold-ink)] hover:text-[var(--if-green)] transition-colors"
+      {/* A real breadcrumb, not just a back link: a WhatsApp share lands
+          people mid-course, and this is how they learn where they are. */}
+      <nav
+        aria-label={lang === "te" ? "మీరు ఇక్కడ ఉన్నారు" : "Breadcrumb"}
+        className="flex flex-wrap items-center gap-x-1.5 text-sm"
       >
-        <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-        {copy.back[lang]} · {portalTitle[lang]}
-      </Link>
+        <Link
+          href="/knowledge-center"
+          className="inline-flex min-h-11 items-center font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-gold-ink)]"
+        >
+          {lang === "te" ? "జ్ఞాన కేంద్రం" : "Knowledge Center"}
+        </Link>
+        <span aria-hidden="true" className="text-[var(--if-text-muted)]/60">/</span>
+        <Link
+          href={portalHref}
+          className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-[var(--if-gold-ink)] transition-colors hover:text-[var(--if-green)]"
+        >
+          {portalTitle[lang]}
+        </Link>
+        <span aria-hidden="true" className="text-[var(--if-text-muted)]/60">/</span>
+        <span aria-current="page" className="inline-flex min-h-11 items-center text-[var(--if-text-muted)] tabular-nums">
+          {copy.lesson[lang]} {index + 1}
+        </span>
+      </nav>
 
       <p className="if-rise mt-4 text-xs font-bold uppercase tracking-widest text-[var(--if-gold-ink)]" style={{ animationDelay: "0.05s" }}>
         {lang === "te" ? `${total}లో ${copy.lesson.te} ${index + 1}` : `${copy.lesson.en} ${index + 1} of ${total}`}

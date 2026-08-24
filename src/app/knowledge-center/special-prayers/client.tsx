@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
-import { SalahFigure } from "@/components/sim/scenes/SalahFigure";
+import { SalahScene } from "@/components/sim/scenes3d/SalahScene";
 import { salahSteps } from "@/content/simulations";
 
 import { PageShell } from "@/components/layout/PageShell";
@@ -206,7 +206,7 @@ function SpecialPrayersPage() {
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
-          <Simulator steps={salahSteps} scene={SalahFigure} autoplay />
+          <Simulator steps={salahSteps} scene={SalahScene} autoplay />
         </div>
       </section>
 

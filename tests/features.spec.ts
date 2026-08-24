@@ -133,7 +133,9 @@ test.describe("lessons", () => {
 
   test("prev/next navigation links to a real sibling", async ({ page }) => {
     await page.goto("/knowledge-center/learn-quran/begin");
-    const nav = page.locator('nav[aria-label] a');
+    /* Two labelled navs exist now — the breadcrumb and the pager. The pager
+       is the one whose links stay inside the portal. */
+    const nav = page.locator('nav[aria-label] a[href^="/knowledge-center/learn-quran/"]');
     await expect(nav.first()).toBeVisible();
     const href = await nav.first().getAttribute("href");
     expect(href).toMatch(/^\/knowledge-center\/learn-quran\//);

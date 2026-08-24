@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
-import { SalahFigure } from "@/components/sim/scenes/SalahFigure";
+import { SalahScene } from "@/components/sim/scenes3d/SalahScene";
 import { WuduScene } from "@/components/sim/scenes/WuduScene";
 import { salahSteps, wuduSteps as simWudu } from "@/content/simulations";
 
@@ -466,7 +466,7 @@ function LearnSalahPage() {
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">{copy.salah_simulator[lang]}</h2>
               <p className="text-center text-sm text-[var(--if-text-muted)] mb-8">{lang === "te" ? "తక్బీర్ నుండి సలాం వరకు — చూసి నేర్చుకోండి" : "From Takbeer to Salam — watch, then follow"}</p>
             </BlurFade>
-            <Simulator steps={salahSteps} scene={SalahFigure} autoplay />
+            <Simulator steps={salahSteps} scene={SalahScene} autoplay />
           </div>
         </section>
       )}
