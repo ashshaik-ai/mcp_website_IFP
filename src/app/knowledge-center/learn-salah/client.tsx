@@ -400,11 +400,11 @@ function LearnSalahPage() {
                 </div>
               )}
               <div className="flex items-center justify-between mt-6">
-                <button disabled={wuduStep === 0} onClick={() => setWuduStep(s => s - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)] transition-colors">
+                <button disabled={wuduStep === 0} onClick={() => setWuduStep(s => s - 1)} className="inline-flex min-h-11 items-center gap-1 px-4 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)] transition-colors">
                   <ChevronLeft className="h-4 w-4" />{copy.back[lang]}
                 </button>
                 <span className="text-xs text-[var(--if-text-muted)]">{wuduStep + 1} / {wuduSteps.length}</span>
-                <button disabled={wuduStep === wuduSteps.length - 1} onClick={() => setWuduStep(s => s + 1)} className="flex items-center gap-1 px-4 py-2 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30 hover:bg-[var(--if-green)]/90 transition-colors">
+                <button disabled={wuduStep === wuduSteps.length - 1} onClick={() => setWuduStep(s => s + 1)} className="inline-flex min-h-11 items-center gap-1 px-4 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30 hover:bg-[var(--if-green)]/90 transition-colors">
                   {copy.next[lang]}<ChevronRight className="h-4 w-4" />
                 </button>
               </div>

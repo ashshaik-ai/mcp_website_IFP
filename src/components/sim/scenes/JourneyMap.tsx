@@ -53,9 +53,13 @@ const STAGE: Record<string, { at: string; t: number; night?: boolean }> = {
 
 const ROUTE = "M172 256 C 128 214, 90 186, 96 152 S 164 130, 196 100";
 
-export function JourneyMap({ step, lang, index }: SceneProps) {
+export function JourneyMap({ step, lang }: SceneProps) {
   const s = STAGE[step.id] ?? { at: "makkah", t: 0 };
-  const drawn = index >= 4 ? 1 : 0; // the route appears at the Hijrah
+  /* The route appears at the Hijrah. By stage id, not step index: lessons
+     show filtered subsets of the sequence, where "index 4" means nothing —
+     the hijrah lesson's single step is index 0, and the route it teaches
+     would never have drawn. */
+  const drawn = ["hijrah", "badr", "uhud", "hudaybiyyah", "conquest", "farewell", "legacy"].includes(step.id) ? 1 : 0;
 
   return (
     <svg viewBox="0 0 576 324" className="absolute inset-0 h-full w-full" aria-hidden="true">

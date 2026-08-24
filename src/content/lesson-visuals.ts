@@ -171,6 +171,39 @@ const visuals: Record<string, LessonVisualSpec> = {
     scene: "salah",
     title: { te: "నమాజు భంగిమలు — చూడండి", en: "The postures of the prayer" },
   },
+
+  /* ── Seerah ───────────────────────────────────────────────────────────
+     The journey map, era by era: each lesson lights the places its years
+     happened in. The companions and applying-today lessons are about people
+     and practice, not places, and show nothing. */
+  "seerah/before-prophethood": { source: "seerahSteps", steps: ["birth"], title: { te: "మక్కా — జననం", en: "Makkah, where it begins" } },
+  "seerah/beginning-of-revelation": { source: "seerahSteps", steps: ["revelation"], title: { te: "హిరా గుహ — తొలి వహీ", en: "The cave of Hira" } },
+  "seerah/the-makkah-period": { source: "seerahSteps", steps: ["makkah", "taif"], title: { te: "మక్కా సంవత్సరాలు", en: "The Makkan years" } },
+  "seerah/hijrah-and-madinah": { source: "seerahSteps", steps: ["hijrah"], title: { te: "హిజ్రత్ మార్గం", en: "The road of the Hijrah" } },
+  "seerah/major-events-and-battles": { source: "seerahSteps", steps: ["badr", "uhud", "hudaybiyyah", "conquest"], title: { te: "ముఖ్య ఘటనలు — పటంపై", en: "The major events, on the map" } },
+  "seerah/character-and-legacy": { source: "seerahSteps", steps: ["farewell", "legacy"], title: { te: "విదాయ్ హజ్ నుండి వారసత్వం వరకు", en: "From the Farewell Hajj to the legacy" } },
+
+  /* ── Names of Allah ───────────────────────────────────────────────────
+     The string of ninety-nine beads is the picture of the second lesson's
+     subject. The first lesson meets the first names one at a time. */
+  "names-of-allah/what-they-are": { source: "namesSteps", steps: ["n1", "n2", "n3"], title: { te: "మొదటి పేర్లు", en: "The first of the names" } },
+  "names-of-allah/ninety-nine": { source: "namesSteps", steps: [], title: { te: "తొంభై తొమ్మిది పూసల దారం", en: "A string of ninety-nine" } },
+
+  /* ── Special Prayers ──────────────────────────────────────────────────
+     The night prayer is prayed with the ordinary postures, so it shows them.
+     Janazah is the one prayer with no bowing and no prostration — standing,
+     takbeers, and the salam — and showing only those steps is itself the
+     lesson. Tarawih is about format and count; its tables carry it. */
+  "special-prayers/night-prayer": {
+    source: "salahSteps",
+    steps: [],
+    title: { te: "రాత్రి నమాజు భంగిమలు", en: "The postures of the night prayer" },
+  },
+  "special-prayers/janazah": {
+    source: "salahSteps",
+    steps: ["niyyah", "takbeer", "qiyam", "salam"],
+    title: { te: "జనాజా — నిలబడి మాత్రమే", en: "Janazah: standing only" },
+  },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {

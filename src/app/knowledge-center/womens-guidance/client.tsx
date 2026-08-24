@@ -168,11 +168,11 @@ function WomensGuidancePage() {
           </BlurFade>
 
           <div className="flex justify-between">
-            <button disabled={active === 0} onClick={() => setActive(a => a - 1)} className="flex items-center gap-1 px-4 py-2 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
+            <button disabled={active === 0} onClick={() => setActive(a => a - 1)} className="inline-flex min-h-11 items-center gap-1 px-4 rounded-full border border-[var(--if-gold)]/30 text-sm text-[var(--if-green)] disabled:opacity-30 hover:bg-[var(--if-cream-light)]">
               <ChevronLeft className="h-4 w-4" />{copy.previous[lang]}
             </button>
             <span className="self-center text-xs text-[var(--if-text-muted)]">{active + 1} / {sections.length}</span>
-            <button disabled={active === sections.length - 1} onClick={() => setActive(a => a + 1)} className="flex items-center gap-1 px-4 py-2 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30">
+            <button disabled={active === sections.length - 1} onClick={() => setActive(a => a + 1)} className="inline-flex min-h-11 items-center gap-1 px-4 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] text-sm disabled:opacity-30">
               {copy.next[lang]}<ChevronRight className="h-4 w-4" />
             </button>
           </div>
