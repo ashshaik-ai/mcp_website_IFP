@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, Clock } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, Clock, Flame } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { summariesByPortal } from "@/content/lesson-index";
 import { useProgress } from "@/lib/progress";
+import { useEffect, useState } from "react";
+import { touchStreak } from "@/lib/streak";
 
 /* The course bar: what this portal is, how far through it you are, and the one
    thing to do next.
@@ -35,6 +37,11 @@ const copy = {
 export function PortalJump({ portal, sticky = true }: { portal: string; sticky?: boolean }) {
   const { lang } = useI18n();
   const { ready, isDone, countFor } = useProgress();
+  /* Opening any portal keeps the flame lit; two days and up earn the chip. */
+  const [streak, setStreak] = useState(0);
+  useEffect(() => {
+    setStreak(touchStreak());
+  }, []);
   const items = summariesByPortal(portal);
   if (!items.length) return null;
 
@@ -83,6 +90,16 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
                 </span>
               )}
             </p>
+          )}
+
+          {streak >= 2 && (
+            <span
+              className="hidden shrink-0 items-center gap-1 rounded-full bg-[var(--if-gold)]/15 px-2.5 py-1 text-xs font-bold text-[var(--if-gold-ink)] tabular-nums min-[420px]:inline-flex"
+              title={lang === "te" ? `${streak} రోజుల వరుస` : `${streak}-day streak`}
+            >
+              <Flame aria-hidden="true" className="h-3.5 w-3.5" />
+              {streak}
+            </span>
           )}
 
           {/* Hidden until storage has been read, so the bar never animates from

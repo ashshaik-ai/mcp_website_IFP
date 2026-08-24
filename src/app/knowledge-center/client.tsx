@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { PageShell } from "@/components/layout/PageShell";
 import { PrayerTimesCard } from "@/components/tools/PrayerTimes";
+import { QiblaCompass } from "@/components/tools/QiblaCompass";
+import { Tilt } from "@/components/ui/tilt";
 import { ZakatCalculator } from "@/components/tools/ZakatCalculator";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
@@ -252,6 +254,9 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
                 {copy.today_s_prayer_times[lang]}
               </h3>
               <PrayerTimesCard />
+              <div className="mt-6">
+                <QiblaCompass />
+              </div>
             </section>
 
             <section id="zakat" className="if-defer scroll-mt-24">
@@ -286,6 +291,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
               const Icon = portal.icon;
               return (
                 <BlurFade key={portal.id} delay={0.05 * i}>
+                  <Tilt className="h-full">
                   <Link
                     href={`/knowledge-center/${portal.id}`}
                     className="relative overflow-hidden group flex flex-col h-full rounded-2xl border border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/50 transition-all hover:shadow-xl hover:shadow-[var(--if-gold)]/10 bg-white"
@@ -314,6 +320,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
                       </div>
                     </div>
                   </Link>
+                  </Tilt>
                 </BlurFade>
               );
             })}

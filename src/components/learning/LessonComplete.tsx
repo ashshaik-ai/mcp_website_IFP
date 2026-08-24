@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Check, Circle } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { useProgress } from "@/lib/progress";
+import { celebrate } from "@/lib/celebrate";
 
 const copy = {
   mark: { te: "పూర్తయినట్టు గుర్తించండి", en: "Mark as complete" },
@@ -34,7 +35,10 @@ export function LessonComplete({
      whole page, get all five right, and the portal would still show nothing
      against their name. */
   useEffect(() => {
-    if (ready && aced && !done) toggle(portal, slug);
+    if (ready && aced && !done) {
+      toggle(portal, slug);
+      celebrate();
+    }
   }, [ready, aced, done, toggle, portal, slug]);
 
   return (

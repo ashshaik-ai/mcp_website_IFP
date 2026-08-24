@@ -149,12 +149,21 @@ export function SiteSearch() {
     };
   }, [open]);
 
-  // Ctrl/Cmd+K opens from anywhere, Escape closes.
+  // Ctrl/Cmd+K toggles from anywhere, a bare "/" opens, Escape closes. A
+  // second copy of this handler was added without noticing this one, and the
+  // pair cancelled out: one opened, the other toggled straight back shut.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      const typing =
+        /^(INPUT|TEXTAREA|SELECT)$/.test((e.target as HTMLElement)?.tagName ?? "") ||
+        (e.target as HTMLElement)?.isContentEditable;
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen((v) => !v);
+      }
+      if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey) {
+        e.preventDefault();
+        setOpen(true);
       }
       if (e.key === "Escape") setOpen(false);
     };

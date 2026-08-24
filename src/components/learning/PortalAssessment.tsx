@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, ClipboardCheck, RotateCcw, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
+import { buzz } from "@/lib/haptics";
+import { celebrate } from "@/lib/celebrate";
 import type { AssessmentQuestion } from "@/content/assessment-bank";
 
 /* The end-of-portal assessment.
@@ -202,6 +204,7 @@ export function PortalAssessment({ portal }: { portal: string }) {
                 aria-disabled={locked || undefined}
                 onClick={() => {
                   if (locked) return;
+                  buzz(i === q.answer ? 12 : [10, 40, 10]);
                   setPicks((p) => p.map((v, j) => (j === at ? i : v)));
                 }}
                 className={`flex min-h-11 w-full items-center gap-2.5 rounded-lg border px-3 text-left text-sm transition-colors ${tone}`}
@@ -223,6 +226,7 @@ export function PortalAssessment({ portal }: { portal: string }) {
             if (next >= bank.length) {
               const final = picks.map((p, i) => (i === at ? picked : p)).filter((p, i) => p === bank[i].answer).length;
               const pct = Math.round((final / bank.length) * 100);
+              if (final / bank.length >= PASS) celebrate();
               setBest((b) => {
                 const nextBest = Math.max(b ?? 0, pct);
                 try {

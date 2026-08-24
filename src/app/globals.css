@@ -220,6 +220,21 @@ html[data-lang="en"] [data-l="te"] {
   }
 }
 
+/* Route changes enter on a short rise instead of a hard cut. The template
+   re-mounts per navigation, so the animation replays exactly once per page. */
+@keyframes if-page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.if-page-enter {
+  animation: if-page-enter 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-page-enter { animation: none; }
+}
+
 /* One focus ring for the whole site. It was split between a designed 2px gold
    outline on some controls and whatever the browser draws on the rest, which
    on a dark green header is a black ring nobody can see. */

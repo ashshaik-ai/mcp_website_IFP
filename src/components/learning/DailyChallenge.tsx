@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { buzz } from "@/lib/haptics";
+import { celebrate } from "@/lib/celebrate";
 
 /* The four tasks used to be plain divs with a square border drawn on them:
    they looked exactly like checkboxes, a child tapped one, and nothing at all
@@ -47,6 +49,8 @@ export function DailyChallenge({ lang }: { lang: "te" | "en" }) {
   const toggle = (i: number) =>
     setDone((d) => {
       const next = d.map((v, j) => (j === i ? !v : v));
+      buzz(10);
+      if (next.every(Boolean) && !d.every(Boolean)) celebrate();
       try {
         localStorage.setItem(CHALLENGE_KEY, JSON.stringify({ date: todayKey(), done: next }));
       } catch {

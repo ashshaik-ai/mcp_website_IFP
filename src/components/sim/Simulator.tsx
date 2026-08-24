@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import { ChevronLeft, ChevronRight, Gamepad2, Pause, Play, RotateCcw } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
+import { buzz } from "@/lib/haptics";
+import { celebrate } from "@/lib/celebrate";
 
 /* The simulator engine.
 
@@ -171,12 +173,14 @@ function Practice({
 
   const choose = (i: number) => {
     if (picked !== null) return;
+    buzz(i === answer ? 12 : [10, 40, 10]);
     setPicked(i);
     const nextScore = i === answer ? score + 1 : score;
     if (i === answer) setScore(nextScore);
     window.setTimeout(() => {
       if (answer >= steps.length - 1) {
         setFinished(true);
+        if (nextScore === steps.length - 1) celebrate();
         writeBest(seqId, nextScore);
         setBest((b) => (b === null || nextScore > b ? nextScore : b));
         onIndex(steps.length - 1);

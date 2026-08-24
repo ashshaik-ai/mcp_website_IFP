@@ -10,6 +10,9 @@ import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
 import { LessonVisual } from "./LessonVisual";
 import { useQuizResults } from "@/lib/quiz-results";
+import { ReadingProgress } from "./ReadingProgress";
+import { buzz } from "@/lib/haptics";
+import { summariesByPortal } from "@/content/lesson-index";
 
 const copy = {
   back: { te: "పోర్టల్‌కు తిరిగి", en: "Back to portal" },
@@ -94,7 +97,11 @@ function Quiz({
                 /* Once it is right it stays right. Clicking another option
                    afterwards used to un-solve the question and mark the new
                    pick wrong. */
-                onClick={() => { if (!settled) setPicked(i); }}
+                onClick={() => {
+                  if (settled) return;
+                  buzz(i === answer ? 12 : [10, 40, 10]);
+                  setPicked(i);
+                }}
                 aria-pressed={chosen}
                 aria-disabled={settled || undefined}
                 className={`w-full flex items-center gap-2.5 text-left min-h-11 px-3 rounded-lg border text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] ${state}`}
@@ -181,8 +188,11 @@ export function LessonView({
     [record, lesson.portal, checkKey],
   );
 
+  const minutes = summariesByPortal(lesson.portal).find((l) => l.slug === lesson.slug)?.minutes ?? 0;
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
+      <ReadingProgress minutes={minutes} />
       {/* A real breadcrumb, not just a back link: a WhatsApp share lands
           people mid-course, and this is how they learn where they are. */}
       <nav

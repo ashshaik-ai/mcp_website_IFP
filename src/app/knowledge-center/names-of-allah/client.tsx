@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { foldSearch } from "@/lib/search-text";
 import { Simulator } from "@/components/sim/Simulator";
+import { Tasbih } from "@/components/tools/Tasbih";
 import { NamesScene } from "@/components/sim/scenes/NamesScene";
 import { namesSteps } from "@/content/simulations";
 
@@ -264,6 +265,10 @@ function NamesOfAllahPage() {
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
           <Simulator steps={namesSteps} scene={NamesScene} autoplay />
+          {/* Learning the names is half; this is the doing half. */}
+          <div className="mt-10">
+            <Tasbih />
+          </div>
         </div>
       </section>
 
