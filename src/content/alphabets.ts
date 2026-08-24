@@ -454,7 +454,7 @@ export const urduLetters: Letter[] = [
   },
   {
     glyph: "ق",
-    name: { te: "కాఫ్", en: "Qaf" },
+    name: { te: "ఖాఫ్", en: "Qaf" },
     translit: "q",
     forms: { isolated: "ق", initial: "قـ", medial: "ـقـ", final: "ـق" },
     note: { te: "గొంతు వెనుక నుండి వచ్చే లోతైన \"క\" శబ్దం. పైన రెండు చుక్కలు. \"ک\" కంటే లోతుగా.", en: "A deep \"k\" from the very back of the throat. Two dots above. Deeper than ک." },
@@ -538,7 +538,7 @@ export const urduLetters: Letter[] = [
     translit: "'",
     forms: { isolated: "ء", initial: "ء", medial: "ء", final: "ء" },
     note: { te: "గొంతులో కొద్ది క్షణం ఆగడం — \"అ...ఆ\" పలికేటప్పుడు మధ్యలో ఆగినట్లు. ఒంటరిగా లేదా అక్షరంతో కలిపి వస్తుంది.", en: "A glottal stop — a brief pause in speech. Can appear alone or combined with a letter." },
-    audio: null,
+    audio: "/assets/audio/urdu/hamza.mp3",
   },
   {
     glyph: "ی",

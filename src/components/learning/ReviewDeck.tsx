@@ -98,23 +98,22 @@ export function ReviewDeck({ name, cards }: { name: string; cards: ReviewCard[] 
     <div>
       <p className="text-[var(--if-text-muted)] mb-4 text-pretty max-w-2xl">{copy.blurb[lang]}</p>
 
+      {/* The deck size belongs to the "started" figure — as its own item it
+          wrapped to a line of its own and read as a bare "/ 39". */}
       <dl className="flex flex-wrap gap-x-6 gap-y-1 mb-5 text-sm tabular-nums">
         {[
-          [stats.started, copy.started[lang]],
-          [stats.mastered, copy.mastered[lang]],
-          [stats.dueNow, copy.due[lang]],
+          [`${stats.started} / ${stats.total}`, copy.started[lang]],
+          [String(stats.mastered), copy.mastered[lang]],
+          [String(stats.dueNow), copy.due[lang]],
         ].map(([n, label]) => (
-          <div key={String(label)} className="flex items-baseline gap-1.5">
-            <dt className="sr-only">{String(label)}</dt>
+          <div key={label} className="flex items-baseline gap-1.5">
+            <dt className="sr-only">{label}</dt>
             <dd>
-              <b className="text-[var(--if-green)]">{String(n)}</b>{" "}
-              <span className="text-[var(--if-text-muted)]">{String(label)}</span>
+              <b className="text-[var(--if-green)]">{n}</b>{" "}
+              <span className="text-[var(--if-text-muted)]">{label}</span>
             </dd>
           </div>
         ))}
-        <div className="flex items-baseline gap-1.5">
-          <dd className="text-[var(--if-text-muted)]">/ {stats.total}</dd>
-        </div>
       </dl>
 
       {!card ? (

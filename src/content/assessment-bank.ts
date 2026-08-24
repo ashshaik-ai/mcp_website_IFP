@@ -1202,7 +1202,7 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "ఒట్టోమన్ సామ్రాజ్యం ఎప్పుడు మొదలైంది?",
+    "te": "ఉస్మానీయ సామ్రాజ్యం ఎప్పుడు మొదలైంది?",
     "en": "When did the Ottoman Empire begin?"
    },
    "options": [
@@ -1223,7 +1223,7 @@ const bank: Record<string, AssessmentQuestion[]> = {
    "from": {
     "slug": "ottoman",
     "title": {
-     "te": "స్థాయి 7 — ఒట్టోమన్ సామ్రాజ్యం",
+     "te": "స్థాయి 7 — ఉస్మానీయ సామ్రాజ్యం",
      "en": "Level 7 — The Ottoman Empire"
     }
    }

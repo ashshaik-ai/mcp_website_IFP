@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import { ChevronLeft, ChevronRight, Gamepad2, Pause, Play, RotateCcw, Volume2 } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { buzz } from "@/lib/haptics";
@@ -60,21 +60,33 @@ const copy = {
   best: { te: "అత్యుత్తమం", en: "Best" },
   again: { te: "మళ్ళీ ఆడండి", en: "Play again" },
   listen: { te: "అరబీ వినండి", en: "Hear the Arabic" },
+  noVoice: {
+    te: "ఈ పరికరంలో అరబీ స్వరం లేదు — కింది ఉచ్చారణ చూడండి.",
+    en: "No Arabic voice on this device — use the transliteration below.",
+  },
 } as const;
 
 /* The words themselves, out loud. Every persona who reached an Arabic phrase
    asked how it sounds; the browser's own speech synthesis answers with no
    audio files to record or ship. Quality varies by device voice, which is
-   still far better than silence for a first-time reader. */
-function speakArabic(text: string) {
+   still far better than silence for a first-time reader.
+
+   Having a speech engine is not the same as having an Arabic voice, and a
+   device without one plays nothing at all — a button that looks alive and
+   does nothing. So this reports whether it actually spoke, and the caller
+   says so when it did not. */
+function speakArabic(text: string): boolean {
   try {
+    const voices = speechSynthesis.getVoices();
+    if (voices.length && !voices.some((v) => v.lang?.toLowerCase().startsWith("ar"))) return false;
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "ar-SA";
     u.rate = 0.8;
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
+    return true;
   } catch {
-    /* No synthesis on this browser; the button is hidden anyway. */
+    return false;
   }
 }
 
@@ -306,7 +318,22 @@ export function Simulator({
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [practice, setPractice] = useState(false);
-  const seqId = `${steps[0]?.id ?? "seq"}-${steps.length}`;
+  /* Keyed by every step id, not just the first and the count: the Arabic and
+     Urdu alphabets both open on alif and both run twelve steps, so they shared
+     one record and a first run at Urdu greeted the learner with a best score
+     from a different portal. */
+  const seqId = useMemo(() => {
+    let h = 2166136261;
+    for (const s of steps) {
+      for (let i = 0; i < s.id.length; i++) {
+        h ^= s.id.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      h ^= 0x2f;
+      h = Math.imul(h, 16777619);
+    }
+    return `${steps[0]?.id ?? "seq"}-${steps.length}-${(h >>> 0).toString(36)}`;
+  }, [steps]);
   const reduced = useRef(false);
   const timer = useRef<number | null>(null);
   const step = steps[index];
@@ -342,6 +369,7 @@ export function Simulator({
   /* Speech synthesis exists nearly everywhere, but the button only appears
      once a mounted client confirms it — never a dead control. */
   const [canSpeak, setCanSpeak] = useState(false);
+  const [spoke, setSpoke] = useState<"idle" | "ok" | "none">("idle");
   useEffect(() => {
     setCanSpeak(typeof window !== "undefined" && "speechSynthesis" in window);
   }, []);
@@ -449,7 +477,7 @@ export function Simulator({
               {step.arabic && canSpeak && (
                 <button
                   type="button"
-                  onClick={() => speakArabic(step.arabic!)}
+                  onClick={() => setSpoke(speakArabic(step.arabic!) ? "ok" : "none")}
                   aria-label={copy.listen[lang]}
                   title={copy.listen[lang]}
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[var(--if-gold)]/70 transition-colors hover:bg-white/10 hover:text-[var(--if-gold-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
@@ -465,6 +493,12 @@ export function Simulator({
                 )}
                 {step.translit && (
                   <p className="text-[11px] sm:text-xs text-[var(--if-gold-pale)]/75 italic text-pretty">{step.translit}</p>
+                )}
+                {/* A tap that produces no sound needs to say why. */}
+                {spoke === "none" && (
+                  <p className="text-[11px] text-[var(--if-gold-pale)]/70 text-pretty" role="status">
+                    {copy.noVoice[lang]}
+                  </p>
                 )}
               </div>
             </div>

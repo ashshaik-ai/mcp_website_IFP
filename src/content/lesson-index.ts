@@ -505,7 +505,7 @@ export const lessonSummaries: LessonSummary[] = [
     "portal": "islamic-history",
     "slug": "ottoman",
     "title": {
-      "te": "స్థాయి 7 — ఒట్టోమన్ సామ్రాజ్యం",
+      "te": "స్థాయి 7 — ఉస్మానీయ సామ్రాజ్యం",
       "en": "Level 7 — The Ottoman Empire"
     },
     "intro": {

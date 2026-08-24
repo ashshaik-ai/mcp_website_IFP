@@ -51,7 +51,7 @@ export const readingLabelTe: Record<string, string> = {
   "Great Muslim scholars": "గొప్ప ముస్లిం విద్వాంసులు",
   "Islamic Spain": "ఇస్లామిక్ స్పెయిన్ (అల్-అందలుస్)",
   "The Colonial Era": "వలస పాలన కాలం",
-  "The Ottoman Empire": "ఉస్మానియా సామ్రాజ్యం",
+  "The Ottoman Empire": "ఉస్మానీయ సామ్రాజ్యం",
   "The modern Muslim world": "ఆధునిక ముస్లిం ప్రపంచం",
   // Kids
   "Kids Islam portal": "పిల్లల ఇస్లాం పోర్టల్",

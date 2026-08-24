@@ -162,7 +162,7 @@ function LearnArabicPage() {
               {copy.from_alphabet_to_quranic_arabic[lang]}
             </p>
           </BlurFade>
-          <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center text-sm">
+          <BlurFade delay={0.25} className="grid grid-cols-2 gap-3 text-sm sm:flex sm:gap-4 sm:flex-wrap sm:justify-center">
             {[
               { n: "6", l: copy.lessons[lang] },
               { n: "28", l: copy.letters[lang] },

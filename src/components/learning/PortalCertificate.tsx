@@ -110,7 +110,13 @@ export function PortalCertificate({
     };
     document.addEventListener("keydown", onKey);
     dialogRef.current?.querySelector<HTMLInputElement>("input")?.focus();
-    return () => document.removeEventListener("keydown", onKey);
+    /* The page behind a modal should not scroll under it. */
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
   }, [open]);
 
   /* Focus goes back where it came from, not to the top of the document. */
@@ -167,6 +173,7 @@ export function PortalCertificate({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={copy.namePlaceholder[lang]}
+                  required
                   className="w-full min-h-11 rounded-xl border border-[var(--if-gold)]/40 bg-white px-3 text-base text-[var(--if-text)]"
                 />
               </label>
@@ -174,7 +181,8 @@ export function PortalCertificate({
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--if-green)] px-4 text-sm font-bold text-[var(--if-gold-light)]"
+                  disabled={!name.trim()}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--if-green)] px-4 text-sm font-bold text-[var(--if-gold-light)] transition-opacity disabled:opacity-40"
                 >
                   <Printer aria-hidden="true" className="h-4 w-4" />
                   {copy.print[lang]}
@@ -204,7 +212,7 @@ export function PortalCertificate({
               </p>
               <p className="mt-8 text-sm text-[var(--if-text-muted)]">{copy.awarded[lang]}</p>
               <p className="mt-1 font-display text-3xl font-bold text-[var(--if-green)] sm:text-4xl">
-                {name.trim() || copy.namePlaceholder[lang]}
+                {name.trim() || <span className="opacity-30">{copy.namePlaceholder[lang]}</span>}
               </p>
               <p className="mt-6 text-sm text-[var(--if-text-muted)]">{copy.forCompleting[lang]}</p>
               <p className="mt-1 font-display text-xl font-bold text-[var(--if-green)] text-balance">

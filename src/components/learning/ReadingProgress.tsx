@@ -42,8 +42,12 @@ export function ReadingProgress({ minutes }: { minutes: number }) {
   const show = ratio > 0.02;
 
   return (
+    /* pointer-events-none: the minutes-left pill hangs below this 1px strip
+       and sat over the lesson, swallowing taps on whatever was underneath —
+       quiz options on one portal, body text on two others. Nothing in here is
+       interactive, so it should never take a tap. */
     <div
-      className="fixed inset-x-0 top-[64px] z-40 h-1"
+      className="pointer-events-none fixed inset-x-0 top-[64px] z-40 h-1"
       role="progressbar"
       aria-valuemin={0}
       aria-valuemax={100}

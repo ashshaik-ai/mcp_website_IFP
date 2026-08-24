@@ -148,7 +148,7 @@ export const historyLessonsTwo: Lesson[] = [
     slug: "ottoman",
     portal: "islamic-history",
     title: {
-      te: "స్థాయి 7 — ఒట్టోమన్ సామ్రాజ్యం",
+      te: "స్థాయి 7 — ఉస్మానీయ సామ్రాజ్యం",
       en: "Level 7 — The Ottoman Empire",
     },
     intro: {
@@ -175,11 +175,11 @@ export const historyLessonsTwo: Lesson[] = [
       {
         heading: { te: "సులేమాన్ — శాసనకర్త", en: "Suleiman the Lawgiver" },
         body: {
-          te: "సులేమాన్ (1520-1566) పాలనలో సామ్రాజ్యం ఉచ్ఛస్థితికి చేరింది. యూరప్‌లో ఆయనను 'ద మాగ్నిఫిసెంట్' అంటారు; ఒట్టోమన్లు ఆయనను 'ఖానూనీ' — శాసనకర్త — అనేవారు. ఈ రెండో పేరు ఎక్కువ చెబుతుంది: ఆయన ప్రధాన కృషి పరిపాలనా చట్టాల వ్యవస్థీకరణ. షరీఅత్ కవర్ చేయని పరిపాలనా విషయాలకు 'ఖానూన్' అనే చట్ట సంహితను రూపొందించారు. ఆయన కాలంలోనే మిమార్ సినాన్ అనే ప్రధాన వాస్తుశిల్పి సులేమానియె మస్జిద్ సహా మూడు వందలకు పైగా కట్టడాలను నిర్మించారు.",
+          te: "సులేమాన్ (1520-1566) పాలనలో సామ్రాజ్యం ఉచ్ఛస్థితికి చేరింది. యూరప్‌లో ఆయనను 'ద మాగ్నిఫిసెంట్' అంటారు; ఉస్మానీయలు ఆయనను 'ఖానూనీ' — శాసనకర్త — అనేవారు. ఈ రెండో పేరు ఎక్కువ చెబుతుంది: ఆయన ప్రధాన కృషి పరిపాలనా చట్టాల వ్యవస్థీకరణ. షరీఅత్ కవర్ చేయని పరిపాలనా విషయాలకు 'ఖానూన్' అనే చట్ట సంహితను రూపొందించారు. ఆయన కాలంలోనే మిమార్ సినాన్ అనే ప్రధాన వాస్తుశిల్పి సులేమానియె మస్జిద్ సహా మూడు వందలకు పైగా కట్టడాలను నిర్మించారు.",
           en: "Under Suleiman (1520-1566) the empire reached its height. Europe called him the Magnificent; the Ottomans called him Kanuni, the Lawgiver, and the second name says more. His main work was codifying administrative law, the kanun, covering matters the Shariah left to the ruler's discretion. In his reign the chief architect Mimar Sinan built over three hundred structures, the Suleymaniye mosque among them.",
         },
         check: {
-          question: { te: "ఒట్టోమన్లు సులేమాన్‌ను ఏమని పిలిచేవారు?", en: "What did the Ottomans call Suleiman?" },
+          question: { te: "ఉస్మానీయలు సులేమాన్‌ను ఏమని పిలిచేవారు?", en: "What did the Ottomans call Suleiman?" },
           options: [
             { te: "ఖానూనీ — శాసనకర్త", en: "Kanuni, the Lawgiver" },
             { te: "ద మాగ్నిఫిసెంట్", en: "The Magnificent" },
@@ -191,7 +191,7 @@ export const historyLessonsTwo: Lesson[] = [
       {
         heading: { te: "మిల్లెత్ వ్యవస్థ", en: "The millet system" },
         body: {
-          te: "ఒట్టోమన్ సామ్రాజ్యంలో అనేక మతాలు, భాషలు, జాతులు ఉండేవి. వాటిని పాలించడానికి 'మిల్లెత్' వ్యవస్థను వాడారు: ప్రతి మత సమాజం — ఆర్థోడాక్స్ క్రైస్తవులు, అర్మేనియన్లు, యూదులు — తమ సొంత మత నాయకుడి కింద, తమ సొంత చట్టాల ప్రకారం వివాహం, వారసత్వం, అంతర్గత వివాదాలను నిర్వహించుకునేవారు. 1492లో స్పెయిన్ నుండి బహిష్కరించబడిన యూదులను సుల్తాన్ బాయజీద్ II స్వాగతించారు, మరియు వారి వారసులు శతాబ్దాల పాటు ఇస్తాంబుల్, సలోనికాలో నివసించారు.",
+          te: "ఉస్మానీయ సామ్రాజ్యంలో అనేక మతాలు, భాషలు, జాతులు ఉండేవి. వాటిని పాలించడానికి 'మిల్లెత్' వ్యవస్థను వాడారు: ప్రతి మత సమాజం — ఆర్థోడాక్స్ క్రైస్తవులు, అర్మేనియన్లు, యూదులు — తమ సొంత మత నాయకుడి కింద, తమ సొంత చట్టాల ప్రకారం వివాహం, వారసత్వం, అంతర్గత వివాదాలను నిర్వహించుకునేవారు. 1492లో స్పెయిన్ నుండి బహిష్కరించబడిన యూదులను సుల్తాన్ బాయజీద్ II స్వాగతించారు, మరియు వారి వారసులు శతాబ్దాల పాటు ఇస్తాంబుల్, సలోనికాలో నివసించారు.",
           en: "The empire held many religions, languages and peoples, and governed them through the millet system: each religious community, the Orthodox Christians, the Armenians, the Jews, ran its own marriage, inheritance and internal disputes under its own leader and its own law. When Spain expelled its Jews in 1492, Sultan Bayezid II welcomed them, and their descendants lived in Istanbul and Salonica for centuries after.",
         },
       },
@@ -209,14 +209,14 @@ export const historyLessonsTwo: Lesson[] = [
       { te: "మిల్లెత్ వ్యవస్థ: ప్రతి మత సమాజం తన సొంత చట్టాల కింద.", en: "The millet system let each religious community live under its own law." },
     ],
     didYouKnow: [
-      { te: "మిమార్ సినాన్ తొంభైకి పైగా ఏళ్ళు జీవించి మూడు వందలకు పైగా కట్టడాలు నిర్మించారు; ఆయనను ఒట్టోమన్ వాస్తుశిల్పానికి ప్రతీకగా భావిస్తారు.", en: "Mimar Sinan lived past ninety and built over three hundred structures; he is taken as the emblem of Ottoman architecture." },
+      { te: "మిమార్ సినాన్ తొంభైకి పైగా ఏళ్ళు జీవించి మూడు వందలకు పైగా కట్టడాలు నిర్మించారు; ఆయనను ఉస్మానీయ వాస్తుశిల్పానికి ప్రతీకగా భావిస్తారు.", en: "Mimar Sinan lived past ninety and built over three hundred structures; he is taken as the emblem of Ottoman architecture." },
       { te: "1492లో స్పెయిన్ యూదులను బహిష్కరించినప్పుడు సుల్తాన్ బాయజీద్ II ఓడలను పంపి వారిని తీసుకువచ్చారు.", en: "When Spain expelled its Jews in 1492, Sultan Bayezid II sent ships to bring them." },
     ],
     reflect: [
       { te: "1924లో ఖిలాఫత్ రద్దు ముస్లిం ప్రపంచంపై ఎలాంటి ప్రభావం చూపి ఉండవచ్చు?", en: "What effect might the abolition of the caliphate in 1924 have had on the Muslim world?" },
     ],
     mistakes: [
-      { te: "ఒట్టోమన్ చరిత్రను కేవలం క్షీణత కథగా చదవడం — ఆరు శతాబ్దాలలో ఎక్కువ భాగం బలమైన పాలన.", en: "Reading Ottoman history as a story of decline, when most of six centuries was strong rule." },
+      { te: "ఉస్మానీయ చరిత్రను కేవలం క్షీణత కథగా చదవడం — ఆరు శతాబ్దాలలో ఎక్కువ భాగం బలమైన పాలన.", en: "Reading Ottoman history as a story of decline, when most of six centuries was strong rule." },
       { te: "సులేమాన్‌ను కేవలం విజేతగా చూడటం — ఆయన ప్రధాన కృషి చట్ట వ్యవస్థీకరణ.", en: "Seeing Suleiman only as a conqueror, when his main work was codifying law." },
     ],
     faqs: [
@@ -237,7 +237,7 @@ export const historyLessonsTwo: Lesson[] = [
     ],
     quiz: [
       {
-        question: { te: "ఒట్టోమన్ సామ్రాజ్యం ఎప్పుడు మొదలైంది?", en: "When did the Ottoman Empire begin?" },
+        question: { te: "ఉస్మానీయ సామ్రాజ్యం ఎప్పుడు మొదలైంది?", en: "When did the Ottoman Empire begin?" },
         options: [
           { te: "1299", en: "1299" },
           { te: "1453", en: "1453" },
@@ -270,7 +270,7 @@ export const historyLessonsTwo: Lesson[] = [
       { te: "మిల్లెత్: మత సమాజాల స్వయం పాలన.", en: "Millet: self-governance for religious communities." },
     ],
     summary: {
-      te: "ఒట్టోమన్లు 1299 నుండి 1924 వరకు మూడు ఖండాలలో పాలించారు. 1453లో కాన్‌స్టాంటినోపుల్ విజయం ఒక యుగాన్ని ముగించింది. సులేమాన్ కాలంలో చట్ట వ్యవస్థీకరణ, వాస్తుశిల్పం ఉచ్ఛస్థితికి చేరాయి. మిల్లెత్ వ్యవస్థ బహుళ మత సమాజాలను నిర్వహించింది.",
+      te: "ఉస్మానీయలు 1299 నుండి 1924 వరకు మూడు ఖండాలలో పాలించారు. 1453లో కాన్‌స్టాంటినోపుల్ విజయం ఒక యుగాన్ని ముగించింది. సులేమాన్ కాలంలో చట్ట వ్యవస్థీకరణ, వాస్తుశిల్పం ఉచ్ఛస్థితికి చేరాయి. మిల్లెత్ వ్యవస్థ బహుళ మత సమాజాలను నిర్వహించింది.",
       en: "The Ottomans ruled across three continents from 1299 to 1924. The taking of Constantinople in 1453 closed an era. Under Suleiman, law and architecture reached their height, and the millet system governed a plural society.",
     },
     apply: {
@@ -507,7 +507,7 @@ export const historyLessonsTwo: Lesson[] = [
       {
         question: { te: "ఖిలాఫత్ ఉద్యమం ఏమిటి?", en: "What was the Khilafat Movement?" },
         answer: {
-          te: "1919-1924లో భారతీయ ముస్లింలు ఒట్టోమన్ ఖిలాఫత్‌ను కాపాడాలని చేసిన ఉద్యమం. గాంధీ దీనికి మద్దతు ఇచ్చారు, మరియు ఇది భారత స్వాతంత్ర్య పోరాటంలో హిందూ-ముస్లిం ఐక్యతకు ఒక ముఖ్యమైన క్షణం. 1924లో టర్కీ స్వయంగా ఖిలాఫత్‌ను రద్దు చేయడంతో ఉద్యమం ముగిసింది.",
+          te: "1919-1924లో భారతీయ ముస్లింలు ఉస్మానీయ ఖిలాఫత్‌ను కాపాడాలని చేసిన ఉద్యమం. గాంధీ దీనికి మద్దతు ఇచ్చారు, మరియు ఇది భారత స్వాతంత్ర్య పోరాటంలో హిందూ-ముస్లిం ఐక్యతకు ఒక ముఖ్యమైన క్షణం. 1924లో టర్కీ స్వయంగా ఖిలాఫత్‌ను రద్దు చేయడంతో ఉద్యమం ముగిసింది.",
           en: "A movement among Indian Muslims from 1919 to 1924 to preserve the Ottoman caliphate. Gandhi supported it, and it was an important moment of Hindu-Muslim unity in the Indian freedom struggle. It ended when Turkey itself abolished the caliphate in 1924.",
         },
       },

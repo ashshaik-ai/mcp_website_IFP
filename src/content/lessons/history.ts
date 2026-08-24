@@ -672,7 +672,7 @@ export const historyLessons: Lesson[] = [
       {
         question: { te: "మంగోల దాడితో ఇస్లామిక్ జ్ఞానం ముగిసిందా?", en: "Did the Mongol destruction end Islamic learning?" },
         answer: {
-          te: "లేదు. బాగ్దాద్ పతనం భయంకరమైన నష్టం, కానీ జ్ఞాన కేంద్రాలు అనేకం — కైరో, డమాస్కస్, స్పెయిన్, మధ్య ఆసియా, తర్వాత ఒట్టోమన్, సఫవీ, మొఘల్ సామ్రాజ్యాలు. ఇబ్న్ ఖల్దూన్ వంటి గొప్ప పండితులు మంగోల దాడి తర్వాతివారే.",
+          te: "లేదు. బాగ్దాద్ పతనం భయంకరమైన నష్టం, కానీ జ్ఞాన కేంద్రాలు అనేకం — కైరో, డమాస్కస్, స్పెయిన్, మధ్య ఆసియా, తర్వాత ఉస్మానీయ, సఫవీ, మొఘల్ సామ్రాజ్యాలు. ఇబ్న్ ఖల్దూన్ వంటి గొప్ప పండితులు మంగోల దాడి తర్వాతివారే.",
           en: "No. The fall of Baghdad was a terrible loss, but centres of learning were many: Cairo, Damascus, Spain, Central Asia, and later the Ottoman, Safavid and Mughal empires. Scholars as great as Ibn Khaldun came after the Mongols, not before.",
         },
       },

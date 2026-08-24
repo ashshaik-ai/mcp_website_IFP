@@ -42,37 +42,39 @@ export function NightThirds() {
   const { lang } = useI18n();
   const stamp = useSyncExternalStore(subscribeNever, readNow, () => "");
 
-  if (!stamp) {
-    /* Server and first paint: a placeholder of the same height, so the panel
-       does not appear from nowhere and shift the page under the reader. */
-    return <div className="min-h-[13rem] rounded-2xl border border-[var(--if-gold)]/20 bg-white" />;
+  /* The card renders whole on the server; only the times wait for the clock.
+     Returning a blank placeholder until mount, as a first cut did, left a
+     reader without JavaScript — and a crawler — looking at an empty box where
+     the tool should be. */
+  let bounds: number[] | null = null;
+  if (stamp) {
+    const [y, m, d] = stamp.split("-").map(Number);
+    const tonight = prayerTimes(y, m + 1, d, MANGALAGIRI);
+    const tomorrow = new Date(Date.UTC(y, m, d + 1));
+    const nextFajr = prayerTimes(
+      tomorrow.getUTCFullYear(),
+      tomorrow.getUTCMonth() + 1,
+      tomorrow.getUTCDate(),
+      MANGALAGIRI,
+    ).fajr;
+    /* Maghrib tonight to fajr tomorrow, crossing midnight. */
+    const nightLength = 24 - tonight.maghrib + nextFajr;
+    const third = nightLength / 3;
+    const wrap = (h: number) => h % 24;
+    bounds = [
+      tonight.maghrib,
+      wrap(tonight.maghrib + third),
+      wrap(tonight.maghrib + third * 2),
+      wrap(tonight.maghrib + nightLength),
+    ];
   }
 
-  const [y, m, d] = stamp.split("-").map(Number);
-  const tonight = prayerTimes(y, m + 1, d, MANGALAGIRI);
-  const tomorrow = new Date(Date.UTC(y, m, d + 1));
-  const nextFajr = prayerTimes(
-    tomorrow.getUTCFullYear(),
-    tomorrow.getUTCMonth() + 1,
-    tomorrow.getUTCDate(),
-    MANGALAGIRI,
-  ).fajr;
-
-  /* Maghrib tonight to fajr tomorrow, crossing midnight. */
-  const nightLength = 24 - tonight.maghrib + nextFajr;
-  const third = nightLength / 3;
-  const wrap = (h: number) => h % 24;
-  const bounds = [
-    tonight.maghrib,
-    wrap(tonight.maghrib + third),
-    wrap(tonight.maghrib + third * 2),
-    wrap(tonight.maghrib + nightLength),
-  ];
+  const span = (a: number, b: number) => (bounds ? `${formatTime(bounds[a])} — ${formatTime(bounds[b])}` : "—");
 
   const rows = [
-    { label: copy.first[lang], from: bounds[0], to: bounds[1], lit: false },
-    { label: copy.middle[lang], from: bounds[1], to: bounds[2], lit: false },
-    { label: copy.last[lang], from: bounds[2], to: bounds[3], lit: true },
+    { label: copy.first[lang], span: span(0, 1), lit: false },
+    { label: copy.middle[lang], span: span(1, 2), lit: false },
+    { label: copy.last[lang], span: span(2, 3), lit: true },
   ];
 
   return (
@@ -87,9 +89,7 @@ export function NightThirds() {
 
       <p className="mt-4 text-sm text-[var(--if-text-muted)]">
         <span className="font-semibold text-[var(--if-gold-ink)]">{copy.best[lang]}:</span>{" "}
-        <span className="tabular-nums font-semibold text-[var(--if-green)]">
-          {formatTime(bounds[2])} — {formatTime(bounds[3])}
-        </span>
+        <span className="tabular-nums font-semibold text-[var(--if-green)]">{span(2, 3)}</span>
       </p>
 
       <ul className="mt-4 grid gap-2">
@@ -105,9 +105,7 @@ export function NightThirds() {
             <span className={`text-sm ${r.lit ? "font-bold text-[var(--if-green)]" : "text-[var(--if-text)]"}`}>
               {r.label}
             </span>
-            <span className="text-sm tabular-nums text-[var(--if-text-muted)]">
-              {formatTime(r.from)} — {formatTime(r.to)}
-            </span>
+            <span className="text-sm tabular-nums text-[var(--if-text-muted)]">{r.span}</span>
           </li>
         ))}
       </ul>

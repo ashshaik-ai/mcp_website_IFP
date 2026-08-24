@@ -166,8 +166,8 @@ export const historySteps: SimStep[] = [
   { id: "umayyad", label: { te: "ఉమయ్యద్ ఖిలాఫత్ — డమాస్కస్", en: "The Umayyads — Damascus" }, arabic: "الأمويون", caption: { te: "క్రీ.శ. 661–750", en: "661–750 CE" }, dur: 3400 },
   { id: "abbasid", label: { te: "అబ్బాసీ స్వర్ణయుగం — బగ్దాద్", en: "The Abbasid golden age — Baghdad" }, arabic: "العباسيون", caption: { te: "క్రీ.శ. 750–1258", en: "750–1258 CE" }, dur: 3400 },
   { id: "andalus", label: { te: "అల్-అందలుస్ — కొర్డోబా", en: "Al-Andalus — Córdoba" }, arabic: "الأندلس", caption: { te: "క్రీ.శ. 711–1492", en: "711–1492 CE" }, dur: 3200 },
-  { id: "ottoman", label: { te: "ఉస్మానియా సామ్రాజ్యం — ఇస్తాంబుల్", en: "The Ottomans — Istanbul" }, arabic: "العثمانيون", caption: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, dur: 3400 },
-  { id: "mughal", label: { te: "మొఘల్ సామ్రాజ్యం — ఢిల్లీ", en: "The Mughals — Delhi" }, arabic: "المغول", caption: { te: "క్రీ.శ. 1526–1857", en: "1526–1857 CE" }, dur: 3200 },
+  { id: "ottoman", label: { te: "ఉస్మానీయ సామ్రాజ్యం — ఇస్తాంబుల్", en: "The Ottomans — Istanbul" }, arabic: "العثمانيون", caption: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, dur: 3400 },
+  { id: "mughal", label: { te: "మొఘల్ సామ్రాజ్యం — ఢిల్లీ", en: "The Mughals — Delhi" }, arabic: "مغول الهند", caption: { te: "క్రీ.శ. 1526–1857", en: "1526–1857 CE" }, dur: 3200 },
   { id: "colonial", label: { te: "వలస పాలన", en: "The colonial era" }, caption: { te: "18–20 శతాబ్దాలు", en: "18th–20th centuries" }, dur: 3000 },
   { id: "modern", label: { te: "ఆధునిక ముస్లిం ప్రపంచం", en: "The modern Muslim world" }, caption: { te: "57 దేశాలు · 200 కోట్ల మంది", en: "57 nations · 2 billion people" }, dur: 3600 },
 ];

@@ -40,6 +40,10 @@ const copy = {
   good: { te: "బాగుంది!", en: "Good!" },
   great: { te: "చాలా బాగుంది!", en: "Excellent!" },
   empty: { te: "ముందు అక్షరం పైన గీయండి.", en: "Draw over the letter first." },
+  pointerOnly: {
+    te: "గీయడానికి వేలు లేదా మౌస్ కావాలి",
+    en: "drawing needs a finger or a mouse",
+  },
 } as const;
 
 const STORE = "ifp-trace-v1";
@@ -292,14 +296,19 @@ export function LetterTracer({
         <span className="sr-only" lang={glyphLang}>
           {glyph}
         </span>
+        {/* role and label so the drawing surface is announced rather than
+            being an unlabelled canvas a screen reader walks straight past.
+            Tracing itself needs a pointer; the panel says so, and nothing
+            here is the only route to any content. */}
         <canvas
           ref={inkRef}
           onPointerDown={start}
           onPointerMove={move}
           onPointerUp={end}
           onPointerCancel={end}
+          role="img"
+          aria-label={`${copy.heading[lang]} — ${copy.pointerOnly[lang]}`}
           className="absolute inset-0 h-full w-full touch-none"
-          aria-label={copy.heading[lang]}
         />
       </div>
 

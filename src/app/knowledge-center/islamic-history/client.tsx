@@ -54,7 +54,7 @@ const eras = [
       { te: "పర్షియా, లెవాంట్‌లోకి విస్తరణ", en: "Expansion into Persia & Levant" },
     ],
     lesson: { te: "న్యాయమైన నాయకత్వం బలమైన సమాజాన్ని నిర్మిస్తుంది", en: "Just leadership builds a strong society" },
-    personality: "Umar ibn al-Khattab RA",
+    personality: { te: "ఉమర్ ఇబ్న్ అల్-ఖత్తాబ్ (ర/అ)", en: "Umar ibn al-Khattab RA" },
   },
   {
     num: 2, years: { te: "క్రీ.శ. 661–750", en: "661–750 CE" }, color: "bg-[var(--if-green)]",
@@ -67,7 +67,7 @@ const eras = [
       { te: "సముద్ర మార్గ విస్తరణ", en: "Maritime expansion" },
     ],
     lesson: { te: "బలమైన వ్యవస్థ నాగరికతను విస్తృతంగా వ్యాప్తి చేస్తుంది", en: "Strong organisation spreads civilisation widely" },
-    personality: "Umar ibn Abdul-Aziz",
+    personality: { te: "ఉమర్ ఇబ్న్ అబ్దుల్ అజీజ్", en: "Umar ibn Abdul-Aziz" },
   },
   {
     num: 3, years: { te: "క్రీ.శ. 750–1258", en: "750–1258 CE" }, color: "bg-[var(--if-green)]",
@@ -80,11 +80,11 @@ const eras = [
       { te: "కాగితం, గ్రంథాలయాల విస్తరణ", en: "Paper & libraries spread" },
     ],
     lesson: { te: "జ్ఞానంలో పెట్టుబడి ఒక నాగరికతనే నిర్మిస్తుంది", en: "Investing in knowledge builds a whole civilisation" },
-    personality: "Al-Khwarizmi",
+    personality: { te: "అల్-ఖ్వారిజ్మీ", en: "Al-Khwarizmi" },
   },
   {
     num: 4, years: { te: "క్రీ.శ. 1299–1924", en: "1299–1924 CE" }, color: "bg-[var(--if-green)]",
-    title: { te: "ఒట్టోమన్ సామ్రాజ్యం", en: "Ottoman Empire" }, ar: "الدولة العثمانية",
+    title: { te: "ఉస్మానీయ సామ్రాజ్యం", en: "Ottoman Empire" }, ar: "الدولة العثمانية",
     desc: { te: "600 సంవత్సరాల ఇస్లామిక్ పాలన — కాన్స్టాంటినోపుల్ ఫతహ్, సుల్తాన్ సులేమాన్", en: "600 years of Islamic rule — Fall of Constantinople, Suleiman the Magnificent" },
     highlights: [
       { te: "1453లో కాన్‌స్టాంటినోపుల్ విజయం", en: "Constantinople conquered 1453" },
@@ -93,7 +93,7 @@ const eras = [
       { te: "ఇస్లామిక్ కళలు, వాస్తుశిల్పం", en: "Islamic arts and architecture" },
     ],
     lesson: { te: "దృష్టి, క్రమశిక్షణ సామ్రాజ్యాలను నిర్మిస్తాయి", en: "Vision and discipline build empires" },
-    personality: "Mehmed II (the Conqueror)",
+    personality: { te: "మెహ్మద్ II (ఫాతిహ్)", en: "Mehmed II (the Conqueror)" },
   },
   {
     num: 5, years: { te: "18–20 శతాబ్దాలు", en: "18th–20th C" }, color: "bg-gray-700",
@@ -106,7 +106,7 @@ const eras = [
       { te: "ముస్లిం విద్వాంసుల నేతృత్వంలో ప్రతిఘటన", en: "Muslim scholars led resistance" },
     ],
     lesson: { te: "విభజన, పరాధీనత బలమైన నాగరికతలను కూడా బలహీనపరుస్తాయి", en: "Disunity weakens even strong civilisations" },
-    personality: "Ibn Khaldun",
+    personality: { te: "ఇబ్న్ ఖల్దూన్", en: "Ibn Khaldun" },
   },
   {
     num: 6, years: { te: "నేడు", en: "Today" }, color: "bg-[#0d3b1e]",
@@ -119,7 +119,7 @@ const eras = [
       { te: "దావా, పునరుజ్జీవన ఉద్యమాలు", en: "Dawah and revival movements" },
     ],
     lesson: { te: "పునరుజ్జీవనం జ్ఞానం, మంచి స్వభావం, ఐక్యత ద్వారా వస్తుంది", en: "Renewal comes through knowledge, character, and unity" },
-    personality: "Fatima al-Fihri",
+    personality: { te: "ఫాతిమా అల్-ఫిహ్రీ", en: "Fatima al-Fihri" },
   },
 ];
 
@@ -211,7 +211,7 @@ function IslamicHistoryPage() {
           <div className="if-tabstrip overflow-x-auto pb-4 mb-6">
             <div className="flex gap-3 min-w-max">
               {eras.map((era, i) => (
-                <button key={era.num} id={`if-era-chip-${i}`} onClick={() => setActive(i)}
+                <button key={era.num} id={`if-era-chip-${i}`} type="button" onClick={() => setActive(i)} aria-pressed={active === i} aria-label={`${era.title[lang]} · ${era.years[lang]}`}
                   className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all min-w-[100px] ${active === i ? "bg-[var(--if-green)] border-[var(--if-gold)]/40" : "bg-white border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"}`}>
                   <div className={`w-8 h-8 rounded-full ${era.color} flex items-center justify-center text-white text-xs font-bold`}>{era.num}</div>
                   <span className={`text-[10px] font-semibold text-center leading-tight ${active === i ? "text-[var(--if-gold-pale)]" : "text-[var(--if-text-muted)]"}`}>{era.years[lang]}</span>
@@ -247,7 +247,7 @@ function IslamicHistoryPage() {
                     </div>
                     <div className="flex items-start gap-2 text-xs bg-[var(--if-gold)]/6 border border-[var(--if-gold)]/20 rounded-lg px-3 py-2 flex-1">
                       <span className="font-bold text-[var(--if-gold-ink)] flex-shrink-0">{copy.notable[lang]}</span>
-                      <span className="text-[var(--if-text-muted)]">{eras[active].personality}</span>
+                      <span className="text-[var(--if-text-muted)]">{eras[active].personality[lang]}</span>
                     </div>
                   </div>
                 </div>

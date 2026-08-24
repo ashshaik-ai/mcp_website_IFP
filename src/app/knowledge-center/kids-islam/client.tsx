@@ -161,9 +161,13 @@ function KidsIslamPage() {
               {t("వయస్సు 5–15 · ఆటాడుతూ నేర్చుకోండి · ఇస్లాం అన్వేషణ ప్రారంభించండి!", "Ages 5–15 · Learn through play · Start your Islam adventure!")}
             </p>
           </BlurFade>
-          <BlurFade delay={0.25} className="flex gap-3 flex-wrap justify-center">
-            {[t("6 స్థాయిలు", "6 Levels"), t("8 పాఠాలు", "8 Lessons"), t("క్విజ్‌లు", "Quizzes"), t("ఉచితం", "Free")].map(item => (
-              <span key={item} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-sm font-semibold text-[var(--if-gold-light)]">{item}</span>
+          {/* The lessons are numbered Level 1 to Level 8; the hero used to
+              claim six, counting the six theme cards further down instead.
+              A grid rather than a wrapping row, so the fourth chip is never
+              stranded alone on a second line at phone width. */}
+          <BlurFade delay={0.25} className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center">
+            {[t("8 స్థాయిలు", "8 Levels"), t("5–15 ఏళ్లు", "Ages 5–15"), t("క్విజ్‌లు", "Quizzes"), t("ఉచితం", "Free")].map(item => (
+              <span key={item} className="px-4 py-2.5 rounded-xl bg-white/5 border border-[var(--if-gold)]/20 text-center text-sm font-semibold text-[var(--if-gold-light)]">{item}</span>
             ))}
           </BlurFade>
         </div>

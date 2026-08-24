@@ -9,6 +9,7 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Bi, Lesson, QuizItem } from "@/content/all-lessons";
 import { LessonComplete } from "./LessonComplete";
 import { LessonVisual } from "./LessonVisual";
+import { DhikrList } from "./DhikrList";
 import { useQuizResults } from "@/lib/quiz-results";
 import { ReadingProgress } from "./ReadingProgress";
 import { buzz } from "@/lib/haptics";
@@ -296,6 +297,10 @@ export function LessonView({
         )}
 
         <LessonVisual portal={lesson.portal} slug={lesson.slug} />
+
+        {/* The how-to-pray lesson describes the movements; without this it
+            never showed the words that go with them. */}
+        {lesson.portal === "learn-salah" && lesson.slug === "howtopray" && <DhikrList />}
 
         {lesson.quiz.length > 0 && (
           <section>

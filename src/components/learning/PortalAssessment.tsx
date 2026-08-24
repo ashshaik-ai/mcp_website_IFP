@@ -263,10 +263,13 @@ export function PortalAssessment({ portal }: { portal: string }) {
   return (
     <div className="flex flex-col items-start gap-4 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-6 sm:flex-row sm:items-center">
       <div className="min-w-0 flex-1">
-        <p className="inline-flex items-center gap-2 font-display text-lg font-bold text-[var(--if-green)]">
+        {/* A real heading: as a <p> the assessment was missing from the page
+            outline entirely, so a screen-reader user scanning by heading
+            never met it. */}
+        <h3 className="inline-flex items-center gap-2 font-display text-lg font-bold text-[var(--if-green)]">
           <ClipboardCheck aria-hidden="true" className="h-5 w-5 text-[var(--if-gold-ink)]" />
           {copy.heading[lang]}
-        </p>
+        </h3>
         <p className="mt-1 max-w-[60ch] text-sm text-[var(--if-text-muted)] text-pretty">
           {count} {copy.questions[lang]} · {copy.blurb[lang]}
         </p>

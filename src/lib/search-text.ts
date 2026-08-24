@@ -24,6 +24,10 @@ export function foldSearch(text: string): string {
          them; the two ligatures decompose to nothing and are mapped by hand. */
       .normalize("NFD")
       .replace(/[̀-ͯ]/g, "")
+      /* Spacing modifier letters — the ʿayn and hamza marks in scholarly
+         romanisation (Al-Baʿith, Al-Muʾmin). They are not combining marks, so
+         NFD leaves them standing and a reader typing "Baith" matched nothing. */
+      .replace(/[ʻʼʽʾʿˈˊʹ'`´]/g, "")
       .replace(/æ/g, "ae")
       .replace(/œ/g, "oe")
       .replace(MARKS, "")

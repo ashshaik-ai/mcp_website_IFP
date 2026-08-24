@@ -329,7 +329,7 @@ function LearnQuranPage() {
               {copy.reading_tajweed_tafseer_hifz_complete[lang]}
             </p>
           </BlurFade>
-          <BlurFade delay={0.25} className="flex gap-4 flex-wrap justify-center text-sm">
+          <BlurFade delay={0.25} className="grid grid-cols-2 gap-3 text-sm sm:flex sm:gap-4 sm:flex-wrap sm:justify-center">
             {[
               { n: "4",   l: copy.stages[lang] },
               { n: "8",   l: copy.tajweed_rules[lang] },
@@ -362,6 +362,9 @@ function LearnQuranPage() {
                 return (
                   <button
                     key={s.num}
+                    type="button"
+                    aria-expanded={openStage === s.num}
+                    aria-label={s.title[lang]}
                     onClick={() => setOpenStage(openStage === s.num ? null : s.num)}
                     className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${
                       openStage === s.num

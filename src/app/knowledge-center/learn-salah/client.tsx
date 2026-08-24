@@ -10,6 +10,7 @@ import { salahSteps, wuduSteps as simWudu } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
+import { salahDhikr } from "@/content/salah-dhikr";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -428,16 +429,7 @@ function LearnSalahPage() {
               </h2>
             </BlurFade>
             <div className="flex flex-col gap-3">
-              {[
-                { n: 1, name: "Takbeer", ar: "اللَّهُ أَكْبَر", tr: "Allāhu Akbar", te: "అల్లాహ్ అందరికంటే గొప్పవాడు", en: "Allah is the Greatest", pos: { te: "నిలబడి, చేతులు చెవుల వరకు ఎత్తి", en: "Standing, raise hands to ears" } },
-                { n: 2, name: "Thana", ar: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ", tr: "Subḥānaka Allāhumma wa biḥamdik", te: "ఓ అల్లాహ్, నీవు పరిశుద్ధుడవు, నీ స్తోత్రంతో", en: "O Allah, glory and praise be to You", pos: { te: "నిలబడి, కుడిచేయి ఎడమపై", en: "Standing, right hand over left" } },
-                { n: 3, name: "Al-Fatihah", ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", tr: "Al-ḥamdu lillāhi rabbil-ʿālamīn", te: "సర్వలోక ప్రభువైన అల్లాహ్‌కే స్తోత్రాలు", en: "Praise be to Allah, Lord of all worlds", pos: { te: "నిలబడి, ఫాతిహా పఠించి", en: "Standing, recite Al-Fatihah" } },
-                { n: 4, name: "Ruku", ar: "سُبْحَانَ رَبِّيَ الْعَظِيمِ", tr: "Subḥāna Rabbiyal-ʿAẓīm", te: "నా మహోన్నత ప్రభువు పరిశుద్ధుడు (×3)", en: "Glory to my Lord, the Most Great (×3)", pos: { te: "వంగి, చేతులు మోకాళ్లపై", en: "Bowing, hands on knees" } },
-                { n: 5, name: "Sujood", ar: "سُبْحَانَ رَبِّيَ الْأَعْلَى", tr: "Subḥāna Rabbiyal-Aʿlā", te: "నా అత్యున్నత ప్రభువు పరిశుద్ధుడు (×3)", en: "Glory to my Lord, the Most High (×3)", pos: { te: "సాష్టాంగం — 7 అవయవాలు నేలపై", en: "Prostration — 7 parts on ground" } },
-                { n: 6, name: "Jalsa", ar: "رَبِّ اغْفِرْ لِي", tr: "Rabbighfir lī", te: "నా ప్రభూ, నన్ను క్షమించు", en: "My Lord, forgive me", pos: { te: "రెండు సజ్దాల మధ్య కూర్చొని", en: "Sitting between two prostrations" } },
-                { n: 7, name: "Tashahhud", ar: "التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ", tr: "At-taḥiyyātu lillāhi waṣ-ṣalawāt", te: "అన్ని వందనాలు అల్లాహ్‌కే", en: "All greetings are for Allah", pos: { te: "చివరి రకాత్‌లో కూర్చొని", en: "Sitting in the final raka'ah" } },
-                { n: 8, name: "Salam", ar: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه", tr: "As-salāmu ʿalaykum wa raḥmatullāh", te: "మీపై శాంతి మరియు అల్లాహ్ కరుణ", en: "Peace and mercy of Allah be upon you", pos: { te: "తలను కుడి, తర్వాత ఎడమకు తిప్పి", en: "Turn head right, then left" } },
-              ].map((step, i) => (
+              {salahDhikr.map((step, i) => (
                 <BlurFade key={step.n} delay={0.05 * i}>
                   <div className="bg-white rounded-xl border border-[var(--if-gold)]/20 p-4 flex gap-4">
                     <span className="w-8 h-8 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">{step.n}</span>
