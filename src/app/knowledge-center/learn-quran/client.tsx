@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -277,10 +277,12 @@ const ayatOfWeek = [
     reflect: { te: "మీరు కోరే 'మేలు' ఏది — అది పరలోకానికీ మేలు కలిగిస్తుందా?", en: "What 'good' are you seeking — and is it good for your next life too?" } },
 ];
 
-// Day 0=Sun … 6=Sat — static pick
-function getTodayAyah() {
-  return ayatOfWeek[new Date().getDay()];
-}
+/* Day 0=Sun … 6=Sat. Picked after mount, never during render: the page is
+   prerendered on whatever weekday the build ran, the visitor hydrates on
+   theirs, and six days out of seven the two texts differed — a React #418
+   hydration error on every load, with the ayah flashing from the build day's
+   to the real one. Until mount the first ayah stands, so the server and the
+   client's first render agree. */
 
 // ── COMPONENTS ────────────────────────────────────────────────────────────────
 
@@ -289,7 +291,10 @@ function LearnQuranPage() {
   const [openStage, setOpenStage] = useState<number | null>(1);
   const [tjIdx, setTjIdx] = useState(0);
 
-  const todayAyah = getTodayAyah();
+  const [todayAyah, setTodayAyah] = useState(ayatOfWeek[0]);
+  useEffect(() => {
+    setTodayAyah(ayatOfWeek[new Date().getDay()]);
+  }, []);
   const step = tajweedSteps[tjIdx];
 
   return (
@@ -428,7 +433,7 @@ function LearnQuranPage() {
                 onClick={() => setTjIdx(i)}
                 aria-label={`${copy.rule[lang]} ${i + 1}`}
                 aria-current={i === tjIdx ? "step" : undefined}
-                className="flex-1 min-w-[14px] min-h-11 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                className="flex-1 min-w-11 min-h-11 flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
               >
                 {/* 24px hit box (WCAG 2.2 AA), 8px visual bar inside. */}
                 <span
@@ -494,7 +499,7 @@ function LearnQuranPage() {
             <button
               onClick={() => setTjIdx(i => Math.max(0, i - 1))}
               disabled={tjIdx === 0}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] text-sm font-semibold disabled:opacity-30 hover:bg-[var(--if-gold)]/12 transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 px-5 rounded-lg border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] text-sm font-semibold disabled:opacity-30 hover:bg-[var(--if-gold)]/12 transition-colors"
             >
               <ChevronLeft className="h-4 w-4" />
               {copy.back[lang]}
@@ -502,7 +507,7 @@ function LearnQuranPage() {
             <button
               onClick={() => setTjIdx(i => Math.min(tajweedSteps.length - 1, i + 1))}
               disabled={tjIdx === tajweedSteps.length - 1}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold disabled:opacity-30 hover:bg-[var(--if-gold-light)] transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 px-5 rounded-lg bg-[var(--if-gold)] text-[var(--if-green)] text-sm font-bold disabled:opacity-30 hover:bg-[var(--if-gold-light)] transition-colors"
             >
               {copy.next[lang]}
               <ChevronRight className="h-4 w-4" />

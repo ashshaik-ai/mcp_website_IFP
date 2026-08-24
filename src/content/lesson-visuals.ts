@@ -132,6 +132,23 @@ const visuals: Record<string, LessonVisualSpec> = {
     scene: "letters",
     title: { te: "కలం ఎలా కదులుతుంది", en: "How the pen moves" },
   },
+
+  /* ── Learn Quran ──────────────────────────────────────────────────────
+     The tajweed lesson is about rules you can only point at on real text, and
+     the site already highlights them word by word on the basmala. Reading
+     word-by-word is also exactly what the "begin" lesson teaches. The rest —
+     hifz method, tafseer, adab, daily habit — are practice lessons whose own
+     lists carry them. */
+  "learn-quran/tajweed": {
+    source: "tajweedSteps",
+    steps: [],
+    title: { te: "నియమాలు పదాలపై — చూడండి", en: "The rules, on real words" },
+  },
+  "learn-quran/begin": {
+    source: "tajweedSteps",
+    steps: ["w0", "w1", "w2", "w3"],
+    title: { te: "పదం వెంట పదం చదవడం", en: "Reading word by word" },
+  },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {
