@@ -178,3 +178,8 @@ export function JourneyMap({ step, lang }: SceneProps) {
     </svg>
   );
 }
+
+/* Marked continuous: the engine keeps one instance alive across steps so
+   the scene tweens instead of cutting. One map, one journey across it. The route should extend, not be
+   redrawn from nothing at every waypoint. */
+JourneyMap.continuous = true;

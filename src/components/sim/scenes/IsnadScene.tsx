@@ -58,3 +58,8 @@ export function IsnadScene({ index, lang }: SceneProps) {
     </svg>
   );
 }
+
+/* Marked continuous: the engine keeps one instance alive across steps so
+   the scene tweens instead of cutting. The chain is one object being followed downward, so the links
+   should draw onto the chain already on screen rather than onto a new one. */
+IsnadScene.continuous = true;

@@ -1161,21 +1161,36 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
    Both weaves drift, in opposite directions and at different speeds, each by
    exactly one of its own tiles so neither loop is visible. Everything stops
    under prefers-reduced-motion. */
+/* The wallpaper's colour comes from the brand tokens through color-mix, not
+   from hand-picked rgb values. The old block was built from literal greens
+   that sat a shade off the hero gradient behind it, so the cover read as a
+   patch laid over the header rather than as one surface. Anything the tokens
+   change now, this changes with. */
+.if-wall {
+  /* Each portal tints its own light without leaving the palette: the accent
+     is a mix of the two brand golds against the deep green, set per portal
+     in PortalWallpaper. */
+  --wall-accent: var(--if-gold-light);
+  --wall-deep: color-mix(in srgb, var(--if-green) 78%, #04140a);
+  --wall-lift: color-mix(in srgb, var(--if-green-mid) 88%, var(--wall-accent));
+}
+
 .if-wall-wash {
   background:
-    radial-gradient(120% 90% at 15% 0%, rgb(26 92 48 / 0.85), transparent 60%),
-    radial-gradient(110% 80% at 85% 100%, rgb(10 44 22 / 0.9), transparent 62%),
-    linear-gradient(160deg, rgb(13 59 30 / 0.35), rgb(6 28 13 / 0.55));
+    radial-gradient(120% 90% at 15% 0%, color-mix(in srgb, var(--wall-lift) 82%, transparent), transparent 60%),
+    radial-gradient(110% 80% at 85% 100%, color-mix(in srgb, var(--wall-deep) 90%, transparent), transparent 62%),
+    linear-gradient(160deg, color-mix(in srgb, var(--if-green) 35%, transparent), color-mix(in srgb, var(--wall-deep) 58%, transparent));
 }
 
 .if-wall-far {
   opacity: 0.045;
-  color: var(--if-gold-light);
+  color: var(--wall-accent);
   animation: if-wall-drift-far 220s linear infinite;
 }
 
 .if-wall-tile {
   opacity: 0.085;
+  color: var(--wall-accent);
   animation: if-wall-drift 120s linear infinite;
 }
 
@@ -1190,10 +1205,47 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
   to { transform: translate3d(var(--tile-far, 280px), calc(-1 * var(--tile-far, 280px)), 0); }
 }
 
+/* A third layer for the portals whose motif turns rather than repeats: the
+   circuits of the tawaf, the beads of the ninety-nine, the eight-point star.
+   A pattern that drifts sideways says wallpaper; one that turns says the
+   thing it is a picture of. */
+.if-wall-spin {
+  opacity: 0.07;
+  color: var(--wall-accent);
+  transform-origin: 50% 45%;
+  animation: if-wall-spin 260s linear infinite;
+}
+
+@keyframes if-wall-spin {
+  from { transform: rotate(0deg) scale(1.35); }
+  to { transform: rotate(360deg) scale(1.35); }
+}
+
+/* Light falling from above, as it does through a clerestory: three shafts of
+   different widths, leaning and breathing on their own long cycle. This is
+   what the cover was missing -- every layer moved sideways, so nothing in it
+   suggested a source. */
+.if-wall-rays {
+  background:
+    linear-gradient(174deg, color-mix(in srgb, var(--if-gold-pale) 9%, transparent) 0 6%, transparent 22%),
+    linear-gradient(188deg, color-mix(in srgb, var(--wall-accent) 7%, transparent) 0 4%, transparent 30%),
+    linear-gradient(166deg, color-mix(in srgb, var(--if-gold-pale) 6%, transparent) 0 3%, transparent 26%);
+  background-size: 46% 100%, 32% 100%, 26% 100%;
+  background-position: 12% 0, 58% 0, 84% 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  animation: if-wall-rays 34s ease-in-out infinite alternate;
+}
+
+@keyframes if-wall-rays {
+  from { opacity: 0.55; transform: translate3d(-2%, 0, 0) skewX(-1.5deg); }
+  to { opacity: 1; transform: translate3d(3%, 0, 0) skewX(1.5deg); }
+}
+
 .if-wall-glow {
   background:
-    radial-gradient(55% 60% at 50% 38%, rgb(232 184 75 / 0.16), transparent 70%),
-    radial-gradient(35% 40% at 78% 18%, rgb(200 146 42 / 0.1), transparent 72%);
+    radial-gradient(55% 60% at 50% 38%, color-mix(in srgb, var(--wall-accent) 17%, transparent), transparent 70%),
+    radial-gradient(35% 40% at 78% 18%, color-mix(in srgb, var(--if-gold) 11%, transparent), transparent 72%);
   animation: if-wall-breathe 18s ease-in-out infinite;
 }
 
@@ -1202,13 +1254,13 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
   50% { opacity: 1; transform: scale(1.05); }
 }
 
-/* An aurora: two soft green-gold fields wandering on long, mismatched cycles,
-   so the cover never settles into one flat colour. The periods are prime-ish
-   against each other, which keeps the pattern from visibly repeating. */
+/* An aurora: two soft fields wandering on long, mismatched cycles, so the
+   cover never settles into one flat colour. The periods are prime-ish against
+   each other, which keeps the pattern from visibly repeating. */
 .if-wall-aurora {
   background:
-    radial-gradient(45% 55% at 25% 35%, rgb(26 92 48 / 0.55), transparent 70%),
-    radial-gradient(40% 50% at 75% 65%, rgb(200 146 42 / 0.14), transparent 72%);
+    radial-gradient(45% 55% at 25% 35%, color-mix(in srgb, var(--if-green-mid) 58%, transparent), transparent 70%),
+    radial-gradient(40% 50% at 75% 65%, color-mix(in srgb, var(--wall-accent) 15%, transparent), transparent 72%);
   animation: if-wall-aurora 47s ease-in-out infinite alternate;
 }
 
@@ -1221,7 +1273,7 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 /* A slow pass of light, the way it travels over glazed tile. Mostly waiting:
    the sweep itself takes four seconds of a twenty-six second cycle. */
 .if-wall-sheen {
-  background: linear-gradient(105deg, transparent 38%, rgb(245 230 192 / 0.09) 47%, rgb(255 255 255 / 0.05) 50%, transparent 62%);
+  background: linear-gradient(105deg, transparent 38%, color-mix(in srgb, var(--if-gold-pale) 10%, transparent) 47%, color-mix(in srgb, var(--if-cream-light) 6%, transparent) 50%, transparent 62%);
   transform: translateX(-120%);
   animation: if-wall-sheen 26s ease-in-out 6s infinite;
 }
@@ -1233,12 +1285,14 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 
 /* Darker at the edges, so the type in the middle keeps its contrast. */
 .if-wall-vignette {
-  background: radial-gradient(75% 75% at 50% 45%, transparent 45%, rgb(4 20 10 / 0.45) 100%);
+  background: radial-gradient(75% 75% at 50% 45%, transparent 45%, color-mix(in srgb, var(--wall-deep) 52%, transparent) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .if-wall-tile,
   .if-wall-far,
+  .if-wall-spin,
+  .if-wall-rays,
   .if-wall-aurora,
   .if-wall-glow { animation: none; }
   .if-wall-sheen { animation: none; opacity: 0; }

@@ -65,3 +65,8 @@ export function NamesScene({ step, index }: SceneProps) {
     </svg>
   );
 }
+
+/* Marked continuous: the engine keeps one instance alive across steps so
+   the scene tweens instead of cutting. The ring of ninety-nine is the constant; the name at its centre
+   is keyed, so it still arrives with its own animation. */
+NamesScene.continuous = true;

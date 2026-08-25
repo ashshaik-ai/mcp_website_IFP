@@ -54,3 +54,8 @@ export function LetterScene({ step, index }: SceneProps) {
     </svg>
   );
 }
+
+/* Marked continuous: the engine keeps one instance alive across steps so
+   the scene tweens instead of cutting. The sheet and the baseline stay; only the letter is rewritten,
+   and that has its own keyed wipe. */
+LetterScene.continuous = true;

@@ -86,3 +86,8 @@ export function TajweedScene({ step, index }: SceneProps) {
     </svg>
   );
 }
+
+/* Marked continuous: the engine keeps one instance alive across steps so
+   the scene tweens instead of cutting. The ayah stays on screen and the reading moves along it. Cutting
+   between words lost the sense of a line being read. */
+TajweedScene.continuous = true;

@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
-import { MoonScene } from "@/components/sim/scenes/MoonScene";
+import { MoonStage } from "@/components/sim/scenes3d/MoonStage";
 import { moonSteps } from "@/content/simulations";
 
 import { PageShell } from "@/components/layout/PageShell";
@@ -253,7 +253,7 @@ function IslamicCalendarPage() {
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
-          <Simulator steps={moonSteps} scene={MoonScene} autoplay />
+          <Simulator steps={moonSteps} scene={MoonStage} autoplay />
         </div>
       </section>
 

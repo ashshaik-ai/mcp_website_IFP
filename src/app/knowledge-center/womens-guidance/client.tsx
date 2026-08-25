@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
-import { WuduScene } from "@/components/sim/scenes/WuduScene";
+import { WuduStage } from "@/components/sim/scenes3d/WuduStage";
 import { ghuslSteps } from "@/content/simulations";
 
 import { ComparisonTable } from "@/components/learning/ComparisonTable";
@@ -241,7 +241,7 @@ function WomensGuidancePage() {
               ? "హైద్ లేదా జనాబత్ తర్వాత పూర్తి స్నానం ఎలా చేయాలో ఈ సిమ్యులేటర్ చూపిస్తుంది."
               : "How the full purifying bath is performed after hayd or janabah, played through."}
           </p>
-          <Simulator steps={ghuslSteps} scene={WuduScene} autoplay />
+          <Simulator steps={ghuslSteps} scene={WuduStage} autoplay />
         </div>
       </section>
 

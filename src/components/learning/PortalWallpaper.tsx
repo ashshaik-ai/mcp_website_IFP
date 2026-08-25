@@ -17,7 +17,10 @@
 
 type Motif = { tile: number; body: React.ReactNode };
 
-const GOLD = "var(--if-gold-light)";
+/* currentColor, so each layer takes the accent its own class sets: the near
+   tile, the far tile and the turning layer are the same drawing at three
+   depths, and a literal token would have pinned all three to one gold. */
+const GOLD = "currentColor";
 
 /* Each tile is drawn once and repeated by <pattern>. Strokes only, so the
    whole thing inherits the one colour and stays light. */
@@ -181,10 +184,44 @@ const MOTIFS: Record<string, Motif> = {
   },
 };
 
+/* A portal's own light, mixed from the brand tokens rather than picked.
+
+   Every cover used the same gold on the same green, so thirteen portals lit
+   identically and the wallpaper read as chrome rather than as belonging to
+   the subject. These stay inside the palette: each is the two brand golds and
+   the pale cream in different proportion, which shifts the temperature
+   without introducing a colour the site does not own. */
+const ACCENT: Record<string, string> = {
+  /* Warmest, for the portal about the book. */
+  "learn-quran": "color-mix(in srgb, var(--if-gold-light) 88%, var(--if-gold-pale))",
+  "learn-salah": "var(--if-gold-light)",
+  "learn-arabic": "color-mix(in srgb, var(--if-gold-light) 78%, var(--if-gold-pale))",
+  "learn-urdu": "color-mix(in srgb, var(--if-gold-light) 70%, var(--if-gold-pale))",
+  /* Cooler, the colour of ink rather than lamplight. */
+  hadith: "color-mix(in srgb, var(--if-gold-light) 62%, var(--if-cream))",
+  seerah: "color-mix(in srgb, var(--if-gold-light) 84%, var(--if-gold))",
+  "islamic-history": "color-mix(in srgb, var(--if-gold) 60%, var(--if-gold-light))",
+  /* Brightest, for the children. */
+  "kids-islam": "color-mix(in srgb, var(--if-gold-light) 55%, var(--if-gold-pale))",
+  "names-of-allah": "color-mix(in srgb, var(--if-gold-light) 92%, var(--if-cream-light))",
+  /* Moonlight. */
+  "islamic-calendar": "color-mix(in srgb, var(--if-gold-pale) 70%, var(--if-gold-light))",
+  "hajj-umrah": "color-mix(in srgb, var(--if-gold-light) 80%, var(--if-gold))",
+  "special-prayers": "color-mix(in srgb, var(--if-gold-pale) 62%, var(--if-gold-light))",
+  "womens-guidance": "color-mix(in srgb, var(--if-gold-light) 74%, var(--if-cream))",
+};
+
+/* Motifs built around a centre turn instead of repeating: the circuits of the
+   tawaf, the beads of the ninety-nine, the eight-point star. For these a
+   third layer rotates, which reads as the thing itself rather than as
+   wallpaper sliding past. */
+const TURNS = new Set(["hajj-umrah", "names-of-allah", "learn-quran"]);
+
 export function PortalWallpaper({ portal }: { portal: string }) {
   const motif = MOTIFS[portal];
   if (!motif) return null;
   const id = `wall-${portal}`;
+  const turns = TURNS.has(portal);
 
   return (
     <div
@@ -192,7 +229,11 @@ export function PortalWallpaper({ portal }: { portal: string }) {
       aria-hidden="true"
       /* Each layer drifts exactly one of its own tiles, so both land back on
          themselves and neither loop can be seen. */
-      style={{ "--tile": `${motif.tile}px`, "--tile-far": `${motif.tile * 2}px` } as React.CSSProperties}
+      style={{
+        "--tile": `${motif.tile}px`,
+        "--tile-far": `${motif.tile * 2}px`,
+        "--wall-accent": ACCENT[portal] ?? "var(--if-gold-light)",
+      } as React.CSSProperties}
     >
       {/* A deep wash first, so the cover is not a flat block of green. */}
       <div className="if-wall-wash absolute inset-0" />
@@ -219,11 +260,25 @@ export function PortalWallpaper({ portal }: { portal: string }) {
         <rect width="100%" height="100%" fill={`url(#${id})`} />
       </svg>
 
-      {/* Light that moves. The glow breathes over the middle, an aurora
-          wanders slowly across the whole cover so the green is never one flat
-          field, and a sheen crosses it now and then the way light travels over
-          glazed tile. The vignette sits the heading on a darker ground so it
-          keeps its contrast through all of it. */}
+      {/* The turning layer, for the motifs that are drawn around a centre. */}
+      {turns && (
+        <svg className="if-wall-spin absolute -inset-1/4 h-[150%] w-[150%]" role="presentation">
+          <defs>
+            <pattern id={`${id}-spin`} width={motif.tile * 1.5} height={motif.tile * 1.5} patternUnits="userSpaceOnUse">
+              <g transform="scale(1.5)">{motif.body}</g>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill={`url(#${id}-spin)`} />
+        </svg>
+      )}
+
+      {/* Light that moves. Shafts fall from above so the cover has a source,
+          the glow breathes over the middle, an aurora wanders slowly across
+          the whole cover so the green is never one flat field, and a sheen
+          crosses it now and then the way light travels over glazed tile. The
+          vignette sits the heading on a darker ground so it keeps its
+          contrast through all of it. */}
+      <div className="if-wall-rays absolute inset-0" />
       <div className="if-wall-aurora absolute inset-0" />
       <div className="if-wall-glow absolute inset-0" />
       <div className="if-wall-sheen absolute inset-0" />

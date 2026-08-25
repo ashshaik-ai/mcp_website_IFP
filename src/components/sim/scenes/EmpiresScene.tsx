@@ -182,3 +182,9 @@ export function EmpiresScene({ step, lang }: SceneProps) {
     </svg>
   );
 }
+
+/* Marked continuous: the engine keeps one instance alive across steps so
+   the scene tweens instead of cutting. The map never changes, only which empire is lit on it. Rebuilding
+   it every step threw away that continuity and made a moving frontier read
+   as a set of unrelated pictures. */
+EmpiresScene.continuous = true;

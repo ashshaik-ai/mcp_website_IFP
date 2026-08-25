@@ -4,7 +4,7 @@ import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
-import { HajjScene } from "@/components/sim/scenes/HajjScene";
+import { HajjStage } from "@/components/sim/scenes3d/HajjStage";
 import { hajjSteps as hajjSim, umrahSteps as umrahSim } from "@/content/simulations";
 
 import { PageShell } from "@/components/layout/PageShell";
@@ -123,7 +123,7 @@ function HajjUmrahPage() {
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
               {tab === "hajj" ? copy.hajj_steps[lang] : copy.umrah_steps[lang]}
             </h2>
-            <Simulator key={tab} steps={tab === "hajj" ? hajjSim : umrahSim} scene={HajjScene} autoplay />
+            <Simulator key={tab} steps={tab === "hajj" ? hajjSim : umrahSim} scene={HajjStage} autoplay />
           </div>
           <p className="mx-auto max-w-2xl text-center text-sm text-[var(--if-text-muted)] text-pretty">
             {tab === "hajj" ? copy.hajj_step_by_step[lang] : copy.umrah_step_by_step[lang]}

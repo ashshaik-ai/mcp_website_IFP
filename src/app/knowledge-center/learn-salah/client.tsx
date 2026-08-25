@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
 import { SalahScene } from "@/components/sim/scenes3d/SalahScene";
-import { WuduScene } from "@/components/sim/scenes/WuduScene";
+import { WuduStage } from "@/components/sim/scenes3d/WuduStage";
 import { salahSteps, wuduSteps as simWudu } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
@@ -368,7 +368,7 @@ function LearnSalahPage() {
       {activeTab === "wudu" && (
         <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-3xl mb-12">
-            <Simulator steps={simWudu} scene={WuduScene} autoplay />
+            <Simulator steps={simWudu} scene={WuduStage} autoplay />
           </div>
           <div className="mx-auto max-w-2xl">
             <BlurFade delay={0.1}>
