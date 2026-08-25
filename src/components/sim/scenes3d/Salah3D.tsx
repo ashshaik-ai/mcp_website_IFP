@@ -344,6 +344,108 @@ function prayerRug(): THREE.CanvasTexture {
   return rugTex;
 }
 
+/* The floor of the hall.
+
+   A mosque is carpeted in rows, and the rows are not decoration: each arch
+   woven into the carpet marks one person's place in the line, which is how a
+   congregation forms straight ranks without anyone measuring. The figure
+   stands in one of those places.
+
+   The scene used to sit on a plain dark disc, so the prayer happened nowhere
+   in particular. */
+let hallTex: THREE.CanvasTexture | null = null;
+function hallCarpet(): THREE.CanvasTexture {
+  if (hallTex) return hallTex;
+  const w = 256;
+  const h = 256;
+  const c = document.createElement("canvas");
+  c.width = w;
+  c.height = h;
+  const ctx = c.getContext("2d")!;
+
+  /* Darker than the prayer rug laid on it, so the rug reads as a separate
+     thing on the floor rather than as a patch of the same carpet. */
+  ctx.fillStyle = "#0a3218";
+  ctx.fillRect(0, 0, w, h);
+  /* Pile, running with the rows. */
+  for (let y = 0; y < h; y += 2) {
+    ctx.fillStyle = y % 4 === 0 ? "rgba(255,246,223,0.03)" : "rgba(4,22,11,0.05)";
+    ctx.fillRect(0, y, w, 1);
+  }
+
+  /* One place-marker: a pointed arch, repeated across the tile. */
+  ctx.strokeStyle = "rgba(232,184,75,0.34)";
+  ctx.lineWidth = 2;
+  const cx = w / 2;
+  ctx.beginPath();
+  ctx.moveTo(cx - 62, h - 24);
+  ctx.lineTo(cx - 62, 128);
+  ctx.quadraticCurveTo(cx - 62, 62, cx, 34);
+  ctx.quadraticCurveTo(cx + 62, 62, cx + 62, 128);
+  ctx.lineTo(cx + 62, h - 24);
+  ctx.stroke();
+
+  /* The band between the rows. */
+  ctx.strokeStyle = "rgba(232,184,75,0.22)";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(0, h - 12);
+  ctx.lineTo(w, h - 12);
+  ctx.stroke();
+  ctx.fillStyle = "rgba(232,184,75,0.2)";
+  for (let x = 8; x < w; x += 32) {
+    ctx.beginPath();
+    ctx.moveTo(x, h - 12 - 5);
+    ctx.lineTo(x + 5, h - 12);
+    ctx.lineTo(x, h - 12 + 5);
+    ctx.lineTo(x - 5, h - 12);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  hallTex = new THREE.CanvasTexture(c);
+  hallTex.wrapS = THREE.RepeatWrapping;
+  hallTex.wrapT = THREE.RepeatWrapping;
+  /* One arch per place, and a place is about two feet across. At 14 repeats
+     over a floor 32 units wide each arch came out the size of a doorway. */
+  hallTex.repeat.set(38, 38);
+  hallTex.anisotropy = 8;
+  return hallTex;
+}
+
+/** The hall: a carpeted floor, and an arcade closing the space behind. */
+function buildHall(scene: THREE.Scene) {
+  const floor = new THREE.Mesh(
+    new THREE.CircleGeometry(16, 56),
+    new THREE.MeshStandardMaterial({ map: hallCarpet(), roughness: 0.98 }),
+  );
+  floor.rotation.x = -Math.PI / 2;
+  floor.receiveShadow = true;
+  scene.add(floor);
+
+  /* An arcade behind the camera side, so turning the view finds a room
+     rather than an edge. Instanced: it is the same pier eighteen times. */
+  const stone = new THREE.MeshStandardMaterial({ color: 0x14522a, roughness: 0.88 });
+  const N = 18;
+  const R = 9.2;
+  const piers = new THREE.InstancedMesh(new THREE.BoxGeometry(0.3, 3.4, 0.3), stone, N);
+  const arcs = new THREE.InstancedMesh(new THREE.TorusGeometry(0.78, 0.1, 6, 12, Math.PI), stone, N);
+  const d = new THREE.Object3D();
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2;
+    d.position.set(Math.cos(a) * R, 1.7, Math.sin(a) * R);
+    d.rotation.set(0, -a, 0);
+    d.updateMatrix();
+    piers.setMatrixAt(i, d.matrix);
+    const mid = a + Math.PI / N;
+    d.position.set(Math.cos(mid) * R, 3.4, Math.sin(mid) * R);
+    d.rotation.set(0, -mid + Math.PI / 2, 0);
+    d.updateMatrix();
+    arcs.setMatrixAt(i, d.matrix);
+  }
+  scene.add(piers, arcs);
+}
+
 /** The mat, and the niche the prayer faces. */
 function buildRoom(scene: THREE.Scene) {
   /* The pile is a plane and the body of the rug a thin box under it. A box
@@ -419,7 +521,7 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
     /* A strong warm key and a fill turned well down. The room light was a
        green hemisphere at full strength, which is right for gold capsules on
        a green ground and wrong for a white thobe: it came out sage. */
-    const stage = mountStage(canvas, { key: 1.55, fill: 0.42 });
+    const stage = mountStage(canvas, { key: 1.55, fill: 0.42, floor: null, fog: [11, 26] });
     if (!stage) return;
 
     /* The key stands behind and to the mihrab side, which rims the figure
@@ -431,6 +533,7 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
     stage.scene.add(front);
     stage.scene.add(new THREE.AmbientLight(0xfff1da, 0.42));
 
+    buildHall(stage.scene);
     buildRoom(stage.scene);
     const joints = buildFigure();
     stage.scene.add(joints.root);
