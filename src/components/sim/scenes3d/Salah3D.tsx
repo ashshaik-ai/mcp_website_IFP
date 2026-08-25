@@ -44,9 +44,9 @@ const POSES: Record<string, Pose> = {
      the qibla, elbows out. Not straight overhead, which is what the old pose
      showed, and not out in front. */
   takbeer: sym({ rootY: 0.94, headX: 2 * D, shoulderX: 148 * D, elbowX: 62 * D, shoulderZ: 26 * D }),
-  /* Qiyam: right hand over left. The arms fold across the front and the hands
-     meet at the midline, which is what the crossing shoulderZ does; the
-     right sits a little higher so it reads as over rather than beside. */
+  /* Qiyam: right hand over left, below the navel. The angles here only get
+     the arms roughly across the front; the hands are solved onto the fold
+     point, so where they end up is the one thing not left to a guess. */
   qiyam: pose({
     rootY: 0.94, torsoX: 2 * D, headX: 12 * D,
     shoulderXR: 62 * D, elbowXR: 98 * D, shoulderZR: -30 * D,
@@ -127,21 +127,21 @@ const POSE_FOR: Record<string, keyof typeof POSES> = {
    The target is computed from the body itself every frame, so it follows the
    tween: the hands travel onto the knees as the back comes down rather than
    arriving there afterwards. */
-type ReachKind = "knees" | "ground" | "thighs" | "chest" | "ears";
+type ReachKind = "knees" | "ground" | "thighs" | "fold" | "ears";
 /* Sujud raises the elbows clear of the ground; every other placement hangs
    them. */
 const ELBOW_UP: ReachKind[] = ["ground"];
 
 const REACH: Partial<Record<keyof typeof POSES, ReachKind>> = {
   takbeer: "ears",
-  qiyam: "chest",
+  qiyam: "fold",
   ruku: "knees",
   sujud: "ground",
   julus: "thighs",
   salamR: "thighs",
   salamL: "thighs",
-  salamStandR: "chest",
-  salamStandL: "chest",
+  salamStandR: "fold",
+  salamStandL: "fold",
 };
 
 /* How long a change of posture takes. Long enough to read as a body moving
@@ -156,17 +156,24 @@ const T_B = new THREE.Vector3();
 const R_A = new THREE.Vector3();
 const R_B = new THREE.Vector3();
 
-/* Where the folded hands sit, in the torso's own frame. The right is a
-   little higher and a little further forward than the left, which is what
-   makes it read as right OVER left rather than as two hands side by side. */
-const CHEST_L = new THREE.Vector3(0.055, 0.3, -0.2);
-const CHEST_R = new THREE.Vector3(-0.015, 0.335, -0.235);
+/* Where the folded hands sit, in the torso's own frame.
+
+   Below the navel, which is the Hanafi position for men and the one this
+   portal teaches. It used to be the chest, and that disagreed with the
+   school the site names in its own janazah lesson and with the practice of
+   the community it is written for.
+
+   The right sits a little higher and further out from the body than the
+   left, which is what makes it read as right OVER left rather than as two
+   hands side by side. */
+const FOLD_L = new THREE.Vector3(0.045, 0.115, -0.186);
+const FOLD_R = new THREE.Vector3(-0.012, 0.138, -0.213);
 
 /** The world point one hand should be resting on, for a given posture. */
 function reachTarget(joints: Joints, kind: ReachKind, side: "L" | "R", out: THREE.Vector3) {
   const s = side === "L" ? 1 : -1;
-  if (kind === "chest") {
-    out.copy(side === "L" ? CHEST_L : CHEST_R);
+  if (kind === "fold") {
+    out.copy(side === "L" ? FOLD_L : FOLD_R);
     joints.torso.localToWorld(out);
     return out;
   }

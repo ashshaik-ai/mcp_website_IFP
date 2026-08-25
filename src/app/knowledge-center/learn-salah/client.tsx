@@ -149,7 +149,7 @@ const simSteps = [
     warn: { te: "తక్బీర్ ముందు నియ్యత్ (ఉద్దేశం) మనసులో పెట్టుకోవడం తప్పనిసరి.", en: "Making the intention (niyyah) before Takbeer is obligatory." },
   },
   {
-    n: 2, pos: { te: "నిలబడి, కుడిచేతిని ఎడమచేతిపై ఉంచి", en: "Standing, right hand over left on chest" },
+    n: 2, pos: { te: "నిలబడి, కుడిచేతిని ఎడమచేతిపై — నాభి కింద", en: "Standing, right hand over left, below the navel" },
     name: "Thana (Opening Dua)", nameAr: "الثَّنَاء",
     ar: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَلَا إِلَٰهَ غَيْرُكَ",
     tr: "Subḥānaka Allāhumma wa biḥamdika wa tabārakasmuka wa taʿālā jadduka wa lā ilāha ghayruk",
