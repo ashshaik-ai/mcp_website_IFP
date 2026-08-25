@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Phrase, VocabWord } from "@/content/vocabulary";
 import { foldSearch } from "@/lib/search-text";
+import { SpeakButton } from "./SpeakButton";
 
 const copy = {
   searchLabel: { te: "పదం వెతకండి", en: "Search words" },
@@ -88,7 +89,13 @@ export function VocabularyList({
                 >
                   {w.glyph}
                 </span>
-                <span className="font-mono text-xs text-[var(--if-text-muted)]">{w.translit}</span>
+                <span className="flex items-center gap-1">
+                  <span className="font-mono text-xs text-[var(--if-text-muted)]">{w.translit}</span>
+                  {/* Every letter had a recording and not one of the thirty
+                      words did, so a learner could hear "ba" but never
+                      "barakah". */}
+                  <SpeakButton text={w.glyph} lang={glyphLang} label={w.translit} className="-my-2" />
+                </span>
               </div>
               <p className="mt-1.5 font-semibold text-[var(--if-text)]">{w.meaning[lang]}</p>
               {w.note[lang] && (

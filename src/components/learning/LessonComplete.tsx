@@ -31,10 +31,16 @@ export function LessonComplete({
   /* An accidental double-tap marked the lesson done and silently un-marked it
      again. Un-marking within half a second of marking is never intended. */
   const lastToggle = useRef(0);
+  /* Un-marking a lesson you had aced used to be a dead control: the effect
+     below saw an unfinished, fully-scored lesson and immediately marked it
+     again, so the button flipped back under the reader's finger. An explicit
+     un-mark is remembered for the rest of the visit. */
+  const unmarked = useRef(false);
   const guardedToggle = () => {
     const now = Date.now();
     if (done && now - lastToggle.current < 500) return;
     lastToggle.current = now;
+    if (done) unmarked.current = true;
     toggle(portal, slug);
   };
   const aced = quizTotal > 0 && quizScore >= quizTotal;
@@ -44,7 +50,7 @@ export function LessonComplete({
      whole page, get all five right, and the portal would still show nothing
      against their name. */
   useEffect(() => {
-    if (ready && aced && !done) {
+    if (ready && aced && !done && !unmarked.current) {
       toggle(portal, slug);
       celebrate();
     }

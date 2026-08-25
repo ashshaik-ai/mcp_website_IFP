@@ -35,6 +35,7 @@ const copy = {
   tryAgain: { te: "మళ్లీ ప్రయత్నించండి", en: "Not quite — try again" },
   prev: { te: "మునుపటి", en: "Previous" },
   next: { te: "తదుపరి", en: "Next" },
+  finalStep: { te: "చివరి పరీక్ష మరియు ధృవపత్రం", en: "Final assessment & certificate" },
 
 } as const;
 
@@ -412,6 +413,24 @@ export function LessonView({
           </Link>
         ) : (
           <span className="hidden sm:block" />
+        )}
+        {/* The last lesson used to end with nothing after it: no route to the
+            final assessment, the certificate, or even back to the course. */}
+        {!next && (
+          <Link
+            href={`${portalHref}#lessons`}
+            className="flex min-w-0 items-center gap-2 min-h-11 px-4 rounded-xl border border-[var(--if-gold)]/40 bg-[color-mix(in_srgb,var(--if-gold)_8%,white)] transition-colors hover:border-[var(--if-gold)] sm:text-right sm:flex-row-reverse"
+          >
+            <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
+            <span className="min-w-0">
+              <span className="block text-xs uppercase tracking-wide text-[var(--if-text-muted)]">
+                {copy.next[lang]}
+              </span>
+              <span className="block truncate text-sm font-semibold text-[var(--if-green)]">
+                {copy.finalStep[lang]}
+              </span>
+            </span>
+          </Link>
         )}
         {next && (
           <Link

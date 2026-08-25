@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, ClipboardCheck, RotateCcw, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ClipboardCheck, RotateCcw, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { buzz } from "@/lib/haptics";
 import { celebrate } from "@/lib/celebrate";
@@ -12,11 +12,17 @@ import { quizOrder } from "@/lib/quiz-order";
 /* The bank inherits the site's `answer: 0` authoring convention, so without
    this the first option is always right — five audit personas passed 12/12
    without reading a question. Same seeded shuffle the lesson quizzes use. */
-const shuffle = (qs: AssessmentQuestion[]): AssessmentQuestion[] =>
-  qs.map((q) => {
-    const { order, answer } = quizOrder(q.q.en, q.options.length, q.answer);
+const shuffle = (qs: AssessmentQuestion[], attempt: number): AssessmentQuestion[] => {
+  const withOptions = qs.map((q) => {
+    /* The seed carries the attempt number, so a retake is a fresh paper
+       rather than the same twelve questions in the same order with the same
+       answers in the same places. */
+    const { order, answer } = quizOrder(`${q.q.en}#${attempt}`, q.options.length, q.answer);
     return { ...q, options: order.map((i) => q.options[i]), answer };
   });
+  const { order } = quizOrder(`order#${attempt}`, withOptions.length, 0);
+  return order.map((i) => withOptions[i]);
+};
 
 /* The end-of-portal assessment.
 
@@ -48,6 +54,7 @@ const copy = {
   question: { te: "ప్రశ్న", en: "Question" },
   of: { te: "/", en: "of" },
   next: { te: "తదుపరి", en: "Next" },
+  back: { te: "వెనుకకు", en: "Back" },
   finish: { te: "ముగించండి", en: "Finish" },
   yourScore: { te: "మీ స్కోరు", en: "Your score" },
   passed: { te: "ఉత్తీర్ణులయ్యారు", en: "Passed" },
@@ -86,6 +93,11 @@ export function PortalAssessment({ portal }: { portal: string }) {
   const [picks, setPicks] = useState<(number | null)[]>([]);
   const [best, setBest] = useState<number | null>(null);
   const [count, setCount] = useState(0);
+  const [attempt, setAttempt] = useState(0);
+  /* Advancing swapped the whole panel out and focus fell to <body>; a keyboard
+     reader then needed sixty-one tabs to reach the next question. Focus moves
+     to the question itself instead. */
+  const questionRef = useRef<HTMLParagraphElement>(null);
 
   /* Only the count is needed before anyone starts, and that is cheap enough to
      fetch up front so the panel can say how long this is. */
@@ -103,12 +115,14 @@ export function PortalAssessment({ portal }: { portal: string }) {
   const start = useCallback(async () => {
     setLoading(true);
     const m = await import("@/content/assessment-bank");
-    const qs = shuffle(m.assessmentFor(portal));
+    const next = attempt + 1;
+    setAttempt(next);
+    const qs = shuffle(m.assessmentFor(portal), next);
     setBank(qs);
     setPicks(Array(qs.length).fill(null));
     setAt(0);
     setLoading(false);
-  }, [portal]);
+  }, [portal, attempt]);
 
   if (!count) return null;
 
@@ -188,14 +202,23 @@ export function PortalAssessment({ portal }: { portal: string }) {
           <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--if-gold)]/20">
             <div
               className="h-full rounded-full bg-[var(--if-gold)] transition-[width] duration-300"
-              style={{ width: `${((at + (locked ? 1 : 0)) / bank.length) * 100}%` }}
+              style={{ width: `${((at + 1) / bank.length) * 100}%` }}
             />
           </div>
         </div>
 
-        <p className="font-semibold text-[var(--if-text)] text-pretty">{q.q[lang]}</p>
+        <p
+          ref={questionRef}
+          id={`if-assess-q-${at}`}
+          tabIndex={-1}
+          className="font-semibold text-[var(--if-text)] text-pretty focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--if-gold)]"
+        >
+          {q.q[lang]}
+        </p>
 
-        <div role="group" aria-label={copy.question[lang]} className="mt-3 grid gap-2">
+        {/* Labelled by the question rather than by the word "Question", which
+            is what a screen reader used to announce instead of the text. */}
+        <div role="group" aria-labelledby={`if-assess-q-${at}`} className="mt-3 grid gap-2">
           {q.options.map((o, i) => {
             const isPick = picked === i;
             const isAnswer = i === q.answer;
@@ -227,12 +250,27 @@ export function PortalAssessment({ portal }: { portal: string }) {
           })}
         </div>
 
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+        {at > 0 && (
+          <button
+            type="button"
+            onClick={() => {
+              setAt(at - 1);
+              requestAnimationFrame(() => questionRef.current?.focus());
+            }}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--if-gold)]/40 bg-white px-4 text-sm font-bold text-[var(--if-green)] transition-colors hover:border-[var(--if-gold)]"
+          >
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+            {copy.back[lang]}
+          </button>
+        )}
         <button
           type="button"
           disabled={!locked}
           onClick={() => {
             const next = at + 1;
             setAt(next);
+            if (next < bank.length) requestAnimationFrame(() => questionRef.current?.focus());
             if (next >= bank.length) {
               const final = picks.map((p, i) => (i === at ? picked : p)).filter((p, i) => p === bank[i].answer).length;
               const pct = Math.round((final / bank.length) * 100);
@@ -251,11 +289,12 @@ export function PortalAssessment({ portal }: { portal: string }) {
               });
             }
           }}
-          className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--if-green)] px-5 text-sm font-bold text-[var(--if-gold-light)] transition-opacity disabled:opacity-40"
+          className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--if-green)] px-5 text-sm font-bold text-[var(--if-gold-light)] transition-opacity disabled:opacity-40"
         >
           {at + 1 === bank.length ? copy.finish[lang] : copy.next[lang]}
           <ArrowRight aria-hidden="true" className="h-4 w-4" />
         </button>
+        </div>
       </div>
     );
   }

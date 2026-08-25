@@ -58,6 +58,11 @@ const POSES: Record<string, Pose> = {
   julus:   { rootY: 0.3, rootZ: -0.02, torsoX: 8 * D, headX: 10 * D, headY: 0, shoulderX: 52 * D, elbowX: 28 * D, hipX: 45 * D, kneeX: -135 * D, shoulderZ: 8 * D },
   salamR:  { rootY: 0.3, rootZ: -0.02, torsoX: 8 * D, headX: 4 * D, headY: -55 * D, shoulderX: 52 * D, elbowX: 28 * D, hipX: 45 * D, kneeX: -135 * D, shoulderZ: 8 * D },
   salamL:  { rootY: 0.3, rootZ: -0.02, torsoX: 8 * D, headX: 4 * D, headY: 55 * D, shoulderX: 52 * D, elbowX: 28 * D, hipX: 45 * D, kneeX: -135 * D, shoulderZ: 8 * D },
+  /* The funeral prayer is performed entirely standing, so its salam turns the
+     head from qiyam rather than from the sitting posture the five daily
+     prayers close in. */
+  salamStandR: { rootY: 0.94, rootZ: 0, torsoX: 3 * D, headX: 4 * D, headY: -55 * D, shoulderX: 15 * D, elbowX: 95 * D, hipX: 0, kneeX: 0, shoulderZ: 6 * D },
+  salamStandL: { rootY: 0.94, rootZ: 0, torsoX: 3 * D, headX: 4 * D, headY: 55 * D, shoulderX: 15 * D, elbowX: 95 * D, hipX: 0, kneeX: 0, shoulderZ: 6 * D },
 };
 
 /* Step ids from any portal onto a posture; unknown ids stand. */
@@ -65,6 +70,7 @@ const POSE_FOR: Record<string, keyof typeof POSES> = {
   niyyah: "qiyam", takbeer: "takbeer", qiyam: "qiyam", fatiha: "qiyam", surah: "qiyam",
   /* The funeral prayer's later takbirs, all made standing. */
   takbeer2: "takbeer", takbeer3: "takbeer", takbeer4: "takbeer", durood: "qiyam", dua: "qiyam",
+  salamStand: "salamStandR", salamStand2: "salamStandL",
   ruku: "ruku", itidal: "itidal", sujud: "sujud", sujud1: "sujud", sujud2: "sujud",
   julus: "julus", jalsa: "julus", tashahhud: "julus", salam: "salamR", salam2: "salamL",
   standing: "qiyam", sitting: "julus", bowing: "ruku", prostration: "sujud",

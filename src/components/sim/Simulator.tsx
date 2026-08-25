@@ -183,10 +183,24 @@ function Practice({
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [best, setBest] = useState<number | null>(null);
+  const promptRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     setBest(readBest(seqId));
   }, [seqId]);
+
+  /* On entry the panel opened below the fold on phones — the game started
+     off-screen — and on every advance focus fell out of it. */
+  useEffect(() => {
+    const el = promptRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+  }, []);
+
+  useEffect(() => {
+    if (index > 0) promptRef.current?.focus({ preventScroll: true });
+  }, [index]);
 
   const total = steps.length - 1;
 
@@ -250,7 +264,14 @@ function Practice({
   return (
     <div className="mt-3 rounded-2xl border border-[var(--if-gold)]/20 bg-white p-5">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-        <p className="font-semibold text-[var(--if-text)]">{copy.whatNext[lang]}</p>
+        <p
+          ref={promptRef}
+          id={`if-practice-q-${seqId}`}
+          tabIndex={-1}
+          className="font-semibold text-[var(--if-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--if-gold)]"
+        >
+          {copy.whatNext[lang]}
+        </p>
         {/* The best run shows from the first question — a returning learner
             used to see no trace of their record until they finished again. */}
         <p className="text-sm font-semibold text-[var(--if-gold-ink)] tabular-nums" aria-live="polite">
@@ -263,8 +284,10 @@ function Practice({
         </p>
       </div>
       {/* Keyed by question: reused buttons animated their colour from the
-          previous verdict, so a red flash bled into the next question. */}
-      <div key={index} role="group" aria-label={copy.whatNext[lang]} className="grid gap-2 sm:grid-cols-3">
+          previous verdict, so a red flash bled into the next question. The
+          remount also dropped focus to <body>, which made the game
+          unplayable by keyboard, so the prompt takes focus each round. */}
+      <div key={index} role="group" aria-labelledby={`if-practice-q-${seqId}`} className="grid gap-2 sm:grid-cols-3">
         {options.map((opt) => {
           const isPick = picked === opt;
           const isAnswer = opt === answer;
@@ -389,6 +412,13 @@ export function Simulator({
      phone user tries first. Vertical movement passes through to the page. */
   const swipe = useRef<{ x: number; y: number } | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
+    /* A scene that orbits under the finger owns the horizontal axis. On the
+       3D salah figure a drag to turn the camera was read as a swipe as well,
+       so studying a posture skipped to the next one. */
+    if ((e.target as HTMLElement)?.closest?.("canvas")) {
+      swipe.current = null;
+      return;
+    }
     swipe.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
   };
   const onTouchEnd = (e: React.TouchEvent) => {

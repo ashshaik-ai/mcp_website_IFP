@@ -1087,3 +1087,23 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
   .if-wipe { animation: none; transform: none; }
   .if-nib { animation: none; opacity: 0; }
 }
+
+/* ── Tajweed notation ─────────────────────────────────────────────────────
+   A deliberate exception to "no colours outside the palette": these are not
+   decoration, they are a notation. Colour-coded mushafs have used roughly
+   this scheme for decades — nasalisation green, the bouncing echo blue,
+   elongation red — and a learner who has seen one will recognise it here.
+   Inventing brand-tinted substitutes would make the page prettier and the
+   teaching worse.
+
+   Applied only to isolated rule letters, never inside a word: wrapping part
+   of an Arabic word in a span breaks the ligature shaping that makes the
+   script legible, and a broken word teaches nothing at all.
+
+   Values are picked for legibility on the dark green panel these sit on. */
+.if-tj-ghunnah  { color: #7fd4a0; }
+.if-tj-qalqalah { color: #8fc4f5; }
+.if-tj-madd     { color: #f2938c; }
+.if-tj-ikhfa    { color: #d7c9a8; }
+.if-tj-waqf     { color: #c9b6e8; }
+.if-tj-makhraj  { color: #f5c96a; }

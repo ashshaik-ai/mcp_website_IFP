@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context";
 import { salahDhikr } from "@/content/salah-dhikr";
+import { SpeakButton } from "./SpeakButton";
 
 /* The recitations of the prayer, posture by posture.
 
@@ -39,9 +40,12 @@ export function DhikrList() {
                 <span className="font-display font-bold text-[var(--if-green)]">{step.name}</span>
                 <span className="text-xs text-[var(--if-text-muted)]">{step.pos[lang]}</span>
               </div>
-              <p lang="ar" dir="rtl" className="mb-1 text-right font-arabic text-lg text-[var(--if-gold-ink)]">
-                {step.ar}
-              </p>
+              <div className="mb-1 flex items-center justify-end gap-1">
+                <SpeakButton text={step.ar} label={step.name} className="-my-2" />
+                <p lang="ar" dir="rtl" className="text-right font-arabic text-lg text-[var(--if-gold-ink)]">
+                  {step.ar}
+                </p>
+              </div>
               <p className="mb-1 text-xs italic text-[var(--if-text-muted)]">{step.tr}</p>
               <p className="text-sm text-[var(--if-text-muted)] text-pretty">{lang === "te" ? step.te : step.en}</p>
             </div>

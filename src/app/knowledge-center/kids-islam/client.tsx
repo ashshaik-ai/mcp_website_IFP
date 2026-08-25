@@ -1,6 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+
+/* The portal quiz's best run, read through a store so the value is available
+   on the first client render without a setState-in-effect. */
+const kidsQuizListeners = new Set<() => void>();
+const subscribeKidsQuiz = (fn: () => void) => {
+  kidsQuizListeners.add(fn);
+  return () => kidsQuizListeners.delete(fn);
+};
+const kidsQuizChanged = () => kidsQuizListeners.forEach((fn) => fn());
+const readKidsQuiz = (): number | null => {
+  try {
+    const v = JSON.parse(localStorage.getItem("ifp-kids-quiz") || "null");
+    return typeof v === "number" ? v : null;
+  } catch {
+    return null;
+  }
+};
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
@@ -124,6 +141,13 @@ function KidsIslamPage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+  /* The portal quiz threw its result away on reload while every other quiz on
+     the site remembers one. Best run only, in this browser. Read through the
+     store rather than in an effect, so the server pass sees nothing and the
+     client sees the stored value on its first render. */
+  const storedBest = useSyncExternalStore(subscribeKidsQuiz, readKidsQuiz, () => null);
+  const [runBest, setRunBest] = useState<number | null>(null);
+  const bestQuiz = runBest ?? storedBest;
 
   const handleAnswer = (idx: number) => {
     if (selected !== null) return;
@@ -133,7 +157,17 @@ function KidsIslamPage() {
 
   const nextQ = () => {
     if (quizIdx < quiz.length - 1) { setQuizIdx(q => q + 1); setSelected(null); }
-    else setDone(true);
+    else {
+      setDone(true);
+      const next = bestQuiz === null || score > bestQuiz ? score : bestQuiz;
+      setRunBest(next);
+      try {
+        localStorage.setItem("ifp-kids-quiz", JSON.stringify(next));
+        kidsQuizChanged();
+      } catch {
+        /* Storage blocked; the run still counts on screen. */
+      }
+    }
   };
 
   const t = (te: string, en: string) => lang === "te" ? te : en;
@@ -550,6 +584,11 @@ function KidsIslamPage() {
                   <h3 className="font-display text-2xl font-bold text-[var(--if-gold-light)] mb-2">
                     {score}/{quiz.length} {t("సరైనవి!", "Correct!")}
                   </h3>
+                  {bestQuiz !== null && (
+                    <p className="mb-2 text-sm font-semibold text-[var(--if-gold-light)] tabular-nums">
+                      {t("అత్యుత్తమం", "Best")}: {bestQuiz}/{quiz.length}
+                    </p>
+                  )}
                   <p className="text-[var(--if-gold-pale)]/70 text-sm mb-5">
                     {score >= quiz.length * 0.8
                       ? t("అద్భుతం! మీరు ఇస్లాం జ్ఞానవంతులు!", "Excellent! You are an Islam knowledge champion!")

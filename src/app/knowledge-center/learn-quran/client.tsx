@@ -115,7 +115,7 @@ const stages = [
 
 const tajweedSteps = [
   {
-    glyph: "تَجْوِيد", ar: "التجويد",
+    glyph: "تَجْوِيد", tone: "", ar: "التجويد",
     name: { te: "తజ్వీద్ అంటే ఏమిటి?", en: "What is Tajweed?" },
     expl: { te: "తజ్వీద్ అంటే ప్రతి అక్షరానికి దాని హక్కును ఇవ్వడం — సరైన స్థానం నుండి, సరైన లక్షణాలతో, ఖురాన్ అవతరించిన విధంగా పలకడం.", en: "Tajweed means giving every letter its right — pronouncing it from its correct point with its proper qualities, as the Quran was revealed." },
     example_ar: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
@@ -123,7 +123,7 @@ const tajweedSteps = [
     mistake: { te: "వేగంగా పఠించి నియమాలను విస్మరించడం, ఇది అక్షరాలను, అర్థాలను మార్చవచ్చు.", en: "Reciting fast and ignoring the rules, which can change letters and meanings." },
   },
   {
-    glyph: "ع ح خ", ar: "المخارج",
+    glyph: "ع ح خ", tone: "if-tj-makhraj", ar: "المخارج",
     name: { te: "మఖారిజ్ (ఉచ్చారణ స్థానాలు)", en: "Makharij (Articulation Points)" },
     expl: { te: "ప్రతి అక్షరానికి ఖచ్చితమైన నిష్క్రమణ స్థానం ఉంది — గొంతు, నాలుక, పెదవులు. వాటిని తెలుసుకోవడం ప్రతి అక్షరాన్ని వేరుగా ఉంచుతుంది.", en: "Every letter has a precise exit point — the throat, the tongue, the lips. Knowing them keeps each letter distinct." },
     example_ar: "ع · ح · خ",
@@ -131,7 +131,7 @@ const tajweedSteps = [
     mistake: { te: "'ఐన్ (ع)ను హంజాలా, లేదా హా (ح)ను ఆంగ్ల h లా పలకడం.", en: "Pronouncing ʿain (ع) like a hamza, or ḥa (ح) like the English h." },
   },
   {
-    glyph: "نْ ـًـٍـٌ", ar: "النون الساكنة",
+    glyph: "نْ ـًـٍـٌ", tone: "if-tj-ikhfa", ar: "النون الساكنة",
     name: { te: "నూన్ సాకినా & తన్వీన్", en: "Noon Sakinah & Tanween" },
     expl: { te: "నిశ్శబ్ద నూన్ లేదా తన్వీన్ నాలుగు నియమాలను అనుసరిస్తుంది: ఇజ్‌హార్ (స్పష్టం), ఇద్‌గామ్ (కలయిక), ఇఖ్‌లాబ్ (మార్పు), ఇఖ్‌ఫా (దాపు).", en: "A silent noon or tanween follows four rules: Izhar (clear), Idgham (merge), Iqlab (convert), and Ikhfa (hide)." },
     example_ar: "مِنْ بَعْدِ",
@@ -139,7 +139,7 @@ const tajweedSteps = [
     mistake: { te: "ఇజ్‌హార్ (స్పష్టం) అవసరమైన చోట ఇఖ్‌ఫా (దాపు) వర్తింపజేయడం.", en: "Applying ikhfa (hiding) where the rule actually requires izhar (clear)." },
   },
   {
-    glyph: "مْ", ar: "الميم الساكنة",
+    glyph: "مْ", tone: "if-tj-ikhfa", ar: "الميم الساكنة",
     name: { te: "మీమ్ సాకినా", en: "Meem Sakinah" },
     expl: { te: "నిశ్శబ్ద మీమ్ మూడు నియమాలను అనుసరిస్తుంది: ఇఖ్‌ఫా షఫవీ, ఇద్‌గామ్ షఫవీ, ఇజ్‌హార్ షఫవీ.", en: "A silent meem follows three rules: Ikhfa Shafawi, Idgham Shafawi, and Izhar Shafawi." },
     example_ar: "لَهُم مَّا",
@@ -147,7 +147,7 @@ const tajweedSteps = [
     mistake: { te: "గున్నాను వదిలేయడం, లేదా బా, మీమ్ తప్ప ఇతర అక్షరాల ముందు మీమ్‌ను దాచడం.", en: "Dropping the ghunnah, or hiding the meem before letters other than ba and meem." },
   },
   {
-    glyph: "نّ مّ", ar: "الغُنّة",
+    glyph: "نّ مّ", tone: "if-tj-ghunnah", ar: "الغُنّة",
     name: { te: "గున్నా (నాసిక ధ్వని)", en: "Ghunnah (Nasalization)" },
     expl: { te: "గున్నా అనేది సుమారు రెండు మాత్రల పాటు పట్టి ఉంచే నాసిక ధ్వని, షద్దా గల నూన్ లేదా మీమ్‌పై బలంగా ఉంటుంది.", en: "Ghunnah is a nasal sound held for about two counts, strongest on a noon or meem carrying a shaddah." },
     example_ar: "إِنَّ · ثُمَّ",
@@ -155,7 +155,7 @@ const tajweedSteps = [
     mistake: { te: "గున్నాను తగినంత సేపు పట్టుకోకపోవడం, లేదా పూర్తిగా వదిలేయడం.", en: "Not holding the ghunnah long enough, or skipping it altogether." },
   },
   {
-    glyph: "ق ط ب ج د", ar: "القلقلة",
+    glyph: "ق ط ب ج د", tone: "if-tj-qalqalah", ar: "القلقلة",
     name: { te: "ఖల్‌ఖలా (ప్రతిధ్వని)", en: "Qalqalah (Echoing)" },
     expl: { te: "ఖల్‌ఖలా అనేది ఐదు అక్షరాలు (ق ط ب ج د) సుకూన్‌తో ఉన్నప్పుడు వాటిపై వచ్చే ప్రతిధ్వని.", en: "Qalqalah is a bouncing echo on five letters (ق ط ب ج د) when they carry a sukoon." },
     example_ar: "أَحَدْ · الْفَلَقْ",
@@ -163,7 +163,7 @@ const tajweedSteps = [
     mistake: { te: "ఏ ప్రతిధ్వనీ ఇవ్వకపోవడం, లేదా అక్షరానికి పూర్తి స్వరం చేర్చడం.", en: "Giving no echo at all, or adding a full vowel sound to the letter." },
   },
   {
-    glyph: "ا و ي", ar: "المُدود",
+    glyph: "ا و ي", tone: "if-tj-madd", ar: "المُدود",
     name: { te: "మద్ద్ (దీర్ఘీకరణ)", en: "Madd (Elongation)" },
     expl: { te: "మద్ద్ అంటే స్వరాన్ని దీర్ఘం చేయడం. సహజ మద్ద్ రెండు మాత్రలు; ఇతర రకాలు నియమం ప్రకారం ఎక్కువ సేపు ఉంచబడతాయి.", en: "Madd is the elongation of a vowel. Natural madd is two counts; other types are held longer by rule." },
     example_ar: "قَالَ · الضَّالِّينَ",
@@ -171,7 +171,7 @@ const tajweedSteps = [
     mistake: { te: "అవసరమైన మద్ద్‌ను కుదించడం, లేదా సహజ రెండు-మాత్రల మద్ద్‌ను అతిగా సాగదీయడం.", en: "Shortening a required madd, or over-stretching a natural two-count madd." },
   },
   {
-    glyph: "ۚ ۖ ۗ", ar: "الوقف",
+    glyph: "ۚ ۖ ۗ", tone: "if-tj-waqf", ar: "الوقف",
     name: { te: "వఖఫ్ (ఆపే నియమాలు)", en: "Waqf (Stopping Rules)" },
     expl: { te: "వఖఫ్ అంటే ఎక్కడ ఆపాలి, ఎక్కడ కొనసాగాలి అని తెలుసుకోవడం. వచనం పైన ఉన్న చిన్న గుర్తులు మీకు దారి చూపుతాయి.", en: "Waqf is knowing where to stop and where to continue. Small signs above the text guide you." },
     example_ar: "ۗ ۚ ۖ",
@@ -456,14 +456,35 @@ function LearnQuranPage() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-[var(--if-gold-pale)]/80 mb-6">
+          <p className="text-xs text-[var(--if-gold-pale)]/80 mb-3">
             {copy.rule[lang]} <span className="font-bold text-[var(--if-gold-light)]">{tjIdx + 1}</span> / {tajweedSteps.length}
           </p>
+
+          {/* A key to the notation, so the colour on the letters means
+              something the first time it is seen. */}
+          <ul className="mb-6 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-[var(--if-gold-pale)]/75">
+            {[
+              { c: "if-tj-ghunnah", te: "గున్నా", en: "Ghunnah" },
+              { c: "if-tj-qalqalah", te: "ఖల్‌ఖలా", en: "Qalqalah" },
+              { c: "if-tj-madd", te: "మద్ద్", en: "Madd" },
+              { c: "if-tj-ikhfa", te: "ఇఖ్ఫా", en: "Ikhfa" },
+              { c: "if-tj-waqf", te: "వక్ఫ్", en: "Waqf" },
+            ].map((k) => (
+              <li key={k.c} className="inline-flex items-center gap-1.5">
+                <span aria-hidden="true" className={`text-base leading-none ${k.c}`}>●</span>
+                {lang === "te" ? k.te : k.en}
+              </li>
+            ))}
+          </ul>
 
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-6 items-start">
             {/* Glyph panel */}
             <div className="rounded-2xl border border-[var(--if-gold)]/20 bg-white/5 p-6 flex flex-col items-center justify-center min-h-[220px] gap-4">
-              <div className="font-arabic text-5xl text-[var(--if-gold-light)] leading-relaxed" dir="rtl" lang="ar">
+              {/* The rule's own letters, in the colour that names the rule —
+                  the notation colour-coded mushafs use. Only these isolated
+                  letters are tinted; tinting inside a word would break the
+                  ligature shaping. */}
+              <div className={`font-arabic text-5xl leading-relaxed ${step.tone || "text-[var(--if-gold-light)]"}`} dir="rtl" lang="ar">
                 {step.glyph}
               </div>
               <div className="font-arabic text-base text-[var(--if-gold-light)]" dir="rtl" lang="ar">{step.ar}</div>

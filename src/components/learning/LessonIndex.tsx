@@ -121,6 +121,12 @@ export function LessonIndex({ portal }: { portal: string }) {
                 >
                   {ready && isDone(portal, l.slug) ? <Check className="h-4 w-4" /> : i + 1}
                 </span>
+                {/* The tick is decorative, so a completed lesson announced
+                    nothing at all — it simply lost its number and gained no
+                    replacement. This says so in words. */}
+                {ready && isDone(portal, l.slug) && (
+                  <span className="sr-only">{copy.doneLabel[lang]}</span>
+                )}
                 <span className="min-w-0 flex-1">
                   <span className="block font-display font-bold text-[var(--if-green)] leading-tight text-pretty">
                     {l.title[lang]}

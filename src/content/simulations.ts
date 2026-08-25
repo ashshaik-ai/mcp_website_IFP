@@ -31,8 +31,8 @@ export const janazahSteps: SimStep[] = [
   { id: "takbeer3", label: { te: "3వ తక్బీర్", en: "3rd takbir" }, arabic: "اللَّهُ أَكْبَر", translit: "Allāhu Akbar", dur: 2200 },
   { id: "dua", label: { te: "మృతుని కోసం దుఆ", en: "Dua for the deceased" }, arabic: "اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْه", translit: "Allāhumma-ghfir lahu warḥamh", caption: { te: "ఈ నమాజు మొత్తం ఇదే దుఆ కోసం", en: "This supplication is the whole point of the prayer" }, dur: 3600 },
   { id: "takbeer4", label: { te: "4వ తక్బీర్", en: "4th takbir" }, arabic: "اللَّهُ أَكْبَر", translit: "Allāhu Akbar", caption: { te: "కొద్దిసేపు ఆగండి", en: "Pause briefly" }, dur: 2400 },
-  { id: "salam", label: { te: "సలాం — కుడి", en: "Salam — right" }, arabic: "السَّلَامُ عَلَيْكُم", translit: "As-salāmu ʿalaykum", dur: 2400 },
-  { id: "salam2", label: { te: "సలాం — ఎడమ", en: "Salam — left" }, arabic: "السَّلَامُ عَلَيْكُم", translit: "As-salāmu ʿalaykum", dur: 2400 },
+  { id: "salamStand", label: { te: "సలాం — కుడి", en: "Salam — right" }, arabic: "السَّلَامُ عَلَيْكُم", translit: "As-salāmu ʿalaykum", dur: 2400 },
+  { id: "salamStand2", label: { te: "సలాం — ఎడమ", en: "Salam — left" }, arabic: "السَّلَامُ عَلَيْكُم", translit: "As-salāmu ʿalaykum", dur: 2400 },
 ];
 
 export const wuduSteps: SimStep[] = [
