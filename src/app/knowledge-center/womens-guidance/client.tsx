@@ -22,7 +22,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const copy = {
   knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
   women_s_guidance: { te: "మహిళల మార్గదర్శనం", en: "Women's Guidance" },
-  rights_prayer_hijab_family_the: { te: "హక్కులు, నమాజ్, హిజాబ్, కుటుంబం — ఇస్లాంలో మహిళ స్థానం", en: "Rights, prayer, hijab, family — the honoured status of women in Islam" },
+  rights_prayer_hijab_family_the: { te: "హక్కులు, నమాజ్, హిజాబ్, కుటుంబం — ఐదు విషయ మార్గదర్శికలు, నికాహ్ మరియు ఇద్దత్‌పై రెండు పూర్తి పాఠాలు", en: "Rights, prayer, hijab and family in five topic guides, plus full lessons on nikah and iddah" },
   previous: { te: "వెనక", en: "Previous" },
   next: { te: "తదుపరి", en: "Next" },
   paradise_lies_at_the_feet: { te: "\"జన్నత్ అమ్మల పాదాల కింద ఉంది\" — నసాయీ", en: "\"Paradise lies at the feet of mothers\" — Al-Nasai" },

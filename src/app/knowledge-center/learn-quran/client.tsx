@@ -12,7 +12,7 @@ import { PortalJump } from "@/components/learning/PortalJump";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronLeft, ChevronRight, BookOpen, Mic, Brain, Heart, Target, TriangleAlert } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen, Mic, Brain, Heart, Target, TriangleAlert, Volume2 } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -31,6 +31,7 @@ const copy = {
   tajweed_academy: { te: "తజ్వీద్ అకాడమీ", en: "Tajweed Academy" },
   n_8_essential_tajweed_rules_explanation: { te: "8 ముఖ్య తజ్వీద్ నియమాలు — వివరణ, ఉదాహరణ, సాధారణ తప్పు", en: "8 essential tajweed rules — explanation, example, common mistake" },
   rule: { te: "నియమం", en: "Rule" },
+  hear: { te: "వినండి", en: "Hear" },
   tajweed_rule: { te: "తజ్వీద్ నియమం", en: "Tajweed rule" },
   explanation: { te: "వివరణ", en: "Explanation" },
   example: { te: "ఉదాహరణ", en: "Example" },
@@ -124,6 +125,11 @@ const tajweedSteps = [
   },
   {
     glyph: "ع ح خ", tone: "if-tj-makhraj", ar: "المخارج",
+    audio: [
+      { label: "ع", src: "/assets/audio/arabic/ayn.mp3" },
+      { label: "ح", src: "/assets/audio/arabic/ha_deep.mp3" },
+      { label: "خ", src: "/assets/audio/arabic/kha.mp3" },
+    ],
     name: { te: "మఖారిజ్ (ఉచ్చారణ స్థానాలు)", en: "Makharij (Articulation Points)" },
     expl: { te: "ప్రతి అక్షరానికి ఖచ్చితమైన నిష్క్రమణ స్థానం ఉంది — గొంతు, నాలుక, పెదవులు. వాటిని తెలుసుకోవడం ప్రతి అక్షరాన్ని వేరుగా ఉంచుతుంది.", en: "Every letter has a precise exit point — the throat, the tongue, the lips. Knowing them keeps each letter distinct." },
     example_ar: "ع · ح · خ",
@@ -488,6 +494,25 @@ function LearnQuranPage() {
                 {step.glyph}
               </div>
               <div className="font-arabic text-base text-[var(--if-gold-light)]" dir="rtl" lang="ar">{step.ar}</div>
+              {/* Real recordings, not synthesis: the makharij rule is about
+                  three throat letters and this site already ships a qari
+                  reading of each one. */}
+              {step.audio && (
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {step.audio.map((a) => (
+                    <button
+                      key={a.src}
+                      type="button"
+                      onClick={() => new Audio(a.src).play().catch(() => {})}
+                      aria-label={`${copy.hear[lang]} ${a.label}`}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--if-gold)]/30 px-3 text-sm font-semibold text-[var(--if-gold-light)] transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                    >
+                      <Volume2 aria-hidden="true" className="h-4 w-4" />
+                      <span className="font-arabic text-lg" dir="rtl" lang="ar">{a.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
               <p className="text-xs uppercase tracking-widest text-[var(--if-gold-pale)]/80">
                 {copy.tajweed_rule[lang]}
               </p>

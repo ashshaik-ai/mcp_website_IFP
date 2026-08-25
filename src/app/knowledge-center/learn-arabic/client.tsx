@@ -48,6 +48,7 @@ const copy = {
   letter_flashcards: { te: "అక్షర ఫ్లాష్ కార్డులు", en: "Letter Flashcards" },
   recognise_the_letter_tap_to: { te: "అక్షరాన్ని చూసి గుర్తించండి — తిప్పి పేరు చూడండి", en: "Recognise the letter — tap to flip and see its name" },
   tap_to_flip: { te: "తిప్పడానికి తాకండి", en: "Tap to flip" },
+  play_recording: { te: "ఉచ్చారణ వినండి", en: "Play the recording" },
   arabic_quiz: { te: "అరబిక్ క్విజ్", en: "Arabic Quiz" },
   check_what_you_know_across: { te: "వర్ణమాల, హరకాత్, పదజాలంపై మీకు తెలిసింది పరీక్షించుకోండి", en: "Check what you know across the alphabet, harakat and vocabulary" },
   excellent_you_know_your_arabic: { te: "అద్భుతం! మీకు అరబిక్ బాగా తెలుసు.", en: "Excellent! You know your Arabic well." },
@@ -58,6 +59,15 @@ const copy = {
 } as const;
 
 /* ─── Data ─── */
+/* The recorded pronunciations that already ship, keyed by glyph. A real
+   qari reading is better than any synthesis, and the flashcard was the one
+   surface on this portal that never reached for them. */
+const AUDIO_BY_GLYPH = new Map(
+  arabicLetters.map((l) => [l.glyph.normalize("NFD").replace(/[ً-ْ]/g, ""), l.audio]),
+);
+const letterAudio = (glyph: string) =>
+  AUDIO_BY_GLYPH.get(glyph.normalize("NFD").replace(/[ً-ْ]/g, "")) ?? null;
+
 const alphabet = [
   { ar: "ا", name: "Alif",  en: "ā / '",  te: "అలిఫ్",           sun: false, example: { ar: "أَسَد",   te: "సింహం",     en: "Lion" } },
   { ar: "ب", name: "Ba",    en: "b",       te: "బా",              sun: false, example: { ar: "بَيْت",   te: "ఇల్లు",     en: "House" } },
@@ -404,8 +414,22 @@ function LearnArabicPage() {
               >
                 <ChevronLeft aria-hidden="true" className="h-4 w-4 text-[var(--if-green)]" />
               </button>
-              <span className="text-xs text-[var(--if-text-muted)]">
+              <span className="flex items-center gap-1 text-xs text-[var(--if-text-muted)]">
                 {fcIdx + 1} / {alphabet.length} · {copy.tap_to_flip[lang]}
+                {letterAudio(alphabet[fcIdx].ar) && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const src = letterAudio(alphabet[fcIdx].ar);
+                      if (src) new Audio(src).play().catch(() => {});
+                    }}
+                    aria-label={copy.play_recording[lang]}
+                    title={copy.play_recording[lang]}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[var(--if-gold-ink)] transition-colors hover:bg-[var(--if-gold)]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                  >
+                    <Volume2 aria-hidden="true" className="h-4 w-4" />
+                  </button>
+                )}
               </span>
               <button
                 type="button"
