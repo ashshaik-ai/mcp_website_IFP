@@ -10,9 +10,10 @@
     "prebuild": "node --experimental-strip-types scripts/build-lesson-index.mjs && node --experimental-strip-types scripts/build-assessment-bank.mjs && node --experimental-strip-types scripts/build-search-index.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "verify": "tsc --noEmit && eslint && npm run build && playwright test",
+    "verify": "npm run check:dead && tsc --noEmit && eslint && npm run build && playwright test",
     "audit": "node scripts/audit-live.mjs",
-    "content:refresh": "node scripts/extract-lessons.mjs && node scripts/extract-alphabets.mjs && node scripts/extract-vocab.mjs && node scripts/extract-portals.mjs"
+    "content:refresh": "node scripts/extract-lessons.mjs && node scripts/extract-alphabets.mjs && node scripts/extract-vocab.mjs && node scripts/extract-portals.mjs",
+    "check:dead": "node scripts/check-dead-exports.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

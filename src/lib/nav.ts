@@ -12,7 +12,6 @@ export const homeSections = [
   { key: "nav_contact", fragment: "#contact" },
 ] as const;
 
-export type HomeSectionKey = (typeof homeSections)[number]["key"];
 
 /** A homepage fragment only resolves on "/". Everywhere else it needs the root. */
 export function sectionHref(fragment: string, pathname: string): string {

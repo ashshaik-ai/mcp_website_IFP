@@ -510,12 +510,6 @@ export function applyArm(
   elbow.rotation.x = lerp(elbow.rotation.x, sol.ex, weight);
 }
 
-export function tweenPose(current: Pose, target: Pose, k: number) {
-  for (const key of Object.keys(current) as (keyof Pose)[]) {
-    current[key] = lerp(current[key], target[key], k);
-  }
-}
-
 /* Eased over a fixed span, from the posture left behind to the one arriving.
 
    The rig used to chase its target exponentially: current += (target-current)

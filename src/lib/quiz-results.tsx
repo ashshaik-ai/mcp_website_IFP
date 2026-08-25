@@ -99,5 +99,3 @@ export function useQuizResults(): QuizApi {
     }
   );
 }
-
-export const useQuizRecord = useQuizResults;

@@ -93,9 +93,6 @@ export function JsonLd({ path }: { path: string }) {
   );
 }
 
-/** Every catalogued route, for the build-time coverage check. */
-export const jsonLdRoutes = routes.map((r) => r.path);
-
 /* Lessons get their own graph: LearningResource rather than WebPage, plus the
    quiz and FAQ content they carry. FAQPage markup is only honest when the
    questions and answers are genuinely on the page, which they are. */
