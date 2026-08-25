@@ -5,8 +5,8 @@ import { useEffect, useRef } from "react";
 import type { SceneProps } from "../Simulator";
 import {
   applyArm, applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera,
-  fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose, solveArm, sym,
-  tweenPose,
+  easePose, fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose,
+  solveArm, sym,
   type CamState, type Joints, type Pose, type Stage,
 } from "./stage3d";
 
@@ -141,6 +141,10 @@ const REACH: Partial<Record<keyof typeof POSES, ReachKind>> = {
   salamStandL: "chest",
 };
 
+/* How long a change of posture takes. Long enough to read as a body moving
+   and short enough to finish inside the shortest step the prayer has. */
+const MOVE_SECONDS = 0.85;
+
 const T_A = new THREE.Vector3();
 const T_B = new THREE.Vector3();
 /* Scratch for reachTarget alone. It cannot borrow T_A/T_B: those are the
@@ -203,6 +207,10 @@ type Rig = {
   cam: CamState;
   current: Pose;
   target: Pose;
+  /** The posture being left, held so the ease has something to leave from. */
+  from: Pose;
+  /** 0 to 1 across the transition. */
+  u: number;
   /** The posture being eased toward, so the solver knows what to reach for. */
   reach: ReachKind | null;
   /** Eased 0 to 1, so the hands settle onto a knee rather than snapping. */
@@ -570,6 +578,8 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
       }),
       current: { ...POSES.qiyam },
       target: { ...POSES.qiyam },
+      from: { ...POSES.qiyam },
+      u: 1,
       reach: null,
       reachW: 0,
       raf: 0,
@@ -589,8 +599,10 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
 
-      /* Ease the joints toward the target posture. Reduced motion jumps. */
-      tweenPose(rig.current, rig.target, reduced ? 1 : 1 - Math.exp(-dt * 6));
+      /* Ease the joints from the posture left behind into the one arriving,
+         over a fixed span rather than by chasing. Reduced motion jumps. */
+      rig.u = reduced ? 1 : Math.min(1, rig.u + dt / MOVE_SECONDS);
+      easePose(rig.current, rig.from, rig.target, rig.u);
       applyPose(rig.joints, rig.current);
 
       /* Then put the hands where the posture says they go. The angles above
@@ -629,6 +641,8 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
   useEffect(() => {
     const rig = rigRef.current;
     if (!rig) return;
+    rig.from = { ...rig.current };
+    rig.u = 0;
     rig.target = { ...POSES[stepId] };
     rig.reach = REACH[stepId] ?? null;
   }, [stepId]);

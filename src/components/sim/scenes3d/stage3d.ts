@@ -222,48 +222,78 @@ export function buildFigure(): Joints {
      body meant to show it. */
   head.position.y = 0.6;
   torso.add(head);
-  const skull = new THREE.Mesh(new THREE.SphereGeometry(0.135, 18, 18), skin);
+  /* The head, and how much of it the cap is allowed to have.
+
+     The kufi used to be a hemisphere 0.52pi deep sitting almost on the brow:
+     its rim fell at y=0.106 with the eyes at 0.128, so the cap covered the
+     forehead and everything above the eyes, and what was left of the face was
+     a band. A kufi sits ON the crown. Rim at 0.185, top third of the head,
+     forehead clear. */
+  const skull = new THREE.Mesh(new THREE.SphereGeometry(0.142, 20, 18), skin);
   skull.position.y = 0.1;
   skull.castShadow = true;
   head.add(skull);
 
-  /* The kufi, sitting on the crown rather than swallowing the head. */
   const kufi = new THREE.Mesh(
-    new THREE.SphereGeometry(0.142, 20, 12, 0, Math.PI * 2, 0, Math.PI * 0.52),
+    new THREE.SphereGeometry(0.15, 22, 12, 0, Math.PI * 2, 0, Math.PI * 0.328),
     new THREE.MeshStandardMaterial({ map: kufiTexture(), roughness: 0.85 }),
   );
-  kufi.position.y = 0.115;
+  kufi.position.y = 0.108;
   kufi.castShadow = true;
   head.add(kufi);
+  /* The rolled band round its edge, on the circle where the cap meets the
+     head rather than floating at some other height. */
   const capBand = new THREE.Mesh(
-    new THREE.TorusGeometry(0.139, 0.012, 8, 24),
+    new THREE.TorusGeometry(0.129, 0.011, 8, 26),
     new THREE.MeshStandardMaterial({ color: 0xe4e0d2, roughness: 0.85 }),
   );
   capBand.rotation.x = Math.PI / 2;
-  capBand.position.y = 0.118;
+  capBand.position.y = 0.185;
   head.add(capBand);
 
-  /* A nose and two ears. The head is a sphere under a cap, so without an
-     off-axis feature a turn of 55 degrees for the salam changes nothing on
-     screen and the two salam frames are indistinguishable from sitting. The
-     ears also mark where the hands go for the takbir and where the palms rest
-     in sujud, which between them is the whole Hanafi rule for both. */
-  const nose = new THREE.Mesh(new THREE.SphereGeometry(0.028, 10, 8), skin);
-  nose.position.set(0, 0.09, -0.125);
-  nose.scale.set(0.8, 1, 1.3);
-  head.add(nose);
+  /* A face.
+
+     There was a beard here and it covered the whole of one. The shell began
+     at y=0.087 and the cap ended at 0.106, so the skin between them was two
+     millimetres: not a bearded man but a head wrapped in two bands.
+
+     Eyes lowered, which is where they belong in salah -- the gaze rests on
+     the place of sujud. Two flattened lenses give that without a texture, a
+     UV unwrap or a decal, and they turn with the head, so the salam reads
+     from any angle. */
+  const dark = new THREE.MeshStandardMaterial({ color: 0x241f1a, roughness: 0.5 });
   for (const side of [1, -1]) {
-    const ear = new THREE.Mesh(new THREE.SphereGeometry(0.032, 10, 8), skin);
-    ear.position.set(0.128 * side, 0.095, 0.005);
-    ear.scale.set(0.42, 1, 0.85);
+    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.03, 12, 10), dark);
+    eye.position.set(0.055 * side, 0.115, -0.125);
+    eye.scale.set(1.05, 0.3, 0.32);
+    head.add(eye);
+
+    const brow = new THREE.Mesh(new THREE.BoxGeometry(0.056, 0.01, 0.012), dark);
+    brow.position.set(0.056 * side, 0.152, -0.115);
+    brow.rotation.z = -0.14 * side;
+    head.add(brow);
+  }
+
+  const nose = new THREE.Mesh(new THREE.SphereGeometry(0.03, 10, 8), skin);
+  nose.position.set(0, 0.082, -0.132);
+  nose.scale.set(0.75, 1.05, 1.25);
+  head.add(nose);
+
+  for (const side of [1, -1]) {
+    const ear = new THREE.Mesh(new THREE.SphereGeometry(0.034, 10, 8), skin);
+    ear.position.set(0.134 * side, 0.098, 0.005);
+    ear.scale.set(0.4, 1, 0.85);
     head.add(ear);
   }
+
+  /* A trimmed beard along the jaw and under the chin. It starts well below
+     the nose, so it frames the face instead of replacing it. */
   const beard = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1, 16, 12, 0, Math.PI * 2, Math.PI * 0.46, Math.PI * 0.54),
-    new THREE.MeshStandardMaterial({ color: 0x4a4038, roughness: 0.95 }),
+    new THREE.SphereGeometry(0.136, 18, 12, 0, Math.PI * 2, Math.PI * 0.68, Math.PI * 0.32),
+    new THREE.MeshStandardMaterial({ color: 0x413a32, roughness: 0.95 }),
   );
-  beard.position.set(0, 0.075, -0.032);
-  beard.scale.set(1, 1, 1.06);
+  beard.position.set(0, 0.1, -0.006);
+  beard.scale.set(0.97, 0.9, 1);
   head.add(beard);
 
   const mkArm = (side: 1 | -1) => {
@@ -483,6 +513,23 @@ export function applyArm(
 export function tweenPose(current: Pose, target: Pose, k: number) {
   for (const key of Object.keys(current) as (keyof Pose)[]) {
     current[key] = lerp(current[key], target[key], k);
+  }
+}
+
+/* Eased over a fixed span, from the posture left behind to the one arriving.
+
+   The rig used to chase its target exponentially: current += (target-current)
+   * k every frame. That is the cheap way and it always looks like software.
+   It leaves at full speed, decelerates the whole way, and never actually
+   arrives, so a body going down into sujud lurches at the top and creeps at
+   the bottom. Real animation eases out of the old pose AND into the new one,
+   over a length of time somebody chose. This does that. */
+export const smoothstep = (u: number) => u * u * (3 - 2 * u);
+
+export function easePose(out: Pose, from: Pose, to: Pose, u: number) {
+  const k = smoothstep(Math.min(1, Math.max(0, u)));
+  for (const key of Object.keys(out) as (keyof Pose)[]) {
+    out[key] = lerp(from[key], to[key], k);
   }
 }
 

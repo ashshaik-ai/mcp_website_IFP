@@ -4,8 +4,8 @@ import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import type { SceneProps } from "../Simulator";
 import {
-  applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera, fitRenderer,
-  GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose, sym, tweenPose,
+  applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera, easePose,
+  fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose, sym,
   type CamState, type Joints, type Pose, type Stage,
 } from "./stage3d";
 
@@ -127,6 +127,10 @@ type Rig = {
   cam: CamState;
   current: Pose;
   target: Pose;
+  /** The washing being left, held so the ease has something to leave from. */
+  from: Pose;
+  /** 0 to 1 across the transition. */
+  u: number;
   anchors: Record<AnchorId, THREE.Object3D>;
   aim: AnchorId[];
   stream: THREE.Mesh;
@@ -326,6 +330,8 @@ export function Wudu3D({ step, playing, lang }: SceneProps) {
       }),
       current: { ...POSES.niyyah },
       target: { ...POSES.niyyah },
+      from: { ...POSES.niyyah },
+      u: 1,
       anchors,
       aim: [],
       stream,
@@ -357,7 +363,9 @@ export function Wudu3D({ step, playing, lang }: SceneProps) {
       last = now;
       t += dt;
 
-      tweenPose(rig.current, rig.target, reduced ? 1 : 1 - Math.exp(-dt * 5.5));
+      /* Eased over a fixed span, not chased: see easePose in stage3d. */
+      rig.u = reduced ? 1 : Math.min(1, rig.u + dt / 0.8);
+      easePose(rig.current, rig.from, rig.target, rig.u);
       applyPose(rig.joints, rig.current);
 
       /* Water eases on and off rather than blinking, and the ewer tips as it
@@ -418,6 +426,8 @@ export function Wudu3D({ step, playing, lang }: SceneProps) {
   useEffect(() => {
     const rig = rigRef.current;
     if (!rig) return;
+    rig.from = { ...rig.current };
+    rig.u = 0;
     rig.target = { ...POSES[stepId] };
   }, [stepId]);
 
