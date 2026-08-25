@@ -262,7 +262,7 @@ export function PortalWallpaper({ portal }: { portal: string }) {
 
       {/* The turning layer, for the motifs that are drawn around a centre. */}
       {turns && (
-        <svg className="if-wall-spin absolute -inset-1/4 h-[150%] w-[150%]" role="presentation">
+        <svg className="if-wall-spin" role="presentation">
           <defs>
             <pattern id={`${id}-spin`} width={motif.tile * 1.5} height={motif.tile * 1.5} patternUnits="userSpaceOnUse">
               <g transform="scale(1.5)">{motif.body}</g>

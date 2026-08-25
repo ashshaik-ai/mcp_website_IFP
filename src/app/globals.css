@@ -1212,13 +1212,23 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 .if-wall-spin {
   opacity: 0.07;
   color: var(--wall-accent);
-  transform-origin: 50% 45%;
+  /* A square, sized on the cover's long side and centred on it. A layer that
+     merely overhangs the box is not enough: a cover is wide and short, so the
+     margin above it is smaller than its own half-diagonal and turning the
+     layer swings a bare corner into frame. A square whose inscribed circle
+     clears the diagonal cannot. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240%;
+  height: auto;
+  aspect-ratio: 1;
   animation: if-wall-spin 260s linear infinite;
 }
 
 @keyframes if-wall-spin {
-  from { transform: rotate(0deg) scale(1.35); }
-  to { transform: rotate(360deg) scale(1.35); }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* Light falling from above, as it does through a clerestory: three shafts of
