@@ -190,10 +190,26 @@ export function PortalWallpaper({ portal }: { portal: string }) {
     <div
       className="if-wall pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
-      /* The drift travels exactly one tile, so the weave lands back on itself. */
-      style={{ "--tile": `${motif.tile}px` } as React.CSSProperties}
+      /* Each layer drifts exactly one of its own tiles, so both land back on
+         themselves and neither loop can be seen. */
+      style={{ "--tile": `${motif.tile}px`, "--tile-far": `${motif.tile * 2}px` } as React.CSSProperties}
     >
-      {/* The drifting weave. */}
+      {/* A deep wash first, so the cover is not a flat block of green. */}
+      <div className="if-wall-wash absolute inset-0" />
+
+      {/* The far layer: the same motif at twice the size, drifting the other
+          way and half as fast. Two layers crossing is what gives the cover
+          depth — one alone reads as wallpaper in the wrong sense. */}
+      <svg className="if-wall-far absolute -inset-[220px] h-[calc(100%+440px)] w-[calc(100%+440px)]" role="presentation">
+        <defs>
+          <pattern id={`${id}-far`} width={motif.tile * 2} height={motif.tile * 2} patternUnits="userSpaceOnUse">
+            <g transform="scale(2)">{motif.body}</g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill={`url(#${id}-far)`} />
+      </svg>
+
+      {/* The near layer. */}
       <svg className="if-wall-tile absolute -inset-[160px] h-[calc(100%+320px)] w-[calc(100%+320px)]" role="presentation">
         <defs>
           <pattern id={id} width={motif.tile} height={motif.tile} patternUnits="userSpaceOnUse">
@@ -202,8 +218,11 @@ export function PortalWallpaper({ portal }: { portal: string }) {
         </defs>
         <rect width="100%" height="100%" fill={`url(#${id})`} />
       </svg>
-      {/* One soft breath of light, so the cover is not flat. */}
+
+      {/* One warm breath of light over the middle, and a vignette that sits the
+          heading on a darker ground so it stays readable. */}
       <div className="if-wall-glow absolute inset-0" />
+      <div className="if-wall-vignette absolute inset-0" />
     </div>
   );
 }

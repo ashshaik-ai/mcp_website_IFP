@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, Clock, Flame } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, ChevronRight, Clock, Flame, Home } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { summariesByPortal } from "@/content/lesson-index";
 import { useProgress } from "@/lib/progress";
@@ -32,6 +32,9 @@ const copy = {
   complete: { te: "పోర్టల్ పూర్తయింది", en: "Portal complete" },
   review: { te: "మళ్ళీ చూడండి", en: "Review" },
   progress: { te: "పురోగతి", en: "Progress" },
+  home: { te: "హోమ్", en: "Home" },
+  kc: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  breadcrumb: { te: "మార్గం", en: "Breadcrumb" },
 } as const;
 
 export function PortalJump({ portal, sticky = true }: { portal: string; sticky?: boolean }) {
@@ -75,16 +78,41 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-2">
         <div className="flex min-w-0 items-center gap-3">
+          {/* The way back. A portal offered none: the logo goes home but never
+              says so, and the hero's back-link scrolls out of sight the moment
+              you start reading. This is in the bar that follows you down the
+              page. */}
+          <nav aria-label={copy.breadcrumb[lang]} className="flex shrink-0 items-center gap-0.5 text-xs">
+            <Link
+              href="/"
+              title={copy.home[lang]}
+              className="inline-flex min-h-11 items-center gap-1 rounded-lg px-1.5 font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+            >
+              <Home aria-hidden="true" className="h-3.5 w-3.5" />
+              <span className="sr-only sm:not-sr-only">{copy.home[lang]}</span>
+            </Link>
+            <ChevronRight aria-hidden="true" className="h-3 w-3 shrink-0 text-[var(--if-text-muted)]/60" />
+            <Link
+              href="/knowledge-center"
+              className="inline-flex min-h-11 max-w-[7.5rem] items-center truncate rounded-lg px-1.5 font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] sm:max-w-none"
+            >
+              {copy.kc[lang]}
+            </Link>
+          </nav>
+          <span aria-hidden="true" className="hidden h-4 w-px shrink-0 bg-[var(--if-gold)]/25 min-[480px]:block" />
+          {/* The counts step down rather than being squeezed: the minutes go
+              first, then the whole line, so the breadcrumb and the action
+              always keep their room on a narrow phone. */}
           {finished ? (
-            <p className="inline-flex min-w-0 items-center gap-1.5 truncate text-xs font-semibold text-[var(--if-green)] sm:text-sm">
+            <p className="hidden min-w-0 shrink-0 items-center gap-1.5 truncate text-xs font-semibold text-[var(--if-green)] min-[480px]:inline-flex sm:text-sm">
               <Check aria-hidden="true" className="h-4 w-4 shrink-0" />
               {copy.complete[lang]}
             </p>
           ) : (
-            <p className="min-w-0 truncate text-xs font-semibold text-[var(--if-text-mid)] sm:text-sm">
+            <p className="hidden shrink-0 whitespace-nowrap text-xs font-semibold text-[var(--if-text-mid)] min-[480px]:block sm:text-sm">
               <span className="tabular-nums">{items.length}</span> {copy.lessons[lang]}
               {totalMinutes > 0 && (
-                <span className="ml-2 inline-flex items-center gap-1 text-[var(--if-text-muted)]">
+                <span className="ml-2 hidden items-center gap-1 text-[var(--if-text-muted)] sm:inline-flex">
                   <Clock aria-hidden="true" className="h-3.5 w-3.5" />
                   <span className="tabular-nums">{totalMinutes}</span> {copy.min[lang]}
                 </span>

@@ -1131,36 +1131,126 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 }
 
 /* ── Portal wallpapers ────────────────────────────────────────────────────
-   Each portal's cover carries its own tiled motif (PortalWallpaper.tsx). The
-   weave drifts one tile across and repeats seamlessly, so the loop is
-   invisible; the glow breathes behind it. Low opacity throughout — a heading
-   sits on top of this and has to stay comfortably readable.
+   Each portal's cover carries its own motif (PortalWallpaper.tsx), drawn twice
+   at two scales so the cover has depth rather than a single flat weave.
 
-   Both animations are long and linear, which is what keeps them from reading
-   as motion: the cover looks still until you watch it. */
-.if-wall-tile {
-  opacity: 0.075;
-  animation: if-wall-drift 90s linear infinite;
+   The colour is the brand's, not a generic gold: the wash underneath is the
+   deep green the site is built on, warmed toward gold in the middle where the
+   heading sits, and the motif itself is drawn in the light gold token. The
+   first pass used one flat gold layer over a plain gradient, which read as
+   texture pasted on rather than as part of the page.
+
+   Both weaves drift, in opposite directions and at different speeds, each by
+   exactly one of its own tiles so neither loop is visible. Everything stops
+   under prefers-reduced-motion. */
+.if-wall-wash {
+  background:
+    radial-gradient(120% 90% at 15% 0%, rgb(26 92 48 / 0.85), transparent 60%),
+    radial-gradient(110% 80% at 85% 100%, rgb(10 44 22 / 0.9), transparent 62%),
+    linear-gradient(160deg, rgb(13 59 30 / 0.35), rgb(6 28 13 / 0.55));
 }
 
-/* Exactly one tile, so the pattern lands back on itself and the loop cannot
-   be seen. The distance is the tile size, which differs per portal. */
+.if-wall-far {
+  opacity: 0.045;
+  color: var(--if-gold-light);
+  animation: if-wall-drift-far 220s linear infinite;
+}
+
+.if-wall-tile {
+  opacity: 0.085;
+  animation: if-wall-drift 120s linear infinite;
+}
+
+/* Exactly one tile, so the pattern lands back on itself. */
 @keyframes if-wall-drift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(calc(-1 * var(--tile, 140px)), calc(-1 * var(--tile, 140px)), 0); }
 }
 
+@keyframes if-wall-drift-far {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(var(--tile-far, 280px), calc(-1 * var(--tile-far, 280px)), 0); }
+}
+
 .if-wall-glow {
-  background: radial-gradient(60% 70% at 50% 30%, rgb(232 184 75 / 0.13), transparent 70%);
-  animation: if-wall-breathe 14s ease-in-out infinite;
+  background:
+    radial-gradient(55% 60% at 50% 38%, rgb(232 184 75 / 0.16), transparent 70%),
+    radial-gradient(35% 40% at 78% 18%, rgb(200 146 42 / 0.1), transparent 72%);
+  animation: if-wall-breathe 18s ease-in-out infinite;
 }
 
 @keyframes if-wall-breathe {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.06); }
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Darker at the edges, so the type in the middle keeps its contrast. */
+.if-wall-vignette {
+  background: radial-gradient(75% 75% at 50% 45%, transparent 45%, rgb(4 20 10 / 0.45) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .if-wall-tile,
+  .if-wall-far,
   .if-wall-glow { animation: none; }
+}
+
+/* ── Manifesto progress card ──────────────────────────────────────────────
+   The card used to be a row of three plain numbers over one solid bar: it
+   reported 40% and showed nothing about which four of the ten were done.
+
+   The rings sweep to each figure's share of the ten, the cells light one
+   after another, and a sheen crosses the lit run once it has settled. All
+   three stop under prefers-reduced-motion, where the end state is what
+   matters and the journey to it is noise. */
+.if-stat-ring {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: if-ring-sweep 1.1s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0.2s) forwards;
+}
+
+@keyframes if-ring-sweep {
+  to { stroke-dashoffset: var(--to); }
+}
+
+.if-stat {
+  animation: if-stat-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) backwards;
+}
+
+@keyframes if-stat-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+/* A lit cell grows from its left edge, then the whole run catches the light. */
+.if-bar-cell-on {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #10b981, #c8922a 75%, #e8b84b);
+  transform-origin: left center;
+  animation: if-cell-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) backwards;
+}
+
+.if-bar-cell-on::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 0.75), transparent 80%);
+  transform: translateX(-140%);
+  animation: if-cell-sheen 3.6s ease-in-out 1.4s infinite;
+}
+
+@keyframes if-cell-in {
+  from { opacity: 0; transform: scaleX(0); }
+}
+
+@keyframes if-cell-sheen {
+  0%, 55% { transform: translateX(-140%); }
+  75%, 100% { transform: translateX(140%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-stat,
+  .if-bar-cell-on { animation: none; }
+  .if-bar-cell-on::after { animation: none; opacity: 0; }
+  .if-stat-ring { animation: none; stroke-dashoffset: var(--to); }
 }

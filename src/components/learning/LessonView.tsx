@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, ExternalLink, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Home, X } from "lucide-react";
 import { quizOrder } from "@/lib/quiz-order";
 import { readingLabelTe } from "@/content/reading-labels";
 import { useI18n } from "@/lib/i18n/context";
@@ -201,6 +201,16 @@ export function LessonView({
         aria-label={lang === "te" ? "మీరు ఇక్కడ ఉన్నారు" : "Breadcrumb"}
         className="flex flex-wrap items-center gap-x-1.5 text-sm"
       >
+        {/* The trail began at the Knowledge Center, so a reader deep in a
+            lesson had no one-tap route to the front page. */}
+        <Link
+          href="/"
+          className="inline-flex min-h-11 items-center gap-1 font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-gold-ink)]"
+        >
+          <Home aria-hidden="true" className="h-3.5 w-3.5" />
+          {lang === "te" ? "హోమ్" : "Home"}
+        </Link>
+        <span aria-hidden="true" className="text-[var(--if-text-muted)]/60">/</span>
         <Link
           href="/knowledge-center"
           className="inline-flex min-h-11 items-center font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-gold-ink)]"

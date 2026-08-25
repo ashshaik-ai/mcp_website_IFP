@@ -7,7 +7,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Marquee } from "@/components/ui/marquee";
-import { ChevronRight, Search, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import {
   guidanceCards,
   guidanceSections,
@@ -192,6 +192,18 @@ function StudentGuidancePage() {
 
       <section className="bg-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
+          {/* A one-tap route back to the front page. Both hubs are reached
+              from the header, and once you are on one the only way home was
+              the logo, which never says that is what it does. */}
+          <BlurFade delay={0.02}>
+            <Link
+              href="/"
+              className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-[var(--if-gold-pale)]/80 transition-colors hover:text-[var(--if-gold-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+            >
+              <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+              {lang === "te" ? "హోమ్" : "Home"}
+            </Link>
+          </BlurFade>
           <BlurFade delay={0.1}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--if-gold)]/40 text-[var(--if-gold-light)] text-sm font-medium">
               {copy.student_guidance_hub[lang]}

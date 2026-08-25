@@ -10,7 +10,7 @@ import { ZakatCalculator } from "@/components/tools/ZakatCalculator";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronRight, Star, Clock, Users, BookOpen, Calculator, Calendar, Baby, Globe, ScrollText } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Clock, Users, BookOpen, Calculator, Calendar, Baby, Globe, ScrollText } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -172,6 +172,18 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
             that could have belonged to any site. */}
         <div className="if-emblem if-emblem-hero if-emblem-compact" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
+          {/* A one-tap route back to the front page. Both hubs are reached
+              from the header, and once you are on one the only way home was
+              the logo, which never says that is what it does. */}
+          <BlurFade delay={0.02}>
+            <Link
+              href="/"
+              className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-[var(--if-gold-pale)]/80 transition-colors hover:text-[var(--if-gold-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+            >
+              <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+              {lang === "te" ? "హోమ్" : "Home"}
+            </Link>
+          </BlurFade>
           <BlurFade delay={0.05}>
             <span lang="ar" dir="rtl" className="inline-block font-arabic text-3xl text-[var(--if-gold-light)]">بِسْمِ اللَّهِ</span>
           </BlurFade>

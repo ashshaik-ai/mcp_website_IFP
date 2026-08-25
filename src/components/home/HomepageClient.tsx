@@ -493,17 +493,31 @@ function Homepage() {
               />
               <div className="relative">
                 {/* Stat counters */}
+                {/* Each figure sits inside a ring drawn to its own share of
+                    the ten, so the three of them read as one divided whole
+                    rather than as three unrelated numbers. The ring sweeps
+                    round on entry; the number counts up inside it. */}
                 <div className="grid grid-cols-3 gap-2 text-center mb-6">
                   {[
-                    { value: 4, label: t("completed"),  color: "text-emerald-400", ring: "border-emerald-500/30 bg-emerald-900/20" },
-                    { value: 4, label: t("in_progress"), color: "text-amber-400",   ring: "border-amber-500/30 bg-amber-900/20" },
-                    { value: 2, label: t("upcoming"),    color: "text-[var(--if-gold-pale)]/80", ring: "border-white/10 bg-white/5" },
-                  ].map(({ value, label, color, ring }) => (
-                    <div key={label} className={`rounded-xl border ${ring} py-4 px-2`}>
-                      <div className={`font-display text-3xl md:text-4xl font-bold ${color}`}>
-                        <NumberTicker value={value} className={`font-display text-3xl md:text-4xl font-bold ${color}`} />
+                    { value: 4, label: t("completed"), color: "text-emerald-400", stroke: "#34d399", ring: "border-emerald-500/30 bg-emerald-900/20" },
+                    { value: 4, label: t("in_progress"), color: "text-amber-400", stroke: "#fbbf24", ring: "border-amber-500/30 bg-amber-900/20" },
+                    { value: 2, label: t("upcoming"), color: "text-[var(--if-gold-pale)]/80", stroke: "#f5e6c0", ring: "border-white/10 bg-white/5" },
+                  ].map(({ value, label, color, stroke, ring }, i) => (
+                    <div key={label} className={`if-stat rounded-xl border ${ring} py-4 px-2`} style={{ "--d": `${0.15 + i * 0.12}s` } as React.CSSProperties}>
+                      <div className="relative mx-auto h-16 w-16 md:h-20 md:w-20">
+                        <svg viewBox="0 0 48 48" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
+                          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="3" className="text-white/10" />
+                          <circle
+                            cx="24" cy="24" r="20" fill="none" stroke={stroke} strokeWidth="3" strokeLinecap="round"
+                            className="if-stat-ring"
+                            style={{ "--len": 125.6, "--to": `${125.6 * (1 - value / 10)}` } as React.CSSProperties}
+                          />
+                        </svg>
+                        <div className={`absolute inset-0 grid place-items-center font-display text-2xl md:text-3xl font-bold ${color}`}>
+                          <NumberTicker value={value} className={`font-display text-2xl md:text-3xl font-bold ${color}`} />
+                        </div>
                       </div>
-                      <div className="text-xs text-[var(--if-gold-pale)]/80 mt-1 leading-tight">{label}</div>
+                      <div className="text-xs text-[var(--if-gold-pale)]/80 mt-2 leading-tight">{label}</div>
                     </div>
                   ))}
                 </div>
@@ -514,11 +528,17 @@ function Homepage() {
                     <span>{copy.overall_completion[lang]}</span>
                     <span className="text-[var(--if-gold-light)] font-semibold">40%</span>
                   </div>
-                  <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
-                    <div
-                      className="if-bar-grow h-full w-[40%] rounded-full"
-                      style={{ background: "linear-gradient(90deg, #10b981 0%, #c8922a 70%, #e8b84b 100%)" }}
-                    />
+                  {/* Ten cells for ten promises, four of them lit. A single
+                      filled bar said 40% and showed nothing; this shows which
+                      four. A sheen crosses the lit run once it has grown. */}
+                  <div className="if-bar grid grid-cols-10 gap-1" role="img" aria-label={copy.n_4_of_10_completed[lang]}>
+                    {Array.from({ length: 10 }).map((_, i) => (
+                      <span
+                        key={i}
+                        className={`if-bar-cell h-2.5 rounded-full ${i < 4 ? "if-bar-cell-on" : "bg-white/10"}`}
+                        style={{ "--d": `${0.4 + i * 0.06}s` } as React.CSSProperties}
+                      />
+                    ))}
                   </div>
                   <p className="text-xs text-[var(--if-gold-pale)]/80 mt-1.5 text-right">
                     {copy.n_4_of_10_completed[lang]}
