@@ -56,7 +56,10 @@ const POSES: Record<string, Pose> = {
      back rather than raised or hanging. The hands are solved onto the knees,
      so the small hip flex here is only what lets the shins stay vertical
      while the pelvis carries back. */
-  ruku: sym({ rootY: 0.93, torsoX: 88 * D, headX: -4 * D, hipX: 10 * D, kneeX: -10 * D, shoulderZ: 7 * D }),
+  /* The gaze in ruku goes down between the feet, so the head tucks a little
+     rather than lifting: it was reading as looking ahead down the length of
+     the back. */
+  ruku: sym({ rootY: 0.93, torsoX: 88 * D, headX: 9 * D, hipX: 10 * D, kneeX: -10 * D, shoulderZ: 7 * D }),
   /* Qawm: upright again, still, hands at the sides. */
   itidal: sym({ rootY: 0.94, torsoX: 0, headX: 4 * D, shoulderX: 4 * D, elbowX: 8 * D, shoulderZ: 5 * D }),
   /* Sujud: knees on the mat, shins flat back with the toes tucked under and
