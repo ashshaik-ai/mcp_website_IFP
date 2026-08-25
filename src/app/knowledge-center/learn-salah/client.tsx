@@ -435,7 +435,7 @@ function LearnSalahPage() {
                     <span className="w-8 h-8 rounded-full bg-[var(--if-green)] text-[var(--if-gold-light)] flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">{step.n}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-2 mb-1">
-                        <span className="font-display font-bold text-[var(--if-green)]">{step.name}</span>
+                        <span className="font-display font-bold text-[var(--if-green)]">{step.name[lang]}</span>
                         <span className="text-xs text-[var(--if-text-muted)]">{step.pos[lang]}</span>
                       </div>
                       <div className="font-arabic text-lg text-[var(--if-gold-ink)] mb-1 text-right" dir="rtl">{step.ar}</div>

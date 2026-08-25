@@ -271,7 +271,12 @@ function HadithPage() {
       {/* ── Simulator ── */}
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "ఉల్లేఖన శృంఖల — చూడండి" : "The chain of narration"}</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-center text-sm text-[var(--if-text-muted)] text-pretty">
+            {lang === "te"
+              ? "సహీహ్ బుఖారీలోని మొదటి హదీసు ప్రవక్త ﷺ నుండి గ్రంథకర్త వరకు ఎలా చేరిందో ఈ శృంఖల చూపిస్తుంది."
+              : "How the first hadith in Sahih al-Bukhari travelled from the Prophet ﷺ to the compiler, one narrator at a time."}
+          </p>
           <Simulator steps={isnadSteps} scene={IsnadScene} autoplay />
         </div>
       </section>

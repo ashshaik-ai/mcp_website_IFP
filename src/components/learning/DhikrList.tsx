@@ -37,11 +37,11 @@ export function DhikrList() {
             </span>
             <div className="min-w-0 flex-1">
               <div className="mb-1 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                <span className="font-display font-bold text-[var(--if-green)]">{step.name}</span>
+                <span className="font-display font-bold text-[var(--if-green)]">{step.name[lang]}</span>
                 <span className="text-xs text-[var(--if-text-muted)]">{step.pos[lang]}</span>
               </div>
               <div className="mb-1 flex items-center justify-end gap-1">
-                <SpeakButton text={step.ar} label={step.name} className="-my-2" />
+                <SpeakButton text={step.ar} label={step.name[lang]} className="-my-2" />
                 <p lang="ar" dir="rtl" className="text-right font-arabic text-lg text-[var(--if-gold-ink)]">
                   {step.ar}
                 </p>

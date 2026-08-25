@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { Simulator } from "@/components/sim/Simulator";
 import { SalahScene } from "@/components/sim/scenes3d/SalahScene";
-import { salahSteps } from "@/content/simulations";
+import { salahSteps, janazahSteps } from "@/content/simulations";
 
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -19,8 +19,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
    can read and review it as one unit. */
 const copy = {
   knowledge_center: { te: "జ్ఞాన కేంద్రం", en: "Knowledge Center" },
+  cycleNote: {
+    te: "ఒక సాధారణ రకాత్ — తక్బీర్ నుండి సలాం వరకు.",
+    en: "One ordinary rakat, from the takbir to the salam.",
+  },
+  janazahNote: {
+    te: "జనాజా నమాజ్ వేరే — రుకూ, సజ్దా లేవు; నాలుగు తక్బీర్‌లు, అంతా నిలబడే.",
+    en: "The funeral prayer is shaped differently: no ruku, no sujud, four takbirs, all of it standing.",
+  },
   special_prayers: { te: "ప్రత్యేక నమాజులు", en: "Special Prayers" },
-  from_tahajjud_to_istikhara_5: { te: "తహజ్జుద్ నుండి ఈస్తిఖారా వరకు — 5 ముఖ్యమైన నఫిల్ & సాంఘిక నమాజులు", en: "From Tahajjud to Istikhara — 5 key voluntary and congregational prayers" },
+  from_tahajjud_to_istikhara_5: { te: "తహజ్జుద్ నుండి ఈస్తిఖారా వరకు — 6 ముఖ్యమైన నఫిల్, సాంఘిక నమాజులు", en: "From Tahajjud to Istikhara — 6 key voluntary and congregational prayers" },
   how_to_perform: { te: "ఎలా చేయాలి", en: "How to Perform" },
   key_du_a: { te: "ముఖ్యమైన దువా", en: "Key Du'a" },
   previous: { te: "వెనక", en: "Previous" },
@@ -43,6 +51,25 @@ const prayers = [
       { te: "విత్ర్‌తో ముగించండి", en: "End with Witr prayer" },
     ],
     dua: { ar: "اللّهُمَّ لَكَ الحَمدُ أنتَ قَيِّمُ السَّمواتِ والأرض", te: "ఓ అల్లాహ్, సకల స్తుతి నీకే. ఆకాశాలకు, భూమికి ఆధారం నీవే", en: "O Allah, for You is all praise. You are the Sustainer of the heavens and the earth" },
+    color: "bg-[var(--if-green)]",
+  },
+  {
+    /* Taught by its own lesson and left out of the tabs, so the portal
+       promised five prayers and quietly omitted the one it teaches in most
+       detail. */
+    id: "janazah",
+    name: { te: "జనాజా", en: "Janazah (funeral)" }, ar: "صلاة الجنازة",
+    time: { te: "ఖననం కాకముందు, ఎప్పుడైనా", en: "Before burial, at any time" },
+    rakaat: { te: "రకఅత్ లేవు — నాలుగు తక్బీర్‌లు", en: "No raka'ah — four takbirs" },
+    importance: { te: "ఫర్జ్ కిఫాయా — కొందరు చేస్తే అందరిపై నుండి బాధ్యత తీరుతుంది; ఎవరూ చేయకపోతే అందరూ బాధ్యులు.", en: "Fard kifayah: if some perform it the obligation lifts from all, and if none do, all are answerable." },
+    steps: [
+      { te: "మృతదేహం ముందు, ఇమామ్ వెనుక వరుసలు", en: "The body in front, rows behind the imam" },
+      { te: "1వ తక్బీర్ — సూరా ఫాతిహా (హనఫీలో సనా)", en: "1st takbir — Al-Fatihah, or the thana in the Hanafi school" },
+      { te: "2వ తక్బీర్ — దురూద్", en: "2nd takbir — the durood upon the Prophet ﷺ" },
+      { te: "3వ తక్బీర్ — మృతుని కోసం దుఆ", en: "3rd takbir — the supplication for the deceased" },
+      { te: "4వ తక్బీర్ — కొద్దిసేపు ఆగి సలాం", en: "4th takbir — a brief pause, then the salam" },
+    ],
+    dua: { ar: "اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْه", te: "ఓ అల్లాహ్, అతన్ని క్షమించు, కరుణించు", en: "O Allah, forgive him and have mercy on him" },
     color: "bg-[var(--if-green)]",
   },
   {
@@ -222,8 +249,22 @@ function SpecialPrayersPage() {
 
       <section className="py-16 px-4 ">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">{lang === "te" ? "చూడండి" : "Watch"}</h2>
-          <Simulator steps={salahSteps} scene={SalahScene} autoplay />
+          {/* The stage used to play the ordinary eleven-step rakat whichever
+              prayer was selected, so picking Janazah — the one prayer on this
+              portal shaped differently from the rest — showed a cycle with
+              ruku and sujud it does not contain. */}
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-2">
+            {p.name[lang]} — {lang === "te" ? "చూడండి" : "watch it"}
+          </h2>
+          <p className="mb-8 text-center text-sm text-[var(--if-text-muted)] text-pretty">
+            {p.id === "janazah" ? copy.janazahNote[lang] : copy.cycleNote[lang]}
+          </p>
+          <Simulator
+            key={p.id}
+            steps={p.id === "janazah" ? janazahSteps : salahSteps}
+            scene={SalahScene}
+            autoplay
+          />
         </div>
       </section>
 

@@ -249,6 +249,16 @@ function buildRig(canvas: HTMLCanvasElement, reduced: boolean): Rig | null {
   );
   kufi.position.y = 0.12;
   head.add(kufi);
+  /* A beard along the jaw, facing the qibla. The head was a sphere under a
+     cap, so turning it 55 degrees for the salam changed nothing on screen and
+     the two salam frames were indistinguishable from the sitting posture. An
+     off-axis feature is what makes a yaw legible. */
+  const beard = new THREE.Mesh(
+    new THREE.SphereGeometry(0.105, 14, 10, 0, Math.PI * 2, Math.PI * 0.42, Math.PI * 0.58),
+    new THREE.MeshStandardMaterial({ color: GOLD_DIM, roughness: 0.85 }),
+  );
+  beard.position.set(0, 0.07, -0.045);
+  head.add(beard);
 
   const mkArm = (side: 1 | -1) => {
     const shoulder = new THREE.Group();
