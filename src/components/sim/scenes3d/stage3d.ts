@@ -18,6 +18,17 @@ export const GOLD_DIM = 0xc8922a;
 export const GREEN = 0x0d3b1e;
 export const CREAM = 0xfff6df;
 
+/* What the figure wears. It used to be gold capsules head to foot, which read
+   as a mannequin rather than as someone at prayer: a person praying wears a
+   thobe and a cap, and the parts that touch the ground in sujud are hands and
+   feet, so those have to be skin for the posture to be legible at all.
+
+   Never pure white. #ffffff on a lit surface clips to a flat silhouette and
+   loses every fold; an off-white keeps the shading that says cloth. */
+export const THOBE = 0xeceadf;
+export const THOBE_SHADE = 0xdad6c7;
+export const SKIN = 0xc08a5a;
+
 export const D = Math.PI / 180;
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
@@ -61,12 +72,16 @@ export type Pose = {
   hipXR: number;
   kneeXL: number;
   kneeXR: number;
+  /** Ankle pitch. The sitting stands the right foot on its toes. */
+  footXL: number;
+  footXR: number;
 };
 
 const ZERO: Pose = {
   rootY: 0.94, rootZ: 0, torsoX: 0, torsoY: 0, headX: 0, headY: 0,
   shoulderXL: 0, shoulderXR: 0, shoulderZL: 0, shoulderZR: 0,
   elbowXL: 0, elbowXR: 0, hipXL: 0, hipXR: 0, kneeXL: 0, kneeXR: 0,
+  footXL: 0, footXR: 0,
 };
 
 export function pose(p: Partial<Pose>): Pose {
@@ -88,7 +103,7 @@ export function pose(p: Partial<Pose>): Pose {
 export function sym(p: {
   rootY?: number; rootZ?: number; torsoX?: number; torsoY?: number;
   headX?: number; headY?: number; shoulderX?: number; shoulderZ?: number;
-  elbowX?: number; hipX?: number; kneeX?: number;
+  elbowX?: number; hipX?: number; kneeX?: number; footX?: number;
 }): Pose {
   return pose({
     rootY: p.rootY, rootZ: p.rootZ, torsoX: p.torsoX, torsoY: p.torsoY,
@@ -98,6 +113,7 @@ export function sym(p: {
     elbowXL: p.elbowX, elbowXR: p.elbowX,
     hipXL: p.hipX, hipXR: p.hipX,
     kneeXL: p.kneeX, kneeXR: p.kneeX,
+    footXL: p.footX, footXR: p.footX,
   });
 }
 
@@ -115,73 +131,167 @@ export type Joints = {
   hipR: THREE.Group;
   kneeL: THREE.Group;
   kneeR: THREE.Group;
+  /** The ankle, so a pose can stand the right foot upright for the sitting. */
+  footL: THREE.Group;
+  footR: THREE.Group;
   robe: THREE.Mesh;
 };
+
+/** A fine woven lattice, for the cap. Baked once, shared by every figure. */
+let capTex: THREE.CanvasTexture | null = null;
+function kufiTexture(): THREE.CanvasTexture {
+  if (capTex) return capTex;
+  const n = 128;
+  const c = document.createElement("canvas");
+  c.width = n;
+  c.height = n;
+  const ctx = c.getContext("2d")!;
+  ctx.fillStyle = "#f4f2ea";
+  ctx.fillRect(0, 0, n, n);
+  /* Crochet: two sets of diagonals with a stitch at each crossing. It reads as
+     embroidery at the size the cap is ever seen, and costs one 128px canvas
+     rather than a texture download. */
+  ctx.strokeStyle = "rgba(190,184,166,0.85)";
+  ctx.lineWidth = 1;
+  for (let i = -n; i < n * 2; i += 8) {
+    ctx.beginPath();
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i + n, n);
+    ctx.moveTo(i + n, 0);
+    ctx.lineTo(i, n);
+    ctx.stroke();
+  }
+  ctx.fillStyle = "rgba(168,160,140,0.7)";
+  for (let y = 0; y < n; y += 8) {
+    for (let x = 0; x < n; x += 8) ctx.fillRect(x, y, 1.5, 1.5);
+  }
+  capTex = new THREE.CanvasTexture(c);
+  capTex.wrapS = THREE.RepeatWrapping;
+  capTex.wrapT = THREE.RepeatWrapping;
+  capTex.repeat.set(3, 2);
+  return capTex;
+}
 
 /** The figure, on a root the caller adds to its own scene. */
 export function buildFigure(): Joints {
   const root = new THREE.Group();
+  const cloth = new THREE.MeshStandardMaterial({ color: THOBE, roughness: 0.88 });
+  const clothDeep = new THREE.MeshStandardMaterial({ color: THOBE_SHADE, roughness: 0.9 });
+  const skin = new THREE.MeshStandardMaterial({ color: SKIN, roughness: 0.62 });
 
   const torso = new THREE.Group();
   root.add(torso);
-  const trunk = capsule(0.17, 0.5, GOLD);
-  trunk.position.y = 0.36;
+  const trunk = new THREE.Mesh(new THREE.CapsuleGeometry(0.175, 0.44, 4, 14), cloth);
+  trunk.position.y = 0.32;
+  trunk.castShadow = true;
   torso.add(trunk);
 
-  /* The thawb: a soft cone from the hips down. On the ROOT, not the torso.
-     Cloth hangs from gravity, and parenting it to the spine turned ruku into
-     a megaphone around the head. */
+  /* The placket: the short row of buttons at the throat of a thobe. Small, and
+     the one detail that stops the chest reading as a blank cylinder. */
+  const placket = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.26, 0.02), clothDeep);
+  placket.position.set(0, 0.42, -0.168);
+  torso.add(placket);
+  for (let i = 0; i < 3; i++) {
+    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.011, 8, 6), clothDeep);
+    btn.position.set(0, 0.5 - i * 0.075, -0.182);
+    torso.add(btn);
+  }
+
+  /* The skirt of the thobe, to the ankle. On the ROOT, not the torso: cloth
+     hangs from gravity, and parenting it to the spine turned ruku into a
+     megaphone around the head. */
+  /* To just above the knee, and no lower. A thobe reaches the ankle, and a
+     full-length one modelled as a rigid cone swallowed the legs entirely: in
+     ruku the figure became a traffic cone with a back, and the knees the
+     hands are supposed to be gripping could not be seen at all. The legs
+     below are cloth too, so what it reads as is a thobe over the loose
+     trousers worn under one. */
   const robe = new THREE.Mesh(
-    new THREE.ConeGeometry(0.27, 0.5, 14, 1, true),
-    new THREE.MeshStandardMaterial({ color: GOLD_DIM, roughness: 0.8, side: THREE.DoubleSide }),
+    new THREE.ConeGeometry(0.215, 0.5, 18, 1, true),
+    new THREE.MeshStandardMaterial({ color: THOBE, roughness: 0.88, side: THREE.DoubleSide }),
   );
-  robe.position.y = -0.16;
+  robe.position.y = -0.12;
   robe.castShadow = true;
   root.add(robe);
 
   const head = new THREE.Group();
-  head.position.y = 0.72;
+  /* The shoulder sits 0.52 above the pelvis, not 0.6. The old figure had a
+     torso longer than its arms, and in ruku, with the back parallel to the
+     ground, the hands then fell a hand's width short of the knees whatever the
+     joint angles were: the posture the portal teaches was not reachable by the
+     body meant to show it. */
+  head.position.y = 0.6;
   torso.add(head);
-  const skull = new THREE.Mesh(
-    new THREE.SphereGeometry(0.14, 16, 16),
-    new THREE.MeshStandardMaterial({ color: GOLD, roughness: 0.5 }),
-  );
+  const skull = new THREE.Mesh(new THREE.SphereGeometry(0.135, 18, 18), skin);
   skull.position.y = 0.1;
   skull.castShadow = true;
   head.add(skull);
+
+  /* The kufi, sitting on the crown rather than swallowing the head. */
   const kufi = new THREE.Mesh(
-    new THREE.SphereGeometry(0.145, 16, 10, 0, Math.PI * 2, 0, Math.PI * 0.45),
-    new THREE.MeshStandardMaterial({ color: CREAM, roughness: 0.7 }),
+    new THREE.SphereGeometry(0.142, 20, 12, 0, Math.PI * 2, 0, Math.PI * 0.52),
+    new THREE.MeshStandardMaterial({ map: kufiTexture(), roughness: 0.85 }),
   );
-  kufi.position.y = 0.12;
+  kufi.position.y = 0.115;
+  kufi.castShadow = true;
   head.add(kufi);
-  /* A beard along the jaw, facing the qibla. Without an off-axis feature a
-     head turn of 55 degrees changes nothing on screen. */
-  const beard = new THREE.Mesh(
-    new THREE.SphereGeometry(0.105, 14, 10, 0, Math.PI * 2, Math.PI * 0.42, Math.PI * 0.58),
-    new THREE.MeshStandardMaterial({ color: GOLD_DIM, roughness: 0.85 }),
+  const capBand = new THREE.Mesh(
+    new THREE.TorusGeometry(0.139, 0.012, 8, 24),
+    new THREE.MeshStandardMaterial({ color: 0xe4e0d2, roughness: 0.85 }),
   );
-  beard.position.set(0, 0.07, -0.045);
+  capBand.rotation.x = Math.PI / 2;
+  capBand.position.y = 0.118;
+  head.add(capBand);
+
+  /* A nose and two ears. The head is a sphere under a cap, so without an
+     off-axis feature a turn of 55 degrees for the salam changes nothing on
+     screen and the two salam frames are indistinguishable from sitting. The
+     ears also mark where the hands go for the takbir and where the palms rest
+     in sujud, which between them is the whole Hanafi rule for both. */
+  const nose = new THREE.Mesh(new THREE.SphereGeometry(0.028, 10, 8), skin);
+  nose.position.set(0, 0.09, -0.125);
+  nose.scale.set(0.8, 1, 1.3);
+  head.add(nose);
+  for (const side of [1, -1]) {
+    const ear = new THREE.Mesh(new THREE.SphereGeometry(0.032, 10, 8), skin);
+    ear.position.set(0.128 * side, 0.095, 0.005);
+    ear.scale.set(0.42, 1, 0.85);
+    head.add(ear);
+  }
+  const beard = new THREE.Mesh(
+    new THREE.SphereGeometry(0.1, 16, 12, 0, Math.PI * 2, Math.PI * 0.46, Math.PI * 0.54),
+    new THREE.MeshStandardMaterial({ color: 0x4a4038, roughness: 0.95 }),
+  );
+  beard.position.set(0, 0.075, -0.032);
+  beard.scale.set(1, 1, 1.06);
   head.add(beard);
 
   const mkArm = (side: 1 | -1) => {
     const shoulder = new THREE.Group();
-    shoulder.position.set(0.22 * side, 0.6, 0);
+    shoulder.position.set(0.215 * side, 0.52, 0);
     torso.add(shoulder);
-    const upper = capsule(0.055, 0.26, GOLD);
+    /* Sleeve, not limb: a thobe's sleeve is wide and reaches the wrist, so the
+       arm is cloth the whole way down and only the hand is skin. */
+    const upper = new THREE.Mesh(new THREE.CapsuleGeometry(0.072, 0.24, 4, 12), cloth);
     upper.position.y = -0.16;
+    upper.castShadow = true;
     shoulder.add(upper);
     const elbow = new THREE.Group();
     elbow.position.y = -0.33;
     shoulder.add(elbow);
-    const fore = capsule(0.05, 0.24, GOLD);
-    fore.position.y = -0.15;
+    const fore = new THREE.Mesh(new THREE.CapsuleGeometry(0.064, 0.22, 4, 12), cloth);
+    fore.position.y = -0.14;
+    fore.castShadow = true;
     elbow.add(fore);
-    const hand = new THREE.Mesh(
-      new THREE.SphereGeometry(0.06, 10, 10),
-      new THREE.MeshStandardMaterial({ color: GOLD, roughness: 0.5 }),
-    );
+    const cuff = new THREE.Mesh(new THREE.CylinderGeometry(0.062, 0.055, 0.035, 12), clothDeep);
+    cuff.position.y = -0.262;
+    elbow.add(cuff);
+    /* A palm, not a ball: flattened and a little long, so laid on a knee or on
+       the ground it reads as a hand resting rather than a knob. */
+    const hand = new THREE.Mesh(new THREE.SphereGeometry(0.062, 12, 10), skin);
     hand.position.y = -0.31;
+    hand.scale.set(0.86, 1.18, 0.5);
+    hand.castShadow = true;
     elbow.add(hand);
     return { shoulder, elbow, hand };
   };
@@ -192,23 +302,36 @@ export function buildFigure(): Joints {
     const hip = new THREE.Group();
     hip.position.set(0.11 * side, 0, 0);
     root.add(hip);
-    const thigh = capsule(0.08, 0.3, GOLD_DIM);
+    const thigh = new THREE.Mesh(new THREE.CapsuleGeometry(0.085, 0.28, 4, 12), cloth);
     thigh.position.y = -0.2;
     hip.add(thigh);
     const knee = new THREE.Group();
     knee.position.y = -0.42;
     hip.add(knee);
-    const shin = capsule(0.065, 0.3, GOLD_DIM);
+    const shin = new THREE.Mesh(new THREE.CapsuleGeometry(0.07, 0.28, 4, 12), cloth);
     shin.position.y = -0.2;
+    shin.castShadow = true;
     knee.add(shin);
-    const foot = new THREE.Mesh(
-      new THREE.BoxGeometry(0.1, 0.07, 0.24),
-      new THREE.MeshStandardMaterial({ color: GOLD_DIM, roughness: 0.6 }),
-    );
-    foot.position.set(0, -0.42, -0.06);
-    foot.castShadow = true;
+    /* Bare feet on an ankle joint of their own, so the sitting can stand the
+       right foot upright on its toes the way the sunnah describes. */
+    const foot = new THREE.Group();
+    foot.position.y = -0.42;
     knee.add(foot);
-    return { hip, knee };
+    /* Rounded, and smaller. A box foot is fine standing and reads as a plank
+       the moment the leg folds under for the sitting, which is exactly when
+       the foot matters most: the sunnah sits on the left foot with the right
+       stood on its toes, and a slab cannot show that. */
+    const sole = new THREE.Mesh(new THREE.CapsuleGeometry(0.045, 0.13, 4, 10), skin);
+    sole.rotation.x = Math.PI / 2;
+    sole.position.set(0, -0.035, -0.075);
+    sole.scale.set(1, 1, 0.62);
+    sole.castShadow = true;
+    foot.add(sole);
+    const toes = new THREE.Mesh(new THREE.SphereGeometry(0.046, 10, 8), skin);
+    toes.position.set(0, -0.035, -0.15);
+    toes.scale.set(1, 0.72, 0.64);
+    foot.add(toes);
+    return { hip, knee, foot };
   };
   const legL = mkLeg(1);
   const legR = mkLeg(-1);
@@ -220,6 +343,7 @@ export function buildFigure(): Joints {
     handL: armL.hand, handR: armR.hand,
     hipL: legL.hip, hipR: legR.hip,
     kneeL: legL.knee, kneeR: legR.knee,
+    footL: legL.foot, footR: legR.foot,
   };
 }
 
@@ -227,7 +351,7 @@ export function applyPose(j: Joints, p: Pose) {
   j.root.position.set(0, p.rootY, p.rootZ);
   /* The skirt shortens as the pelvis drops, so kneeling does not push the
      cloth through the floor. */
-  j.robe.scale.y = Math.max(0.45, p.rootY / 0.94);
+  j.robe.scale.y = Math.max(0.55, p.rootY / 0.94);
   j.torso.rotation.set(-p.torsoX, p.torsoY, 0);
   j.head.rotation.set(p.headX, p.headY, 0);
   j.shoulderL.rotation.set(p.shoulderXL, 0, -p.shoulderZL);
@@ -238,6 +362,122 @@ export function applyPose(j: Joints, p: Pose) {
   j.hipR.rotation.x = p.hipXR;
   j.kneeL.rotation.x = p.kneeXL;
   j.kneeR.rotation.x = p.kneeXR;
+  j.footL.rotation.x = p.footXL;
+  j.footR.rotation.x = p.footXR;
+}
+
+/* Putting a hand somewhere exactly.
+
+   Some postures are defined by where the hands END UP, not by joint angles:
+   the portal teaches ruku as "hands gripping the knees" and sujud as seven
+   limbs on the ground. Angles that look right for one set of proportions miss
+   by a hand's width when anything changes, and a hand floating beside a knee
+   is precisely the kind of thing this simulator exists to get right.
+
+   So those poses name a target and this solves the two-bone chain to hit it.
+   Both elbow branches are tried and the one that lands nearer wins, which
+   makes the solver immune to a sign error in the geometry rather than
+   dependent on my getting one right. */
+
+const IK_TMP = new THREE.Vector3();
+const IK_TARGET = new THREE.Vector3();
+const IK_DIR = new THREE.Vector3();
+const IK_E = new THREE.Euler();
+const IK_Q = new THREE.Quaternion();
+const IK_Q2 = new THREE.Quaternion();
+const IK_UP = new THREE.Vector3(0, -1, 0);
+const IK_X = new THREE.Vector3(1, 0, 0);
+
+/** Where the hand lands, in the torso's frame, for a candidate solution. */
+function handAt(
+  out: THREE.Vector3, shoulderPos: THREE.Vector3,
+  sx: number, sz: number, ex: number, upper: number, fore: number,
+) {
+  IK_E.set(sx, 0, sz, "XYZ");
+  IK_Q.setFromEuler(IK_E);
+  out.copy(IK_UP).applyQuaternion(IK_Q).multiplyScalar(upper).add(shoulderPos);
+  IK_E.set(ex, 0, 0, "XYZ");
+  IK_Q2.setFromEuler(IK_E);
+  IK_Q2.premultiply(IK_Q);
+  IK_TMP.copy(IK_UP).applyQuaternion(IK_Q2).multiplyScalar(fore);
+  out.add(IK_TMP);
+}
+
+/**
+ * Aim one arm at a point given in world space. Returns the joint angles rather
+ * than writing them, so a caller can blend into the solution instead of
+ * snapping to it.
+ */
+export function solveArm(
+  joints: Joints,
+  side: "L" | "R",
+  targetWorld: THREE.Vector3,
+  /* Which way the elbow should break when both solutions reach. A two-bone
+     chain has two answers for almost every target and they look nothing
+     alike: hands folded on the chest with the elbows hanging is a man at
+     prayer, and the same hands with the elbows winged up behind him is not.
+     Sujud is the one posture that wants them up, because the sunnah raises
+     the elbows clear of the ground. */
+  elbow: "down" | "up" = "down",
+  upper = 0.33,
+  fore = 0.31,
+): { sx: number; sz: number; ex: number } {
+  const shoulder = side === "L" ? joints.shoulderL : joints.shoulderR;
+  /* Work in the torso's frame: that is the space the shoulder's own rotation
+     is expressed in, so the answer can be written straight back. */
+  /* Its own vector, not the one handAt() scribbles on: the target has to
+     survive the two forward checks that follow. */
+  const t = joints.torso.worldToLocal(IK_TARGET.copy(targetWorld));
+  const P = shoulder.position;
+  IK_DIR.subVectors(t, P);
+  const reach = upper + fore;
+  const d = Math.min(reach - 0.004, Math.max(0.06, IK_DIR.length()));
+  IK_DIR.normalize();
+
+  /* Elbow flexion from the law of cosines. */
+  const interior = Math.acos(Math.min(1, Math.max(-1, (upper * upper + fore * fore - d * d) / (2 * upper * fore))));
+  const bend = Math.PI - interior;
+  /* How far the upper arm sits off the straight shoulder-to-target line. */
+  const off = Math.acos(Math.min(1, Math.max(-1, (upper * upper + d * d - fore * fore) / (2 * upper * d))));
+
+  let best = { sx: 0, sz: 0, ex: 0 };
+  let bestScore = Infinity;
+  const cand = new THREE.Vector3();
+  const dir = new THREE.Vector3();
+  const elbowPos = new THREE.Vector3();
+  for (const sign of [1, -1]) {
+    dir.copy(IK_DIR).applyAxisAngle(IK_X, off * sign);
+    /* The arm rests along -Y and is rotated Rx(sx)Rz(sz), so a direction
+       (x, y, z) inverts to these two angles. */
+    const sz = Math.asin(Math.min(1, Math.max(-1, dir.x)));
+    const sx = Math.atan2(-dir.z, -dir.y);
+    const ex = bend * -sign;
+    handAt(cand, P, sx, sz, ex, upper, fore);
+    const err = cand.distanceToSquared(t);
+    /* Where this branch puts the elbow, which is what breaks the tie when
+       both of them land the hand on the target. */
+    elbowPos.copy(IK_UP).applyEuler(IK_E.set(sx, 0, sz, "XYZ")).multiplyScalar(upper).add(P);
+    const score = err * 1000 + (elbow === "down" ? elbowPos.y : -elbowPos.y);
+    if (score < bestScore) {
+      bestScore = score;
+      best = { sx, sz, ex };
+    }
+  }
+  return best;
+}
+
+/** Write a solved arm onto the rig, easing in by weight so nothing snaps. */
+export function applyArm(
+  joints: Joints,
+  side: "L" | "R",
+  sol: { sx: number; sz: number; ex: number },
+  weight: number,
+) {
+  const shoulder = side === "L" ? joints.shoulderL : joints.shoulderR;
+  const elbow = side === "L" ? joints.elbowL : joints.elbowR;
+  shoulder.rotation.x = lerp(shoulder.rotation.x, sol.sx, weight);
+  shoulder.rotation.z = lerp(shoulder.rotation.z, sol.sz, weight);
+  elbow.rotation.x = lerp(elbow.rotation.x, sol.ex, weight);
 }
 
 export function tweenPose(current: Pose, target: Pose, k: number) {
@@ -268,6 +508,9 @@ export function mountStage(
     lit?: number;
     /** Multiplier on the fill light, for scenes with no walls to bounce off. */
     fill?: number;
+    /** Multiplier on the key. White cloth needs a key that can actually make
+        it read as white rather than as the green bounced off everything. */
+    key?: number;
   } = {},
 ): Stage | null {
   let renderer: THREE.WebGLRenderer;
@@ -286,7 +529,7 @@ export function mountStage(
   const camera = new THREE.PerspectiveCamera(34, 16 / 9, 0.1, opts.far ?? 60);
 
   const lit = opts.lit ?? 4;
-  const key = new THREE.DirectionalLight(0xfff2d0, 2.2);
+  const key = new THREE.DirectionalLight(0xfff2d0, 2.2 * (opts.key ?? 1));
   key.position.set(-3 * (lit / 4), 5 * (lit / 4), 2.5 * (lit / 4));
   key.castShadow = true;
   key.shadow.mapSize.set(lit > 8 ? 2048 : 1024, lit > 8 ? 2048 : 1024);

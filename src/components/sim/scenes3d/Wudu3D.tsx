@@ -275,8 +275,16 @@ export function Wudu3D({ step, playing, lang }: SceneProps) {
     const host = wrap.current;
     if (!canvas || !host) return;
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-    const stage = mountStage(canvas, { fog: [7, 17] });
+    const stage = mountStage(canvas, { fog: [7, 17], key: 1.55, fill: 0.42 });
     if (!stage) return;
+
+    /* The same light the prayer scene uses. The room key stands behind the
+       figure, so without this the side the camera looks at is lit only by a
+       green hemisphere and the white thobe comes out sage. */
+    const front = new THREE.DirectionalLight(0xfff4e4, 1.65);
+    front.position.set(3.4, 3.2, 4.6);
+    stage.scene.add(front);
+    stage.scene.add(new THREE.AmbientLight(0xfff1da, 0.42));
 
     const ripples = buildBasin(stage.scene);
     const ewer = buildEwer(stage.scene);

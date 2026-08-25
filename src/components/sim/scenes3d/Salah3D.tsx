@@ -4,8 +4,9 @@ import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import type { SceneProps } from "../Simulator";
 import {
-  applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera, fitRenderer,
-  GOLD, GOLD_DIM, mountStage, orbit, placeCamera, sym, tweenPose,
+  applyArm, applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera,
+  fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose, solveArm, sym,
+  tweenPose,
   type CamState, type Joints, type Pose, type Stage,
 } from "./stage3d";
 
@@ -26,30 +27,91 @@ import {
    lights and the camera rig now live in stage3d, shared with every other 3D
    scene in the simulator. */
 
+/* The postures, as the portal's own Steps tab teaches them. That tab is the
+   authority here, and it is Hanafi: hands to the ears for the takbir, right
+   over left on the chest standing, hands gripping the knees with the back
+   parallel to the ground in ruku, seven limbs down in sujud, sitting on the
+   left foot with the right foot upright, head right then left for the salam.
+   A figure that shows something else contradicts the page it stands on.
+
+   Where a posture is defined by where the hands END UP rather than by joint
+   angles -- the knees, the ground, the thighs -- the pose names a target and
+   the arms are solved to reach it. See REACH below. */
 const POSES: Record<string, Pose> = {
-  qiyam:   sym({ rootY: 0.94, torsoX: 3 * D, headX: 8 * D, shoulderX: 15 * D, elbowX: 95 * D, shoulderZ: 6 * D }),
-  takbeer: sym({ rootY: 0.94, shoulderX: 125 * D, elbowX: 45 * D, shoulderZ: 25 * D }),
-  ruku:    sym({ rootY: 0.94, torsoX: 85 * D, headX: -12 * D, shoulderX: 80 * D, elbowX: 8 * D, shoulderZ: 10 * D }),
-  itidal:  sym({ rootY: 0.94, shoulderX: 5 * D, elbowX: 6 * D, shoulderZ: 5 * D }),
-  /* Head to the mat, not hovering over it: the portal's own Mistakes tab
-     teaches forehead and nose down, and an audit persona caught the figure
-     contradicting it. Kneeling geometry: the knee lands at
-     rootY - 0.42*cos(hipX), so the seated poses drop the pelvis until that is
-     the mat. */
-  sujud:   sym({ rootY: 0.32, rootZ: -0.08, torsoX: 104 * D, headX: 52 * D, shoulderX: 100 * D, elbowX: 12 * D, hipX: 35 * D, kneeX: -125 * D, shoulderZ: 14 * D }),
-  julus:   sym({ rootY: 0.3, rootZ: -0.02, torsoX: 8 * D, headX: 10 * D, shoulderX: 52 * D, elbowX: 28 * D, hipX: 45 * D, kneeX: -135 * D, shoulderZ: 8 * D }),
-  salamR:  sym({ rootY: 0.3, rootZ: -0.02, torsoX: 8 * D, headX: 4 * D, headY: -55 * D, shoulderX: 52 * D, elbowX: 28 * D, hipX: 45 * D, kneeX: -135 * D, shoulderZ: 8 * D }),
-  salamL:  sym({ rootY: 0.3, rootZ: -0.02, torsoX: 8 * D, headX: 4 * D, headY: 55 * D, shoulderX: 52 * D, elbowX: 28 * D, hipX: 45 * D, kneeX: -135 * D, shoulderZ: 8 * D }),
+  /* Standing before the takbir: arms at the sides. */
+  niyyah: sym({ rootY: 0.94, torsoX: 1 * D, headX: 6 * D, shoulderX: 4 * D, elbowX: 8 * D, shoulderZ: 5 * D }),
+  /* Takbir: hands up beside the head, thumbs at the earlobes, palms toward
+     the qibla, elbows out. Not straight overhead, which is what the old pose
+     showed, and not out in front. */
+  takbeer: sym({ rootY: 0.94, headX: 2 * D, shoulderX: 148 * D, elbowX: 62 * D, shoulderZ: 26 * D }),
+  /* Qiyam: right hand over left. The arms fold across the front and the hands
+     meet at the midline, which is what the crossing shoulderZ does; the
+     right sits a little higher so it reads as over rather than beside. */
+  qiyam: pose({
+    rootY: 0.94, torsoX: 2 * D, headX: 12 * D,
+    shoulderXR: 62 * D, elbowXR: 98 * D, shoulderZR: -30 * D,
+    shoulderXL: 58 * D, elbowXL: 96 * D, shoulderZL: -26 * D,
+  }),
+  /* Ruku: back parallel to the ground, legs straight, head in line with the
+     back rather than raised or hanging. The hands are solved onto the knees,
+     so the small hip flex here is only what lets the shins stay vertical
+     while the pelvis carries back. */
+  ruku: sym({ rootY: 0.93, torsoX: 88 * D, headX: -4 * D, hipX: 10 * D, kneeX: -10 * D, shoulderZ: 7 * D }),
+  /* Qawm: upright again, still, hands at the sides. */
+  itidal: sym({ rootY: 0.94, torsoX: 0, headX: 4 * D, shoulderX: 4 * D, elbowX: 8 * D, shoulderZ: 5 * D }),
+  /* Sujud: knees on the mat, shins flat back with the toes tucked under and
+     turned to the qibla, the pelvis low, the back steep enough to bring
+     forehead and nose down. The palms are solved onto the mat level with the
+     ears, which leaves the elbows raised and away from the sides. */
+  sujud: sym({
+    rootY: 0.44, rootZ: 0.1, torsoX: 112 * D, headX: 6 * D,
+    hipX: 6 * D, kneeX: -96 * D, footX: -74 * D, shoulderZ: 16 * D,
+  }),
+  /* Sitting. The left shin folds flat and the pelvis rests on that foot; the
+     right foot stands on its toes facing the qibla. The hands are solved onto
+     the thighs. */
+  julus: pose({
+    /* Sitting on the heels: the thighs come round to horizontal so the knees
+       rest on the mat in front, the shins fold back underneath, and the
+       pelvis settles onto the left foot. The right ankle is pitched up so
+       that foot stands on its toes facing the qibla, which is the difference
+       between this sitting and simply kneeling. */
+    rootY: 0.23, rootZ: 0.16, torsoX: 3 * D, headX: 10 * D,
+    hipXL: 84 * D, kneeXL: -164 * D, footXL: 6 * D,
+    hipXR: 84 * D, kneeXR: -158 * D, footXR: -62 * D,
+    shoulderZL: 9 * D, shoulderZR: 9 * D,
+  }),
+  /* The salam turns the head and nothing else. */
+  salamR: pose({
+    rootY: 0.23, rootZ: 0.16, torsoX: 3 * D, headX: 3 * D, headY: -58 * D,
+    hipXL: 84 * D, kneeXL: -164 * D, footXL: 6 * D,
+    hipXR: 84 * D, kneeXR: -158 * D, footXR: -62 * D,
+    shoulderZL: 9 * D, shoulderZR: 9 * D,
+  }),
+  salamL: pose({
+    rootY: 0.23, rootZ: 0.16, torsoX: 3 * D, headX: 3 * D, headY: 58 * D,
+    hipXL: 84 * D, kneeXL: -164 * D, footXL: 6 * D,
+    hipXR: 84 * D, kneeXR: -158 * D, footXR: -62 * D,
+    shoulderZL: 9 * D, shoulderZR: 9 * D,
+  }),
   /* The funeral prayer is performed entirely standing, so its salam turns the
-     head from qiyam rather than from the sitting posture the five daily
-     prayers close in. */
-  salamStandR: sym({ rootY: 0.94, torsoX: 3 * D, headX: 4 * D, headY: -55 * D, shoulderX: 15 * D, elbowX: 95 * D, shoulderZ: 6 * D }),
-  salamStandL: sym({ rootY: 0.94, torsoX: 3 * D, headX: 4 * D, headY: 55 * D, shoulderX: 15 * D, elbowX: 95 * D, shoulderZ: 6 * D }),
+     head from qiyam rather than from the sitting the five daily prayers close
+     in. Hands stay folded, as they are throughout it. */
+  salamStandR: pose({
+    rootY: 0.94, torsoX: 2 * D, headX: 3 * D, headY: -58 * D,
+    shoulderXR: 62 * D, elbowXR: 98 * D, shoulderZR: -30 * D,
+    shoulderXL: 58 * D, elbowXL: 96 * D, shoulderZL: -26 * D,
+  }),
+  salamStandL: pose({
+    rootY: 0.94, torsoX: 2 * D, headX: 3 * D, headY: 58 * D,
+    shoulderXR: 62 * D, elbowXR: 98 * D, shoulderZR: -30 * D,
+    shoulderXL: 58 * D, elbowXL: 96 * D, shoulderZL: -26 * D,
+  }),
 };
 
 /* Step ids from any portal onto a posture; unknown ids stand. */
 const POSE_FOR: Record<string, keyof typeof POSES> = {
-  niyyah: "qiyam", takbeer: "takbeer", qiyam: "qiyam", fatiha: "qiyam", surah: "qiyam",
+  niyyah: "niyyah", takbeer: "takbeer", qiyam: "qiyam", fatiha: "qiyam", surah: "qiyam",
   /* The funeral prayer's later takbirs, all made standing. */
   takbeer2: "takbeer", takbeer3: "takbeer", takbeer4: "takbeer", durood: "qiyam", dua: "qiyam",
   salamStand: "salamStandR", salamStand2: "salamStandL",
@@ -58,31 +120,255 @@ const POSE_FOR: Record<string, keyof typeof POSES> = {
   standing: "qiyam", sitting: "julus", bowing: "ruku", prostration: "sujud",
 };
 
+/* Which postures place the hands on something, and where that something is.
+   The target is computed from the body itself every frame, so it follows the
+   tween: the hands travel onto the knees as the back comes down rather than
+   arriving there afterwards. */
+type ReachKind = "knees" | "ground" | "thighs" | "chest" | "ears";
+/* Sujud raises the elbows clear of the ground; every other placement hangs
+   them. */
+const ELBOW_UP: ReachKind[] = ["ground"];
+
+const REACH: Partial<Record<keyof typeof POSES, ReachKind>> = {
+  takbeer: "ears",
+  qiyam: "chest",
+  ruku: "knees",
+  sujud: "ground",
+  julus: "thighs",
+  salamR: "thighs",
+  salamL: "thighs",
+  salamStandR: "chest",
+  salamStandL: "chest",
+};
+
+const T_A = new THREE.Vector3();
+const T_B = new THREE.Vector3();
+/* Scratch for reachTarget alone. It cannot borrow T_A/T_B: those are the
+   vectors it is asked to write into, so reading one as working space while
+   writing the other silently returned the wrong point for one hand. */
+const R_A = new THREE.Vector3();
+const R_B = new THREE.Vector3();
+
+/* Where the folded hands sit, in the torso's own frame. The right is a
+   little higher and a little further forward than the left, which is what
+   makes it read as right OVER left rather than as two hands side by side. */
+const CHEST_L = new THREE.Vector3(0.055, 0.3, -0.2);
+const CHEST_R = new THREE.Vector3(-0.015, 0.335, -0.235);
+
+/** The world point one hand should be resting on, for a given posture. */
+function reachTarget(joints: Joints, kind: ReachKind, side: "L" | "R", out: THREE.Vector3) {
+  const s = side === "L" ? 1 : -1;
+  if (kind === "chest") {
+    out.copy(side === "L" ? CHEST_L : CHEST_R);
+    joints.torso.localToWorld(out);
+    return out;
+  }
+  if (kind === "ears") {
+    /* Thumbs to the earlobes, palms toward the qibla. Solved from the ears
+       themselves, so it stays right whatever the head is doing. */
+    joints.head.getWorldPosition(R_A);
+    out.set(R_A.x + 0.2 * s, R_A.y + 0.05, R_A.z + 0.02);
+    return out;
+  }
+  if (kind === "knees") {
+    /* The front of the kneecap, which is what a hand grips. */
+    const knee = side === "L" ? joints.kneeL : joints.kneeR;
+    knee.getWorldPosition(out);
+    out.z -= 0.085;
+    out.y += 0.015;
+    out.x += 0.02 * s;
+    return out;
+  }
+  if (kind === "ground") {
+    /* On the mat, level with the ears and a little wider than the shoulders,
+       which is where the Hanafi sujud puts the palms. */
+    joints.head.getWorldPosition(R_A);
+    out.set(R_A.x + 0.235 * s, 0.045, R_A.z + 0.055);
+    return out;
+  }
+  /* Thighs: partway along the thigh toward the knee, on top of it. */
+  const hip = side === "L" ? joints.hipL : joints.hipR;
+  const knee = side === "L" ? joints.kneeL : joints.kneeR;
+  hip.getWorldPosition(R_A);
+  knee.getWorldPosition(R_B);
+  out.lerpVectors(R_A, R_B, 0.72);
+  out.y += 0.1;
+  out.x += 0.03 * s;
+  return out;
+}
+
 type Rig = {
   stage: Stage;
   joints: Joints;
   cam: CamState;
   current: Pose;
   target: Pose;
+  /** The posture being eased toward, so the solver knows what to reach for. */
+  reach: ReachKind | null;
+  /** Eased 0 to 1, so the hands settle onto a knee rather than snapping. */
+  reachW: number;
   raf: number;
 };
 
+/* The rug.
+
+   A prayer mat is not a plain rectangle: it carries a mihrab arch woven into
+   it, and the arch is what tells the person praying which end faces the
+   qibla. Drawn into a canvas rather than downloaded, so it costs nothing over
+   the wire and recolours with the brand.
+
+   Deep green and gold rather than the reds a mat is often woven in, because
+   every other surface in this simulator is built from the site's two colours
+   and a red rug in the middle of it would read as a photograph pasted onto a
+   drawing. */
+let rugTex: THREE.CanvasTexture | null = null;
+function prayerRug(): THREE.CanvasTexture {
+  if (rugTex) return rugTex;
+  const w = 320;
+  const h = 512;
+  const c = document.createElement("canvas");
+  c.width = w;
+  c.height = h;
+  const ctx = c.getContext("2d")!;
+
+  ctx.fillStyle = "#12522a";
+  ctx.fillRect(0, 0, w, h);
+
+  /* The weave: fine vertical threads, so the pile catches light along the
+     length of the mat the way a real one does. */
+  for (let x = 0; x < w; x += 2) {
+    ctx.fillStyle = x % 4 === 0 ? "rgba(255,246,223,0.045)" : "rgba(6,28,14,0.06)";
+    ctx.fillRect(x, 0, 1, h);
+  }
+
+  const gold = "#c8922a";
+  const goldLight = "#e8b84b";
+  const cream = "#f5e6c0";
+
+  /* Borders, one inside the other. */
+  ctx.strokeStyle = gold;
+  ctx.lineWidth = 7;
+  ctx.strokeRect(15, 15, w - 30, h - 30);
+  ctx.strokeStyle = goldLight;
+  ctx.lineWidth = 2;
+  ctx.strokeRect(27, 27, w - 54, h - 54);
+  ctx.strokeRect(37, 37, w - 74, h - 74);
+
+  /* A chain of lozenges down each side border. */
+  ctx.fillStyle = "rgba(232,184,75,0.5)";
+  for (let y = 46; y < h - 46; y += 26) {
+    for (const x of [21, w - 21]) {
+      ctx.beginPath();
+      ctx.moveTo(x, y - 7);
+      ctx.lineTo(x + 6, y);
+      ctx.lineTo(x, y + 7);
+      ctx.lineTo(x - 6, y);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  /* The mihrab: a pointed arch on two columns, at the qibla end. */
+  const cx = w / 2;
+  const base = h - 96;
+  const top = 150;
+  ctx.strokeStyle = goldLight;
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(cx - 86, base);
+  ctx.lineTo(cx - 86, top + 66);
+  ctx.quadraticCurveTo(cx - 86, top, cx, top - 34);
+  ctx.quadraticCurveTo(cx + 86, top, cx + 86, top + 66);
+  ctx.lineTo(cx + 86, base);
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(232,184,75,0.45)";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(cx - 72, base);
+  ctx.lineTo(cx - 72, top + 74);
+  ctx.quadraticCurveTo(cx - 72, top + 18, cx, top - 14);
+  ctx.quadraticCurveTo(cx + 72, top + 18, cx + 72, top + 74);
+  ctx.lineTo(cx + 72, base);
+  ctx.stroke();
+
+  /* A lamp hanging in the niche, which is the motif almost every prayer mat
+     carries, and an eight-point star under it. */
+  ctx.strokeStyle = goldLight;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(cx, top - 14);
+  ctx.lineTo(cx, top + 44);
+  ctx.stroke();
+  ctx.fillStyle = cream;
+  ctx.beginPath();
+  ctx.ellipse(cx, top + 62, 19, 24, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = gold;
+  ctx.beginPath();
+  ctx.ellipse(cx, top + 62, 12, 16, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = "rgba(245,230,192,0.55)";
+  ctx.lineWidth = 2;
+  const sx = cx;
+  const sy = top + 150;
+  const r1 = 40;
+  const r2 = 17;
+  ctx.beginPath();
+  for (let i = 0; i < 16; i++) {
+    const a = (i / 16) * Math.PI * 2 - Math.PI / 2;
+    const r = i % 2 === 0 ? r1 : r2;
+    const px = sx + Math.cos(a) * r;
+    const py = sy + Math.sin(a) * r;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.stroke();
+
+  /* Fringes at both ends. */
+  ctx.strokeStyle = "rgba(245,230,192,0.4)";
+  ctx.lineWidth = 2;
+  for (let x = 12; x < w - 10; x += 7) {
+    ctx.beginPath();
+    ctx.moveTo(x, 2);
+    ctx.lineTo(x, 12);
+    ctx.moveTo(x, h - 12);
+    ctx.lineTo(x, h - 2);
+    ctx.stroke();
+  }
+
+  rugTex = new THREE.CanvasTexture(c);
+  rugTex.anisotropy = 8;
+  return rugTex;
+}
+
 /** The mat, and the niche the prayer faces. */
 function buildRoom(scene: THREE.Scene) {
-  const mat = new THREE.Mesh(
-    new THREE.BoxGeometry(1.3, 0.02, 2.3),
-    new THREE.MeshStandardMaterial({ color: GOLD_DIM, roughness: 0.85 }),
+  /* The pile is a plane and the body of the rug a thin box under it. A box
+     face was the obvious choice and the wrong one: the top face's UVs run
+     along X, so the woven mihrab came out lying on its side, pointing across
+     the mat instead of at the qibla. A plane laid flat has v running to -Z,
+     which is the qibla, so the arch points where it is drawn to point. */
+  const pile = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.24, 2.3),
+    new THREE.MeshStandardMaterial({ map: prayerRug(), roughness: 0.96 }),
   );
-  mat.position.set(0, 0.01, -0.15);
-  mat.receiveShadow = true;
-  scene.add(mat);
-  const matBorder = new THREE.Mesh(
-    new THREE.BoxGeometry(1.5, 0.012, 2.5),
-    new THREE.MeshStandardMaterial({ color: 0x8a6420, roughness: 0.9 }),
+  pile.rotation.x = -Math.PI / 2;
+  /* Pulled forward so the whole prayer happens on it: standing, the feet are
+     at the near end; in sujud the forehead reaches almost a metre ahead. */
+  pile.position.set(0, 0.024, -0.5);
+  pile.receiveShadow = true;
+  scene.add(pile);
+
+  const backing = new THREE.Mesh(
+    new THREE.BoxGeometry(1.26, 0.022, 2.32),
+    new THREE.MeshStandardMaterial({ color: 0x0a3419, roughness: 0.95 }),
   );
-  matBorder.position.set(0, 0.005, -0.15);
-  matBorder.receiveShadow = true;
-  scene.add(matBorder);
+  backing.position.set(0, 0.012, -0.5);
+  backing.receiveShadow = true;
+  scene.add(backing);
 
   const arch = new THREE.Group();
   const colGeom = new THREE.CylinderGeometry(0.09, 0.11, 2.2, 10);
@@ -130,8 +416,20 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
     const host = wrap.current;
     if (!canvas || !host) return;
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-    const stage = mountStage(canvas);
+    /* A strong warm key and a fill turned well down. The room light was a
+       green hemisphere at full strength, which is right for gold capsules on
+       a green ground and wrong for a white thobe: it came out sage. */
+    const stage = mountStage(canvas, { key: 1.55, fill: 0.42 });
     if (!stage) return;
+
+    /* The key stands behind and to the mihrab side, which rims the figure
+       beautifully and leaves the whole of the side the camera actually looks
+       at to a green hemisphere: white cloth came out sage. This is the light
+       that makes the thobe read as white. */
+    const front = new THREE.DirectionalLight(0xfff4e4, 1.65);
+    front.position.set(5.2, 3.4, 2.6);
+    stage.scene.add(front);
+    stage.scene.add(new THREE.AmbientLight(0xfff1da, 0.42));
 
     buildRoom(stage.scene);
     const joints = buildFigure();
@@ -141,8 +439,14 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
       stage,
       joints,
       cam: camState({
-        azimuth: 1.45,
-        polar: 1.32,
+        /* Three-quarter, not profile. A pure side view is the clearest angle
+           for the shape of ruku and sujud and the worst for everything the
+           hands do, and the hands are half of what this teaches: folded on
+           the chest, raised to the ears, gripping the knees. This turns far
+           enough toward the front to show them while keeping the mihrab in
+           frame behind. */
+        azimuth: 1.98,
+        polar: 1.3,
         /* 5.1, not 4.2: the scene used to be rebuilt at every step, which
            reset the camera each time and hid how tight the framing was. Now
            that one rig plays the whole prayer, a standing figure has to fit
@@ -159,10 +463,12 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
            wide swing was tolerable when every step snapped the camera back;
            across a whole prayer it wanders somewhere unflattering and stays
            there. */
-        driftArc: [1.22, 1.68],
+        driftArc: [1.82, 2.16],
       }),
       current: { ...POSES.qiyam },
       target: { ...POSES.qiyam },
+      reach: null,
+      reachW: 0,
       raf: 0,
     };
     if (reduced) rig.cam.idle = 0;
@@ -183,6 +489,22 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
       /* Ease the joints toward the target posture. Reduced motion jumps. */
       tweenPose(rig.current, rig.target, reduced ? 1 : 1 - Math.exp(-dt * 6));
       applyPose(rig.joints, rig.current);
+
+      /* Then put the hands where the posture says they go. The angles above
+         carry the body; this carries the hands the last few centimetres onto
+         the knees, the mat or the thighs, and holds them there however the
+         rest of the figure moves. */
+      const want = rig.reach ? 1 : 0;
+      rig.reachW += (want - rig.reachW) * (reduced ? 1 : Math.min(1, dt * 5));
+      if (rig.reachW > 0.002 && rig.reach) {
+        rig.joints.root.updateMatrixWorld(true);
+        for (const side of ["L", "R"] as const) {
+          reachTarget(rig.joints, rig.reach, side, side === "L" ? T_A : T_B);
+          const aim = side === "L" ? T_A : T_B;
+          const bend = ELBOW_UP.includes(rig.reach) ? "up" : "down";
+          applyArm(rig.joints, side, solveArm(rig.joints, side, aim, bend), rig.reachW);
+        }
+      }
       driftCamera(rig.cam, dt, reduced);
       /* Aimed a little higher than the pelvis: the standing postures are the
          tall ones and they were losing their heads off the top. */
@@ -203,7 +525,9 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
   /* A new step retargets the tween; the loop above carries the body there. */
   useEffect(() => {
     const rig = rigRef.current;
-    if (rig) rig.target = { ...POSES[stepId] };
+    if (!rig) return;
+    rig.target = { ...POSES[stepId] };
+    rig.reach = REACH[stepId] ?? null;
   }, [stepId]);
 
   /* Keep drifting only while playing; a paused study pose holds still. */
