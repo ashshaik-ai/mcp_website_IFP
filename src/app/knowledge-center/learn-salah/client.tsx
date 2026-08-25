@@ -15,7 +15,7 @@ import { salahDhikr } from "@/content/salah-dhikr";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator
    can read and review it as one unit. */
@@ -139,80 +139,6 @@ const wuduSteps = [
   },
 ];
 
-const simSteps = [
-  {
-    n: 1, pos: { te: "నిలబడి, చేతులు చెవుల వరకు ఎత్తి", en: "Standing, raise hands to ears" },
-    name: "Takbeer-ul-Ihraam", nameAr: "تَكْبِيرَةُ الْإِحْرَام",
-    ar: "اللَّهُ أَكْبَر",
-    tr: "Allāhu Akbar",
-    mean: { te: "అల్లాహ్ అందరికంటే గొప్పవాడు — ఈ తక్బీర్‌తో నమాజ్ ప్రారంభమవుతుంది. ఇప్పటి నుండి నమాజ్ ముగిసే వరకు లౌకిక విషయాలు నిషేధం.", en: "Allah is the Greatest — the prayer begins with this Takbeer. From now until Salam, worldly matters are forbidden." },
-    warn: { te: "తక్బీర్ ముందు నియ్యత్ (ఉద్దేశం) మనసులో పెట్టుకోవడం తప్పనిసరి.", en: "Making the intention (niyyah) before Takbeer is obligatory." },
-  },
-  {
-    n: 2, pos: { te: "నిలబడి, కుడిచేతిని ఎడమచేతిపై — నాభి కింద", en: "Standing, right hand over left, below the navel" },
-    name: "Thana (Opening Dua)", nameAr: "الثَّنَاء",
-    ar: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَلَا إِلَٰهَ غَيْرُكَ",
-    tr: "Subḥānaka Allāhumma wa biḥamdika wa tabārakasmuka wa taʿālā jadduka wa lā ilāha ghayruk",
-    mean: { te: "ఓ అల్లాహ్, నీవు పరిశుద్ధుడవు, నీ స్తోత్రంతో నిండివున్నావు. నీ నామం శుభకరమైనది, నీ ఘనత ఉన్నతమైనది, నీవు తప్ప వేరే ఇలాహ్ లేడు.", en: "O Allah, glory and praise be to You. Blessed is Your Name, Exalted is Your Majesty, and there is no god but You." },
-    warn: { te: "ఈ దువా మొదటి రకాత్‌లో మాత్రమే చదివే తెరిచే సనా; ప్రతి రకాత్‌లో కాదు.", en: "Thana is recited only in the first raka'ah — not repeated in subsequent units." },
-  },
-  {
-    n: 3, pos: { te: "నిలబడి, ఫాతిహా పఠించి", en: "Standing, recite Al-Fatihah" },
-    name: "Surah Al-Fatihah", nameAr: "الْفَاتِحَة",
-    ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-    tr: "Al-ḥamdu lillāhi rabbil-ʿālamīn",
-    mean: { te: "సర్వలోక ప్రభువైన అల్లాహ్‌కే సర్వస్తోత్రాలు — ప్రతి రకాత్‌లో ఫాతిహా చదవాలి. ఇది లేకుండా నమాజ్ చెల్లదు.", en: "All praise is for Allah, Lord of all worlds — Al-Fatihah is recited in every unit. The prayer is invalid without it." },
-    warn: { te: "ఫాతిహాను చాలా వేగంగా, అర్థాన్ని గమనించకుండా చదవడం సాధారణ తప్పు.", en: "Rushing through Al-Fatihah without reflecting on its meaning is a common mistake." },
-  },
-  {
-    n: 4, pos: { te: "వంగి, చేతులు మోకాళ్లపై ఉంచి", en: "Bowing, hands gripping the knees" },
-    name: "Ruku", nameAr: "الرُّكُوع",
-    ar: "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
-    tr: "Subḥāna Rabbiyal-ʿAẓīm",
-    mean: { te: "నా మహోన్నత ప్రభువు పరిశుద్ధుడు — మూడుసార్లు చెప్పాలి. వీపు నేలకు సమాంతరంగా ఉండాలి.", en: "Glory to my Lord, the Most Great — said three times. The back should be parallel to the ground." },
-    warn: { te: "రుకూలో వీపు పూర్తిగా వంచకపోవడం, తొందరగా లేవడం — రుకూ అందులో శరీరం స్థిరపడాలి (తుమానీనా).", en: "Not straightening the back fully in ruku, or rising too quickly — the body must be still (tuma'ninah)." },
-  },
-  {
-    n: 5, pos: { te: "రుకూ నుండి లేచి నిటారుగా నిలబడి", en: "Rising from Ruku to stand upright" },
-    name: "Qawm", nameAr: "الْقَوْم",
-    ar: "سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ · رَبَّنَا وَلَكَ الْحَمْد",
-    tr: "Samiʿallāhu liman ḥamidah · Rabbanā wa lakal-ḥamd",
-    mean: { te: "అల్లాహ్ ఆయనను కొనియాడిన వారి మాటలు వింటాడు · మా ప్రభూ, సర్వస్తోత్రాలు నీకే — లేచేటప్పుడు మొదటిది, నిటారుగా నిలబడినప్పుడు రెండవది.", en: "Allah hears those who praise Him · Our Lord, all praise is for You — first said while rising, second when standing upright." },
-    warn: { te: "రుకూ నుండి లేవకుండా నేరుగా సజ్దాకు వెళ్లడం తప్పు — ఖౌమ్ తప్పనిసరి దశ.", en: "Going directly from ruku to sujood without standing is wrong — Qawm is an obligatory position." },
-  },
-  {
-    n: 6, pos: { te: "సాష్టాంగం — 7 అవయవాలు నేలపై", en: "Prostration — 7 body parts on ground" },
-    name: "Sujood", nameAr: "السُّجُود",
-    ar: "سُبْحَانَ رَبِّيَ الْأَعْلَى",
-    tr: "Subḥāna Rabbiyal-Aʿlā",
-    mean: { te: "నా అత్యున్నత ప్రభువు పరిశుద్ధుడు — మూడుసార్లు. ఇది బానిస అల్లాహ్‌కు అత్యంత దగ్గరగా ఉండే స్థానం.", en: "Glory to my Lord, the Most High — three times. This is the closest a servant is to Allah." },
-    warn: { te: "నుదురు + ముక్కు + రెండు చేతులు + రెండు మోకాళ్లు + రెండు పాదాల వేళ్లు — ఏడు అవయవాలూ నేలను తాకాలి.", en: "Forehead + nose + both hands + both knees + toes of both feet — all seven must touch the ground." },
-  },
-  {
-    n: 7, pos: { te: "రెండు సజ్దాల మధ్య కూర్చొని", en: "Sitting between the two prostrations" },
-    name: "Jalsa", nameAr: "الْجَلْسَة",
-    ar: "رَبِّ اغْفِرْ لِي وَارْحَمْنِي",
-    tr: "Rabbi-ghfir lī warḥamnī",
-    mean: { te: "నా ప్రభూ, నన్ను క్షమించు మరియు నాపై దయ చూపించు — రెండు సజ్దాల మధ్య స్వల్ప కూర్చున్నప్పుడు చదవాలి.", en: "My Lord, forgive me and have mercy on me — recited during the brief sitting between two prostrations." },
-    warn: { te: "జల్సాను వదిలేయడం లేదా చాలా వేగంగా సజ్దాకు వెళ్లడం — రెండు సజ్దాల మధ్య ఈ కూర్చుండటం తప్పనిసరి.", en: "Skipping Jalsa or rushing into the second sujood — this brief sitting is obligatory." },
-  },
-  {
-    n: 8, pos: { te: "చివరి రకాత్‌లో కూర్చొని", en: "Sitting in the final raka'ah" },
-    name: "Tashahhud", nameAr: "التَّشَهُّد",
-    ar: "التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ · السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ",
-    tr: "At-taḥiyyātu lillāhi waṣ-ṣalawātu waṭ-ṭayyibāt · As-salāmu ʿalayka ayyuhan-nabiyy",
-    mean: { te: "అన్ని వందనాలు, నమాజులు మరియు పవిత్ర విషయాలు అల్లాహ్‌కే — తర్వాత దురూద్ ఇబ్రాహీమ్ చదవాలి, ఆపై దువా.", en: "All greetings, prayers, and pure things are for Allah — followed by Durood Ibrahim and then a du'a." },
-    warn: { te: "తషహ్హుద్‌లో 'అష్హదు అల్లా ఇలాహ ఇల్లల్లాహ్' చదివేటప్పుడు చూపుడువేలు ఎత్తడం సున్నత్.", en: "Raising the index finger at 'ashhadu allā ilāha illallāh' is sunnah." },
-  },
-  {
-    n: 9, pos: { te: "తలను కుడివైపు, తర్వాత ఎడమవైపు తిప్పి", en: "Turn head right, then left" },
-    name: "Salam", nameAr: "السَّلَام",
-    ar: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه",
-    tr: "As-salāmu ʿalaykum wa raḥmatullāh",
-    mean: { te: "మీపై శాంతి మరియు అల్లాహ్ కరుణ కురియుగాక — ఈ రెండు సలాంలతో నమాజ్ ముగుస్తుంది. ఒక్కో సలాంలో తల తగినంత తిప్పాలి.", en: "Peace and mercy of Allah be upon you — the prayer ends with these two salams. Turn the head fully for each." },
-    warn: { te: "ఒక్క సలాంతో ముగించడం, లేదా రెండవ సలాంను వదిలేయడం తప్పు.", en: "Ending with only one salam or omitting the second salam is incorrect." },
-  },
-];
 
 const mistakes = [
   {
@@ -250,8 +176,6 @@ function LearnSalahPage() {
   const { lang } = useI18n();
   const [activeTab, setActiveTab] = useState<"times" | "wudu" | "salah" | "simulator" | "mistakes">("times");
   const [wuduStep, setWuduStep] = useState(0);
-  const [salahStep, setSalahStep] = useState(0);
-  const [simStep, setSimStep] = useState(0);
   const [expandedPrayer, setExpandedPrayer] = useState<number | null>(null);
 
   const tabs = [
