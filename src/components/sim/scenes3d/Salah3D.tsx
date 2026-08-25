@@ -4,9 +4,9 @@ import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import type { SceneProps } from "../Simulator";
 import {
-  applyArm, applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera,
-  easePose, fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose,
-  solveArm, sym,
+  applyArm, applyPose, breathe, buildFigure, camState, CREAM, D, disposeStage,
+  driftCamera, easePose, fitRenderer, GOLD, GOLD_DIM, mountStage, orbit,
+  placeCamera, pose, solveArm, sym,
   type CamState, type Joints, type Pose, type Stage,
 } from "./stage3d";
 
@@ -604,6 +604,9 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
       rig.u = reduced ? 1 : Math.min(1, rig.u + dt / MOVE_SECONDS);
       easePose(rig.current, rig.from, rig.target, rig.u);
       applyPose(rig.joints, rig.current);
+      /* Breath, once the posture has arrived. Not during the move, where it
+         would fight the ease. */
+      if (!reduced) breathe(rig.joints, now / 1000, rig.u);
 
       /* Then put the hands where the posture says they go. The angles above
          carry the body; this carries the hands the last few centimetres onto

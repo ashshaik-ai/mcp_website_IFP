@@ -526,11 +526,36 @@ export function tweenPose(current: Pose, target: Pose, k: number) {
    over a length of time somebody chose. This does that. */
 export const smoothstep = (u: number) => u * u * (3 - 2 * u);
 
-export function easePose(out: Pose, from: Pose, to: Pose, u: number) {
-  const k = smoothstep(Math.min(1, Math.max(0, u)));
+/* The arms lag the body. An animator calls it overlapping action: nothing on
+   a living body starts and stops at the same instant, and limbs trail the
+   mass that drags them. Move every joint on one curve and the figure reads as
+   a mechanism hitting its marks, which is the single loudest tell that
+   something was interpolated rather than animated. A tenth of a second is
+   enough. */
+const ARM_KEYS: (keyof Pose)[] = [
+  "shoulderXL", "shoulderXR", "shoulderZL", "shoulderZR", "elbowXL", "elbowXR",
+];
+
+export function easePose(out: Pose, from: Pose, to: Pose, u: number, armLag = 0.14) {
+  const c = Math.min(1, Math.max(0, u));
+  const k = smoothstep(c);
+  const ka = armLag > 0 ? smoothstep(Math.min(1, Math.max(0, (c - armLag) / (1 - armLag)))) : k;
   for (const key of Object.keys(out) as (keyof Pose)[]) {
-    out[key] = lerp(from[key], to[key], k);
+    out[key] = lerp(from[key], to[key], ARM_KEYS.includes(key) ? ka : k);
   }
+}
+
+/* Breath.
+
+   A held posture that is perfectly still is a photograph, and the prayer has
+   long holds in it: the recitation standing, the sitting, the three tasbih of
+   ruku. Millimetres, on a slow cycle -- enough that the figure is alive and
+   not so much that it looks restless at prayer. */
+export function breathe(j: Joints, seconds: number, depth = 1) {
+  const b = Math.sin(seconds * 1.35) * depth;
+  j.torso.rotation.x -= b * 0.0045;
+  j.root.position.y += b * 0.0042;
+  j.head.rotation.x -= b * 0.0025;
 }
 
 /* The stage: renderer, lights, floor. */

@@ -4,8 +4,8 @@ import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import type { SceneProps } from "../Simulator";
 import {
-  applyPose, buildFigure, camState, CREAM, D, disposeStage, driftCamera, easePose,
-  fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose, sym,
+  applyPose, breathe, buildFigure, camState, CREAM, D, disposeStage, driftCamera,
+  easePose, fitRenderer, GOLD, GOLD_DIM, mountStage, orbit, placeCamera, pose, sym,
   type CamState, type Joints, type Pose, type Stage,
 } from "./stage3d";
 
@@ -367,6 +367,7 @@ export function Wudu3D({ step, playing, lang }: SceneProps) {
       rig.u = reduced ? 1 : Math.min(1, rig.u + dt / 0.8);
       easePose(rig.current, rig.from, rig.target, rig.u);
       applyPose(rig.joints, rig.current);
+      if (!reduced) breathe(rig.joints, t, rig.u);
 
       /* Water eases on and off rather than blinking, and the ewer tips as it
          pours. */
