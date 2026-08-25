@@ -330,7 +330,11 @@ function buildRig(canvas: HTMLCanvasElement, reduced: boolean): Rig | null {
     target: { ...POSES.qiyam },
     azimuth: 1.45,
     polar: 1.32,
-    dist: 4.2,
+    /* 5.1, not 4.2: the scene used to be rebuilt at every step, which reset
+       the camera each time and hid how tight the framing was. Now that one
+       rig plays the whole prayer, a standing figure has to fit with headroom
+       and a prostrating one has to stay off the bottom edge. */
+    dist: 5.1,
     idle: reduced ? 0 : 1,
     dir: 1,
     raf: 0,
@@ -472,9 +476,13 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
          phone width one persona watched sujood happen behind a pillar. The
          camera now swings a front arc and turns back at its ends. */
       if (rig.idle && !reduced) {
-        rig.azimuth += dt * 0.07 * rig.dir;
-        if (rig.azimuth > 2.35) { rig.azimuth = 2.35; rig.dir = -1; }
-        else if (rig.azimuth < 0.55) { rig.azimuth = 0.55; rig.dir = 1; }
+        /* A narrow, slow arc around the framing the scene was composed in.
+           A wide swing was tolerable when every step snapped the camera back;
+           across a whole prayer it wanders somewhere unflattering and stays
+           there. This breathes either side of centre instead. */
+        rig.azimuth += dt * 0.022 * rig.dir;
+        if (rig.azimuth > 1.68) { rig.azimuth = 1.68; rig.dir = -1; }
+        else if (rig.azimuth < 1.22) { rig.azimuth = 1.22; rig.dir = 1; }
       }
 
       const r = rig.dist;
@@ -483,7 +491,9 @@ export function Salah3D({ step, playing, lang }: SceneProps) {
         Math.cos(rig.polar) * r + 0.9,
         Math.cos(rig.azimuth) * Math.sin(rig.polar) * r,
       );
-      rig.camera.lookAt(0, 0.72, -0.25);
+      /* Aimed a little higher than the pelvis: the standing postures are the
+         tall ones and they were losing their heads off the top. */
+      rig.camera.lookAt(0, 0.86, -0.25);
       rig.renderer.render(rig.scene, rig.camera);
     };
     rig.raf = requestAnimationFrame(loop);

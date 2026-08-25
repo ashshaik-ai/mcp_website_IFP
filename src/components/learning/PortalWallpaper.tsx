@@ -219,9 +219,14 @@ export function PortalWallpaper({ portal }: { portal: string }) {
         <rect width="100%" height="100%" fill={`url(#${id})`} />
       </svg>
 
-      {/* One warm breath of light over the middle, and a vignette that sits the
-          heading on a darker ground so it stays readable. */}
+      {/* Light that moves. The glow breathes over the middle, an aurora
+          wanders slowly across the whole cover so the green is never one flat
+          field, and a sheen crosses it now and then the way light travels over
+          glazed tile. The vignette sits the heading on a darker ground so it
+          keeps its contrast through all of it. */}
+      <div className="if-wall-aurora absolute inset-0" />
       <div className="if-wall-glow absolute inset-0" />
+      <div className="if-wall-sheen absolute inset-0" />
       <div className="if-wall-vignette absolute inset-0" />
     </div>
   );

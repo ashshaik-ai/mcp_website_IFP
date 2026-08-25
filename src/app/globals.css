@@ -971,6 +971,10 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 }
 
 /* The scene itself, re-mounted per step so it enters rather than cuts. */
+/* A crossfade, not a cut: the arriving drawing rises as the leaving one
+   settles back, and for a moment both are on the stage. The two curves are
+   deliberately different lengths so the overlap never reads as a dissolve
+   between two equals — the new step is what the eye should follow. */
 .if-sim-cut {
   animation: if-sim-cut 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -978,6 +982,20 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 @keyframes if-sim-cut {
   from { opacity: 0; transform: scale(0.985); }
   to   { opacity: 1; transform: none; }
+}
+
+.if-sim-out {
+  animation: if-sim-out 0.45s cubic-bezier(0.4, 0, 1, 1) both;
+  pointer-events: none;
+}
+
+@keyframes if-sim-out {
+  from { opacity: 0.9; transform: none; }
+  to   { opacity: 0; transform: scale(1.012); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-sim-out { animation: none; opacity: 0; }
 }
 
 .if-sim-cap-in {
@@ -1184,6 +1202,35 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
   50% { opacity: 1; transform: scale(1.05); }
 }
 
+/* An aurora: two soft green-gold fields wandering on long, mismatched cycles,
+   so the cover never settles into one flat colour. The periods are prime-ish
+   against each other, which keeps the pattern from visibly repeating. */
+.if-wall-aurora {
+  background:
+    radial-gradient(45% 55% at 25% 35%, rgb(26 92 48 / 0.55), transparent 70%),
+    radial-gradient(40% 50% at 75% 65%, rgb(200 146 42 / 0.14), transparent 72%);
+  animation: if-wall-aurora 47s ease-in-out infinite alternate;
+}
+
+@keyframes if-wall-aurora {
+  0% { transform: translate3d(-4%, -2%, 0) scale(1.05); opacity: 0.75; }
+  50% { transform: translate3d(3%, 3%, 0) scale(1.15); opacity: 1; }
+  100% { transform: translate3d(5%, -3%, 0) scale(1.08); opacity: 0.8; }
+}
+
+/* A slow pass of light, the way it travels over glazed tile. Mostly waiting:
+   the sweep itself takes four seconds of a twenty-six second cycle. */
+.if-wall-sheen {
+  background: linear-gradient(105deg, transparent 38%, rgb(245 230 192 / 0.09) 47%, rgb(255 255 255 / 0.05) 50%, transparent 62%);
+  transform: translateX(-120%);
+  animation: if-wall-sheen 26s ease-in-out 6s infinite;
+}
+
+@keyframes if-wall-sheen {
+  0% { transform: translateX(-120%); }
+  15%, 100% { transform: translateX(120%); }
+}
+
 /* Darker at the edges, so the type in the middle keeps its contrast. */
 .if-wall-vignette {
   background: radial-gradient(75% 75% at 50% 45%, transparent 45%, rgb(4 20 10 / 0.45) 100%);
@@ -1192,7 +1239,9 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 @media (prefers-reduced-motion: reduce) {
   .if-wall-tile,
   .if-wall-far,
+  .if-wall-aurora,
   .if-wall-glow { animation: none; }
+  .if-wall-sheen { animation: none; opacity: 0; }
 }
 
 /* ── Manifesto progress card ──────────────────────────────────────────────

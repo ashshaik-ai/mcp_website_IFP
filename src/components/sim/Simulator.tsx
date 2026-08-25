@@ -41,6 +41,14 @@ export type SceneProps = {
   lang: "te" | "en";
 };
 
+/* A scene that holds its own state between steps — the 3D rig eases every
+   joint from one posture into the next — marks itself continuous. The engine
+   then leaves it mounted instead of cutting to a fresh copy each step.
+
+   The drawn SVG scenes are the opposite case: each posture is its own set of
+   shapes and the cut between them is the transition, so they stay keyed. */
+export type SceneComponent = ComponentType<SceneProps> & { continuous?: boolean };
+
 const copy = {
   play: { te: "ప్లే", en: "Play" },
   pause: { te: "పాజ్", en: "Pause" },
@@ -59,6 +67,7 @@ const copy = {
   score: { te: "స్కోరు", en: "Score" },
   best: { te: "అత్యుత్తమం", en: "Best" },
   again: { te: "మళ్ళీ ఆడండి", en: "Play again" },
+  timeline: { te: "కాలరేఖ", en: "Timeline" },
   listen: { te: "అరబీ వినండి", en: "Hear the Arabic" },
   noVoice: {
     te: "ఈ పరికరంలో అరబీ స్వరం లేదు — కింది ఉచ్చారణ చూడండి.",
@@ -333,10 +342,11 @@ export function Simulator({
   className = "",
 }: {
   steps: SimStep[];
-  scene: ComponentType<SceneProps>;
+  scene: SceneComponent;
   autoplay?: boolean;
   className?: string;
 }) {
+  const continuous = Scene.continuous === true;
   const { lang } = useI18n();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -445,6 +455,72 @@ export function Simulator({
 
   const atEnd = index === steps.length - 1;
 
+  /* Where each step starts on the timeline, and the whole run's length. */
+  const bounds = useMemo(() => {
+    const out: number[] = [];
+    let t = 0;
+    for (const st of steps) {
+      out.push(t);
+      t += st.dur ?? DEFAULT_DUR;
+    }
+    return out;
+  }, [steps]);
+  const totalMs = useMemo(
+    () => steps.reduce((n, st) => n + (st.dur ?? DEFAULT_DUR), 0),
+    [steps],
+  );
+  const startFrac = bounds[index] / totalMs;
+  const endFrac = (bounds[index] + dur) / totalMs;
+
+  /* The step we are leaving, held just long enough to fade it out under the
+     one arriving. */
+  const [prev, setPrev] = useState<number | null>(null);
+  const lastIndex = useRef(index);
+  useEffect(() => {
+    if (lastIndex.current === index) return;
+    const leaving = lastIndex.current;
+    lastIndex.current = index;
+    if (continuous) return;
+    setPrev(leaving);
+    const t = window.setTimeout(() => setPrev(null), 560);
+    return () => window.clearTimeout(t);
+  }, [index, continuous]);
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLDivElement>(null);
+
+  /* The playhead. One rAF while playing, writing a transform on the node —
+     no state, so nothing re-renders at frame rate. */
+  useEffect(() => {
+    const fill = fillRef.current;
+    if (!fill) return;
+    if (!playing) {
+      fill.style.transform = `scaleX(${endFrac})`;
+      return;
+    }
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const k = Math.min(1, (now - t0) / dur);
+      fill.style.transform = `scaleX(${startFrac + (endFrac - startFrac) * k})`;
+      if (k < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [playing, index, dur, startFrac, endFrac]);
+
+  /* Press anywhere on the track to jump to the step that owns that moment. */
+  const seek = (e: React.PointerEvent) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const at = ((e.clientX - r.left) / r.width) * totalMs;
+    let target = 0;
+    for (let i = 0; i < bounds.length; i++) if (at >= bounds[i]) target = i;
+    setPlaying(false);
+    setIndex(target);
+  };
+
   return (
     /* min-w-0: the transport row is intrinsically wide with thirteen step
        dots in it, and a grid or flex parent sizes its items to that unless
@@ -473,9 +549,31 @@ export function Simulator({
           <div className="if-sim-dial w-[52%] aspect-square" aria-hidden="true" />
           <div className="if-sim-dial w-[78%] aspect-square" aria-hidden="true" />
           <CornerTicks />
-          <div key={index} className="if-sim-cut absolute inset-0">
-            <Scene step={step} index={index} playing={playing} lang={lang} />
-          </div>
+          {/* A continuous scene stays mounted and tweens; remounting it threw
+              away the three.js rig and rebuilt renderer, lights and geometry
+              on every step, which is what made a single flowing prayer read as
+              a stack of cards. */}
+          {continuous ? (
+            <div className="absolute inset-0">
+              <Scene step={step} index={index} playing={playing} lang={lang} />
+            </div>
+          ) : (
+            <>
+              {/* The outgoing drawing stays underneath while the new one
+                  arrives. It used to be removed the instant the step changed
+                  and the replacement faded up from nothing, so every step
+                  flashed the empty stage — which is what made a sequence read
+                  as cards being dealt rather than one thing moving. */}
+              {prev !== null && prev !== index && (
+                <div key={`out-${prev}`} className="if-sim-out absolute inset-0">
+                  <Scene step={steps[prev]} index={prev} playing={false} lang={lang} />
+                </div>
+              )}
+              <div key={index} className="if-sim-cut absolute inset-0">
+                <Scene step={step} index={index} playing={playing} lang={lang} />
+              </div>
+            </>
+          )}
         </div>
 
         {/* Caption strip: the least text that still tells you what you are
@@ -543,13 +641,41 @@ export function Simulator({
           )}
         </div>
 
-        {/* Progress across the current step. Keyed so it restarts per step. */}
-        <div className="absolute left-0 right-0 bottom-0 h-1 bg-white/10" aria-hidden="true">
-          <div
-            key={`${index}-${playing}`}
-            className="if-sim-progress h-full bg-[var(--if-gold)]"
-            style={{ animationDuration: `${dur}ms`, animationPlayState: playing ? "running" : "paused", width: playing ? undefined : `${((index + 1) / steps.length) * 100}%` }}
-          />
+        {/* One timeline for the whole sequence rather than a bar that reset
+            at every step, with a tick where each step begins. Seekable: press
+            anywhere on it to jump. The fill is written straight to the node
+            each frame, so a moving playhead costs no React renders. */}
+        <div
+          ref={trackRef}
+          role="slider"
+          tabIndex={0}
+          aria-label={copy.timeline[lang]}
+          aria-valuemin={1}
+          aria-valuemax={steps.length}
+          aria-valuenow={index + 1}
+          aria-valuetext={step.label[lang]}
+          onPointerDown={seek}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") { e.preventDefault(); setPlaying(false); go(index + 1); }
+            else if (e.key === "ArrowLeft") { e.preventDefault(); setPlaying(false); go(index - 1); }
+          }}
+          className="absolute left-0 right-0 bottom-0 h-2.5 cursor-pointer bg-black/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+        >
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1">
+            <div
+              ref={fillRef}
+              className="h-full origin-left bg-[var(--if-gold)] will-change-transform"
+              style={{ transform: `scaleX(${startFrac})` }}
+            />
+            {steps.slice(1).map((st, i) => (
+              <span
+                key={st.id}
+                aria-hidden="true"
+                className="absolute top-0 h-full w-px bg-white/25"
+                style={{ left: `${(bounds[i + 1] / totalMs) * 100}%` }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

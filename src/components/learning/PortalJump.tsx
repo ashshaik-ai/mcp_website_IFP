@@ -76,40 +76,48 @@ export function PortalJump({ portal, sticky = true }: { portal: string; sticky?:
         sticky ? "sticky top-[65px]" : ""
       }`}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-2">
-        <div className="flex min-w-0 items-center gap-3">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-2 text-xs sm:text-sm">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           {/* The way back. A portal offered none: the logo goes home but never
               says so, and the hero's back-link scrolls out of sight the moment
               you start reading. This is in the bar that follows you down the
               page. */}
-          <nav aria-label={copy.breadcrumb[lang]} className="flex shrink-0 items-center gap-0.5 text-xs">
+          {/* One type scale and one gap rhythm across the whole row. The
+              breadcrumb used to be text-xs beside counts that stepped up to
+              text-sm, and the links carried their own horizontal padding on
+              top of the row's gap, so the spacing read as uneven. */}
+          <nav aria-label={copy.breadcrumb[lang]} className="flex shrink-0 items-center gap-2">
             <Link
               href="/"
               title={copy.home[lang]}
-              className="inline-flex min-h-11 items-center gap-1 rounded-lg px-1.5 font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+              /* Below sm only the icon shows, and with the padding removed for the
+                 spacing rhythm that left a 16px-wide tap target. A minimum
+                 width keeps the icon-only state on the right side of the
+                 24px floor without widening the labelled state. */
+              className="inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] sm:min-w-0 sm:justify-start"
             >
-              <Home aria-hidden="true" className="h-3.5 w-3.5" />
+              <Home aria-hidden="true" className="h-4 w-4 shrink-0" />
               <span className="sr-only sm:not-sr-only">{copy.home[lang]}</span>
             </Link>
-            <ChevronRight aria-hidden="true" className="h-3 w-3 shrink-0 text-[var(--if-text-muted)]/60" />
+            <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[var(--if-text-muted)]/50" />
             <Link
               href="/knowledge-center"
-              className="inline-flex min-h-11 max-w-[7.5rem] items-center truncate rounded-lg px-1.5 font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] sm:max-w-none"
+              className="inline-flex min-h-11 max-w-[8rem] items-center truncate font-semibold text-[var(--if-text-muted)] transition-colors hover:text-[var(--if-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] sm:max-w-none"
             >
               {copy.kc[lang]}
             </Link>
           </nav>
-          <span aria-hidden="true" className="hidden h-4 w-px shrink-0 bg-[var(--if-gold)]/25 min-[480px]:block" />
+          <span aria-hidden="true" className="hidden h-5 w-px shrink-0 bg-[var(--if-gold)]/30 min-[480px]:block" />
           {/* The counts step down rather than being squeezed: the minutes go
               first, then the whole line, so the breadcrumb and the action
               always keep their room on a narrow phone. */}
           {finished ? (
-            <p className="hidden min-w-0 shrink-0 items-center gap-1.5 truncate text-xs font-semibold text-[var(--if-green)] min-[480px]:inline-flex sm:text-sm">
+            <p className="hidden min-w-0 shrink-0 items-center gap-1.5 truncate font-semibold text-[var(--if-green)] min-[480px]:inline-flex">
               <Check aria-hidden="true" className="h-4 w-4 shrink-0" />
               {copy.complete[lang]}
             </p>
           ) : (
-            <p className="hidden shrink-0 whitespace-nowrap text-xs font-semibold text-[var(--if-text-mid)] min-[480px]:block sm:text-sm">
+            <p className="hidden shrink-0 whitespace-nowrap font-semibold text-[var(--if-text-mid)] min-[480px]:block">
               <span className="tabular-nums">{items.length}</span> {copy.lessons[lang]}
               {totalMinutes > 0 && (
                 <span className="ml-2 hidden items-center gap-1 text-[var(--if-text-muted)] sm:inline-flex">

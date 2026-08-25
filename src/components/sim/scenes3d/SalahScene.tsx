@@ -47,3 +47,7 @@ export function SalahScene(props: SceneProps) {
      canvas replaces it in the same frame the probe resolves. */
   return <SalahFigure {...props} />;
 }
+
+/* Marked continuous: the 3D rig eases between postures, so the engine keeps
+   one instance alive rather than rebuilding it on every step. */
+SalahScene.continuous = true;
