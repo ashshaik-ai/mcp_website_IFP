@@ -34,8 +34,27 @@ export async function generateMetadata({
 
   const { lesson, portalRoute } = found;
   const portalName = portalRoute?.title.en ?? portal;
-  const title = `${lesson.title.te} | ${lesson.title.en} — ${portalName}`;
-  const description = (lesson.intro?.en || lesson.summary?.en || "").slice(0, 300);
+  /* Same rule as the route catalog: Telugu leads, the English half is
+     appended only when the whole title still fits inside 60 characters, and
+     the description is Telugu-first and cut to 155 on a word boundary. Both
+     used to carry two languages in full and ran to 90 and 244. */
+  const portalTe = portalRoute?.title.te ?? portalName;
+  const full = `${lesson.title.te} | ${lesson.title.en} — ${portalName}`;
+  const title = full.length <= 60 ? full : `${lesson.title.te} — ${portalTe}`;
+
+  const introTe = (lesson.intro?.te || lesson.summary?.te || "").trim();
+  const introEn = (lesson.intro?.en || lesson.summary?.en || "").trim();
+  const both = `${introTe} ${introEn}`.trim();
+  const description =
+    both.length <= 155
+      ? both
+      : introTe.length <= 155
+        ? introTe
+        : (() => {
+            const cut = introTe.slice(0, 154);
+            const sp = cut.lastIndexOf(" ");
+            return `${sp > 92 ? cut.slice(0, sp) : cut}…`;
+          })();
   const url = `${SITE_URL}/knowledge-center/${portal}/${slug}`;
   /* Declaring openGraph here replaces the layout's block rather than merging
      with it, so these 76 pages -- 83% of the site -- shipped a

@@ -186,12 +186,34 @@ export const routeByPath = new Map(routes.map((r) => [r.path, r]));
 
 /* The site is Telugu-first (html lang="te"), so Telugu leads the title and the
    English name follows for search results and shares in either language. */
+/* Titles and descriptions for a Telugu-first site.
+
+   Both used to carry both languages in full, which put 81 of 94 titles over
+   the 60-character limit and 64 of 94 descriptions over 155 — a search
+   result showed the Telugu, then a truncated English, then nothing that
+   said which page it was. The descriptions also led in English on a site
+   whose default language is Telugu.
+
+   So Telugu leads and English is appended only when the whole thing still
+   fits. Every Telugu title on this site is distinct, so dropping the English
+   half never makes two pages collide. */
+const TITLE_LIMIT = 60;
+const DESC_LIMIT = 155;
+
 export function metaTitle(r: RouteMeta): string {
-  return r.path === "/"
-    ? `${r.title.te} | ${r.title.en} — Mangalagiri`
-    : `${r.title.te} | ${r.title.en} — ${SITE_NAME}`;
+  const org = r.path === "/" ? "Mangalagiri" : SITE_NAME;
+  const base = `${r.title.te} — ${org}`;
+  const full = `${r.title.te} | ${r.title.en} — ${org}`;
+  return full.length <= TITLE_LIMIT ? full : base;
 }
 
 export function metaDescription(r: RouteMeta): string {
-  return `${r.description.en} ${r.description.te}`.trim();
+  const te = r.description.te.trim();
+  const both = `${te} ${r.description.en.trim()}`.trim();
+  if (both.length <= DESC_LIMIT) return both;
+  if (te.length <= DESC_LIMIT) return te;
+  /* Cut on a word boundary rather than mid-word. */
+  const cut = te.slice(0, DESC_LIMIT - 1);
+  const sp = cut.lastIndexOf(" ");
+  return `${sp > DESC_LIMIT * 0.6 ? cut.slice(0, sp) : cut}…`;
 }
