@@ -4,7 +4,7 @@
    the lessons' own quizzes and section checks, spread across the lessons so the
    set covers the course rather than one part of it.
 
-   learn-quran 12, learn-salah 12, seerah 12, islamic-history 12, kids-islam 12, learn-arabic 12, learn-urdu 12, hadith 12, hajj-umrah 12, names-of-allah 12, islamic-calendar 12, special-prayers 12, womens-guidance 10. */
+   learn-quran 12, learn-salah 12, seerah 12, islamic-history 12, kids-islam 12, learn-arabic 12, learn-urdu 12, hadith 12, hajj-umrah 12, names-of-allah 12, islamic-calendar 12, special-prayers 12, womens-guidance 9. */
 
 export type Bi = { te: string; en: string };
 
@@ -216,34 +216,6 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "రోజుకు ఎన్ని పేజీలు చదివితే ఏడాదిలో పూర్తవుతుంది?",
-    "en": "How many pages a day completes the Quran in a year?"
-   },
-   "options": [
-    {
-     "te": "నాలుగు",
-     "en": "Four"
-    },
-    {
-     "te": "ఇరవై",
-     "en": "Twenty"
-    },
-    {
-     "te": "ఒకటి",
-     "en": "One"
-    }
-   ],
-   "answer": 0,
-   "from": {
-    "slug": "daily-quran",
-    "title": {
-     "te": "స్థాయి 8 — రోజువారీ అలవాటు",
-     "en": "Level 8 — A daily habit"
-    }
-   }
-  },
-  {
-   "q": {
     "te": "30 జుజ్‌లుగా విభజన ఏమిటి?",
     "en": "What is the division into 30 juz?"
    },
@@ -351,6 +323,34 @@ const bank: Record<string, AssessmentQuestion[]> = {
     "title": {
      "te": "స్థాయి 4 — హిఫ్జ్: కంఠస్థం",
      "en": "Level 4 — Hifz: memorising"
+    }
+   }
+  },
+  {
+   "q": {
+    "te": "'తఫ్సీర్ బిల్-మఅథూర్' దేనిపై ఆధారపడుతుంది?",
+    "en": "What does tafsir bil-ma'thur rest on?"
+   },
+   "options": [
+    {
+     "te": "ఉల్లేఖనలు — ఖురాన్, హదీసు, సహచరులు",
+     "en": "Transmission: Quran, hadith, the companions"
+    },
+    {
+     "te": "వ్యక్తిగత అభిప్రాయం",
+     "en": "Personal opinion"
+    },
+    {
+     "te": "కలలు",
+     "en": "Dreams"
+    }
+   ],
+   "answer": 0,
+   "from": {
+    "slug": "tafseer",
+    "title": {
+     "te": "స్థాయి 5 — తఫ్సీర్: అర్థం చేసుకోవడం",
+     "en": "Level 5 — Tafsir: understanding"
     }
    }
   }
@@ -1624,34 +1624,6 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "చిరునవ్వు ఏమిటని ప్రవక్త ﷺ చెప్పారు?",
-    "en": "What did the Prophet ﷺ say a smile is?"
-   },
-   "options": [
-    {
-     "te": "ఒక సదఖా",
-     "en": "A charity"
-    },
-    {
-     "te": "ఒక అలవాటు",
-     "en": "A habit"
-    },
-    {
-     "te": "ఒక నియమం",
-     "en": "A rule"
-    }
-   ],
-   "answer": 0,
-   "from": {
-    "slug": "good-manners",
-    "title": {
-     "te": "స్థాయి 2 — మంచి నడవడిక",
-     "en": "Level 2 — Good manners"
-    }
-   }
-  },
-  {
-   "q": {
     "te": "యూనుస్ (అ) దుఆ ఎక్కడ చేశారు?",
     "en": "Where did Yunus make his du'a?"
    },
@@ -1703,6 +1675,34 @@ const bank: Record<string, AssessmentQuestion[]> = {
     "title": {
      "te": "స్థాయి 4 — ప్రవక్తల కథలు",
      "en": "Level 4 — Stories of the prophets"
+    }
+   }
+  },
+  {
+   "q": {
+    "te": "'అల్‌హమ్దులిల్లాహి రబ్బిల్ ఆలమీన్' అంటే ఏమిటి?",
+    "en": "What does alhamdulillahi rabbil alameen mean?"
+   },
+   "options": [
+    {
+     "te": "సర్వ లోకాల ప్రభువైన అల్లాహ్‌కే సర్వ స్తుతి",
+     "en": "All praise is for Allah, Lord of all the worlds"
+    },
+    {
+     "te": "అల్లాహ్ గొప్పవాడు",
+     "en": "Allah is great"
+    },
+    {
+     "te": "అల్లాహ్ ఒక్కడే",
+     "en": "Allah is One"
+    }
+   ],
+   "answer": 0,
+   "from": {
+    "slug": "salah-and-quran-basics",
+    "title": {
+     "te": "స్థాయి 5 — నమాజ్, ఖురాన్ ప్రాథమికాలు",
+     "en": "Level 5 — Prayer and Quran basics"
     }
    }
   }
@@ -2300,21 +2300,21 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "'ముఝే సమఝ్ నహీఁ ఆయా' అంటే ఏమిటి?",
-    "en": "What does mujhe samajh nahin aaya mean?"
+    "te": "దుఆలో అల్లాహ్‌ను ఏ సర్వనామంతో సంబోధిస్తారు?",
+    "en": "Which pronoun is used for Allah in supplication?"
    },
    "options": [
     {
-     "te": "నాకు అర్థం కాలేదు",
-     "en": "I did not understand"
+     "te": "తూ",
+     "en": "Tu"
     },
     {
-     "te": "నేను బాగున్నాను",
-     "en": "I am fine"
+     "te": "ఆప్",
+     "en": "Aap"
     },
     {
-     "te": "మీ పేరు ఏమిటి?",
-     "en": "What is your name?"
+     "te": "తుమ్",
+     "en": "Tum"
     }
    ],
    "answer": 0,
@@ -2780,34 +2780,6 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "భారతీయ యాత్రికులు సాధారణంగా ఏ రూపం చేస్తారు?",
-    "en": "Which form do pilgrims from India usually perform?"
-   },
-   "options": [
-    {
-     "te": "తమత్తుఅ",
-     "en": "Tamattu"
-    },
-    {
-     "te": "ఇఫ్రాద్",
-     "en": "Ifrad"
-    },
-    {
-     "te": "ఖిరాన్",
-     "en": "Qiran"
-    }
-   ],
-   "answer": 0,
-   "from": {
-    "slug": "types",
-    "title": {
-     "te": "స్థాయి 3 — హజ్ మూడు రకాలు",
-     "en": "Level 3 — The three types of Hajj"
-    }
-   }
-  },
-  {
-   "q": {
     "te": "తవాఫ్ ఎక్కడ మొదలవుతుంది?",
     "en": "Where does tawaf begin?"
    },
@@ -3032,29 +3004,57 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "ఉమ్రహ్‌లో కింది వాటిలో ఏది ఉండదు?",
-    "en": "Which of these is NOT part of Umrah?"
+    "te": "హజ్-ఎ-బదల్ చేసేవారికి ఏ షరతు ఉంది?",
+    "en": "What condition applies to someone performing Hajj al-badal?"
    },
    "options": [
     {
-     "te": "అరఫాలో నిలబడటం",
-     "en": "Standing at Arafah"
+     "te": "వారు ముందుగా తమ సొంత హజ్ చేసి ఉండాలి",
+     "en": "They must have completed their own Hajj first"
     },
     {
-     "te": "తవాఫ్",
-     "en": "Tawaf"
+     "te": "వారు మక్కాలో నివసించాలి",
+     "en": "They must live in Makkah"
     },
     {
-     "te": "సఅయి",
-     "en": "Sa'i"
+     "te": "వారు పండితుడై ఉండాలి",
+     "en": "They must be a scholar"
     }
    ],
    "answer": 0,
    "from": {
-    "slug": "umrah",
+    "slug": "why-hajj",
     "title": {
-     "te": "స్థాయి 6 — ఉమ్రహ్ దశలవారీగా",
-     "en": "Level 6 — Umrah step by step"
+     "te": "స్థాయి 1 — హజ్ ఎందుకు, ఎవరిపై విధి",
+     "en": "Level 1 — Why Hajj, and who it is due upon"
+    }
+   }
+  },
+  {
+   "q": {
+    "te": "మహిళలు ఇహ్రామ్‌లో ఏమి ధరిస్తారు?",
+    "en": "What do women wear in ihram?"
+   },
+   "options": [
+    {
+     "te": "వారి సాధారణ శాలీన దుస్తులు",
+     "en": "Their ordinary modest clothing"
+    },
+    {
+     "te": "రెండు కుట్టని తెల్లని వస్త్రాలు",
+     "en": "Two unstitched white cloths"
+    },
+    {
+     "te": "ప్రత్యేకంగా కొనే ఇహ్రామ్ దుస్తులు",
+     "en": "Specially purchased ihram clothing"
+    }
+   ],
+   "answer": 0,
+   "from": {
+    "slug": "ihram",
+    "title": {
+     "te": "స్థాయి 2 — ఇహ్రామ్ మరియు మీఖాత్",
+     "en": "Level 2 — Ihram and the Miqat"
     }
    }
   }
@@ -3258,34 +3258,6 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "అల్లాహ్‌కు మనకు తెలియని పేర్లు ఉన్నాయా?",
-    "en": "Are there names of Allah we have not been taught?"
-   },
-   "options": [
-    {
-     "te": "అవును — ప్రవక్త ﷺ దుఆ దీన్ని సూచిస్తుంది",
-     "en": "Yes, the Prophet's supplication indicates so"
-    },
-    {
-     "te": "లేదు, అన్నీ తెలుసు",
-     "en": "No, we know them all"
-    },
-    {
-     "te": "ఖురాన్ దీని గురించి మౌనం",
-     "en": "The Quran is silent on this"
-    }
-   ],
-   "answer": 0,
-   "from": {
-    "slug": "ninety-nine",
-    "title": {
-     "te": "స్థాయి 2 — తొంభై తొమ్మిది అనే సంఖ్య",
-     "en": "Level 2 — The number ninety-nine"
-    }
-   }
-  },
-  {
-   "q": {
     "te": "హదీసు ఖుద్సీ ప్రకారం అల్లాహ్ కారుణ్యం దేన్ని అధిగమిస్తుంది?",
     "en": "According to the hadith qudsi, Allah's mercy prevails over what?"
    },
@@ -3393,6 +3365,34 @@ const bank: Record<string, AssessmentQuestion[]> = {
     "title": {
      "te": "స్థాయి 3 — కారుణ్యం మరియు గాంభీర్యం",
      "en": "Level 3 — Mercy and majesty"
+    }
+   }
+  },
+  {
+   "q": {
+    "te": "'తౌఖీఫీ' అంటే ఏమిటి?",
+    "en": "What does 'tawqifi' mean here?"
+   },
+   "options": [
+    {
+     "te": "ఖురాన్, సున్నత్‌లో స్థిరపడినవి మాత్రమే",
+     "en": "Only what is established in Quran and Sunnah"
+    },
+    {
+     "te": "పండితులు ఎంచుకున్నవి",
+     "en": "Whatever scholars select"
+    },
+    {
+     "te": "ఎవరైనా చేర్చవచ్చు",
+     "en": "Anyone may add to them"
+    }
+   ],
+   "answer": 0,
+   "from": {
+    "slug": "what-they-are",
+    "title": {
+     "te": "స్థాయి 1 — అస్మా ఉల్-హుస్నా అంటే ఏమిటి",
+     "en": "Level 1 — What the Beautiful Names are"
     }
    }
   }
@@ -3680,21 +3680,21 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "ఆకాశం మేఘావృతమైతే ఏమి చేయాలి?",
-    "en": "What is done if the sky is obscured?"
+    "te": "'ఇఖ్తిలాఫ్ అల్-మతాలిఅ' అభిప్రాయం ఏమిటి?",
+    "en": "What does 'ikhtilaf al-matali' hold?"
    },
    "options": [
     {
-     "te": "మాసాన్ని ముప్ఫై రోజులుగా పూర్తి చేయాలి",
-     "en": "Complete the month as thirty days"
+     "te": "ప్రతి ప్రాంతం తన సొంత దర్శనాన్ని అనుసరించాలి",
+     "en": "Each region follows its own sighting"
     },
     {
-     "te": "ఉపవాసం వదిలేయాలి",
-     "en": "Abandon the fast"
+     "te": "ఎక్కడ కనిపించినా అందరికీ వర్తిస్తుంది",
+     "en": "A sighting anywhere applies to everyone"
     },
     {
-     "te": "ఇరవై ఎనిమిదికి ముగించాలి",
-     "en": "End it at twenty-eight"
+     "te": "గణన మాత్రమే వాడాలి",
+     "en": "Only calculation may be used"
     }
    ],
    "answer": 0,
@@ -4272,21 +4272,21 @@ const bank: Record<string, AssessmentQuestion[]> = {
   },
   {
    "q": {
-    "te": "గర్భవతి స్త్రీ ఇద్దత్ ఎప్పటివరకు?",
-    "en": "How long is the iddah of a pregnant woman?"
+    "te": "విడాకుల ఇద్దత్ కాలంలో ఖురాన్ దేనికి అవకాశం ఇస్తుంది?",
+    "en": "During the iddah of divorce, what does the Quran allow room for?"
    },
    "options": [
     {
-     "te": "ప్రసవం వరకు",
-     "en": "Until she gives birth"
+     "te": "సర్దుబాటు — తిరిగి కలుసుకోవడం",
+     "en": "Reconciliation"
     },
     {
-     "te": "మూడు నెలలు",
-     "en": "Three months"
+     "te": "వెంటనే మరో వివాహం",
+     "en": "Immediate remarriage"
     },
     {
-     "te": "నాలుగు నెలల పది రోజులు",
-     "en": "Four months and ten days"
+     "te": "ఆస్తి పంపకం",
+     "en": "Division of property"
     }
    ],
    "answer": 0,
@@ -4323,34 +4323,6 @@ const bank: Record<string, AssessmentQuestion[]> = {
     "title": {
      "te": "స్థాయి 1 — నికాహ్: ఒప్పందం, మహర్, హక్కులు",
      "en": "Level 1 — Nikah: the contract, the mahr, and rights"
-    }
-   }
-  },
-  {
-   "q": {
-    "te": "విడాకుల ఇద్దత్ కాలంలో ఖురాన్ దేనికి అవకాశం ఇస్తుంది?",
-    "en": "During the iddah of divorce, what does the Quran allow room for?"
-   },
-   "options": [
-    {
-     "te": "సర్దుబాటు — తిరిగి కలుసుకోవడం",
-     "en": "Reconciliation"
-    },
-    {
-     "te": "వెంటనే మరో వివాహం",
-     "en": "Immediate remarriage"
-    },
-    {
-     "te": "ఆస్తి పంపకం",
-     "en": "Division of property"
-    }
-   ],
-   "answer": 0,
-   "from": {
-    "slug": "iddah",
-    "title": {
-     "te": "స్థాయి 2 — ఇద్దత్: వేచి ఉండే కాలం",
-     "en": "Level 2 — Iddah: the waiting period"
     }
    }
   }

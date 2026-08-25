@@ -41,20 +41,64 @@ const shape = (q, lesson) => ({
 /* Round-robin across the lessons: take the first question of each, then the
    second of each, and so on. A portal with one long lesson and three short
    ones then still gets asked about all four. */
+/* Two questions can test the same fact in different words — a lesson's
+   section check and its end-of-lesson quiz often ask it twice — and the
+   assessment was picking up both. The calendar portal asked "According to
+   the hadith, if the sky is obscured?" and "What is done if the sky is
+   obscured?" in the same twelve.
+
+   Exact text is not enough to catch that, so questions are compared on their
+   content words: strip the ones every question contains and see how much of
+   the shorter question the longer one already covers. The bar is 0.6: the two
+   calendar questions above share two of their three distinctive words. */
+const norm = (q) => q.q.en.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+
+const STOP = new Set(
+  "the a an of to in on at is are was were do does did what which who whom when where how why and or for from by with according it its as that this these those you your".split(" "),
+);
+
+const keywords = (q) => new Set(norm(q).split(" ").filter((w) => w.length > 2 && !STOP.has(w)));
+
+/* True when one question's distinctive words are largely contained in the
+   other's — the same fact asked twice. */
+const sameFact = (a, b) => {
+  if (norm(a) === norm(b)) return true;
+  const ka = keywords(a);
+  const kb = keywords(b);
+  const small = ka.size <= kb.size ? ka : kb;
+  const big = small === ka ? kb : ka;
+  if (small.size < 2) return false;
+  let shared = 0;
+  for (const w of small) if (big.has(w)) shared++;
+  return shared / small.size >= 0.6;
+};
+
 const gather = (list) => {
-  const pools = list.map((l) => [
-    ...l.quiz.map((q) => shape(q, l)),
-    ...l.sections.filter((s) => s.check).map((s) => shape(s.check, l)),
-  ]);
+  const pools = list.map((l) => {
+    const seen = new Set();
+    return [
+      ...l.quiz.map((q) => shape(q, l)),
+      ...l.sections.filter((s) => s.check).map((s) => shape(s.check, l)),
+    ].filter((q) => {
+      if ([...seen].some((prev) => sameFact(prev, q))) return false;
+      seen.add(q);
+      return true;
+    });
+  });
   const out = [];
+  /* Across lessons as well as within one: the same fact can be checked in
+     two lessons of the same portal. */
+  const picked = new Set();
   for (let round = 0; out.length < MAX; round++) {
     let took = 0;
     for (const pool of pools) {
-      if (round < pool.length) {
-        out.push(pool[round]);
-        took++;
-        if (out.length === MAX) break;
-      }
+      if (round >= pool.length) continue;
+      took++;
+      const q = pool[round];
+      if ([...picked].some((prev) => sameFact(prev, q))) continue;
+      picked.add(q);
+      out.push(q);
+      if (out.length === MAX) break;
     }
     if (!took) break;
   }
