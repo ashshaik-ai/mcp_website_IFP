@@ -383,7 +383,10 @@ function Homepage() {
                 hidden from assistive tech and the real list follows below it,
                 once, for anyone who is not looking at it. */}
             <div aria-hidden="true" className="if-fade-x -mx-4">
-              <Marquee className="[--duration:45s] [--gap:1.75rem] py-1" repeat={3}>
+              {/* py-4, not py-1: the Marquee clips its overflow, and on hover a
+                  portrait lifts 4px and gains a 3px ring plus a soft drop
+                  shadow — all of which was being sliced off top and bottom. */}
+              <Marquee className="[--duration:45s] [--gap:1.75rem] py-4" repeat={3}>
                 {members.map((m) => (
                   <figure key={m.name} className="group m-0 w-32 sm:w-36 text-center shrink-0">
                     <span className="if-portrait relative block w-32 h-32 sm:w-36 sm:h-36 mx-auto mb-3 rounded-full overflow-hidden">
@@ -561,9 +564,13 @@ function Homepage() {
           {/* Premium download */}
           <BlurFade delay={0.35} className="text-center mt-10">
             <a
-              /* Both language editions are built and shipped; the button
-                 served the same combined file to everyone regardless. */
-              href={lang === "en" ? "/manifesto-en.pdf" : "/manifesto-te.pdf"}
+              /* manifesto-en.pdf and manifesto-te.pdf are not the manifesto:
+                 both are the eight-page SIR 2026 voter-roll guide, and the
+                 button handed that to anyone who asked for the manifesto.
+                 Islamic_Front_Manifesto.pdf is the real one — the ten
+                 promises, Telugu on page one and English on page two, so it
+                 serves both languages. */
+              href="/Islamic_Front_Manifesto.pdf"
               download
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[var(--if-green)] text-[var(--if-gold-light)] font-semibold shadow-lg shadow-[var(--if-green)]/25 hover:shadow-xl hover:shadow-[var(--if-green)]/35 hover:-translate-y-1 transition-all duration-300"
             >
@@ -727,23 +734,25 @@ function Homepage() {
           <BlurFade delay={0.2} direction="right">
             <div className="relative overflow-hidden rounded-2xl bg-[var(--if-green)] p-8 text-center text-[var(--if-gold-pale)]">
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
-              {/* The same seal, sized to the card. The founder's photograph was
-                  taken in front of it, and the crop that makes him a portrait
-                  cuts it out; this puts it back behind him. */}
-              {/* The founder's studio portrait, cut out, standing in front of
-                  the seal — the emblem he was photographed against at the
-                  podium. The shirt dissolves into the card so it reads as a
-                  figure rising from the mark rather than a sticker on it. */}
-              <div className="relative w-60 h-60 mx-auto mb-2">
-                <div className="if-emblem if-emblem-card" aria-hidden="true" />
-                <Image
-                  src="/assets/founder/shaik-akram-cutout.webp"
-                  alt="జనాబ్ షేక్ అక్రమ్"
-                  fill
-                  className="if-cutout object-contain object-bottom"
-                  sizes="240px"
-                  loading="lazy"
-                />
+              {/* The studio portrait in a plain gold-ringed medallion, the
+                  same treatment the leadership row uses.
+
+                  It was a cut-out figure standing in front of the seal, and
+                  the two fought: the emblem's rays came out of his shoulders
+                  at angles that read as spikes rather than as a backdrop, and
+                  the dissolved shirt left him ending in nothing. A portrait
+                  needs a frame, not a halo. */}
+              <div className="relative w-52 h-52 sm:w-60 sm:h-60 mx-auto mb-4">
+                <span className="if-portrait relative block h-full w-full overflow-hidden rounded-full">
+                  <Image
+                    src="/assets/founder/shaik-akram-2.jpg"
+                    alt="జనాబ్ షేక్ అక్రమ్"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(min-width: 640px) 240px, 208px"
+                    loading="lazy"
+                  />
+                </span>
               </div>
               <h3 className="font-display text-xl text-[var(--if-gold-light)] font-bold">
                 {copy.janab_shaik_akram[lang]}

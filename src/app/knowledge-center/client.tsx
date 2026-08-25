@@ -170,7 +170,7 @@ function KCPage({ lessonCount }: { lessonCount: number }) {
       <section className="relative overflow-hidden bg-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
         {/* The seal, as on the homepage hero, in place of a tiled texture
             that could have belonged to any site. */}
-        <div className="if-emblem if-emblem-hero" aria-hidden="true" />
+        <div className="if-emblem if-emblem-hero if-emblem-compact" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <span lang="ar" dir="rtl" className="inline-block font-arabic text-3xl text-[var(--if-gold-light)]">بِسْمِ اللَّهِ</span>

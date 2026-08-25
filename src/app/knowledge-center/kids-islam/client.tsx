@@ -29,6 +29,7 @@ import { useProgress } from "@/lib/progress";
 import { summariesByPortal } from "@/content/lesson-index";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
+import { PortalWallpaper } from "@/components/learning/PortalWallpaper";
 import { DailyChallenge } from "@/components/learning/DailyChallenge";
 import { NarrativeCards } from "@/components/learning/NarrativeCards";
 import { kidsProphets } from "@/content/portals";
@@ -177,7 +178,8 @@ function KidsIslamPage() {
       <PortalJump portal="kids-islam" />
 
       {/* ── HERO ── */}
-      <section className="bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--if-green-mid)] to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+        <PortalWallpaper portal="kids-islam" />
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-5">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/70 hover:text-[var(--if-gold-light)] transition-colors mb-2">

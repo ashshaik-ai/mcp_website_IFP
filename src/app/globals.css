@@ -804,6 +804,16 @@ html:not(.js) .if-heading::after {
   animation: if-seal-turn 180s linear infinite;
 }
 
+/* A shorter hero needs a smaller seal.
+
+   The base size is picked from the viewport width — 42rem at a desktop — which
+   suits the homepage hero because that one is tall. The Knowledge Center hero
+   is about 410px, so the same seal stood 672px tall inside it and had its rays
+   sliced off at the top and the bottom. Sized against the hero instead. */
+.if-emblem-compact {
+  width: clamp(15rem, 34vw, 22rem);
+}
+
 /* The founder's cutout on the about card: the shirt dissolves into the card
    so the figure reads as rising from the seal. */
 .if-cutout {
@@ -1118,4 +1128,39 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 @media (max-width: 640px) {
   .if-map-label { font-size: 19px; }
   .if-map-label-lit { font-size: 23px; }
+}
+
+/* ── Portal wallpapers ────────────────────────────────────────────────────
+   Each portal's cover carries its own tiled motif (PortalWallpaper.tsx). The
+   weave drifts one tile across and repeats seamlessly, so the loop is
+   invisible; the glow breathes behind it. Low opacity throughout — a heading
+   sits on top of this and has to stay comfortably readable.
+
+   Both animations are long and linear, which is what keeps them from reading
+   as motion: the cover looks still until you watch it. */
+.if-wall-tile {
+  opacity: 0.075;
+  animation: if-wall-drift 90s linear infinite;
+}
+
+/* Exactly one tile, so the pattern lands back on itself and the loop cannot
+   be seen. The distance is the tile size, which differs per portal. */
+@keyframes if-wall-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-1 * var(--tile, 140px)), calc(-1 * var(--tile, 140px)), 0); }
+}
+
+.if-wall-glow {
+  background: radial-gradient(60% 70% at 50% 30%, rgb(232 184 75 / 0.13), transparent 70%);
+  animation: if-wall-breathe 14s ease-in-out infinite;
+}
+
+@keyframes if-wall-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-wall-tile,
+  .if-wall-glow { animation: none; }
 }

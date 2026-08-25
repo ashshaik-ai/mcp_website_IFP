@@ -10,6 +10,7 @@ import { salahSteps, wuduSteps as simWudu } from "@/content/simulations";
 
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
+import { PortalWallpaper } from "@/components/learning/PortalWallpaper";
 import { salahDhikr } from "@/content/salah-dhikr";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -269,7 +270,8 @@ function LearnSalahPage() {
       <PortalJump portal="learn-salah" sticky={false} />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-teal-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+      <section className="relative overflow-hidden bg-gradient-to-br from-teal-900 to-[var(--if-green)] text-[var(--if-gold-pale)] py-20 px-4">
+        <PortalWallpaper portal="learn-salah" />
         <div className="mx-auto max-w-4xl text-center flex flex-col items-center gap-4">
           <BlurFade delay={0.05}>
             <Link href="/knowledge-center" className="inline-flex items-center min-h-11 gap-1 text-sm text-[var(--if-gold-pale)]/80 hover:text-[var(--if-gold-light)] transition-colors mb-1">
