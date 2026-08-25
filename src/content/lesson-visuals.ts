@@ -207,6 +207,96 @@ const visuals: Record<string, LessonVisualSpec> = {
     steps: [],
     title: { te: "జనాజా — నాలుగు తక్బీర్‌లు", en: "Janazah: the four takbirs" },
   },
+
+  /* ── Filled in on the second benchmark pass ───────────────────────────
+     Only where an existing sequence genuinely belongs to the lesson. The
+     lessons still without a visual are the ones no drawing on this site
+     illuminates — a picture added for the sake of a picture teaches
+     nothing, and learn-arabic's vocabulary and grammar lessons are noted
+     above as a deliberate omission for exactly that reason. */
+
+  /* The chain IS what a hadith is; the lesson that says so had no picture
+     while the two after it did. */
+  "hadith/what-is-hadith": {
+    source: "isnadSteps",
+    steps: [],
+    title: { te: "ఒక హదీసు ఎలా చేరుతుంది", en: "How a hadith reaches us" },
+  },
+
+  /* Start sends every new learner to these two, and they were the only two
+     in the portal with nothing to look at. */
+  "islamic-history/prearabia": {
+    source: "historySteps",
+    steps: [],
+    title: { te: "ఇస్లామిక్ చరిత్ర పట్టిక", en: "The span of Islamic history" },
+  },
+  "islamic-history/prophet": {
+    source: "historySteps",
+    steps: [],
+    title: { te: "ఇస్లామిక్ చరిత్ర పట్టిక", en: "The span of Islamic history" },
+  },
+
+  /* The five daily prayers, and the lesson on putting a broken one right,
+     both describe the cycle the simulator plays. */
+  "learn-salah/fiveprayers": {
+    source: "salahSteps",
+    steps: [],
+    title: { te: "ఒక రకఅత్", en: "One rakat" },
+  },
+  "learn-salah/fixing-salah": {
+    source: "salahSteps",
+    steps: [],
+    title: { te: "సరైన వరుస", en: "The correct order" },
+  },
+
+  /* Tarawih is the ordinary cycle repeated; the lesson had no picture. */
+  "special-prayers/tarawih": {
+    source: "salahSteps",
+    steps: [],
+    title: { te: "ఒక రకఅత్", en: "One rakat" },
+  },
+
+  /* Why the pilgrimage, and how the two forms differ. */
+  "hajj-umrah/why-hajj": {
+    source: "hajjSteps",
+    steps: [],
+    title: { te: "హజ్ పూర్తి ప్రయాణం", en: "The whole journey" },
+  },
+  "hajj-umrah/types": {
+    source: "umrahSteps",
+    steps: [],
+    title: { te: "ఉమ్రహ్ — నాలుగు దశలు", en: "Umrah: the four rites" },
+  },
+
+  /* The lesson is about the names of mercy and majesty; the string of
+     ninety-nine is the portal's own drawing of them. */
+  "names-of-allah/mercy-and-majesty": {
+    source: "namesSteps",
+    steps: [],
+    title: { te: "తస్బీహ్ — పేర్ల మాల", en: "The string of names" },
+  },
+
+  /* Word by word through the Bismillah, which is what the lesson does. */
+  "learn-quran/words": {
+    source: "tajweedSteps",
+    steps: [],
+    title: { te: "పదం పదంగా", en: "Word by word" },
+  },
+
+  /* The letters again, since harakat sit on them. */
+  "learn-arabic/harakat": {
+    source: "arabicLetterSteps",
+    steps: [],
+    scene: "letters",
+    title: { te: "అక్షరాల రూపాలు", en: "The letters these marks sit on" },
+  },
+
+  /* The companions walked this road with him. */
+  "seerah/the-companions": {
+    source: "seerahSteps",
+    steps: [],
+    title: { te: "వారు నడిచిన దారి", en: "The road they walked" },
+  },
 };
 
 export function lessonVisual(portal: string, slug: string): LessonVisualSpec | null {
