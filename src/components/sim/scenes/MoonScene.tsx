@@ -21,7 +21,9 @@ export function MoonScene({ step }: SceneProps) {
   const phase: Record<string, number> = { new: 0, crescent: 0.12, "first-quarter": 0.5, gibbous: 0.75, full: 1, "last-quarter": 0.5, old: 0.12 };
   const p = phase[step.id] ?? (step.id.startsWith("month") ? 1 : 0.12);
   const waning = step.id === "last-quarter" || step.id === "old";
-  const month = step.id.startsWith("month") ? Number(step.id.slice(6)) - 1 : -1;
+  /* slice(6) assumed a hyphen the ids do not have: "month12" parsed as 2 and
+     lit Safar, "month9" parsed as nothing and lit no month at all. */
+  const month = step.id.startsWith("month") ? Number(step.id.replace(/^month-?/, "")) - 1 : -1;
 
   /* The shadow disc starts exactly over the moon (new) and slides off as
      the phase grows; by full it has cleared the disc. Waning slides the

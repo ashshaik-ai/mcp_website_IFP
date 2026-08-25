@@ -24,8 +24,10 @@ const MONTHS_TE = [
   "ముహర్రం", "సఫర్", "రబీ అల్-అవ్వల్", "రబీ అల్-సానీ", "జుమాద అల్-ఉలా", "జుమాద అల్-అఖిరా",
   "రజబ్", "షాబాన్", "రమజాన్", "షవ్వాల్", "జుల్ ఖాదా", "జుల్ హిజ్జా",
 ];
+/* Spelled as the month grid on this same page spells them; the two lists
+   disagreed on Jumada. */
 const MONTHS_EN = [
-  "Muharram", "Safar", "Rabi al-Awwal", "Rabi al-Thani", "Jumada al-Ula", "Jumada al-Akhirah",
+  "Muharram", "Safar", "Rabi al-Awwal", "Rabi al-Thani", "Jumada al-Awwal", "Jumada al-Thani",
   "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qadah", "Dhu al-Hijjah",
 ];
 
@@ -43,6 +45,10 @@ const copy = {
     en: "Reckoned by the Umm al-Qura calculation. Local moon sighting can differ by a day, so confirm festival dates with your masjid.",
   },
   swap: { te: "దిశ మార్చండి", en: "Swap direction" },
+  outOfRange: {
+    te: "ఈ తేదీ చెల్లదు — రోజు 1–30 మధ్య, సంవత్సరం 1300–1600 మధ్య ఉండాలి.",
+    en: "That date is out of range — day 1 to 30, year 1300 to 1600.",
+  },
 } as const;
 
 const FMT = () => new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "numeric", year: "numeric" });
@@ -120,12 +126,19 @@ export function HijriConverter() {
     return Number.isNaN(d.getTime()) ? null : hijriOf(d);
   }, [dir, gregValue]);
 
-  const hOut = useMemo(() => {
-    if (dir !== "h2g") return null;
+  const hBad = useMemo(() => {
+    if (dir !== "h2g") return false;
     const d = Number(hijValue.d), m = Number(hijValue.m), y = Number(hijValue.y);
-    if (!d || !m || !y || d < 1 || d > 30 || m < 1 || m > 12 || y < 1300 || y > 1600) return null;
-    return gregorianOf(y, m, d);
+    if (!hijValue.d || !hijValue.y) return false;
+    return !d || !m || !y || d < 1 || d > 30 || m < 1 || m > 12 || y < 1300 || y > 1600;
   }, [dir, hijValue.d, hijValue.m, hijValue.y]);
+
+  const hOut = useMemo(() => {
+    if (dir !== "h2g" || hBad) return null;
+    const d = Number(hijValue.d), m = Number(hijValue.m), y = Number(hijValue.y);
+    if (!d || !m || !y) return null;
+    return gregorianOf(y, m, d);
+  }, [dir, hBad, hijValue.d, hijValue.m, hijValue.y]);
 
   const dateFmt = new Intl.DateTimeFormat(lang === "te" ? "te-IN" : "en-IN", {
     day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
@@ -205,6 +218,13 @@ export function HijriConverter() {
           </p>
         </div>
       </div>
+
+      {/* A bare em dash left the reader guessing which field was wrong. */}
+      {hBad && (
+        <p className="mt-3 text-sm font-semibold text-[var(--if-gold-ink)] text-pretty" role="alert">
+          {copy.outOfRange[lang]}
+        </p>
+      )}
 
       <p className="mt-4 text-xs text-[var(--if-text-muted)] text-pretty">{copy.note[lang]}</p>
     </div>

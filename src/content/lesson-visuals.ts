@@ -74,10 +74,13 @@ const visuals: Record<string, LessonVisualSpec> = {
     steps: ["new", "crescent"],
     title: { te: "అమావాస్య నుండి తొలి చంద్రవంక వరకు", en: "From the new moon to the first crescent" },
   },
+  /* The four sacred months are Dhu al-Qa'dah, Dhu al-Hijjah, Muharram and
+     Rajab. The visual used to show Ramadan, which is not one of them — the
+     lesson's only picture contradicted the lesson. */
   "islamic-calendar/sacred-months": {
-    source: "moonSteps",
-    steps: ["month9", "month12"],
-    title: { te: "సంవత్సరంలో నెలలు", en: "The months of the year" },
+    source: "hijriMonthSteps",
+    steps: ["month11", "month12", "month1", "month7"],
+    title: { te: "నాలుగు పవిత్ర నెలలు", en: "The four sacred months" },
   },
 
   /* ── Islamic History ──────────────────────────────────────────────────

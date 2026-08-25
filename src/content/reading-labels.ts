@@ -98,6 +98,6 @@ export const readingLabelTe: Record<string, string> = {
   "Moon sighting and Eid dates": "చంద్ర దర్శనం మరియు ఈద్ తేదీలు",
   // Women's guidance
   "Women's Guidance portal": "మహిళల మార్గదర్శక పోర్టల్",
-  "Women's guidance": "మహిళల మార్గదర్శకం",
+  "Women's guidance": "మహిళల మార్గదర్శనం",
   "Nikah: the contract and the mahr": "నికాహ్: ఒప్పందం మరియు మహర్",
 };

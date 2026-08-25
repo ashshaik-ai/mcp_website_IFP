@@ -1107,3 +1107,15 @@ html.js .if-defer .if-blur-fade.if-in .if-bar-grow {
 .if-tj-ikhfa    { color: #d7c9a8; }
 .if-tj-waqf     { color: #c9b6e8; }
 .if-tj-makhraj  { color: #f5c96a; }
+
+/* Map labels on the history scene.
+
+   The scene is drawn in a 576-unit viewBox that scales to its container, so a
+   font size in user units renders at whatever the container happens to be:
+   comfortable 18px on a desktop, 6 to 9px on a 390px phone. Raising the
+   attribute would inflate the desktop to match. A CSS size overrides the
+   presentation attribute, so this lifts only the small end. */
+@media (max-width: 640px) {
+  .if-map-label { font-size: 19px; }
+  .if-map-label-lit { font-size: 23px; }
+}

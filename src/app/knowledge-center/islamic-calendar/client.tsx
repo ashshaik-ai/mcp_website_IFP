@@ -35,6 +35,15 @@ const copy = {
   english: { te: "ఇంగ్లీష్", en: "English" },
   month_n: { te: "నెల", en: "Month" },
   days: { te: "రోజులు", en: "days" },
+  /* Umm al-Qura gives a month 29 or 30 days depending on the year; the grid
+     used to print one of them as though it were fixed. */
+  dayCount: { te: "29 లేదా 30 రోజులు", en: "29 or 30 days" },
+  hasDates: { te: "ముఖ్యమైన తేదీలు ఉన్నాయి", en: "has key dates" },
+  dotLegend: { te: "బంగారు చుక్క = ఆ నెలలో ముఖ్యమైన తేదీలు ఉన్నాయి", en: "A gold dot marks a month with key dates" },
+  outOfRange: {
+    te: "ఈ తేదీ చెల్లదు — రోజు 1–30 మధ్య, సంవత్సరం 1300–1600 మధ్య ఉండాలి.",
+    en: "That date is out of range — day 1–30, year 1300–1600.",
+  },
   the_hijri_year_is_10: { te: "🌙 హిజ్రీ సంవత్సరం సౌర సంవత్సరం కంటే 10-11 రోజులు తక్కువ. కాబట్టి ఇస్లామిక్ పండుగలు ప్రతి సంవత్సరం వేరే గ్రెగోరియన్ తేదీలలో వస్తాయి.", en: "🌙 The Hijri year is ~10-11 days shorter than the solar year. That is why Islamic occasions fall on different Gregorian dates each year." },
 } as const;
 
@@ -122,8 +131,12 @@ function IslamicCalendarPage() {
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-3">
               {copy.n_12_hijri_months[lang]}
             </h2>
-            <p className="text-center text-sm text-[var(--if-text-muted)] mb-10">
+            <p className="text-center text-sm text-[var(--if-text-muted)] mb-2">
               {copy.click_a_month_for_details[lang]}
+            </p>
+            <p className="mb-10 flex items-center justify-center gap-2 text-center text-xs text-[var(--if-text-muted)]">
+              <span aria-hidden="true" className="inline-block h-2 w-2 rounded-full bg-[var(--if-gold)]" />
+              {copy.dotLegend[lang]}
             </p>
           </BlurFade>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -139,9 +152,13 @@ function IslamicCalendarPage() {
                   <div className={`text-[10px] font-bold mb-1 ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)]"}`}>{copy.month_n[lang]} {m.n}</div>
                   <div className={`font-arabic text-2xl leading-relaxed ${active === m.n ? "text-[var(--if-gold-light)]" : "text-[var(--if-green)]"}`} dir="rtl">{m.ar}</div>
                   <div className={`font-display font-semibold text-sm mt-1 ${active === m.n ? "text-[var(--if-gold-pale)]" : "text-[var(--if-green)]"}`}>{lang === "te" ? m.te : m.name}</div>
-                  <div className={`text-[10px] ${active === m.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? m.name : m.te} · {m.days} {copy.days[lang]}</div>
+                  <div className={`text-[10px] ${active === m.n ? "text-[var(--if-gold-pale)]/80" : "text-[var(--if-text-muted)]"}`}>{lang === "te" ? m.name : m.te} · {copy.dayCount[lang]}</div>
                   {m.events.length > 0 && (
-                    <div className={`mt-2 w-2 h-2 rounded-full ${active === m.n ? "bg-[var(--if-gold)]" : "bg-[var(--if-gold)]/50"}`} />
+                    <div
+                      className={`mt-2 w-2 h-2 rounded-full ${active === m.n ? "bg-[var(--if-gold)]" : "bg-[var(--if-gold)]/50"}`}
+                      role="img"
+                      aria-label={copy.hasDates[lang]}
+                    />
                   )}
                 </button>
               </BlurFade>
@@ -156,7 +173,7 @@ function IslamicCalendarPage() {
                     <div className="font-arabic text-3xl text-[var(--if-green)]" dir="rtl">{m.ar}</div>
                     <div>
                       <h3 className="font-display text-xl font-bold text-[var(--if-green)]">{lang === "te" ? m.te : m.name}</h3>
-                      <span className="text-sm text-[var(--if-text-muted)]">{lang === "te" ? m.name : m.te} · {m.days} {copy.days[lang]}</span>
+                      <span className="text-sm text-[var(--if-text-muted)]">{lang === "te" ? m.name : m.te} · {copy.dayCount[lang]}</span>
                     </div>
                   </div>
                   <p className="text-sm text-[var(--if-text-muted)] mb-4">{m.meaning[lang]}</p>

@@ -11,7 +11,7 @@ const copy = {
     te: "మీరు ఇంతకుముందు చూసిన పేజీలు ఇప్పటికీ అందుబాటులో ఉన్నాయి. కనెక్షన్ తిరిగి వచ్చాక మిగిలినవి లోడ్ అవుతాయి.",
     en: "Pages you have already visited are still available. The rest will load once your connection returns.",
   },
-  retry: { te: "మళ్లీ ప్రయత్నించండి", en: "Try again" },
+  retry: { te: "మళ్ళీ ప్రయత్నించండి", en: "Try again" },
   home: { te: "హోమ్‌కు వెళ్లండి", en: "Go to the homepage" },
 } as const;
 

@@ -161,6 +161,7 @@ export function EmpiresScene({ step, lang }: SceneProps) {
                 x={c.x + dx}
                 y={c.y + (c.dy ?? -8)}
                 textAnchor={c.side === "r" ? "start" : "end"}
+                className={lit ? "if-map-label if-map-label-lit" : "if-map-label"}
                 fontSize={lit ? 13 : 10}
                 fontWeight={lit ? 700 : 500}
                 fill={lit ? "var(--if-gold-light)" : "rgba(245,230,192,0.7)"}

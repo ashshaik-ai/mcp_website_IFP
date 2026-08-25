@@ -142,8 +142,8 @@ const portals = [
   },
   {
     id: "womens-guidance",
-    title: { te: "మహిళల మార్గదర్శకం", en: "Women's Guidance" },
-    arabic: "أحكام المرأة",
+    title: { te: "మహిళల మార్గదర్శనం", en: "Women's Guidance" },
+    arabic: "إرشادات المرأة",
     /* The card used to promise haid, nifas, taharah, ghusl and Ramadan —
        a different portal's subject. This is what the page actually covers. */
     desc: { te: "హక్కులు, నమాజ్, హిజాబ్, కుటుంబం — నికాహ్ మరియు ఇద్దత్ పాఠాలతో", en: "Rights, prayer, hijab, family — with lessons on nikah and iddah" },

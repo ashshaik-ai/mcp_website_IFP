@@ -32,7 +32,7 @@ const copy = {
   reading: { te: "మరింత చదవడానికి", en: "Further reading" },
   check: { te: "అర్థమైందా?", en: "Quick check" },
   correct: { te: "సరైనది!", en: "Correct" },
-  tryAgain: { te: "మళ్లీ ప్రయత్నించండి", en: "Not quite — try again" },
+  tryAgain: { te: "మళ్ళీ ప్రయత్నించండి", en: "Not quite — try again" },
   prev: { te: "మునుపటి", en: "Previous" },
   next: { te: "తదుపరి", en: "Next" },
   finalStep: { te: "చివరి పరీక్ష మరియు ధృవపత్రం", en: "Final assessment & certificate" },

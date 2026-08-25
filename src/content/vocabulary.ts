@@ -233,7 +233,7 @@ export const arabicPhrases: Phrase[] = [
   },
   {
     glyph: "جَزَاكَ اللَّهُ خَيْرًا",
-    translit: { te: "జజాకల్లాహు ఖైరా", en: "JazakAllahu khayran" },
+    translit: { te: "జజాకల్లాహు ఖైరన్", en: "JazakAllahu khayran" },
     meaning: { te: "అల్లాహ్ మీకు మేలు ప్రసాదించుగాక — ధన్యవాదాలు చెప్పే అందమైన విధానం.", en: "May Allah reward you with good — a beautiful way to say thank you." },
   },
   {

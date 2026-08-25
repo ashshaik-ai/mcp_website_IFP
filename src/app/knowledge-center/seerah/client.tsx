@@ -107,7 +107,7 @@ function SeerahPage() {
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl">
-              {t("ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10-దశల దృశ్య కాలపట్టిక, స్వభావ అకాడమీ, నాయకత్వ పాఠాలు", "Life of Prophet Muhammad ﷺ\u200E — 10-stage visual timeline, Character Academy, and Leadership Lessons")}
+              {t("ప్రవక్త ముహమ్మద్ ﷺ జీవిత చరిత్ర — 10-దశల దృశ్య కాలపట్టిక, ఆయన స్వభావం, నాయకత్వ పాఠాలు", "Life of Prophet Muhammad ﷺ — a 10-stage visual timeline, his character, and leadership lessons")}
             </p>
           </BlurFade>
           <BlurFade delay={0.25}>

@@ -100,13 +100,18 @@ export const isnadSteps: SimStep[] = [
   { id: "c0", label: { te: "ప్రవక్త ﷺ చెప్పారు", en: "The Prophet ﷺ said" }, arabic: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ", translit: "Innamal-aʿmālu bin-niyyāt", dur: 3200 },
   { id: "c1", label: { te: "ఉమర్ రజి. విన్నారు", en: "Umar heard it" }, caption: { te: "సహాబీ", en: "Companion" }, dur: 2200 },
   { id: "c2", label: { te: "అల్ఖమా", en: "Alqamah" }, caption: { te: "తాబిఈ", en: "Successor" }, dur: 2000 },
-  { id: "c3", label: { te: "ముహమ్మద్ ఇబ్న్ ఇబ్రాహీమ్", en: "Muhammad ibn Ibrahim" }, dur: 2000 },
-  { id: "c4", label: { te: "యహ్యా ఇబ్న్ సఈద్", en: "Yahya ibn Sa'id" }, dur: 2000 },
-  { id: "c5", label: { te: "సుఫ్యాన్", en: "Sufyan" }, dur: 2000 },
-  { id: "c6", label: { te: "అల్-హుమైదీ", en: "Al-Humaydi" }, dur: 2000 },
+  { id: "c3", label: { te: "ముహమ్మద్ ఇబ్న్ ఇబ్రాహీమ్", en: "Muhammad ibn Ibrahim" }, caption: { te: "తాబిఈ — మదీనా", en: "Successor — Madinah" }, dur: 2000 },
+  { id: "c4", label: { te: "యహ్యా ఇబ్న్ సఈద్", en: "Yahya ibn Sa'id" }, caption: { te: "తబ ఉత్-తాబిఈ — మదీనా న్యాయాధిపతి", en: "Successor's successor — judge of Madinah" }, dur: 2000 },
+  { id: "c5", label: { te: "సుఫ్యాన్ ఇబ్న్ ఉయైనా", en: "Sufyan ibn Uyaynah" }, caption: { te: "మక్కా ముహద్దిస్", en: "Hadith scholar of Makkah" }, dur: 2000 },
+  { id: "c6", label: { te: "అల్-హుమైదీ", en: "Al-Humaydi" }, caption: { te: "బుఖారీ గురువు", en: "Al-Bukhari's teacher" }, dur: 2000 },
   { id: "c7", label: { te: "ఇమామ్ బుఖారీ రాశారు", en: "Imam al-Bukhari wrote it down" }, arabic: "صحيح البخاري", translit: "Sahih al-Bukhari, hadith 1", caption: { te: "క్రీ.శ. 846", en: "846 CE" }, dur: 3400 },
 ];
 
+/* One lunar month, in order. The two month cards that used to close this
+   array made the Practice game grade a false sequence — it asked what follows
+   the waning crescent and accepted "Ramadan". What follows the waning
+   crescent is the next new moon, so the cycle closes on itself and the months
+   live in their own list below. */
 export const moonSteps: SimStep[] = [
   { id: "new", label: { te: "అమావాస్య", en: "New moon" }, caption: { te: "నెల మొదలు — చంద్రదర్శనం", en: "The month begins — moon sighting" }, dur: 2800 },
   { id: "crescent", label: { te: "హిలాల్", en: "Hilal — the crescent" }, arabic: "الهلال", translit: "al-hilāl", dur: 2800 },
@@ -114,9 +119,19 @@ export const moonSteps: SimStep[] = [
   { id: "full", label: { te: "పౌర్ణమి", en: "Full moon" }, caption: { te: "14వ రోజు — అయ్యామ్ అల్-బీద్", en: "Day 14 — the white days" }, dur: 2800 },
   { id: "last-quarter", label: { te: "చివరి పాదం", en: "Last quarter" }, caption: { te: "21వ రోజు", en: "Day 21" }, dur: 2400 },
   { id: "old", label: { te: "క్షీణ చంద్రుడు", en: "Waning crescent" }, caption: { te: "29–30 రోజులు", en: "29 or 30 days" }, dur: 2400 },
-  { id: "month9", label: { te: "రమజాన్", en: "Ramadan" }, arabic: "رمضان", caption: { te: "9వ నెల", en: "The 9th month" }, dur: 2800 },
-  { id: "month12", label: { te: "జుల్‌హిజ్జా", en: "Dhu al-Hijjah" }, arabic: "ذو الحجة", caption: { te: "12వ నెల — హజ్", en: "The 12th month — Hajj" }, dur: 2800 },
+  { id: "next", label: { te: "మళ్ళీ అమావాస్య", en: "The new moon again" }, caption: { te: "చక్రం పూర్తయింది — తదుపరి నెల మొదలైంది", en: "The cycle closes — the next month begins" }, dur: 2800 },
 ];
+
+/* Named months, for the lessons that teach them. Not a sequence to guess at:
+   these are picked out of the twelve, not consecutive. */
+export const hijriMonthSteps: SimStep[] = [
+  { id: "month1", label: { te: "ముహర్రం", en: "Muharram" }, arabic: "محرم", caption: { te: "1వ నెల — పవిత్ర నెల", en: "The 1st month — sacred" }, dur: 2600 },
+  { id: "month7", label: { te: "రజబ్", en: "Rajab" }, arabic: "رجب", caption: { te: "7వ నెల — పవిత్ర నెల", en: "The 7th month — sacred" }, dur: 2600 },
+  { id: "month9", label: { te: "రమజాన్", en: "Ramadan" }, arabic: "رمضان", caption: { te: "9వ నెల — ఉపవాసం", en: "The 9th month — fasting" }, dur: 2800 },
+  { id: "month11", label: { te: "జుల్ ఖాదా", en: "Dhu al-Qadah" }, arabic: "ذو القعدة", caption: { te: "11వ నెల — పవిత్ర నెల", en: "The 11th month — sacred" }, dur: 2600 },
+  { id: "month12", label: { te: "జుల్‌హిజ్జా", en: "Dhu al-Hijjah" }, arabic: "ذو الحجة", caption: { te: "12వ నెల — హజ్, పవిత్ర నెల", en: "The 12th month — Hajj, sacred" }, dur: 2800 },
+];
+
 
 /* Letters: the id is the glyph; meta carries the four positional forms
    (isolated initial medial final); arabic "ur" flags the Urdu face. */
