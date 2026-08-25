@@ -370,8 +370,14 @@ function LearnArabicPage() {
             <p className="text-sm text-[var(--if-text-muted)] text-center mb-8">
               {copy.recognise_the_letter_tap_to[lang]}
             </p>
-            <div
-              className="relative overflow-hidden bg-[var(--if-green)] rounded-3xl p-10 text-center cursor-pointer select-none min-h-[180px] flex items-center justify-center"
+            {/* A div with onClick before: keyboard users could step the deck
+                with the arrows but had no way to turn a card over, so the
+                answer was unreachable without a pointer. */}
+            <button
+              type="button"
+              aria-pressed={fcFlipped}
+              aria-label={lang === "te" ? "కార్డును తిప్పండి" : "Flip the card"}
+              className="relative overflow-hidden bg-[var(--if-green)] rounded-3xl p-10 text-center cursor-pointer w-full select-none min-h-[180px] flex items-center justify-center"
               onClick={() => setFcFlipped(f => !f)}
             >
               <BorderBeam size={200} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
@@ -388,7 +394,7 @@ function LearnArabicPage() {
                   </span>
                 </div>
               )}
-            </div>
+            </button>
             <div className="flex items-center justify-between mt-4">
               <button
                 type="button"

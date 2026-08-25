@@ -482,7 +482,15 @@ export function Simulator({
             looking at. The step's number is set as a plate on the left, so the
             strip has a fixed anchor and the title always starts in the same
             place however long the previous one was. */}
-        <div key={`cap-${index}`} className="if-sim-cap-in relative flex flex-wrap items-end gap-x-3 gap-y-1 sm:gap-x-4 border-t border-[var(--if-gold)]/20 bg-[#061c0d]/55 px-4 sm:px-6 pb-4 pt-3">
+        {/* aria-live: the picture changing is the whole point of the control,
+            and a screen-reader user was told nothing when it did. The caption
+            carries the step name, so announcing it announces the change. */}
+        <div
+          key={`cap-${index}`}
+          aria-live="polite"
+          aria-atomic="true"
+          className="if-sim-cap-in relative flex flex-wrap items-end gap-x-3 gap-y-1 sm:gap-x-4 border-t border-[var(--if-gold)]/20 bg-[#061c0d]/55 px-4 sm:px-6 pb-4 pt-3"
+        >
           <span
             aria-hidden="true"
             className="if-sim-num shrink-0 self-center select-none font-display text-xl sm:text-2xl font-bold leading-none text-[var(--if-gold)]/55"

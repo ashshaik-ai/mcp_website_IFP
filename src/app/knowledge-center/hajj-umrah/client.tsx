@@ -105,7 +105,7 @@ function HajjUmrahPage() {
       <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
         <div className="if-tabstrip mx-auto max-w-3xl flex gap-2 overflow-x-auto min-w-0">
           {(["hajj", "umrah", "ihram"] as const).map((t) => (
-            <button key={t} onClick={() => { setTab(t); }} className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${tab === t ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
+            <button key={t} type="button" aria-pressed={tab === t} onClick={() => { setTab(t); }} className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${tab === t ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {t === "hajj" ? (copy.hajj_steps[lang]) : t === "umrah" ? (copy.umrah_steps[lang]) : (copy.ihram_rules[lang])}
             </button>
           ))}
@@ -116,6 +116,11 @@ function HajjUmrahPage() {
       {(tab === "hajj" || tab === "umrah") && (
         <section className="if-defer py-16 px-4">
           <div className="mx-auto max-w-3xl mb-12">
+            {/* Without this the Hajj and Umrah panels had no heading at all
+                and simply were not in the page outline. */}
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)] text-center mb-8">
+              {tab === "hajj" ? copy.hajj_steps[lang] : copy.umrah_steps[lang]}
+            </h2>
             <Simulator key={tab} steps={tab === "hajj" ? hajjSim : umrahSim} scene={HajjScene} autoplay />
           </div>
           <p className="mx-auto max-w-2xl text-center text-sm text-[var(--if-text-muted)] text-pretty">
@@ -137,7 +142,7 @@ function HajjUmrahPage() {
               {ihramRules.map((r, i) => (
                 <BlurFade key={i} delay={0.07 * i}>
                   <div className="flex items-center gap-3 bg-white border border-[var(--if-gold)]/20 rounded-xl p-4">
-                    <span className="text-xl flex-shrink-0">🚫</span>
+                    <span aria-hidden="true" className="text-xl flex-shrink-0">🚫</span>
                     <div>
                       <div className="font-semibold text-[var(--if-green)] text-sm">{r.rule[lang]}</div>
                       <div className="font-arabic text-sm text-[var(--if-gold-ink)]" dir="rtl">{r.ar}</div>

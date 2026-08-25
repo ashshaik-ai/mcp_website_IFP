@@ -35,7 +35,7 @@ import { kidsProphets } from "@/content/portals";
 import { PageShell } from "@/components/layout/PageShell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ChevronLeft, Star } from "lucide-react";
+import { ChevronDown, ChevronLeft, Star } from "lucide-react";
 
 // ── DATA ────────────────────────────────────────────────────────────────────
 
@@ -397,6 +397,8 @@ function KidsIslamPage() {
             {sections.map((sec, i) => (
               <BlurFade key={sec.num} delay={0.06 * i}>
                 <button
+                  type="button"
+                  aria-expanded={activeSection === sec.num}
                   onClick={() => setActiveSection(activeSection === sec.num ? null : sec.num)}
                   className={`relative overflow-hidden w-full text-left rounded-2xl border transition-all ${activeSection === sec.num ? "border-[var(--if-gold)]/50 shadow-lg shadow-[var(--if-gold)]/10" : "border-[var(--if-gold)]/20 hover:border-[var(--if-gold)]/40"} bg-white`}
                 >
@@ -409,7 +411,15 @@ function KidsIslamPage() {
                   </div>
                   <div className="p-5">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-display font-bold text-[var(--if-green)]">{sec.title[lang]}</h3>
+                      <h3 className="inline-flex items-center gap-1.5 font-display font-bold text-[var(--if-green)]">
+                        {/* Six cards that opened on click and gave no sign
+                            they could. */}
+                        <ChevronDown
+                          aria-hidden="true"
+                          className={`h-4 w-4 shrink-0 text-[var(--if-gold-ink)] transition-transform ${activeSection === sec.num ? "rotate-180" : ""}`}
+                        />
+                        {sec.title[lang]}
+                      </h3>
                       <span className="font-arabic text-sm text-[var(--if-gold-ink)]" dir="rtl" lang="ar">{sec.arabic}</span>
                     </div>
                     <p className="text-sm text-[var(--if-text-muted)] leading-relaxed">{sec.desc[lang]}</p>

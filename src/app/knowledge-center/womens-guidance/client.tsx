@@ -147,7 +147,7 @@ function WomensGuidancePage() {
       <div className="sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2">
         <div className="if-tabstrip mx-auto max-w-5xl overflow-x-auto flex gap-2 pb-1">
           {sections.map((sec, i) => (
-            <button key={sec.id} id={`if-wg-pill-${i}`} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
+            <button key={sec.id} id={`if-wg-pill-${i}`} type="button" aria-pressed={active === i} onClick={() => setActive(i)} className={`flex-shrink-0 px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${active === i ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}>
               {sec.title[lang]}
             </button>
           ))}
@@ -161,14 +161,14 @@ function WomensGuidancePage() {
             <div className="relative overflow-hidden bg-white rounded-2xl border border-[var(--if-gold)]/20 p-8 mb-6">
               <BorderBeam size={200} duration={8} colorFrom="#c8922a" colorTo="#c8922a" />
               <div className="flex items-center gap-3 mb-1">
-                <span className="text-3xl">{s.icon}</span>
+                <span aria-hidden="true" className="text-3xl">{s.icon}</span>
                 <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--if-green)]">{s.title[lang]}</h2>
               </div>
               <div className="font-arabic text-lg text-[var(--if-gold-light)] mb-6" dir="rtl">{s.ar}</div>
               <div className="space-y-3">
                 {s.points.map((pt, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="text-[var(--if-gold-ink)] mt-1 flex-shrink-0 text-lg">✦</span>
+                    <span aria-hidden="true" className="text-[var(--if-gold-ink)] mt-1 flex-shrink-0 text-lg">✦</span>
                     <p className="text-[var(--if-text)] leading-relaxed">{pt[lang]}</p>
                   </div>
                 ))}

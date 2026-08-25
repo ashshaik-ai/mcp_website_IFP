@@ -294,7 +294,7 @@ function LearnSalahPage() {
       <div className="if-tabstrip sticky top-[65px] z-10 bg-[var(--if-cream-light)] border-b border-[var(--if-gold)]/20 px-4 py-2 overflow-x-auto">
         <div className="mx-auto max-w-4xl flex gap-2 min-w-max">
           {tabs.map((tab) => (
-            <button
+            <button type="button" aria-pressed={activeTab === tab.id}
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 min-h-11 rounded-full text-sm font-semibold whitespace-nowrap transition-all whitespace-nowrap ${activeTab === tab.id ? "bg-[var(--if-green)] text-[var(--if-gold-light)]" : "text-[var(--if-text-muted)] hover:bg-[var(--if-gold)]/10"}`}

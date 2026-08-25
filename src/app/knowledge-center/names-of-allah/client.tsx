@@ -26,6 +26,7 @@ const copy = {
   search_a_name: { te: "పేరు వెతకండి...", en: "Search a name..." },
   no_results_found: { te: "ఫలితాలు కనుగొనబడలేదు", en: "No results found" },
   listen: { te: "వినండి", en: "Listen" },
+  skipNames: { te: "99 పేర్లను దాటి ముందుకు వెళ్ళండి", en: "Skip past the 99 names" },
 } as const;
 
 const names = [
@@ -201,8 +202,24 @@ function NamesOfAllahPage() {
       </section>
 
       {/* Search */}
-      <section className="if-defer py-10 px-4 bg-[var(--if-cream-light)]">
+      <section id="names" className="if-defer relative py-10 px-4 bg-[var(--if-cream-light)] scroll-mt-24">
         <div className="mx-auto max-w-5xl">
+          {/* The portal's main content was the one section with no heading, so
+              it did not appear in the outline a screen reader navigates by. */}
+          <h2 className="mb-2 text-center font-display text-2xl font-bold text-[var(--if-green)] sm:text-3xl">
+            {copy.n_99_names_of_allah[lang]}
+          </h2>
+          {/* Ninety-nine buttons with nothing past them: a keyboard user had
+              to tab through every name to reach anything below the grid. */}
+          {/* Parked off-screen with real dimensions rather than sr-only: a
+              zero-height control trips the 24px target audit, and this is a
+              real control the moment it takes focus. */}
+          <a
+            href="#review"
+            className="absolute left-4 -top-96 z-20 inline-flex min-h-11 items-center rounded-full border border-[var(--if-gold)]/40 bg-white px-4 text-sm font-semibold text-[var(--if-gold-ink)] focus:top-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+          >
+            {copy.skipNames[lang]}
+          </a>
           <div className="relative max-w-sm mx-auto mb-8">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--if-text-muted)]" />
             {/* type=search, 16px and 44px tall: at 14px iOS Safari zooms the
