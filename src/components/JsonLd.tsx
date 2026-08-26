@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL, metaDescription, routeByPath, routes } from "@/lib/site";
+import { SITE_NAME, SITE_URL, metaDescription, routeByPath } from "@/lib/site";
 
 /* Structured data, emitted server-side so crawlers see it in the HTML.
    The organisation graph goes on the homepage; every other route gets a
@@ -166,6 +166,132 @@ export function LessonJsonLd({
         __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
           /</g,
           "\\u003c",
+        ),
+      }}
+    />
+  );
+}
+
+/* The reader.
+
+   schema.org has Book and Chapter, and a surah is genuinely a chapter of a
+   book, so this uses them rather than dressing the pages up as Articles. The
+   Book node is shared: every surah page points at the same @id, which tells a
+   crawler that 114 pages are parts of one work instead of 114 unrelated ones.
+
+   Worth having for a reason beyond tidiness. There is very little Quran with
+   a Telugu translation anywhere on the web, and these are the pages most
+   likely to be found by someone searching in Telugu for a surah by name. */
+const QURAN_ID = `${SITE_URL}/knowledge-center/learn-quran/read#quran`;
+
+function quranBook() {
+  return {
+    "@type": "Book",
+    "@id": QURAN_ID,
+    name: "The Quran",
+    alternateName: ["ఖురాన్", "القرآن"],
+    url: `${SITE_URL}/knowledge-center/learn-quran/read`,
+    numberOfPages: 604,
+    inLanguage: ["ar", "te"],
+    isAccessibleForFree: true,
+    bookFormat: "https://schema.org/EBook",
+    publisher: { "@id": ORG_ID },
+  };
+}
+
+export function QuranIndexJsonLd({ count }: { count: number }) {
+  const url = `${SITE_URL}/knowledge-center/learn-quran/read`;
+  const graph = [
+    quranBook(),
+    {
+      "@type": "CollectionPage",
+      "@id": `${url}#page`,
+      url,
+      name: "ఖురాన్ చదవండి | Read the Quran",
+      description: "All 114 surahs with Telugu meaning and pronunciation.",
+      inLanguage: ["te", "en"],
+      isPartOf: { "@id": SITE_ID },
+      about: { "@id": QURAN_ID },
+      numberOfItems: count,
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Learn Quran",
+            item: `${SITE_URL}/knowledge-center/learn-quran`,
+          },
+          { "@type": "ListItem", position: 3, name: "Read the Quran", item: url },
+        ],
+      },
+    },
+  ];
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+          /</g,
+          "\u003c",
+        ),
+      }}
+    />
+  );
+}
+
+export function SurahJsonLd({
+  n,
+  te,
+  en,
+  ar,
+  meaning,
+  ayahs,
+}: {
+  n: number;
+  te: string;
+  en: string;
+  ar: string;
+  meaning: string;
+  ayahs: number;
+}) {
+  const url = `${SITE_URL}/knowledge-center/learn-quran/read/${n}`;
+  const graph = [
+    quranBook(),
+    {
+      "@type": "Chapter",
+      "@id": `${url}#surah`,
+      url,
+      name: `${te} — ${en}`,
+      alternateName: [ar, en, te],
+      position: n,
+      isPartOf: { "@id": QURAN_ID },
+      inLanguage: ["ar", "te"],
+      isAccessibleForFree: true,
+      description: `Surah ${en} ("${meaning}"), ${ayahs} ayahs, with Telugu meaning and pronunciation.`,
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Read the Quran",
+            item: `${SITE_URL}/knowledge-center/learn-quran/read`,
+          },
+          { "@type": "ListItem", position: 3, name: en, item: url },
+        ],
+      },
+    },
+  ];
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+          /</g,
+          "\u003c",
         ),
       }}
     />

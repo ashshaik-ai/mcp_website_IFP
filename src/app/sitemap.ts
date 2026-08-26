@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, routes } from "@/lib/site";
 import { lessons } from "@/content/all-lessons";
+import { surahIndex } from "@/content/quran-index";
 
 export const dynamic = "force-static";
 
@@ -23,5 +24,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...pages, ...lessonPages];
+  /* All 114 surahs. Each is a page of Quran with a Telugu translation, and
+     there is very little of that on the web: someone searching for
+     "సూరా యాసీన్ తెలుగు" should find this. */
+  const surahPages = surahIndex.map((s) => ({
+    url: `${SITE_URL}/knowledge-center/learn-quran/read/${s.n}`,
+    lastModified,
+    changeFrequency: "yearly" as const,
+    priority: 0.6,
+  }));
+
+  return [...pages, ...lessonPages, ...surahPages];
 }

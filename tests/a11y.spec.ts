@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { routes as catalogRoutes } from "../src/lib/site";
 import { lessons } from "../src/content/all-lessons";
+import { surahIndex } from "../src/content/quran-index";
 
 /* Automated WCAG checks with axe.
 
@@ -26,12 +27,18 @@ const SAMPLE = [
   "/knowledge-center/islamic-history",
   "/knowledge-center/womens-guidance",
   `/knowledge-center/${lessons[0].portal}/${lessons[0].slug}`,
+  /* The reader is two shapes of its own: a list of 114 links, and a page of
+     Arabic, transliteration and Telugu with a row of toggles above it. */
+  "/knowledge-center/learn-quran/read",
+  "/knowledge-center/learn-quran/read/1",
 ];
 
 // Guard against a route being renamed out from under the sample.
 const known = new Set([
   ...catalogRoutes.map((r) => r.path),
   ...lessons.map((l) => `/knowledge-center/${l.portal}/${l.slug}`),
+  "/knowledge-center/learn-quran/read",
+  ...surahIndex.map((s) => `/knowledge-center/learn-quran/read/${s.n}`),
 ]);
 
 for (const route of SAMPLE) {

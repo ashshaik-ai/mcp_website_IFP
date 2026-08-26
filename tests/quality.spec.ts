@@ -12,9 +12,23 @@ import { lessons } from "../src/content/all-lessons";
 /* Read from the same modules the sitemap is generated from, rather than the
    built sitemap.xml — Next emits that as a route, not a file on disk, and a
    test that silently falls back to three routes is worse than no test. */
+/* quran-sample: six of the 114 surah pages, not all of them.
+
+   Every surah renders through one component, so the 114 differ in content and
+   not in structure -- running all of them would add 228 tests to a suite that
+   already takes minutes, to re-prove the same markup 114 times. These six are
+   the ones that take a different path through the code: the shortest, the
+   longest, the one whose Bismillah is ayah 1, the one that has no Bismillah at
+   all, one carrying a sajda marker, and the last surah. */
+const QURAN_SAMPLE = [1, 9, 32, 108, 2, 114].map(
+  (n) => `/knowledge-center/learn-quran/read/${n}`,
+);
+
 const routes: string[] = [
   ...catalogRoutes.map((r) => r.path),
   ...lessons.map((l) => `/knowledge-center/${l.portal}/${l.slug}`),
+  "/knowledge-center/learn-quran/read",
+  ...QURAN_SAMPLE,
 ];
 
 async function settle(page: Page) {
