@@ -28,6 +28,7 @@ const routes: string[] = [
   ...catalogRoutes.map((r) => r.path),
   ...lessons.map((l) => `/knowledge-center/${l.portal}/${l.slug}`),
   "/knowledge-center/learn-quran/read",
+  "/knowledge-center/learn-quran/qaida",
   ...QURAN_SAMPLE,
 ];
 

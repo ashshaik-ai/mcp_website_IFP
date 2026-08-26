@@ -30,6 +30,7 @@ const SAMPLE = [
   /* The reader is two shapes of its own: a list of 114 links, and a page of
      Arabic, transliteration and Telugu with a row of toggles above it. */
   "/knowledge-center/learn-quran/read",
+  "/knowledge-center/learn-quran/qaida",
   "/knowledge-center/learn-quran/read/1",
 ];
 
@@ -38,6 +39,7 @@ const known = new Set([
   ...catalogRoutes.map((r) => r.path),
   ...lessons.map((l) => `/knowledge-center/${l.portal}/${l.slug}`),
   "/knowledge-center/learn-quran/read",
+  "/knowledge-center/learn-quran/qaida",
   ...surahIndex.map((s) => `/knowledge-center/learn-quran/read/${s.n}`),
 ]);
 

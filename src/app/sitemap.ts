@@ -34,5 +34,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...pages, ...lessonPages, ...surahPages];
+  const readerPages = [
+    { path: "/knowledge-center/learn-quran/read", priority: 0.8 },
+    { path: "/knowledge-center/learn-quran/qaida", priority: 0.8 },
+  ].map((r) => ({
+    url: `${SITE_URL}${r.path}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: r.priority,
+  }));
+
+  return [...pages, ...lessonPages, ...readerPages, ...surahPages];
 }

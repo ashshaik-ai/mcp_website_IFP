@@ -297,3 +297,50 @@ export function SurahJsonLd({
     />
   );
 }
+
+/* The beginner page. LearningResource, same as a lesson, because that is what
+   it is: a thing you work through, not a page you read. */
+export function QaidaJsonLd() {
+  const url = `${SITE_URL}/knowledge-center/learn-quran/qaida`;
+  const graph = [
+    {
+      "@type": "LearningResource",
+      "@id": `${url}#qaida`,
+      url,
+      name: "ఖురాన్ చదవడం నేర్చుకోండి | Learn to read the Quran",
+      description:
+        "The dots that tell Arabic letters apart, and how letters change shape when they join. For absolute beginners, in Telugu.",
+      inLanguage: ["te", "en"],
+      isAccessibleForFree: true,
+      learningResourceType: "Interactive Resource",
+      educationalLevel: "Beginner",
+      teaches: ["Arabic alphabet", "Arabic letter joining", "Quran reading"],
+      isPartOf: { "@id": SITE_ID },
+      provider: { "@id": ORG_ID },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Learn Quran",
+            item: `${SITE_URL}/knowledge-center/learn-quran`,
+          },
+          { "@type": "ListItem", position: 3, name: "Learn to read", item: url },
+        ],
+      },
+    },
+  ];
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+          /</g,
+          "\u003c",
+        ),
+      }}
+    />
+  );
+}
