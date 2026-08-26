@@ -14,7 +14,8 @@
     "audit": "node scripts/audit-live.mjs",
     "content:refresh": "node scripts/extract-lessons.mjs && node scripts/extract-alphabets.mjs && node scripts/extract-vocab.mjs && node scripts/extract-portals.mjs",
     "check:dead": "node scripts/check-dead-exports.mjs",
-    "quran:build": "node scripts/build-quran.mjs"
+    "quran:build": "node scripts/build-quran.mjs",
+    "hadith:build": "node scripts/build-hadith.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

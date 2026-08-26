@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { routes as catalogRoutes } from "../src/lib/site";
 import { lessons } from "../src/content/all-lessons";
 import { surahIndex } from "../src/content/quran-index";
+import { hadithCollections } from "../src/content/hadith-index";
 
 /* Automated WCAG checks with axe.
 
@@ -41,6 +42,15 @@ const known = new Set([
   "/knowledge-center/learn-quran/read",
   "/knowledge-center/learn-quran/qaida",
   ...surahIndex.map((s) => `/knowledge-center/learn-quran/read/${s.n}`),
+  "/knowledge-center/hadith/collections",
+  ...hadithCollections.map((c) => `/knowledge-center/hadith/collections/${c.id}`),
+  ...hadithCollections.flatMap((c) =>
+    c.books.flatMap((b) => {
+      const base = `/knowledge-center/hadith/collections/${c.id}/${b.n}`;
+      const pages = Math.max(1, Math.ceil(b.count / 50));
+      return [base, ...Array.from({ length: pages - 1 }, (_, i) => `${base}/${i + 2}`)];
+    }),
+  ),
 ]);
 
 for (const route of SAMPLE) {

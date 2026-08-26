@@ -29,6 +29,11 @@ const routes: string[] = [
   ...lessons.map((l) => `/knowledge-center/${l.portal}/${l.slug}`),
   "/knowledge-center/learn-quran/read",
   "/knowledge-center/learn-quran/qaida",
+  "/knowledge-center/hadith/collections",
+  "/knowledge-center/hadith/collections/nawawi",
+  "/knowledge-center/hadith/collections/nawawi/1",
+  "/knowledge-center/hadith/collections/tirmidhi/1",
+  "/knowledge-center/hadith/collections/bukhari/64/2",
   ...QURAN_SAMPLE,
 ];
 

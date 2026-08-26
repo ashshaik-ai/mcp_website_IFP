@@ -344,3 +344,159 @@ export function QaidaJsonLd() {
     />
   );
 }
+
+/* The hadith collections.
+
+   Each collection is a Book and each of its books a Chapter, the same shape
+   the Quran reader uses, because it is the same kind of thing: a work with
+   named parts. The collection node is shared across its chapters so a crawler
+   reads 98 pages of Bukhari as one work rather than 98 strangers. */
+function hadithBook(id: string, name: string, arabic: string, count: number) {
+  const url = `${SITE_URL}/knowledge-center/hadith/collections/${id}`;
+  return {
+    "@type": "Book",
+    "@id": `${url}#book`,
+    name,
+    alternateName: arabic,
+    url,
+    numberOfPages: count,
+    inLanguage: ["ar", "en"],
+    isAccessibleForFree: true,
+    bookFormat: "https://schema.org/EBook",
+    publisher: { "@id": ORG_ID },
+  };
+}
+
+function ld(graph: Record<string, unknown>[]) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+          /</g,
+          "\u003c",
+        ),
+      }}
+    />
+  );
+}
+
+export function HadithIndexJsonLd({ count, total }: { count: number; total: number }) {
+  const url = `${SITE_URL}/knowledge-center/hadith/collections`;
+  return ld([
+    {
+      "@type": "CollectionPage",
+      "@id": `${url}#page`,
+      url,
+      name: "హదీసు సంకలనాలు | Hadith collections",
+      description: `${count} collections and ${total} narrations, in Arabic and English, each shown with its grade.`,
+      inLanguage: ["te", "en"],
+      isPartOf: { "@id": SITE_ID },
+      numberOfItems: count,
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Hadith",
+            item: `${SITE_URL}/knowledge-center/hadith`,
+          },
+          { "@type": "ListItem", position: 3, name: "Collections", item: url },
+        ],
+      },
+    },
+  ]);
+}
+
+export function HadithCollectionJsonLd({
+  id,
+  te,
+  en,
+  arabic,
+  count,
+}: {
+  id: string;
+  te: string;
+  en: string;
+  arabic: string;
+  count: number;
+}) {
+  const url = `${SITE_URL}/knowledge-center/hadith/collections/${id}`;
+  return ld([
+    hadithBook(id, en, arabic, count),
+    {
+      "@type": "CollectionPage",
+      "@id": `${url}#page`,
+      url,
+      name: `${te} — ${en}`,
+      about: { "@id": `${url}#book` },
+      inLanguage: ["te", "en", "ar"],
+      isPartOf: { "@id": SITE_ID },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Collections",
+            item: `${SITE_URL}/knowledge-center/hadith/collections`,
+          },
+          { "@type": "ListItem", position: 3, name: en, item: url },
+        ],
+      },
+    },
+  ]);
+}
+
+export function HadithBookJsonLd({
+  id,
+  collectionEn,
+  arabic,
+  collectionCount,
+  book,
+  name,
+  count,
+  page,
+}: {
+  id: string;
+  collectionEn: string;
+  arabic: string;
+  collectionCount: number;
+  book: number;
+  name: string;
+  count: number;
+  page?: number;
+}) {
+  const base = `${SITE_URL}/knowledge-center/hadith/collections/${id}/${book}`;
+  const url = page && page > 1 ? `${base}/${page}` : base;
+  return ld([
+    hadithBook(id, collectionEn, arabic, collectionCount),
+    {
+      "@type": "Chapter",
+      "@id": `${url}#chapter`,
+      url,
+      name,
+      position: book,
+      isPartOf: { "@id": `${SITE_URL}/knowledge-center/hadith/collections/${id}#book` },
+      inLanguage: ["ar", "en"],
+      isAccessibleForFree: true,
+      description: `${name}, ${collectionEn}: ${count} narrations, each shown with its grade.`,
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: collectionEn,
+            item: `${SITE_URL}/knowledge-center/hadith/collections/${id}`,
+          },
+          { "@type": "ListItem", position: 3, name, item: base },
+        ],
+      },
+    },
+  ]);
+}
