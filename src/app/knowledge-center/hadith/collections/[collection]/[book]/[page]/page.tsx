@@ -7,7 +7,8 @@ import { hadithCollections } from "@/content/hadith-index";
 import { collectionById, loadBook, pageCount, PAGE_SIZE } from "@/lib/hadith";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { HadithBookJsonLd } from "@/components/JsonLd";
-import { BookHeader, HadithCard } from "../page";
+import { BookHeader } from "../page";
+import { HadithList } from "@/components/learning/HadithList";
 
 /* Pages two and up of a book.
 
@@ -86,11 +87,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
       <section className="bg-[var(--if-cream-light)] px-4 py-10">
         <div className="mx-auto max-w-3xl">
-          <ol className="flex flex-col gap-5">
-            {shown.map((h) => (
-              <HadithCard key={h.n} h={h} sahihThroughout={c.sahihThroughout} />
-            ))}
-          </ol>
+          <HadithList hadiths={shown} sahihThroughout={c.sahihThroughout} />
 
           <nav
             aria-label="పేజీలు"

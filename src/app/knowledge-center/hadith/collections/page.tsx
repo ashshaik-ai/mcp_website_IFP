@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronLeft, BookOpen, ShieldCheck, AlertTriangle } from "lucide-react";
+import { ChevronLeft, BookOpen, ShieldCheck, AlertTriangle, ExternalLink } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { hadithCollections, TOTAL_HADITH } from "@/content/hadith-index";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -27,6 +27,30 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+/* Telugu hadith in print, checked by hand rather than assumed to exist.
+
+   Al-Lulu wal Marjan is the narrations agreed upon by Bukhari and Muslim;
+   Hadeesu Kiranaalu is Imam Nawawi's Riyad us-Saliheen. Both are published in
+   Telugu by Al-Huq Telugu Publications, Hyderabad, and hosted by
+   TeluguIslam.net as scanned volumes. */
+const TELUGU_BOOKS = [
+  {
+    te: "మహా ప్రవక్త మహితోక్తులు (అల్-లూలూ వల్-మర్జాన్)",
+    en: "Al-Lulu wal Marjan — hadith agreed upon by Bukhari and Muslim",
+    url: "https://teluguislam.net/2010/10/06/al-lulu-wal-marjan/",
+  },
+  {
+    te: "హదీసు కిరణాలు (రియాదుస్ సాలిహీన్)",
+    en: "Hadeesu Kiranaalu — Riyad us-Saliheen of Imam an-Nawawi",
+    url: "https://teluguislam.net/2010/10/06/riyadh-as-saliheen-imam-nawawi/",
+  },
+  {
+    te: "బులూగుల్ మరామ్",
+    en: "Bulugh al-Maram of Ibn Hajar",
+    url: "https://teluguislam.net/2010/10/06/bulugh-al-maram/",
+  },
+];
 
 export default function Page() {
   const beginner = hadithCollections.filter((c) => c.beginner);
@@ -78,10 +102,44 @@ export default function Page() {
             ))}
           </ul>
 
-          <p className="mt-10 border-t border-[var(--if-gold)]/20 pt-6 text-xs leading-relaxed text-[var(--if-text-muted)]">
-            ఉల్లేఖనలు అరబిక్ మరియు ఇంగ్లీష్‌లో ఉన్నాయి. తెలుగు అనువాదం ఇంకా అందుబాటులో లేదు — యంత్ర అనువాదం
-            వాడలేదు, ఎందుకంటే ప్రవక్త ﷺ మాటలను తప్పుగా అనువదించడం తేలికైన విషయం కాదు.
-          </p>
+          {/* Telugu hadith exists. It is not on this site because it is not
+              data -- it is scanned books, and OCR over scripture is not a
+              thing to publish. Saying "no Telugu translation is available"
+              would be false and would send someone away empty-handed, so the
+              books themselves are named and linked. */}
+          <div className="mt-12 rounded-xl border border-[var(--if-gold)]/25 bg-white p-5">
+            <h2 className="font-display text-lg font-bold text-[var(--if-green)]">తెలుగులో హదీసు గ్రంథాలు</h2>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--if-text-mid)]" style={{ textWrap: "pretty" }}>
+              పైన ఉన్న ఉల్లేఖనలు అరబిక్ మరియు ఇంగ్లీష్‌లో ఉన్నాయి. తెలుగు అనువాదాలు పుస్తక రూపంలో ఉన్నాయి —
+              అవి స్కాన్ చేసిన పేజీలు, కంప్యూటర్ చదవగలిగే వచనం కాదు. అందుకే వాటిని ఇక్కడ చేర్చలేదు; నేరుగా
+              పుస్తకాలకే లింక్ ఇస్తున్నాం.
+            </p>
+            <ul className="mt-4 flex flex-col gap-2">
+              {TELUGU_BOOKS.map((b) => (
+                <li key={b.url}>
+                  <a
+                    href={b.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group flex min-h-11 items-center gap-2 rounded-lg border border-[var(--if-gold)]/20 px-3 py-2 text-sm transition-colors hover:border-[var(--if-gold)]/60 hover:bg-[var(--if-cream)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+                  >
+                    <BookOpen aria-hidden="true" className="h-4 w-4 shrink-0 text-[var(--if-gold-ink)]" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-semibold text-[var(--if-green)]">{b.te}</span>
+                      <span className="block text-xs text-[var(--if-text-muted)]">{b.en}</span>
+                    </span>
+                    <ExternalLink
+                      aria-hidden="true"
+                      className="h-3.5 w-3.5 shrink-0 text-[var(--if-text-muted)]"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs text-[var(--if-text-muted)]">
+              ప్రచురణ: TeluguIslam.net — ఈ సైట్‌కు సంబంధం లేని బయటి లింకులు.
+            </p>
+          </div>
         </div>
       </section>
     </PageShell>
