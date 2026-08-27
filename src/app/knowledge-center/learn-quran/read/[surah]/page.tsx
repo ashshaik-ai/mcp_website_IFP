@@ -5,7 +5,7 @@ import { ChevronLeft, MapPin, BookOpen } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { surahIndex, QURAN_SOURCES } from "@/content/quran-index";
 import { SurahJsonLd } from "@/components/JsonLd";
-import { loadSurah, BISMILLAH, hasBismillah } from "@/lib/quran";
+import { loadSurah, BISMILLAH, hasBismillah, firstGlobalAyah } from "@/lib/quran";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { Reader } from "./client";
 
@@ -104,10 +104,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           bismillah={hasBismillah(meta.n) ? BISMILLAH : null}
           prev={prev}
           next={next}
+          firstGlobal={firstGlobalAyah(meta.n)}
         />
 
         <p className="mx-auto mt-10 max-w-3xl border-t border-[var(--if-gold)]/20 px-4 pt-6 text-xs leading-relaxed text-[var(--if-text-muted)]">
-          అరబిక్ మూలం: {QURAN_SOURCES.arabic} · తెలుగు అనువాదం: {QURAN_SOURCES.telugu}
+          అరబిక్ మూలం: {QURAN_SOURCES.arabic} · తెలుగు అనువాదం: {QURAN_SOURCES.telugu} · English: {QURAN_SOURCES.english}
         </p>
       </section>
     </PageShell>

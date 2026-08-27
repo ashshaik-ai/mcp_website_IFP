@@ -46,11 +46,19 @@ const EDITIONS = {
   uthmani: "ara-quranuthmanihaf",
   translit: "ara-quranphoneticst",
   telugu: "tel-abdulraheemmoha",
+  /* Mufti Taqi Usmani. Chosen over the alternatives on two grounds: he keeps
+     "Allah" where Abdel Haleem writes "God", and he reads cleanly where
+     Hilali-Khan breaks every other clause with a parenthesis. He is also the
+     foremost Hanafi translator into English, and this portal teaches the
+     Hanafi school -- the same reason its prayer figure folds its hands below
+     the navel. */
+  english: "eng-muftitaqiusmani",
 };
 
 const SOURCES = {
   arabic: "Tanzil.net / King Fahad Quran Complex (CC BY-ND)",
   telugu: "Abdul Raheem Mohammad Moulana",
+  english: "Mufti Taqi Usmani",
   translit: "Quran phonetic transliteration",
 };
 
@@ -144,11 +152,12 @@ function byAyah(edition) {
 
 const main = async () => {
   console.log("Quran build");
-  const [indopak, uthmani, translit, telugu, info] = await Promise.all([
+  const [indopak, uthmani, translit, telugu, english, info] = await Promise.all([
     grab("indopak", `${CDN}/editions/${EDITIONS.indopak}.min.json`),
     grab("uthmani", `${CDN}/editions/${EDITIONS.uthmani}.min.json`),
     grab("translit", `${CDN}/editions/${EDITIONS.translit}.min.json`),
     grab("telugu", `${CDN}/editions/${EDITIONS.telugu}.min.json`),
+    grab("english", `${CDN}/editions/${EDITIONS.english}.min.json`),
     grab("info", `${CDN}/info.json`),
   ]);
 
@@ -156,6 +165,7 @@ const main = async () => {
   const ut = byAyah(uthmani);
   const tl = byAyah(translit);
   const te = byAyah(telugu);
+  const en = byAyah(english);
 
   mkdirSync(OUT, { recursive: true });
 
@@ -169,7 +179,7 @@ const main = async () => {
 
     const ayahs = ch.verses.map((v) => {
       const key = `${n}:${v.verse}`;
-      const row = { v: v.verse, ar: ip.get(key), tr: tl.get(key), te: te.get(key) };
+      const row = { v: v.verse, ar: ip.get(key), tr: tl.get(key), te: te.get(key), en: en.get(key) };
       /* A missing ayah must stop the build. A Quran with a hole in it that
          renders as "undefined" is the worst possible failure here. */
       for (const [k, val] of Object.entries(row)) {
@@ -212,7 +222,8 @@ const main = async () => {
    bundled, so it has to stay small enough to be worth bundling.
 
    Arabic text: ${SOURCES.arabic}
-   Telugu: ${SOURCES.telugu} */
+   Telugu: ${SOURCES.telugu}
+   English: ${SOURCES.english} */
 
 export type SurahMeta = {
   n: number;

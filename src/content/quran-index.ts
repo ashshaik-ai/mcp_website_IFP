@@ -5,7 +5,8 @@
    bundled, so it has to stay small enough to be worth bundling.
 
    Arabic text: Tanzil.net / King Fahad Quran Complex (CC BY-ND)
-   Telugu: Abdul Raheem Mohammad Moulana */
+   Telugu: Abdul Raheem Mohammad Moulana
+   English: Mufti Taqi Usmani */
 
 export type SurahMeta = {
   n: number;
@@ -144,5 +145,6 @@ export const TOTAL_AYAHS = 6236;
 export const QURAN_SOURCES = {
   "arabic": "Tanzil.net / King Fahad Quran Complex (CC BY-ND)",
   "telugu": "Abdul Raheem Mohammad Moulana",
+  "english": "Mufti Taqi Usmani",
   "translit": "Quran phonetic transliteration"
 };

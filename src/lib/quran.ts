@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { surahIndex } from "@/content/quran-index";
 
 /* Reading the Quran text at build time.
 
@@ -21,8 +22,10 @@ export type Ayah = {
   ar: string;
   /** Phonetic transliteration, for a reader still learning the script. */
   tr: string;
-  /** Telugu translation. */
+  /** Telugu translation, Abdul Raheem Mohammad Moulana. */
   te: string;
+  /** English translation, Mufti Taqi Usmani. */
+  en: string;
   /** A verse of prostration. Fifteen of them, by the classical count. */
   sajda?: true;
 };
@@ -56,3 +59,16 @@ export function loadSurah(n: number): Surah {
    would see that instantly. */
 export const BISMILLAH = "بِسۡمِ اللّٰهِ الرَّحۡمٰنِ الرَّحِيۡمِ";
 export const hasBismillah = (n: number) => n !== 1 && n !== 9;
+
+/* The number of a surah's first ayah counting from the start of the Quran.
+
+   Every recitation archive keys its files 1 to 6,236 rather than by surah and
+   verse, so Al-Baqarah's first ayah is file 8 and not file 2:1. Derived from
+   the index rather than stored per ayah: it is a running total of numbers
+   already on hand, and duplicating it into 6,236 records would be six thousand
+   chances for it to disagree with itself. */
+export function firstGlobalAyah(surah: number): number {
+  let n = 1;
+  for (let i = 0; i < surah - 1; i++) n += surahIndex[i].ayahs;
+  return n;
+}

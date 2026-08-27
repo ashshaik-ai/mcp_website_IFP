@@ -48,7 +48,7 @@ export default function Page() {
           {/* The licence requires attribution, and it belongs where the text
               is, not buried in a colophon. */}
           <p className="mt-10 border-t border-[var(--if-gold)]/20 pt-6 text-xs leading-relaxed text-[var(--if-text-muted)]">
-            అరబిక్ మూలం: {QURAN_SOURCES.arabic} · తెలుగు అనువాదం: {QURAN_SOURCES.telugu}
+            అరబిక్ మూలం: {QURAN_SOURCES.arabic} · తెలుగు అనువాదం: {QURAN_SOURCES.telugu} · English: {QURAN_SOURCES.english}
           </p>
         </div>
       </section>
