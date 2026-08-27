@@ -13,7 +13,7 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import { LessonIndex } from "@/components/learning/LessonIndex";
 import { PortalJump } from "@/components/learning/PortalJump";
 import { PortalWallpaper } from "@/components/learning/PortalWallpaper";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { essentialHadith, hadithBooks, hadithGrades } from "@/content/hadith";
 
 /* Bilingual copy for this file, hoisted out of the JSX so a translator can
@@ -100,6 +100,53 @@ function HadithPage() {
           <BlurFade delay={0.2}>
             <p className="text-[var(--if-gold-pale)]/70 max-w-xl text-pretty">{copy.subtitle[lang]}</p>
           </BlurFade>
+        </div>
+      </section>
+
+      {/* ── The collections ───────────────────────────────────────────────
+          36,057 narrations were built, prerendered and put in the sitemap,
+          and nothing on this page linked to them. Same oversight as the Quran
+          reader: reachable by a crawler, unreachable by a reader. */}
+      <section className="px-4 py-12 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-4xl">
+          <Link
+            href="/knowledge-center/hadith/collections"
+            className="group relative flex flex-col overflow-hidden rounded-2xl bg-[var(--if-green)] p-6 text-[var(--if-gold-pale)] transition-colors hover:bg-[var(--if-green-mid)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] sm:flex-row sm:items-center sm:gap-6"
+          >
+            <BorderBeam size={220} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
+            <div className="min-w-0 flex-1">
+              <span className="font-arabic block text-2xl text-[var(--if-gold-light)]" lang="ar" dir="rtl">
+                كُتُب الحديث
+              </span>
+              <h2 className="mt-2 font-display text-2xl font-bold">
+                {lang === "te" ? "హదీసు సంకలనాలు చదవండి" : "Read the hadith collections"}
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--if-gold-pale)]/85">
+                {lang === "te"
+                  ? "తొమ్మిది సంకలనాలు, 36,000కి పైగా ఉల్లేఖనలు — అరబిక్ మరియు ఇంగ్లీష్‌లో, ప్రతిదానికీ దాని శ్రేణితో."
+                  : "Nine collections, over 36,000 narrations, in Arabic and English, every one with its grade."}
+              </p>
+            </div>
+            <span className="mt-5 inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-[var(--if-gold-light)] sm:mt-0">
+              {lang === "te" ? "తెరవండి" : "Open"}
+              <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
+
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[var(--if-text-muted)]">
+              {lang === "te" ? "త్వరగా" : "Jump to"}
+            </span>
+            {QUICK_COLLECTIONS.map((q) => (
+              <Link
+                key={q.id}
+                href={`/knowledge-center/hadith/collections/${q.id}`}
+                className="inline-flex min-h-11 items-center rounded-full border border-[var(--if-gold)]/30 px-3.5 text-sm font-semibold text-[var(--if-text-mid)] transition-colors hover:border-[var(--if-gold)] hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+              >
+                {lang === "te" ? q.te : q.en}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -288,6 +335,16 @@ function HadithPage() {
     </PageShell>
   );
 }
+
+/* Where to send someone who does not know where to start. Nawawi's forty
+   first, because forty-two narrations can be finished and Bukhari's 7,580
+   cannot. */
+const QUICK_COLLECTIONS = [
+  { id: "nawawi", te: "నవవీ 40", en: "Nawawi's 40" },
+  { id: "qudsi", te: "హదీస్ ఖుద్సీ", en: "Hadith Qudsi" },
+  { id: "bukhari", te: "బుఖారీ", en: "Bukhari" },
+  { id: "muslim", te: "ముస్లిం", en: "Muslim" },
+];
 
 export default function Hadith() {
   return <HadithPage />;

@@ -54,6 +54,18 @@ const copy = {
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
 
+/* The surahs a visitor is most likely to be hunting for: the one recited in
+   every prayer, the two read on Fridays, the heart of the Quran, and the
+   three that close it. */
+const QUICK_SURAHS = [
+  { n: 1, te: "అల్-ఫాతిహా", en: "Al-Fatihah" },
+  { n: 36, te: "యాసీన్", en: "Ya-Sin" },
+  { n: 18, te: "అల్-కహ్ఫ్", en: "Al-Kahf" },
+  { n: 55, te: "అర్-రహ్మాన్", en: "Ar-Rahman" },
+  { n: 67, te: "అల్-ముల్క్", en: "Al-Mulk" },
+  { n: 112, te: "అల్-ఇఖ్లాస్", en: "Al-Ikhlas" },
+];
+
 const stages = [
   {
     num: 1, icon: BookOpen,
@@ -350,6 +362,82 @@ function LearnQuranPage() {
               </div>
             ))}
           </BlurFade>
+        </div>
+      </section>
+
+      {/* ── The Quran itself ──────────────────────────────────────────────
+          The whole reason someone opens this portal, and until now the one
+          thing it did not offer. The reader, the beginner's page and 114
+          surahs were all built and none of them were linked from anywhere a
+          person could click: they existed in the sitemap and in the
+          structured data, which is to say they existed for crawlers and not
+          for readers. */}
+      <section className="px-4 py-12 bg-[var(--if-cream-light)]">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/knowledge-center/learn-quran/read"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[var(--if-green)] p-6 text-[var(--if-gold-pale)] transition-colors hover:bg-[var(--if-green-mid)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+            >
+              <BorderBeam size={220} duration={10} colorFrom="#c8922a" colorTo="#e8b84b" />
+              <div>
+                <span className="font-arabic block text-3xl text-[var(--if-gold-light)]" lang="ar" dir="rtl">
+                  ٱلْقُرْآن
+                </span>
+                <h2 className="mt-2 font-display text-2xl font-bold">
+                  {lang === "te" ? "ఖురాన్ చదవండి" : "Read the Quran"}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--if-gold-pale)]/85">
+                  {lang === "te"
+                    ? "మొత్తం 114 సూరాలు, 6,236 ఆయతులు — తెలుగు, ఇంగ్లీష్, అరబిక్, ఉర్దూ వాయిస్‌తో."
+                    : "All 114 surahs and 6,236 ayahs — Telugu, English, Arabic, with an Urdu voice."}
+                </p>
+              </div>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--if-gold-light)]">
+                {lang === "te" ? "తెరవండి" : "Open"}
+                <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+
+            <Link
+              href="/knowledge-center/learn-quran/qaida"
+              className="group flex flex-col justify-between rounded-2xl border border-[var(--if-gold)]/30 bg-white p-6 transition-colors hover:border-[var(--if-gold)] hover:bg-[color-mix(in_srgb,var(--if-gold)_6%,white)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)]"
+            >
+              <div>
+                <span className="font-arabic block text-3xl text-[var(--if-gold-ink)]" lang="ar" dir="rtl">
+                  بـ ـبـ ـب
+                </span>
+                <h2 className="mt-2 font-display text-2xl font-bold text-[var(--if-green)]">
+                  {lang === "te" ? "చదవడం నేర్చుకోండి" : "Learn to read"}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--if-text-mid)]">
+                  {lang === "te"
+                    ? "అక్షరాలు తెలిసినా ఖురాన్ చదవలేకపోతున్నారా? చుక్కలు, అక్షరాలు కలిసే విధానం — యానిమేషన్‌తో."
+                    : "Know the letters but still cannot read? The dots, and how letters join — animated."}
+                </p>
+              </div>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--if-green)]">
+                {lang === "te" ? "మొదలుపెట్టండి" : "Start"}
+                <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </div>
+
+          {/* The surahs people actually go looking for. */}
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[var(--if-text-muted)]">
+              {lang === "te" ? "త్వరగా" : "Jump to"}
+            </span>
+            {QUICK_SURAHS.map((q) => (
+              <Link
+                key={q.n}
+                href={`/knowledge-center/learn-quran/read/${q.n}`}
+                className="min-h-11 rounded-full border border-[var(--if-gold)]/30 px-3.5 text-sm font-semibold text-[var(--if-text-mid)] transition-colors hover:border-[var(--if-gold)] hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--if-gold)] inline-flex items-center"
+              >
+                {lang === "te" ? q.te : q.en}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
