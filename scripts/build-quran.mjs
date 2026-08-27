@@ -36,6 +36,7 @@
 
 import { mkdirSync, writeFileSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { transliterateAyah } from "./lib/telugu-translit.mjs";
 
 const CDN = "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1";
 const CACHE = join("node_modules", ".cache", "quran");
@@ -179,7 +180,18 @@ const main = async () => {
 
     const ayahs = ch.verses.map((v) => {
       const key = `${n}:${v.verse}`;
-      const row = { v: v.verse, ar: ip.get(key), tr: tl.get(key), te: te.get(key), en: en.get(key) };
+      const arabic = ip.get(key);
+      const row = {
+        v: v.verse,
+        ar: arabic,
+        tr: tl.get(key),
+        /* The Arabic written in Telugu letters, so a reader who knows only
+           Telugu can recite it rather than only read what it means. Derived
+           here rather than fetched: no published edition of this exists. */
+        tt: arabic === undefined ? undefined : transliterateAyah(n, v.verse, arabic),
+        te: te.get(key),
+        en: en.get(key),
+      };
       /* A missing ayah must stop the build. A Quran with a hole in it that
          renders as "undefined" is the worst possible failure here. */
       for (const [k, val] of Object.entries(row)) {

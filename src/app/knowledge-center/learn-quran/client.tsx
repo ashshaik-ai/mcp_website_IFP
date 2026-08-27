@@ -389,8 +389,8 @@ function LearnQuranPage() {
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--if-gold-pale)]/85">
                   {lang === "te"
-                    ? "మొత్తం 114 సూరాలు, 6,236 ఆయతులు — తెలుగు, ఇంగ్లీష్, అరబిక్, ఉర్దూ వాయిస్‌తో."
-                    : "All 114 surahs and 6,236 ayahs — Telugu, English, Arabic, with an Urdu voice."}
+                    ? "మొత్తం 114 సూరాలు, 6,236 ఆయతులు — తెలుగు, ఇంగ్లీష్, అరబిక్, తెలుగు లిపిలో పఠనం, ఉర్దూ వాయిస్."
+                    : "All 114 surahs and 6,236 ayahs — Telugu, English, Arabic, recitation in Telugu letters, an Urdu voice."}
                 </p>
               </div>
               <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--if-gold-light)]">

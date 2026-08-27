@@ -22,6 +22,10 @@ export type Ayah = {
   ar: string;
   /** Phonetic transliteration, for a reader still learning the script. */
   tr: string;
+  /** The Arabic written in Telugu letters, so it can be recited rather than
+      only understood. Built by scripts/lib/telugu-translit.mjs; no published
+      edition of this exists to fetch. */
+  tt: string;
   /** Telugu translation, Abdul Raheem Mohammad Moulana. */
   te: string;
   /** English translation, Mufti Taqi Usmani. */

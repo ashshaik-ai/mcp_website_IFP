@@ -47,7 +47,12 @@ import { teluguSurahAudio, TELUGU_RECITER } from "@/content/quran-audio-te";
    the page still reads. */
 
 const copy = {
-  translit: { te: "ఉచ్చారణ", en: "Pronunciation" },
+  translit: { te: "ఉచ్చారణ (ఇంగ్లీష్)", en: "Pronunciation (Latin)" },
+  teScript: { te: "తెలుగు లిపిలో ఖురాన్", en: "Quran in Telugu letters" },
+  ttNote: {
+    te: "తెలుగు అక్షరాలతో అరబీ ఉచ్చారణ — ఉర్దూలో పలికే విధంగా. తెలుగులో కొన్ని అరబీ అక్షరాలకు వేర్వేరు అక్షరాలు లేవు: ث ص س అన్నీ 'స', ق خ రెండూ 'ఖ'. కచ్చితమైన ఉచ్చారణ కోసం పైన అరబిక్ కూడా ఆన్ చేసుకోండి.",
+    en: "Arabic pronunciation in Telugu letters, spelled the way Urdu says it. Telugu has no separate letters for some Arabic sounds: ث ص س all become స, and ق خ both become ఖ. Switch the Arabic on above to see exactly what is being said.",
+  },
   arabic: { te: "అరబిక్", en: "Arabic" },
   telugu: { te: "తెలుగు", en: "Telugu" },
   english: { te: "ఇంగ్లీష్", en: "English" },
@@ -75,7 +80,7 @@ const copy = {
   vTe: { te: "తెలుగు", en: "Telugu" },
   vEn: { te: "ఇంగ్లీష్", en: "English" },
   vAr: { te: "అరబిక్", en: "Arabic" },
-  vTeUr: { te: "తెలుగు + ఉర్దూ వాయిస్", en: "Telugu + Urdu voice" },
+  vTeUr: { te: "తెలుగు లిపి + ఉర్దూ వాయిస్", en: "Telugu letters + Urdu voice" },
   vEnUr: { te: "ఇంగ్లీష్ + ఉర్దూ వాయిస్", en: "English + Urdu voice" },
   custom: { te: "మీ ఇష్టం", en: "Custom" },
   more: { te: "మరిన్ని ఎంపికలు", en: "Fine-tune" },
@@ -95,6 +100,7 @@ type Voice = "none" | "ar" | "ur" | "te";
 type Prefs = {
   ar?: boolean;
   tr?: boolean;
+  tt?: boolean;
   te?: boolean;
   en?: boolean;
   uthmani: boolean;
@@ -194,9 +200,10 @@ export function Reader({
 
   const showAr = prefs.ar ?? true;
   const showTr = prefs.tr ?? true;
+  const showTt = prefs.tt ?? false;
   const showTe = prefs.te ?? lang === "te";
   const showEn = prefs.en ?? lang === "en";
-  const nothingOn = !showAr && !showTr && !showTe && !showEn;
+  const nothingOn = !showAr && !showTr && !showTt && !showTe && !showEn;
 
   useEffect(() => {
     if (!prefs.uthmani || uthmaniText) return;
@@ -301,11 +308,15 @@ export function Reader({
      voice together, and the one you are currently in is marked. The
      switches below still exist for anything these five do not cover. */
   const versions: { id: string; label: string; apply: Partial<Prefs> }[] = [
-    { id: "te", label: copy.vTe[lang], apply: { ar: false, tr: false, te: true, en: false, voice: "none" } },
-    { id: "en", label: copy.vEn[lang], apply: { ar: false, tr: false, te: false, en: true, voice: "none" } },
-    { id: "ar", label: copy.vAr[lang], apply: { ar: true, tr: false, te: false, en: false, voice: "ar" } },
-    { id: "te-ur", label: copy.vTeUr[lang], apply: { ar: false, tr: false, te: true, en: false, voice: "ur" } },
-    { id: "en-ur", label: copy.vEnUr[lang], apply: { ar: false, tr: false, te: false, en: true, voice: "ur" } },
+    { id: "te", label: copy.vTe[lang], apply: { ar: false, tr: false, tt: false, te: true, en: false, voice: "none" } },
+    { id: "en", label: copy.vEn[lang], apply: { ar: false, tr: false, tt: false, te: false, en: true, voice: "none" } },
+    { id: "ar", label: copy.vAr[lang], apply: { ar: true, tr: false, tt: false, te: false, en: false, voice: "ar" } },
+    /* Telugu letters, not the Telugu translation. This version is for
+       reciting: the reader sounds the Arabic out of their own script while
+       the Urdu recitation carries the tune. Showing the meaning here would
+       be a different thing entirely, and the Telugu version above is it. */
+    { id: "te-ur", label: copy.vTeUr[lang], apply: { ar: false, tr: false, tt: true, te: false, en: false, voice: "ur" } },
+    { id: "en-ur", label: copy.vEnUr[lang], apply: { ar: false, tr: false, tt: false, te: false, en: true, voice: "ur" } },
   ];
 
   /* Which of the five, if any, the reader is currently in. Compared against
@@ -316,6 +327,7 @@ export function Reader({
       (v) =>
         (v.apply.ar ?? false) === showAr &&
         (v.apply.tr ?? false) === showTr &&
+        (v.apply.tt ?? false) === showTt &&
         (v.apply.te ?? false) === showTe &&
         (v.apply.en ?? false) === showEn &&
         v.apply.voice === prefs.voice,
@@ -385,6 +397,7 @@ export function Reader({
               icon={<Volume2 aria-hidden="true" className="h-3.5 w-3.5" />}
               label={copy.translit[lang]}
             />
+            <Toggle on={showTt} onClick={() => write({ tt: !showTt })} label={copy.teScript[lang]} />
             <Toggle on={showTe} onClick={() => write({ te: !showTe })} label={copy.telugu[lang]} />
             <Toggle on={showEn} onClick={() => write({ en: !showEn })} label={copy.english[lang]} />
 
@@ -442,6 +455,15 @@ export function Reader({
           </div>
           </details>
         </div>
+
+        {/* Said plainly rather than left for a reader to discover: some Arabic
+            letters share one Telugu letter, so this line gets you reciting but
+            is not a substitute for the script itself. */}
+        {showTt && (
+          <p className="mb-6 rounded-lg border border-[var(--if-gold)]/25 bg-[var(--if-cream)] px-4 py-3 text-sm leading-relaxed text-[var(--if-text-mid)]">
+            {copy.ttNote[lang]}
+          </p>
+        )}
 
         {nothingOn && (
           <p className="mb-6 rounded-lg bg-[var(--if-gold)]/10 px-4 py-3 text-center text-sm text-[var(--if-gold-ink)]">
@@ -530,6 +552,19 @@ export function Reader({
 
               {showTr && (
                 <p className="mt-3 text-sm italic leading-relaxed text-[var(--if-text-muted)]">{a.tr}</p>
+              )}
+
+              {/* Telugu letters carrying the Arabic. Set a little larger and
+                  darker than a translation because this line is meant to be
+                  read aloud, not skimmed. */}
+              {showTt && (
+                <p
+                  className="mt-3 text-lg leading-[2] font-medium text-[var(--if-text)]"
+                  style={{ textWrap: "pretty" }}
+                  lang="te"
+                >
+                  {a.tt}
+                </p>
               )}
 
               {showTe && (
